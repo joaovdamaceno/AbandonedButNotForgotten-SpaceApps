@@ -34,3 +34,5 @@ Thumbs.db
 *.apk
 *.aab
 crashlytics-build.properties
+# Artefato do Burst no build WebGL (CORE-006), gravado relativo à raiz do projeto
+/Data/Plugins/
