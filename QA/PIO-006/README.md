@@ -15,11 +15,11 @@ Cobertura dos testes: hold antecipado durante o aprendizado, soltar e retomar, p
 
 ## Conformidade com o UI_SPEC e a arquitetura (PR de correção)
 
-Base `develop` a partir do commit de PR #122 (última CORE integrada: CORE-006). Executado em batchmode, Unity 6000.6.7f1.
+Base `develop` e61073c, já mesclada nesta branch (última CORE integrada: CORE-006). Executado em batchmode, Unity 6000.6.7f1.
 
 | Verificação | Resultado |
 | --- | --- |
-| Suíte EditMode completa | **494/494**, 0 falhas (`editmode.xml`); `PioneerImagingTests` passou a 20 testes (ValidateSetup, `ResponsiveLayoutClass`, estados do prompt) |
+| Suíte EditMode completa (base mesclada) | **494 passaram, 26 falharam de 520** (`editmode.xml`). As 26 falhas são **todas** `MarsLandingTests` (MAR-014, de outra pessoa), com NullReference no `SetUp`: 15 scripts de `Mars/Art/Landing` foram commitados sem o `.meta`, então a Unity gera GUIDs novos e o prefab `MerLandingAssembly` perde os componentes. Não é desta tarefa e não foi alterado aqui. `PioneerImagingTests` passou a 20 testes (ValidateSetup, `ResponsiveLayoutClass`, estados do prompt), todos passando. Antes da mescla: 494/494 |
 | Capturas | 25 PNGs em `Docs/Art/Pioneer10_Imaging/<estado>_<L>x<A>.png`: 11 estados em 1280×720; 7 também em 960×600 e 1024×768 (4:3, classe `sa-layout--narrow`). Fundo claro #C99A6E (pior caso) |
 | Contraste medido no render (`contrast-audit.txt`) | 0 falhas. Pior texto: números das faixas 8,83:1 (mín. 4,5:1); pior não-texto: cursor × zona 4,07:1 (mín. 3:1) |
 | Layout (`layout-audit.txt`) | 0 falhas: quadro dentro da tela, imagem, trilha, prompt e legenda dentro do quadro; exatamente uma classe `sa-hold--*` por captura |
