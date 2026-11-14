@@ -9,6 +9,7 @@ from unittest.mock import patch
 from urllib.parse import unquote, urlsplit, parse_qs
 
 import sync_readiness as ready
+import project_board
 
 
 def issue(number, task_id, state='open', labels=(), users=()):
@@ -36,6 +37,8 @@ class FakeClient:
         self.issues = {row['number']: deepcopy(row) for row in issues}
         self.requests = []
         self.prs = {}
+        self.events = {}
+        self.after_timeline = None
         self.after_assign = None
         self.reject_assignment = False
 
@@ -57,10 +60,23 @@ class FakeClient:
             return deepcopy(rows[(page - 1) * 100:page * 100])
         parts = route.path.removeprefix(prefix + '/').split('/')
         if parts[0] == 'pulls' and method == 'GET':
+            if len(parts) == 1:
+                page = int(parse_qs(route.query).get('page', ['1'])[0])
+                rows = sorted(self.prs.values(), key=lambda pr: pr['number'])
+                # A listagem real tem merged_at, mas não tem o booleano merged.
+                return [{k: deepcopy(v) for k, v in pr.items() if k != 'merged'}
+                        for pr in rows[(page - 1) * 100:page * 100]]
             return deepcopy(self.prs[int(parts[1])])
         if parts[0] != 'issues':
             raise AssertionError((method, path, body))
         row = self.issues[int(parts[1])]
+        if len(parts) == 3 and parts[2] == 'timeline' and method == 'GET':
+            page = int(parse_qs(route.query).get('page', ['1'])[0])
+            events = deepcopy(self.events.get(row['number'], []))
+            if self.after_timeline:
+                callback, self.after_timeline = self.after_timeline, None
+                callback(self)
+            return events[(page - 1) * 100:page * 100]
         if len(parts) == 2:
             if method == 'GET':
                 return deepcopy(row)
@@ -103,8 +119,11 @@ def pr_event(base='develop', repo=ready.REPO, merged=True):
                              'base': {'ref': base, 'repo': {'full_name': repo}}}}
 
 
-def add_pr(client, body, base='develop', repo=ready.REPO, merged=True):
-    client.prs[50] = {'number': 50, 'body': body, 'merged': merged, 'state': 'closed',
+def add_pr(client, body, base='develop', repo=ready.REPO, merged=True, number=50,
+           merged_at='2026-11-14T10:00:00Z'):
+    client.prs[number] = {'number': number, 'body': body, 'merged': merged, 'state': 'closed',
+                      'merged_at': merged_at if merged else None,
+                      'merge_commit_sha': 'a' * 40 if merged else None,
                       'base': {'ref': base, 'repo': {'full_name': repo}}}
 
 
@@ -273,6 +292,167 @@ class ReadinessTests(unittest.TestCase):
         self.assertEqual(result['integrated'], [])
         self.assertEqual(len(client.writes), before)
 
+    def test_missed_merge_event_recovers_closed_issue_and_unlocks_dependents(self):
+        tasks, state, client = fixture()
+        client.issues[1] = issue(1, 'CORE-001', 'closed', ['status:blocked', 'role:R1'])
+        add_pr(client, 'Closes #1')
+        result = ready.synchronize(client, tasks, state, apply=True)
+        self.assertEqual(result['tasks']['CORE-001']['status'], 'done')
+        self.assertEqual(result['tasks']['CORE-002']['status'], 'ready')
+        self.assertEqual(result['integrationRecovery']['recovered'][0]['pr'], 50)
+        self.assertEqual(ready.label_names(client.issues[1]), {'role:R1', 'integrated'})
+        self.assertFalse(any(r[0] == 'PATCH' and r[1].endswith('/issues/1') for r in client.writes))
+        count = len(client.writes)
+        again = ready.synchronize(client, tasks, state, apply=True)
+        self.assertEqual(again['integrationRecovery']['recovered'], [])
+        self.assertEqual(len(client.writes), count)
+
+    def test_missed_event_can_close_open_issue_but_closes_before_adding_proof(self):
+        tasks, state, client = fixture()
+        add_pr(client, 'Closes #1')
+        ready.synchronize(client, tasks, state, apply=True)
+        self.assertTrue(ready.delivered(client.issues[1]))
+        writes = [r for r in client.writes if '/issues/1' in r[1]]
+        self.assertEqual(writes[0][0], 'PATCH')
+        self.assertEqual(writes[0][2], {'state': 'closed', 'state_reason': 'completed'})
+        self.assertEqual(writes[1][2], {'labels': ['integrated']})
+
+    def test_check_previews_recovery_without_changing_github_or_status(self):
+        tasks, state, client = fixture()
+        add_pr(client, 'Closes #1')
+        result = ready.synchronize(client, tasks, state)
+        self.assertEqual(result['integrationRecovery']['wouldRecover'][0]['task'], 'CORE-001')
+        self.assertEqual(result['integrationRecovery']['recovered'], [])
+        self.assertEqual(result['tasks']['CORE-002']['status'], 'blocked')
+        self.assertEqual(client.writes, [])
+
+    def test_reopened_issue_is_not_reclosed_by_old_merge_even_if_manually_closed_again(self):
+        for current_state in ('open', 'closed'):
+            tasks, state, client = fixture()
+            add_pr(client, 'Closes #1')
+            client.issues[1]['state'] = current_state
+            client.events[1] = [{'event': 'reopened', 'created_at': '2026-11-14T11:00:00Z'}]
+            result = ready.synchronize(client, tasks, state, apply=True)
+            self.assertFalse(ready.delivered(client.issues[1]))
+            self.assertEqual(client.issues[1]['state'], current_state)
+            self.assertEqual(result['integrationRecovery']['skipped'][0]['reason'], 'reopened-after-merge')
+            self.assertEqual(result['tasks']['CORE-002']['status'], 'blocked')
+            # Reexecutar o antigo evento também não pode fechar de novo.
+            ready.merged_pr_event(client, 'pull_request_target', pr_event(), tasks, state)
+            self.assertFalse(ready.delivered(client.issues[1]))
+
+    def test_new_merge_after_reopening_restores_integration(self):
+        tasks, state, client = fixture()
+        client.events[1] = [{'event': 'reopened', 'created_at': '2026-11-14T11:00:00Z'}]
+        add_pr(client, 'Closes #1')
+        add_pr(client, 'Closes #1', number=51, merged_at='2026-11-14T12:00:00Z')
+        result = ready.synchronize(client, tasks, state, apply=True)
+        self.assertTrue(ready.delivered(client.issues[1]))
+        self.assertEqual(result['integrationRecovery']['recovered'][0]['pr'], 51)
+
+    def test_history_is_paginated_and_last_page_reopening_is_respected(self):
+        tasks, state, client = fixture()
+        add_pr(client, 'Closes #1')
+        client.events[1] = [{'event': 'commented'}] * 100 + [
+            {'event': 'reopened', 'created_at': '2026-11-14T11:00:00Z'}]
+        result = ready.synchronize(client, tasks, state, apply=True)
+        self.assertEqual(result['integrationRecovery']['recovered'], [])
+        self.assertTrue(any('/timeline?per_page=100&page=2' in r[1] for r in client.requests))
+        self.assertEqual(client.issues[1]['state'], 'open')
+
+    def test_pull_list_is_paginated_and_only_authorized_confirmed_merges_are_recovered(self):
+        tasks, state, client = fixture()
+        for number in range(100, 200):
+            add_pr(client, 'Sem fechamento de tarefa.', number=number)
+        add_pr(client, 'Closes #1', number=200)
+        add_pr(client, 'Closes #2', base='feature/not-integrated', number=201)
+        add_pr(client, 'Closes #3', merged=False, number=202)
+        add_pr(client, 'Closes #4', repo='other/repo', number=203)
+        result = ready.synchronize(client, tasks, state, apply=True)
+        self.assertEqual([r['task'] for r in result['integrationRecovery']['recovered']], ['CORE-001'])
+        self.assertTrue(any('/pulls?state=closed' in r[1] and 'page=2' in r[1] for r in client.requests))
+        self.assertEqual(client.issues[2]['state'], 'open')
+        self.assertEqual(client.issues[3]['state'], 'open')
+        self.assertEqual(client.issues[4]['state'], 'open')
+
+    def test_incomplete_merge_proof_wrong_title_and_malformed_dates_fail_safely(self):
+        for invalid_field in ('merged', 'merged_at', 'merge_commit_sha'):
+            tasks, state, client = fixture()
+            add_pr(client, 'Closes #1')
+            client.prs[50][invalid_field] = None
+            result = ready.synchronize(client, tasks, state, apply=True)
+            self.assertEqual(result['integrationRecovery']['recovered'], [])
+            self.assertNotIn('integrated', ready.label_names(client.issues[1]))
+        tasks, state, client = fixture()
+        add_pr(client, 'Closes #1')
+        client.issues[1]['title'] = 'Outro assunto sem ID'
+        with self.assertRaises(ready.ReadinessError):
+            ready.synchronize(client, tasks, state, apply=True)
+        self.assertEqual(client.writes, [])
+        client.issues[1]['title'] = 'CORE-001 · tarefa'
+        client.events[1] = [{'event': 'reopened', 'created_at': 'invalid'}]
+        with self.assertRaises(ready.ReadinessError):
+            ready.synchronize(client, tasks, state, apply=True)
+        self.assertEqual(client.writes, [])
+
+    def test_explicit_block_and_cancellation_are_not_auto_completed(self):
+        for blocker in ('external', 'cancelled'):
+            tasks, state, client = fixture()
+            add_pr(client, 'Closes #1')
+            if blocker == 'external':
+                client.issues[1]['labels'].append({'name': 'external-blocker'})
+            else:
+                client.issues[1].update(state='closed', state_reason='not_planned')
+            result = ready.synchronize(client, tasks, state, apply=True)
+            self.assertEqual(result['integrationRecovery']['recovered'], [])
+            self.assertEqual(result['tasks']['CORE-002']['status'], 'blocked')
+
+    def test_concurrent_reopening_while_reading_history_prevents_recovery(self):
+        tasks, state, client = fixture()
+        client.issues[1]['state'] = 'closed'
+        add_pr(client, 'Closes #1')
+        client.after_timeline = lambda c: c.issues[1].update(state='open', updated_at='2026-11-14T12:00:00Z')
+        result = ready.synchronize(client, tasks, state, apply=True)
+        self.assertEqual(client.issues[1]['state'], 'open')
+        self.assertFalse(ready.delivered(client.issues[1]))
+        self.assertEqual(result['integrationRecovery']['skipped'][0]['reason'], 'changed-during-check')
+
+    def test_cli_apply_without_event_recovers_merge_and_default_check_stays_readonly(self):
+        tasks, state, client = fixture()
+        client.issues[1]['state'] = 'closed'
+        add_pr(client, 'Closes #1')
+        with patch.object(ready, 'Client', return_value=client), patch.object(ready, 'load_local', return_value=(tasks, state)):
+            with patch.dict(ready.os.environ, {}, clear=True), redirect_stdout(io.StringIO()):
+                self.assertEqual(ready.main([]), 0)
+                self.assertEqual(client.writes, [])
+                self.assertEqual(ready.main(['--apply']), 0)
+        self.assertTrue(ready.delivered(client.issues[1]))
+
+    def test_project_sync_writes_only_changed_statuses_and_reads_all_pages(self):
+        tasks, state, client = fixture()
+        state['project'] = {'id': 'PVT_TEST', 'url': 'https://github.com/users/test/projects/1',
+                            'statusFieldId': 'STATUS', 'statusOptions': {'done': 'DONE', 'ready': 'READY'}}
+        for key, entry in state['issues'].items():
+            entry['projectItemId'] = 'ITEM_' + key
+        calls = []
+        def graphql(query, variables=None):
+            calls.append((query, variables))
+            if query.startswith('mutation'):
+                return {}
+            second = variables.get('after') == 'NEXT'
+            nodes = ([{'id': 'ITEM_CORE-002', 'fieldValueByName': {'optionId': 'BLOCKED'}}] if second else
+                     [{'id': 'ITEM_CORE-001', 'fieldValueByName': {'optionId': 'DONE'}}])
+            return {'node': {'items': {'nodes': nodes, 'pageInfo': {
+                'hasNextPage': not second, 'endCursor': None if second else 'NEXT'}}}}
+        client.graphql = graphql
+        with patch.object(project_board, 'project_client', return_value=client):
+            result = project_board.sync(client, state, {'CORE-001': 'done', 'CORE-002': 'ready'})
+        self.assertEqual(result['updated'], 1)
+        self.assertEqual(result['unchanged'], 1)
+        self.assertEqual(len(calls), 3)
+        self.assertNotIn('ITEM_CORE-001', calls[-1][0])
+        self.assertIn('ITEM_CORE-002', calls[-1][0])
+
     def test_apply_preserves_unmanaged_labels_and_check_never_calls_project_hook(self):
         tasks, state, client = fixture()
         client.issues[1] = issue(1, 'CORE-001', labels=['priority:P0', 'role:R1', 'status:blocked'])
@@ -308,6 +488,9 @@ class ReadinessTests(unittest.TestCase):
     def test_workflow_executes_only_default_branch_code_and_never_injects_pr_body(self):
         text = (Path(__file__).resolve().parents[1] / '.github/workflows/readiness.yml').read_text(encoding='utf-8')
         self.assertIn('pull_request_target:', text)
+        self.assertIn('branches: [main, develop]', text)
+        self.assertIn('schedule:', text)
+        self.assertIn('timeout-minutes:', text)
         self.assertIn('ref: ${{ github.event.repository.default_branch }}', text)
         self.assertIn('persist-credentials: false', text)
         self.assertIn('issues: write', text)

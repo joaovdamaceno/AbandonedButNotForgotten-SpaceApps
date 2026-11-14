@@ -21,7 +21,7 @@ Fechar uma issue no GitHub, por botão ou diretiva de PR, não prova sozinho que
 
 O sincronizador considera uma tarefa entregue somente quando a issue está **fechada e tem `integrated`**. Se for fechada manualmente sem essa label, ela aparece como **Bloqueada**, não Concluída, e não libera dependentes. O responsável deve revisar o caso e reabrir a issue quando o fechamento foi prematuro; nunca adicionar `integrated` só para mover o cartão.
 
-O caminho normal é PR revisado, merge confirmado pela API na branch autorizada (`develop` ou `main`), critérios e evidências conferidos, label `integrated` e fechamento. A automação processa somente IDs mapeados e diretivas válidas. Um cartão movido à mão ou uma issue apenas fechada não substitui esse caminho.
+O caminho normal é PR revisado, merge confirmado pela API na branch autorizada (`develop` ou `main`), critérios e evidências conferidos, label `integrated` e fechamento. A automação processa somente IDs mapeados e diretivas válidas, uma por linha (`Closes #9`, por exemplo). Um cartão movido à mão ou uma issue apenas fechada não substitui esse caminho.
 
 ## Regras que evitam pegar trabalho bloqueado
 
@@ -40,10 +40,27 @@ python Tools/sync_readiness.py --claim CORE-001 --user SEU_USUARIO
 python Tools/sync_readiness.py --apply
 ```
 
+Antes de recalcular a disponibilidade, o sincronizador também consulta o histórico de PRs fechados. Um merge confirmado pela API em `develop`/`main`, com diretiva válida para a tarefa, permite recuperar a label `integrated` e fechar a issue mesmo quando o evento original se perdeu. Fechamento manual, PR sem merge e cartão arrastado não servem como prova.
+
+- `--check` continua sem escritas: `integrationRecovery.wouldRecover` mostra as integrações recuperáveis, mas os estados exibidos ainda correspondem ao GitHub atual.
+- `--apply` recupera as integrações primeiro e depois recalcula labels/dependentes e sincroniza as colunas que mudaram. Reexecutar não repete essas movimentações.
+- Reabertura posterior ao merge impede reutilizar a prova antiga, inclusive após outro fechamento manual. Um novo PR integrado depois da reabertura pode concluir a tarefa. Bloqueio externo e fechamento como *not planned* exigem decisão explícita e não são concluídos pela recuperação.
+- O relatório inclui tarefa, issue, PR, data e commit de merge usado como evidência; casos ignorados têm motivo. Erro ao consultar a prova interrompe o comando, sem presumir integração.
+
 Esses comandos só funcionam depois que o mapa remoto existe e o titular autenticou a CLI/API. `--check` não faz mutações; `--claim` exige Pronta e checa WIP. Use token no ambiente/Git Credential Manager; nunca em arquivo versionado, issue ou chat. Sincronização das colunas do Projects exige acesso `project`; o GITHUB_TOKEN padrão de um workflow do repositório não fornece isso automaticamente.
+
+O workflow roda nos eventos de issues e merge, nos pushes de `main`/`develop`, por acionamento manual e em uma reconciliação de segurança a cada 15 minutos (sem garantia de execução imediata pelo GitHub). Ele executa somente o código da branch padrão; por isso alterações desta automação precisam ser integradas também em `main`, sem levar junto a campanha em desenvolvimento. Eventos podem se perder ou ser agrupados; cada execução consulta o histórico, em vez de depender exclusivamente do último payload.
 
 O workflow atualiza readiness/labels pelo token do repositório. Para atualizar também Projects automaticamente, o titular pode configurar um segredo com permissão limitada ao Project; isso permanece opcional e não será criado silenciosamente. Sem segredo, o quadro é atualizado pelo sincronizador local com acesso autorizado, e a lista de issues continua sendo a verdade de bloqueios.
 
 ## Critério para afirmar que o quadro está pronto
 
 Todas as 84 issues criadas sem duplicatas, dependências sem ciclos, campos preenchidos, itens do Project ligados às issues e colunas correspondentes ao estado real. Nenhuma tarefa de gameplay marcada concluída nesta etapa de planejamento. URLs e contagens são verificados em `QA/Planning/github-verification.json`; qualquer parte pendente precisa aparecer lá e no relatório final.
+
+## Incidente e correção em 14/11/2026
+
+UI-002 (#9, PR #108) e UI-003 (#10, PR #135) tiveram merges válidos em `develop`, com diretivas de fechamento corretas. A auditoria encontrou as issues fechadas sem `integrated`, o que fazia a sincronização devolvê-las para Bloqueada. O histórico do Actions mostrava somente uma execução manual, sem execução automática registrada para esses merges; a causa externa da ausência dos gatilhos não foi demonstrada. Não era necessário refazer merges ou entregar as features em `main`.
+
+A correção reconcilia provas históricas antes de calcular dependências, protege reaberturas e adiciona os gatilhos de recuperação. O teste de regressão cobre explicitamente issue fechada, PR já integrado e ausência de payload de evento. O quadro compara os valores atuais antes de escrever para evitar movimentações repetidas no histórico em nome de quem executou a CLI.
+
+Referências técnicas: [eventos e agendamento do Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows), [histórico das issues e paginação](https://docs.github.com/en/rest/issues/timeline), [consulta de PR e confirmação de merge](https://docs.github.com/en/rest/pulls/pulls#get-a-pull-request).

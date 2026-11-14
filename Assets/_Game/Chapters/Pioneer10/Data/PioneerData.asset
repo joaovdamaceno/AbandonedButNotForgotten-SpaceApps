@@ -1101,6 +1101,12 @@ MonoBehaviour:
     enText: Replay chapter
     ptStatus: approved
     enStatus: approved
+  - key: PIO.UI.aldebaran
+    group: hud
+    ptText: "Dire\xE7\xE3o de Aldebaran"
+    enText: Direction of Aldebaran
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.Card.launch
     group: card
     ptText: "2 MAR 1972 \xB7 FL\xD3RIDA / 3 MAR \xB7 UTC"
