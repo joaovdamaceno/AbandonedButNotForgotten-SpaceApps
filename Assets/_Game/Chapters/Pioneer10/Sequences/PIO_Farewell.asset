@@ -99,7 +99,7 @@ MonoBehaviour:
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 40
     - timeSeconds: 10
-      positionMeters: {x: -2.5, y: -0.6, z: 13}
+      positionMeters: {x: -2.5, y: -0.6, z: -25}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 38
     events:
@@ -118,9 +118,9 @@ MonoBehaviour:
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 38
     - timeSeconds: 8
-      positionMeters: {x: -0.4, y: -0.1, z: 2}
+      positionMeters: {x: -3, y: -0.8, z: -32}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 38
+      fieldOfViewDegrees: 36
     events:
     - timeSeconds: 0.05
       eventId: PIO.Farewell.Memorial

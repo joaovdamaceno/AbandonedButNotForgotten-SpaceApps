@@ -147,6 +147,19 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void TheRecedingAndMemorialShotsMoveTheCameraAwayFromThePioneerNeverTowardIt()
+        {
+            // O eixo Z local do rig aponta para a sonda (o anchor olha para ela): z negativo é recuar. Um z positivo faria a
+            // Pioneer CRESCER no quadro, o contrário do roteiro ("a Pioneer diminui"); só o enquadramento 3D mostrou o erro.
+            var shots = farewell.Sequence.Shots;
+            var receding = shots.Single(s => s.ShotId == "PIO08.Receding");
+            var memorial = shots.Single(s => s.ShotId == "PIO08.Memorial");
+            Assert.That(receding.Keyframes[receding.Keyframes.Count - 1].positionMeters.z, Is.LessThan(-10f), "recuo claro durante os 10 s");
+            Assert.That(memorial.Keyframes[memorial.Keyframes.Count - 1].positionMeters.z,
+                Is.LessThanOrEqualTo(receding.Keyframes[receding.Keyframes.Count - 1].positionMeters.z), "o preto continua o recuo, sem voltar");
+        }
+
+        [Test]
         public void ValidateSetupIsEmptyOnTheBuiltSceneAndComplainsAboutMissingReferences()
         {
             Assert.That(farewell.ValidateSetup(), Is.Empty);
