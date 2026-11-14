@@ -1,0 +1,18 @@
+{
+  "source": "surveyor3.glb",
+  "triangles": 24499,
+  "renderParts": [
+    "StaticBody",
+    "MirrorHead",
+    "SolarPanel",
+    "HighGainAntenna",
+    "ScoopLinkage",
+    "ScoopTool"
+  ],
+  "atlasResolution": 1024,
+  "textureCount": 2,
+  "materials": 1,
+  "decimateRatio": 0.37,
+  "originalPolygons": 66222,
+  "notes": "Original GLB preserved. Blender glTF import, semantic merge, decimation, UV packing and emission channel baking. URP metallic in R, smoothness in A."
+}
