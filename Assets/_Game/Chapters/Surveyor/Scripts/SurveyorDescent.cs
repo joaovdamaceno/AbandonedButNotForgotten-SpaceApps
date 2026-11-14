@@ -23,7 +23,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         IDisposable inputLease;
         readonly List<SubtitleCue> activeCues=new List<SubtitleCue>();
         Action<SubtitleCue> cueIn,cueOut;Action<string> marked;Action<SequenceResult> finished;
-        bool bound,running,grace,settled,readyTriggered,ownsQueue;
+        bool bound,running,grace,settled,readyTriggered,ownsQueue,receiptCuePending;
         int generation;uint queueGeneration;float enteredActiveSeconds,lastImpactTime=-100,receiptReadUntil;
         CutoffOrigin preparedOrigin;
         string subtitleKey;
@@ -79,11 +79,11 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
 
         void Enter()
         {
-            Stop();running=true;grace=settled=readyTriggered=false;CutoffSent=CutoffReceived=EnginesCutOff=false;Origin=preparedOrigin=CutoffOrigin.None;
+            Stop();running=true;grace=settled=readyTriggered=receiptCuePending=false;CutoffSent=CutoffReceived=EnginesCutOff=false;Origin=preparedOrigin=CutoffOrigin.None;
             ContactCount=0;lastImpactTime=-100;receiptReadUntil=0;enteredActiveSeconds=clock.ActiveSeconds;int token=generation;
             inputLease=input.Acquire(InputContext.Panel,"SUR-006.Descent");queue.BeginState(StepId);queueGeneration=queue.Generation;ownsQueue=true;
             cueIn=cue=>{if(token!=generation)return;activeCues.Add(cue);SelectSubtitle();CueEntered?.Invoke(cue);Changed?.Invoke();};
-            cueOut=cue=>{if(token!=generation)return;activeCues.Remove(cue);SelectSubtitle();CueExited?.Invoke(cue);Changed?.Invoke();};
+            cueOut=cue=>{if(token!=generation)return;activeCues.Remove(cue);TryPresentReceipt();SelectSubtitle();CueExited?.Invoke(cue);Changed?.Invoke();};
             marked=id=>{if(token==generation)OnMarker(id);};finished=result=>{if(token==generation)OnFinished(result);};
             sequence.CueEntered+=cueIn;sequence.CueExited+=cueOut;sequence.EventRaised+=marked;sequence.Finished+=finished;
             sequence.Play(data,false);Changed?.Invoke();
@@ -129,8 +129,14 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         {
             if(token!=generation || !running || CutoffReceived || owner.CurrentStepId!=StepId || queue.Generation!=queueGeneration)return;
             CutoffReceived=true;EnginesCutOff=TimeSeconds>=CutoffEligibleAt;
-            string trigger=Origin==CutoffOrigin.GroundTeam?TeamTrigger:PlayerTrigger;
-            receiptReadUntil=TimeSeconds+CueFor(trigger).MinimumReadSeconds;sequence.Trigger(trigger);Changed?.Invoke();
+            receiptCuePending=true;TryPresentReceipt();Changed?.Invoke();
+        }
+        void TryPresentReceipt()
+        {
+            if(!running || !receiptCuePending)return;
+            string trigger=Origin==CutoffOrigin.GroundTeam?TeamTrigger:PlayerTrigger;var receipt=CueFor(trigger);
+            foreach(var cue in activeCues)if(cue.Priority>receipt.Priority)return;
+            receiptCuePending=false;receiptReadUntil=TimeSeconds+receipt.MinimumReadSeconds;sequence.Trigger(trigger);
         }
         void Update()=>Tick(clock!=null?clock.ActiveDeltaSeconds:0);
         public void Tick(float activeDeltaSeconds)
