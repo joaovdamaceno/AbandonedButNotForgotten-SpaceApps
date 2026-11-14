@@ -1,6 +1,6 @@
 # Arquitetura e contratos de integração
 
-Estado: especificação para CORE-001 e CORE-002, ainda sem implementação. R1 congela os contratos antes dos PRs consumidores. Evitar um framework de missões: três diretores de capítulo pequenos compartilham entrada, apresentação, áudio e registro.
+Estado: **CORE-001 (projeto) e CORE-002 (tipos de contrato) implementados**; os serviços que implementam as interfaces (CORE-003, CORE-004, CORE-005) ainda não existem. As assinaturas reais estão na seção *Contratos publicados* abaixo e em `Assets/_Game/Core/Contracts/`. R1 congela os contratos antes dos PRs consumidores. Evitar um framework de missões: três diretores de capítulo pequenos compartilham entrada, apresentação, áudio e registro.
 
 ## Organização prevista
 
@@ -37,7 +37,7 @@ Sequências: `EnterStep → máscara de entrada → câmera/atores/áudio/textos
 
 `InputRouter` expõe Move(Vector2), Look(Vector2), InteractDown, InteractHeld, InteractUp, PauseDown e ações UI. WASD/setas; E; P/Esc/botão. Os instrumentos consomem os eventos do InputRouter; não leem a tecla diretamente. Controle de câmera manual é opcional para concluir qualquer objetivo; câmera assistida enquadra os alvos.
 
-Contrato proposto:
+Contrato original proposto (a versão final publicada, com as diferenças, está em *Contratos publicados*):
 
 ```csharp
 InteractionCandidate {
@@ -81,6 +81,66 @@ Tela dividida das gêmeas: dois enquadramentos pequenos com RTs limitadas; testa
 `AudioDirector.SetCue(cueId, fadeSeconds)` e buses Master/Music/SFX/UI. Um único responsável pelo crossfade; loops curtos verificados; volume exposto no dossiê e pausa. Som no espaço/Lua é música e sonificação da interface; não passos externos num vácuo tratados como som ambiente real.
 
 A fonte de energia é específica da missão: os rovers usam painéis solares; Pioneer usa RTGs; Surveyor combina painéis e bateria conforme a documentação. Não compartilhar um modelo único de bateria entre três histórias diferentes. Valores de gameplay podem ser mostrados como níveis simplificados sem espalhar avisos em cada canto.
+
+## Contratos publicados (CORE-002)
+
+Tipos em `Assets/_Game/Core/Contracts/` (assembly `Abandoned.SpaceApps`, namespace `Abandoned.SpaceApps`). Quem consome usa estes tipos; ninguém cria um equivalente local. Mudança de assinatura exige acordo com R1 e atualização do exemplo e dos consumidores no mesmo PR.
+
+| Tipo | Arquivo | Papel |
+| --- | --- | --- |
+| `ChapterDefinition` (ScriptableObject), `ChapterStep` | `ChapterDefinition.cs`, `ChapterStep.cs` | Identidade, chaves de texto, cena, tempo-alvo, sequência inicial e tabela explícita de etapas |
+| `IChapterDirector` | `IChapterDirector.cs` | Contrato do `ChapterDirector` (CORE-005) |
+| `InteractionCandidate` (struct), `IInteractionService` | `InteractionCandidate.cs`, `IInteractionService.cs` | Contrato do `InteractionService`/`HoldAction` (CORE-003) |
+| `EvidenceRecord`, `EvidenceKind`, `EvidenceAuthorship`, `IEvidenceStore` | `EvidenceRecord.cs`, `IEvidenceStore.cs` | Evidências da sessão (CORE-005) |
+| `ShotDefinition`, `ShotKeyframe`, `ShotEvent`, `ShotEasing` | `ShotDefinition.cs` | Plano de câmera (CORE-004) |
+| `SubtitleCue`, `SubtitlePosition` | `SubtitleCue.cs` | Legenda por chave; janela de tempo **ou** gatilho (UI-004) |
+| `SequenceDefinition` (ScriptableObject), `ActorMark` | `SequenceDefinition.cs` | Planos, legendas e marcas de atores num único relógio (CORE-004) |
+| `ContractValidation` | `ContractValidation.cs` | Regra de ID e mensagens de erro |
+
+### Regras comuns
+
+- **IDs e chaves** (capítulo, etapa, evidência, plano, cue, chave de localização): letra inicial + letras ASCII, dígitos, `.`, `_`, `-`; até 64 caracteres, sem espaço (ex.: `MAR.C12`, `FirstImage`).
+- **Unidades no nome**: `...Seconds`, `...Meters`, `...Degrees`.
+- **Validação clara antes da execução**: todo tipo de dado tem `Validate()` que devolve `List<string>` (vazia = válida) e nunca lança NullReference por campo ausente. `ChapterDefinition` e `SequenceDefinition` também avisam no Inspector (`OnValidate`). Menu **Abandoned Space Apps → CORE-002 → Validar contratos de dados** e `ContractAssetValidator.ValidateFromCommandLine` (saída 0 = conforme) conferem todos os assets, inclusive `chapterId` duplicado.
+- Os `Create(...)` estáticos de `ChapterDefinition` e `SequenceDefinition` existem para builders determinísticos e testes; não validam, chame `Validate()`.
+
+### `IChapterDirector`
+
+```csharp
+ChapterDefinition Current { get; }   string CurrentStepId { get; }   bool IsFinished { get; }
+event Action<string> StepEntered;    event Action<string> ChapterFinished;   // stepId / chapterId
+void Begin(ChapterDefinition chapter);            // ArgumentException se Validate() falhar
+bool CompleteStep(string stepId);                 // uma única sucessora
+bool CompleteStep(string stepId, string nextStepId); // várias sucessoras
+void FinishChapter();                             // só na etapa terminal; idempotente
+void RestartChapter();
+```
+
+`CompleteStep` é idempotente: repetir o ID, ou passar uma etapa que não é a atual, devolve `false` sem alterar nada. Concluir a etapa terminal encerra o capítulo. Transições vêm só da tabela de `ChapterStep`; a validação exige etapas únicas, sucessoras existentes, ao menos uma terminal alcançável, nenhuma etapa inalcançável e nenhuma etapa não terminal sem sucessora.
+
+### `IInteractionService`
+
+```csharp
+struct InteractionCandidate { string Id; Transform Anchor; string VerbKey, ObjectKey; bool Available;
+                              float DistanceMeters, HoldSeconds; int Priority; }
+
+bool TryGetActive(out InteractionCandidate c);  bool AwaitingRelease { get; }  string HoldingId { get; }
+event Action<string> HoldStarted;  event Action<string,float> HoldProgress;
+event Action<string> HoldCompleted;  event Action<string> HoldCanceled;
+void SetCandidate(InteractionCandidate c);  void ClearCandidate(string id);
+bool CanBeginHold(string id);  bool BeginHold(string id);  void CancelHold();
+void RequireRelease();  void NotifyInteractReleased();
+```
+
+Diferenças em relação à proposta original: `Priority` explícito; `BeginHold` devolve `bool`; `CanBeginHold` é a mesma regra sem efeito, que o prompt consulta (disponibilidade visual = execução); `ClearCandidate`; `RequireRelease`/`NotifyInteractReleased` formalizam o **rearme** (o E que abre uma observação não inicia a medição seguinte; soltar E cancela o hold e libera o rearme). O candidato ativo é o disponível de maior prioridade (empate: menor distância), de modo que alvos opcionais não roubam a ação principal.
+
+### `IEvidenceStore` e `EvidenceRecord`
+
+`Add` é idempotente por `EvidenceId` (o primeiro registro é mantido; sem evento repetido); registro nulo ou inválido lança `ArgumentException` com a lista de erros. `PlayerCapture` só vale para `Photo`; `Archive` exige `creditKey`; miniatura até 960×540. `CanBePresentedAsPlayers` só é verdadeiro para fotografia do jogador.
+
+### Exemplo mínimo e mocks
+
+`Assets/_Game/Core/Contracts/Examples/` (assembly `Abandoned.SpaceApps.ContractExamples`, `defineConstraints: UNITY_EDITOR`: **não entra no player**). `ContractExampleFlow` mostra os três passos com as interfaces: solicitar interação, apresentar evidência, concluir etapa. A cena `ContractExample.unity` (fora das Build Settings) roda o fluxo com E simulado por 2 s; recriar pelo menu **CORE-002 → Criar cena de exemplo dos contratos**. Os `Mock*` implementam a semântica acima para testes e **não substituem** as implementações de CORE-003 e CORE-005; as mesmas regras devem ser reproduzidas por elas.
 
 ## Contratos de entrega e testes
 
