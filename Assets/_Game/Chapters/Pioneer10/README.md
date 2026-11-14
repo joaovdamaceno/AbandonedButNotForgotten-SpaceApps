@@ -31,6 +31,20 @@ Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de
 
 **O que ainda depende de outras tarefas:** o áudio de verdade e o clique inicial (AUD-002), a caixa de legenda global e o `LocalizationService` (UI-004) e a escolha e a licença das faixas (AUD-001/AUD-002). Até lá, `TextChanged` entrega o texto e vazio significa esconder a caixa.
 
+## Fotos históricas (PIO-007)
+
+Duas imagens reais da Pioneer 10 para a revelação em `PIO.Imaging`, ambas com crédito **NASA**:
+
+| Imagem | Arquivo Web | Natureza |
+| --- | --- | --- |
+| Ganimedes, 1973 (AC73-9279) | `Art/Historical/Pioneer10_Ganymede_1973_web.jpg` (1024 × 1024) | Foto de baixíssima resolução, fora de foco: é o que a sonda registrou. Recorte em torno do disco e redução 2:1; **nada foi ampliado** |
+| Júpiter, 1973 (AC73-9341) | `Art/Historical/Pioneer10_Jupiter_1973_web.jpg` (1024 × 795) | **Montagem sequencial** de quadros da aproximação, não uma foto única |
+
+- **Procedência completa** (páginas oficiais, URLs, datas, hashes, dimensões, transformações e limites): `Data/Assets/PioneerHistoricalImages.json` e `ArtSource/Pioneer10/PIO-007/SOURCE.md`. Os originais ficam em `ArtSource/` (LFS), fora de `Assets/` e do build.
+- **Texto exibido junto da imagem:** `PIO.UI.real` ("Imagem real · Pioneer 10 · 1973 · NASA"). A Io perdida **não** tem imagem: `PIO.04.07` só a menciona.
+- **Regenerar e conferir:** `python Tools/convert_pioneer10_photos.py` (gera as versões Web e o registro) e `python Tools/convert_pioneer10_photos.py --check`. A importação das texturas (sRGB, sem mipmaps, 1024 px, não legível pela CPU) está em **PIO-007 → Configurar importação das fotos históricas**.
+- Quem exibe as imagens (PIO-008 e UI-007) usa estes dois arquivos e deve mostrar o rótulo acima; nenhuma outra versão deve entrar na build.
+
 ## Palco espacial (PIO-003)
 
 | Arquivo | Papel |
@@ -143,8 +157,8 @@ Prefab `Art/PioneerActors.prefab` (raiz `PioneerActors`, componente `PioneerProb
 | `Runtime/PioneerImaging.cs` | Lógica do estado (sem UI): cursor de fase, janela, uma faixa por passagem, ajuda, interrupção em 6/8, retomada idempotente, 8/8 |
 | `Runtime/ImagingPanelView.cs` + `UI/ImagingPanel.uxml/.uss/.prefab` | Painel UI Toolkit no `UiFrame` do anchor `PIO.Imaging` (direita). Só desenha um `ImagingViewState`. Textos por chave (`PIO.UI.red`, `.blue`, `.scan`) |
 | `Editor/PioneerImagingBuilder.cs` | Builder CORE-006 `pioneer10.stage.imaging` (raiz `[R5] Pioneer Imaging`, depois de `pioneer10.stage`) |
-| `Editor/PioneerImagingCapture.cs` | Prévia do painel em `Docs/Art/Pioneer10_Imaging/` (menu PIO-006). Textos aparecem como chaves |
-| `Tests/PioneerImagingTests.cs` | 16 testes EditMode |
+| `Editor/PioneerImagingCapture.cs` | Prévia do painel em `Docs/Art/Pioneer10_Imaging/<estado>_<L>x<A>.png` nas 3 resoluções do UI_SPEC (1280×720, 960×600, 1024×768) sobre fundo claro (pior caso) e as auditorias `QA/PIO-006/contrast-audit.txt` e `layout-audit.txt` (menu PIO-006). Textos aparecem como chaves |
+| `Tests/PioneerImagingTests.cs` | 20 testes EditMode |
 
 **Como joga.** Cada passagem do cursor leva 3 s e a zona larga (25–75% da passagem, contorno grosso) é a travessia do planeta. Se E estiver mantido em qualquer momento da zona, a passagem registra UMA faixa (um conjunto de linhas: síntese de muitos registros, não oito linhas históricas). As faixas 1–4 são do canal vermelho e as 5–8 do azul; o verde **não é medido**: a legenda de composição (contorno verde sem preenchimento) aparece em 8/8 e o cue PIO.04.06 explica a estimativa. Não há ritmo: E mantido desde o aprendizado vale para a primeira janela; um toque curto entre dois quadros também conta. Perder uma passagem só oferece outra volta (`PassMissed`) e nunca apaga faixas. Após 6 s sem faixa, o prompt reforça o contorno do E; após 12 s a janela cobre toda a passagem (assistido, até o fim da execução). Soltar E, pausar ou perder o foco só pára; as faixas ficam.
 
@@ -155,6 +169,8 @@ Prefab `Art/PioneerActors.prefab` (raiz `PioneerActors`, componente `PioneerProb
 - A PIO-008 mostra ruído local, aviso e o botão de recuperação (`PIO.UI.recover`) e chama `ResumeAfterRecovery()`. Ela é **idempotente**: só a primeira chamada durante a interrupção retoma (devolve `true`); as demais devolvem `false` e não mudam nada. `Recovered` dispara uma vez. O painel expõe `RecoverySlot` (contêiner vazio) e `ImagingViewState.Interrupted` para a PIO-008 ligar sua UI sem editar este painel.
 - `AllStripsCaptured` (8/8) dispara UMA vez; `RevealStarted` marca os 48 s da sequência (composição, crossfade para a foto real e Ganimedes são da PIO-008).
 - **Enquanto a PIO-008 não existir, nada chama `ResumeAfterRecovery()`: o capítulo espera na interrupção (sem softlock por inatividade, mas sem avançar).** Os testes chamam a retomada diretamente.
+
+**Conformidade com o UI_SPEC e a arquitetura.** `PioneerImaging.ValidateSetup()` e `ImagingPanelView.ValidateSetup()` listam erros de montagem (referências, sequência de 74 s com os 7 marcos e as 9 legendas, anchor com quadro de UI, elementos do UXML, `ResponsiveLayoutClass`, chaves `PIO.UI.*`); o builder chama os dois em `Validate`. O `UIDocument` tem `ResponsiveLayoutClass` (classe `sa-layout--narrow` em 4:3, com regras no USS). O prompt de E vira **uma só** classe `sa-hold--available|rearm|holding|paused|done` (`ImagingViewState.Hold`): rearme = E fisicamente pressionado sem hold (o router já suprime o E que abre a atividade), pausado = soltou com faixas registradas ou interrupção em 6/8. Os textos de status do prompt ("PAUSADO · PRESERVADO" etc.) pertencem à UI-003/UI-004 e não foram inventados aqui.
 
 **Marcos da sequência:** em ritmo nominal (uma faixa por passagem) nenhum marco espera e as legendas PIO.04.03–05 caem nas lacunas do roteiro (28, 34 e 40 s). Quem joga mais devagar vê a sequência parar no marco (legendas e câmera congelam juntas) até a condição: 4/8 em 28 s, interrupção em 34 s, recuperação em 40 s, 8/8 em 46 s.
 
