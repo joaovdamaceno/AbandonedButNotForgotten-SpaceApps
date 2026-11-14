@@ -1,0 +1,26 @@
+{
+    "name": "Abandoned.SpaceApps.Mars.Tests",
+    "rootNamespace": "Abandoned.SpaceApps.Tests",
+    "references": [
+        "Abandoned.SpaceApps",
+        "Abandoned.SpaceApps.Editor",
+        "Abandoned.SpaceApps.ContractExamples",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
