@@ -1,0 +1,94 @@
+/* PIO-008 · Revelação das imagens históricas. Só opacidade: sem movimento, sem piscar. */
+
+.pio-rev {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Mesmo quadro do painel da varredura (0,53 · 0,12 · 0,43 · 0,76), para cobrir a composição. */
+.pio-rev__frame {
+    position: absolute;
+    left: 53%;
+    top: 12%;
+    width: 43%;
+    height: 76%;
+    padding: var(--sa-space-4);
+    flex-direction: column;
+    opacity: 0;
+    background-color: rgb(46, 41, 38); /* opaco: nada do painel da varredura aparece por baixo da foto */
+}
+
+.pio-rev__stage {
+    flex-grow: 1;
+    min-height: 120px;
+    border-width: 3px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-md);
+    overflow: hidden;
+    background-color: rgb(14, 17, 22);
+}
+
+/* A imagem é mostrada inteira e na proporção original: nada é ampliado, recortado em tela nem "melhorado". */
+.pio-rev__image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.pio-rev__io {
+    position: absolute;
+    left: var(--sa-space-3);
+    bottom: var(--sa-space-3);
+    flex-direction: row;
+    align-items: center;
+    padding: var(--sa-space-2);
+    background-color: rgba(14, 17, 22, 0.85);
+    display: none;
+}
+
+.pio-rev__io-box {
+    width: 22px;
+    height: 22px;
+    margin-right: var(--sa-space-2);
+    border-width: 2px;
+    border-color: var(--sa-color-on-plate);
+    border-style: dashed;
+}
+
+.pio-rev__footer {
+    margin-top: var(--sa-space-3);
+    padding: var(--sa-space-2) var(--sa-space-3);
+    flex-direction: column;
+}
+
+.pio-rev__real {
+    font-size: var(--sa-text-label);
+    -unity-font-style: bold;
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.pio-rev__label {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.sa-layout--narrow .pio-rev__frame {
+    left: 47%;
+    width: 51%;
+    padding: var(--sa-space-3);
+}
+
+.sa-layout--narrow .pio-rev__stage { min-height: 100px; }

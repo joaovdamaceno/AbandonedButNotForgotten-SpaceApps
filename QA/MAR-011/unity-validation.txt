@@ -1,0 +1,56 @@
+MAR-011 · validação do rover · 2026-11-14 15:18 · Unity 6000.6.7f1
+OK    MER_Rover.fbx importado como modelo
+OK    Bake Axis Conversion ligado
+OK    Unidades do arquivo, escala global 1
+OK    Read/Write desligado
+OK    Sem animação importada (rig dirigido por script)
+OK    Compressão de malha Medium
+OK    M_MER_Atlas: URP/Lit
+OK    M_MER_Atlas: base, normal e metallic/smoothness atribuídos
+OK    M_MER_Solar: URP/Lit
+OK    M_MER_Solar: base, normal e metallic/smoothness atribuídos
+OK    T_MER_Atlas_Normal.png: Normal map OpenGL (+Y), sem inverter o verde
+OK    T_MER_Solar_Normal.png: Normal map OpenGL (+Y), sem inverter o verde
+OK    SpiritVisual: prefab existe (Assets/_Game/Chapters/Mars/Prefabs/SpiritVisual.prefab)
+OK    SpiritVisual: variante do MER_Rover.fbx
+OK    SpiritVisual: raiz com rotação 0 e escala 1
+OK    SpiritVisual: 27 nós de rig e 10 âncoras presentes
+OK    SpiritVisual: pose de repouso com rotação local identidade em todos os nós
+OK    SpiritVisual: Pancam a 1,468 m do solo (referência NASA ≈ 1,5 m)
+OK    SpiritVisual: frente em +Z (Pancam em z = 0,66)
+OK    SpiritVisual: lado esquerdo em −X, direito em +X
+OK    SpiritVisual: rodas dianteiras em +Z, traseiras em −Z
+OK    SpiritVisual: eixo de esterço L passa pelo centro das rodas (gira sem arrastar)
+OK    SpiritVisual: eixo de esterço R passa pelo centro das rodas (gira sem arrastar)
+OK    SpiritVisual: pinos do rocker e do bogie simétricos
+OK    SpiritVisual: pino do rocker no ressalto do corpo (|x| = 0,420 m, y = 0,460 m)
+INFO  SpiritVisual: bogie L em (-0.46, 0.30, -0.31), esterço FL em (-0.62, 0.32, 0.67)
+OK    SpiritVisual: roda com 0,262 m de diâmetro e eixo de rolagem em X local
+OK    SpiritVisual: LOD0 com 50548 triângulos (≤ 80000)
+OK    SpiritVisual: LOD1 com 19322 triângulos (≤ 30000)
+OK    SpiritVisual: 27 LODGroups (um por nó com geometria)
+OK    SpiritVisual: apoio no solo (menor y = -0,001 m)
+OK    SpiritVisual: 2 materiais (≤ 3), nenhum vazio
+OK    SpiritVisual: sem colliders (prefab só visual)
+OK    OpportunityVisual: prefab existe (Assets/_Game/Chapters/Mars/Prefabs/OpportunityVisual.prefab)
+OK    OpportunityVisual: variante do MER_Rover.fbx
+OK    OpportunityVisual: raiz com rotação 0 e escala 1
+OK    OpportunityVisual: 27 nós de rig e 10 âncoras presentes
+OK    OpportunityVisual: pose de repouso com rotação local identidade em todos os nós
+OK    OpportunityVisual: Pancam a 1,468 m do solo (referência NASA ≈ 1,5 m)
+OK    OpportunityVisual: frente em +Z (Pancam em z = 0,66)
+OK    OpportunityVisual: lado esquerdo em −X, direito em +X
+OK    OpportunityVisual: rodas dianteiras em +Z, traseiras em −Z
+OK    OpportunityVisual: eixo de esterço L passa pelo centro das rodas (gira sem arrastar)
+OK    OpportunityVisual: eixo de esterço R passa pelo centro das rodas (gira sem arrastar)
+OK    OpportunityVisual: pinos do rocker e do bogie simétricos
+OK    OpportunityVisual: pino do rocker no ressalto do corpo (|x| = 0,420 m, y = 0,460 m)
+INFO  OpportunityVisual: bogie L em (-0.46, 0.30, -0.31), esterço FL em (-0.62, 0.32, 0.67)
+OK    OpportunityVisual: roda com 0,262 m de diâmetro e eixo de rolagem em X local
+OK    OpportunityVisual: LOD0 com 50548 triângulos (≤ 80000)
+OK    OpportunityVisual: LOD1 com 19322 triângulos (≤ 30000)
+OK    OpportunityVisual: 27 LODGroups (um por nó com geometria)
+OK    OpportunityVisual: apoio no solo (menor y = -0,001 m)
+OK    OpportunityVisual: 2 materiais (≤ 3), nenhum vazio
+OK    OpportunityVisual: sem colliders (prefab só visual)
+OK    Spirit e Opportunity compartilham as mesmas malhas e materiais (nenhuma cópia)

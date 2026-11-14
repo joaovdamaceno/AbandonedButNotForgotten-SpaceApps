@@ -1,0 +1,13 @@
+# R-MAR-04 — imagens oficiais da Spirit (MAR-017)
+
+Consulta: 14/11/2026. Política de imagens do JPL (https://www.jpl.nasa.gov/jpl-image-use-policy/): uso sem permissão prévia, com crédito; sem insígnia, logotipo ou endosso. Crédito exibido por cartão exatamente como na página.
+
+| Arquivo original | Página / arquivo de origem | Crédito | Data/sol | SHA-256 do original |
+| --- | --- | --- | --- | --- |
+| `original/PIA17760.jpg` (2421×1362) | https://science.nasa.gov/resource/nasas-mars-rover-spirits-view-southward-from-husband-hill/ — arquivo https://assets.science.nasa.gov/content/dam/science/psd/mars/downloadable_items/3/37504_pia17760_SS1.jpg | NASA/JPL-Caltech/Cornell Univ. | outubro de 2005 (página sem sol) | `f202e67fd3ff721f1ab989040417235331cbdada97e51a2858bbfdccbf7aa275` |
+| `original/PIA13175.jpg` (907×678) | https://science.nasa.gov/photojournal/carbonate-containing-martian-rocks-false-color — arquivo https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia13/pia13175/PIA13175.jpg | NASA/JPL-Caltech/Cornell University | sol 689 (11/12/2005); resultado divulgado em 3/6/2010 | `f8518f0a27fa9cd254be274e0ff09a094b63af200c1042e51459cd5a73a05e18` |
+| `original/PIA11758.jpg` (6174×2818) | https://science.nasa.gov/photojournal/rovers-wheel-churns-up-bright-martian-soil — arquivo https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia11/pia11758/PIA11758.jpg | NASA/JPL-Caltech/Cornell | sol 1202 (21/5/2007) | `2756572c20eb9fe2cf59522800a7f9b1cfccb3885773ecd05d8b536b78302228` |
+| `original/PIA08064.jpg` (512×512) | https://science.nasa.gov/photojournal/coarse-layering-at-home-plate — arquivo https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia08/pia08064/PIA08064.jpg | NASA/JPL/Cornell | sol 749 (10/2/2006) | `103a1bc8931b9cab04404710839968bded084f1f560f451f5bfc940d853bd9ac` |
+| `original/jpegPIA12142.jpg` (5712×1067) | https://www.jpl.nasa.gov/images/pia12142-spirits-view-from-troy/ — arquivo https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA12142.jpg | NASA/JPL-Caltech | sol 1891 (28/4/2009) | `c19d14ad758c836d188da887ff273342e5c5802e4bfa3401b62461095325d7c9` |
+
+Derivados em `Assets/_Game/Chapters/Mars/Art/SpiritArchive/Archive_*.jpg`: reduzidos para no máximo 1024 px de largura, LANCZOS, JPEG q88, sem recorte nem retoque. Legendas lidas nas páginas: Husband Hill (vista para o sul do cume, ~100 m acima da planície); Comanche (falsa cor, carbonato de ferro e magnésio); Gertrude Weise (sílica quase pura, com composição de opala, revelada pelo sulco da roda dianteira direita travada); Home Plate (camadas grossas, origem possível por material lançado por explosão); Troy (rodas afundando desde o sol 1886).

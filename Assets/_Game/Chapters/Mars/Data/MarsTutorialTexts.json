@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_TWINS.md (M07 Tutorial por ações; M08 Ajuda). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-002. Mesmo formato de 'texts' em MarsSubtitles.json (key, pt, en); a UI/localização pode juntar as duas tabelas.",
+    "Os itens do cartão central seguem o roteiro: MOVER · WASD/SETAS; OLHAR · MOUSE; E · COMEÇAR/SEGURAR PARA USAR."
+  ],
+  "texts": [
+    { "key": "MAR.TUT.move", "pt": "MOVER · WASD / SETAS", "en": "MOVE · WASD / ARROWS" },
+    { "key": "MAR.TUT.look", "pt": "OLHAR · MOUSE (ou H)", "en": "LOOK · MOUSE (or H)" },
+    { "key": "MAR.TUT.interact", "pt": "E · SEGURAR PARA USAR", "en": "E · HOLD TO USE" },
+    { "key": "MAR.TUT.reinforce", "pt": "Siga a seta até o alvo de inspeção.", "en": "Follow the arrow to the inspection target." },
+    { "key": "MAR.TUT.help", "pt": "Precisa de ajuda? Pressione H para ver o alvo.", "en": "Need help? Press H to see the target." },
+    { "key": "MAR.VERB.inspect", "pt": "INSPECIONAR", "en": "INSPECT" },
+    { "key": "MAR.OBJ.module", "pt": "MÓDULO", "en": "LANDER" }
+  ]
+}

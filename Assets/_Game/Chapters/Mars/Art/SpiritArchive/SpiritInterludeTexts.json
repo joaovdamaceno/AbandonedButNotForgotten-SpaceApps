@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_TWINS.md (M22) e 01_MARS_SOURCES.md (MS20–MS25). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-017. Mesmo formato de 'texts' em MarsSubtitles.json. As legendas C30–C37 continuam em MarsSubtitles.json.",
+    "Frio é causa provável da perda da Spirit, não falha interna observada. Home Plate guarda evidências de explosões antigas; nenhuma erupção foi vista.",
+    "Créditos CR1–CR5 repetem a linha de crédito de cada página oficial da NASA/JPL (ver ASSET_CREDITS.md)."
+  ],
+  "texts": [
+    { "key": "MAR.SPI.01", "pt": "HUSBAND HILL · 2005", "en": "HUSBAND HILL · 2005" },
+    { "key": "MAR.SPI.02", "pt": "COMANCHE · CARBONATOS", "en": "COMANCHE · CARBONATES" },
+    { "key": "MAR.SPI.03", "pt": "SÍLICA · RODA TRAVADA", "en": "SILICA · STUCK WHEEL" },
+    { "key": "MAR.SPI.04", "pt": "HOME PLATE · CAMADAS", "en": "HOME PLATE · LAYERS" },
+    { "key": "MAR.SPI.05", "pt": "7,73 KM · MAIS DE 6 ANOS", "en": "7.73 KM · OVER 6 YEARS" },
+    { "key": "MAR.SPI.06", "pt": "TROY · 2009", "en": "TROY · 2009" },
+    { "key": "MAR.SPI.07", "pt": "ESTAÇÃO FIXA · 2010", "en": "FIXED STATION · 2010" },
+    { "key": "MAR.SPI.08", "pt": "INVERNO · INCLINAÇÃO RUIM", "en": "WINTER · BAD TILT" },
+    { "key": "MAR.SPI.09", "pt": "ÚLTIMO CONTATO · 22 MAR 2010", "en": "LAST CONTACT · 22 MAR 2010" },
+    { "key": "MAR.SPI.10", "pt": "BUSCA ENCERRADA · 25 MAI 2011", "en": "SEARCH ENDED · 25 MAY 2011" },
+    { "key": "MAR.SPI.11", "pt": "DE VOLTA À OPPORTUNITY · 2018", "en": "BACK TO OPPORTUNITY · 2018" },
+    { "key": "MAR.SPI.12", "pt": "SPIRIT · 2004–2010", "en": "SPIRIT · 2004–2010" },
+    { "key": "MAR.SPI.CR1", "pt": "NASA/JPL-Caltech/Cornell Univ.", "en": "NASA/JPL-Caltech/Cornell Univ." },
+    { "key": "MAR.SPI.CR2", "pt": "NASA/JPL-Caltech/Cornell University", "en": "NASA/JPL-Caltech/Cornell University" },
+    { "key": "MAR.SPI.CR3", "pt": "NASA/JPL-Caltech/Cornell", "en": "NASA/JPL-Caltech/Cornell" },
+    { "key": "MAR.SPI.CR4", "pt": "NASA/JPL/Cornell", "en": "NASA/JPL/Cornell" },
+    { "key": "MAR.SPI.CR5", "pt": "NASA/JPL-Caltech", "en": "NASA/JPL-Caltech" }
+  ]
+}

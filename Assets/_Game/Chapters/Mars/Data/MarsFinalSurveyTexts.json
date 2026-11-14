@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_TWINS.md (M24–M30) e 01_MARS_SOURCES.md (MS26, MS27). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-008. Mesmo formato de 'texts' em MarsSubtitles.json (key, pt, en); a UI/localização pode juntar as tabelas. Os objetivos MAR.O06–O08 já existem em MarsSubtitles.json.",
+    "Orçamento das fotos (Docs/Production/MARS_EVIDENCE_BUDGET.md): só a foto do vale é do jogador; o Sol vira registro científico de comparação. Nenhum número: a luz bloqueada aparece na própria imagem. A transmissão é uma preparação condensada, não a comunicação literal enviada pelo rover."
+  ],
+  "texts": [
+    { "key": "MAR.VERB.captureSun", "pt": "REGISTRAR O SOL", "en": "RECORD THE SUN" },
+    { "key": "MAR.VERB.captureValley", "pt": "FOTOGRAFAR O VALE", "en": "PHOTOGRAPH THE VALLEY" },
+    { "key": "MAR.VERB.orientAntenna", "pt": "ORIENTAR A ANTENA", "en": "POINT THE ANTENNA" },
+    { "key": "MAR.VERB.confirmMemory", "pt": "GUARDAR", "en": "KEEP" },
+    { "key": "MAR.OBJ.sun", "pt": "SOL", "en": "SUN" },
+    { "key": "MAR.OBJ.valley", "pt": "VALE", "en": "VALLEY" },
+    { "key": "MAR.OBJ.antenna", "pt": "ANTENA", "en": "ANTENNA" },
+    { "key": "MAR.OBJ.memory", "pt": "ESTA MEMÓRIA", "en": "THIS MEMORY" },
+    { "key": "MAR.SUN.reference", "pt": "O Sol · referência", "en": "The Sun · reference" },
+    { "key": "MAR.SUN.dust", "pt": "O Sol através da poeira", "en": "The Sun through the dust" },
+    { "key": "MAR.SUN.comparison", "pt": "Comparação · o Sol antes e através da poeira", "en": "Comparison · the Sun before and through the dust" },
+    { "key": "MAR.VALLEY.photo", "pt": "Sua foto · Perseverance Valley", "en": "Your photo · Perseverance Valley" },
+    { "key": "MAR.MEMORY.valley", "pt": "Sua foto do vale", "en": "Your photo of the valley" },
+    { "key": "MAR.MEMORY.science", "pt": "Registro científico do Sol", "en": "Scientific record of the Sun" },
+    { "key": "MAR.TRANSMISSION.note", "pt": "Preparação condensada da transmissão; não é a comunicação literal enviada pelo rover.", "en": "Condensed transmission preparation; not the literal message the rover sent." }
+  ]
+}
