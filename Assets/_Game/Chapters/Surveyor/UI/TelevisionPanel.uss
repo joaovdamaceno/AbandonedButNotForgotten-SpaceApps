@@ -1,0 +1,15 @@
+.tv-flight { flex-grow: 1; padding-top: 26px; }
+.tv-body { flex-grow: 1; flex-direction: row; align-items: center; }
+.tv-screen-slot { flex-grow: 1; flex-shrink: 1; height: 100%; margin-right: 32px; align-items: center; justify-content: center; }
+.tv-screen { background-color: #030405; border-width: 1px; border-color: #52606A; }
+.tv-image { position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+.tv-standby { position: absolute; top: 45%; left: 0; right: 0; color: #8998A3; -unity-text-align: middle-center; white-space: normal; }
+.tv-instrument { width: 300px; flex-shrink: 0; }
+.tv-context { margin-top: 24px; font-size: 11px; white-space: normal; color: #7D8D9C; letter-spacing: 0; }
+.tv-location { margin-top: 14px; padding: 0; font-size: 15px; color: #C1BBB0; white-space: normal; }
+.tv-next { font-size: 21px; margin-top: 20px; margin-bottom: 6px; }
+.tv-caption-slot { height: 82px; flex-shrink: 0; justify-content: flex-end; align-items: center; }
+.tv-caption-slot .descent-subtitle-plate { margin-top: 0; }
+.sa-layout--narrow .tv-instrument { width: 278px; }
+.sa-layout--narrow .tv-screen-slot { margin-right: 24px; }
+.sa-layout--narrow .tv-context { font-size: 10px; }
