@@ -31,6 +31,20 @@ Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de
 
 **O que ainda depende de outras tarefas:** o áudio de verdade e o clique inicial (AUD-002), a caixa de legenda global e o `LocalizationService` (UI-004) e a escolha e a licença das faixas (AUD-001/AUD-002). Até lá, `TextChanged` entrega o texto e vazio significa esconder a caixa.
 
+## Fotos históricas (PIO-007)
+
+Duas imagens reais da Pioneer 10 para a revelação em `PIO.Imaging`, ambas com crédito **NASA**:
+
+| Imagem | Arquivo Web | Natureza |
+| --- | --- | --- |
+| Ganimedes, 1973 (AC73-9279) | `Art/Historical/Pioneer10_Ganymede_1973_web.jpg` (1024 × 1024) | Foto de baixíssima resolução, fora de foco: é o que a sonda registrou. Recorte em torno do disco e redução 2:1; **nada foi ampliado** |
+| Júpiter, 1973 (AC73-9341) | `Art/Historical/Pioneer10_Jupiter_1973_web.jpg` (1024 × 795) | **Montagem sequencial** de quadros da aproximação, não uma foto única |
+
+- **Procedência completa** (páginas oficiais, URLs, datas, hashes, dimensões, transformações e limites): `Data/Assets/PioneerHistoricalImages.json` e `ArtSource/Pioneer10/PIO-007/SOURCE.md`. Os originais ficam em `ArtSource/` (LFS), fora de `Assets/` e do build.
+- **Texto exibido junto da imagem:** `PIO.UI.real` ("Imagem real · Pioneer 10 · 1973 · NASA"). A Io perdida **não** tem imagem: `PIO.04.07` só a menciona.
+- **Regenerar e conferir:** `python Tools/convert_pioneer10_photos.py` (gera as versões Web e o registro) e `python Tools/convert_pioneer10_photos.py --check`. A importação das texturas (sRGB, sem mipmaps, 1024 px, não legível pela CPU) está em **PIO-007 → Configurar importação das fotos históricas**.
+- Quem exibe as imagens (PIO-008 e UI-007) usa estes dois arquivos e deve mostrar o rótulo acima; nenhuma outra versão deve entrar na build.
+
 ## Palco espacial (PIO-003)
 
 | Arquivo | Papel |
