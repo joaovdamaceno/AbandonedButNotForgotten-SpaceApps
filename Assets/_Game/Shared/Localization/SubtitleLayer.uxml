@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="SubtitleLayer.uss" />
+    <!-- UI-004. Só o contêiner (as folhas de estilo valem para o elemento raiz deste UXML e seus filhos): o SubtitlePresenter cria a
+         camada (placas de base e de topo) dentro dele, em código, para poder entrar também na coluna inferior do HUD
+         (MissionHUD.BottomColumn). Nenhuma frase aqui: os textos vêm do LocalizationService. -->
+    <ui:VisualElement name="subtitle-host" picking-mode="Ignore" class="sa-root" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;" />
+</ui:UXML>
