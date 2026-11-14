@@ -209,6 +209,64 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33179020}
   m_Mesh: {fileID: 4300000, guid: 89dcc04303fefba4ab03cd986d1ca37e, type: 2}
+--- !u!1 &89717224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 89717225}
+  - component: {fileID: 89717226}
+  m_Layer: 0
+  m_Name: PioneerChapterController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &89717225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89717224}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 976992987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &89717226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89717224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfed1344a9a697540a0c6bec0ddb43ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerChapterController
+  chapter: {fileID: 11400000, guid: 1916e74fd80eaca42824c1b2b65b192b, type: 2}
+  presentation: {fileID: 219729566}
+  sequenceDirector: {fileID: 1018944552}
+  narration: {fileID: 784307682}
+  launch: {fileID: 900977914}
+  belt: {fileID: 1142745918}
+  jupiterSequence: {fileID: 11400000, guid: 3e157969930e6a645b15cb1078e42d39, type: 2}
+  imaging: {fileID: 627316119}
+  recovery: {fileID: 1846412636}
+  reveal: {fileID: 1013705932}
+  plaque: {fileID: 1192973470}
+  outbound: {fileID: 657414340}
+  listening: {fileID: 1508174344}
+  farewell: {fileID: 478802681}
 --- !u!1 &193808955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1205,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
   m_PrefabInstance: {fileID: 692793160}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &784307681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 784307683}
+  - component: {fileID: 784307682}
+  m_Layer: 0
+  m_Name: PioneerNarration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &784307682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784307681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6767330e01de484cbc13b86cdfa1b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerNarration
+  data: {fileID: 11400000, guid: 93e88184ea2b46646905ada9493797eb, type: 2}
+  cueMap: {fileID: 11400000, guid: 0564cfd715adda44089ae5edd38846c7, type: 2}
+--- !u!4 &784307683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784307681}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 976992987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &803651565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1383,6 +1487,40 @@ MonoBehaviour:
   compartmentGlow: {fileID: 33179021}
   rtgGlowScaleMeters: 0.26
   compartmentGlowScaleMeters: 0.5
+--- !u!1 &976992986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 976992987}
+  m_Layer: 0
+  m_Name: '[R5] Pioneer Chapter'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &976992987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976992986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 784307683}
+  - {fileID: 1018944553}
+  - {fileID: 89717225}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1013705930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1449,6 +1587,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1913375885631575342, guid: d7a665c8cd76f5345bc8c12013ae2ec5, type: 3}
   m_PrefabInstance: {fileID: 1013705930}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1013705932 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5924774983767165888, guid: d7a665c8cd76f5345bc8c12013ae2ec5, type: 3}
+  m_PrefabInstance: {fileID: 1013705930}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3806f158455679041b2ab124c2a6e150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.HistoricalImageReveal
+--- !u!1 &1018944551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1018944553}
+  - component: {fileID: 1018944552}
+  m_Layer: 0
+  m_Name: SequenceDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1018944552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018944551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323a17b203e33154cb66d8b8093e9fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDirector
+  cameraDirector: {fileID: 0}
+  inputRouter: {fileID: 0}
+--- !u!4 &1018944553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018944551}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 976992987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1054478056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,3 +3034,4 @@ SceneRoots:
   - {fileID: 2094133281}
   - {fileID: 632809206}
   - {fileID: 323400075}
+  - {fileID: 976992987}
