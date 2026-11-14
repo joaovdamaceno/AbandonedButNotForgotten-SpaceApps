@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad0b4edb2d04a0a86d3a181543cf633, type: 3}
+  m_Name: CompositionResults
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.CompositionResultsData
+  apxsHoldSeconds: 4
+  mossbauerHoldSeconds: 4
+  approachSeconds: 0.75
+  retractSeconds: 0.75
+  rotateSeconds: 0.5
+  finalSeconds: 6
+  retractClearanceMeters: 0.12
+  contactStandoffMeters: 0.015
+  apxsVerbKey: MAR.VERB.apxs
+  mossbauerVerbKey: MAR.VERB.mossbauer
+  cavityObjectKey: MAR.OBJ.cavity
+  apxsEvidenceId: mars.ev.apxs
+  apxsResultKey: MAR.COMP.apxs
+  mossbauerEvidenceId: mars.ev.mossbauer
+  mossbauerResultKey: MAR.COMP.mossbauer
+  discoveryEvidenceId: mars.ev.water
+  discoveryResultKey: MAR.RESULT03
+  noteKey: MAR.COMP.note
+  scienceRef: MS10
+  discoveryScienceRef: MS11
