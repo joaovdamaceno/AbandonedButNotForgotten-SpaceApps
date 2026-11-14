@@ -969,6 +969,24 @@ MonoBehaviour:
     enText: "Voyager 1 passes Pioneer 10's distance from the Sun \xB7 no encounter"
     ptStatus: derived
     enStatus: derived
+  - key: PIO.UI.kind_data
+    group: instrument
+    ptText: "Telemetria \xB7 \xFAltimos dados"
+    enText: "Telemetry \xB7 last data"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.kind_carrier
+    group: instrument
+    ptText: "Portadora fraca \xB7 sem dados novos"
+    enText: "Weak carrier \xB7 no new data"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.listen
+    group: instrument
+    ptText: "Segure E \xB7 escutar"
+    enText: "Hold E \xB7 listen"
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.plaque
     group: hud
     ptText: "Escolha uma pe\xE7a e seu contorno \xB7 {count}/5"
