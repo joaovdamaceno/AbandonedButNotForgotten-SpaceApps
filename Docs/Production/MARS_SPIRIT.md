@@ -12,4 +12,6 @@ Cinco imagens oficiais NASA/JPL com crédito por cartão (`ASSET_CREDITS.md` P-M
 - Sem pacote Timeline: `SequenceDefinition` no lugar do `.playable`.
 - O rover inclinado no inverno (8°) é ilustrativo, não uma medida; o odômetro é uma barra, não dado de trajeto.
 - Sem WebGL nem perfil baixo real; leitura em 960×600 ainda não verificada por pessoa; revisão factual MS20–25 por outra função pendente.
+- **Orçamento de tela dividida (`Docs/03_ARCHITECTURE.md`, `Docs/04_WEB_AND_QA.md`) não atendido:** o split usa duas câmeras em viewports de tela cheia (meia tela ≈ 1280×360), e não render targets de até 640×180 por metade nem o fallback obrigatório de duas renderizações alternadas a 15 Hz. Depende de decisão de R1/R2 (como a UI exibe os RTs) e de medição em GPU integrada.
+- O roteiro de gameplay pede planos curtos "sem virar uma lista de cartões"; aqui cada batida é uma imagem oficial com pan lento, o que pode parecer lista de cartões. Pede revisão editorial.
 - As imagens têm resolução limitada (Home Plate 512 px; Comanche 907 px) e são recortadas pela faixa de meia tela com pan.

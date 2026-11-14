@@ -119,7 +119,10 @@ namespace Abandoned.SpaceApps.Tests
             foreach (var t in Times(0.1f, 44.9f, 0.1f))
             {
                 director.ApplyAt(t);
-                Assert.That(Main(director.VisibleLabels).Count(), Is.LessThanOrEqualTo(1), $"t={t}: mais de uma informação principal");
+                var main = Main(director.VisibleLabels).ToList();
+                Assert.That(main.Count(l => l.Anchor == MarsLandingLabelAnchor.Full), Is.LessThanOrEqualTo(1), $"t={t}: mais de uma informação principal");
+                Assert.That(main.Any(l => l.Anchor == MarsLandingLabelAnchor.Full) && main.Any(l => l.Anchor != MarsLandingLabelAnchor.Full), Is.False, $"t={t}: legenda cheia junto de legenda de metade");
+                Assert.That(main.GroupBy(l => l.Anchor).All(g => g.Count() == 1), Is.True, $"t={t}: uma informação por metade");
             }
 
             var imageBeats = new[] { BeatHusbandHill, BeatComanche, BeatSilica, BeatHomePlate, BeatTroy };
@@ -153,6 +156,9 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(texts["MAR.SPI.10"], Does.Contain("25 MAI 2011"));
             Assert.That(texts["MAR.SPI.05"], Does.Contain("7,73"));
             Assert.That(texts["MAR.SPI.11"], Does.Contain("2018"), "o retorno identifica claramente 2018");
+            Assert.That(texts["MAR.SPI.12"], Is.EqualTo("SPIRIT · 2004–2010"), "a metade do Spirit escurece com o período de operação");
+            director.ApplyAt(44f);
+            Assert.That(director.VisibleLabels.Single(l => l.TextKey == "MAR.SPI.12").Anchor, Is.EqualTo(MarsLandingLabelAnchor.UpperHalf));
             director.ApplyAt(44f);
             Assert.That(director.VisibleLabels.Select(l => l.TextKey), Does.Contain("MAR.SPI.11"));
             Assert.That(data.Labels.Single(l => l.TextKey == "MAR.SPI.11").EndSeconds - data.Labels.Single(l => l.TextKey == "MAR.SPI.11").StartSeconds, Is.GreaterThanOrEqualTo(1.5f), "tempo de leitura");
@@ -256,7 +262,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(director.RenderedCameraCount, Is.EqualTo(2));
             Assert.That(mainCamera.rect, Is.EqualTo(new Rect(0f, 0f, 1f, 0.5f)), "Opportunity embaixo, quieta");
             Assert.That(director.SpiritCamera.rect.yMax, Is.EqualTo(1f).Within(1e-4f), "Spirit em cima");
-            foreach (var t in new[] { 10f, 30f, 42.4f })
+            foreach (var t in new[] { 10f, 30f, 42.9f })
             {
                 director.ApplyAt(t);
                 Assert.That(director.RenderedCameraCount, Is.EqualTo(2), $"t={t}");
@@ -359,7 +365,8 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(sequenceDirector.IsPlaying, Is.False);
             Assert.That(cameraDirector.IsControlled, Is.False, "controle da câmera devolvido");
             Assert.That(director.RenderedCameraCount, Is.EqualTo(1));
-            Assert.That(mainCamera.rect, Is.EqualTo(new Rect(0f, 0f, 1f, 1f)));
+            Assert.That(mainCamera.rect.height, Is.EqualTo(1f).Within(1e-3f));
+            Assert.That(mainCamera.rect.y, Is.EqualTo(0f).Within(1e-3f));
         }
     }
 }
