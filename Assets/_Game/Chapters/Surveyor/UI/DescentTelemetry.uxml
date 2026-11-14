@@ -1,0 +1,27 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+ <Style src="../../../UI/Design/SpaceAppsTokens.uss" /><Style src="../../../UI/Design/SpaceAppsComponents.uss" /><Style src="DescentTelemetry.uss" />
+ <ui:VisualElement class="sa-root sa-chapter--surveyor descent-root">
+  <ui:VisualElement class="descent-header"><ui:Label name="archive" class="sa-stamp descent-muted" /><ui:VisualElement class="descent-toolbar"><ui:Button name="language" class="descent-tool" /><ui:Button name="pause" class="descent-tool" /></ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement name="entry" class="descent-entry"><ui:Label name="title" class="descent-title" /><ui:Label name="description" class="descent-description" /><ui:Button name="start" class="descent-primary" /></ui:VisualElement>
+  <ui:VisualElement name="flight" class="descent-flight">
+   <ui:Label name="phase" class="sa-stamp descent-accent" />
+   <ui:VisualElement class="descent-body">
+    <ui:VisualElement class="descent-schematic"><ui:VisualElement name="diagram" class="descent-diagram" picking-mode="Ignore" /><ui:Label name="diagram-label" class="sa-stamp descent-muted" /><ui:Label name="contacts" class="descent-contacts" /></ui:VisualElement>
+    <ui:VisualElement name="instrument" class="descent-instrument">
+     <ui:Label name="engines" class="sa-stamp descent-muted" /><ui:Label name="status" class="descent-status" />
+     <ui:VisualElement class="descent-meter"><ui:VisualElement name="preparation" class="descent-fill" /></ui:VisualElement>
+     <ui:Button name="confirm" class="descent-primary" /><ui:Label name="help" class="descent-help" />
+     <ui:VisualElement class="descent-meter descent-radio"><ui:VisualElement name="radio" class="descent-fill descent-radio-fill" /></ui:VisualElement>
+     <ui:Label name="transit" class="descent-help" /><ui:Label name="camera" class="sa-stamp descent-camera" />
+     <ui:VisualElement name="landing-stamp" class="descent-landing-stamp"><ui:Label name="date" class="descent-date" /><ui:Label name="location" class="descent-location" /></ui:VisualElement>
+     <ui:Button name="restart" class="descent-secondary" /><ui:Button name="return" class="descent-secondary" />
+    </ui:VisualElement>
+   </ui:VisualElement>
+   <ui:VisualElement name="subtitle-plate" class="descent-subtitle-plate" picking-mode="Ignore"><ui:Label name="subtitle" class="descent-subtitle" /></ui:VisualElement>
+  </ui:VisualElement>
+  <ui:VisualElement name="pause-overlay" class="descent-overlay"><ui:VisualElement name="pause-card" class="descent-pause-card">
+   <ui:Label name="pause-title" class="descent-pause-title" /><ui:Label name="pause-description" class="descent-description" />
+   <ui:Button name="resume" class="descent-primary" /><ui:Button name="restart-paused" class="descent-secondary" /><ui:Button name="return-paused" class="descent-secondary" />
+  </ui:VisualElement></ui:VisualElement>
+ </ui:VisualElement>
+</ui:UXML>
