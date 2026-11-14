@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aef2284e88b42c1be38e2233eb09054, type: 3}
+  m_Name: BlueberriesActivity
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.BlueberriesActivityData
+  reachDistanceMeters: 4
+  openHoldSeconds: 0
+  soilHoldSeconds: 4
+  rockHoldSeconds: 4
+  resultSeconds: 4
+  openVerbKey: MAR.VERB.observe
+  soilVerbKey: MAR.VERB.recordSoil
+  rockVerbKey: MAR.VERB.recordRock
+  soilObjectKey: MAR.OBJ.soil
+  rockObjectKey: MAR.OBJ.rock
+  outcropObjectKey: MAR.OBJ.outcrop
+  soilEvidenceId: mars.ev.spheres.soil
+  rockEvidenceId: mars.ev.spheres.rock
+  mineralEvidenceId: mars.ev.spheres.hematite
+  soilResultKey: MAR.BLUE.mi.soil
+  rockResultKey: MAR.BLUE.mi.rock
+  mineralResultKey: MAR.RESULT01
+  imagingScienceRef: MS13
+  mineralScienceRef: MS03
+  soilSphereCount: 14
+  rockSphereCount: 10
