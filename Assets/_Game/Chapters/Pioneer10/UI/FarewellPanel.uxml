@@ -1,0 +1,34 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="FarewellPanel.uss" />
+    <!-- PIO-012. Sem frases literais: textos recebem chaves PIO.UI.* resolvidas pelo capítulo. O preto é INTENCIONAL (memorial). -->
+    <ui:VisualElement name="farewell-root" picking-mode="Ignore" class="sa-root pio-farewell">
+
+        <!-- Guia discreto da direção de Aldebaran (plano aberto). Não finge que a sonda já chegou. -->
+        <ui:VisualElement name="guide" picking-mode="Ignore" class="sa-plate pio-farewell__guide">
+            <ui:VisualElement picking-mode="Ignore" class="pio-farewell__guide-mark" />
+            <ui:Label name="guide-label" picking-mode="Ignore" class="pio-farewell__guide-label" />
+        </ui:VisualElement>
+
+        <!-- Preto do memorial: sobe com o tempo ativo. -->
+        <ui:VisualElement name="black" picking-mode="Ignore" class="pio-farewell__black" />
+
+        <ui:VisualElement name="memorial" picking-mode="Ignore" class="pio-farewell__memorial">
+            <ui:Label name="ending-title" picking-mode="Ignore" class="pio-farewell__title" />
+            <ui:Label name="ending-subtitle" picking-mode="Ignore" class="pio-farewell__subtitle" />
+        </ui:VisualElement>
+
+        <!-- Ações finais (últimos 2 s). Voltar ao arquivo e Repetir; nenhuma inicia outro capítulo. -->
+        <ui:VisualElement name="choices" picking-mode="Ignore" class="pio-farewell__choices">
+            <ui:VisualElement name="return-button" class="pio-farewell__button">
+                <ui:VisualElement picking-mode="Ignore" class="sa-keycap pio-farewell__keycap"><ui:Label text="E" class="sa-keycap__glyph" /></ui:VisualElement>
+                <ui:Label name="return-label" picking-mode="Ignore" class="pio-farewell__button-label" />
+            </ui:VisualElement>
+            <ui:VisualElement name="replay-button" class="pio-farewell__button">
+                <ui:VisualElement picking-mode="Ignore" class="sa-keycap pio-farewell__keycap"><ui:Label text="E" class="sa-keycap__glyph" /></ui:VisualElement>
+                <ui:Label name="replay-label" picking-mode="Ignore" class="pio-farewell__button-label" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
