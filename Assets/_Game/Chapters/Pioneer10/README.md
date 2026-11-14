@@ -10,7 +10,7 @@ Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de
 | Arquivo | Conteúdo |
 | --- | --- |
 | `Data/Chapters/Pioneer10.json` | Oito estados com ID estável e ordem explícita (375 s nominais, até 381 s com o alongamento de leitura de PIO.07.06 e PIO.04.09), 45 cues (janela local ou gatilho com tempo mínimo de leitura), grupos de texto, **mapa de fatos → fontes**, divergências entre fontes e correções aplicadas |
-| `Data/Localization/Pioneer10.pt-BR.json`, `Pioneer10.en.json` | 102 chaves iguais nos dois idiomas, por grupo (`narrative`, `hud`, `instrument`, `card`) e `status` (`approved` = transcrito do roteiro; `derived` = montado ou traduzido a partir do roteiro, **a revisar pela R7**) |
+| `Data/Localization/Pioneer10.pt-BR.json`, `Pioneer10.en.json` | 111 chaves iguais nos dois idiomas, por grupo (`narrative`, `hud`, `instrument`, `card`) e `status` (`approved` = transcrito do roteiro; `derived` = montado ou traduzido a partir do roteiro, **a revisar pela R7**) |
 
 - **Tempo** é local ao estado, no relógio ativo; datas históricas são dados. A recepção na Terra (rádio) fica separada da operação na sonda (lançamento) no campo `kind` de cada fato.
 - **IDs de gatilho** de `PIO.Imaging` seguem o código integrado (`Gate4`, `Gate6`, `GateRecovery`, `Gate8`); os de `PIO.Plaque` foram **confirmados** pela PIO-009 (`PioneerPlaqueActivity` aciona `PIO.Plaque.Hydrogen`, `.Pulsars`, `.SolarSystem`, `.PioneerScale` e `.People`); os de `PIO.Listening` continuam **propostos** e devem ser confirmados pela PIO-011.
@@ -21,7 +21,7 @@ Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de
 
 | Arquivo | Papel |
 | --- | --- |
-| `Data/PioneerData.asset` | Estados, 45 cues e 102 textos PT/EN importados de `Data/` (PIO-001). `GetText(chave, idioma)` devolve vazio para chave ou idioma desconhecidos (a caixa de legenda some); `ReadingSeconds` estima o tempo de leitura sem nunca acelerá-la |
+| `Data/PioneerData.asset` | Estados, 45 cues e 111 textos PT/EN importados de `Data/` (PIO-001). `GetText(chave, idioma)` devolve vazio para chave ou idioma desconhecidos (a caixa de legenda some); `ReadingSeconds` estima o tempo de leitura sem nunca acelerá-la |
 | `Audio/PioneerCueMap.asset` | Música por estado (Partida, Curiosidade, Distância, Escuta; crossfade de 1,75 s, dentro de 1,5–2 s), efeitos de interface, o quase silêncio da virada do cinturão (nível 0,15 em 1,5 s) e o silêncio real de 2,5 s da tentativa 4. **Só IDs de cue da folha de cues (AUD-001): nenhum clipe, nenhuma licença adquirida** |
 | `Runtime/PioneerNarration.cs` | Escuta a `SequenceDirector`: mostra e esconde a legenda, troca de idioma sem reiniciar, pede música só quando o cue muda e aplica os efeitos do mapa. `Cancel()` encerra tudo e ignora eventos até o próximo `EnterState` |
 | `Runtime/IPioneerAudioPort.cs` | Porta de pedidos de áudio, **sem implementação**: o `AudioDirector` (AUD-002) a adapta (`SetCue(cueId, fadeSeconds)` do contrato) |
@@ -253,3 +253,27 @@ O contorno **correto** da peça selecionada pulsa devagar (1,4 s de período; co
 **Limitações.** Os textos dos contornos e das peças ainda são chaves até a UI-004. Os nomes e a frase neutra são `derived` (R7). O quadro é um layout simplificado (contornos lado a lado, sem a sobreposição das figuras com a silhueta da Pioneer da gravura). A arrastada só foi exercitada pela lógica e pela função de snap (`NearestOutline`): os eventos de ponteiro do painel não foram simulados em Play Mode. Play Mode e navegador não foram executados.
 
 **Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.stage.plaque`.
+
+## Escuta DSN (PIO-011)
+
+| Arquivo | Papel |
+| --- | --- |
+| `Sequences/PIO_Listening.asset` | 52 s em seis planos: ensino 0–7, contatos 7–16, 16–25 e 25–37, tentativa 37–45, respirar 45–52. Marcos `PIO.Listening.Open1–4` e `Breathe`, cada um espera a etapa anterior. Legendas por janela (PIO.07.01, .05, .06) e **por gatilho** (PIO.07.02–04, leitura mínima 5/5/7 s) |
+| `Runtime/PioneerListening.cs` | Lógica do estado (sem UI): zona de 30%, varredura assistida, escuta de 2 s, quatro resultados distintos, silêncio de 2,5 s, cancelar e pular |
+| `Runtime/ListeningPanelView.cs` + `UI/ListeningPanel.uxml/.uss/.prefab` | Painel UI Toolkit embaixo à direita (UiFrame do anchor): onda de barras fixas, escala com zona e botão, setas, medidor de proximidade e o resultado. Só desenha um `ListeningViewState` |
+| `Art/DsnSilhouette.prefab` + `Art/Dsn/` | Silhueta de antena de 70 m **gerada por código** (prato parabólico, tripé do subrefletor e base em alidade), no `DishSocket` do palco; material Unlit escuro |
+| `Editor/PioneerListeningBuilder.cs` | Builder CORE-006 `pioneer10.stage.listening` (raiz `[R5] Pioneer Listening`) |
+| `Editor/PioneerListeningCapture.cs` | Prévia do painel em `Docs/Art/Pioneer10_Listening/` (menu PIO-011; **precisa da janela da Unity em primeiro plano**) |
+| `Tests/PioneerListeningTests.cs` | 16 testes EditMode |
+
+**Como joga.** Setas/WASD e mouse movem o botão (contexto Gameplay do InputRouter). O botão começa a no máximo 15% da borda da zona (0,12 / 0,10 / 0,14) e a zona tem 30% da escala nas três rodadas, levemente deslocada. Um medidor e uma seta dizem de que lado está a zona (o equivalente visual do som). **Segurar E** fora da zona executa uma varredura assistida lenta que pára na primeira zona válida; dentro dela, E mantido escuta por 2 s (o progresso fica ao soltar ou sair). Concluir uma rodada exige soltar E antes da seguinte. Nada exige audição nem timing estreito. Na 3ª rodada o sinal é mais fraco (0,45) e a zona continua legível.
+
+**Quatro resultados diferentes** (selo, cartão de data e forma de onda diferentes): 3 MAR 2002 sinal recebido (onda suave); 27 ABR 2002 últimos dados de telemetria (blocos regulares); 23 JAN 2003 portadora muito fraca, **sem dados novos** (uma linha fina com um único pico, o último sinal); 7 FEV 2003 nenhum sinal detectado. Na tentativa 4 **não há zona nem frequência correta**: "Segure E · escutar" por 2 s e "Nenhum sinal detectado · Sua escuta funcionou. Desta vez, não houve resposta." Depois os controles recolhem e há **2,5 s de silêncio real** (onda parada e mínima, nada animado). Datas são de recepção na Terra em UTC.
+
+**Eventos para a integração (PIO-014).** `StateEvent` dispara `PIO.Listening.Tune` (a cada rodada), `.Contact1/2/3` e `.Attempt4` (início do silêncio): ligar a `PioneerNarration.RaiseEvent`. Os mesmos ids `Contact1/2/3` são os gatilhos das legendas, que a atividade abre direto no `SequenceDirector.Trigger`. Isso **confirma** os ids propostos na PIO-001/013. Uso: `listening.Initialize(sequenceDirector, interactionService, inputRouter, sessionClock, resolverDeTexto)`, `Completed += () => chapterDirector.CompleteStep("PIO.Listening")`, `Begin(skippable)`; `Cancel()` na mudança de estado.
+
+**Textos novos (PIO-001):** `PIO.UI.listen`, `PIO.UI.kind_data` e `PIO.UI.kind_carrier` (os três `derived`, a R7 precisa revisar). Os cartões e as chaves `tune`, `nearer`, `farther`, `received`, `no_signal`, `no_fault` e `help` já existiam.
+
+**Limitações.** **A silhueta não vem de uma fotografia NASA identificada, como a tarefa pede.** A referência encontrada na auditoria (R-PIO-05, "70 meter dish", NASA/Ames) é um **modelo 3D** (GLB de 2,11 MB), a página não informa licença própria nem o sítio (Goldstone, Canberra ou Madri) e eu **não a baixei**; as proporções são as de uma antena DSN genérica. Escolher e creditar uma fotografia continua pendente. A duração de 2 s da escuta na tentativa 4, as velocidades do botão e da varredura e os deslocamentos das zonas são decisão de jogabilidade, não dado histórico. Parte do lado direito do prato fica sob o painel no 1280×720. Sem áudio nem legenda real (AUD-002/UI-004), textos por chave. Mouse não foi testado (só teclado, que é o caminho obrigatório). Play Mode e navegador não foram exercitados. Contraste não medido nos pixels.
+
+**Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.stage.listening`.

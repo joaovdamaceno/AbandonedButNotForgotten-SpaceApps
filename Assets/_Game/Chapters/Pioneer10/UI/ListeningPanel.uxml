@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="ListeningPanel.uss" />
+    <!-- PIO-011. Sem frases literais: rótulos por chaves PIO.UI.* / PIO.Card.*. As barras da onda nascem em código.
+         Quadro embaixo à direita (UiFrame 0,56 · 0,07 · 0,40 · 0,33 do anchor PIO.Listening); a antena 3D fica à esquerda. -->
+    <ui:VisualElement name="listening-root" picking-mode="Ignore" class="sa-root pio-lis">
+        <ui:VisualElement name="frame" picking-mode="Ignore" class="sa-instrument pio-lis__frame">
+
+            <!-- Resultado: data + o que chegou. Contatos diferentes têm selo, forma de onda e texto diferentes. -->
+            <ui:VisualElement name="head" picking-mode="Ignore" class="pio-lis__head">
+                <ui:Label name="card" class="pio-lis__card" />
+                <ui:Label name="status" class="pio-lis__status" />
+                <ui:Label name="note" class="pio-lis__note" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="wave" picking-mode="Ignore" class="pio-lis__wave" />
+
+            <!-- Sintonia: zona de 30% (contorno grosso), botão grande com foco e setas que apontam para a zona. -->
+            <ui:VisualElement name="tuner" picking-mode="Ignore" class="pio-lis__tuner">
+                <ui:VisualElement name="arrow-left" picking-mode="Ignore" class="pio-lis__arrow pio-lis__arrow--left" />
+                <ui:VisualElement name="scale" picking-mode="Ignore" class="pio-lis__scale">
+                    <ui:VisualElement name="zone" picking-mode="Ignore" class="pio-lis__zone" />
+                    <ui:VisualElement name="knob" picking-mode="Ignore" class="pio-lis__knob" />
+                </ui:VisualElement>
+                <ui:VisualElement name="arrow-right" picking-mode="Ignore" class="pio-lis__arrow pio-lis__arrow--right" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="prox" picking-mode="Ignore" class="pio-lis__prox">
+                <ui:Label name="prox-label" class="pio-lis__small" />
+                <ui:VisualElement picking-mode="Ignore" class="pio-lis__meter"><ui:VisualElement name="prox-fill" picking-mode="Ignore" class="pio-lis__meter-fill" /></ui:VisualElement>
+                <ui:Label name="assist" class="pio-lis__small pio-lis__assist" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="hold" class="sa-plate sa-hold pio-lis__hold" picking-mode="Ignore">
+                <ui:VisualElement class="sa-keycap" picking-mode="Ignore"><ui:Label text="E" class="sa-keycap__glyph" /></ui:VisualElement>
+                <ui:VisualElement class="sa-hold__body" picking-mode="Ignore">
+                    <ui:Label name="hold-label" class="sa-hold__label" />
+                    <ui:VisualElement class="sa-progress" picking-mode="Ignore"><ui:VisualElement name="progress-fill" class="sa-progress__fill" /></ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
