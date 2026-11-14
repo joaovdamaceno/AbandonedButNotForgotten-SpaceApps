@@ -26,3 +26,11 @@ __pycache__/
 *.p12
 Thumbs.db
 .DS_Store
+# Unity (CORE-001)
+/MemoryCaptures/
+/Recordings/
+/[Aa]ssets/AssetStoreTools*
+*.unitypackage
+*.apk
+*.aab
+crashlytics-build.properties
