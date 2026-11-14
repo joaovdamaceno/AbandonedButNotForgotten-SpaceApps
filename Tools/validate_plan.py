@@ -40,7 +40,8 @@ def validate():
     checks+=['IDs, required fields, role/priority and bounded estimates','All dependency targets and no P0→P1/P2','Directed dependency graph has no cycles','Every task has a complete AI-ready Markdown prompt']
     broken=[]
     for p in ROOT.rglob('*.md'):
-        if '.git' in p.parts or 'Runtime' in p.parts:continue
+        # Pastas locais geradas pela Unity (ignoradas pelo Git) contêm Markdown de pacotes de terceiros.
+        if '.git' in p.parts or 'Runtime' in p.parts or {'Library','Temp','Logs','UserSettings','Obj','Builds'} & set(p.relative_to(ROOT).parts[:1]):continue
         for dest in re.findall(r'\]\(([^)]+)\)',p.read_text(encoding='utf-8-sig')):
             if dest.startswith(('http:','https:','mailto:','#')):continue
             target=dest.split('#',1)[0]
