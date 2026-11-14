@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="../../../UI/Design/SpaceAppsTokens.uss" />
+    <Style src="../../../UI/Design/SpaceAppsComponents.uss" />
+    <Style src="CommandTransit.uss" />
+    <ui:VisualElement name="transit-widget" class="transit-widget sa-chapter--surveyor">
+        <ui:Label name="command-kicker" class="sa-stamp transit-accent" />
+        <ui:Label name="command-title" class="transit-title" />
+        <ui:VisualElement name="aim-diagram" class="transit-diagram" picking-mode="Ignore" />
+        <ui:VisualElement class="transit-legend">
+            <ui:Label name="desired-label" class="transit-desired" />
+            <ui:Label name="actual-label" class="transit-accent" />
+        </ui:VisualElement>
+        <ui:Label name="command-status" class="transit-status" />
+        <ui:VisualElement class="transit-meter"><ui:VisualElement name="preparation-fill" class="transit-preparation-fill" /></ui:VisualElement>
+        <ui:Button name="confirm-command" class="transit-primary" />
+        <ui:VisualElement class="transit-meter transit-radio-meter"><ui:VisualElement name="radio-fill" class="transit-radio-fill" /></ui:VisualElement>
+        <ui:Label name="transit-description" class="transit-copy" />
+        <ui:Label name="hold-help" class="transit-help" />
+    </ui:VisualElement>
+</ui:UXML>
