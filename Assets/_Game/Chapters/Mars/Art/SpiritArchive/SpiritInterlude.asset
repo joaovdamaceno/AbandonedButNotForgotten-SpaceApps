@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d14711f7d3526ed856afe2427c1a17, type: 3}
+  m_Name: SpiritInterlude
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SpiritInterludeData
+  sequenceId: mars.seq.M22
+  odometerKilometers: 7.73
+  lastContactUtc: {x: 2010, y: 3, z: 22}
+  searchEndedUtc: {x: 2011, y: 5, z: 25}
+  imageCredits:
+  - MAR.SPI.CR1
+  - MAR.SPI.CR2
+  - MAR.SPI.CR3
+  - MAR.SPI.CR4
+  - MAR.SPI.CR5
+  labels:
+  - textKey: MAR.SPI.01
+    startSeconds: 0.3
+    endSeconds: 5
+    anchor: 3
+  - textKey: MAR.SPI.CR1
+    startSeconds: 0.3
+    endSeconds: 5
+    anchor: 3
+  - textKey: MAR.SPI.02
+    startSeconds: 5.3
+    endSeconds: 11
+    anchor: 3
+  - textKey: MAR.SPI.CR2
+    startSeconds: 5.3
+    endSeconds: 11
+    anchor: 3
+  - textKey: MAR.SPI.03
+    startSeconds: 11.3
+    endSeconds: 17
+    anchor: 3
+  - textKey: MAR.SPI.CR3
+    startSeconds: 11.3
+    endSeconds: 17
+    anchor: 3
+  - textKey: MAR.SPI.04
+    startSeconds: 17.3
+    endSeconds: 22
+    anchor: 3
+  - textKey: MAR.SPI.CR4
+    startSeconds: 17.3
+    endSeconds: 22
+    anchor: 3
+  - textKey: MAR.SPI.05
+    startSeconds: 22.3
+    endSeconds: 27
+    anchor: 3
+  - textKey: MAR.SPI.06
+    startSeconds: 27.3
+    endSeconds: 29.5
+    anchor: 3
+  - textKey: MAR.SPI.07
+    startSeconds: 29.5
+    endSeconds: 32
+    anchor: 3
+  - textKey: MAR.SPI.CR5
+    startSeconds: 27.3
+    endSeconds: 32
+    anchor: 3
+  - textKey: MAR.SPI.08
+    startSeconds: 32.3
+    endSeconds: 39
+    anchor: 3
+  - textKey: MAR.SPI.09
+    startSeconds: 39.3
+    endSeconds: 41
+    anchor: 3
+  - textKey: MAR.SPI.10
+    startSeconds: 41
+    endSeconds: 42.7
+    anchor: 3
+  - textKey: MAR.SPI.12
+    startSeconds: 42.7
+    endSeconds: 45
+    anchor: 0
+  - textKey: MAR.SPI.11
+    startSeconds: 43.5
+    endSeconds: 45
+    anchor: 1

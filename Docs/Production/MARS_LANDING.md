@@ -10,4 +10,6 @@
 - MAR-011 (#30) está fechada e integrada, mas sem o label `integrated`.
 
 ## Limitações
+- **Orçamento de tela dividida (`Docs/03_ARCHITECTURE.md`, `Docs/04_WEB_AND_QA.md`) não atendido:** o split usa duas câmeras em viewports de tela cheia (meia tela ≈ 1280×360), e não render targets de até 640×180 por metade nem o fallback obrigatório de duas renderizações alternadas a 15 Hz. Depende de decisão de R1/R2 (como a UI exibe os RTs) e de medição em GPU integrada.
+- Pela checklist de `Docs/Art/IMPORT_RULES.md` §10, a silhueta do hardware de pouso ainda não foi comparada com foto de missão no mesmo ângulo.
 Sem validação em WebGL nem em GPU fraca. Unity 6000.6.8f1 (o projeto fixa 6.7f1). Julgamento visual (cores, plasma, escala) pendente de revisão da R4/R1. Integração na cena e áudio ficam para a MAR-018/MAR-009.
