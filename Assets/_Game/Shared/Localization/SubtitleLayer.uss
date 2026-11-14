@@ -1,0 +1,49 @@
+/* UI-004 · Camada de legendas. A placa em si é `.sa-subtitle` (UI-001): texto vazio ⇒ `sa-subtitle--hidden` (display: none), sem fundo. */
+
+/* Sem HUD: a camada cobre a tela; legenda de base embaixo e de topo no alto. */
+.sa-subtitle-layer {
+    position: absolute;
+    left: var(--sa-safe-margin);
+    right: var(--sa-safe-margin);
+    top: var(--sa-safe-margin);
+    bottom: var(--sa-space-5);
+    flex-direction: column;
+    justify-content: flex-end; /* a legenda de base fica embaixo; a de topo é absoluta */
+    align-items: center;
+}
+
+/* Dentro do HUD (coluna da base): entra no fluxo, logo abaixo do prompt de E, sem sobreposição. */
+.sa-subtitle-layer--hosted {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    justify-content: flex-start;
+    align-self: stretch;
+}
+
+/* Carimbo (data/nome): Plex Mono em destaque, claramente diferente do corpo da legenda (Outfit). */
+.pio-subtitle__stamp {
+    -unity-text-align: middle-center;
+    margin: 0 0 4px 0;
+    white-space: normal;
+}
+
+/* Placa só de carimbo: sem corpo, o carimbo cresce um pouco para ler como data/nome e não como frase. */
+.pio-subtitle--stamp .pio-subtitle__stamp {
+    font-size: 20px;
+    margin: 0;
+}
+
+.pio-subtitle--top {
+    position: absolute;
+    top: 0;
+    align-self: center;
+}
+
+/* No HUD a placa de topo entra no fluxo, acima da de base. */
+.sa-subtitle-layer--hosted .pio-subtitle--top {
+    position: relative;
+    top: auto;
+}

@@ -1,0 +1,20 @@
+UI-004 · auditoria das legendas (Outfit Regular, caixa de 880 px, padding de 24 px; linhas = altura medida / altura de uma linha)
+fonte resolvida 28 px; largura útil 832 px; altura de uma linha 36,0 px. Mais de 2 linhas = FALHA.
+
+[pt] 63 legendas medidas; 1 linha: 42; 2 linhas: 21; mais de 2: 0
+  mais longas: PIO.06.03 · 92 caracteres · 2 linha(s)
+  mais longas: PIO.05.07 · 87 caracteres · 2 linha(s)
+  mais longas: PIO.02.04 · 81 caracteres · 2 linha(s)
+  mais longas: PIO.07.01 · 81 caracteres · 2 linha(s)
+  mais longas: PIO.06.05 · 80 caracteres · 2 linha(s)
+  mais longas: PIO.06.04 · 78 caracteres · 2 linha(s)
+
+[en] 63 legendas medidas; 1 linha: 48; 2 linhas: 15; mais de 2: 0
+  mais longas: PIO.06.03 · 91 caracteres · 2 linha(s)
+  mais longas: PIO.06.04 · 84 caracteres · 2 linha(s)
+  mais longas: PIO.05.07 · 78 caracteres · 2 linha(s)
+  mais longas: PIO.06.05 · 76 caracteres · 2 linha(s)
+  mais longas: PIO.01.05 · 74 caracteres · 2 linha(s)
+  mais longas: PIO.08.03 · 74 caracteres · 2 linha(s)
+
+Pior caso do inglês: ver as linhas 'mais longas' de [en]. Medição pelo motor de texto do UI Toolkit em um painel real.
