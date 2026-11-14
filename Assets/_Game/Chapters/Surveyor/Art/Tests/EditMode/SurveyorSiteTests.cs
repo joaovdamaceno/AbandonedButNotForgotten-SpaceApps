@@ -96,6 +96,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.SiteTests
             string prefabGuid=AssetDatabase.AssetPathToGUID(SurveyorSiteBuilder.ArtPath+"/SurveyorVisibleRig.prefab");
             var beforeId=GlobalObjectId.GetGlobalObjectIdSlow(root.transform.Find("SurveyorVisibleRig").gameObject);
             Assert.That(beforeId.targetObjectId,Is.Not.EqualTo(0));
+            var linkageBefore=root.GetComponentsInChildren<MeshRenderer>().Single(x=>x.name=="Team_ScoopLinkage").transform.position;
             var other=new GameObject("[Other Owner] Preserve Me"); other.transform.position=new Vector3(100,100,100);
             EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
             var result=SpaceAppsSceneBuilder.Run(new SurveyorSiteBuilder());
@@ -105,6 +106,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.SiteTests
             var rebuilt=SceneManager.GetActiveScene().GetRootGameObjects().Single(x=>x.name==new SurveyorSiteBuilder().RootName);
             var afterId=GlobalObjectId.GetGlobalObjectIdSlow(rebuilt.transform.Find("SurveyorVisibleRig").gameObject);
             Assert.That(afterId,Is.EqualTo(beforeId));
+            Assert.That(Vector3.Distance(rebuilt.GetComponentsInChildren<MeshRenderer>().Single(x=>x.name=="Team_ScoopLinkage").transform.position,linkageBefore),Is.LessThan(.001f));
+            Assert.That(rebuilt.GetComponent<SurveyorSiteBindings>().ScoopArm.localPosition.z,Is.GreaterThan(0f));
             var preserved=SceneManager.GetActiveScene().GetRootGameObjects().Single(x=>x.name=="[Other Owner] Preserve Me");
             Assert.That(preserved.transform.position,Is.EqualTo(new Vector3(100,100,100)));
             Object.DestroyImmediate(preserved);

@@ -51,6 +51,16 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.EditorTools
                 PrefabUtility.UnpackPrefabInstance(instance,PrefabUnpackMode.Completely,InteractionMode.AutomatedAction);
                 instance.name="TeamModel"; instance.transform.SetParent(body,false); native=instance.transform;
             }
+            // Restaurar a pose canônica antes de mover pivôs evita acumular deslocamentos entre rebuilds.
+            var sourceModel=AssetDatabase.LoadAssetAtPath<GameObject>(ModelPath);
+            foreach(var sourcePart in sourceModel.GetComponentsInChildren<MeshRenderer>())
+            {
+                var part=root.GetComponentsInChildren<MeshRenderer>(true).First(t=>t.name==sourcePart.name || t.name=="Team_"+sourcePart.name);
+                part.transform.SetParent(native,false);
+                part.transform.localPosition=sourcePart.transform.localPosition;
+                part.transform.localRotation=sourcePart.transform.localRotation;
+                part.transform.localScale=sourcePart.transform.localScale;
+            }
             Transform Find(string name) => native.GetComponentsInChildren<Transform>(true).First(t=>t.name==name);
             var sourceFeet=Enumerable.Range(1,3).Select(i=>Find("FootContact_"+i)).ToArray();
             var localFeet=sourceFeet.Select(t=>body.InverseTransformPoint(t.position)).ToArray();
@@ -78,18 +88,15 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.EditorTools
             var az=Child(body,"TV_Mirror_Azimuth"); az.position=Find("MirrorPivot").position; az.localRotation=Quaternion.identity;
             var el=Child(az,"TV_Mirror_Elevation"); el.localPosition=Vector3.zero; el.localRotation=Quaternion.identity;
             Child(el,"CameraMount").position=Find("CameraMount").position;
-            var arm=Child(body,"Scoop_Arm_1"); arm.localPosition=new Vector3(0,.65f,-.95f);
+            var arm=Child(body,"Scoop_Arm_1"); arm.localPosition=new Vector3(0,.65f,.95f);
             var arm2=Child(arm,"Scoop_Arm_2"); arm2.position=Find("ScoopPivot").position;
             var scoop=Child(arm2,"Scoop"); scoop.localPosition=Vector3.zero;
             foreach(var part in new[]{"StaticBody","MirrorHead","SolarPanel","HighGainAntenna","ScoopLinkage","ScoopTool"})
             {
                 var mesh=root.GetComponentsInChildren<MeshRenderer>(true).First(t=>t.name==part || t.name=="Team_"+part);
-                if(mesh.name==part)
-                {
-                    mesh.name="Team_"+part;
-                    Transform parent=part=="MirrorHead"?el:part=="ScoopLinkage"?arm:part=="ScoopTool"?scoop:native;
-                    mesh.transform.SetParent(parent,true);
-                }
+                mesh.name="Team_"+part;
+                Transform parent=part=="MirrorHead"?el:part=="ScoopLinkage"?arm:part=="ScoopTool"?scoop:native;
+                mesh.transform.SetParent(parent,true);
                 mesh.sharedMaterial=material; mesh.receiveShadows=true;
                 GameObjectUtility.SetStaticEditorFlags(mesh.gameObject,part=="StaticBody"?StaticEditorFlags.BatchingStatic:0);
             }
