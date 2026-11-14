@@ -1,0 +1,135 @@
+/* PIO-012 · Painel da despedida. Usa tokens/componentes da UI-001; só o que é específico da Pioneer fica aqui. */
+
+.pio-farewell {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* ---------- Guia de Aldebaran (discreto, canto inferior direito) ---------- */
+
+.pio-farewell__guide {
+    display: none;
+    position: absolute;
+    right: var(--sa-safe-margin);
+    bottom: 150px;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+}
+
+/* Losango pequeno: marca a direção, sem fingir que há uma estrela modelada ali. */
+.pio-farewell__guide-mark {
+    width: 14px;
+    height: 14px;
+    margin-right: var(--sa-space-3);
+    rotate: 45deg;
+    background-color: #FF9A6B;
+}
+
+.pio-farewell__guide-label {
+    margin: 0;
+    padding: 0;
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-hud);
+    color: var(--sa-color-on-plate);
+    white-space: nowrap;
+}
+
+/* ---------- Memorial: preto intencional ---------- */
+
+.pio-farewell__black {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+}
+
+.pio-farewell__memorial {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 34%;
+    align-items: center;
+}
+
+.pio-farewell__title {
+    margin: 0;
+    padding: 0 var(--sa-space-5);
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: var(--sa-text-display);
+    color: var(--sa-color-on-plate);
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.pio-farewell__subtitle {
+    margin: var(--sa-space-3) 0 0 0;
+    padding: 0 var(--sa-space-5);
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-subtitle);
+    color: var(--sa-color-on-plate-muted);
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+/* ---------- Ações finais ---------- */
+
+.pio-farewell__choices {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 110px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.pio-farewell__button {
+    flex-direction: row;
+    align-items: center;
+    min-height: 64px;
+    margin: 0 var(--sa-space-3);
+    padding: 0 var(--sa-space-5) 0 var(--sa-space-3);
+    border-width: 3px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-md);
+    background-color: var(--sa-color-plate-strong);
+}
+
+.pio-farewell__keycap {
+    display: none;
+    margin-right: var(--sa-space-3);
+}
+
+.pio-farewell__button-label {
+    margin: 0;
+    padding: 0;
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-hud);
+    color: var(--sa-color-on-plate);
+    white-space: nowrap;
+}
+
+/* Foco: contorno grosso amarelo, tecla E visível e barra à esquerda (forma e cor, nunca só a cor). */
+.pio-farewell__button--focus {
+    border-color: var(--sa-color-focus);
+    border-width: 5px;
+    border-left-width: 12px;
+}
+
+.pio-farewell__button--focus .pio-farewell__keycap { display: flex; }
+
+/* ---------- 4:3 (largura lógica < 1100 px, classe aplicada por ResponsiveLayoutClass) ---------- */
+
+.sa-layout--narrow .pio-farewell__title { font-size: 34px; }
+.sa-layout--narrow .pio-farewell__subtitle { font-size: 24px; }
+.sa-layout--narrow .pio-farewell__choices { flex-direction: column; align-items: center; bottom: 70px; }
+.sa-layout--narrow .pio-farewell__button { margin: var(--sa-space-2) 0; }
+.sa-layout--narrow .pio-farewell__guide { right: var(--sa-space-5); }
