@@ -855,6 +855,120 @@ MonoBehaviour:
     enText: "Io \xB7 image lost"
     ptStatus: derived
     enStatus: derived
+  - key: PIO.UI.past_saturn
+    group: hud
+    ptText: "Dist\xE2ncia orbital de Saturno \xB7 a sonda n\xE3o visita o planeta"
+    enText: "Saturn's orbital distance \xB7 the probe does not visit the planet"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.past_neptune
+    group: hud
+    ptText: "Dist\xE2ncia orbital de Netuno \xB7 al\xE9m das \xF3rbitas dos planetas"
+    enText: "Neptune's orbital distance \xB7 beyond the planets' orbits"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.not_edge
+    group: hud
+    ptText: "Passar as \xF3rbitas dos planetas n\xE3o \xE9 o mesmo que sair do Sistema Solar"
+    enText: Passing the planets' orbits is not the same as leaving the Solar System
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.sun
+    group: instrument
+    ptText: Sol
+    enText: Sun
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.orbit_jupiter
+    group: instrument
+    ptText: "J\xFApiter"
+    enText: Jupiter
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.orbit_saturn
+    group: instrument
+    ptText: Saturno
+    enText: Saturn
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.orbit_uranus
+    group: instrument
+    ptText: Urano
+    enText: Uranus
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.orbit_neptune
+    group: instrument
+    ptText: Netuno
+    enText: Neptune
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.scheme
+    group: instrument
+    ptText: "Esquema \xB7 sem escala"
+    enText: "Schematic \xB7 not to scale"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.radio
+    group: instrument
+    ptText: "R\xE1dio"
+    enText: Radio
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.instruments
+    group: instrument
+    ptText: "Instrumentos cient\xEDficos"
+    enText: Science instruments
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.power_title
+    group: hud
+    ptText: "Energia dos geradores \xB7 barras relativas, sem valores"
+    enText: "Generator power \xB7 relative bars, no values"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.power_ok
+    group: hud
+    ptText: "Comunica\xE7\xE3o priorizada \xB7 s\xEDntese dos comandos da equipe ao longo dos anos"
+    enText: "Communication prioritized \xB7 a summary of the team's commands over the years"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.dist_sun
+    group: instrument
+    ptText: "Dist\xE2ncia ao Sol"
+    enText: Distance from the Sun
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.time
+    group: instrument
+    ptText: Tempo
+    enText: Time
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.pioneer10
+    group: instrument
+    ptText: Pioneer 10
+    enText: Pioneer 10
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.voyager1
+    group: instrument
+    ptText: Voyager 1
+    enText: Voyager 1
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.comm_time
+    group: instrument
+    ptText: "Tempo de comunica\xE7\xE3o \xB7 cresce com a dist\xE2ncia"
+    enText: "Communication time \xB7 grows with distance"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.cross1998
+    group: hud
+    ptText: "Voyager 1 passa a dist\xE2ncia ao Sol da Pioneer 10 \xB7 sem encontro"
+    enText: "Voyager 1 passes Pioneer 10's distance from the Sun \xB7 no encounter"
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.plaque
     group: hud
     ptText: "Escolha uma pe\xE7a e seu contorno \xB7 {count}/5"

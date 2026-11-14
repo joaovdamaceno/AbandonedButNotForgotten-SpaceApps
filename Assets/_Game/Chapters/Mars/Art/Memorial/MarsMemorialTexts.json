@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_TWINS.md (M31 Último sinal e legado; M32 Título final) e 01_MARS_SOURCES.md (MS27, MS28). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-019. Mesmo formato de 'texts' em MarsSubtitles.json. As legendas C45–C49 e a chave MAR.T09 (ÚLTIMO CONTATO) continuam em MarsSubtitles.json.",
+    "Nenhum texto é fala do rover. 45,16 km é recorde histórico na época, não vigente em 2026. Anos operacionais (2004–2010, 2004–2018) não são datas de encerramento das buscas.",
+    "A legenda da memória escolhida vem do ResultKey do EvidenceRecord confirmado na MAR-008 (ex.: MAR.MEMORY.valley)."
+  ],
+  "texts": [
+    { "key": "MAR.MEM.01", "pt": "10 JUN 2018 · ÚLTIMO SINAL", "en": "10 JUN 2018 · LAST SIGNAL" },
+    { "key": "MAR.MEM.02", "pt": "45,16 KM · RECORDE NA ÉPOCA", "en": "45.16 KM · RECORD AT THE TIME" },
+    { "key": "MAR.MEM.03", "pt": "SPIRIT · GUSEV", "en": "SPIRIT · GUSEV" },
+    { "key": "MAR.MEM.04", "pt": "OPPORTUNITY · PERSEVERANCE VALLEY", "en": "OPPORTUNITY · PERSEVERANCE VALLEY" },
+    { "key": "MAR.MEM.05", "pt": "SPIRIT · 2004–2010", "en": "SPIRIT · 2004–2010" },
+    { "key": "MAR.MEM.06", "pt": "OPPORTUNITY · 2004–2018", "en": "OPPORTUNITY · 2004–2018" },
+    { "key": "MAR.MEM.FALLBACK", "pt": "Imagem indisponível", "en": "Image unavailable" }
+  ]
+}
