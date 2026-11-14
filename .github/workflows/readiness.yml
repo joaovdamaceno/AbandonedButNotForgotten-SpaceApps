@@ -5,6 +5,11 @@ on:
     types: [opened, closed, reopened, labeled, unlabeled, assigned, unassigned]
   pull_request_target:
     types: [closed]
+  # Recuperar merges mesmo se o evento do PR não tiver sido entregue/processado.
+  push:
+    branches: [main, develop]
+  schedule:
+    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -20,6 +25,7 @@ jobs:
   recalculate:
     if: github.repository == 'joaovdamaceno/AbandonedButNotForgotten-SpaceApps'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       # Nunca executar o código do head do PR com o token de escrita.
       - name: Obter somente código confiável da branch padrão
