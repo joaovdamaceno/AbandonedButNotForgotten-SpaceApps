@@ -1,0 +1,186 @@
+/* PIO-006 · Painel da varredura IPP. Usa tokens/componentes da UI-001; só o que é específico fica aqui. */
+
+.pio-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    --pio-red: #E0563F;
+    --pio-red-dark: #5B2018;
+    --pio-blue: #4E8FE0;
+    --pio-blue-dark: #162F52;
+    --pio-veil: rgba(30, 36, 44, 0.96);
+}
+
+/* Quadro no UiFrame do anchor PIO.Imaging (0,53 · 0,12 · 0,43 · 0,76). */
+.pio-img__frame {
+    position: absolute;
+    left: 53%;
+    top: 12%;
+    width: 43%;
+    height: 76%;
+    padding: var(--sa-space-4);
+    flex-direction: column;
+}
+
+/* ---------- Canais ---------- */
+
+.pio-img__channels { flex-direction: row; margin-bottom: var(--sa-space-3); }
+
+.pio-img__channel {
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-direction: row;
+    align-items: center;
+    padding: var(--sa-space-2);
+    border-bottom-width: 4px;
+}
+
+.pio-img__channel--red { border-bottom-color: var(--pio-red); }
+.pio-img__channel--blue { border-bottom-color: var(--pio-blue); }
+
+.pio-img__channel-label {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0 0 0 var(--sa-space-2);
+    padding: 0;
+    white-space: normal;
+}
+
+.pio-img__glyph { width: 16px; height: 16px; }
+.pio-img__glyph--red { background-color: var(--pio-red); }
+.pio-img__glyph--blue { background-color: var(--pio-blue); border-radius: 50%; }
+
+/* ---------- Imagem ---------- */
+
+.pio-img__image {
+    flex-grow: 1;
+    flex-direction: row;
+    min-height: 120px;
+    border-width: 3px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-md);
+    overflow: hidden;
+    background-color: var(--pio-veil);
+}
+
+.pio-img__strip {
+    flex-grow: 1;
+    flex-basis: 0;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: var(--sa-space-2);
+    border-right-width: 1px;
+    border-right-color: rgba(245, 241, 232, 0.12);
+}
+
+.pio-img__strip-number {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate-muted);
+    margin: 0;
+    padding: 0;
+}
+
+/* Faixa-alvo: contorno de foco grosso (não só cor). */
+.pio-img__strip--target {
+    border-left-width: 3px;
+    border-left-color: var(--sa-color-focus);
+    border-right-width: 3px;
+    border-right-color: var(--sa-color-focus);
+}
+
+.pio-img__strip--done.pio-img__strip--red { background-color: var(--pio-red-dark); border-bottom-width: 8px; border-bottom-color: var(--pio-red); }
+.pio-img__strip--done.pio-img__strip--blue { background-color: var(--pio-blue-dark); border-bottom-width: 8px; border-bottom-color: var(--pio-blue); }
+.pio-img__strip--done { border-left-width: 0; border-right-width: 1px; border-right-color: rgba(245, 241, 232, 0.12); }
+.pio-img__strip--done .pio-img__strip-number { color: var(--sa-color-on-plate); }
+
+/* Limbo do planeta sobre as faixas (círculo de 200 px; porcentagem daria uma elipse). */
+.pio-img__disc {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 200px;
+    height: 200px;
+    translate: -50% -50%;
+    border-width: 3px;
+    border-color: rgba(245, 241, 232, 0.55);
+    border-radius: 50%;
+}
+
+.pio-img__dim {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Cursor de fase ---------- */
+
+.pio-img__track {
+    height: 56px;
+    margin: var(--sa-space-3) 0;
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-sm);
+    background-color: var(--sa-color-track);
+}
+
+.pio-img__zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    border-width: 4px;
+    border-color: var(--sa-color-on-plate);
+    background-color: rgba(233, 199, 112, 0.22);
+}
+
+.pio-img__zone--active { border-color: var(--sa-color-focus); background-color: rgba(255, 209, 102, 0.42); }
+.pio-img__zone--wide { border-width: 6px; }
+.pio-img__zone--captured { border-color: var(--sa-color-confirm); background-color: rgba(143, 217, 154, 0.3); }
+
+.pio-img__cursor {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    width: 8px;
+    margin-left: -4px;
+    background-color: var(--sa-color-on-plate-muted);
+}
+
+.pio-img__cursor--in { background-color: var(--sa-color-focus); }
+
+/* ---------- Prompt ---------- */
+
+.pio-img__hold { margin: 0; }
+
+/* Ajuda nível 1: reforça o controle (contorno do E) sem mudar a tela. */
+.pio-img__hold--pulse .sa-keycap { border-color: var(--sa-color-focus); border-width: 4px; }
+
+/* Passagem sem registro: só um contorno, sem punição nem piscar. */
+.pio-img__hold--missed { border-color: var(--sa-color-warn); }
+
+/* ---------- Composição (verde estimado) ---------- */
+
+.pio-img__legend {
+    display: none;
+    flex-direction: row;
+    margin-top: var(--sa-space-3);
+}
+
+.pio-img__swatch { width: 40px; height: 20px; margin-right: var(--sa-space-2); border-radius: var(--sa-radius-sm); }
+.pio-img__swatch--red { background-color: var(--pio-red); }
+.pio-img__swatch--blue { background-color: var(--pio-blue); }
+/* Estimado: só contorno verde com fundo quase transparente (o verde não é medido, é estimado no processamento). */
+.pio-img__swatch--green {
+    background-color: rgba(120, 200, 120, 0.2);
+    border-width: 3px;
+    border-color: #78C878;
+}
+
+.pio-img__recovery { margin-top: var(--sa-space-3); }

@@ -3,6 +3,20 @@
 Scripts, dados, prefabs, arte e cena do capítulo. Roteiro: `Docs/Chapters/02_PIONEER_10.md`. Fontes: `Docs/Chapters/02_PIONEER_SOURCES.md`.
 Código de jogo em `Runtime/` (caminho usado por todas as tarefas PIO), ferramentas de Editor em `Editor/` (assembly `Abandoned.SpaceApps.Editor`), testes em `Tests/` (assembly `Abandoned.SpaceApps.Core.Tests`). A pasta vazia `Scripts/` continua porque o validador da CORE-001 e a arquitetura a listam; unificar com `Runtime/` é decisão de R1.
 
+## Dados do capítulo (PIO-001)
+
+Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de produção), fora de `Assets/`.
+
+| Arquivo | Conteúdo |
+| --- | --- |
+| `Data/Chapters/Pioneer10.json` | Oito estados com ID estável e ordem explícita (375 s nominais, até 381 s com o alongamento de leitura de PIO.07.06 e PIO.04.09), 45 cues (janela local ou gatilho com tempo mínimo de leitura), grupos de texto, **mapa de fatos → fontes**, divergências entre fontes e correções aplicadas |
+| `Data/Localization/Pioneer10.pt-BR.json`, `Pioneer10.en.json` | 78 chaves iguais nos dois idiomas, por grupo (`narrative`, `hud`, `instrument`, `card`) e `status` (`approved` = transcrito do roteiro; `derived` = montado ou traduzido a partir do roteiro, **a revisar pela R7**) |
+
+- **Tempo** é local ao estado, no relógio ativo; datas históricas são dados. A recepção na Terra (rádio) fica separada da operação na sonda (lançamento) no campo `kind` de cada fato.
+- **IDs de gatilho** de `PIO.Imaging` seguem o código integrado (`Gate4`, `Gate6`, `GateRecovery`, `Gate8`); os de `PIO.Plaque` e `PIO.Listening` são **propostos** e devem ser confirmados por PIO-009 e PIO-011.
+- **Validar:** `python Tools/validate_pioneer_data.py` (JSON, IDs, soma de 375 s, janelas sem sobreposição, chaves PT/EN iguais, fontes, datas UTC, termos que o registro de fontes manda evitar) e o teste `PioneerDataTests`, que cruza os dados com `PioneerPresentation.StateIds`, as constantes de texto do código e as sequências `PIO_Launch/Belt/Imaging`.
+- **Cartões de data** (`PIO.Card.*`): o roteiro só cita o texto de alguns; os marcados `derived` usam apenas datas e frases do roteiro.
+
 ## Palco espacial (PIO-003)
 
 | Arquivo | Papel |
@@ -106,3 +120,30 @@ Prefab `Art/PioneerActors.prefab` (raiz `PioneerActors`, componente `PioneerProb
 ### Movimento reduzido e pausa
 
 `SetReducedMotion(true)` reduz a rotação visual a 35% e nunca adiciona vibração; a câmera nunca se move por causa da rotação. `SetTimeSource(SessionClock)` faz a rotação congelar na pausa (sem fonte, na cena isolada, usa o delta do quadro).
+
+## Varredura IPP (PIO-006)
+
+| Arquivo | Papel |
+| --- | --- |
+| `Sequences/PIO_Imaging.asset` | 74 s: aprender 0–16, oito passagens 16–48, revelação 48–74. Marcos (gates) em 28, 34, 40 e 46 s; legendas PIO.04.01–09 |
+| `Runtime/PioneerImaging.cs` | Lógica do estado (sem UI): cursor de fase, janela, uma faixa por passagem, ajuda, interrupção em 6/8, retomada idempotente, 8/8 |
+| `Runtime/ImagingPanelView.cs` + `UI/ImagingPanel.uxml/.uss/.prefab` | Painel UI Toolkit no `UiFrame` do anchor `PIO.Imaging` (direita). Só desenha um `ImagingViewState`. Textos por chave (`PIO.UI.red`, `.blue`, `.scan`) |
+| `Editor/PioneerImagingBuilder.cs` | Builder CORE-006 `pioneer10.stage.imaging` (raiz `[R5] Pioneer Imaging`, depois de `pioneer10.stage`) |
+| `Editor/PioneerImagingCapture.cs` | Prévia do painel em `Docs/Art/Pioneer10_Imaging/` (menu PIO-006). Textos aparecem como chaves |
+| `Tests/PioneerImagingTests.cs` | 16 testes EditMode |
+
+**Como joga.** Cada passagem do cursor leva 3 s e a zona larga (25–75% da passagem, contorno grosso) é a travessia do planeta. Se E estiver mantido em qualquer momento da zona, a passagem registra UMA faixa (um conjunto de linhas: síntese de muitos registros, não oito linhas históricas). As faixas 1–4 são do canal vermelho e as 5–8 do azul; o verde **não é medido**: a legenda de composição (contorno verde sem preenchimento) aparece em 8/8 e o cue PIO.04.06 explica a estimativa. Não há ritmo: E mantido desde o aprendizado vale para a primeira janela; um toque curto entre dois quadros também conta. Perder uma passagem só oferece outra volta (`PassMissed`) e nunca apaga faixas. Após 6 s sem faixa, o prompt reforça o contorno do E; após 12 s a janela cobre toda a passagem (assistido, até o fim da execução). Soltar E, pausar ou perder o foco só pára; as faixas ficam.
+
+**Uso pelo controlador (PIO-014):** `imaging.Initialize(sequenceDirector, interactionService, inputRouter, sessionClock, resolverDeTexto)`, `Completed += () => chapterDirector.CompleteStep("PIO.Imaging")`, `Begin(skippable)`; `Cancel()` na mudança de estado. O concluído vem do fim da sequência (depois de 8/8), nunca do tempo.
+
+**Contrato com a PIO-008 (recuperação e revelação):**
+- `RadiationInterruption` dispara UMA vez ao fim da passagem da faixa 6. A aquisição pára com as seis faixas e a sequência segura o marco de 40 s.
+- A PIO-008 mostra ruído local, aviso e o botão de recuperação (`PIO.UI.recover`) e chama `ResumeAfterRecovery()`. Ela é **idempotente**: só a primeira chamada durante a interrupção retoma (devolve `true`); as demais devolvem `false` e não mudam nada. `Recovered` dispara uma vez. O painel expõe `RecoverySlot` (contêiner vazio) e `ImagingViewState.Interrupted` para a PIO-008 ligar sua UI sem editar este painel.
+- `AllStripsCaptured` (8/8) dispara UMA vez; `RevealStarted` marca os 48 s da sequência (composição, crossfade para a foto real e Ganimedes são da PIO-008).
+- **Enquanto a PIO-008 não existir, nada chama `ResumeAfterRecovery()`: o capítulo espera na interrupção (sem softlock por inatividade, mas sem avançar).** Os testes chamam a retomada diretamente.
+
+**Marcos da sequência:** em ritmo nominal (uma faixa por passagem) nenhum marco espera e as legendas PIO.04.03–05 caem nas lacunas do roteiro (28, 34 e 40 s). Quem joga mais devagar vê a sequência parar no marco (legendas e câmera congelam juntas) até a condição: 4/8 em 28 s, interrupção em 34 s, recuperação em 40 s, 8/8 em 46 s.
+
+**Limitações.** O quadro de imagem é uma representação gráfica das faixas, sem a fotografia (PIO-008 e PIO-007). Ruído, aviso de radiação, botão de recuperação e revelação são da PIO-008. Os textos ainda são as chaves (UI-004). Duração de passagem (3 s) e largura da janela são decisão de jogabilidade, não dado histórico. Play Mode e navegador não foram exercitados.
+
+**Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.stage.imaging`.
