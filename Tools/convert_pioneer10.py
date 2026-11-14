@@ -379,7 +379,7 @@ def write_outputs(glb: Path, atlas: Atlas, buckets, stats, dropped):
             "generator": "Khronos glTF Blender I/O v4.2.57",
             "extensions": ["KHR_draco_mesh_compression", "EXT_texture_webp"],
             "reference": "P-S17 — NASA 3D Resources · Pioneer 10 (a página anuncia cerca de 1,95 MB)",
-            "provenanceNote": "Arquivo fornecido pela equipe. O tamanho é compatível com o anunciado em P-S17; a origem exata do arquivo não foi verificada.",
+            "provenanceNote": "Arquivo fornecido pela equipe e conferido em 14/11/2026: tamanho (2.049.840 bytes) e SHA-1 de blob Git (62d2608617424e7b1d6d4d45bae13024cd9781c8) idênticos ao Pioneer 10.glb do espelho oficial github.com/nasa/NASA-3D-Resources (3D Models/Pioneer 10), pela API de conteúdo do GitHub (só metadados; nada baixado).",
         },
         "conversion": {
             "tool": "Tools/convert_pioneer10.py",
