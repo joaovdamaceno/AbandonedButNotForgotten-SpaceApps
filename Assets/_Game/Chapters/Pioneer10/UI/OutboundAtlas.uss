@@ -1,0 +1,117 @@
+/* PIO-010 · Diagrama orbital, energia e gráfico de distâncias. Tokens/componentes da UI-001; só o específico fica aqui. */
+
+.pio-out {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Sem UiFrame no anchor PIO.Outbound: o diagrama 2D assume o quadro (margens iguais). */
+.pio-out__frame {
+    position: absolute;
+    left: 6%;
+    top: 8%;
+    width: 88%;
+    height: 84%;
+    padding: var(--sa-space-4);
+    flex-direction: column;
+}
+
+.pio-out__head { flex-direction: row; align-items: center; margin-bottom: var(--sa-space-3); }
+
+.pio-out__card {
+    font-size: 28px;
+    -unity-font-style: bold;
+    color: var(--sa-color-on-plate);
+    margin: 0 var(--sa-space-4) 0 0;
+    padding: 0 var(--sa-space-3) 0 0;
+    border-right-width: 3px;
+    border-right-color: var(--sa-color-focus);
+}
+
+.pio-out__notes { flex-shrink: 1; flex-grow: 1; flex-direction: column; }
+
+.pio-out__note {
+    flex-shrink: 1;
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.pio-out__note--second { margin-top: var(--sa-space-1); color: var(--sa-color-on-plate-muted); }
+
+.pio-out__body { flex-grow: 1; flex-direction: row; min-height: 0; }
+
+.pio-out__power { width: 26%; margin-right: var(--sa-space-3); padding: var(--sa-space-3); }
+
+.pio-out__diagram { flex-grow: 1; flex-basis: 0; flex-direction: column; min-width: 0; }
+
+.pio-out__canvas {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 26px;
+    bottom: 0;
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-md);
+    background-color: rgb(14, 17, 22);
+}
+
+.pio-out__small {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.pio-out__small--space { margin-top: var(--sa-space-2); }
+
+.pio-out__tag {
+    position: absolute;
+    font-size: 15px;
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 1px 4px;
+    background-color: rgba(14, 17, 22, 0.8);
+    white-space: nowrap;
+}
+
+.pio-out__tag--scheme { left: 8px; bottom: 6px; color: var(--sa-color-on-plate-muted); }
+
+.pio-out__row { flex-direction: row; align-items: center; margin-top: var(--sa-space-2); }
+
+/* Rádio: contorno grosso + ícone de ondas (círculo), não só cor. */
+.pio-out__glyph { width: 14px; height: 14px; margin-right: var(--sa-space-2); }
+.pio-out__glyph--radio { border-width: 3px; border-color: var(--sa-color-focus); border-radius: 50%; }
+
+.pio-out__bar {
+    height: 14px;
+    margin-top: var(--sa-space-1);
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.pio-out__bar--radio { border-color: var(--sa-color-focus); border-width: 3px; }
+.pio-out__bar--thin { height: 10px; border-radius: 5px; }
+
+.pio-out__fill { height: 100%; width: 0; background-color: var(--sa-color-on-plate); }
+.pio-out__fill--comm { background-color: var(--sa-color-focus); }
+
+.pio-out__ok { margin-top: var(--sa-space-2); -unity-font-style: bold; }
+
+.pio-out__foot { flex-direction: row; align-items: center; margin-top: var(--sa-space-3); }
+.pio-out__comm { flex-grow: 1; flex-basis: 0; margin-right: var(--sa-space-4); }
+.pio-out__hold { flex-shrink: 0; }
+
+.sa-layout--narrow .pio-out__frame { left: 3%; width: 94%; padding: var(--sa-space-3); }
+.sa-layout--narrow .pio-out__power { width: 30%; }
+.sa-layout--narrow .pio-out__card { font-size: 22px; }
+.sa-layout--narrow .pio-out .sa-hold { min-width: 0; }
