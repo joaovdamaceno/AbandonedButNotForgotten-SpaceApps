@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "source": "UI-003 (R2). Textos do HUD compartilhado. Verbo, objeto, objetivo e nome do alvo de cada capítulo vêm da tabela do próprio capítulo (MissionHUD.AddTextTable).",
+  "notes": [
+    "Formato igual à seção 'texts' de MarsSubtitles.json: {key, pt, en}.",
+    "{action} = verbo + objeto da ação; {percent} = 0–100; {seconds} = segundos com uma casa decimal.",
+    "Textos propostos por R2 e ainda sem revisão editorial; etapas do comando seguem o layout aprovado na UI-001."
+  ],
+  "texts": [
+    {
+      "key": "prompt.press",
+      "pt": "E · {action}",
+      "en": "E · {action}"
+    },
+    {
+      "key": "prompt.hold",
+      "pt": "Segure E · {action}",
+      "en": "Hold E · {action}"
+    },
+    {
+      "key": "prompt.toggle",
+      "pt": "Pressione E · {action}",
+      "en": "Press E · {action}"
+    },
+    {
+      "key": "prompt.toggle.stop",
+      "pt": "Pressione E para parar · {action}",
+      "en": "Press E to stop · {action}"
+    },
+    {
+      "key": "prompt.rearm",
+      "pt": "Solte E para começar",
+      "en": "Release E to begin"
+    },
+    {
+      "key": "prompt.resume.hold",
+      "pt": "Segure E para continuar",
+      "en": "Hold E to continue"
+    },
+    {
+      "key": "prompt.resume.toggle",
+      "pt": "Pressione E para continuar",
+      "en": "Press E to continue"
+    },
+    {
+      "key": "status.available.press",
+      "pt": "DISPONÍVEL · PRESSIONE E",
+      "en": "AVAILABLE · PRESS E"
+    },
+    {
+      "key": "status.available.hold",
+      "pt": "DISPONÍVEL · SEGURE E",
+      "en": "AVAILABLE · HOLD E"
+    },
+    {
+      "key": "status.rearm",
+      "pt": "AGUARDANDO SOLTAR E",
+      "en": "WAITING FOR E RELEASE"
+    },
+    {
+      "key": "status.holding",
+      "pt": "OPERANDO · {percent}%",
+      "en": "WORKING · {percent}%"
+    },
+    {
+      "key": "status.paused",
+      "pt": "PAUSADO · {percent}% PRESERVADO",
+      "en": "PAUSED · {percent}% KEPT"
+    },
+    {
+      "key": "status.done",
+      "pt": "CONCLUÍDO ✓",
+      "en": "DONE ✓"
+    },
+    {
+      "key": "command.prepared",
+      "pt": "Preparado",
+      "en": "Prepared"
+    },
+    {
+      "key": "command.sent",
+      "pt": "Enviado",
+      "en": "Sent"
+    },
+    {
+      "key": "command.transit",
+      "pt": "Comando em trânsito · {seconds} s",
+      "en": "Command in transit · {seconds} s"
+    },
+    {
+      "key": "command.executing",
+      "pt": "Executando",
+      "en": "Executing"
+    },
+    {
+      "key": "command.confirmed",
+      "pt": "Comando confirmado",
+      "en": "Command confirmed"
+    },
+    {
+      "key": "command.status.prepared",
+      "pt": "PREPARADO",
+      "en": "PREPARED"
+    },
+    {
+      "key": "command.status.sent",
+      "pt": "ENVIADO",
+      "en": "SENT"
+    },
+    {
+      "key": "command.status.transit",
+      "pt": "EM TRÂNSITO · {percent}%",
+      "en": "IN TRANSIT · {percent}%"
+    },
+    {
+      "key": "command.status.executing",
+      "pt": "EXECUTANDO",
+      "en": "EXECUTING"
+    },
+    {
+      "key": "command.status.confirmed",
+      "pt": "CONFIRMADO ✓",
+      "en": "CONFIRMED ✓"
+    },
+    {
+      "key": "energy.label",
+      "pt": "ENERGIA",
+      "en": "ENERGY"
+    },
+    {
+      "key": "energy.low",
+      "pt": "ENERGIA BAIXA",
+      "en": "LOW ENERGY"
+    }
+  ]
+}

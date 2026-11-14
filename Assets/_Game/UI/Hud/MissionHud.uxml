@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="../Design/SpaceAppsTokens.uss" />
+    <Style src="../Design/SpaceAppsComponents.uss" />
+    <Style src="MissionHud.uss" />
+    <ui:VisualElement name="hud-root" picking-mode="Ignore" class="sa-root sa-hud sa-chapter--mars">
+        <ui:VisualElement class="sa-hud__top" picking-mode="Ignore">
+            <ui:VisualElement name="objective" picking-mode="Ignore" class="sa-plate sa-objective">
+                <ui:Label name="objective-stamp" picking-mode="Ignore" class="sa-stamp sa-stamp--hud" />
+                <ui:Label name="objective-label" picking-mode="Ignore" class="sa-objective__label" />
+                <ui:Label name="objective-meta" picking-mode="Ignore" class="sa-objective__meta" />
+            </ui:VisualElement>
+            <ui:VisualElement name="hud-right" picking-mode="Ignore" class="sa-hud__right">
+                <ui:VisualElement name="energy" picking-mode="Ignore" class="sa-plate sa-energy">
+                    <ui:Label name="energy-label" picking-mode="Ignore" class="sa-energy__label" />
+                    <ui:VisualElement picking-mode="Ignore" class="sa-energy__track">
+                        <ui:VisualElement name="energy-fill" picking-mode="Ignore" class="sa-energy__fill" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="anchor-marker" picking-mode="Ignore" class="sa-anchor">
+            <ui:VisualElement picking-mode="Ignore" class="sa-anchor__ring" />
+            <ui:Label name="anchor-label" picking-mode="Ignore" class="sa-plate sa-anchor__label" />
+        </ui:VisualElement>
+        <ui:VisualElement name="edge-cue" picking-mode="Ignore" class="sa-edge">
+            <ui:Label name="edge-label" picking-mode="Ignore" class="sa-plate sa-edge__label" />
+            <ui:VisualElement name="edge-arrow" picking-mode="Ignore" class="sa-edge-cue__arrow" />
+        </ui:VisualElement>
+        <ui:VisualElement name="hud-bottom" picking-mode="Ignore" class="sa-hud__bottom">
+            <ui:VisualElement name="prompt" picking-mode="Ignore" class="sa-plate sa-hold">
+                <ui:VisualElement picking-mode="Ignore" class="sa-keycap">
+                    <ui:Label text="E" picking-mode="Ignore" class="sa-keycap__glyph" />
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="sa-hold__body">
+                    <ui:Label name="prompt-label" picking-mode="Ignore" class="sa-hold__label" />
+                    <ui:Label name="prompt-status" picking-mode="Ignore" class="sa-hold__status" />
+                    <ui:VisualElement picking-mode="Ignore" class="sa-progress">
+                        <ui:VisualElement name="prompt-fill" picking-mode="Ignore" class="sa-progress__fill" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
