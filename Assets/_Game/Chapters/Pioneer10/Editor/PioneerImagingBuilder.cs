@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Abandoned.SpaceApps.UI;
 using static Abandoned.SpaceApps.EditorTools.PioneerStageBuilder;
 
 namespace Abandoned.SpaceApps.EditorTools
@@ -46,6 +47,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 document.sortingOrder = 10;
                 var view = Get<ImagingPanelView>(root);
                 Set(view, "document", document);
+                Get<ResponsiveLayoutClass>(root); // UI_SPEC: todo UIDocument de tela cheia aplica sa-layout--narrow em 4:3
             });
 
             var root = context.Root.transform;
@@ -81,6 +83,12 @@ namespace Abandoned.SpaceApps.EditorTools
 
             if (!stage.TryGetUiFrame(PioneerImaging.StateId, out _))
                 errors.Add($"{ImagingBuilderId}: o anchor {PioneerImaging.StateId} não reserva quadro de UI.");
+
+            var imaging = context.Scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<PioneerImaging>(true)).FirstOrDefault();
+            if (imaging == null)
+                errors.Add($"{ImagingBuilderId}: PioneerImaging ausente da cena.");
+            else
+                errors.AddRange(imaging.ValidateSetup().Select(e => $"{ImagingBuilderId}: {e}"));
         }
 
         static SequenceDefinition BuildSequence(SceneBuildContext context)
