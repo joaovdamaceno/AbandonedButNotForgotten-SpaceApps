@@ -459,6 +459,33 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void RestartingAfterACompletedObservationLeavesNoResidualState()
+        {
+            ReachOpened();
+            Feed(router, "FeedInteract", true);
+            Run(4.2f);
+            Feed(router, "FeedInteract", false);
+            Step(Frame);
+            Feed(router, "FeedInteract", true);
+            Run(4.2f);
+            Feed(router, "FeedInteract", false);
+            Run(5f);
+            Assert.That(blue.Phase, Is.EqualTo(BlueberriesPhase.Done));
+            Assert.That(blue.transform.Find("Soil/Mark").gameObject.activeSelf, Is.True);
+
+            director.RestartChapter();
+            Assert.That(blue.Phase, Is.EqualTo(BlueberriesPhase.Idle), "reinício limpa também a observação já concluída");
+            Assert.That(blue.SoilRecorded, Is.False);
+            Assert.That(blue.RockRecorded, Is.False);
+            Assert.That(blue.MineralIdentified, Is.False);
+            Assert.That(blue.transform.Find("Soil/Mark").gameObject.activeSelf, Is.False);
+            Assert.That(blue.transform.Find("Rock/Mark").gameObject.activeSelf, Is.False);
+            Assert.That(blue.CurrentView, Is.Null);
+            Assert.That(blue.IsEngaged, Is.False);
+            Assert.That(interaction.TryGetActive(out _), Is.False);
+        }
+
+        [Test]
         public void RestartingMidObservationClearsTheMarksReleasesTheRoverAndAllowsAFreshRun()
         {
             ReachOpened();
