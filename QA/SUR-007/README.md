@@ -2,6 +2,8 @@
 
 Implementação em **14/11/2026**, iniciada em develop **1c503be**. Core sequencial até **CORE-006** (`934a2fd`, #93), com atualização **CORE-001/MCP** (`30d78a3`, #104). Issue #65 assumida depois de confirmar os bloqueadores nativos #60 e #4 fechados/integrados. Não houve alteração de contratos Core, pacotes, BuildSettings ou cenas de outros responsáveis.
 
+Após a retomada, incorporado develop **077d6a7**. As novas entregas de Marte/Pioneer/UI não alteraram os contratos Core, pipeline, fontes/tokens ou assets Surveyor usados por este preview. O conflito em `REUSE.md` foi resolvido preservando os registros dos dois lados. A build Web isolada registrada abaixo foi produzida antes dessa incorporação; a regressão no Editor é repetida sobre a base incorporada. Não é uma aprovação da build Web integrada dos três capítulos.
+
 ## Entrega
 
 Cena pronta para Play: `Assets/_Game/Chapters/Surveyor/Sequences/Television/Preview/SurveyorFirstImagePreview.unity`. Ela espera clique, executa a descida SUR-006 e oferece **Segure E · receber imagem**. Preparo de 2 s, trânsito de ida de 1,3 s, revelação de 4 s e contemplação de 6 s. Sem comando, a recepção aguarda. Só ChapterDirector avança **FirstImage → Observe**.
@@ -12,7 +14,7 @@ Interface PT/EN, alternativa por alternância, botão mantido equivalente a E, p
 
 ## Verificação no Editor
 
-[Suíte NUnit](editmode.xml): **255/255 passaram**, zero falhas/skips, **13 casos SUR-007**, em Unity **6000.6.7f1 / URP 17.6.0**, Windows/D3D11, RTX 3050 Laptop 6 GB. Cobertura:
+[Suíte NUnit na base incorporada](editmode.xml): **588/588 passaram**, zero falhas/skips, **13 casos SUR-007**, em Unity **6000.6.7f1 / URP 17.6.0**, Windows/D3D11, RTX 3050 Laptop 6 GB. A suíte na base anterior também passou (255/255). Cobertura:
 
 - Bloqueio de imagem/candidato antes do pouso e ausência de recepção automática sem ordem.
 - E mantido entre etapas, soltura e novo pressionamento, preparo parcial, alternância e envio único.
