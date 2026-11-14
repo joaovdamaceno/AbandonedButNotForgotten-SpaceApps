@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Abandoned.SpaceApps
 {
     /// <summary>
-    /// M01–M03: laboratório, mapa e lançamentos. Lê o mesmo relógio do <see cref="SequenceDirector"/> (tempo local + deslocamento) e
-    /// aplica globo, destaques e lançamentos; câmera, legendas e letreiros usam o mesmo tempo. Uma única câmera (a do CameraDirector),
-    /// nenhum sistema de partículas: a chama é uma malha única reaproveitada pelos dois foguetes.
+    /// M01–M03: Marte no espaço, laboratório e globo dos pousos. Lê o mesmo relógio do <see cref="SequenceDirector"/> (tempo local +
+    /// deslocamento); só a região do bloco atual fica ativa (uma região 3D por vez). Os mapas orbitais são painéis de UI: o diretor expõe
+    /// o estado em <see cref="Overlay"/> (imagem, crédito, opacidade). Uma câmera (a do CameraDirector), zero partículas.
     /// </summary>
     public sealed class MarsOriginDirector : MonoBehaviour
     {
@@ -15,14 +15,15 @@ namespace Abandoned.SpaceApps
         public const string SequenceM01 = "mars.seq.M01";
         public const string SequenceM02 = "mars.seq.M02";
         public const string SequenceM03 = "mars.seq.M03";
+        const int RegionCount = 3;
 
+        [SerializeField] Transform[] regions = new Transform[RegionCount]; // espaço, laboratório, globo
+        [SerializeField] Transform planet;
         [SerializeField] Transform globe;
         [SerializeField] Renderer gusevMarker;
         [SerializeField] Renderer meridianiMarker;
-        [SerializeField] Renderer hematitePatch;
-        [SerializeField] Transform rocketA;
-        [SerializeField] Transform rocketB;
-        [SerializeField] Transform flame;
+        [SerializeField] Texture2D meridianiMap;
+        [SerializeField] Texture2D gusevMap;
         [SerializeField] List<MarsLandingLabel> labels = new List<MarsLandingLabel>();
 
         readonly List<MarsLandingLabel> visible = new List<MarsLandingLabel>();
@@ -30,20 +31,23 @@ namespace Abandoned.SpaceApps
         SequenceDirector sequenceDirector;
         CameraDirector cameraDirector;
         long visibleMask;
-        Vector3 rocketABase;
-        Vector3 rocketBBase;
-        bool baseCaptured;
 
+        public IReadOnlyList<Transform> Regions => regions;
+        public Transform Planet => planet;
         public Transform Globe => globe;
         public Renderer GusevMarker => gusevMarker;
         public Renderer MeridianiMarker => meridianiMarker;
-        public Renderer HematitePatch => hematitePatch;
-        public Transform RocketA => rocketA;
-        public Transform RocketB => rocketB;
-        public Transform Flame => flame;
+        public Texture2D MeridianiMap => meridianiMap;
+        public Texture2D GusevMap => gusevMap;
         public IReadOnlyList<MarsLandingLabel> Labels => labels;
         public IReadOnlyList<MarsLandingLabel> VisibleLabels => visible;
         public float TimeSeconds { get; private set; } = -1f;
+
+        /// <summary>Estado do painel do mapa orbital neste instante (no máximo um visível).</summary>
+        public MarsOrbitalMapOverlay Overlay { get; private set; }
+
+        public const string MeridianiCreditKey = "MAR.ORI.CR1";
+        public const string GusevCreditKey = "MAR.ORI.CR2";
 
         public event Action<IReadOnlyList<MarsLandingLabel>> LabelsChanged;
 
@@ -73,8 +77,8 @@ namespace Abandoned.SpaceApps
             switch (sequenceId)
             {
                 case SequenceM01: return 0f;
-                case SequenceM02: return MarsOriginChoreography.MapStart;
-                case SequenceM03: return MarsOriginChoreography.LaunchStart;
+                case SequenceM02: return MarsOriginChoreography.LabStart;
+                case SequenceM03: return MarsOriginChoreography.GlobeStart;
                 default: return -1f;
             }
         }
@@ -98,40 +102,32 @@ namespace Abandoned.SpaceApps
 
         public void ApplyAt(float timeSeconds)
         {
-            if (!baseCaptured && rocketA != null && rocketB != null)
-            {
-                rocketABase = rocketA.localPosition;
-                rocketBBase = rocketB.localPosition;
-                baseCaptured = true;
-            }
-
             timeSeconds = Mathf.Clamp(timeSeconds, 0f, MarsOriginChoreography.TotalSeconds);
             TimeSeconds = timeSeconds;
             var pose = MarsOriginChoreography.Sample(timeSeconds);
+
+            var active = MarsOriginChoreography.RegionAt(timeSeconds);
+            for (var i = 0; i < regions.Length; i++)
+            {
+                if (regions[i] != null)
+                    regions[i].gameObject.SetActive(i == active);
+            }
+
+            if (planet != null)
+                planet.localRotation = Quaternion.Euler(0f, pose.PlanetSpinDegrees, 0f);
             if (globe != null)
                 globe.localRotation = pose.GlobeRotation;
 
-            Glow(gusevMarker, pose.GusevGlow, 1.2f);
-            Glow(meridianiMarker, pose.MeridianiGlow, 1.2f);
-            Glow(hematitePatch, pose.HematiteGlow, 0.55f);
+            Glow(gusevMarker, pose.GusevGlow);
+            Glow(meridianiMarker, pose.MeridianiGlow);
 
-            if (rocketA != null) rocketA.localPosition = rocketABase + Vector3.up * pose.RocketAHeight;
-            if (rocketB != null) rocketB.localPosition = rocketBBase + Vector3.up * pose.RocketBHeight;
-            if (flame != null)
-            {
-                var host = pose.FlameOnA ? rocketA : rocketB;
-                flame.gameObject.SetActive(pose.Flame > 0.001f);
-                if (host != null)
-                {
-                    flame.localPosition = host.localPosition + new Vector3(0f, 0.5f, 0f);
-                    flame.localScale = new Vector3(2.5f, 5f * Mathf.Max(0.001f, pose.Flame), 2.5f);
-                }
-            }
-
+            Overlay = pose.MeridianiMapOpacity >= pose.GusevMapOpacity
+                ? new MarsOrbitalMapOverlay(meridianiMap, MeridianiCreditKey, pose.MeridianiMapOpacity)
+                : new MarsOrbitalMapOverlay(gusevMap, GusevCreditKey, pose.GusevMapOpacity);
             RefreshLabels(timeSeconds);
         }
 
-        void Glow(Renderer target, float amount, float maxAlpha)
+        void Glow(Renderer target, float amount)
         {
             if (target == null)
                 return;
@@ -140,7 +136,7 @@ namespace Abandoned.SpaceApps
             if (!blocks.TryGetValue(target, out var block))
                 blocks[target] = block = new MaterialPropertyBlock();
             target.GetPropertyBlock(block);
-            block.SetColor("_BaseColor", new Color(1f, 0.82f, 0.4f, Mathf.Clamp01(amount * maxAlpha)));
+            block.SetColor("_BaseColor", new Color(1f, 0.82f, 0.4f, Mathf.Clamp01(amount)));
             target.SetPropertyBlock(block);
         }
 
@@ -175,13 +171,14 @@ namespace Abandoned.SpaceApps
                     ContractValidation.Report(errors, owner, $"{field} não atribuído.");
             }
 
+            if (regions == null || regions.Length != RegionCount || Array.Exists(regions, r => r == null))
+                ContractValidation.Report(errors, owner, "são três regiões (espaço, laboratório, globo).");
+            Need(planet, nameof(planet));
             Need(globe, nameof(globe));
             Need(gusevMarker, nameof(gusevMarker));
             Need(meridianiMarker, nameof(meridianiMarker));
-            Need(hematitePatch, nameof(hematitePatch));
-            Need(rocketA, nameof(rocketA));
-            Need(rocketB, nameof(rocketB));
-            Need(flame, nameof(flame));
+            Need(meridianiMap, nameof(meridianiMap));
+            Need(gusevMap, nameof(gusevMap));
             foreach (var label in labels)
             {
                 ContractValidation.RequireId(errors, owner, "labels[].textKey", label.TextKey);

@@ -16,13 +16,13 @@
       "stepId": "M01",
       "clock": "sequence",
       "startSeconds": 0.0,
-      "endSeconds": 8.0,
+      "endSeconds": 6.3,
       "triggerId": "",
       "minimumReadSeconds": 0.0,
       "position": "bottom",
       "priority": 0,
-      "pt": "Marte já teve água? Para investigar, a NASA construiu duas geólogas robóticas: Spirit e Opportunity.",
-      "en": "Did Mars once have water? NASA built two robotic geologists to investigate: Spirit and Opportunity."
+      "pt": "In 2003, NASA sent a laboratory on wheels to Mars. Its name was Opportunity.",
+      "en": "In 2003, NASA sent a laboratory on wheels to Mars. Its name was Opportunity."
     },
     {
       "cueId": "MAR.C02",
@@ -30,55 +30,55 @@
       "stepId": "M02",
       "clock": "sequence",
       "startSeconds": 0.0,
-      "endSeconds": 4.0,
+      "endSeconds": 4.9,
       "triggerId": "",
       "minimumReadSeconds": 0.0,
       "position": "bottom",
       "priority": 0,
-      "pt": "Spirit investigaria Gusev, um possível antigo lago.",
-      "en": "Spirit would explore Gusev, a possible ancient lake."
+      "pt": "Its mission was to search the rocks for traces of a past with liquid water.",
+      "en": "Its mission was to search the rocks for traces of a past with liquid water."
     },
     {
       "cueId": "MAR.C03",
       "textKey": "MAR.C03",
       "stepId": "M02",
       "clock": "sequence",
-      "startSeconds": 4.0,
-      "endSeconds": 8.0,
+      "startSeconds": 4.9,
+      "endSeconds": 13.1,
       "triggerId": "",
       "minimumReadSeconds": 0.0,
       "position": "bottom",
       "priority": 0,
-      "pt": "Opportunity iria a Meridiani: hematita vista da órbita.",
-      "en": "Opportunity would visit Meridiani: hematite spotted from orbit."
+      "pt": "Before landing, an orbiting probe, Mars Global Surveyor, studied Mars from above and detected hematite in Meridiani Planum.",
+      "en": "Before landing, an orbiting probe, Mars Global Surveyor, studied Mars from above and detected hematite in Meridiani Planum."
     },
     {
       "cueId": "MAR.C04",
       "textKey": "MAR.C04",
       "stepId": "M02",
       "clock": "sequence",
-      "startSeconds": 8.0,
-      "endSeconds": 12.0,
+      "startSeconds": 13.1,
+      "endSeconds": 20.8,
       "triggerId": "",
       "minimumReadSeconds": 0.0,
       "position": "bottom",
       "priority": 0,
-      "pt": "Esse mineral podia guardar pistas de água antiga.",
-      "en": "This mineral could hold clues to ancient water."
+      "pt": "On Earth, hematite usually forms where water exists. If water was there, the rocks might still hold that story.",
+      "en": "On Earth, hematite usually forms where water exists. If water was there, the rocks might still hold that story."
     },
     {
       "cueId": "MAR.C05",
       "textKey": "MAR.C05",
-      "stepId": "M03",
+      "stepId": "M02",
       "clock": "sequence",
-      "startSeconds": 0.0,
-      "endSeconds": 5.0,
+      "startSeconds": 20.8,
+      "endSeconds": 28.5,
       "triggerId": "",
       "minimumReadSeconds": 0.0,
       "position": "bottom",
       "priority": 0,
-      "pt": "Em junho e julho de 2003, partiram separadamente.",
-      "en": "In June and July 2003, they launched separately."
+      "pt": "Its twin, Spirit, went to Gusev Crater, a possible ancient lake. That was a hypothesis, not a certainty.",
+      "en": "Its twin, Spirit, went to Gusev Crater, a possible ancient lake. That was a hypothesis, not a certainty."
     },
     {
       "cueId": "MAR.C06",
@@ -715,8 +715,8 @@
     },
     {
       "key": "MAR.T01",
-      "pt": "MARTE · DUAS GEÓLOGAS ROBÓTICAS",
-      "en": "MARS · TWO ROBOTIC GEOLOGISTS"
+      "pt": "2003",
+      "en": "2003"
     },
     {
       "key": "MAR.T02",

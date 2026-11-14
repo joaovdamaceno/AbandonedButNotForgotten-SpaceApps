@@ -16,22 +16,22 @@ MonoBehaviour:
   - stepId: M01
     sequence: {fileID: 11400000, guid: 9bd19f404ee025bb8b4fa999314053e5, type: 2}
     regionId: mars.origin
-    referenceSeconds: 8
-    cutPoints:
-    - 4
+    referenceSeconds: 6.3
+    cutPoints: []
   - stepId: M02
     sequence: {fileID: 11400000, guid: cbff8e6b4231e601d842d7dfda571825, type: 2}
     regionId: mars.origin
-    referenceSeconds: 12
+    referenceSeconds: 28.5
     cutPoints:
-    - 4
-    - 8
+    - 4.9
+    - 13.1
+    - 20.8
   - stepId: M03
     sequence: {fileID: 11400000, guid: d454a34e09f9e03f7b9a7061fdf881ac, type: 2}
     regionId: mars.origin
-    referenceSeconds: 5
+    referenceSeconds: 6
     cutPoints:
-    - 2.5
+    - 3
   - stepId: M04
     sequence: {fileID: 11400000, guid: f7f1a6e977d7bea9aa4a054e9adea151, type: 2}
     regionId: mars.landing

@@ -86,3 +86,9 @@ Para cada importação registrar: nome, autor/instituição, URL específica, da
 
 - **SurveyorScan.shader e layout de recepção:** implementação original em 14/11/2026, em `Assets/_Game/Chapters/Surveyor/Shaders/` e `UI/Television*`. Nenhuma imagem, gravação, música ou extensão externa nova. Fontes Outfit/IBM Plex Mono e tokens UI-001 sob os créditos/OFL existentes; modelo da equipe e cenário SUR-002 são referenciados sem alterações.
 - **Referências de instrumento:** JPL TR 32-1177 Part I, https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf, pp. 7 e 37 impressas; Smithsonian, https://airandspace.si.edu/collection-objects/camera-television-surveyor/nasm_A19761264000. Usadas para modos, espelho e cronologia, não como texturas ou fotografias redistribuídas. A imagem do jogo é renderizada do cenário e identificada como reconstrução.
+
+## MAR-013 (revisada) — abertura de Marte
+- **P-MAR-05a · Modelo "Planet Mars"** (NASA/JPL-Caltech), https://science.nasa.gov/resource/planet-mars-3d-model/. Só a textura difusa, reamostrada para mapa equirretangular (`Art/Origin/Textures/Mars_Equirect.jpg`) e aplicada a esferas próprias. Original e SHA-256 em `ArtSource/Mars/R-MAR-05/`. Página sem nota de licença própria; crédito exibido.
+- **P-MAR-05b · Mapa orbital de Meridiani Planum / hematita** (NASA/JPL-Caltech/Arizona State University), https://science.nasa.gov/resource/meridiani-planum-2/. Exibido com o crédito na abertura.
+- **P-MAR-05c · PIA05346 "Gusev Crater"** (NASA/JPL/Arizona State University, THEMIS/Mars Odyssey). Exibido com o crédito na abertura.
+

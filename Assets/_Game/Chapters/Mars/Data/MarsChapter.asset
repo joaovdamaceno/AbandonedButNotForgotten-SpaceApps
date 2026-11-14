@@ -18,7 +18,7 @@ MonoBehaviour:
   questionKey: MAR.QUESTION
   cover: {fileID: 0}
   sceneName: Mars
-  targetDurationSeconds: 360
+  targetDurationSeconds: 375.8
   initialSequenceId: mars.seq.M01
   steps:
   - stepId: M01

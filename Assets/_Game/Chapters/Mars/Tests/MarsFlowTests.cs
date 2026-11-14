@@ -80,8 +80,8 @@ namespace Abandoned.SpaceApps.Tests
             for (var i = 1; i < 32; i++)
                 Assert.That(chapter.CanTransition(Step(i), Step(i + 1)), Is.True, Step(i) + " → " + Step(i + 1));
 
-            Assert.That(MarsChapterFlow.CreateDefaultBindings().Sum(b => b.ReferenceSeconds), Is.EqualTo(360f));
-            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(360f));
+            Assert.That(MarsChapterFlow.CreateDefaultBindings().Sum(b => b.ReferenceSeconds), Is.EqualTo(375.8f).Within(0.01f));
+            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(375.8f).Within(0.01f));
         }
 
         [Test]
