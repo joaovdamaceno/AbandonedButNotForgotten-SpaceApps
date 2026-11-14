@@ -462,6 +462,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8dbd4bb5af6fc469f928418359cd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerPresentation
+--- !u!1 &323400074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 323400075}
+  m_Layer: 0
+  m_Name: '[R5] Pioneer Farewell'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &323400075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323400074}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 692793162}
+  - {fileID: 478802680}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &367336632
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +618,54 @@ Transform:
   - {fileID: 1846412635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &478802679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 478802680}
+  - component: {fileID: 478802681}
+  m_Layer: 0
+  m_Name: PioneerFarewellActivity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &478802680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478802679}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 323400075}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &478802681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478802679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd5893ac4db01e4ead68aec5812b529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerFarewellActivity
+  sequence: {fileID: 11400000, guid: 2d557f90b583c7e408bd4ef032b9b1fb, type: 2}
+  presentation: {fileID: 219729566}
+  panel: {fileID: 692793161}
+  reducedMotion: 0
 --- !u!1001 &479463837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -993,6 +1074,79 @@ MonoBehaviour:
   sequence: {fileID: 11400000, guid: d0ca10c001ae95a4382d60c48d2ac937, type: 2}
   presentation: {fileID: 219729566}
   panel: {fileID: 657414339}
+--- !u!1001 &692793160
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 323400075}
+    m_Modifications:
+    - target: {fileID: 1354081477442725969, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_Name
+      value: FarewellPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+--- !u!114 &692793161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2248419082706039227, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+  m_PrefabInstance: {fileID: 692793160}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8524e6f991ef00c49a85332e4e3de556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.FarewellPanelView
+--- !u!4 &692793162 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
+  m_PrefabInstance: {fileID: 692793160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &803651565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2684,3 +2838,4 @@ SceneRoots:
   - {fileID: 836318373}
   - {fileID: 2094133281}
   - {fileID: 632809206}
+  - {fileID: 323400075}

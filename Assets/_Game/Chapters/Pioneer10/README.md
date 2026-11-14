@@ -277,3 +277,26 @@ O contorno **correto** da peça selecionada pulsa devagar (1,4 s de período; co
 **Limitações.** **A silhueta não vem de uma fotografia NASA identificada, como a tarefa pede.** A referência encontrada na auditoria (R-PIO-05, "70 meter dish", NASA/Ames) é um **modelo 3D** (GLB de 2,11 MB), a página não informa licença própria nem o sítio (Goldstone, Canberra ou Madri) e eu **não a baixei**; as proporções são as de uma antena DSN genérica. Escolher e creditar uma fotografia continua pendente. A duração de 2 s da escuta na tentativa 4, as velocidades do botão e da varredura e os deslocamentos das zonas são decisão de jogabilidade, não dado histórico. Parte do lado direito do prato fica sob o painel no 1280×720. Sem áudio nem legenda real (AUD-002/UI-004), textos por chave. Mouse não foi testado (só teclado, que é o caminho obrigatório). Play Mode e navegador não foram exercitados. Contraste não medido nos pixels.
 
 **Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.stage.listening`.
+
+## Despedida e conclusão (PIO-012)
+
+| Arquivo | Papel |
+| --- | --- |
+| `Sequences/PIO_Farewell.asset` | 38 s, seis planos: antena terrestre 0–4, contorno do refletor 4–8 (o match cut), placa em close 8–14, plano aberto com a direção de Aldebaran 14–20, a Pioneer diminuindo 20–30 e o preto do memorial 30–38. Legendas PIO.08.01–04 por janela |
+| `Runtime/PioneerFarewellActivity.cs` | Lógica do estado (sem UI): marcos, guia, preto, conclusão em 36 s, ações finais por setas + E/Enter |
+| `Runtime/FarewellPanelView.cs` + `UI/FarewellPanel.uxml/.uss/.prefab` | Painel UI Toolkit: guia "direção de Aldebaran", preto intencional, `PIO.UI.ending` em duas linhas e os botões `PIO.UI.return` e `PIO.UI.replay`. Só desenha um `FarewellViewState` |
+| `Editor/PioneerFarewellBuilder.cs` | Builder CORE-006 `pioneer10.stage.farewell` (raiz `[R5] Pioneer Farewell`, depois de `pioneer10.stage`) |
+| `Editor/PioneerFarewellCapture.cs` | Prévias em `Docs/Art/Pioneer10_Farewell/<estado>_<L>x<A>.png` nas 3 resoluções do UI_SPEC, com as auditorias `QA/PIO-012/contrast-audit.txt` e `layout-audit.txt` (menu PIO-012) |
+| `Tests/PioneerFarewellTests.cs` | 14 testes EditMode |
+
+**A cena.** Quatro enquadramentos narrativos, cada plano com um rig do palco **diferente do anterior** (nunca o mesmo zoom): `PIO.Listening` (o círculo da antena) → `PIO.Launch.Reveal` (o contorno do refletor, o match cut) → `PIO.Plaque` (a placa, com a luz de apresentação dela) → `PIO.Farewell` (plano aberto) → `PIO.Outbound` (a Pioneer diminuindo, a antena ainda reconhecível) → preto, que continua o plano anterior sem salto. A luz da placa apaga com a troca de rig, **antes** do plano aberto. A direção de Aldebaran é o ponto avermelhado distante do palco, que **não ilumina a nave**, mais o guia discreto `PIO.UI.aldebaran` (14–20 s): direção geral, nunca "a sonda chegou". Nenhum plano aproxima planetas e a escala "milhões de anos" fica na legenda PIO.08.03. O eixo e o spin de cruzeiro vêm da `PioneerPresentation` e não são tocados.
+
+**Conclusão e memorial.** O preto sobe em 1,5 s de tempo **ativo** a partir dos 30 s (instantâneo com movimento reduzido, congelado na pausa), seguido de "PIONEER 10 · 1972–2003" e "Em viagem" (a linha de datas é o intervalo de comunicação, não a existência da sonda) e da legenda PIO.08.04. Em 36 s abrem as duas ações finais e `Completed` dispara **uma vez**: dali em diante o capítulo está concluído e a tela fica até o jogador escolher "Voltar ao arquivo" (foco inicial) ou "Repetir capítulo" (setas, E toque ou segurado por 0,5 s, Enter ou clique; só a primeira escolha vale). **Nada inicia outro capítulo sozinho e nenhum relógio corre nessa tela**: 10 minutos parado não mudam nada (teste). O prompt de E sempre fala do botão em foco.
+
+**Uso pelo controlador (PIO-014):** `farewell.Initialize(sequenceDirector, interactionService, inputRouter, sessionClock, resolverDeTexto)`, `Completed += () => chapterDirector.CompleteStep("PIO.Farewell")` (a tela de conclusão pertence ao estado de aplicação Completion, que não conta como tempo ativo), `ReturnToArchiveRequested += voltarAoDossie`, `ReplayRequested += reiniciarCapitulo`, `Begin(skippable)`; `Cancel()` reinicia ou fecha o memorial sem levantar escolha. `SetReducedMotion(true)` para a configuração global.
+
+**Texto novo (PIO-001).** `PIO.UI.aldebaran` ("Direção de Aldebaran" / "Direction of Aldebaran", `derived`: a R7 precisa revisar). `PIO.UI.ending`, `.return`, `.replay` e as legendas PIO.08.* já existiam e já estavam `approved`.
+
+**Limitações.** O match cut depende da silhueta da antena da PIO-011 (`DishSocket`) e do alinhamento dos rigs, que não foram verificados visualmente em Play Mode: o que os testes provam é a estrutura (rigs, durações, marcos, ordem). O gráfico opcional de atlas (4 s) não foi feito. Os textos aparecem como chaves até a UI-004. Frames pretos intencionais (30–38 s) e a ausência de caixa de legenda vazia dependem do apresentador global (UI-004). Play Mode e navegador não foram executados.
+
+**Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.stage.farewell`.
