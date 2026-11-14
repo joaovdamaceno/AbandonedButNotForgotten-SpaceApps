@@ -1,0 +1,149 @@
+/*
+ * UI-003 · HUD compartilhado (R2). Só estende o sistema da UI-001 (tokens e componentes): nenhuma cor ou tamanho novos.
+ * Camadas sem disputa de espaço: objetivo e distância no topo à esquerda, energia no topo à direita, prompt e progresso na
+ * base, e a orientação (âncora/seta) dentro do retângulo interno definido por EdgeInsets.Default (24% topo, 36% base).
+ * Estados mudam por classe e sempre acompanham texto ou forma, nunca só cor. Nada aqui captura o mouse.
+ */
+
+/* ---------- Coluna direita do topo (UI-006 coloca a pausa aqui) ---------- */
+
+.sa-hud__right {
+    align-items: flex-end;
+}
+
+/* ---------- Energia: só aparece quando o capítulo informa ---------- */
+
+.sa-energy {
+    min-width: 200px;
+    margin-top: var(--sa-space-3);
+    border-left-width: 6px;
+    border-left-color: var(--sa-accent-hud);
+}
+
+.sa-energy__label {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 15px;
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+}
+
+.sa-energy__track {
+    height: 8px;
+    margin-top: var(--sa-space-2);
+    background-color: var(--sa-color-track);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.sa-energy__fill {
+    height: 100%;
+    width: 0;
+    background-color: var(--sa-accent-hud);
+    border-radius: 4px;
+}
+
+/* Energia baixa: o texto muda para "ENERGIA BAIXA" e a faixa vira âmbar. */
+.sa-energy--low {
+    border-left-color: var(--sa-color-warn);
+}
+
+.sa-energy--low .sa-energy__fill {
+    background-color: var(--sa-color-warn);
+}
+
+/* ---------- Âncora no mundo (alvo dentro do retângulo interno) ---------- */
+
+.sa-anchor {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    translate: -50% -50%;
+    display: none;
+}
+
+.sa-anchor__ring {
+    width: 56px;
+    height: 56px;
+    border-width: 4px;
+    border-color: var(--sa-accent-hud);
+    border-radius: 28px;
+    background-color: rgba(12, 14, 18, 0.18);
+}
+
+.sa-anchor__label {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    position: absolute;
+    top: 62px;
+    left: 50%;
+    translate: -50% 0;
+    white-space: nowrap;
+    margin: 0;
+    padding: var(--sa-space-1) var(--sa-space-3);
+}
+
+/* ---------- Seta de borda (alvo fora do quadro) ---------- */
+
+.sa-edge {
+    position: absolute;
+    flex-direction: row;
+    align-items: center;
+    display: none;
+}
+
+.sa-edge__label {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    white-space: nowrap;
+    margin: 0;
+    padding: var(--sa-space-1) var(--sa-space-3);
+}
+
+/* A seta fica sempre na ponta voltada para fora; o nome fica entre ela e o centro da tela. */
+.sa-edge .sa-edge-cue__arrow {
+    margin: var(--sa-space-2);
+}
+
+.sa-edge--left {
+    flex-direction: row-reverse;
+    translate: 0 -50%;
+}
+
+.sa-edge--right {
+    flex-direction: row;
+    translate: -100% -50%;
+}
+
+.sa-edge--top {
+    flex-direction: column-reverse;
+    align-items: center;
+    translate: -50% 0;
+}
+
+.sa-edge--bottom {
+    flex-direction: column;
+    align-items: center;
+    translate: -50% -100%;
+}
+
+/* ---------- Prompt E: comando em trânsito (Surveyor) ---------- */
+
+/* Enquanto o sinal atravessa o vazio não há E a apertar: a tecla fica apagada e a barra mostra o trânsito. */
+.sa-hold--command .sa-keycap {
+    border-color: var(--sa-color-on-plate-muted);
+    border-width: 2px;
+}
+
+.sa-hold--command .sa-keycap__glyph {
+    color: var(--sa-color-on-plate-muted);
+}
+
+/* ---------- Prompt E: estado disponível ---------- */
+
+/* Aparência padrão da tecla (contorno cheio), explícita para o estado ter uma classe própria como os demais. */
+.sa-hold--available .sa-keycap {
+    border-color: var(--sa-color-on-plate);
+}
