@@ -143,10 +143,8 @@ namespace Abandoned.SpaceApps.Tests
         public void GlobeLightsOnlyTheSitesOfTheCurrentCueAndTurnsThemToTheCamera()
         {
             var g = Direction(Gusev);
-            Assert.That(Gusev.x, Is.InRange(-15f, -14f), "Gusev ≈ 14,6°S");
-            Assert.That(Gusev.y, Is.InRange(175f, 176f), "≈ 175,5°L");
-            Assert.That(Meridiani.x, Is.InRange(-2.5f, -1.5f), "Meridiani ≈ 2°S");
-            Assert.That(Meridiani.y, Is.InRange(354f, 355f), "≈ 354,5°L (5,5°O)");
+            Assert.That(Gusev, Is.EqualTo(new Vector2(-14.57f, 175.48f)), "Mars24: Spirit 175,48°L, 14,57°S");
+            Assert.That(Meridiani, Is.EqualTo(new Vector2(-1.95f, 354.47f)), "Mars24: Opportunity 354,47°L, 1,95°S");
             Assert.That(Vector3.Angle(g, Direction(Meridiani)), Is.GreaterThan(150f), "lados opostos de Marte");
 
             var at = Sample(MapStart + 2f);

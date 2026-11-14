@@ -4,7 +4,7 @@
 
 ## Decisões e desvios
 - **Sem `.playable`:** o projeto não tem o pacote Timeline; as sequências são `SequenceDefinition` (CORE-004) com keyframes de câmera densos. Câmera, globo, lançamentos e letreiros leem o mesmo tempo.
-- **Mapa:** globo estilizado com os dois destinos em lat/lon aproximadas (Gusev ≈ 14,6°S 175,5°L; Meridiani ≈ 2°S 354,5°L, fontes: NASA, Mars24). **Não é o mapa de hematita do TES**: nenhuma imagem externa foi importada por falta de origem/licença verificadas. A mancha de hematita é um círculo de 7° em torno de Meridiani, ilustrativo.
+- **Mapa:** globo estilizado com os dois destinos em lat/lon da NASA GISS Mars24, conferidas em 14/11/2026 (Spirit 175,48°L 14,57°S; Opportunity 354,47°L 1,95°S). **Não é o mapa de hematita do TES**: nenhuma imagem externa foi importada por falta de origem/licença verificadas. A mancha de hematita é um círculo de 7° em torno de Meridiani, ilustrativo.
 - **Lançamentos:** duas silhuetas genéricas (não afirmam o modelo exato do Delta II) e uma única chama reaproveitada; rótulos só com mês e ano (JUN/JUL 2003).
 - **Texto:** `Art/Origin/MarsOriginTexts.json`, chaves `MAR.ORI.*`; `MAR.T01` (título de M01) continua em `MarsSubtitles.json`.
 - Luz lateral e contraste: a luz com sombra é da cena; o prefab não tem luzes, câmeras, partículas nem colisores.
