@@ -8,7 +8,7 @@
     "A ordem dos estados é explícita (campo 'order' e lista 'states'); nenhum código avança a história somando 1 a um enum.",
     "timing.kind = window: legenda por janela de tempo local. timing.kind = trigger: abre quando o evento acontece e fica pelo menos minimumReadSeconds; um 'gate' marca a ação que a sequência espera antes de seguir.",
     "Números como 5, 8 e 4 (registros, faixas, contatos) são amostragem de gameplay, não contagem histórica: ver 'relativeIndicators'.",
-    "IDs de gatilho de PIO.Imaging seguem o código já integrado (PioneerImaging). Os de PIO.Plaque e PIO.Listening são PROPOSTOS aqui e devem ser confirmados por PIO-009 e PIO-011."
+    "IDs de gatilho de PIO.Imaging seguem o código já integrado (PioneerImaging). Os de PIO.Plaque foram CONFIRMADOS pela PIO-009 (PioneerPlaqueActivity dispara PIO.Plaque.Hydrogen, Pulsars, SolarSystem, PioneerScale e People na SequenceDirector). Os de PIO.Listening continuam PROPOSTOS aqui e devem ser confirmados por PIO-011."
   ],
   "timeBudget": {
     "nominalSeconds": 375,
@@ -142,6 +142,7 @@
       {"key": "PIO.UI.dust", "meaning": "Cinco registros de poeira = amostragem de gameplay, não contagem histórica de impactos."},
       {"key": "PIO.UI.scan", "meaning": "Oito conjuntos de linhas = síntese de muitos registros do fotopolarímetro, não oito linhas históricas."},
       {"key": "PIO.UI.plaque", "meaning": "Cinco peças = adaptação educativa da placa, sem pontuação."},
+      {"key": "PIO.UI.plaque_retry", "meaning": "Mensagem neutra de contorno errado: a peça volta, nenhum encaixe é perdido e não há contagem de erros."},
       {"key": "PIO.UI.tune", "meaning": "Quatro janelas de escuta = síntese dos contatos reais; o medidor de proximidade é relativo, sem unidade física."}
     ],
     "assetRefs": [

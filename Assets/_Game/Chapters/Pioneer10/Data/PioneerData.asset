@@ -981,6 +981,42 @@ MonoBehaviour:
     enText: "E \xB7 place / Hold E \xB7 help"
     ptStatus: approved
     enStatus: approved
+  - key: PIO.UI.hydrogen
+    group: hud
+    ptText: "Hidrog\xEAnio"
+    enText: Hydrogen
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.pulsars
+    group: hud
+    ptText: Mapa de pulsares
+    enText: Pulsar map
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.solar
+    group: hud
+    ptText: Sistema Solar
+    enText: Solar System
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.scale
+    group: hud
+    ptText: Escala da Pioneer
+    enText: Pioneer scale
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.people
+    group: hud
+    ptText: Pessoas
+    enText: People
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.plaque_retry
+    group: hud
+    ptText: "Esse contorno \xE9 de outra pe\xE7a. A pe\xE7a voltou; escolha outro."
+    enText: That outline belongs to another piece. The piece went back; choose another.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.power
     group: hud
     ptText: "Segure E \xB7 priorizar a comunica\xE7\xE3o"
