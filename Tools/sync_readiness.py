@@ -1,4 +1,4 @@
-"""Confere dependências e mantém o quadro de produção sem completar tarefas.
+"""Confere dependências e recupera integrações comprovadas por PRs com merge.
 
 Sem argumentos, apenas consulta. --apply atualiza os rótulos de disponibilidade.
 --claim ID --user LOGIN assume uma tarefa após verificar dependências e WIP <= 1.
@@ -6,6 +6,7 @@ Uma dependência só está entregue quando a issue está fechada E tem ``integra
 Credenciais são fornecidas pelo Client compartilhado e nunca são gravadas aqui.
 """
 from pathlib import Path
+from datetime import datetime
 import argparse
 import json
 import os
@@ -183,6 +184,107 @@ def closing_numbers(body):
     return numbers
 
 
+def fetch_pages(client, path):
+    rows, page = [], 1
+    separator = '&' if '?' in path else '?'
+    while True:
+        batch = client.request(f'{path}{separator}per_page=100&page={page}')
+        if not isinstance(batch, list):
+            raise ReadinessError('O GitHub não devolveu uma lista: ' + path)
+        rows.extend(batch)
+        if len(batch) < 100:
+            return rows
+        page += 1
+
+
+def timestamp(value):
+    try:
+        parsed = datetime.fromisoformat(value.replace('Z', '+00:00'))
+        if parsed.tzinfo is None:
+            raise ValueError('Fuso ausente.')
+        return parsed
+    except (AttributeError, TypeError, ValueError):
+        raise ReadinessError('Data ausente ou inválida na prova de integração.') from None
+
+
+def authorized_merge(pr):
+    base = pr.get('base', {})
+    return (pr.get('state') == 'closed' and pr.get('merged') is True
+            and bool(pr.get('merged_at')) and bool(pr.get('merge_commit_sha'))
+            and base.get('repo', {}).get('full_name') == REPO
+            and base.get('ref') in ('main', 'develop'))
+
+
+def integrate_issue(client, task_id, issue_number, pr, apply):
+    """Uma reabertura posterior ao merge invalida sua prova, inclusive em reexecuções."""
+    path = f'repos/{REPO}/issues/{issue_number}'
+    issue = client.request(path)
+    match = TASK_TITLE.match(issue.get('title', ''))
+    if 'pull_request' in issue or not match or match.group(1) != task_id:
+        raise ReadinessError(f'O mapa não corresponde à issue #{issue_number}.')
+    if delivered(issue):
+        return 'already-integrated'
+    if 'external-blocker' in label_names(issue) or issue.get('state_reason') == 'not_planned':
+        return 'explicit-blocker-or-cancelled'
+    events = fetch_pages(client, path + '/timeline')
+    merged_at = timestamp(pr['merged_at'])
+    if any(timestamp(event.get('created_at')) >= merged_at
+           for event in events if event.get('event') == 'reopened'):
+        return 'reopened-after-merge'
+    # Outra pessoa pode ter alterado a tarefa enquanto o histórico era consultado.
+    fresh = client.request(path)
+    if any(fresh.get(key) != issue.get(key) for key in ('state', 'state_reason', 'updated_at', 'labels')):
+        return 'changed-during-check'
+    if not apply:
+        return 'would-integrate'
+    # Fechar primeiro evita expor uma issue aberta com uma prova recém-adicionada.
+    if fresh.get('state') != 'closed':
+        client.request(path, {'state': 'closed', 'state_reason': 'completed'}, 'PATCH')
+    fresh = client.request(path)
+    if fresh.get('state') != 'closed':
+        return 'changed-during-check'
+    # Reconsultar o histórico também protege de uma reabertura durante o fechamento.
+    if any(timestamp(event.get('created_at')) >= merged_at
+           for event in fetch_pages(client, path + '/timeline') if event.get('event') == 'reopened'):
+        return 'reopened-after-merge'
+    if INTEGRATED not in label_names(fresh):
+        client.request(path + '/labels', {'labels': [INTEGRATED]}, 'POST')
+    return 'integrated'
+
+
+def recover_integrations(client, tasks, state, mapped, apply=False):
+    """Reconcilia o histórico; não depende da entrega de um webhook específico."""
+    pending = {int(state['issues'][task_id]['number']): task_id
+               for task_id, issue in mapped.items() if issue and not delivered(issue)}
+    result = {'recovered': [], 'wouldRecover': [], 'skipped': []}
+    if not pending:
+        return result
+    prs = fetch_pages(client, f'repos/{REPO}/pulls?state=closed&sort=updated&direction=desc')
+    # O endpoint de listagem não contém o booleano merged: confirmar cada candidato.
+    candidates = [pr for pr in prs if pr.get('merged_at')
+                  and closing_numbers(pr.get('body')) & pending.keys()]
+    candidates.sort(key=lambda pr: timestamp(pr['merged_at']), reverse=True)
+    for listed in candidates:
+        requested = closing_numbers(listed.get('body')) & pending.keys()
+        if not requested:
+            continue
+        pr = client.request(f"repos/{REPO}/pulls/{listed['number']}")
+        if not authorized_merge(pr):
+            continue
+        for number in sorted(closing_numbers(pr.get('body')) & requested):
+            task_id = pending[number]
+            outcome = integrate_issue(client, task_id, number, pr, apply)
+            evidence = {'task': task_id, 'issue': number, 'pr': pr['number'],
+                        'mergedAt': pr['merged_at'], 'mergeCommit': pr['merge_commit_sha']}
+            if outcome in ('integrated', 'would-integrate'):
+                result['recovered' if apply else 'wouldRecover'].append(evidence)
+            elif outcome != 'already-integrated':
+                result['skipped'].append({**evidence, 'reason': outcome})
+            # Um merge mais antigo também não pode corrigir uma reabertura posterior.
+            pending.pop(number)
+    return result
+
+
 def merged_pr_event(client, event_name, event, tasks, state):
     """Usa somente dados de um PR efetivamente integrado no repositório autorizado."""
     ignored = {'integrated': [], 'ignoredNumbers': [], 'reason': 'Evento não integra tarefas.'}
@@ -201,27 +303,17 @@ def merged_pr_event(client, event_name, event, tasks, state):
         raise ReadinessError('Número de PR inválido no evento.')
     # Confirmar o estado pela API evita confiar somente no JSON do evento.
     pr = client.request(f'repos/{REPO}/pulls/{number}')
-    current_base = pr.get('base', {})
-    if (not pr.get('merged') or pr.get('state') != 'closed'
-            or current_base.get('repo', {}).get('full_name') != REPO
-            or current_base.get('ref') not in ('main', 'develop')):
+    if not authorized_merge(pr):
         return {**ignored, 'reason': 'A API não confirmou merge na base autorizada.'}
     allowed = {int(entry['number']): task_id for task_id, entry in state.get('issues', {}).items()
                if task_id in tasks}
     requested = closing_numbers(pr.get('body', ''))
     integrated = []
     for issue_number in sorted(requested & allowed.keys()):
-        issue = client.request(f'repos/{REPO}/issues/{issue_number}')
-        if 'pull_request' in issue:
-            continue
-        explicit_id = TASK_TITLE.match(issue.get('title', ''))
-        if explicit_id and explicit_id.group(1) != allowed[issue_number]:
-            raise ReadinessError(f'O mapa não corresponde ao título da issue #{issue_number}.')
-        if INTEGRATED not in label_names(issue):
-            client.request(f'repos/{REPO}/issues/{issue_number}/labels', {'labels': [INTEGRATED]}, 'POST')
-        if issue.get('state') != 'closed':
-            client.request(f'repos/{REPO}/issues/{issue_number}', {'state': 'closed'}, 'PATCH')
-        integrated.append(allowed[issue_number])
+        task_id = allowed[issue_number]
+        outcome = integrate_issue(client, task_id, issue_number, pr, apply=True)
+        if outcome in ('integrated', 'already-integrated'):
+            integrated.append(task_id)
     return {'integrated': integrated, 'ignoredNumbers': sorted(requested - allowed.keys()),
             'reason': 'Somente diretivas de fechamento de tarefas mapeadas foram processadas.'}
 
@@ -275,6 +367,10 @@ def claim_task(client, task_id, user, tasks, state):
 
 def synchronize(client, tasks, state, apply=False, project_hook=None):
     mapped = mapped_issues(tasks, state, fetch_issues(client))
+    recovery = recover_integrations(client, tasks, state, mapped, apply=apply)
+    if apply:
+        # O histórico pode levar tempo; não escrever labels a partir do snapshot anterior.
+        mapped = mapped_issues(tasks, state, fetch_issues(client))
     stale = remove_stale_integration(client, mapped) if apply else []
     readiness = calculate(tasks, mapped)
     changes = {}
@@ -295,6 +391,7 @@ def synchronize(client, tasks, state, apply=False, project_hook=None):
             statuses = {task_id: detail['status'] for task_id, detail in readiness.items()}
             project_result = hook(client, state, statuses)
     return {'mode': 'apply' if apply else 'check', 'tasks': readiness, 'labelChanges': changes,
+            'integrationRecovery': recovery,
             'staleIntegrationRemoved': stale, 'project': project_result,
             'nativeDependencies': 'O DAG de Data/backlog.json é a fonte de verdade; dependências nativas não foram consultadas.'}
 
