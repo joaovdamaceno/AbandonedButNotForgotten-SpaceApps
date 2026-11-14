@@ -438,8 +438,8 @@ namespace Abandoned.SpaceApps.UI
             UnityEngine.Cursor.visible = true;
         }
 
-        /// <summary>Menu e capítulo não podem ter dois AudioListener ativos. Só avisa no Editor e em builds de desenvolvimento.</summary>
-        [System.Diagnostics.Conditional("UNITY_EDITOR"), System.Diagnostics.Conditional("DEVELOPMENT_BUILD")]
+        /// <summary>Menu e capítulo não podem ter dois AudioListener ativos. Só avisa quando DEBUG está definido (Editor e builds de desenvolvimento).</summary>
+        [System.Diagnostics.Conditional("DEBUG")]
         void AuditAudioListeners(AppState state)
         {
             if (state != AppState.Playing && state != AppState.Dossier)
@@ -621,13 +621,14 @@ namespace Abandoned.SpaceApps.UI
             if (cover != null)
             {
                 view.Photo.style.backgroundImage = new StyleBackground(cover);
-                view.Photo.style.unityBackgroundScaleMode = ScaleMode.ScaleAndCrop;
+                view.Photo.style.backgroundSize = new BackgroundSize(BackgroundSizeType.Cover);
                 view.Photo.RemoveFromClassList("sa-photo--pending");
                 view.PhotoCaption.text = entry.CoverCredit;
             }
             else
             {
                 view.Photo.style.backgroundImage = StyleKeyword.Null;
+                view.Photo.style.backgroundSize = StyleKeyword.Null;
                 view.Photo.AddToClassList("sa-photo--pending");
                 view.PhotoCaption.text = T(DossierKeys.PhotoPending);
             }
