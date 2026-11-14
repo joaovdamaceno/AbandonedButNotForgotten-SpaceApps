@@ -17,6 +17,20 @@ Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de
 - **Validar:** `python Tools/validate_pioneer_data.py` (JSON, IDs, soma de 375 s, janelas sem sobreposição, chaves PT/EN iguais, fontes, datas UTC, termos que o registro de fontes manda evitar) e o teste `PioneerDataTests`, que cruza os dados com `PioneerPresentation.StateIds`, as constantes de texto do código e as sequências `PIO_Launch/Belt/Imaging`.
 - **Cartões de data** (`PIO.Card.*`): o roteiro só cita o texto de alguns; os marcados `derived` usam apenas datas e frases do roteiro.
 
+## Legendas e áudio ligados aos estados (PIO-013)
+
+| Arquivo | Papel |
+| --- | --- |
+| `Data/PioneerData.asset` | Estados, 45 cues e 78 textos PT/EN importados de `Data/` (PIO-001). `GetText(chave, idioma)` devolve vazio para chave ou idioma desconhecidos (a caixa de legenda some); `ReadingSeconds` estima o tempo de leitura sem nunca acelerá-la |
+| `Audio/PioneerCueMap.asset` | Música por estado (Partida, Curiosidade, Distância, Escuta; crossfade de 1,75 s, dentro de 1,5–2 s), efeitos de interface, o quase silêncio da virada do cinturão (nível 0,15 em 1,5 s) e o silêncio real de 2,5 s da tentativa 4. **Só IDs de cue da folha de cues (AUD-001): nenhum clipe, nenhuma licença adquirida** |
+| `Runtime/PioneerNarration.cs` | Escuta a `SequenceDirector`: mostra e esconde a legenda, troca de idioma sem reiniciar, pede música só quando o cue muda e aplica os efeitos do mapa. `Cancel()` encerra tudo e ignora eventos até o próximo `EnterState` |
+| `Runtime/IPioneerAudioPort.cs` | Porta de pedidos de áudio, **sem implementação**: o `AudioDirector` (AUD-002) a adapta (`SetCue(cueId, fadeSeconds)` do contrato) |
+| `Editor/PioneerDataBuilder.cs` | Importador determinístico (menu **PIO-013 → Importar dados e mapa de cues**); reimportar mantém GUIDs e arquivos idênticos |
+
+**Uso pelo controlador (PIO-014):** `narration.Configure(data, cueMap)`, `narration.Initialize(sequenceDirector, audioPort, idioma)`, `EnterState(estado)` ao entrar em cada estado, `RaiseTrigger(id)` quando o jogo aciona uma legenda por gatilho (peça encaixada, contato), `RaiseEvent(id)` para eventos que não vêm da sequência, `SetPaused(bool)`, `Cancel()` ao reiniciar ou sair e `Resync()` depois do clique que libera o áudio no Web.
+
+**O que ainda depende de outras tarefas:** o áudio de verdade e o clique inicial (AUD-002), a caixa de legenda global e o `LocalizationService` (UI-004) e a escolha e a licença das faixas (AUD-001/AUD-002). Até lá, `TextChanged` entrega o texto e vazio significa esconder a caixa.
+
 ## Palco espacial (PIO-003)
 
 | Arquivo | Papel |
