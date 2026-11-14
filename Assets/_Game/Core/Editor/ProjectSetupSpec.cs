@@ -13,6 +13,8 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string UrpPackageVersion = "17.6.0";
         public const string InputSystemPackageName = "com.unity.inputsystem";
         public const string InputSystemPackageVersion = "1.20.1";
+        public const string McpForUnityPackageName = "com.coplaydev.unity-mcp";
+        public const string McpForUnityPackageSource = "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#5914ce5bd9d11d66a7896ce72e395b0a2f049c2a";
 
         public const string CompanyName = "Abandoned But Not Forgotten";
         public const string ProductName = "Abandoned, But Not Forgotten";
@@ -42,6 +44,9 @@ namespace Abandoned.SpaceApps.EditorTools
         /// </summary>
         public static readonly IReadOnlyDictionary<string, string> ManifestDependencies = new Dictionary<string, string>
         {
+            // MCP for Unity (Coplay): ponte do Editor com assistentes de IA (cena, testes, build, console) para a equipe.
+            // Fixado num commit; atualizar só com PR. Uso no Editor; o impacto no build Web está medido no PR da liberação.
+            { McpForUnityPackageName, McpForUnityPackageSource },
             { "com.unity.ide.rider", "3.1.0" },
             { "com.unity.ide.visualstudio", "2.0.26" },
             { InputSystemPackageName, InputSystemPackageVersion },
