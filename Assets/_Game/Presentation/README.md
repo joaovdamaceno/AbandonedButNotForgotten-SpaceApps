@@ -4,7 +4,7 @@
 | --- | --- |
 | `SequenceDirector.cs`, `CameraDirector.cs`, `SequenceClock.cs` | CORE-004 · R1 — **implementado** |
 | `LocalizationService.cs`, `SubtitlePresenter.cs` | UI-004 · R2 — **implementado** (README em `Shared/Localization/`) |
-| `FocusPause.cs` | UI-006 · R2 |
+| `FocusPause.cs` | UI-006 · R2 — **implementado** (README em `UI/Pause/`; foco do navegador pausa, só o clique em Continuar retoma) |
 | `PhotoCapture.cs` | UI-007 · R2 |
 | `AudioDirector.cs` | AUD-002 · R7 — **implementado** (README em `Shared/Audio/`; sem arquivos de áudio ainda) |
 
