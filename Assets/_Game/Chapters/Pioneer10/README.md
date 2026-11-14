@@ -10,7 +10,7 @@ Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de
 | Arquivo | Conteúdo |
 | --- | --- |
 | `Data/Chapters/Pioneer10.json` | Oito estados com ID estável e ordem explícita (375 s nominais, até 381 s com o alongamento de leitura de PIO.07.06 e PIO.04.09), 45 cues (janela local ou gatilho com tempo mínimo de leitura), grupos de texto, **mapa de fatos → fontes**, divergências entre fontes e correções aplicadas |
-| `Data/Localization/Pioneer10.pt-BR.json`, `Pioneer10.en.json` | 83 chaves iguais nos dois idiomas, por grupo (`narrative`, `hud`, `instrument`, `card`) e `status` (`approved` = transcrito do roteiro; `derived` = montado ou traduzido a partir do roteiro, **a revisar pela R7**) |
+| `Data/Localization/Pioneer10.pt-BR.json`, `Pioneer10.en.json` | 102 chaves iguais nos dois idiomas, por grupo (`narrative`, `hud`, `instrument`, `card`) e `status` (`approved` = transcrito do roteiro; `derived` = montado ou traduzido a partir do roteiro, **a revisar pela R7**) |
 
 - **Tempo** é local ao estado, no relógio ativo; datas históricas são dados. A recepção na Terra (rádio) fica separada da operação na sonda (lançamento) no campo `kind` de cada fato.
 - **IDs de gatilho** de `PIO.Imaging` seguem o código integrado (`Gate4`, `Gate6`, `GateRecovery`, `Gate8`); os de `PIO.Plaque` e `PIO.Listening` são **propostos** e devem ser confirmados por PIO-009 e PIO-011.
@@ -21,7 +21,7 @@ Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de
 
 | Arquivo | Papel |
 | --- | --- |
-| `Data/PioneerData.asset` | Estados, 45 cues e 83 textos PT/EN importados de `Data/` (PIO-001). `GetText(chave, idioma)` devolve vazio para chave ou idioma desconhecidos (a caixa de legenda some); `ReadingSeconds` estima o tempo de leitura sem nunca acelerá-la |
+| `Data/PioneerData.asset` | Estados, 45 cues e 102 textos PT/EN importados de `Data/` (PIO-001). `GetText(chave, idioma)` devolve vazio para chave ou idioma desconhecidos (a caixa de legenda some); `ReadingSeconds` estima o tempo de leitura sem nunca acelerá-la |
 | `Audio/PioneerCueMap.asset` | Música por estado (Partida, Curiosidade, Distância, Escuta; crossfade de 1,75 s, dentro de 1,5–2 s), efeitos de interface, o quase silêncio da virada do cinturão (nível 0,15 em 1,5 s) e o silêncio real de 2,5 s da tentativa 4. **Só IDs de cue da folha de cues (AUD-001): nenhum clipe, nenhuma licença adquirida** |
 | `Runtime/PioneerNarration.cs` | Escuta a `SequenceDirector`: mostra e esconde a legenda, troca de idioma sem reiniciar, pede música só quando o cue muda e aplica os efeitos do mapa. `Cancel()` encerra tudo e ignora eventos até o próximo `EnterState` |
 | `Runtime/IPioneerAudioPort.cs` | Porta de pedidos de áudio, **sem implementação**: o `AudioDirector` (AUD-002) a adapta (`SetCue(cueId, fadeSeconds)` do contrato) |
@@ -198,3 +198,26 @@ Prefab `Art/PioneerActors.prefab` (raiz `PioneerActors`, componente `PioneerProb
 **Textos novos (PIO-001):** `PIO.UI.radiation` (do roteiro, `approved`) e `PIO.UI.sent`, `PIO.UI.jupiter`, `PIO.UI.ganymede`, `PIO.UI.io_lost` (`derived`: a R7 precisa revisar). A legenda de Júpiter diz que é uma **montagem**.
 
 **Limitações.** Revisão da R7 pendente (textos `derived` e a data de Júpiter só como "dezembro de 1973", porque a página da NASA não dá o instante de cada quadro). A duração de 4 s do pacote e os instantes de entrada das fotos são decisão editorial, não dado histórico. A revelação é guiada por tempo ativo próprio (não pelo relógio da sequência): em pausa congelam juntos, mas não foi medida a deriva em sessões longas. Sem áudio (AUD-002/UI-004 ainda não existem) e sem caixa de legenda real. Play Mode e navegador não foram exercitados.
+
+## Caminho de saída (PIO-010)
+
+| Arquivo | Papel |
+| --- | --- |
+| `Sequences/PIO_Outbound.asset` | 39 s: cartão 1976 (0–12), cartão 13 JUN 1983 (12–24), energia e gráfico de 1998 (24–39). Marco `PIO.Outbound.Power` aos 24 s segura a sequência até o hold; `PIO.Outbound.Chart` (25 s) só vem depois. Legendas PIO.06.01–05 |
+| `Runtime/OutboundAtlas.cs` | Lógica do estado (sem UI): fases, hold de 3 s (E), conclusão única, cancelar e pular |
+| `Runtime/OutboundAtlasView.cs` + `UI/OutboundAtlas.uxml/.uss/.prefab` | Painel UI Toolkit que ocupa o quadro (o anchor `PIO.Outbound` não reserva `UiFrame`). Diagrama orbital, barras de energia e gráfico por `Painter2D`; só desenha um `OutboundViewState`. Textos por chave |
+| `Editor/PioneerOutboundBuilder.cs` | Builder CORE-006 `pioneer10.stage.outbound` (raiz `[R5] Pioneer Outbound`) |
+| `Editor/PioneerOutboundCapture.cs` | Prévia em `Docs/Art/Pioneer10_Outbound/` com os textos em português (menu PIO-010; **precisa da janela da Unity em primeiro plano**) |
+| `Tests/PioneerOutboundTests.cs` | 12 testes EditMode |
+
+**O que se vê.** 1976: quatro anéis esquemáticos (Júpiter, Saturno, Urano, Netuno, **espaçamento igual e sem escala**) e o arco de saída; o marcador da sonda cai no anel de Saturno ("distância orbital de Saturno · a sonda não visita o planeta"). 1983: o marcador vai ao anel de Netuno ("além das órbitas dos planetas") com a nota de que isso não é sair do Sistema Solar. Nenhum planeta é desenhado junto da sonda. Aos 24 s aparecem as barras de energia (**relativas, sem números**; o rádio tem contorno e ícone próprios) e o prompt "Segure E · priorizar a comunicação". Depois do hold, os instrumentos secundários baixam (nunca a zero), o rádio enche e entra o gráfico de 1998: DUAS linhas de **distância ao Sol** (Pioneer 10 contínua com marcador quadrado; Voyager 1 tracejada com círculo), cruzando no ponto de 1998, sem encontro e sem segunda sonda 3D. O **tempo de comunicação** é outra grandeza, com barra e rótulo próprios, que cresce com a distância e nunca mostra valor.
+
+**Regras de entrada (as mesmas da PIO-004).** O E que já estava pressionado antes do hold não conta (rearme); soltar E pausa e o progresso fica; a pausa do shell congela tudo; cancelar ou pular encerra hold, contexto e candidato; `Completed` e `PowerConfirmed` disparam uma vez. Não existe falha: esperar não consome nem pune.
+
+**Uso pelo controlador (PIO-014):** `atlas.Initialize(sequenceDirector, interactionService, inputRouter, sessionClock, resolverDeTexto)`, `Completed += () => chapterDirector.CompleteStep("PIO.Outbound")`, `Begin(skippable)`; `Cancel()` na mudança de estado.
+
+**Textos novos (PIO-001):** 19 chaves nos dois idiomas, todas `derived` (a R7 precisa revisar). Os cartões usam as chaves `PIO.Card.y1976/y1983/y1998` já existentes.
+
+**Limitações.** O diagrama e o gráfico são **qualitativos**: as inclinações das linhas, o espaçamento dos anéis, o ângulo do arco e as barras são decisão gráfica, não dados. Que o cruzamento de 1998 é de distância ao Sol vem da fonte P-S13; o que 1976 e 13 JUN 1983 marcam (distância orbital de Saturno e de Netuno) vem do roteiro e a R7 precisa conferir as datas contra fonte primária. A câmera 3D fica atrás do painel (a sonda não aparece). Sem áudio nem legenda real (AUD-002/UI-004), com textos por chave. Play Mode e navegador não foram exercitados. O contraste não foi medido nos pixels.
+
+**Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.stage.outbound`.
