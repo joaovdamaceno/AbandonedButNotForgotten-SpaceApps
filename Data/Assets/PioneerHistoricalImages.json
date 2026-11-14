@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "pioneer10",
+  "task": "PIO-007",
+  "notes": [
+    "Origem, crédito, data, hash e medidas de cada imagem histórica exibida no estado PIO.Imaging. Gerado por Tools/convert_pioneer10_photos.py.",
+    "Texto exibido junto da imagem: PIO.UI.real (\"Imagem real · Pioneer 10 · 1973 · NASA\"; \"Actual image · Pioneer 10 · 1973 · NASA\").",
+    "Direitos: a página de cada item informa apenas \"Credit: NASA\" e não traz licença própria; valem as diretrizes de imagens e mídia da NASA (P-S18): reconhecer a NASA como fonte, sem sugerir endosso, e sem usar insígnia ou logotipo.",
+    "Os originais ficam em ArtSource/ (LFS), fora de Assets/ e do build. A Io perdida NÃO tem imagem aqui (PIO.04.07 só a menciona)."
+  ],
+  "rights": {
+    "credit": "NASA",
+    "policy": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "licenseOnItemPage": null,
+    "endorsement": "Sem sugerir endosso; sem logotipo NASA na imagem."
+  },
+  "images": [
+    {
+      "id": "PIO.Hist.Ganymede",
+      "subject": "Ganimedes",
+      "subjectEn": "Ganymede",
+      "kind": "single-frame",
+      "mission": "Pioneer 10",
+      "year": 1973,
+      "eventDate": "1973-12-03",
+      "eventDateNote": "Data exibida na página (encontro mais próximo da Pioneer 10 com Júpiter). O horário exato de aquisição da imagem não é informado.",
+      "creditLine": "NASA",
+      "labelTextKey": "PIO.UI.real",
+      "sourcePage": {
+        "url": "https://science.nasa.gov/resource/pioneer-10-ganymede/",
+        "title": "Pioneer 10 – Ganymede",
+        "pageLastUpdated": "2024-10-27",
+        "downloadDate": "2023-09-07",
+        "retrieved": "2026-11-14"
+      },
+      "original": {
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/p/i/o/Pioneer_10_Ganymede_2679_AC73-9279.jpg",
+        "file": "Pioneer_10_Ganymede_2679_AC73-9279.jpg",
+        "sha256": "ddee488aadd1007a1162f6d979971add063111260f696d7140eda9c38e1f53fe",
+        "announcedSize": "JPEG (636.08 KB)",
+        "bytes": 651345,
+        "width": 2048,
+        "height": 3072,
+        "format": "JPEG",
+        "path": "ArtSource/Pioneer10/PIO-007/original/Pioneer_10_Ganymede_2679_AC73-9279.jpg"
+      },
+      "web": {
+        "path": "Assets/_Game/Chapters/Pioneer10/Art/Historical/Pioneer10_Ganymede_1973_web.jpg",
+        "bytes": 69624,
+        "sha256": "628f00f87e69f3cd5bcfc4eac4e15227559b6de52c3c4b3c4f5342963e78bccc",
+        "width": 1024,
+        "height": 1024,
+        "format": "JPEG",
+        "quality": 88,
+        "crop": [
+          0,
+          475,
+          2048,
+          2523
+        ],
+        "scale": 0.5,
+        "upscaled": false
+      },
+      "transformations": [
+        "Recorte quadrado de 2048 × 2048 px (x 0–2048, y 475–2523) em torno do disco, que descarta as margens cinza do scan (em cima e embaixo) e mais da metade do fundo escuro; nenhum pixel do disco foi cortado.",
+        "Redução de 2048 para 1024 px por reamostragem Lanczos (fator 0,5), sem ampliação.",
+        "Salvo como JPEG, qualidade 88, sem nitidez nem filtro."
+      ],
+      "caveats": [
+        "Imagem de baixíssima resolução e fora de foco: é o que a Pioneer 10 registrou. Não existe detalhe de superfície a recuperar; não aplicar ampliação nem \"melhoria\".",
+        "O original é um scan de cópia fotográfica (retrato 2048 × 3072) com margens cinza; o disco ocupa menos de metade da largura."
+      ],
+      "usedIn": [
+        "PIO.Imaging"
+      ],
+      "cueIds": [
+        "PIO.04.08"
+      ],
+      "factIds": [
+        "F-GANYMEDE"
+      ],
+      "review": {
+        "R7": "pendente",
+        "note": "Comparar imagem e fonte lado a lado (critério de aceite da PIO-007); datas e legendas conferidas apenas contra as páginas oficiais da NASA."
+      }
+    },
+    {
+      "id": "PIO.Hist.Jupiter",
+      "subject": "Júpiter",
+      "subjectEn": "Jupiter",
+      "kind": "montage",
+      "mission": "Pioneer 10",
+      "year": 1973,
+      "eventDate": "1973-12-04",
+      "eventDateNote": "Data do texto da página (\"On Dec. 4, 1973 ... sent back images of Jupiter of ever-increasing size\"). A data de publicação da página (13/2/2018) NÃO é a data das imagens.",
+      "creditLine": "NASA",
+      "labelTextKey": "PIO.UI.real",
+      "sourcePage": {
+        "url": "https://science.nasa.gov/resource/pioneer-10-at-jupiter/",
+        "title": "Pioneer 10 at Jupiter",
+        "pageLastUpdated": "2025-05-12",
+        "downloadDate": "2025-05-12",
+        "retrieved": "2026-11-14"
+      },
+      "original": {
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/6/668761main_ac73-9341.jpg",
+        "file": "668761main_ac73-9341.jpg",
+        "sha256": "a4d9e5c428849cd4cd956d048e9f25f11f488ec23f98bfb97bd2fb40f8829e0b",
+        "announcedSize": "Original (tamanho não informado na página)",
+        "bytes": 424505,
+        "width": 2181,
+        "height": 1693,
+        "format": "JPEG",
+        "path": "ArtSource/Pioneer10/PIO-007/original/668761main_ac73-9341.jpg"
+      },
+      "web": {
+        "path": "Assets/_Game/Chapters/Pioneer10/Art/Historical/Pioneer10_Jupiter_1973_web.jpg",
+        "bytes": 60991,
+        "sha256": "591ac3d0cbaeae1cfcbe2c20b77f04140f3de7ebf6fe19a3204b17c3c39c0a52",
+        "width": 1024,
+        "height": 795,
+        "format": "JPEG",
+        "quality": 88,
+        "crop": null,
+        "scale": 0.4695,
+        "upscaled": false
+      },
+      "transformations": [
+        "Sem recorte: o quadro inteiro da montagem foi mantido.",
+        "Redução de 2181 × 1693 para 1024 × 795 px por reamostragem Lanczos, sem ampliação.",
+        "Salvo como JPEG, qualidade 88, sem nitidez nem filtro."
+      ],
+      "caveats": [
+        "É uma MONTAGEM sequencial de imagens da aproximação (do ponto ao disco, e a crescente depois do ponto mais próximo), não uma foto única. As faixas diagonais são do processo de varredura por rotação.",
+        "A página não informa o instante de cada quadro da montagem.",
+        "A segunda ligação da página (668761main_ac73-9341-1.jpg) é byte a byte idêntica à primeira (mesmo SHA-256)."
+      ],
+      "usedIn": [
+        "PIO.Imaging"
+      ],
+      "cueIds": [
+        "PIO.04.06"
+      ],
+      "factIds": [
+        "F-CHANNELS",
+        "F-GANYMEDE"
+      ],
+      "review": {
+        "R7": "pendente",
+        "note": "Comparar imagem e fonte lado a lado (critério de aceite da PIO-007); datas e legendas conferidas apenas contra as páginas oficiais da NASA."
+      }
+    }
+  ]
+}
