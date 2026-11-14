@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: MarsMemorial_M32
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: mars.seq.M32
+  shots:
+  - shotId: mars.memorial.title
+    durationSeconds: 4
+    rigId: mars.memorial
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 0.25
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 0.5
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 0.75
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 1
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 1.25
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 1.5
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 1.75
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 2
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 2.25
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 2.5
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 2.75
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 3
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 3.25
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 3.5
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 3.75
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 4
+      positionMeters: {x: 900, y: 1.9, z: -10.5}
+      eulerAnglesDegrees: {x: 5.440333, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    events:
+    - timeSeconds: 0
+      eventId: mars.memorial.title
+  cues: []
+  actorMarks: []
