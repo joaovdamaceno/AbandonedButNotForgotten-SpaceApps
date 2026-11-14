@@ -824,6 +824,24 @@ MonoBehaviour:
       y: 0
       width: 0
       height: 0
+  - anchorId: PIO.Belt.Sensor
+    stateId: PIO.Belt
+    function: "Registro de poeira: dorso do refletor (sensores) \xE0 esquerda, instrumento de UI \xE0 direita (PIO-005)"
+    pose: {fileID: 553531033452038761}
+    fieldOfViewDegrees: 40
+    region: 0
+    lightGroupId: PIO.Light.Cruise
+    showJupiter: 0
+    showAldebaranMarker: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0.56
+      y: 0.18
+      width: 0.41
+      height: 0.46
   - anchorId: PIO.JupiterApproach
     stateId: PIO.JupiterApproach
     function: "PIO03.B \xB7 J\xFApiter em dois ter\xE7os do quadro, sonda no ter\xE7o inferior"
@@ -1692,6 +1710,37 @@ Transform:
   - {fileID: 8952125715567382786}
   - {fileID: 2663746044417704951}
   m_Father: {fileID: 2332983484190951151}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3159713053257617231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 553531033452038761}
+  m_Layer: 0
+  m_Name: "PIO.Belt.Sensor \xB7 Registro de poeira: dorso do refletor (sensores)"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &553531033452038761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3159713053257617231}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.11990799, y: 0.44190118, z: -0.059737563, w: 0.88700444}
+  m_LocalPosition: {x: -3.4, y: 1.7, z: -4.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3347359500828177844
 GameObject:
@@ -3216,6 +3265,7 @@ Transform:
   - {fileID: 6081805830517579833}
   - {fileID: 1241571127381635050}
   - {fileID: 7176797557390841779}
+  - {fileID: 553531033452038761}
   m_Father: {fileID: 7110141134317143998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6724439147850653092
