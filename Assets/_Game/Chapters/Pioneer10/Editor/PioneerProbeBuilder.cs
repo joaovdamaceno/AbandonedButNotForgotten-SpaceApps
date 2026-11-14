@@ -27,6 +27,14 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string ManifestPath = "Data/Assets/Pioneer10.json";
         public const string GeometryPath = "Data/Assets/Pioneer10.geometry.json";
         public const int TriangleBudget = 60000;
+        /// <summary>LOD1 (planos distantes, IMPORT_RULES §5): agrupamento de vértices numa grade de 15 cm, uma malha só.</summary>
+        public const float Lod1CellMeters = 0.15f;
+        public const string Lod1Name = "Lod1";
+        /// <summary>Altura relativa na tela abaixo da qual entra o LOD1, e abaixo da qual a sonda some (corte).</summary>
+        public const float Lod1TransitionHeight = 0.12f;
+        public const float CullTransitionHeight = 0.01f;
+        /// <summary>O LOD1 deve ter no máximo esta fração dos triângulos do LOD0.</summary>
+        public const float Lod1MaxTriangleFraction = 0.30f;
         public const float DishDiameterMeters = 2.74f; // P-S05
 
         public override string Id => ProbeBuilderId;
@@ -93,7 +101,16 @@ namespace Abandoned.SpaceApps.EditorTools
                 PioneerStageArt.Box(mesh, "PIO_Plaque_PROXY", size);
             }, ProbeFolder);
 
-            var prefab = context.Prefab(PrefabAssetPath, root => ConfigureProbe(root, geometry, manifest.rig, meshes, plaqueMesh, probe, plaqueMaterial));
+            var lod1Mesh = MeshAsset(context, "PIO_Probe" + Lod1Name, mesh => FillLod1(mesh, geometry), ProbeFolder);
+            // IMPORT_RULES §7: compressão de malha média nos assets. (Read/Write continua ligado: são assets gerados que o
+            // builder reescreve e que as verificações leem; não passam pelo ModelImporter.)
+            foreach (var mesh in meshes.Values.Concat(new[] { plaqueMesh, lod1Mesh }))
+            {
+                MeshUtility.SetMeshCompression(mesh, ModelImporterMeshCompression.Medium);
+                EditorUtility.SetDirty(mesh);
+            }
+
+            var prefab = context.Prefab(PrefabAssetPath, root => ConfigureProbe(root, geometry, manifest.rig, meshes, plaqueMesh, lod1Mesh, probe, plaqueMaterial));
             context.PrefabInstance(context.Root.transform, prefab, "PioneerActors");
         }
 
@@ -132,6 +149,103 @@ namespace Abandoned.SpaceApps.EditorTools
             mesh.SetUVs(0, uvs);
             mesh.SetTriangles(part.triangles, 0);
             mesh.RecalculateBounds();
+            mesh.Optimize(); // IMPORT_RULES §7: Optimize Mesh (cache de vértices); determinístico
+        }
+
+        /// <summary>
+        /// LOD1: agrupa os vértices de cada peça numa grade de <see cref="Lod1CellMeters"/> (no espaço do Spin_Root, pose de
+        /// repouso) E por direção dominante da normal (seis faces), para que a frente e o verso das cascas finas (o refletor)
+        /// não se fundam e não percam cor e iluminação. Funde os vértices da mesma célula e direção (posição, normal e UV médios), descarta triângulos degenerados ou
+        /// repetidos e reúne tudo numa malha com o MESMO material do atlas. A silhueta (refletor, corpo, hastes) é mantida;
+        /// os fios finos das hastes encolhem, o que só é visível de perto (e de perto vale o LOD0).
+        /// </summary>
+        /// <summary>Face dominante da normal: 0–5 = ±X, ±Y, ±Z.</summary>
+        static int FaceOf(Vector3 normal)
+        {
+            var ax = Mathf.Abs(normal.x);
+            var ay = Mathf.Abs(normal.y);
+            var az = Mathf.Abs(normal.z);
+            if (ax >= ay && ax >= az)
+                return normal.x >= 0f ? 0 : 1;
+            return ay >= az ? (normal.y >= 0f ? 2 : 3) : (normal.z >= 0f ? 4 : 5);
+        }
+
+        static void FillLod1(Mesh mesh, GeometryFile geometry)
+        {
+            var pivots = geometry.parts.ToDictionary(p => p.name, p => V(p.pivot));
+            var vertices = new List<Vector3>();
+            var normals = new List<Vector3>();
+            var uvs = new List<Vector2>();
+            var triangles = new List<int>();
+            foreach (var part in geometry.parts)
+            {
+                // posição da peça no Spin_Root: as peças têm rotação identidade; a Feed é filha da Dish
+                var offset = part.name == "Feed" ? pivots["Dish"] + pivots["Feed"] : pivots[part.name];
+                var count = part.positions.Length / 3;
+                var cellOf = new Dictionary<(int, int, int, int), int>();
+                var sumPosition = new List<Vector3>();
+                var sumNormal = new List<Vector3>();
+                var sumUv = new List<Vector2>();
+                var members = new List<int>();
+                var remap = new int[count];
+                for (var i = 0; i < count; i++)
+                {
+                    var position = new Vector3(part.positions[i * 3], part.positions[i * 3 + 1], part.positions[i * 3 + 2]) + offset;
+                    var normalHere = new Vector3(part.normals[i * 3], part.normals[i * 3 + 1], part.normals[i * 3 + 2]);
+                    var key = (Mathf.FloorToInt(position.x / Lod1CellMeters), Mathf.FloorToInt(position.y / Lod1CellMeters), Mathf.FloorToInt(position.z / Lod1CellMeters), FaceOf(normalHere));
+                    if (!cellOf.TryGetValue(key, out var cluster))
+                    {
+                        cluster = sumPosition.Count;
+                        cellOf[key] = cluster;
+                        sumPosition.Add(Vector3.zero);
+                        sumNormal.Add(Vector3.zero);
+                        sumUv.Add(Vector2.zero);
+                        members.Add(0);
+                    }
+
+                    sumPosition[cluster] += position;
+                    sumNormal[cluster] += normalHere;
+                    sumUv[cluster] += new Vector2(part.uv[i * 2], part.uv[i * 2 + 1]);
+                    members[cluster]++;
+                    remap[i] = cluster;
+                }
+
+                var baseIndex = vertices.Count;
+                for (var c = 0; c < sumPosition.Count; c++)
+                {
+                    vertices.Add(sumPosition[c] / members[c]);
+                    var normal = sumNormal[c];
+                    normals.Add(normal.sqrMagnitude > 1e-8f ? normal.normalized : Vector3.up);
+                    uvs.Add(sumUv[c] / members[c]);
+                }
+
+                var seen = new HashSet<(int, int, int)>();
+                for (var t = 0; t < part.triangles.Length; t += 3)
+                {
+                    int a = remap[part.triangles[t]], b = remap[part.triangles[t + 1]], c = remap[part.triangles[t + 2]];
+                    if (a == b || b == c || a == c)
+                        continue;
+
+                    var sorted = new[] { a, b, c };
+                    System.Array.Sort(sorted);
+                    if (!seen.Add((sorted[0], sorted[1], sorted[2])))
+                        continue;
+
+                    triangles.Add(baseIndex + a);
+                    triangles.Add(baseIndex + b);
+                    triangles.Add(baseIndex + c);
+                }
+            }
+
+            mesh.Clear();
+            mesh.name = "PIO_Probe" + Lod1Name;
+            mesh.indexFormat = vertices.Count > 65000 ? IndexFormat.UInt32 : IndexFormat.UInt16;
+            mesh.SetVertices(vertices);
+            mesh.SetNormals(normals);
+            mesh.SetUVs(0, uvs);
+            mesh.SetTriangles(triangles, 0);
+            mesh.RecalculateBounds();
+            mesh.Optimize();
         }
 
         /// <summary>Atlas: sRGB, mipmaps, repetição travada; override WebGL em DXT1 (RGB opaco), até 2048.</summary>
@@ -197,7 +311,7 @@ namespace Abandoned.SpaceApps.EditorTools
         // ---------- Prefab ----------
 
         static void ConfigureProbe(GameObject root, GeometryFile geometry, RigData rig, Dictionary<string, Mesh> meshes,
-            Mesh plaqueMesh, Material probeMaterial, Material plaqueMaterial)
+            Mesh plaqueMesh, Mesh lod1Mesh, Material probeMaterial, Material plaqueMaterial)
         {
             root.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
             var spin = Ensure(root.transform, "Spin_Root").transform;
@@ -226,6 +340,21 @@ namespace Abandoned.SpaceApps.EditorTools
             plaque.localPosition = V(rig.plaque.center);
             plaque.localRotation = Quaternion.LookRotation(V(rig.plaque.normal), V(rig.plaque.up));
             plaque.localScale = Vector3.one;
+
+            // LOD1 (planos distantes): uma malha só, no espaço do Spin_Root, com o mesmo material. O LODGroup fica na raiz.
+            var lod1 = Visual(Ensure(spin, Lod1Name), lod1Mesh, probeMaterial).transform;
+            lod1.localPosition = Vector3.zero;
+            lod1.localRotation = Quaternion.identity;
+            lod1.localScale = Vector3.one;
+            var lod0Renderers = spin.GetComponentsInChildren<MeshRenderer>(true).Where(r => r.transform != lod1).Cast<Renderer>().ToArray();
+            var group = Get<LODGroup>(root);
+            group.fadeMode = LODFadeMode.None;
+            group.SetLODs(new[]
+            {
+                new LOD(Lod1TransitionHeight, lod0Renderers),
+                new LOD(CullTransitionHeight, new Renderer[] { lod1.GetComponent<MeshRenderer>() }),
+            });
+            group.RecalculateBounds();
 
             // Sockets das hastes: filhos da dobradiça (acompanham a articulação); os demais ficam em "Sockets".
             var boomPivots = new Dictionary<string, Transform> { { "RtgBoomA", boomA }, { "RtgBoomB", boomB }, { "MagnetometerBoom", magnetometer } };

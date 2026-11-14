@@ -62,6 +62,68 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void TheOriginalIsByteIdenticalToTheOfficialNasaMirrorByItsGitBlobHash()
+        {
+            // SHA-1 de blob do Git (sha1("blob <bytes>\0" + conteúdo)) do arquivo `3D Models/Pioneer 10/Pioneer 10.glb` do espelho
+            // oficial github.com/nasa/NASA-3D-Resources, conferido pela API de conteúdo do GitHub (só metadados). Prova a origem
+            // (IMPORT_RULES §1) sem baixar nada: o mesmo conteúdo dá o mesmo hash.
+            const string officialBlobSha1 = "62d2608617424e7b1d6d4d45bae13024cd9781c8";
+            var bytes = File.ReadAllBytes(OriginalGlb);
+            var header = System.Text.Encoding.ASCII.GetBytes("blob " + bytes.Length + "\0");
+            var payload = header.Concat(bytes).ToArray();
+            var blobSha1 = string.Concat(SHA1.Create().ComputeHash(payload).Select(b => b.ToString("x2")));
+            Assert.That(blobSha1, Is.EqualTo(officialBlobSha1));
+            Assert.That(bytes.Length, Is.EqualTo(2049840));
+            Assert.That(File.ReadAllText("ArtSource/Pioneer10/PIO-002/SOURCE.md"), Does.Contain(officialBlobSha1).And.Contain("NASA-3D-Resources"));
+            Assert.That(File.ReadAllText(PioneerProbeBuilder.ManifestPath), Does.Contain(officialBlobSha1));
+        }
+
+        [Test]
+        public void ALodGroupSwapsTheModelForOneSmallMeshWithTheSameAtlasAndSilhouette()
+        {
+            var group = instance.GetComponent<LODGroup>();
+            Assert.That(group, Is.Not.Null, "IMPORT_RULES §5: LOD1 para planos distantes");
+            var lods = group.GetLODs();
+            Assert.That(lods.Length, Is.EqualTo(2));
+            Assert.That(lods[0].screenRelativeTransitionHeight, Is.EqualTo(PioneerProbeBuilder.Lod1TransitionHeight));
+            Assert.That(lods[1].screenRelativeTransitionHeight, Is.EqualTo(PioneerProbeBuilder.CullTransitionHeight));
+            Assert.That(lods[1].renderers.Length, Is.EqualTo(1));
+            var lod1 = lods[1].renderers[0];
+            Assert.That(lod1.name, Is.EqualTo(PioneerProbeBuilder.Lod1Name));
+            Assert.That(lod1.transform.IsChildOf(rig.SpinRoot), Is.True, "o LOD1 gira com o Spin_Root");
+            Assert.That(lods[0].renderers.Contains(lod1), Is.False);
+            Assert.That(lods[0].renderers.Length, Is.EqualTo(7), "Bus, Dish, Feed, três hastes e a placa");
+
+            var report = PioneerProbeChecks.Run(rig);
+            Assert.That(report.Errors, Is.Empty);
+            Assert.That(report.Lod1Triangles, Is.InRange(1, (int)(report.Triangles * PioneerProbeBuilder.Lod1MaxTriangleFraction)));
+            Assert.That(lod1.sharedMaterial.name, Is.EqualTo("PIO_ProbeAtlas"), "mesma textura e material: nenhum custo extra");
+            Assert.That(instance.GetComponentsInChildren<MeshRenderer>(true).SelectMany(r => r.sharedMaterials).Distinct().Count(), Is.LessThanOrEqualTo(3));
+        }
+
+        [Test]
+        public void EveryProbeMeshUsesMediumCompressionAndKeepsItsTrianglesAfterOptimizing()
+        {
+            var paths = AssetDatabase.FindAssets("t:Mesh", new[] { PioneerProbeBuilder.ProbeFolder + "/Meshes" }).Select(AssetDatabase.GUIDToAssetPath).ToList();
+            Assert.That(paths.Count, Is.EqualTo(8), "6 peças + placa + Lod1");
+            foreach (var path in paths)
+            {
+                var mesh = AssetDatabase.LoadAssetAtPath<Mesh>(path);
+                var compression = new SerializedObject(mesh).FindProperty("m_MeshCompression").intValue;
+                Assert.That(compression, Is.EqualTo((int)ModelImporterMeshCompression.Medium), path + ": compressão média (IMPORT_RULES §7)");
+                Assert.That(mesh.GetIndexCount(0) % 3, Is.Zero, path);
+            }
+        }
+
+        [Test]
+        public void TheProbeStatsFileCarriesTheWebCostEstimateAndTheLodLine()
+        {
+            var stats = File.ReadAllText("Docs/Art/Pioneer10_Probe/PROBE_STATS.md");
+            Assert.That(stats, Does.Contain("Custo Web estimado").And.Contain("MiB").And.Contain("Lod1:"));
+            Assert.That(stats, Does.Not.Contain("0,0"), "números com ponto decimal, iguais em qualquer máquina");
+        }
+
+        [Test]
         public void EveryTextureIsResolvedFromOneAtlasWithAWebOverride()
         {
             var materials = instance.GetComponentsInChildren<MeshRenderer>(true).SelectMany(r => r.sharedMaterials).Distinct().ToList();

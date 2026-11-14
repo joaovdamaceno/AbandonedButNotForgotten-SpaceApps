@@ -98,7 +98,7 @@ Prefab `Art/PioneerActors.prefab` (raiz `PioneerActors`, componente `PioneerProb
 
 | Arquivo | Papel |
 | --- | --- |
-| `ArtSource/Pioneer10/PIO-002/original/Pioneer 10.glb` | Original (LFS), fora do build. **Origem exata não verificada** (ver SOURCE.md) |
+| `ArtSource/Pioneer10/PIO-002/original/Pioneer 10.glb` | Original (LFS), fora do build. Origem **verificada**: idêntico ao espelho oficial da NASA (SHA-1 de blob Git; ver SOURCE.md) |
 | `Tools/convert_pioneer10.py` (raiz do repositório) | Decodifica Draco, separa 6 peças, converte eixos, reduz 11 materiais a 1 (atlas 2048). Precisa de Python com DracoPy, numpy e Pillow; sem Blender |
 | `Data/Assets/Pioneer10.json` e `Pioneer10.geometry.json` | Manifesto e geometria derivada (entrada do builder) |
 | `Art/Probe/Meshes/`, `Art/Probe/Textures/PioneerAtlas.png`, `Art/PioneerMaterials/` | Malhas, atlas e 2 materiais (`PIO_ProbeAtlas`, `PIO_PlaqueAnodized_PROXY`) |
@@ -111,7 +111,9 @@ Prefab `Art/PioneerActors.prefab` (raiz `PioneerActors`, componente `PioneerProb
 
 **Contrato com o palco (PIO-003 → PIO-014).** O `Spin_Root` do modelo corresponde ao `ProbeSpin` do palco: ao trocar a silhueta, instancie `PioneerActors` no lugar de `ProvisionalSilhouette` dentro de `Regions/DeepSpace/Probe/ProbeSpin` e não gire o `Spin_Root` por conta própria (a rotação continua sendo do `PioneerPresentation`; evite aplicar duas vezes). Os sockets têm os mesmos nomes dos de `ProbeSpin/Sockets`, então as atividades continuam encontrando seus pontos: copie a pose de cada socket do modelo para o socket do palco, ou use `TryGetSocket`. Escala real (refletor 2,74 m), nenhuma escala na raiz.
 
-**Limitações (hipóteses e provisórios).** Ângulo 0 das hastes = pose do modelo = cruzeiro; o eixo de cada dobradiça é **hipótese** (`axisVerified = false`) e o limite de 90° é do rig, não dado histórico. O socket `Photopolarimeter` é provisório. O modelo **não traz a placa**: o nó `Plaque` (malha `_PROXY`, 152 × 229 mm) está entre os dois suportes da antena do lado +X, posição não verificada em referência. O refletor mede 2,740 m em X e 2,828 m em Y. LOD1 não foi criado (8,2 mil triângulos, 2 materiais).
+**Limitações (hipóteses e provisórios).** Ângulo 0 das hastes = pose do modelo = cruzeiro; o eixo de cada dobradiça é **hipótese** (`axisVerified = false`) e o limite de 90° é do rig, não dado histórico. O socket `Photopolarimeter` é provisório. O modelo **não traz a placa**: o nó `Plaque` (malha `_PROXY`, 152 × 229 mm) está entre os dois suportes da antena do lado +X, posição não verificada em referência. O refletor mede 2,740 m em X e 2,828 m em Y. O LOD1 foi criado (ver abaixo).
+
+**LOD1 e custo Web (IMPORT_RULES §5 e §7).** `PioneerActors` tem um `LODGroup`: LOD0 = as 6 peças e a placa (8.199 triângulos) até 12% da altura da tela; LOD1 = a malha única `Lod1` (filha do `Spin_Root`, mesmo material e atlas), obtida por agrupamento de vértices numa grade de 15 cm e por face da normal (a frente e o verso do refletor não se fundem), com no máximo 30% dos triângulos e a mesma caixa do LOD0 (±30 cm); abaixo de 1% a sonda é cortada. As malhas têm Optimize Mesh e compressão média; o Read/Write fica ligado porque são assets gerados que o builder reescreve e as verificações leem (não passam pelo `ModelImporter`). `Docs/Art/Pioneer10_Probe/PROBE_STATS.md` traz a estimativa de custo Web (atlas 2048² em DXT1 ≈ 2,7 MiB com mipmaps; malhas) e o número de triângulos do LOD1.
 
 **Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.probe`. Para regerar os dados a partir do GLB: `python Tools/convert_pioneer10.py`. Não edite o prefab à mão: altere o builder.
 
