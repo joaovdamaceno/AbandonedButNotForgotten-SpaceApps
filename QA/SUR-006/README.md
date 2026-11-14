@@ -1,8 +1,8 @@
 # SUR-006 — três contatos e corte dos verniers
 
-Implementação em **14/11/2026**, a partir de `develop` **70620fe**. Última CORE integrada: **CORE-006**, merge **934a2fd**, PR #93. Dependências nativas **#60 SUR-002, #62 SUR-004 e #4 CORE-004** confirmadas fechadas/integradas antes da atribuição. Validação no Unity **6000.6.7f1 / URP 17.6.0**, Windows D3D11, RTX 3050 Laptop 6 GB.
+Implementação em **14/11/2026**, a partir de `develop` **70620fe**. Core sequencial integrado até **CORE-006**, merge **934a2fd**, PR #93; atualização posterior da **CORE-001/MCP**, merge **30d78a3**, PR #104, também incorporada. Dependências nativas **#60 SUR-002, #62 SUR-004 e #4 CORE-004** confirmadas fechadas/integradas antes da atribuição. Validação no Unity **6000.6.7f1 / URP 17.6.0**, Windows D3D11, RTX 3050 Laptop 6 GB.
 
-Durante a implementação, a PIO-004 entrou em develop. A branch incorporou **0691f2e** sem descartar alterações da equipe; a suíte abaixo foi repetida depois dessa integração.
+Durante a implementação, a PIO-004 e a atualização CORE-001/MCP entraram em develop. A branch incorporou **0691f2e** e **30d78a3** sem descartar alterações da equipe; a suíte abaixo foi repetida sobre essa base.
 
 ## Entrega e cena
 
