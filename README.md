@@ -6,9 +6,7 @@ Planejamento de produção para **14–15 de novembro de 2026**, com sete pessoa
 2. Pioneer 10 — o caminho para os planetas exteriores.
 3. Surveyor 3 — ver, tocar e preparar o caminho para pessoas.
 
-**Este repositório começa com documentação, contratos e tarefas. O novo jogo ainda precisa ser implementado.** O projeto Unity anterior permanece preservado no repositório privado AbandonedButNotForgotten. Não transferimos seus resultados de teste para esta edição.
-
-## Por onde começar
+**Este repositório começa com documentação, contratos e tarefas. O novo jogo ainda precisa ser implementado.** 
 
 - **Repositório público:** https://github.com/joaovdamaceno/AbandonedButNotForgotten-SpaceApps
 - **Kanban privado:** https://github.com/users/joaovdamaceno/projects/1
