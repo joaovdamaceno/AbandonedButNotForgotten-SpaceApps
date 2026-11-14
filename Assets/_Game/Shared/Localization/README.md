@@ -34,7 +34,7 @@ panel.Render(state, loc.Resolver);                           // os painéis dos 
 - **Uma ideia por cue**: o tempo é do diretor (janela ou gatilho com leitura mínima); o apresentador só mostra e esconde. Com cues simultâneos vale a maior prioridade e, em empate, o mais recente; ao sair, volta o anterior ainda ativo. Base e topo têm placas independentes.
 - **Datas e nomes** (grupo `card`, ou `SetStamp(chave)`) usam o carimbo (Plex Mono, destaque), claramente diferente do corpo (Outfit). Um cartão sem corpo vira uma placa só de carimbo.
 - **Troca de idioma** é imediata e idempotente; o cue, a etapa e o tempo de leitura continuam do `SequenceDirector`. Quem chama (menu de preferências ou pausa) o faz num estado seguro.
-- Cobertura de glifos conferida com fontTools: nenhum caractere das 111 chaves da Pioneer (PT e EN) falta em Outfit Regular, Outfit SemiBold ou Plex Mono SemiBold.
+- Cobertura de glifos conferida com fontTools: nenhum caractere das 112 chaves da Pioneer (PT e EN) falta em Outfit Regular, Outfit SemiBold ou Plex Mono SemiBold.
 
 ## Limitações
 
