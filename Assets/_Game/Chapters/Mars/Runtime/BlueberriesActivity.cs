@@ -182,6 +182,14 @@ namespace Abandoned.SpaceApps
             if (binding == null)
                 return;
 
+            // Reinício do capítulo: voltou para uma etapa ANTES desta atividade. Nenhum estado residual (marcas, vista,
+            // registros) pode sobrar, nem de uma observação já concluída.
+            if (Phase != BlueberriesPhase.Idle && binding.StepId != ReachStepId && binding.StepId != ObserveStepId && IsBeforeReach(binding.StepId))
+            {
+                ResetActivity();
+                return;
+            }
+
             if (binding.StepId == ReachStepId)
             {
                 ResetActivity();
@@ -224,6 +232,25 @@ namespace Abandoned.SpaceApps
             ShowMark(soilMark, false);
             ShowMark(rockMark, false);
             SetPhase(BlueberriesPhase.Idle);
+        }
+
+        bool IsBeforeReach(string stepId)
+        {
+            if (flow == null)
+                return false;
+
+            var steps = flow.Steps;
+            var current = -1;
+            var reach = -1;
+            for (var i = 0; i < steps.Count; i++)
+            {
+                if (steps[i].StepId == stepId)
+                    current = i;
+                else if (steps[i].StepId == ReachStepId)
+                    reach = i;
+            }
+
+            return current >= 0 && reach >= 0 && current < reach;
         }
 
         // ---------- Quadro ----------
