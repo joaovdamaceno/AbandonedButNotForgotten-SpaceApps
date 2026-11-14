@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70727ea5bd91e9e489d1dcb8f893b0a7, type: 3}
+  m_Name: MarsChapter
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.ChapterDefinition
+  chapterId: mars
+  titleKey: MAR.TITLE
+  descriptionKey: MAR.DESCRIPTION
+  questionKey: MAR.QUESTION
+  cover: {fileID: 0}
+  sceneName: Mars
+  targetDurationSeconds: 360
+  initialSequenceId: mars.seq.M01
+  steps:
+  - stepId: M01
+    nextStepIds:
+    - M02
+    isTerminal: 0
+  - stepId: M02
+    nextStepIds:
+    - M03
+    isTerminal: 0
+  - stepId: M03
+    nextStepIds:
+    - M04
+    isTerminal: 0
+  - stepId: M04
+    nextStepIds:
+    - M05
+    isTerminal: 0
+  - stepId: M05
+    nextStepIds:
+    - M06
+    isTerminal: 0
+  - stepId: M06
+    nextStepIds:
+    - M07
+    isTerminal: 0
+  - stepId: M07
+    nextStepIds:
+    - M08
+    isTerminal: 0
+  - stepId: M08
+    nextStepIds:
+    - M09
+    isTerminal: 0
+  - stepId: M09
+    nextStepIds:
+    - M10
+    isTerminal: 0
+  - stepId: M10
+    nextStepIds:
+    - M11
+    isTerminal: 0
+  - stepId: M11
+    nextStepIds:
+    - M12
+    isTerminal: 0
+  - stepId: M12
+    nextStepIds:
+    - M13
+    isTerminal: 0
+  - stepId: M13
+    nextStepIds:
+    - M14
+    isTerminal: 0
+  - stepId: M14
+    nextStepIds:
+    - M15
+    isTerminal: 0
+  - stepId: M15
+    nextStepIds:
+    - M16
+    isTerminal: 0
+  - stepId: M16
+    nextStepIds:
+    - M17
+    isTerminal: 0
+  - stepId: M17
+    nextStepIds:
+    - M18
+    isTerminal: 0
+  - stepId: M18
+    nextStepIds:
+    - M19
+    isTerminal: 0
+  - stepId: M19
+    nextStepIds:
+    - M20
+    isTerminal: 0
+  - stepId: M20
+    nextStepIds:
+    - M21
+    isTerminal: 0
+  - stepId: M21
+    nextStepIds:
+    - M22
+    isTerminal: 0
+  - stepId: M22
+    nextStepIds:
+    - M23
+    isTerminal: 0
+  - stepId: M23
+    nextStepIds:
+    - M24
+    isTerminal: 0
+  - stepId: M24
+    nextStepIds:
+    - M25
+    isTerminal: 0
+  - stepId: M25
+    nextStepIds:
+    - M26
+    isTerminal: 0
+  - stepId: M26
+    nextStepIds:
+    - M27
+    isTerminal: 0
+  - stepId: M27
+    nextStepIds:
+    - M28
+    isTerminal: 0
+  - stepId: M28
+    nextStepIds:
+    - M29
+    isTerminal: 0
+  - stepId: M29
+    nextStepIds:
+    - M30
+    isTerminal: 0
+  - stepId: M30
+    nextStepIds:
+    - M31
+    isTerminal: 0
+  - stepId: M31
+    nextStepIds:
+    - M32
+    isTerminal: 0
+  - stepId: M32
+    nextStepIds: []
+    isTerminal: 1
