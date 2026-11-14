@@ -26,6 +26,13 @@ namespace Abandoned.SpaceApps
         int lastCaptured = -1;
         float lastZoneStart = -1f, lastZoneEnd = -1f;
         ImagingPhase lastPhase = (ImagingPhase)(-1);
+        ImagingHoldState lastHold = (ImagingHoldState)(-1);
+
+        /// <summary>Uma classe por estado do prompt de E (UI_SPEC). <c>available</c> é o estilo-base: só ganha a classe.</summary>
+        static readonly string[] HoldClasses =
+        {
+            "sa-hold--available", "sa-hold--rearm", "sa-hold--holding", "sa-hold--paused", "sa-hold--done",
+        };
 
         public bool IsBound => root != null;
         public VisualElement Root => root;
@@ -66,6 +73,7 @@ namespace Abandoned.SpaceApps
             lastCaptured = -1;
             lastZoneStart = lastZoneEnd = -1f;
             lastPhase = (ImagingPhase)(-1);
+            lastHold = (ImagingHoldState)(-1);
         }
 
         const int ImagingStrips = PioneerImaging.StripCount;
@@ -116,12 +124,70 @@ namespace Abandoned.SpaceApps
             zone.EnableInClassList("pio-img__zone--wide", state.Assisted);
             zone.EnableInClassList("pio-img__zone--captured", state.PassCaptured);
             cursor.EnableInClassList("pio-img__cursor--in", state.InWindow);
-            holdPlate.EnableInClassList("sa-hold--holding", state.Holding && state.Phase == ImagingPhase.Sweep);
-            holdPlate.EnableInClassList("sa-hold--done", state.Phase == ImagingPhase.Assembled);
+            SetHoldState(state.Hold);
             holdPlate.EnableInClassList("pio-img__hold--pulse", state.HelpLevel >= 1 && !state.Holding);
             holdPlate.EnableInClassList("pio-img__hold--missed", state.PassMissed);
             SetText(redLabel, RedKey, text, ref lastRed);
             SetText(blueLabel, BlueKey, text, ref lastBlue);
+        }
+
+        /// <summary>Troca o estado do prompt de E: desliga as outras quatro classes e liga só a atual.</summary>
+        void SetHoldState(ImagingHoldState hold)
+        {
+            if (hold == lastHold)
+                return;
+
+            lastHold = hold;
+            for (var i = 0; i < HoldClasses.Length; i++)
+                holdPlate.EnableInClassList(HoldClasses[i], i == (int)hold);
+        }
+
+        /// <summary>
+        /// Erros de montagem (lista vazia = conforme): UIDocument com UXML, <see cref="ResponsiveLayoutClass"/> e todos os
+        /// elementos que o painel usa. O UXML é clonado, então funciona fora do Play Mode.
+        /// </summary>
+        public System.Collections.Generic.List<string> ValidateSetup()
+        {
+            var errors = new System.Collections.Generic.List<string>();
+            const string owner = "ImagingPanelView";
+            var doc = document != null ? document : GetComponent<UIDocument>();
+            if (doc == null)
+            {
+                errors.Add($"{owner}: sem UIDocument.");
+                return errors;
+            }
+
+            if (doc.panelSettings == null)
+                errors.Add($"{owner}: UIDocument sem PanelSettings.");
+            if (GetComponent<Abandoned.SpaceApps.UI.ResponsiveLayoutClass>() == null)
+                errors.Add($"{owner}: falta ResponsiveLayoutClass (UI_SPEC: todo UIDocument de tela cheia).");
+            if (doc.visualTreeAsset == null)
+            {
+                errors.Add($"{owner}: UIDocument sem UXML.");
+                return errors;
+            }
+
+            var tree = doc.visualTreeAsset.CloneTree();
+            var required = new System.Collections.Generic.List<string>
+            {
+                "imaging-root", "frame", "image", "disc", "interrupt-dim", "track", "zone", "cursor", "hold", "progress-fill",
+                "scan-label", "channel-red", "channel-blue", "green-chip", "recovery-slot",
+            };
+            for (var i = 0; i < ImagingStrips; i++)
+                required.Add("strip-" + i);
+            foreach (var name in required)
+            {
+                if (tree.Q(name) == null)
+                    errors.Add($"{owner}: o UXML não tem o elemento '{name}'.");
+            }
+
+            foreach (var key in new[] { RedKey, BlueKey, ScanKey })
+            {
+                if (string.IsNullOrEmpty(key) || !key.StartsWith("PIO.UI."))
+                    errors.Add($"{owner}: chave de texto inválida '{key}'.");
+            }
+
+            return errors;
         }
 
         static void Show(VisualElement element, bool visible)
