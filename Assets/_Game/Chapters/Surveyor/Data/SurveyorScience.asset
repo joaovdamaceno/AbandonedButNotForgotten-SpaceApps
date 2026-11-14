@@ -1,0 +1,686 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658e496662bcddc43b0f59e410e05418, type: 3}
+  m_Name: SurveyorScience
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScience
+  schemaVersion: 1
+  chapterId: surveyor3
+  reviewedDate: 2026-11-14
+  crossReviewStatus: pending-R7
+  sources:
+  - id: S3-01
+    title: "Surveyor 3 \u2014 mission overview"
+    publisher: NASA Science
+    url: https://science.nasa.gov/mission/surveyor-3/
+    contentUrl: 
+    locator: Key Dates; In Depth
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 
+    notes: "Resumo consultado em 2026-11-14. Contagens de ensaios divergem do relat\xF3rio; cronologia Apollo cont\xE9m erros. N\xE3o \xE9 fonte \xFAnica para esses itens."
+  - id: S3-02
+    title: "Surveyor 3 \u2014 Moon Missions"
+    publisher: NASA/JPL
+    url: https://www.jpl.nasa.gov/missions/surveyor-3/
+    contentUrl: 
+    locator: About the mission; Instruments
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 
+    notes: 
+  - id: S3-03
+    title: "Surveyor III Mission Report, Part I \u2014 Mission Description and Performance; JPL TR 32-1177"
+    publisher: NASA/JPL
+    url: https://ntrs.nasa.gov/citations/19670028267
+    contentUrl: https://ntrs.nasa.gov/api/citations/19670028267/downloads/19670028267.pdf
+    locator: PDF pp.13-14, 41-42, 58-62, 116-123; figuras IV-1, IV-10, IV-12, IV-13, IV-60, IV-68, IV-69
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 63d7dba8b6bfc59dedcae813efc034a29c899c6004af2d2c669442a3d10221fb
+    notes: "PDF consultado localmente; figuras IV-1/12/13/68 inspecionadas visualmente. O antigo link ALSJ do planejamento retorna 404. Pagina\xE7\xE3o PDF, base 1, n\xE3o pagina\xE7\xE3o impressa."
+  - id: S3-15
+    title: "Surveyor III Mission Report, Part II \u2014 Scientific Results; JPL TR 32-1177"
+    publisher: NASA/JPL
+    url: https://ntrs.nasa.gov/citations/19670028832
+    contentUrl: https://ntrs.nasa.gov/api/citations/19670028832/downloads/19670028832.pdf
+    locator: "PDF pp.8-11: Introduction; Principal Scientific Results; \xA7\xA7IV-V para aprofundamento"
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 7aadcfb3e1276e02554eb59c38e95679dce18b973cdc4ac5f25004d1e03c5202
+    notes: "Introdu\xE7\xE3o e s\xEDntese cient\xEDfica lidas, n\xE3o o relat\xF3rio inteiro. Confirma 00:04:53, 6.315 imagens de 20/4 a 3/5 e 8 ensaios de carga/14 de impacto; n\xE3o reconciliados com o resumo p\xFAblico."
+  - id: S3-06
+    title: Eclipses Near and Far
+    publisher: NASA History
+    url: https://www.nasa.gov/history/eclipses-near-and-far/
+    contentUrl: 
+    locator: "Par\xE1grafo sobre 24 April 1967; fotografia central 67-H-483"
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 
+    notes: "N\xE3o atribuir \xE0 Surveyor as falas dos astronautas da Apollo 12 em outro eclipse, em novembro de 1969."
+  - id: S3-07
+    title: '55 Years Ago: Apollo 12 Makes a Pinpoint Landing on the Moon'
+    publisher: NASA History
+    url: https://www.nasa.gov/history/55-years-ago-apollo-12-makes-a-pinpoint-landing-on-the-moon/
+    contentUrl: 
+    locator: Pouso Intrepid em 19/11/1969; segunda EVA e visita em 20/11/1969; retirada de hardware
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 
+    notes: 
+  - id: S3-08
+    title: Apollo 12 and Surveyor 3
+    publisher: NASA
+    url: https://science.nasa.gov/resource/apollo-12-and-surveyor-3/
+    contentUrl: 
+    locator: "AS12-48-7134; legenda: 20 November 1969; dist\xE2ncia aproximada de 600 p\xE9s"
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 
+    notes: "A data de abril na legenda usa conven\xE7\xE3o local. Usar 20/4 UTC no jogo, n\xE3o misturar conven\xE7\xF5es."
+  - id: S3-09
+    title: Surveyor 3 Camera Returned from the Moon
+    publisher: NASA/JPL; Julie Cooper
+    url: https://www.jpl.nasa.gov/blog/2012/1/surveyor-3-camera-returned-from-the-moon
+    contentUrl: 
+    locator: "Texto de 24/01/2012: pe\xE7as retornadas; quarentena; fotografia de janeiro de 1970"
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 
+    notes: 
+  - id: S3-11
+    title: "Analysis of Surveyor 3 Material and Photographs \u2014 NASA SP-284"
+    publisher: NASA
+    url: https://ntrs.nasa.gov/citations/19720019081
+    contentUrl: https://ntrs.nasa.gov/api/citations/19720019081/downloads/19720019081.pdf
+    locator: "PDF p.14, figuras 2-4; p.186, figuras 1-2; cap\xEDtulos de altera\xE7\xF5es de superf\xEDcie e transporte de poeira"
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 08b669919de8c61c180daa54a2d85daa39ac48ae17f36e43a4b8b1e811a2633f
+    notes: "Figuras de c\xE2mera/p\xE1 de voo e compara\xE7\xE3o de trincheira inspecionadas visualmente. Leitura seletiva; n\xE3o afirmar exposi\xE7\xE3o atual em museu."
+  - id: S3-14
+    title: "Surveyor to the Moon (1966\u20131968)"
+    publisher: NASA/NSSDCA
+    url: https://nssdc.gsfc.nasa.gov/planetary/lunar/surveyor.html
+    contentUrl: 
+    locator: 'Entrada Surveyor 3: 00:04:53 UT; 3.01 S, 336.66 E'
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 
+    notes: "Registro de cat\xE1logo, n\xE3o resolu\xE7\xE3o autom\xE1tica das diverg\xEAncias com o relat\xF3rio. 336.66 E equivale a 23.34 W; a latitude continua divergente."
+  - id: S3-16
+    title: Eclipses and the Moon
+    publisher: NASA Science
+    url: https://science.nasa.gov/moon/eclipses/
+    contentUrl: 
+    locator: "Total lunar eclipse; Blood Moon: How It Works; visualiza\xE7\xE3o do eclipse visto da Lua"
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 
+    notes: "Sustenta a explica\xE7\xE3o f\xEDsica da luz avermelhada, n\xE3o uma medi\xE7\xE3o espectral da Surveyor."
+  - id: S3-17
+    title: How Does Webb See Back in Time?
+    publisher: NASA Science
+    url: https://science.nasa.gov/mission/webb/science-overview/science-explainers/how-does-webb-see-back-in-time/
+    contentUrl: 
+    locator: "Exemplo da Lua: tempo de propaga\xE7\xE3o da luz de aproximadamente 1.3 s"
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 
+    notes: "Tempo de ida aproximado. A dist\xE2ncia varia; n\xE3o \xE9 ida e volta nem atraso na interface."
+  - id: S3-RIGHTS
+    title: NASA Images and Media Usage Guidelines
+    publisher: NASA Brand Center
+    url: https://www.nasa.gov/nasa-brand-center/images-and-media/
+    contentUrl: 
+    locator: Media Usage Guidelines; Third Party Content; NASA identifiers
+    verification: reviewed
+    rights: "Refer\xEAncia NASA/JPL; conferir a linha de cr\xE9dito de cada figura antes de importar. Creditar a institui\xE7\xE3o; sem alegar endosso. N\xE3o \xE9 uma licen\xE7a CC0 gen\xE9rica."
+    sha256: 
+    notes: "Antes de redistribuir uma imagem, conferir cr\xE9dito e restri\xE7\xF5es espec\xEDficas; n\xE3o usar emblemas como endosso."
+  - id: S3-DESIGN
+    title: "Cap\xEDtulo III \u2014 Surveyor 3: os olhos que ficaram na Lua"
+    publisher: Equipe Abandoned But Not Forgotten
+    url: https://github.com/joaovdamaceno/AbandonedButNotForgotten-SpaceApps/blob/3f8d1d3c3d827393554144ee46330894d184ae32/Docs/Chapters/03_SURVEYOR_3.md
+    contentUrl: 
+    locator: "Seis atos; tabela SUR-S01\u2013SUR-S31; instru\xE7\xF5es de intera\xE7\xE3o e ep\xEDlogo imaginado"
+    verification: reviewed
+    rights: "Conte\xFAdo autoral do projeto; autoria e hist\xF3rico preservados no Git."
+    sha256: 
+    notes: "Fonte editorial interna, nunca prova cient\xEDfica. Conte\xFAdo de planejamento reutilizado e auditado nesta tarefa."
+  - id: S3-12
+    title: "Camera, Television, Surveyor \u2014 A19761264000"
+    publisher: Smithsonian National Air and Space Museum
+    url: https://airandspace.si.edu/collection-objects/camera-television-surveyor/nasm_A19761264000
+    contentUrl: 
+    locator: "Registro de invent\xE1rio A19761264000, artigo de teste"
+    verification: unavailable
+    rights: "Direitos Smithsonian/linha de cr\xE9dito espec\xEDfica n\xE3o verificados. N\xE3o importar."
+    sha256: 
+    notes: "Acesso automatizado retornou 403 nesta auditoria. Exclu\xEDdo como evid\xEAncia \xFAnica e como asset. N\xE3o confundir com c\xE2mera de voo recuperada."
+  facts:
+  - id: SUR.F.Purpose
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: Imagens e ensaios do solo ajudavam a preparar pousos humanos.
+    summaryEn: Imaging and soil tests helped prepare human landings.
+    decision: "N\xE3o dizer que um ensaio local certificou toda a Lua ou qualquer m\xF3dulo."
+    citations:
+    - sourceId: S3-02
+      locator: About the mission
+    - sourceId: S3-03
+      locator: 'PDF pp.13-14: Project Objectives'
+  - id: SUR.F.Launch
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: "Lan\xE7amento: 17/04/1967, 07:05 UTC; Atlas-Centaur AC-12, plataforma 36B."
+    summaryEn: 'Launch: 17 April 1967, 07:05 UTC; Atlas-Centaur AC-12, pad 36B.'
+    decision: "HUD em minutos; arquivo pode citar 07:05:01.059 GMT do relat\xF3rio. GMT/UT tratado em precis\xE3o de minuto, sem deslocar data local."
+    citations:
+    - sourceId: S3-03
+      locator: PDF p.13, Introduction; p.30, Launch
+  - id: SUR.F.RemoteCommands
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: A sonda executava comandos enviados da Terra.
+    summaryEn: The lander executed commands sent from Earth.
+    decision: "Jogador representa a opera\xE7\xE3o remota; n\xE3o um piloto embarcado nem os registros exatos dos operadores."
+    citations:
+    - sourceId: S3-03
+      locator: "PDF pp.13-14: resposta a comandos terrestres; p.61: opera\xE7\xE3o SM/SS"
+  - id: SUR.F.RadioDelay
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "Aproximadamente 1,3 s de propaga\xE7\xE3o de ida Terra\u2013Lua."
+    summaryEn: "Approximately 1.3 s of one-way Earth\u2013Moon propagation."
+    decision: "Aproxima\xE7\xE3o did\xE1tica; ida e volta requer mais tempo. Mouse, HUD e confirma\xE7\xE3o local n\xE3o sofrem atraso."
+    citations:
+    - sourceId: S3-17
+      locator: Exemplo de tempo-luz da Lua
+    - sourceId: S3-DESIGN
+      locator: "Ato 1: comando f\xEDsico versus resposta da interface"
+  - id: SUR.F.Cruise
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: "O Centaur partiu de \xF3rbita de estacionamento; houve corre\xE7\xE3o em 18/04."
+    summaryEn: Centaur departed from a parking orbit; a correction followed on 18 April.
+    decision: "Viagem de quase tr\xEAs dias \xE9 elipse; confirmar E n\xE3o reproduz uma manobra manual hist\xF3rica."
+    citations:
+    - sourceId: S3-15
+      locator: PDF p.8, Introduction
+    - sourceId: S3-03
+      locator: PDF p.41, Midcourse
+  - id: SUR.F.Midcourse
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "Corre\xE7\xE3o de trajet\xF3ria: cerca de 4,19 m/s."
+    summaryEn: 'Midcourse correction: approximately 4.19 m/s.'
+    decision: "Valor opcional no arquivo; instrumento do minigame usa alinhamento qualitativo, n\xE3o telemetria original."
+    citations:
+    - sourceId: S3-03
+      locator: 'PDF p.41: midcourse velocity increment'
+  - id: SUR.F.Instruction
+    treatment: editorial
+    approvedForDisplay: 1
+    summaryPt: "Alinhar e segurar E \xE9 uma regra acess\xEDvel do jogo."
+    summaryEn: Aligning and holding E is an accessible game rule.
+    decision: "Instru\xE7\xE3o autoral, n\xE3o descri\xE7\xE3o de um painel hist\xF3rico. Soltar pausa a opera\xE7\xE3o."
+    citations:
+    - sourceId: S3-DESIGN
+      locator: Ato 2; SUR-S05
+  - id: SUR.F.Region
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: Pouso em 20/04/1967, 00:04 UTC, Oceanus Procellarum, numa cratera.
+    summaryEn: Landing on 20 April 1967, 00:04 UTC, in a crater in Oceanus Procellarum.
+    decision: "Publicar minuto e regi\xE3o; segundos/coordenadas exatos permanecem nas diverg\xEAncias do arquivo."
+    citations:
+    - sourceId: S3-03
+      locator: PDF p.13
+    - sourceId: S3-15
+      locator: PDF p.8
+    - sourceId: S3-14
+      locator: Entrada Surveyor 3
+  - id: SUR.F.Landing
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "O radar n\xE3o levou ao corte esperado; houve tr\xEAs contatos com o ch\xE3o e corte comandado da Terra."
+    summaryEn: Expected engine cutoff did not follow the radar readings; three ground contacts occurred, with cutoff commanded from Earth.
+    decision: "Distinguir verniers do retro motor descartado. Sequ\xEAncia predeterminada: n\xE3o responsabilizar a habilidade do jogador."
+    citations:
+    - sourceId: S3-03
+      locator: PDF pp.58-60, Fig.IV-10 e texto do pouso
+    - sourceId: S3-15
+      locator: "PDF p.9, continuidade dos tr\xEAs contatos"
+  - id: SUR.F.FirstImage
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "A transmiss\xE3o das primeiras imagens come\xE7ou ap\xF3s o assentamento."
+    summaryEn: Transmission of the first pictures began after the lander settled.
+    decision: "Uma tecla \xE9 condensa\xE7\xE3o da sequ\xEAncia de ativa\xE7\xE3o; n\xE3o prometer reprodu\xE7\xE3o do comando original."
+    citations:
+    - sourceId: S3-03
+      locator: PDF pp.60-61, Postlanding Operations
+    - sourceId: S3-DESIGN
+      locator: "SUR-S09: transi\xE7\xE3o editorial"
+  - id: SUR.F.Television
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: "A c\xE2mera de TV usava varredura e um espelho m\xF3vel; lentes de 25 e 100 mm."
+    summaryEn: The television camera scanned images using a movable mirror and 25/100 mm optics.
+    decision: "Modos de 200/600 linhas s\xE3o t\xE9cnicos. Varredura acelerada/monocrom\xE1tica do jogo \xE9 dire\xE7\xE3o visual; havia tamb\xE9m observa\xE7\xF5es coloridas."
+    citations:
+    - sourceId: S3-03
+      locator: "PDF pp.116-119: Fig.IV-60 e caracter\xEDsticas da televis\xE3o"
+  - id: SUR.F.Footprints
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: Marcas dos apoios permitiram estudar o pouso e comparar o solo em 1969.
+    summaryEn: Footpad imprints enabled study of the landing and comparison with the soil in 1969.
+    decision: "Usar marcas da segunda aterrissagem como refer\xEAncia; n\xE3o inventar sequ\xEAncia de marcas exatas em cena."
+    citations:
+    - sourceId: S3-03
+      locator: PDF p.61, Fig.IV-13
+    - sourceId: S3-11
+      locator: PDF p.186, Fig.1, AS12-48-7110
+  - id: SUR.F.Crater
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: A sonda ficou inclinada na parede leste de uma cratera de cerca de 200 m.
+    summaryEn: The lander rested tilted on the east wall of a crater roughly 200 m across.
+    decision: "Compor encosta real, n\xE3o piso plano. Orienta\xE7\xE3o geral basta; medidas de inclina\xE7\xE3o variam entre trechos/fontes."
+    citations:
+    - sourceId: S3-15
+      locator: PDF pp.8 e 11, topografia local
+    - sourceId: S3-03
+      locator: PDF p.60, Fig.IV-12
+  - id: SUR.F.Scoop
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "Uma p\xE1 em bra\xE7o pantogr\xE1fico manipulava o solo; alcance de cerca de 1,5 m."
+    summaryEn: A scoop on a pantograph arm manipulated the soil, reaching roughly 1.5 m.
+    decision: "P\xE1 de aproximadamente 12 \xD7 5 cm na descri\xE7\xE3o cient\xEDfica. N\xE3o \xE9 broca, RAT nem prova de \xE1gua. Profundidade varia por opera\xE7\xE3o."
+    citations:
+    - sourceId: S3-15
+      locator: "PDF p.8, descri\xE7\xE3o SMSS"
+    - sourceId: S3-03
+      locator: PDF p.121, Fig.IV-68
+  - id: SUR.F.Trenches
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "Foram abertas quatro trincheiras e realizados testes de resist\xEAncia e impacto."
+    summaryEn: Four trenches were dug, alongside bearing and impact tests.
+    decision: "Formula\xE7\xE3o segura enquanto contagens de ensaios divergem. O jogador faz exemplos representativos, n\xE3o todos os testes hist\xF3ricos."
+    citations:
+    - sourceId: S3-15
+      locator: 'PDF p.9: 4 trincheiras; 8/14 ensaios'
+    - sourceId: S3-01
+      locator: 'In Depth: 4 trincheiras; 4/13 ensaios'
+  - id: SUR.F.Bearing
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: "Pressionar a p\xE1 permitia investigar a resist\xEAncia local do solo."
+    summaryEn: Pressing the scoop helped investigate local soil resistance.
+    decision: "Descrever resposta qualitativa; n\xE3o publicar uma press\xE3o sem m\xE9todo nem transformar o teste em certifica\xE7\xE3o de pouso."
+    citations:
+    - sourceId: S3-15
+      locator: PDF p.10, Mechanical Properties of Lunar Surface Material
+  - id: SUR.F.Impact
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: "Impactos da p\xE1 mostravam outra resposta mec\xE2nica do solo."
+    summaryEn: Scoop impacts revealed another mechanical response of the soil.
+    decision: "For\xE7a envolvia gravidade e mola; n\xE3o apresentar queda como experimento exclusivamente gravitacional."
+    citations:
+    - sourceId: S3-15
+      locator: PDF p.8, mecanismo; p.9, ensaios
+  - id: SUR.F.Cohesion
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "Solo granular com alguma coes\xE3o podia manter paredes de trincheira."
+    summaryEn: Granular soil with some cohesion could retain trench walls.
+    decision: "N\xE3o inferir \xE1gua a partir de cor, analogia com areia \xFAmida ou coes\xE3o. Foto Apollo mostra parede de cerca de 6 cm; n\xE3o usar 18 cm em toda passada."
+    citations:
+    - sourceId: S3-15
+      locator: "PDF pp.10-11, coes\xE3o e agregados"
+    - sourceId: S3-11
+      locator: PDF p.186, Fig.2, AS12-48-7108
+  - id: SUR.F.ImageTotal
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "Total da miss\xE3o adotado no arquivo: 6.326 imagens, segundo NASA Science."
+    summaryEn: 'Mission total used in the archive: 6,326 pictures, as listed by NASA Science.'
+    decision: "Total retrospectivo, n\xE3o contador produzido pelo jogador. Manter atribui\xE7\xE3o: Part II cita 6.315 no intervalo 20/4\u20133/5; n\xE3o somar nem afirmar a causa da diferen\xE7a."
+    citations:
+    - sourceId: S3-01
+      locator: 'In Depth: 6,326 TV pictures'
+    - sourceId: S3-15
+      locator: 'PDF p.9: 6,315 entre 20/4 e 3/5'
+  - id: SUR.F.Eclipse
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: Em 24/04/1967, a Terra ocultou o Sol para a Surveyor 3.
+    summaryEn: On 24 April 1967, Earth blocked the Sun as seen by Surveyor 3.
+    decision: "Da Terra era eclipse lunar. A inclina\xE7\xE3o ajudou o enquadramento; n\xE3o fazer Terra menor que o disco solar."
+    citations:
+    - sourceId: S3-06
+      locator: "Par\xE1grafo 24 April 1967; 67-H-483"
+    - sourceId: S3-03
+      locator: "PDF p.13: atitude e observa\xE7\xF5es coloridas"
+  - id: SUR.F.RedRim
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: Luz solar filtrada pela atmosfera terrestre produz tons avermelhados no eclipse.
+    summaryEn: "Sunlight filtered through Earth\u2019s atmosphere produces reddish eclipse light."
+    decision: "Explica\xE7\xE3o f\xEDsica; halo esquem\xE1tico autoral. Foto hist\xF3rica identificada, sem inventar medi\xE7\xE3o espectral ou citar fala da Apollo como se fosse Surveyor."
+    citations:
+    - sourceId: S3-16
+      locator: 'Total lunar eclipse; Blood Moon: How It Works'
+    - sourceId: S3-06
+      locator: 67-H-483
+  - id: SUR.F.Daylight
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "As observa\xE7\xF5es continuaram durante o primeiro dia lunar."
+    summaryEn: Observations continued through the first lunar day.
+    decision: "Painel solar e bateria t\xEAm fun\xE7\xF5es distintas. A elipse at\xE9 a noite n\xE3o \xE9 contagem real de energia."
+    citations:
+    - sourceId: S3-03
+      locator: PDF pp.61-62, Postlanding Operations
+  - id: SUR.F.LastContact
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "\xDAltimo contato em 04/05/1967; n\xE3o houve resposta no dia lunar seguinte."
+    summaryEn: Last contact was on 4 May 1967; no reply came on the following lunar day.
+    decision: "Mostrar dia sem hor\xE1rio. Relat\xF3rio descreve desligamento comandado e tentativas de 23/5 a 2/6; n\xE3o inventar falha interna exata ou bateria morrendo em quadro."
+    citations:
+    - sourceId: S3-01
+      locator: 'Key Dates: May 4'
+    - sourceId: S3-03
+      locator: 'PDF p.62: receptores e tentativas posteriores'
+  - id: SUR.F.PreservedData
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: "Imagens e medidas j\xE1 tinham sido transmitidas \xE0 Terra."
+    summaryEn: Pictures and measurements had already been transmitted to Earth.
+    decision: "O sil\xEAncio da sonda n\xE3o apagou os dados; frase narrativa, sem mensagem final inventada."
+    citations:
+    - sourceId: S3-15
+      locator: "PDF pp.9-10: resultados da miss\xE3o"
+    - sourceId: S3-DESIGN
+      locator: SUR-S24
+  - id: SUR.F.Elapsed
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: Entre abril de 1967 e a visita de novembro de 1969 passaram cerca de 31 meses.
+    summaryEn: About 31 months elapsed between April 1967 and the November 1969 visit.
+    decision: "Elipse, n\xE3o 32 dias terrestres nem mais de tr\xEAs anos. As quatro mudan\xE7as de luz n\xE3o contam literalmente as luna\xE7\xF5es."
+    citations:
+    - sourceId: S3-11
+      locator: 'PDF p.186: 31 months of exposure'
+    - sourceId: S3-07
+      locator: "Visita ap\xF3s 31 meses"
+  - id: SUR.F.ImaginedVisit
+    treatment: reconstruction
+    approvedForDisplay: 1
+    summaryPt: "A vis\xE3o da visita em 1969 \xE9 reconstru\xE7\xE3o: a c\xE2mera lunar j\xE1 estava inativa."
+    summaryEn: 'The 1969 camera viewpoint is reconstructed: the lunar camera was already inactive.'
+    decision: "Exibir SUR-S26 inteiro antes da visita; nenhum REC/telemetria deve sugerir grava\xE7\xE3o hist\xF3rica. Separar depois a foto real de arquivo."
+    citations:
+    - sourceId: S3-03
+      locator: "PDF p.62: sem recupera\xE7\xE3o de contato"
+    - sourceId: S3-DESIGN
+      locator: Ato 6; SUR-S26
+  - id: SUR.F.ApolloLanding
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: Intrepid pousou em 19/11/1969 UTC, a cerca de 180 m da Surveyor.
+    summaryEn: Intrepid landed on 19 November 1969 UTC, roughly 180 m from Surveyor.
+    decision: "Dist\xE2ncia aproximada: 600 p\xE9s \u2248 183 m. Pouso e visita ocorrem em dias distintos."
+    citations:
+    - sourceId: S3-07
+      locator: Pouso em 19/11/1969
+    - sourceId: S3-08
+      locator: "Legenda: cerca de 600 p\xE9s"
+  - id: SUR.F.ApolloVisit
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: Pete Conrad e Alan Bean visitaram a sonda em 20/11/1969.
+    summaryEn: Pete Conrad and Alan Bean visited the lander on 20 November 1969.
+    decision: "Segunda EVA; fotografia NASA deve receber data e cr\xE9dito pr\xF3prios."
+    citations:
+    - sourceId: S3-07
+      locator: Segunda EVA em 20/11/1969
+    - sourceId: S3-08
+      locator: AS12-48-7134, 20/11/1969
+  - id: SUR.F.ReturnedParts
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: "A c\xE2mera, a p\xE1 e outras pe\xE7as voltaram \xE0 Terra para estudo."
+    summaryEn: The camera, scoop and other parts returned to Earth for study.
+    decision: "Identificar a c\xE2mera de voo. N\xE3o confundir invent\xE1rio Smithsonian de teste nem afirmar exposi\xE7\xE3o atual da p\xE1."
+    citations:
+    - sourceId: S3-09
+      locator: "Retirada, quarentena e estudo das pe\xE7as"
+    - sourceId: S3-11
+      locator: "PDF p.14, Figs.2-4: c\xE2mera, p\xE1 e tubo retornados"
+  - id: SUR.F.Remains
+    treatment: verified
+    approvedForDisplay: 1
+    summaryPt: O restante da sonda permaneceu na Lua.
+    summaryEn: The remainder of the lander stayed on the Moon.
+    decision: "Recupera\xE7\xE3o parcial, n\xE3o retorno do ve\xEDculo inteiro."
+    citations:
+    - sourceId: S3-07
+      locator: "Remo\xE7\xE3o seletiva de componentes"
+    - sourceId: S3-09
+      locator: "Rela\xE7\xE3o do hardware recuperado"
+  - id: SUR.F.Ending
+    treatment: editorial
+    approvedForDisplay: 1
+    summaryPt: "A conclus\xE3o homenageia o equipamento que ficou e o conhecimento que retornou."
+    summaryEn: The ending honours the hardware left behind and the knowledge brought home.
+    decision: "Frase original do roteiro, nunca cita\xE7\xE3o de astronauta, NASA ou comunica\xE7\xE3o da sonda."
+    citations:
+    - sourceId: S3-DESIGN
+      locator: SUR-S31
+  - id: SUR.F.Dust
+    treatment: qualified
+    approvedForDisplay: 1
+    summaryPt: "Altera\xE7\xF5es de superf\xEDcie exigem distinguir poeira, exposi\xE7\xE3o e manuseio."
+    summaryEn: Surface changes require distinguishing dust, exposure and handling.
+    decision: "N\xE3o tornar a cor marrom uma prova \xFAnica de poeira do LM. Sem vento lunar externo; sons s\xE3o m\xFAsica/sonifica\xE7\xE3o."
+    citations:
+    - sourceId: S3-11
+      locator: "Discuss\xE3o de altera\xE7\xE3o superficial; PDF p.14: manuseio das pe\xE7as"
+  - id: SUR.C.LandingTime
+    treatment: conflict
+    approvedForDisplay: 0
+    summaryPt: 00:04:17 em Part I; 00:04:53 em Part II e NSSDCA.
+    summaryEn: Part I gives 00:04:17; Part II and NSSDCA give 00:04:53.
+    decision: "HUD 00:04 UTC. N\xE3o concluir primeiro toque versus assentamento s\xF3 por plausibilidade; falta reconcilia\xE7\xE3o de eventos."
+    citations:
+    - sourceId: S3-03
+      locator: PDF p.13
+    - sourceId: S3-15
+      locator: PDF p.8
+    - sourceId: S3-14
+      locator: Entrada Surveyor 3
+  - id: SUR.C.Coordinates
+    treatment: conflict
+    approvedForDisplay: 0
+    summaryPt: 'Part II: 2,94 S / 23,34 O; NSSDCA: 3,01 S / 336,66 L; resumo NASA usa outra latitude/longitude.'
+    summaryEn: 'Part II: 2.94 S / 23.34 W; NSSDCA: 3.01 S / 336.66 E; NASA overview uses another pair.'
+    decision: "336,66 L = 23,34 O n\xE3o resolve a latitude. Exibir regi\xE3o, n\xE3o combinar cat\xE1logos de referenciais diferentes."
+    citations:
+    - sourceId: S3-15
+      locator: "PDF p.8 e p.11: controle selenod\xE9tico ACIC"
+    - sourceId: S3-14
+      locator: Entrada Surveyor 3
+    - sourceId: S3-01
+      locator: In Depth, local do pouso
+  - id: SUR.C.TestCounts
+    treatment: conflict
+    approvedForDisplay: 0
+    summaryPt: 'Resumo NASA: 4 carga/13 impacto; Parts I e II: 8 carga/14 impacto. Ambos: 4 trincheiras.'
+    summaryEn: 'NASA overview: 4 bearing/13 impact; Parts I and II: 8 bearing/14 impact. Both: 4 trenches.'
+    decision: "Desvio justificado do passo 3 da issue: n\xE3o congelar 4/13 como hist\xF3rico incontroverso. Usar SUR.F.Trenches; R7 deve reconciliar agrupamento/m\xE9todo antes de contador exato."
+    citations:
+    - sourceId: S3-01
+      locator: In Depth, experimentos
+    - sourceId: S3-03
+      locator: PDF p.61, Postlanding Operations
+    - sourceId: S3-15
+      locator: PDF p.9
+  - id: SUR.C.Pressure
+    treatment: conflict
+    approvedForDisplay: 0
+    summaryPt: "98 kPa n\xE3o est\xE1 reconciliado com ensaio, \xE1rea e convers\xE3o."
+    summaryEn: 98 kPa has not been reconciled with test method, area and conversion.
+    decision: "N\xE3o publicar. 10 psi \u2248 68,95 kPa, n\xE3o 98. Part II relata faixas e depend\xEAncia do tamanho de apoio; manter resist\xEAncia qualitativa e nenhuma conclus\xE3o de \xE1gua."
+    citations:
+    - sourceId: S3-15
+      locator: "PDF p.10, Mechanical Properties: resist\xEAncia depende do tamanho do apoio"
+    - sourceId: S3-DESIGN
+      locator: "Ato 4: veto ao n\xFAmero sem m\xE9todo"
+  - id: SUR.C.ApolloDates
+    treatment: conflict
+    approvedForDisplay: 0
+    summaryPt: "O resumo Surveyor mistura datas Apollo e diz mais de tr\xEAs anos."
+    summaryEn: The Surveyor overview mixes Apollo dates and says more than three years.
+    decision: "N\xE3o reproduzir: usar 19/11 para pouso UTC, 20/11 para visita, cerca de 31 meses."
+    citations:
+    - sourceId: S3-01
+      locator: "In Depth, par\xE1grafo Apollo 12"
+    - sourceId: S3-07
+      locator: Cronologia do pouso/segunda EVA
+    - sourceId: S3-11
+      locator: 'PDF p.186: 31 meses'
+  - id: SUR.C.ExactTilt
+    treatment: conflict
+    approvedForDisplay: 0
+    summaryPt: "Fig.IV-12 de Part I indica 12,4\xB0; s\xEDntese de Part II descreve 12\u201315\xB0 e depois 14,7\xB0."
+    summaryEn: "Part I Fig.IV-12 indicates 12.4\xB0; Part II describes 12\u201315\xB0, then 14.7\xB0."
+    decision: "N\xE3o exibir um n\xFAmero de inclina\xE7\xE3o como universal; encosta e pose inclinada s\xE3o suficientes para P0. Reconciliar refer\xEAncia/eixo antes de modelagem de precis\xE3o."
+    citations:
+    - sourceId: S3-03
+      locator: PDF p.60, Fig.IV-12
+    - sourceId: S3-15
+      locator: PDF pp.8 e 11
+  - id: SUR.C.Mass
+    treatment: conflict
+    approvedForDisplay: 0
+    summaryPt: "Resumo: massa de lan\xE7amento 997,9 kg; Part II: 1040 kg na inje\xE7\xE3o e 302 kg ap\xF3s pouso."
+    summaryEn: 'Overview: 997.9 kg launch mass; Part II: 1040 kg at injection and 302 kg after landing.'
+    decision: "Massa n\xE3o \xE9 necess\xE1ria ao roteiro; omitir at\xE9 reconciliar configura\xE7\xE3o/etapa e fonte. Nunca atribuir massa de lan\xE7amento ao ve\xEDculo assentado."
+    citations:
+    - sourceId: S3-01
+      locator: Spacecraft Mass
+    - sourceId: S3-15
+      locator: PDF p.8, Introduction
+  cueLinks:
+  - cueId: SUR-S01
+    factIds:
+    - SUR.F.Purpose
+  - cueId: SUR-S02
+    factIds:
+    - SUR.F.RemoteCommands
+  - cueId: SUR-S03
+    factIds:
+    - SUR.F.RadioDelay
+  - cueId: SUR-S04
+    factIds:
+    - SUR.F.Cruise
+    - SUR.F.Midcourse
+  - cueId: SUR-S05
+    factIds:
+    - SUR.F.Instruction
+  - cueId: SUR-S06
+    factIds:
+    - SUR.F.Region
+  - cueId: SUR-S07
+    factIds:
+    - SUR.F.Landing
+  - cueId: SUR-S08
+    factIds:
+    - SUR.F.Landing
+  - cueId: SUR-S09
+    factIds:
+    - SUR.F.FirstImage
+  - cueId: SUR-S10
+    factIds:
+    - SUR.F.Television
+  - cueId: SUR-S11
+    factIds:
+    - SUR.F.Footprints
+  - cueId: SUR-S12
+    factIds:
+    - SUR.F.Crater
+  - cueId: SUR-S13
+    factIds:
+    - SUR.F.Television
+  - cueId: SUR-S14
+    factIds:
+    - SUR.F.Scoop
+    - SUR.F.Purpose
+  - cueId: SUR-S15
+    factIds:
+    - SUR.F.Trenches
+  - cueId: SUR-S16
+    factIds:
+    - SUR.F.Bearing
+  - cueId: SUR-S17
+    factIds:
+    - SUR.F.Impact
+  - cueId: SUR-S18
+    factIds:
+    - SUR.F.Cohesion
+  - cueId: SUR-S19
+    factIds:
+    - SUR.F.Purpose
+  - cueId: SUR-S20
+    factIds:
+    - SUR.F.Eclipse
+  - cueId: SUR-S21
+    factIds:
+    - SUR.F.RedRim
+  - cueId: SUR-S22
+    factIds:
+    - SUR.F.Daylight
+  - cueId: SUR-S23
+    factIds:
+    - SUR.F.LastContact
+  - cueId: SUR-S24
+    factIds:
+    - SUR.F.LastContact
+    - SUR.F.PreservedData
+  - cueId: SUR-S25
+    factIds:
+    - SUR.F.Elapsed
+  - cueId: SUR-S26
+    factIds:
+    - SUR.F.ImaginedVisit
+  - cueId: SUR-S27
+    factIds:
+    - SUR.F.ApolloLanding
+  - cueId: SUR-S28
+    factIds:
+    - SUR.F.ApolloVisit
+  - cueId: SUR-S29
+    factIds:
+    - SUR.F.ReturnedParts
+  - cueId: SUR-S30
+    factIds:
+    - SUR.F.Remains
+  - cueId: SUR-S31
+    factIds:
+    - SUR.F.Ending
