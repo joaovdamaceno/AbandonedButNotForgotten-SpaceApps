@@ -1,0 +1,59 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="BeltPanel.uss" />
+    <!-- PIO-005. Sem frases literais: os rótulos recebem chaves PIO.UI.* resolvidas pelo capítulo. Números 1–5 são glifos. -->
+    <ui:VisualElement name="belt-root" picking-mode="Ignore" class="sa-root pio-belt">
+
+        <!-- 0–12 s: mapa simples Sol–Marte–cinturão–Júpiter (diagrama, sem escala). -->
+        <ui:VisualElement name="map" picking-mode="Ignore" class="pio-belt__map">
+            <ui:VisualElement class="pio-belt__orbit pio-belt__orbit--jupiter" picking-mode="Ignore" />
+            <ui:VisualElement class="pio-belt__orbit pio-belt__orbit--belt" picking-mode="Ignore" />
+            <ui:VisualElement class="pio-belt__orbit pio-belt__orbit--mars" picking-mode="Ignore" />
+            <ui:VisualElement class="pio-belt__sun" picking-mode="Ignore" />
+            <ui:VisualElement class="pio-belt__planet pio-belt__planet--mars" picking-mode="Ignore" />
+            <ui:VisualElement class="pio-belt__planet pio-belt__planet--jupiter" picking-mode="Ignore" />
+            <ui:VisualElement class="pio-belt__map-probe" picking-mode="Ignore" />
+        </ui:VisualElement>
+
+        <!-- 12–27 s: fantasia em moldura de caderno; selo permanente. -->
+        <ui:VisualElement name="fantasy" picking-mode="Ignore" class="pio-belt__fantasy">
+            <ui:VisualElement name="arena" picking-mode="Ignore" class="pio-belt__arena">
+                <ui:VisualElement name="rock-0" class="pio-belt__rock" picking-mode="Ignore" />
+                <ui:VisualElement name="rock-1" class="pio-belt__rock pio-belt__rock--b" picking-mode="Ignore" />
+                <ui:VisualElement name="rock-2" class="pio-belt__rock pio-belt__rock--c" picking-mode="Ignore" />
+                <ui:VisualElement name="probe" class="pio-belt__probe" picking-mode="Ignore">
+                    <ui:VisualElement class="pio-belt__probe-dish" picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="sa-seal-imagination pio-belt__seal" picking-mode="Ignore">
+                <ui:Label name="seal-label" class="sa-stamp" />
+            </ui:VisualElement>
+            <ui:VisualElement class="sa-plate pio-belt__move" picking-mode="Ignore">
+                <ui:VisualElement name="arrow" class="pio-belt__arrow" picking-mode="Ignore" />
+                <ui:Label name="move-label" class="sa-hold__label" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- 40–58 s: instrumento com cinco registros grandes, todos visíveis; foco automático. -->
+        <ui:VisualElement name="record" picking-mode="Ignore" class="sa-instrument pio-belt__record">
+            <ui:Button name="record-button" class="pio-belt__slots">
+                <ui:VisualElement name="slot-0" class="pio-belt__slot" picking-mode="Ignore"><ui:Label text="1" class="pio-belt__slot-number" /></ui:VisualElement>
+                <ui:VisualElement name="slot-1" class="pio-belt__slot" picking-mode="Ignore"><ui:Label text="2" class="pio-belt__slot-number" /></ui:VisualElement>
+                <ui:VisualElement name="slot-2" class="pio-belt__slot" picking-mode="Ignore"><ui:Label text="3" class="pio-belt__slot-number" /></ui:VisualElement>
+                <ui:VisualElement name="slot-3" class="pio-belt__slot" picking-mode="Ignore"><ui:Label text="4" class="pio-belt__slot-number" /></ui:VisualElement>
+                <ui:VisualElement name="slot-4" class="pio-belt__slot" picking-mode="Ignore"><ui:Label text="5" class="pio-belt__slot-number" /></ui:VisualElement>
+            </ui:Button>
+            <ui:VisualElement name="hold" class="sa-plate sa-hold pio-belt__hold" picking-mode="Ignore">
+                <ui:VisualElement class="sa-keycap" picking-mode="Ignore"><ui:Label text="E" class="sa-keycap__glyph" /></ui:VisualElement>
+                <ui:VisualElement class="sa-hold__body" picking-mode="Ignore">
+                    <ui:Label name="dust-label" class="sa-hold__label" />
+                    <ui:VisualElement class="sa-progress" picking-mode="Ignore"><ui:VisualElement name="progress-fill" class="sa-progress__fill" /></ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="help" class="pio-belt__help">
+                <ui:Button name="help-button" class="pio-belt__help-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
