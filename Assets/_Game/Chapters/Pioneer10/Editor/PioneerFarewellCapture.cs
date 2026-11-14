@@ -17,7 +17,7 @@ namespace Abandoned.SpaceApps.EditorTools
     /// <c>Docs/Art/Pioneer10_Farewell/&lt;estado&gt;_&lt;L&gt;x&lt;A&gt;.png</c>, nas três resoluções do UI_SPEC (1280×720,
     /// 960×600 e 1024×768 com a classe <c>sa-layout--narrow</c>). Além das imagens grava duas auditorias em QA/PIO-012:
     /// <c>contrast-audit.txt</c> (WCAG medido nos PIXELS renderizados: 4,5:1 para texto, 3:1 para contornos) e
-    /// <c>layout-audit.txt</c> (elementos dentro do quadro). Textos aparecem como CHAVES (o resolvedor é da UI-004).
+    /// <c>layout-audit.txt</c> (elementos dentro do quadro). Os textos são os PT dos dados do capítulo (o resolvedor de idioma é da UI-004).
     /// Menu: Abandoned Space Apps → PIO-012 → Capturar painel da despedida.
     /// </summary>
     public static class PioneerFarewellCapture
@@ -141,7 +141,16 @@ namespace Abandoned.SpaceApps.EditorTools
             }
         }
 
-        static string Key(string key) => key;
+        static PioneerData texts;
+
+        /// <summary>Texto PT dos dados do capítulo (PIO-013), para a prévia mostrar o memorial em duas linhas de verdade.</summary>
+        static string Key(string key)
+        {
+            if (texts == null)
+                texts = AssetDatabase.LoadAssetAtPath<PioneerData>(PioneerDataBuilder.DataAssetPath);
+            var value = texts != null ? texts.GetText(key, PioneerData.Portuguese) : null;
+            return string.IsNullOrEmpty(value) ? key : value;
+        }
 
         static void StartNext()
         {
