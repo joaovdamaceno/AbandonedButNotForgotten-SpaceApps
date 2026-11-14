@@ -32,7 +32,8 @@ namespace Abandoned.SpaceApps
             current = Remaining;
         }
 
-        public void Started() => current = Remaining;
+        /// <summary>Começou um hold. <paramref name="candidateHoldSeconds"/> é a duração realmente pedida ao serviço, quando conhecida.</summary>
+        public void Started(float? candidateHoldSeconds = null) => current = candidateHoldSeconds.HasValue ? Mathf.Max(0.01f, candidateHoldSeconds.Value) : Remaining;
 
         public void Progress(float progress01) => Work = Mathf.Min(total, banked + progress01 * current);
 
