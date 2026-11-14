@@ -552,6 +552,79 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367336632}
   m_Mesh: {fileID: 4300000, guid: 89dcc04303fefba4ab03cd986d1ca37e, type: 2}
+--- !u!1001 &479463837
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 807110335}
+    m_Modifications:
+    - target: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250742838304706824, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+      propertyPath: m_Name
+      value: ImagingPanel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+--- !u!114 &479463838 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3286788791866013297, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+  m_PrefabInstance: {fileID: 479463837}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d425096900b2b4429d04f510ef86096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.ImagingPanelView
+--- !u!4 &479463839 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
+  m_PrefabInstance: {fileID: 479463837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &489640736
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +782,86 @@ Transform:
   - {fileID: 1595703806}
   - {fileID: 207792521}
   m_Father: {fileID: 2134653268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &627316117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 627316118}
+  - component: {fileID: 627316119}
+  m_Layer: 0
+  m_Name: PioneerImaging
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &627316118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627316117}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 807110335}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &627316119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627316117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1a3de4d06461648b91f2a78bfe2d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerImaging
+  sequence: {fileID: 11400000, guid: a3bc7632814478549942d957a96a692b, type: 2}
+  presentation: {fileID: 219729566}
+  panel: {fileID: 479463838}
+--- !u!1 &807110334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807110335}
+  m_Layer: 0
+  m_Name: '[R5] Pioneer Imaging'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &807110335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807110334}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 479463839}
+  - {fileID: 627316118}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &836727904
 GameObject:
@@ -1881,3 +2034,4 @@ SceneRoots:
   - {fileID: 489640737}
   - {fileID: 2134653268}
   - {fileID: 1156950239}
+  - {fileID: 807110335}
