@@ -30,6 +30,7 @@ Cada anchor é registrado como rig no `CameraDirector` com o próprio ID. Um `Sh
 | --- | --- | --- |
 | `PIO.Launch.Reveal` | Launch | PIO01.A · contorno do refletor em contraluz fria |
 | `PIO.Launch.Pad` | Launch | PIO01.B · Atlas-Centaur à noite (silhueta da PIO-004 no `LaunchSite/AtlasSocket`) |
+| `PIO.Launch.Ellipse` | Launch | PIO01.C · gráfico Terra–Lua (PIO-004 no `DeepSpace/LaunchDiagramSocket`) |
 | `PIO.Launch` ● | Launch | PIO01.D · sonda livre, antena e RTGs (primeiro hold) |
 | `PIO.Belt` ● | Belt | Plano longo quase vazio: sonda pequena no cinturão real |
 | `PIO.JupiterApproach` ● | JupiterApproach | PIO03.B · Júpiter em ~2/3 do quadro, sonda no terço inferior |
@@ -47,6 +48,22 @@ A sonda é `Regions/DeepSpace/Probe/ProbeSpin`: eixo Z local = eixo da antena = 
 ### Perfil leve
 
 Uma câmera, sem pós-processamento (nenhum SSAO, DOF ou motion blur), sem MSAA/HDR; duas luzes direcionais sem sombra; materiais URP Lit/Unlit sem reflexo de ambiente; ambiente plano escuro e sem skybox. Medições estimadas da prévia em `Docs/Art/Pioneer10_Stage/STAGE_STATS.md` (não substituem o profiler da build Web).
+
+## Lançamento (PIO-004)
+
+| Arquivo | Papel |
+| --- | --- |
+| `Sequences/PIO_Launch.asset` | 40 s num único relógio: PIO01.A refletor (0–7), B Atlas noturno (7–17, ignição 9 s, subida a partir de 11,5 s), C gráfico Terra–Lua (17–26), D sonda livre e RTGs (26–40, hold em 32,5 s). Legendas PIO.01.01–05 nas janelas do roteiro |
+| `Art/LaunchSilhouette.prefab` | Atlas-Centaur em silhueta (provisório, ~38 m), plataforma em quatro peças, chama em quads aditivos, luz da chama sem sombra, fumaça ≤ 80 partículas |
+| `Runtime/PioneerLaunchActivity.cs` | Conduz o estado: pendura silhueta/gráfico/brilhos nos sockets do palco, abre o hold de 3 s do RTG, segura a sequência até concluir, limpa tudo ao sair e emite `Completed` uma vez |
+| `Editor/PioneerLaunchBuilder.cs` | Builder CORE-006 `pioneer10.stage.launch` (raiz `[R5] Pioneer Launch`, roda depois de `pioneer10.stage`) |
+| `Editor/PioneerLaunchCapture.cs` | Prévia por instantes da sequência em `Docs/Art/Pioneer10_Launch/` (menu PIO-004 → Capturar lançamento) |
+
+**Uso pelo controlador (PIO-014):** `activity.Initialize(sequenceDirector, interactionService, inputRouter, sessionClock)`, `Completed += () => chapterDirector.CompleteStep("PIO.Launch")`, `Begin(skippable)`; `Cancel()` na mudança de estado pelo shell. O palco segue a sequência sozinho (`PioneerPresentation.BindSequenceDirector`): cada plano compõe a região e a luz do anchor do seu rig.
+
+**Hold do RTG:** o cartão abre o contexto `Panel` com o candidato `PIO.Launch.Rtg` (texto `PIO.UI.rtg`). O E mantido desde antes do cartão é ignorado até ser solto (InputRouter); soltar pausa sem perder o progresso; a pausa do shell congela tudo. Retorno visual: calor nos RTGs (laranja) → pulsos pela haste → eletricidade no compartimento (ciano). Os cartões de título, data (“2 MAR 1972 · FLÓRIDA / 3 MAR · UTC”) e linhas de antena/RTG são eventos da sequência (`PIO.Launch.Title`, `.DateCard`, `.Callouts`) para a camada de UI; os textos vêm da PIO-001/UI-004.
+
+**Sem tremor:** não há vibração de câmera em nenhum modo (a vibração do roteiro é opcional); o movimento é dolly curto e o acompanhamento do foguete.
 
 ### Movimento reduzido e pausa
 

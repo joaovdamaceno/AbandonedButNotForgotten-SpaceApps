@@ -103,6 +103,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("Anchor composto ao abrir a cena isolada, se ninguém compôs antes (prévia/desenvolvimento).")] string startAnchorId = "PIO.Launch";
 
         IActiveTimeSource timeSource;
+        SequenceDirector boundDirector;
         PioneerStageAnchor current;
         bool reducedMotion;
         bool registered;
@@ -162,6 +163,70 @@ namespace Abandoned.SpaceApps
             }
 
             return false;
+        }
+
+        /// <summary>Raiz da região (DeepSpace, LaunchSite, GroundStation): onde as tarefas penduram seus sockets.</summary>
+        public Transform RegionRoot(PioneerStageRegion region)
+        {
+            var index = (int)region;
+            return regionRoots != null && index >= 0 && index < regionRoots.Length && regionRoots[index] != null
+                ? regionRoots[index].transform
+                : null;
+        }
+
+        /// <summary>
+        /// Segue uma sequência: a cada plano cujo rig é um anchor do palco, compõe região, luz e Júpiter desse anchor.
+        /// A câmera continua com a sequência (ShowAnchor não a move enquanto a sequência detém o controle).
+        /// </summary>
+        public void BindSequenceDirector(SequenceDirector director)
+        {
+            if (boundDirector == director)
+                return;
+
+            UnbindSequenceDirector();
+            boundDirector = director;
+            if (boundDirector != null)
+                boundDirector.ShotStarted += OnShotStarted;
+        }
+
+        public void UnbindSequenceDirector()
+        {
+            if (boundDirector != null)
+                boundDirector.ShotStarted -= OnShotStarted;
+            boundDirector = null;
+        }
+
+        /// <summary>Compõe o palco para o plano da sequência que está no instante (prévia de Editor, sem eventos).</summary>
+        public bool ShowShotAt(SequenceDefinition sequence, float timeSeconds)
+        {
+            if (sequence == null)
+                return false;
+
+            var start = 0f;
+            foreach (var shot in sequence.Shots)
+            {
+                if (timeSeconds < start + shot.DurationSeconds || shot == sequence.Shots[sequence.Shots.Count - 1])
+                    return ShowAnchor(shot.RigId);
+                start += shot.DurationSeconds;
+            }
+
+            return false;
+        }
+
+        void OnShotStarted(string shotId)
+        {
+            var sequence = boundDirector != null ? boundDirector.Current : null;
+            if (sequence == null)
+                return;
+
+            foreach (var shot in sequence.Shots)
+            {
+                if (shot.ShotId == shotId)
+                {
+                    ShowAnchor(shot.RigId); // rig que não é anchor (ex.: "world") é ignorado
+                    return;
+                }
+            }
         }
 
         /// <summary>Viewport reservado ao quadro de UI do anchor (ex.: ImagingPanel da PIO-006). Falso se não houver.</summary>
@@ -313,7 +378,11 @@ namespace Abandoned.SpaceApps
 
         void OnEnable() => RegisterWithCameraDirector();
 
-        void OnDisable() => UnregisterFromCameraDirector();
+        void OnDisable()
+        {
+            UnregisterFromCameraDirector();
+            UnbindSequenceDirector();
+        }
 
         /// <summary>Registra cada anchor como rig e os alvos (sonda, sockets, Júpiter, Aldebaran) no CameraDirector. Idempotente.</summary>
         public void RegisterWithCameraDirector()
