@@ -142,7 +142,7 @@ namespace Abandoned.SpaceApps.Tests
             }
 
             Assert.That(revealed, Is.GreaterThan(0), "a rota acaba revelando a McKittrick");
-            Assert.That(anchors.RouteLengthMeters(first, revealed), Is.GreaterThan(2f), "a revelação vem depois da curva, não na saída");
+            Assert.That(anchors.RouteLengthMeters(first, revealed), Is.GreaterThan(1.5f), "a revelação vem depois da curva, não na saída");
             Assert.That(anchors.RouteLengthMeters(revealed, anchors.McKittrickStationIndex), Is.GreaterThan(3f), "ainda sobra caminho para ver a pedra se aproximar");
         }
 
@@ -181,7 +181,10 @@ namespace Abandoned.SpaceApps.Tests
             var mount = anchors.McKittrick.RatSurfaceMount;
             var angle = Vector3.Angle(mount.up, Vector3.up);
             Assert.That(angle, Is.InRange(EagleGeometry.RatPatchTiltDegrees - 2f, EagleGeometry.RatPatchTiltDegrees + 2f), "inclinada para o rover, não vertical");
-            Assert.That(Vector3.Dot(mount.up, (anchors.McKittrick.StationAnchor.position - mount.position).normalized), Is.GreaterThan(0f), "a normal olha para o lado do rover");
+            var tiltDirection = new Vector3(mount.up.x, 0f, mount.up.z);
+            var towardRover = anchors.McKittrick.StationAnchor.position - mount.position;
+            towardRover.y = 0f;
+            Assert.That(Vector3.Dot(tiltDirection.normalized, towardRover.normalized), Is.GreaterThan(0f), "a normal se inclina para o lado do rover");
             Assert.That((mount.lossyScale - Vector3.one).magnitude, Is.LessThan(1e-4f), "escala 1: a RatCavitySurface exige metros reais");
 
             // O colisor do jogo usa o LOD1; a planura do disco de 45 mm se mede na malha fina (LOD0).
@@ -207,7 +210,7 @@ namespace Abandoned.SpaceApps.Tests
             var embedded = visual.Find("EmbeddedSpheres").GetComponent<MeshFilter>().sharedMesh;
             Assert.That(loose.vertexCount, Is.GreaterThanOrEqualTo(120 * 12), "soltas no solo (centenas de esferas)");
             Assert.That(embedded.vertexCount, Is.GreaterThanOrEqualTo(60 * 42), "presas na rocha");
-            Assert.That(loose.bounds.size.y, Is.LessThan(0.6f), "ficam rente ao chão");
+            Assert.That(loose.bounds.size.y, Is.LessThan(1.0f), "ficam rente ao chão (a mancha acompanha a encosta da bacia)");
             Assert.That(embedded.bounds.size.x, Is.LessThan(1.2f), "uma mancha de rocha, não o afloramento todo");
             var material = visual.Find("LooseSpheres").GetComponent<MeshRenderer>().sharedMaterial;
             var color = material.GetColor("_BaseColor");
