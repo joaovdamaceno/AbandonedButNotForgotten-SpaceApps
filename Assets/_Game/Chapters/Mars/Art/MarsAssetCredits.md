@@ -18,3 +18,7 @@ Registro do capítulo de Marte. A fonte única de direitos do projeto continua s
 | FBX de runtime | SHA-256 `0030df29420652e0ef2a10d0477d2c6306584bca4735792d0ba6aa19a0f743e1`; hashes das texturas em `Rover/conversion.json` |
 | Licença | Produção própria da equipe para este projeto educativo; Blender é GPL, mas os arquivos exportados não herdam a licença do programa (IMPORT_RULES §8). |
 | Crédito sugerido | “Modelo 3D do rover MER: equipe Abandoned, But Not Forgotten (reconstrução educativa)” |
+
+## M-LANDING · Conjunto de pouso (MAR-014)
+
+Gerado por código próprio (`Art/Landing/Editor`): cápsula, escudo, paraquedas, módulo, airbags, texturas procedurais. Sem imagens, modelos ou logotipos externos. Fatos: NASA GISS Mars24 (datas), NASA/JPL (sequência de pouso e desembarque). Licença: produção própria do projeto.
