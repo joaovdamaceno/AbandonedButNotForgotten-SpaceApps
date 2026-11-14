@@ -1,0 +1,43 @@
+.launch-root { flex-grow: 1; background-color: #080C13; color: #ECE9E1; padding: 24px 48px 28px; }
+.launch-header { height: 40px; flex-direction: row; align-items: center; justify-content: space-between; }
+.launch-toolbar { flex-direction: row; }
+.launch-tool { background-color: transparent; color: #B7B8B8; border-width: 0; font-size: 15px; min-width: 62px; height: 36px; margin-left: 8px; }
+.launch-tool:hover, .launch-tool:focus { color: #FFD166; background-color: #17202B; }
+.launch-muted { color: #A8B0BB; }
+.launch-accent { color: #EDBF70; }
+.launch-entry { flex-grow: 1; flex-direction: row; align-items: center; justify-content: space-between; }
+.launch-entry-copy { width: 52%; max-width: 600px; }
+.launch-entry-title { font-size: 54px; -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf"); color: #EEE9DD; white-space: normal; margin: 20px 0 24px; padding: 0; }
+.launch-description { font-size: 22px; white-space: normal; color: #C6CBD2; padding: 0; margin: 0 0 16px; }
+.launch-entry-date { margin-top: 12px; margin-bottom: 28px; }
+.launch-entry-graphic { width: 42%; height: 380px; }
+.launch-controls { font-size: 16px; color: #9BA7B7; white-space: normal; margin-top: 12px; padding: 0; }
+.launch-primary { min-height: 54px; background-color: #EDBF70; color: #121822; font-size: 20px; -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf"); border-width: 2px; border-color: #EDBF70; border-radius: 4px; padding: 10px 16px; margin: 0; white-space: normal; }
+.launch-primary:hover, .launch-primary:focus { background-color: #FFE0A5; border-color: #FFE0A5; }
+.launch-primary:disabled { color: #7C8793; background-color: #18202A; border-color: #344150; }
+.launch-secondary { min-height: 40px; margin-top: 8px; background-color: transparent; border-width: 1px; border-color: #445265; border-radius: 3px; color: #C6CBD2; padding: 6px 12px; font-size: 17px; }
+.launch-secondary:hover, .launch-secondary:focus { border-color: #EDBF70; color: #EDBF70; }
+.launch-flight { flex-grow: 1; padding-top: 30px; }
+.launch-identification { height: 100px; }
+.launch-mission-name { font-size: 34px; -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf"); padding: 0; margin-bottom: 6px; }
+.launch-phase { margin-top: 12px; }
+.launch-body { flex-direction: row; flex-grow: 1; min-height: 270px; }
+.launch-map-column { flex-grow: 1; margin-right: 38px; }
+.launch-trajectory { flex-grow: 1; min-height: 240px; }
+.launch-map-legend { flex-direction: row; justify-content: space-between; padding: 4px 10px; }
+.launch-map-legend .sa-stamp { font-size: 12px; letter-spacing: 0; }
+.launch-command { width: 294px; flex-shrink: 0; align-items: stretch; justify-content: center; }
+.launch-command-title { white-space: normal; font-size: 25px; margin-top: 10px; padding: 0; }
+.launch-ring { width: 104px; height: 104px; align-self: center; align-items: center; justify-content: center; margin: 12px 0 14px; }
+.launch-key { font-size: 35px; -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf"); color: #EDBF70; padding: 0; }
+.launch-command-status { color: #AFC8B6; font-size: 17px; white-space: normal; margin-top: 10px; padding: 0; }
+.launch-subtitle-plate { align-self: center; max-width: 1000px; min-height: 62px; margin-top: 22px; padding: 9px 20px; background-color: rgba(8,12,19,0.96); border-top-width: 1px; border-top-color: #344150; }
+.launch-subtitle { color: #F2EFE7; font-size: 24px; white-space: normal; -unity-text-align: middle-center; margin: 0; padding: 0; }
+.launch-overlay { position: absolute; left: 0; right: 0; top: 0; bottom: 0; align-items: center; justify-content: center; background-color: rgba(5,8,13,0.96); }
+.launch-pause-card { width: 460px; padding: 34px; background-color: #101923; border-width: 1px; border-color: #455367; border-radius: 5px; }
+.launch-pause-title { font-size: 36px; color: #EEE9DD; margin: 0 0 20px; padding: 0; }
+.sa-layout--narrow .launch-root { padding-left: 28px; padding-right: 28px; }
+.sa-layout--narrow .launch-entry-title { font-size: 42px; }
+.sa-layout--narrow .launch-command { width: 270px; }
+.sa-layout--narrow .launch-map-column { margin-right: 20px; }
+.sa-layout--narrow .launch-subtitle { font-size: 22px; }
