@@ -11,8 +11,8 @@ namespace Abandoned.SpaceApps.Tests
 {
     /// <summary>
     /// MAR-001: fluxo das 32 etapas de Marte com os assets reais (MarsChapter.asset e MarsSubtitles.json).
-    /// Cobre ordem sem salto, eventos inválidos/repetidos, legenda de descoberta só depois da medição, leitura mínima,
-    /// pausa, reinício e validação dos dados. Arquivo previsto pela MAR-010, que pode ampliar estes casos.
+    /// Cobre ordem sem salto, eventos inválidos/repetidos, legenda de descoberta só depois da medição, uma legenda por
+    /// vez, leitura mínima, pausa, reinício e validação dos dados. Arquivo previsto pela MAR-010, que pode ampliar estes casos.
     /// </summary>
     public class MarsFlowTests
     {
@@ -232,6 +232,33 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void ResultCaptionsWaitTheirTurnOneAtATime()
+        {
+            StartRun();
+            PlayUntil("M13");
+            flow.Raise(MarsChapterFlow.Events.ApxsMeasured);
+            flow.Raise(MarsChapterFlow.Events.MossbauerMeasured); // Mössbauer logo depois do APXS
+            Assert.That(openCues.Count == 1 && openCues.Contains("MAR.C16"), Is.True, "C17 espera C16");
+            Advance(5.9f);
+            Assert.That(openCues.Contains("MAR.C16"), Is.True, "C16 lida por inteiro");
+            Advance(0.2f);
+            Assert.That(openCues.Count == 1 && openCues.Contains("MAR.C17"), Is.True, "C17 abre quando C16 sai");
+            Assert.That(log.IndexOf("cue-:MAR.C16"), Is.LessThan(log.IndexOf("cue+:MAR.C17")));
+
+            flow.Raise(MarsChapterFlow.Events.CompositionDone);
+            Assert.That(director.CurrentStepId, Is.EqualTo("M13"), "espera a leitura de C17");
+            Advance(6.1f);
+            Assert.That(director.CurrentStepId, Is.EqualTo("M14"));
+
+            PlayUntil("M21");
+            Advance(8f); // C27 (6–14 s) na tela
+            flow.Raise(MarsChapterFlow.Events.StormConserved);
+            Assert.That(openCues.Count == 1 && openCues.Contains("MAR.C27"), Is.True, "C28 espera C27");
+            Advance(6.1f);
+            Assert.That(openCues.Count == 1 && openCues.Contains("MAR.C28"), Is.True, "C28 abre quando C27 sai");
+        }
+
+        [Test]
         public void StepClockCueHoldsCompletionUntilItEnds()
         {
             StartRun();
@@ -387,6 +414,7 @@ namespace Abandoned.SpaceApps.Tests
             {
                 log.Add("cue+:" + c.CueId);
                 Assert.That(openCues.Add(c.CueId), Is.True, "abriu duas vezes: " + c.CueId);
+                Assert.That(openCues.Count, Is.EqualTo(1), "duas legendas de etapa na tela: " + string.Join(", ", openCues));
             };
             flow.CueExited += c =>
             {
