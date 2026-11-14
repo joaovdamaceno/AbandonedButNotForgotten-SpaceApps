@@ -1,0 +1,237 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d343dc185c2b347b772b0bdcce69c8, type: 3}
+  m_Name: PioneerCueMap
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerCueMap
+  cancelFadeSeconds: 0.5
+  states:
+  - stateId: PIO.Launch
+    musicCueId: MUS_PIO_PARTIDA
+    fadeSeconds: 1.75
+    note: "VIA: pulso e crescimento; no espa\xE7o s\xF3 m\xFAsica."
+  - stateId: PIO.Belt
+    musicCueId: MUS_PIO_CUR
+    fadeSeconds: 1.75
+    note: "CUR, varia\xE7\xE3o l\xFAdica na fantasia."
+  - stateId: PIO.JupiterApproach
+    musicCueId: MUS_PIO_CUR
+    fadeSeconds: 1.75
+    note: CUR cresce com a escala; mesmo cue do estado anterior, sem reiniciar.
+  - stateId: PIO.Imaging
+    musicCueId: MUS_PIO_CUR
+    fadeSeconds: 1.75
+    note: 
+  - stateId: PIO.Plaque
+    musicCueId: MUS_PIO_DISTANCIA
+    fadeSeconds: 1.75
+    note: "Delicada; o pulso sai em 38\u201347 s."
+  - stateId: PIO.Outbound
+    musicCueId: MUS_PIO_DISTANCIA
+    fadeSeconds: 1.75
+    note: 
+  - stateId: PIO.Listening
+    musicCueId: MUS_PIO_ESCUTA
+    fadeSeconds: 1.75
+    note: "LEG: piano e cordas com sil\xEAncio estruturado."
+  - stateId: PIO.Farewell
+    musicCueId: MUS_PIO_ESCUTA
+    fadeSeconds: 1.75
+    note: O tema resolve; nenhum efeito externo.
+  events:
+  - eventId: PIO.Launch.Ignition
+    action: 0
+    cueId: SFX_PIO_LAUNCH
+    level: 1
+    seconds: 0
+    proposedEvent: 0
+    note: "SFX de lan\xE7amento na Terra; no espa\xE7o s\xF3 m\xFAsica."
+  - eventId: PIO.Belt.Reality
+    action: 1
+    cueId: 
+    level: 0.15
+    seconds: 1.5
+    proposedEvent: 0
+    note: "A m\xFAsica quase silencia na virada (1,5 s). O n\xEDvel 0,15 \xE9 escolha desta tarefa para \"quase silencia\"; volta a 1 ao trocar de estado."
+  - eventId: PIO.Belt.Recorded
+    action: 0
+    cueId: SFX_PIO_DETECTOR_TICK
+    level: 1
+    seconds: 0
+    proposedEvent: 1
+    note: "Tique de detector por registro. Hoje \xE9 o evento C# BeltInvestigation.Recorded; PIO-014 o liga a este ID."
+  - eventId: PIO.Imaging.Sweep
+    action: 0
+    cueId: SFX_SCAN
+    level: 1
+    seconds: 0
+    proposedEvent: 0
+    note: Varredura em loop modulado, limitada a 40 s.
+  - eventId: PIO.Imaging.Gate6
+    action: 0
+    cueId: SFX_PIO_RADIATION_NOISE
+    level: 1
+    seconds: 0
+    proposedEvent: 0
+    note: "Ru\xEDdo de radia\xE7\xE3o curto e de baixa amplitude, s\xF3 no quadro do instrumento."
+  - eventId: PIO.Imaging.GateRecovery
+    action: 0
+    cueId: SFX_CMD_SENT
+    level: 1
+    seconds: 0
+    proposedEvent: 0
+    note: "Envio do comando de recupera\xE7\xE3o."
+  - eventId: PIO.Listening.Tune
+    action: 0
+    cueId: SFX_RADIO_NOISE
+    level: 1
+    seconds: 0
+    proposedEvent: 1
+    note: "Ru\xEDdo de r\xE1dio de banda limitada e dura\xE7\xE3o limitada (12 s); \xE9 interface, n\xE3o som espacial."
+  - eventId: PIO.Listening.Contact1
+    action: 0
+    cueId: SFX_RADIO_RECEIVED
+    level: 1
+    seconds: 0
+    proposedEvent: 1
+    note: Acorde de sinal recebido (1 de 3).
+  - eventId: PIO.Listening.Contact2
+    action: 0
+    cueId: SFX_RADIO_RECEIVED
+    level: 1
+    seconds: 0
+    proposedEvent: 1
+    note: Acorde de sinal recebido (2 de 3).
+  - eventId: PIO.Listening.Contact3
+    action: 0
+    cueId: SFX_RADIO_RECEIVED
+    level: 1
+    seconds: 0
+    proposedEvent: 1
+    note: Acorde de sinal recebido (3 de 3), mais fraco.
+  - eventId: PIO.Listening.Attempt4
+    action: 2
+    cueId: 
+    level: 1
+    seconds: 2.5
+    proposedEvent: 1
+    note: "Tentativa 4 sem resposta: sil\xEAncio real de 2,5 s, sem hiss em loop."
+  cues:
+  - cueId: MUS_PIO_PARTIDA
+    kind: 0
+    family: VIA
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 0
+    idConfirmedInCueSheet: 1
+    licenseStatus: candidate
+    creditId: 
+    clip: {fileID: 0}
+  - cueId: MUS_PIO_CUR
+    kind: 0
+    family: CUR
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 0
+    idConfirmedInCueSheet: 1
+    licenseStatus: candidate
+    creditId: 
+    clip: {fileID: 0}
+  - cueId: MUS_PIO_DISTANCIA
+    kind: 0
+    family: VIA/LEG
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 0
+    idConfirmedInCueSheet: 1
+    licenseStatus: candidate
+    creditId: 
+    clip: {fileID: 0}
+  - cueId: MUS_PIO_ESCUTA
+    kind: 0
+    family: LEG
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 0
+    idConfirmedInCueSheet: 1
+    licenseStatus: candidate
+    creditId: 
+    clip: {fileID: 0}
+  - cueId: SFX_PIO_LAUNCH
+    kind: 1
+    family: 
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 6
+    idConfirmedInCueSheet: 0
+    licenseStatus: pending
+    creditId: 
+    clip: {fileID: 0}
+  - cueId: SFX_SCAN
+    kind: 1
+    family: 
+    interfaceSound: 1
+    loop: 1
+    maxSeconds: 40
+    idConfirmedInCueSheet: 1
+    licenseStatus: pending
+    creditId: 
+    clip: {fileID: 0}
+  - cueId: SFX_PIO_RADIATION_NOISE
+    kind: 1
+    family: 
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 2
+    idConfirmedInCueSheet: 0
+    licenseStatus: pending
+    creditId: 
+    clip: {fileID: 0}
+  - cueId: SFX_CMD_SENT
+    kind: 1
+    family: 
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 3
+    idConfirmedInCueSheet: 1
+    licenseStatus: pending
+    creditId: 
+    clip: {fileID: 0}
+  - cueId: SFX_PIO_DETECTOR_TICK
+    kind: 1
+    family: 
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 1
+    idConfirmedInCueSheet: 0
+    licenseStatus: pending
+    creditId: 
+    clip: {fileID: 0}
+  - cueId: SFX_RADIO_RECEIVED
+    kind: 1
+    family: 
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 4
+    idConfirmedInCueSheet: 0
+    licenseStatus: pending
+    creditId: 
+    clip: {fileID: 0}
+  - cueId: SFX_RADIO_NOISE
+    kind: 2
+    family: 
+    interfaceSound: 1
+    loop: 1
+    maxSeconds: 12
+    idConfirmedInCueSheet: 0
+    licenseStatus: pending
+    creditId: 
+    clip: {fileID: 0}
