@@ -30,7 +30,7 @@ Uma primeira versão do LOD1 agrupava só por posição e fundia a frente e o ve
 
 | Verificação | Resultado |
 | --- | --- |
-| Suíte EditMode completa | **543/543**, 0 falhas (`editmode.xml`); `PioneerProbeTests` passou a 14 testes (4 novos: origem pelo SHA-1 de blob, LODGroup/LOD1, compressão de malha, estatísticas) |
+| Suíte EditMode completa (base `develop` 31fbfb3 mesclada) | **563/563**, 0 falhas (`editmode.xml`; 543/543 antes de mesclar o develop); `PioneerProbeTests` passou a 14 testes (4 novos: origem pelo SHA-1 de blob, LODGroup/LOD1, compressão de malha, estatísticas) |
 | Builder `pioneer10.probe` reexecutado | arquivos idênticos |
 | Build WebGL da cena de prévia (cache limpo) | sucesso: 17 arquivos, 14,34 MiB, shaders 1/1, hashes conferidos |
 
