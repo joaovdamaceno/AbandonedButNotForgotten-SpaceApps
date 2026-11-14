@@ -495,7 +495,7 @@ namespace Abandoned.SpaceApps.EditorTools
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 40f, Jupiter = true,
                     Position = approachCamera, LookAt = OffsetLook(approachCamera, JupiterPosition, -7f, 4f) },
                 new AnchorSpec { Id = "PIO.JupiterApproach.Instrument", State = "PIO.JupiterApproach", Function = "PIO03.C · close do fotopolarímetro, voltado a Júpiter (atrás da câmera)",
-                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 38f, Jupiter = true,
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 38f, Jupiter = true, SpinScale = 0f,
                     AlignSocket = "Photopolarimeter", AlignTowards = PioneerPresentation.JupiterTargetId,
                     Position = instrumentCamera, LookAt = instrument + Vector3.forward * 0.1f },
                 new AnchorSpec { Id = "PIO.Imaging", State = "PIO.Imaging", Function = "PIO04 · Júpiter e a sonda à esquerda (fotopolarímetro voltado ao planeta); quadro de UI à direita",
