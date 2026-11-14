@@ -7,5 +7,7 @@ namespace Abandoned.SpaceApps
         LowerHalf = 1,
         Separator = 2,
         Full = 3,
+        LeftHalf = 4,
+        RightHalf = 5,
     }
 }
