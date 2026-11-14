@@ -300,3 +300,33 @@ O contorno **correto** da peça selecionada pulsa devagar (1,4 s de período; co
 **Limitações.** O match cut depende da silhueta da antena da PIO-011 (`DishSocket`) e do alinhamento dos rigs, que não foram verificados visualmente em Play Mode: o que os testes provam é a estrutura (rigs, durações, marcos, ordem). O gráfico opcional de atlas (4 s) não foi feito. Os textos aparecem como chaves até a UI-004. Frames pretos intencionais (30–38 s) e a ausência de caixa de legenda vazia dependem do apresentador global (UI-004). Play Mode e navegador não foram executados.
 
 **Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.stage.farewell`.
+
+## Rota completa e reset (PIO-014)
+
+| Arquivo | Papel |
+| --- | --- |
+| `Runtime/PioneerChapterController.cs` | Liga os oito estados ao contrato global (`IChapterDirector`): entra no estado quando a etapa é anunciada, inicia a atividade, entrega a etapa quando a ATIVIDADE conclui, cancela e zera tudo na troca, no reinício e na destruição da cena, e mede o tempo ativo por estado |
+| `Data/PioneerChapter.asset` | `ChapterDefinition` `pioneer10`: cena `Pioneer10`, 375 s de referência, oito etapas em fila (`PIO.Launch` → … → `PIO.Farewell`, a última terminal), textos do dossiê `slot.pioneer10.*` |
+| `Sequences/PIO_JupiterApproach.asset` | 27 s de cinema (PIO03.A–C) para o estado 3, **que nenhuma outra tarefa montava**; legendas PIO.03.01–03 |
+| `Editor/PioneerChapterBuilder.cs` | Builder CORE-006 `pioneer10.zchapter` (raiz `[R5] Pioneer Chapter`; o `z` o põe depois do palco e de todas as atividades): gera o asset do capítulo e a sequência do Júpiter e liga o controlador, a narração (PIO-013) e um `SequenceDirector` |
+| `Tests/PioneerFlowTests.cs` | 19 testes EditMode com os serviços REAIS do Core |
+
+**Rota.** Dossiê → `ChapterDirector.Begin(PioneerChapter)` → cena carregada → R1 chama `controller.Initialize(...)` **antes** da primeira etapa → Launch → Belt → JupiterApproach → Imaging → Plaque → Outbound → Listening → Farewell → `CompleteStep("PIO.Farewell")` (terminal: `FinishChapter`, uma vez, estado Completion) → memorial → **Voltar ao arquivo** (`ReturnToDossier`) ou **Repetir** (`RestartChapter`, recarrega a cena). A ordem vem da tabela de etapas do asset, nunca de um enum. Nenhum cronômetro conclui nada: cada etapa espera a conclusão da atividade, que espera o jogador (E mantido, toque, ajuda). A conclusão do capítulo acontece com o memorial aberto (36 s), então a tela de conclusão pertence ao estado Completion e não conta como tempo ativo.
+
+**Uma fonte de duração e eventos.** Cada estado tem uma sequência no `SequenceDirector` (relógio único, congelado na pausa): câmera, atores, legendas e término vêm dela. O controlador só soma o **tempo ativo** do `SessionClock` por estado (`LastReport`); a duração medida é do **operador** e `PioneerRunReport.CountsAsHumanResult` é sempre falso: resultado humano só vem das sessões da QA-004.
+
+**Reset.** `Teardown()` (chamado ao reinicializar, ao mudar de estado e no `OnDestroy`) cancela a atividade do estado, a narração (legenda, música, efeitos), a recuperação de radiação, solta o contexto de entrada e todos os ouvintes. O E é consumido uma vez por atividade (rearme do Core). Os testes reiniciam em cada um dos oito estados e confirmam: estado volta ao Launch, relatório vazio, nenhuma atividade antiga rodando, nenhum lease antigo, **o mesmo número de GameObjects** e um único `StepEntered` depois do reinício; reiniciar duas vezes seguidas não duplica a conclusão de nenhum estado.
+
+**Uso pela integração (R1/INT-001).**
+- Depois de carregar a cena `Pioneer10` e antes da primeira etapa (no `ChapterStarted`): `controller.Initialize(chapterDirector, sessionClock, inputRouter, interactionService, audioPort, idioma, retornoAoArquivo)`. `audioPort` pode ser nulo (as legendas continuam); sem `retornoAoArquivo`, o controlador usa `ChapterDirector.ReturnToDossier()` quando o diretor é o real e sempre levanta `ReturnToArchiveRequested`.
+- Pausa global: o controlador escuta `ChapterDirector.PausedChanged` sozinho; para outro diretor, chame `controller.SetPaused(bool)`. Depois do primeiro clique que libera o áudio: `controller.Resync()`.
+- **Ligação ao dossiê (NÃO feita aqui, é do shell da R2):** o slot `pioneer10` de `Core/ChapterCatalog.asset` e a tabela `Slots` de `UI/Dossier/Editor/DossierAssetsBuilder.cs` ainda têm `chapter` vazio. Para a pasta abrir o capítulo: apontar `chapter` para `Data/PioneerChapter.asset` (mesmo padrão do `MarsChapter.asset`); os textos já existem em `DossierTexts.json`, então `chapterTexts` pode ficar vazio.
+- **Build Settings (R1):** a cena `Assets/_Game/Chapters/Pioneer10/Scenes/Pioneer10.unity` precisa entrar nas Build Settings; nenhuma cena de prévia deve entrar (um teste confere).
+
+**Prévia fora do pacote.** `Art/Probe/Preview/ProbePreview.unity` e as ferramentas de captura são só de desenvolvimento: a cena do capítulo não as referencia e nenhuma entra nas Build Settings (testes).
+
+**Estado 3 (PIO.JupiterApproach).** O roteiro tem o estado (27 s, PIO.03.01–03, cartão "NOV–DEZ 1973"), mas **nenhuma tarefa do backlog o montava**. Esta tarefa entrega o mínimo para a rota fechar: a sequência `PIO_JupiterApproach` (a abertura do campo de visão de 70° a 44°, plano aberto e corte ao fotopolarímetro) nos anchors da PIO-003, sem interação. **O enquadramento não foi conferido no 3D**, o cartão de data e a animação editorial Terra→sonda→Terra não foram feitos, e o texto/legenda dependem da UI-004.
+
+**Limitações.** A rota foi exercitada por um operador automatizado no EditMode (teclado de verdade, serviços reais do Core, `SceneManager` substituído por um carregador instantâneo); **Play Mode, a cena carregada de verdade pelo `SceneManager`, o navegador e a Build Settings não foram exercitados**. O operador usa o mesmo padrão de E em todos os estados (mantido 3,4 s, solto, toque): isso prova que cada atividade conclui sem penalidade, não que uma pessoa a conclui em 375 s. Evidências (galeria) não são registradas pelo controlador. O áudio real (clipes) continua pendente (AUD-002 liga só o `AudioDirector`).
+
+**Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.zchapter`.
