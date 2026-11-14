@@ -1,0 +1,67 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="../../../UI/Design/SpaceAppsTokens.uss" />
+    <Style src="../../../UI/Design/SpaceAppsComponents.uss" />
+    <Style src="LaunchTelemetry.uss" />
+    <ui:VisualElement name="launch-root" class="sa-root sa-chapter--surveyor launch-root">
+        <ui:VisualElement class="launch-header">
+            <ui:Label name="archive-mark" class="sa-stamp launch-muted" />
+            <ui:VisualElement class="launch-toolbar">
+                <ui:Button name="language-button" class="launch-tool" />
+                <ui:Button name="mute-button" class="launch-tool" />
+                <ui:Button name="pause-button" class="launch-tool" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="entry" class="launch-entry">
+            <ui:VisualElement class="launch-entry-copy">
+                <ui:Label name="entry-kicker" class="sa-stamp launch-accent" />
+                <ui:Label name="entry-title" class="launch-entry-title" />
+                <ui:Label name="entry-description" class="launch-description" />
+                <ui:Label name="entry-date" class="sa-stamp launch-muted launch-entry-date" />
+                <ui:Button name="start-button" class="launch-primary" />
+                <ui:Label name="entry-controls" class="launch-controls" />
+            </ui:VisualElement>
+            <ui:VisualElement name="entry-graphic" class="launch-entry-graphic" picking-mode="Ignore" />
+        </ui:VisualElement>
+        <ui:VisualElement name="flight" class="launch-flight">
+            <ui:VisualElement class="launch-identification">
+                <ui:Label name="mission-name" class="launch-mission-name" />
+                <ui:Label name="mission-date" class="sa-stamp launch-muted" />
+                <ui:Label name="phase" class="sa-stamp launch-accent launch-phase" />
+            </ui:VisualElement>
+            <ui:VisualElement class="launch-body">
+                <ui:VisualElement class="launch-map-column">
+                    <ui:VisualElement name="trajectory" class="launch-trajectory" picking-mode="Ignore" />
+                    <ui:VisualElement class="launch-map-legend">
+                        <ui:Label name="earth-label" class="sa-stamp launch-muted" />
+                        <ui:Label name="map-label" class="sa-stamp launch-muted" />
+                        <ui:Label name="moon-label" class="sa-stamp launch-muted" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="command-panel" class="launch-command">
+                    <ui:Label name="command-kicker" class="sa-stamp launch-accent" />
+                    <ui:Label name="command-title" class="launch-command-title" />
+                    <ui:VisualElement name="hold-ring" class="launch-ring" picking-mode="Ignore">
+                        <ui:Label text="E" class="launch-key" />
+                    </ui:VisualElement>
+                    <ui:Button name="confirm-button" class="launch-primary" />
+                    <ui:Label name="command-status" class="launch-command-status" />
+                    <ui:Label name="command-help" class="launch-controls" />
+                    <ui:Button name="restart-button" class="launch-secondary" />
+                    <ui:Button name="return-button" class="launch-secondary" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="subtitle-plate" class="launch-subtitle-plate" picking-mode="Ignore">
+                <ui:Label name="subtitle" class="launch-subtitle" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="pause-overlay" class="launch-overlay">
+            <ui:VisualElement class="launch-pause-card">
+                <ui:Label name="pause-title" class="launch-pause-title" />
+                <ui:Label name="pause-description" class="launch-description" />
+                <ui:Button name="resume-button" class="launch-primary" />
+                <ui:Button name="pause-restart-button" class="launch-secondary" />
+                <ui:Button name="pause-return-button" class="launch-secondary" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

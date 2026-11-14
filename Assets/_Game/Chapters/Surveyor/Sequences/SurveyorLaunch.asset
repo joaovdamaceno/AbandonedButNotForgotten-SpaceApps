@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: surveyor.seq.Launch
+  shots:
+  - shotId: surveyor.launch.purpose
+    durationSeconds: 9
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 9
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events: []
+  - shotId: surveyor.launch.ascent
+    durationSeconds: 8
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 8
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events:
+    - timeSeconds: 0
+      eventId: surveyor.launch.ascent
+  - shotId: surveyor.launch.confirm
+    durationSeconds: 11
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 11
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events:
+    - timeSeconds: 0
+      eventId: surveyor.launch.commandAvailable
+    - timeSeconds: 5
+      eventId: surveyor.launch.send
+    - timeSeconds: 6.3
+      eventId: surveyor.launch.centaur
+  cues:
+  - cueId: SUR-S01
+    textKey: SUR-S01
+    startSeconds: 0
+    endSeconds: 8
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: SUR-S02
+    textKey: SUR-S02
+    startSeconds: 17
+    endSeconds: 22
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: SUR-S03
+    textKey: SUR-S03
+    startSeconds: 22
+    endSeconds: 28
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []
