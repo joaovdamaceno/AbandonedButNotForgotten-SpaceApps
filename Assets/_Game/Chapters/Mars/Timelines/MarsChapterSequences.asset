@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9fea066088994b882098bbf79c54a6, type: 3}
+  m_Name: MarsChapterSequences
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.MarsChapterSequenceCatalog
+  entries:
+  - stepId: M01
+    sequence: {fileID: 11400000, guid: 9bd19f404ee025bb8b4fa999314053e5, type: 2}
+    regionId: mars.origin
+    referenceSeconds: 8
+    cutPoints:
+    - 4
+  - stepId: M02
+    sequence: {fileID: 11400000, guid: cbff8e6b4231e601d842d7dfda571825, type: 2}
+    regionId: mars.origin
+    referenceSeconds: 12
+    cutPoints:
+    - 4
+    - 8
+  - stepId: M03
+    sequence: {fileID: 11400000, guid: d454a34e09f9e03f7b9a7061fdf881ac, type: 2}
+    regionId: mars.origin
+    referenceSeconds: 5
+    cutPoints:
+    - 2.5
+  - stepId: M04
+    sequence: {fileID: 11400000, guid: f7f1a6e977d7bea9aa4a054e9adea151, type: 2}
+    regionId: mars.landing
+    referenceSeconds: 18
+    cutPoints:
+    - 6
+    - 12
+  - stepId: M05
+    sequence: {fileID: 11400000, guid: 848b9f10097cda07c85c76f73ecc1304, type: 2}
+    regionId: mars.landing
+    referenceSeconds: 4
+    cutPoints: []
+  - stepId: M06
+    sequence: {fileID: 11400000, guid: e1178dcb56630469f8244ab77da16a42, type: 2}
+    regionId: mars.landing
+    referenceSeconds: 5
+    cutPoints:
+    - 3.2000008
+  - stepId: M14
+    sequence: {fileID: 11400000, guid: 6d856203ca5b5158a94397ecd4db188e, type: 2}
+    regionId: mars.eagle
+    referenceSeconds: 14
+    cutPoints:
+    - 7
+  - stepId: M15
+    sequence: {fileID: 11400000, guid: d25d46ae45c4462e1a7399b325938acd, type: 2}
+    regionId: mars.eagle
+    referenceSeconds: 5
+    cutPoints: []
+  - stepId: M20
+    sequence: {fileID: 11400000, guid: f16e50cd543db24b490cef7c1786f85d, type: 2}
+    regionId: mars.shield
+    referenceSeconds: 8
+    cutPoints:
+    - 4
+  - stepId: M22
+    sequence: {fileID: 11400000, guid: 3f25b35f163aab90eab2ac0a8e8d125c, type: 2}
+    regionId: mars.spirit
+    referenceSeconds: 45
+    cutPoints: []
+  - stepId: M23
+    sequence: {fileID: 11400000, guid: 61494cbe2d27cefd793a209cafd57866, type: 2}
+    regionId: mars.valley
+    referenceSeconds: 9
+    cutPoints:
+    - 4.5
+  - stepId: M27
+    sequence: {fileID: 11400000, guid: 9e1a8edfa023935cd821d980352cdab7, type: 2}
+    regionId: mars.valley
+    referenceSeconds: 6
+    cutPoints: []
+  - stepId: M31
+    sequence: {fileID: 11400000, guid: 5da2531e5d7bb17b4a5641ad942a1246, type: 2}
+    regionId: mars.memorial
+    referenceSeconds: 30
+    cutPoints:
+    - 6
+    - 12
+    - 18
+    - 24
+  - stepId: M32
+    sequence: {fileID: 11400000, guid: d89b461f64a17efb593d3a33fbc93dfd, type: 2}
+    regionId: mars.memorial
+    referenceSeconds: 4
+    cutPoints: []
