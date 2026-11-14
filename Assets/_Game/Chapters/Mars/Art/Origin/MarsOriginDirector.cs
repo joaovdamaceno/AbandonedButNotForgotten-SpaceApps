@@ -29,7 +29,7 @@ namespace Abandoned.SpaceApps
         readonly Dictionary<Renderer, MaterialPropertyBlock> blocks = new Dictionary<Renderer, MaterialPropertyBlock>();
         SequenceDirector sequenceDirector;
         CameraDirector cameraDirector;
-        string visibleKey = string.Empty;
+        long visibleMask;
         Vector3 rocketABase;
         Vector3 rocketBBase;
         bool baseCaptured;
@@ -146,20 +146,21 @@ namespace Abandoned.SpaceApps
 
         void RefreshLabels(float time)
         {
+            // Sem alocação por quadro: o conjunto visível é comparado por máscara de bits (AGENTS.md).
             visible.Clear();
-            var key = string.Empty;
-            foreach (var label in labels)
+            var mask = 0L;
+            for (var i = 0; i < labels.Count; i++)
             {
-                if (label.IsVisibleAt(time))
+                if (labels[i].IsVisibleAt(time))
                 {
-                    visible.Add(label);
-                    key += label.TextKey + "|";
+                    visible.Add(labels[i]);
+                    mask |= 1L << i;
                 }
             }
 
-            if (key != visibleKey)
+            if (mask != visibleMask)
             {
-                visibleKey = key;
+                visibleMask = mask;
                 LabelsChanged?.Invoke(visible);
             }
         }

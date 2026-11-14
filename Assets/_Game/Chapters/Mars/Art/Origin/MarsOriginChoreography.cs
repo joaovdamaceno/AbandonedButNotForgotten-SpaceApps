@@ -4,8 +4,8 @@ namespace Abandoned.SpaceApps
 {
     /// <summary>
     /// Coreografia de M01–M03 (25 s) como função pura do tempo global: globo (rotação e destaques por legenda) e dois lançamentos em
-    /// sequência com uma única chama reutilizada. Latitude/longitude em graus (leste positivo); coordenadas de pouso e de origem
-    /// aproximadas (NASA: Spirit em Gusev, Opportunity em Meridiani Planum).
+    /// sequência com uma única chama reutilizada. Latitude/longitude em graus (leste positivo); coordenadas dos locais de pouso
+    /// conforme NASA GISS Mars24 (Spirit 175,48°L 14,57°S; Opportunity 354,47°L 1,95°S).
     /// </summary>
     public static class MarsOriginChoreography
     {
@@ -18,7 +18,7 @@ namespace Abandoned.SpaceApps
 
         public const float GlobeRadiusMeters = 2f;
         public const float HematiteRadiusDegrees = 7f;
-        public static readonly Vector2 Gusev = new Vector2(-14.57f, 175.47f);
+        public static readonly Vector2 Gusev = new Vector2(-14.57f, 175.48f);
         public static readonly Vector2 Meridiani = new Vector2(-1.95f, 354.47f);
 
         public const float RocketSpacingMeters = 50f;
