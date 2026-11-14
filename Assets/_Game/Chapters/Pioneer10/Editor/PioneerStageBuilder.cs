@@ -20,7 +20,8 @@ namespace Abandoned.SpaceApps.EditorTools
     {
         public const string BuilderId = "pioneer10.stage";
         public const string SceneAssetPath = "Assets/_Game/Chapters/Pioneer10/Scenes/Pioneer10.unity";
-        public const string ArtFolder = "Assets/_Game/Chapters/Pioneer10/Art";
+        public const string ChapterFolder = "Assets/_Game/Chapters/Pioneer10";
+        public const string ArtFolder = ChapterFolder + "/Art";
         public const string StageFolder = ArtFolder + "/Stage";
         public const string PrefabPath = ArtFolder + "/SpaceStage.prefab";
         public const string StageRootName = "[R5] Pioneer Stage";
@@ -28,6 +29,8 @@ namespace Abandoned.SpaceApps.EditorTools
 
         // Layout do palco, em metros. Nada além de ~1 km da origem: precisão de float folgada, sem jitter.
         public static readonly Vector3 LaunchSiteCenter = new Vector3(500f, 0f, -500f);
+        /// <summary>Onde a PIO-004 pendura o diagrama Terra–Lua (gráfico, longe da sonda, na região do espaço).</summary>
+        public static readonly Vector3 LaunchDiagramCenter = new Vector3(0f, 0f, -420f);
         public static readonly Vector3 GroundStationCenter = new Vector3(-500f, 0f, -500f);
         public static readonly Vector3 JupiterPosition = new Vector3(-235f, 35f, 235f);
         public const float JupiterRadiusMeters = 80f;
@@ -114,19 +117,19 @@ namespace Abandoned.SpaceApps.EditorTools
             return a;
         }
 
-        static Mesh MeshAsset(SceneBuildContext context, string name, Action<Mesh> fill)
+        internal static Mesh MeshAsset(SceneBuildContext context, string name, Action<Mesh> fill, string folder = StageFolder)
         {
-            var mesh = context.Asset(StageFolder + "/Meshes/" + name + ".asset", () => new Mesh { name = name });
+            var mesh = context.Asset(folder + "/Meshes/" + name + ".asset", () => new Mesh { name = name });
             fill(mesh);
             EditorUtility.SetDirty(mesh);
             return mesh;
         }
 
-        static Texture2D TextureAsset(SceneBuildContext context, string file, Func<Texture2D> generate, int maxSize, bool mipmaps,
-            TextureWrapMode wrapU, TextureWrapMode wrapV, FilterMode filter = FilterMode.Bilinear)
+        internal static Texture2D TextureAsset(SceneBuildContext context, string file, Func<Texture2D> generate, int maxSize, bool mipmaps,
+            TextureWrapMode wrapU, TextureWrapMode wrapV, FilterMode filter = FilterMode.Bilinear, string folder = StageFolder, bool alpha = false)
         {
-            var path = StageFolder + "/Textures/" + file;
-            if (!path.StartsWith(ArtFolder + "/", StringComparison.Ordinal))
+            var path = folder + "/Textures/" + file;
+            if (!path.StartsWith(ChapterFolder + "/", StringComparison.Ordinal))
                 throw new InvalidOperationException("textura fora da pasta do dono: " + path);
 
             SceneBuildContext.EnsureFolder(Path.GetDirectoryName(path)?.Replace('\\', '/'));
@@ -141,7 +144,8 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             var changed = importer.textureType != TextureImporterType.Default || importer.maxTextureSize != maxSize || importer.mipmapEnabled != mipmaps
-                          || importer.wrapModeU != wrapU || importer.wrapModeV != wrapV || !importer.sRGBTexture || importer.alphaSource != TextureImporterAlphaSource.None
+                          || importer.wrapModeU != wrapU || importer.wrapModeV != wrapV || !importer.sRGBTexture || importer.alphaSource != (alpha ? TextureImporterAlphaSource.FromInput : TextureImporterAlphaSource.None)
+                          || importer.alphaIsTransparency != alpha
                           || importer.filterMode != filter
                           || importer.textureCompression != (filter == FilterMode.Point ? TextureImporterCompression.Uncompressed : TextureImporterCompression.Compressed);
             if (changed)
@@ -152,7 +156,8 @@ namespace Abandoned.SpaceApps.EditorTools
                 importer.wrapModeU = wrapU;
                 importer.wrapModeV = wrapV;
                 importer.sRGBTexture = true;
-                importer.alphaSource = TextureImporterAlphaSource.None;
+                importer.alphaSource = alpha ? TextureImporterAlphaSource.FromInput : TextureImporterAlphaSource.None;
+                importer.alphaIsTransparency = alpha;
                 importer.filterMode = filter;
                 importer.textureCompression = filter == FilterMode.Point ? TextureImporterCompression.Uncompressed : TextureImporterCompression.Compressed; // paleta: cor exata
                 importer.SaveAndReimport();
@@ -162,9 +167,9 @@ namespace Abandoned.SpaceApps.EditorTools
             return context.Asset<Texture2D>(path, () => throw new InvalidOperationException("textura não importada: " + path));
         }
 
-        static Material Lit(SceneBuildContext context, string name, Color color, float metallic, float smoothness, Texture2D map = null)
+        internal static Material Lit(SceneBuildContext context, string name, Color color, float metallic, float smoothness, Texture2D map = null, string folder = StageFolder)
         {
-            var material = context.Material(StageFolder + "/Materials/" + name + ".mat", "Universal Render Pipeline/Lit");
+            var material = context.Material(folder + "/Materials/" + name + ".mat", "Universal Render Pipeline/Lit");
             material.SetColor("_BaseColor", color);
             material.SetTexture("_BaseMap", map);
             material.SetFloat("_Metallic", metallic);
@@ -175,9 +180,9 @@ namespace Abandoned.SpaceApps.EditorTools
             return material;
         }
 
-        static Material Unlit(SceneBuildContext context, string name, Color color, Texture2D map)
+        internal static Material Unlit(SceneBuildContext context, string name, Color color, Texture2D map, string folder = StageFolder)
         {
-            var material = context.Material(StageFolder + "/Materials/" + name + ".mat", "Universal Render Pipeline/Unlit");
+            var material = context.Material(folder + "/Materials/" + name + ".mat", "Universal Render Pipeline/Unlit");
             material.SetColor("_BaseColor", color);
             material.SetTexture("_BaseMap", map);
             EditorUtility.SetDirty(material);
@@ -234,6 +239,7 @@ namespace Abandoned.SpaceApps.EditorTools
             Ensure(launchSite.transform, "AtlasSocket").transform.localPosition = Vector3.zero;          // PIO-004 · LaunchSilhouette
             Ensure(groundStation.transform, "DishSocket").transform.localPosition = new Vector3(0f, 0f, 0f); // PIO-011 · DsnSilhouette
 
+            Ensure(deepSpace.transform, "LaunchDiagramSocket").transform.localPosition = LaunchDiagramCenter; // PIO-004 · elipse lunar
             var probe = Ensure(deepSpace.transform, "Probe");
             var spin = Ensure(probe.transform, "ProbeSpin");
             var sockets = BuildProbe(spin.transform, a);
@@ -471,7 +477,10 @@ namespace Abandoned.SpaceApps.EditorTools
                     Position = new Vector3(3.4f, 0.9f, 5.6f), LookAt = new Vector3(0f, 0.05f, 0.2f) },
                 new AnchorSpec { Id = "PIO.Launch.Pad", State = "PIO.Launch", Function = "PIO01.B · plano baixo lateral do Atlas-Centaur à noite (silhueta da PIO-004 no AtlasSocket)",
                     Region = PioneerStageRegion.LaunchSite, Light = "PIO.Light.Night", Fov = 50f,
-                    Position = LaunchSiteCenter + new Vector3(-32f, 1.4f, -14f), LookAt = LaunchSiteCenter + new Vector3(0f, 10f, 0f) },
+                    Position = LaunchSiteCenter + new Vector3(27f, 1.4f, -25f), LookAt = LaunchSiteCenter + new Vector3(0f, 12f, 0f) },
+                new AnchorSpec { Id = "PIO.Launch.Ellipse", State = "PIO.Launch", Function = "PIO01.C · diagrama Terra–Lua: a trajetória cruza a órbita lunar longe da Lua (PIO-004 no LaunchDiagramSocket)",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 42f,
+                    Position = LaunchDiagramCenter + new Vector3(4f, 7f, -82f), LookAt = LaunchDiagramCenter + new Vector3(4f, 2f, 0f) },
                 new AnchorSpec { Id = "PIO.Launch", State = "PIO.Launch", Function = "PIO01.D · sonda livre: eixo de rotação, antena e RTGs (primeiro hold)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 40f,
                     Position = new Vector3(6.2f, 2.7f, -4.9f), LookAt = new Vector3(0.4f, 0.2f, -0.2f) },
@@ -581,7 +590,7 @@ namespace Abandoned.SpaceApps.EditorTools
             p.FindPropertyRelative("uiFrameViewport").rectValue = a.uiFrameViewport;
         }
 
-        static void SetArray<T>(SerializedProperty array, IList<T> values, Action<SerializedProperty, T> write)
+        internal static void SetArray<T>(SerializedProperty array, IList<T> values, Action<SerializedProperty, T> write)
         {
             array.arraySize = values.Count;
             for (var i = 0; i < values.Count; i++)
@@ -590,7 +599,7 @@ namespace Abandoned.SpaceApps.EditorTools
 
         // ---------- Utilidades de hierarquia (dentro do conteúdo do prefab) ----------
 
-        static GameObject Ensure(Transform parent, string name)
+        internal static GameObject Ensure(Transform parent, string name)
         {
             foreach (Transform child in parent) // comparação exata: Transform.Find leria '/' como caminho
             {
@@ -603,20 +612,20 @@ namespace Abandoned.SpaceApps.EditorTools
             return go;
         }
 
-        static T Get<T>(GameObject go) where T : Component
+        internal static T Get<T>(GameObject go) where T : Component
         {
             var existing = go.GetComponent<T>(); // sem '??': o nulo falso da Unity não é nulo em C#
             return existing != null ? existing : go.AddComponent<T>();
         }
 
-        static void Set(Object target, string property, Object value)
+        internal static void Set(Object target, string property, Object value)
         {
             var so = new SerializedObject(target);
             so.FindProperty(property).objectReferenceValue = value;
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
-        static GameObject Visual(GameObject go, Mesh mesh, Material material)
+        internal static GameObject Visual(GameObject go, Mesh mesh, Material material)
         {
             Get<MeshFilter>(go).sharedMesh = mesh;
             var renderer = Get<MeshRenderer>(go);
@@ -625,7 +634,7 @@ namespace Abandoned.SpaceApps.EditorTools
             return go;
         }
 
-        static void Quiet(Renderer renderer)
+        internal static void Quiet(Renderer renderer)
         {
             renderer.shadowCastingMode = ShadowCastingMode.Off;
             renderer.receiveShadows = false;

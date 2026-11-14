@@ -61,7 +61,7 @@ namespace Abandoned.SpaceApps.Tests
                 "sem pós-processamento na câmera: nenhum SSAO/DOF/motion blur entra no perfil leve");
 
             var lights = scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<Light>(true)).ToList();
-            Assert.That(lights, Has.Count.EqualTo(2), "uma key e um fill");
+            Assert.That(lights.Count(l => l.type == LightType.Directional), Is.EqualTo(2), "uma key e um fill direcionais (a chama da PIO-004 é pontual)");
             Assert.That(lights.All(l => l.shadows == LightShadows.None), "nenhuma luz com sombra no espaço");
 
             foreach (var guid in AssetDatabase.FindAssets("t:ScriptableRendererData", new[] { "Assets/_Game/Settings" }))

@@ -422,8 +422,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533682448704688529}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.10077566, y: 0.54336596, z: 0.06590885, w: 0.8308151}
-  m_LocalPosition: {x: 468, y: 1.4, z: -514}
+  m_LocalRotation: {x: -0.12808649, y: -0.39643934, z: -0.055963073, w: 0.90735763}
+  m_LocalPosition: {x: 527, y: 1.4, z: -525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -759,6 +759,24 @@ MonoBehaviour:
     fieldOfViewDegrees: 50
     region: 1
     lightGroupId: PIO.Light.Night
+    showJupiter: 0
+    showAldebaranMarker: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+  - anchorId: PIO.Launch.Ellipse
+    stateId: PIO.Launch
+    function: "PIO01.C \xB7 diagrama Terra\u2013Lua: a trajet\xF3ria cruza a \xF3rbita lunar longe da Lua (PIO-004 no LaunchDiagramSocket)"
+    pose: {fileID: 7176797557390841779}
+    fieldOfViewDegrees: 42
+    region: 0
+    lightGroupId: PIO.Light.Cruise
     showJupiter: 0
     showAldebaranMarker: 0
     spinAlignSocket: 
@@ -1299,6 +1317,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2496330682222359881}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1312022304976036784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7176797557390841779}
+  m_Layer: 0
+  m_Name: "PIO.Launch.Ellipse \xB7 PIO01.C \xB7 diagrama Terra\u2013Lua: a trajet\xF3ria cruza"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7176797557390841779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312022304976036784}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.030445397, y: 0, z: 0, w: 0.99953645}
+  m_LocalPosition: {x: 4, y: 7, z: -502}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1525069038536616815
 GameObject:
@@ -2042,6 +2091,37 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4128811797072183029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7203569051149293541}
+  m_Layer: 0
+  m_Name: LaunchDiagramSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7203569051149293541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4128811797072183029}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -420}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2319320945191257728}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4251766972502280097
 GameObject:
   m_ObjectHideFlags: 0
@@ -3135,6 +3215,7 @@ Transform:
   - {fileID: 3787361302162105415}
   - {fileID: 6081805830517579833}
   - {fileID: 1241571127381635050}
+  - {fileID: 7176797557390841779}
   m_Father: {fileID: 7110141134317143998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6724439147850653092
@@ -3355,6 +3436,7 @@ Transform:
   m_Children:
   - {fileID: 8694489472082676239}
   - {fileID: 3862147645969626797}
+  - {fileID: 7203569051149293541}
   m_Father: {fileID: 4913624567188064843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6973415741863483823
