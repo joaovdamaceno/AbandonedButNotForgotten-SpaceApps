@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d325e9cd46abe74193d25f57d07db58, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorObservationPreviewHost
   preceding: {fileID: 8122438972734260981}
   flow: {fileID: 7132488293169250511}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb2316f0f03507040b21eda2cdd5f9b7, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorObservation
 --- !u!114 &7732423056571496547
 MonoBehaviour:
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d462a2f3f92496144b25625663862e7e, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorObservationWebSmoke
   host: {fileID: 6028216004866359286}
 --- !u!1 &4498303497998849245
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
   m_PanelSettings: {fileID: 11400000, guid: c58e34d10a180294cad90173d4dcc596, type: 2}
   m_ParentUI: {fileID: 0}
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ac34b30927708c4f9e72c5a77ea6fd9, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.UI.ResponsiveLayoutClass
   document: {fileID: 4596194155264796067}
   narrowBelowLogicalWidth: 1100
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d5c3d765b8b0ba408a6065d19d2ff4d, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorObservationView
 --- !u!1001 &2252076869960468014
 PrefabInstance:
@@ -315,7 +315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8068278778801111259, guid: b9cc07052b3613b4c983388008c2569a, type: 3}
       propertyPath: chapter
-      value: 
+      value:
       objectReference: {fileID: 11400000, guid: 9b2f1aa229c6be749bb43b9482b7037e, type: 2}
     - target: {fileID: 9045548553433721998, guid: b9cc07052b3613b4c983388008c2569a, type: 3}
       propertyPath: m_Name
@@ -340,5 +340,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bf5902446b8088498593aaa38efa07c, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorTelevisionPreviewHost
