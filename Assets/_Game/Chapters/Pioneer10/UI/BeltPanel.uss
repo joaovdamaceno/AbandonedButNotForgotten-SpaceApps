@@ -1,0 +1,221 @@
+/* PIO-005 · Painel do cinturão. Usa tokens/componentes da UI-001; só o que é específico da Pioneer fica aqui. */
+
+.pio-belt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* ---------- Mapa (diagrama sem escala) ---------- */
+
+.pio-belt__map,
+.pio-belt__fantasy,
+.pio-belt__record {
+    display: none; /* a vista liga a seção da fase atual */
+}
+
+.pio-belt__map {
+    position: absolute;
+    left: 50%;
+    top: 46%;
+    width: 0;
+    height: 0;
+}
+
+.pio-belt__orbit {
+    position: absolute;
+    border-width: 2px;
+    border-color: rgba(245, 241, 232, 0.35);
+    border-radius: 50%;
+}
+
+.pio-belt__orbit--mars { left: -95px; top: -95px; width: 190px; height: 190px; }
+.pio-belt__orbit--jupiter { left: -250px; top: -250px; width: 500px; height: 500px; }
+.pio-belt__orbit--belt {
+    left: -150px;
+    top: -150px;
+    width: 300px;
+    height: 300px;
+    border-width: 22px;
+    border-color: rgba(201, 194, 180, 0.16);
+}
+
+.pio-belt__sun {
+    position: absolute;
+    left: -14px;
+    top: -14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #FFD166;
+}
+
+.pio-belt__planet { position: absolute; border-radius: 50%; }
+.pio-belt__planet--mars { left: 58px; top: -82px; width: 14px; height: 14px; background-color: #C9653A; }
+.pio-belt__planet--jupiter { left: -236px; top: 66px; width: 30px; height: 30px; background-color: #D9B98C; }
+
+.pio-belt__map-probe {
+    position: absolute;
+    left: 96px;
+    top: 90px;
+    width: 12px;
+    height: 12px;
+    rotate: 45deg;
+    background-color: var(--sa-color-pioneer-hud);
+}
+
+/* ---------- Fantasia ---------- */
+
+.pio-belt__fantasy {
+    position: absolute;
+    left: 56px;
+    top: 48px;
+    right: 56px;
+    bottom: 132px;
+    border-width: 4px;
+    border-color: var(--sa-color-imagination);
+    border-radius: var(--sa-radius-md);
+    background-color: rgba(18, 28, 34, 0.92);
+}
+
+.pio-belt__arena {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.pio-belt__seal {
+    position: absolute;
+    left: 24px;
+    top: 20px;
+}
+
+.pio-belt__rock {
+    position: absolute;
+    width: 150px;
+    height: 120px;
+    translate: -50% -50%;
+    border-radius: 46% 54% 50% 42%;
+    background-color: #6E665C;
+    border-width: 3px;
+    border-color: #A39888;
+}
+
+.pio-belt__rock--b { width: 170px; height: 128px; border-radius: 52% 40% 48% 56%; }
+.pio-belt__rock--c { width: 136px; height: 116px; border-radius: 40% 56% 44% 52%; }
+
+.pio-belt__probe {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    translate: -50% -50%;
+    align-items: center;
+    justify-content: center;
+    transition-property: scale;
+    transition-duration: 0.08s;
+}
+
+.pio-belt__probe-dish {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-width: 4px;
+    border-color: var(--sa-color-on-plate);
+    background-color: var(--sa-color-pioneer-hud);
+}
+
+/* "Toc": leve deformação gráfica, sem explosão nem perda de energia. */
+.pio-belt__probe--contact { scale: 1.25 0.8; }
+
+.pio-belt__move {
+    position: absolute;
+    right: 24px;
+    bottom: 20px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pio-belt__arrow {
+    width: 0;
+    height: 0;
+    margin-right: var(--sa-space-3);
+    border-left-width: 14px;
+    border-right-width: 14px;
+    border-bottom-width: 24px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-bottom-color: var(--sa-color-imagination);
+}
+
+/* ---------- Registros ---------- */
+
+.pio-belt__record {
+    top: auto;
+    bottom: 132px;
+    width: 520px;
+}
+
+.pio-belt__slots {
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0 var(--sa-space-4) 0;
+    padding: 0;
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.pio-belt__slot {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    border-width: 3px;
+    border-color: var(--sa-color-plate-edge);
+    align-items: center;
+    justify-content: center;
+}
+
+.pio-belt__slot-number {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 30px;
+    color: var(--sa-color-on-plate-muted);
+    margin: 0;
+    padding: 0;
+}
+
+/* Foco: contorno grosso amarelo, não só cor (ícone de foco também pela espessura). */
+.pio-belt__slot--focus {
+    border-width: 6px;
+    border-color: var(--sa-color-focus);
+}
+
+.pio-belt__slot--focus .pio-belt__slot-number { color: var(--sa-color-on-plate); }
+
+.pio-belt__slot--done {
+    border-color: var(--sa-color-confirm);
+    background-color: rgba(143, 217, 154, 0.22);
+}
+
+.pio-belt__slot--done .pio-belt__slot-number { color: var(--sa-color-on-plate); }
+
+.pio-belt__hold { margin: 0; }
+
+/* Ajuda nível 1: reforça o controle (contorno de foco) sem mudar a tela. */
+.pio-belt__hold--pulse .sa-keycap { border-color: var(--sa-color-focus); border-width: 4px; }
+
+.pio-belt__help { margin-top: var(--sa-space-3); align-items: flex-start; }
+
+.pio-belt__help-button {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: var(--sa-text-hud);
+    color: var(--sa-color-ink);
+    background-color: var(--sa-color-focus);
+    border-width: 0;
+    border-radius: var(--sa-radius-sm);
+    padding: var(--sa-space-2) var(--sa-space-4);
+    margin: 0;
+}
