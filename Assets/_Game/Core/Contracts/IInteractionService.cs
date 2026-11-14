@@ -12,7 +12,7 @@ namespace Abandoned.SpaceApps
         bool TryGetActive(out InteractionCandidate candidate);
 
         /// <summary>
-        /// True depois de uma conclusão ou de <see cref="RequireRelease"/> até <see cref="NotifyInteractReleased"/>.
+        /// True depois de uma conclusão ou de <see cref="RequireRelease"/> até <see cref="NotifyInteractReleased"/>, mas somente enquanto a tecla E ainda está pressionada (sem tecla pressionada não há o que esperar).
         /// Enquanto verdadeiro nenhum novo hold começa (rearme obrigatório: o E que abre não conta como início do seguinte).
         /// </summary>
         bool AwaitingRelease { get; }
