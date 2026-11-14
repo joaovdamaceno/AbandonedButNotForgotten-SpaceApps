@@ -6,7 +6,7 @@
 | SHA-256 | `81443a7fa01cca0dda878cd27692b3307f9c332c4eb8e55a844499d7b350573c` |
 | Referência | P-S17 — NASA 3D Resources · Pioneer 10: https://science.nasa.gov/3d-resources/pioneer/ (crédito da página: NASA/JPL/Eyes on the Solar System) |
 | Recebido | 14/11/2026, fornecido pela equipe (pasta Downloads da pessoa responsável pela tarefa) |
-| Origem exata | **Não verificada.** O tamanho é compatível com o ~1,95 MB anunciado na página P-S17, mas o arquivo não foi baixado nem comparado por esta tarefa; o `asset.generator` é *Khronos glTF Blender I/O v4.2.57* |
+| Origem exata | **Verificada em 14/11/2026.** O arquivo é byte a byte o `Pioneer 10.glb` do espelho oficial da NASA https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Pioneer%2010: mesmo tamanho (2.049.840 bytes) e mesmo SHA-1 de blob Git `62d2608617424e7b1d6d4d45bae13024cd9781c8` (`sha1("blob <bytes>\0" + conteúdo)`), conferido pela API de conteúdo do GitHub (`gh api repos/nasa/NASA-3D-Resources/contents/3D%20Models/Pioneer%2010`), que devolve só metadados: nada foi baixado. O `asset.generator` é *Khronos glTF Blender I/O v4.2.57*. O teste `TheOriginalIsByteIdenticalToTheOfficialNasaMirrorByItsGitBlobHash` refaz a conferência offline |
 | Licença | Sem licença própria na página do item. Valem as diretrizes de imagens e mídia da NASA (P-S18): reconhecer a NASA como fonte, sem sugerir endosso; logotipos e insígnias não são de domínio público. Conferir marcas de terceiros nas texturas (nenhuma identificada: texturas são mapas de oclusão ambiente e rampas de cor) |
 | Formato | glTF 2.0 binário, 11 nós/malhas, 11 materiais, 8 texturas (PNG 1024/256, com variante WebP), **Draco** (`KHR_draco_mesh_compression`) e `EXT_texture_webp` |
 | Triângulos | 8.189 (meta do LOD0: ≤ 60 mil) |
