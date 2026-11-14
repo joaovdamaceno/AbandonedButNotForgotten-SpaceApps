@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_TWINS.md (M04 Pousos paralelos; M06 Verificações). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-014. Mesmo formato de 'texts' em MarsSubtitles.json (key, pt, en). MAR.T02 (21 DIAS ENTRE OS POUSOS) já existe em MarsSubtitles.json e é reutilizada, não duplicada.",
+    "Datas em UTC (NASA GISS Mars24: Spirit 4/1/2004, Opportunity 25/1/2004; JPL: desembarque da Opportunity em 31/1/2004). O split compara pousos em datas diferentes, não é simultaneidade histórica."
+  ],
+  "texts": [
+    { "key": "MAR.L01", "pt": "SPIRIT · GUSEV · 4 JAN 2004 UTC", "en": "SPIRIT · GUSEV · 4 JAN 2004 UTC" },
+    { "key": "MAR.L02", "pt": "OPPORTUNITY · MERIDIANI · 25 JAN 2004 UTC", "en": "OPPORTUNITY · MERIDIANI · 25 JAN 2004 UTC" },
+    { "key": "MAR.L03", "pt": "DIAS DE VERIFICAÇÃO → 31 JAN 2004", "en": "SYSTEM-CHECK DAYS → 31 JAN 2004" }
+  ]
+}
