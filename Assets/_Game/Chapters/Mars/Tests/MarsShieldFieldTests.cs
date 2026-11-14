@@ -183,15 +183,27 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void SupportsOfTheMainPieceFollowItsCurvedShapeFromCenterToRim()
+        public void MainPieceIsAConvexDomeRestingOnItsRimWithTheBrokenSideOpen()
         {
-            var supports = environment.transform.Find("Debris/HeatShield_Main/Supports").Cast<Transform>().ToList();
-            var apex = supports.Single(s => s.name == "Support_Apex");
+            // PIA07402: o destroço principal é uma cúpula convexa apoiada pela borda, com o lado rompido aberto.
+            var piece = environment.transform.Find("Debris/HeatShield_Main");
+            var supports = piece.Find("Supports").Cast<Transform>().ToList();
             var rim = supports.Where(s => s.name.StartsWith("Support_Rim")).ToList();
             Assert.That(rim.Count, Is.GreaterThanOrEqualTo(8), "o aro se apoia em vários pontos");
-            Assert.That(rim.Max(s => s.position.y), Is.GreaterThan(apex.position.y + 0.3f), "a calota é curva: o aro fica mais alto que o vértice, e os dois são apoiados");
-            var spread = rim.Max(s => Vector2.Distance(new Vector2(apex.position.x, apex.position.z), new Vector2(s.position.x, s.position.z)));
-            Assert.That(spread, Is.InRange(1.1f, 1.4f), "raio de ~1,3 m (aproximação de 2,65 m de diâmetro)");
+            Assert.That(supports.Any(s => s.name == "Support_CutA") && supports.Any(s => s.name == "Support_CutB"), Is.True, "as pontas do corte também descansam");
+
+            var bounds = piece.Find("LOD0").GetComponent<MeshRenderer>().bounds;
+            var lowestRim = rim.Min(s => s.position.y);
+            Assert.That(bounds.max.y - lowestRim, Is.GreaterThan(0.45f), "cúpula: o topo passa bem acima do aro");
+
+            // O ponto mais alto fica sobre o miolo, longe da borda: cúpula, não calota.
+            var mesh = piece.Find("LOD0").GetComponent<MeshFilter>().sharedMesh;
+            var topLocal = mesh.vertices.OrderByDescending(v => piece.Find("LOD0").TransformPoint(v).y).First();
+            var top = piece.Find("LOD0").TransformPoint(topLocal);
+            var center = new Vector2(bounds.center.x, bounds.center.z);
+            Assert.That(Vector2.Distance(new Vector2(top.x, top.z), center), Is.LessThan(0.7f), "topo no miolo da cúpula");
+            var spread = rim.Max(s => Vector2.Distance(new Vector2(top.x, top.z), new Vector2(s.position.x, s.position.z)));
+            Assert.That(spread, Is.InRange(1.0f, 1.8f), "raio de ~1,3 m (aproximação de 2,65 m de diâmetro)");
         }
 
         [Test]

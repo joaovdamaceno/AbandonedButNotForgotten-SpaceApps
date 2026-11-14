@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Abandoned.SpaceApps.EditorTools;
 using UnityEditor;
 using UnityEngine;
@@ -70,7 +71,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             var shield = context.Material(GeneratedPath + "/HeatShield.mat", "Universal Render Pipeline/Lit");
             Configure(shield, Color.white, 0.62f, 0.85f, atlasTexture, glossTexture);
             var meteorite = context.Material(GeneratedPath + "/HeatShieldRock.mat", "Universal Render Pipeline/Lit");
-            Configure(meteorite, new Color(0.92f, 0.9f, 0.88f), 0.62f, 0.34f, meteoriteTexture, null);
+            Configure(meteorite, Color.white, 0.6f, 0.36f, meteoriteTexture, null);
             var rock = context.Material(GeneratedPath + "/FieldRocks.mat", "Universal Render Pipeline/Lit");
             Configure(rock, Color.white, 0f, 0.08f, rockTexture, null);
 
@@ -114,18 +115,21 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
         static Texture2D Texture(string name, int size, bool srgb, bool normal, Func<float, float, Color> pixel)
         {
             var path = GeneratedPath + "/" + name + ".png";
-            if (!File.Exists(path))
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(path));
-                var texture = new Texture2D(size, size, TextureFormat.RGBA32, false, !srgb);
-                var pixels = new Color[size * size];
-                for (var y = 0; y < size; y++)
-                    for (var x = 0; x < size; x++)
-                        pixels[y * size + x] = pixel((x + 0.5f) / size, (y + 0.5f) / size);
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false, !srgb);
+            var pixels = new Color[size * size];
+            for (var y = 0; y < size; y++)
+                for (var x = 0; x < size; x++)
+                    pixels[y * size + x] = pixel((x + 0.5f) / size, (y + 0.5f) / size);
 
-                texture.SetPixels(pixels);
-                File.WriteAllBytes(path, texture.EncodeToPNG());
-                Object.DestroyImmediate(texture);
+            texture.SetPixels(pixels);
+            var bytes = texture.EncodeToPNG();
+            Object.DestroyImmediate(texture);
+
+            // Regrava só quando o conteúdo muda (o PNG existente mantém o GUID e não gera diferença à toa).
+            if (!File.Exists(path) || !File.ReadAllBytes(path).SequenceEqual(bytes))
+            {
+                File.WriteAllBytes(path, bytes);
                 AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             }
 
@@ -180,7 +184,8 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             {
                 var x = u * 2f;
                 var streak = N(x * 9f, v * 3f);
-                var c = Color.Lerp(new Color(0.07f, 0.05f, 0.04f), new Color(0.2f, 0.14f, 0.1f), streak);
+                var c = Color.Lerp(new Color(0.17f, 0.15f, 0.13f), new Color(0.38f, 0.33f, 0.28f), streak);
+                c = Color.Lerp(c, new Color(0.55f, 0.52f, 0.5f), Mathf.SmoothStep(0.6f, 0.9f, N(x * 4f + 7f, v * 4f)) * 0.5f); // manchas metálicas
                 c *= 0.85f + 0.3f * N(x * 40f, v * 40f);
                 return new Color(c.r, c.g, c.b, 1f);
             }
@@ -198,19 +203,24 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
         static Color ShieldGlossPixel(float u, float v)
         {
             if (u < 0.5f)
-                return new Color(0f, 0f, 0f, 0.12f);
+                return new Color(0.3f, 0f, 0f, 0.3f);
 
             var xr = (u - 0.5f) * 2f;
             var crinkle = N(xr * 55f, v * 55f);
             return new Color(0.62f, 0f, 0f, Mathf.Lerp(0.38f, 0.72f, crinkle));
         }
 
+        // Heat Shield Rock (JPL, 19/1/2005): metal cinza claro de ferro e níquel, brilhante nas arestas, com poeira
+        // alaranjada nas cavidades e crostas escuras de ablação em manchas.
         static Color MeteoritePixel(float u, float v)
         {
-            var c = Color.Lerp(new Color(0.12f, 0.1f, 0.09f), new Color(0.27f, 0.2f, 0.16f), N(u * 6f, v * 6f));
-            c = Color.Lerp(c, new Color(0.34f, 0.19f, 0.1f), Mathf.SmoothStep(0.55f, 0.85f, N(u * 14f + 3f, v * 14f)) * 0.5f);
-            c *= 0.85f + 0.3f * N(u * 60f, v * 60f);
-            return new Color(c.r, c.g, c.b, 1f);
+            var metal = Color.Lerp(new Color(0.44f, 0.43f, 0.42f), new Color(0.68f, 0.67f, 0.65f), N(u * 7f, v * 7f));
+            metal *= 0.9f + 0.2f * N(u * 55f, v * 55f);
+            var rust = Mathf.SmoothStep(0.5f, 0.82f, N(u * 11f + 3f, v * 11f));
+            metal = Color.Lerp(metal, new Color(0.62f, 0.34f, 0.2f), rust * 0.5f);
+            var crust = Mathf.SmoothStep(0.62f, 0.9f, N(u * 5f + 21f, v * 5f + 8f));
+            metal = Color.Lerp(metal, new Color(0.14f, 0.12f, 0.11f), crust * 0.55f);
+            return new Color(metal.r, metal.g, metal.b, 1f);
         }
 
         static Color RockPixel(float u, float v)
@@ -341,6 +351,14 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             Get<MeshCollider>(piece.gameObject).sharedMesh = m1;
 
             var supports = Child(piece, "Supports");
+            var wanted = new HashSet<string>(pose.Supports.Select(x => "Support_" + x.Name));
+            for (var i = supports.childCount - 1; i >= 0; i--)
+            {
+                // Reconstruir não pode deixar apoios de uma versão anterior da pose.
+                if (!wanted.Contains(supports.GetChild(i).name))
+                    Object.DestroyImmediate(supports.GetChild(i).gameObject);
+            }
+
             foreach (var support in pose.Supports)
                 Child(supports, "Support_" + support.Name).position = support.World;
         }
