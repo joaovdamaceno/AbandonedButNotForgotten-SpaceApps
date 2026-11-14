@@ -84,7 +84,7 @@ Componentes reconhecíveis (página NASA Surveyor 3 + S3-03/S3-12): **câmera de
 | R-PIO-03 | Ganimedes 1973 | P-S09 | Download pendente (PIO-007) | R7 · P0 · PIO-007 | Manter resolução histórica |
 | R-PIO-04 | Placa (contornos) | P-S11, P-S12 | Adaptação pendente | R5 · P0 · PIO-009 | Figuras humanas em silhueta lisa, “adaptação educativa” |
 | R-PIO-05 | Antena DSN | Catálogo NASA 3D tem “70 meter dish” (https://science.nasa.gov/3d-resources/70-meter-dish/) | **Candidato** — página do item não lida | R5 · P0 · PIO-011 | Silhueta 2D de prato a partir de foto creditada |
-| R-PIO-06 | Campo de estrelas | Textura própria | Planejado | R5 · P0 · PIO-003 | Uma textura de céu, sem milhares de objetos |
+| R-PIO-06 | Campo de estrelas | Textura própria | **Gerado** (PIO-003, G-PIO-01 em ASSET_CREDITS) | R5 · P0 · PIO-003 | Uma textura de céu + uma malha de estrelas brilhantes (1 draw call), sem milhares de objetos |
 | R-SUR-01 | Fotografia Apollo 12 + Surveyor 3 | S3-08 (crédito “NASA”, 20/11/1969) | Página citada, não baixada | R6 · P0 · SUR-013 | 1024–1600 px, original fora do build |
 | R-SUR-02 | Pá/trincheira reais | Figuras S3-03 | A localizar | R6 · P0 · SUR-009 | Foto creditada na comparação |
 | R-SUR-03 | Terreno da cratera (~200 m) | S3-03, S3-05; catálogo NASA 3D tem “Apollo 12 – Landing Site” | **Candidato** — conteúdo do item não verificado | R6 · P0 · SUR-002 | Terreno próprio 40×40 m + skyline |
