@@ -825,6 +825,36 @@ MonoBehaviour:
     enText: "Actual image \xB7 Pioneer 10 \xB7 1973 \xB7 NASA"
     ptStatus: approved
     enStatus: approved
+  - key: PIO.UI.radiation
+    group: instrument
+    ptText: "Radia\xE7\xE3o \xB7 comando indevido no instrumento"
+    enText: "Radiation \xB7 unwanted command in the instrument"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.sent
+    group: hud
+    ptText: "Pacote enviado \xB7 a resposta leva dezenas de minutos"
+    enText: "Packet sent \xB7 the reply takes tens of minutes"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.jupiter
+    group: hud
+    ptText: "J\xFApiter \xB7 dezembro de 1973 \xB7 montagem de quadros da aproxima\xE7\xE3o"
+    enText: "Jupiter \xB7 December 1973 \xB7 montage of approach frames"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.ganymede
+    group: hud
+    ptText: "Ganimedes \xB7 3 de dezembro de 1973 \xB7 resolu\xE7\xE3o original"
+    enText: "Ganymede \xB7 December 3, 1973 \xB7 original resolution"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.io_lost
+    group: hud
+    ptText: "Io \xB7 imagem perdida"
+    enText: "Io \xB7 image lost"
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.plaque
     group: hud
     ptText: "Escolha uma pe\xE7a e seu contorno \xB7 {count}/5"
