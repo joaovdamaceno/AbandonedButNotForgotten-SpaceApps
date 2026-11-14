@@ -116,7 +116,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
 
         static List<MarsLandingLabel> DefaultLabels()
         {
-            MarsLandingLabel L(string key, float a, float b) => new MarsLandingLabel(key, a, b, MarsLandingLabelAnchor.Full);
+            MarsLandingLabel L(string key, float a, float b, MarsLandingLabelAnchor anchor = MarsLandingLabelAnchor.Full) => new MarsLandingLabel(key, a, b, anchor);
             return new List<MarsLandingLabel>
             {
                 L("MAR.SPI.01", 0.3f, 5f), L("MAR.SPI.CR1", 0.3f, 5f),
@@ -126,7 +126,8 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
                 L("MAR.SPI.05", 22.3f, 27f),
                 L("MAR.SPI.06", 27.3f, 29.5f), L("MAR.SPI.07", 29.5f, 32f), L("MAR.SPI.CR5", 27.3f, 32f),
                 L("MAR.SPI.08", 32.3f, 39f),
-                L("MAR.SPI.09", 39.3f, 41.5f), L("MAR.SPI.10", 41.5f, 43.5f), L("MAR.SPI.11", 43.5f, 45f),
+                L("MAR.SPI.09", 39.3f, 41f), L("MAR.SPI.10", 41f, 42.7f),
+                L("MAR.SPI.12", 42.7f, 45f, MarsLandingLabelAnchor.UpperHalf), L("MAR.SPI.11", 43.5f, 45f, MarsLandingLabelAnchor.LowerHalf),
             };
         }
 

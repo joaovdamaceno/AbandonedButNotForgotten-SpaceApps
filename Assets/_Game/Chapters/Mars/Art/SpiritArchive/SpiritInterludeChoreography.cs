@@ -20,8 +20,8 @@ namespace Abandoned.SpaceApps
         public const int BeatWinter = 6;
         public const int BeatLastContact = 7;
 
-        public const float GrowthStart = 42.5f;
-        public const float GrowthSeconds = 2.5f;
+        public const float GrowthStart = 43f;
+        public const float GrowthSeconds = 2f;
         public const float RoverTiltDegrees = 8f;
 
         static float Smooth(float x) => MerLandingChoreography.Smooth(x);

@@ -77,13 +77,17 @@ MonoBehaviour:
     anchor: 3
   - textKey: MAR.SPI.09
     startSeconds: 39.3
-    endSeconds: 41.5
+    endSeconds: 41
     anchor: 3
   - textKey: MAR.SPI.10
-    startSeconds: 41.5
-    endSeconds: 43.5
+    startSeconds: 41
+    endSeconds: 42.7
     anchor: 3
+  - textKey: MAR.SPI.12
+    startSeconds: 42.7
+    endSeconds: 45
+    anchor: 0
   - textKey: MAR.SPI.11
     startSeconds: 43.5
     endSeconds: 45
-    anchor: 3
+    anchor: 1
