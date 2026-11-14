@@ -132,7 +132,8 @@ namespace Abandoned.SpaceApps
                 ReleaseCinematic();
         }
 
-        void ActivateRegion(string regionId)
+        /// <summary>Ativa só a região pedida entre as registradas (as demais ficam desativadas: sem luzes, colisores ou câmeras duplicados).</summary>
+        public void ActivateRegion(string regionId)
         {
             activeRegionId = regionId;
             foreach (var pair in regions)
