@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_TWINS.md (M21) e 01_MARS_SOURCES.md (MS17, MS18, MS19). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-007. Mesmo formato de 'texts' em MarsSubtitles.json (key, pt, en); a UI/localização pode juntar as tabelas. MAR.POWER e MAR.COMMS já existem em MarsSubtitles.json.",
+    "Os únicos números do medidor são os marcos publicados (MS17): mais de 700 Wh/sol antes e 128 Wh/sol em julho de 2007. A retomada NÃO tem número. Geração por sol não é bateria, potência nem curva completa."
+  ],
+  "texts": [
+    { "key": "MAR.VERB.conserve", "pt": "CONSERVAR ENERGIA", "en": "CONSERVE POWER" },
+    { "key": "MAR.OBJ.machine", "pt": "A MÁQUINA", "en": "THE MACHINE" },
+    { "key": "MAR.STORM.gen.before", "pt": "Mais de 700 Wh/sol · antes da tempestade", "en": "Over 700 Wh/sol · before the storm" },
+    { "key": "MAR.STORM.gen.low", "pt": "128 Wh/sol · julho de 2007", "en": "128 Wh/sol · July 2007" },
+    { "key": "MAR.STORM.gen.recovering", "pt": "Geração em retomada", "en": "Generation recovering" },
+    { "key": "MAR.STORM.gen.note", "pt": "Marcos publicados; não é a carga da bateria nem a curva completa.", "en": "Published milestones; not battery charge or the full curve." },
+    { "key": "MAR.STORM.group.wheels", "pt": "Rodas", "en": "Wheels" },
+    { "key": "MAR.STORM.group.arm", "pt": "Braço", "en": "Arm" },
+    { "key": "MAR.STORM.group.instruments", "pt": "Instrumentos", "en": "Instruments" }
+  ]
+}

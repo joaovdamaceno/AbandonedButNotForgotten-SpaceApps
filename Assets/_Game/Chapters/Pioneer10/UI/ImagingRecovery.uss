@@ -1,0 +1,69 @@
+/* PIO-008 · Aviso de radiação, botão de recuperação e ruído localizado. Estático: sem animação que pisque. */
+
+.pio-rec { flex-direction: column; }
+
+.pio-rec__notice {
+    flex-direction: row;
+    align-items: center;
+    padding: var(--sa-space-2) var(--sa-space-3);
+    border-left-width: 6px;
+    border-left-color: var(--sa-color-focus);
+}
+
+/* Triângulo por borda: o aviso não depende só de cor. */
+.pio-rec__glyph {
+    width: 0;
+    height: 0;
+    border-left-width: 9px;
+    border-right-width: 9px;
+    border-bottom-width: 16px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-bottom-color: var(--sa-color-focus);
+    margin-right: var(--sa-space-2);
+}
+
+.pio-rec__text {
+    flex-shrink: 1;
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.pio-rec__button {
+    margin-top: var(--sa-space-2);
+    padding: var(--sa-space-2) var(--sa-space-3);
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    border-width: 3px;
+    border-color: var(--sa-color-focus);
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.pio-rec__button:focus { border-width: 5px; }
+
+.pio-rec__send { margin-top: var(--sa-space-2); }
+
+.pio-rec__track {
+    height: 10px;
+    margin-top: var(--sa-space-2);
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.pio-rec__packet {
+    height: 100%;
+    width: 0;
+    background-color: var(--sa-color-focus);
+}
+
+/* Ruído: faixas finas fixas dentro do quadro da imagem. Sem movimento e com opacidade baixa. */
+.pio-rec__noise {
+    position: absolute;
+    background-color: rgb(245, 241, 232);
+}

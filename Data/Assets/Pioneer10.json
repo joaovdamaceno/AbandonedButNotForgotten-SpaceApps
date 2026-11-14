@@ -1,0 +1,423 @@
+{
+  "id": "PIO-002",
+  "model": "Pioneer 10",
+  "source": {
+    "file": "Pioneer 10.glb",
+    "sha256": "81443a7fa01cca0dda878cd27692b3307f9c332c4eb8e55a844499d7b350573c",
+    "bytes": 2049840,
+    "generator": "Khronos glTF Blender I/O v4.2.57",
+    "extensions": [
+      "KHR_draco_mesh_compression",
+      "EXT_texture_webp"
+    ],
+    "reference": "P-S17 — NASA 3D Resources · Pioneer 10 (a página anuncia cerca de 1,95 MB)",
+    "provenanceNote": "Arquivo fornecido pela equipe. O tamanho é compatível com o anunciado em P-S17; a origem exata do arquivo não foi verificada."
+  },
+  "conversion": {
+    "tool": "Tools/convert_pioneer10.py",
+    "axisConversion": "glTF (mão direita) -> Unity (mão esquerda): Z invertido e ordem dos vértices invertida; centrado no eixo de spin; z = 0 no vértice do refletor",
+    "atlas": {
+      "file": "PioneerAtlas.png",
+      "size": 2048,
+      "windows": [
+        {
+          "name": "dish_AO",
+          "rect": [
+            0,
+            0,
+            1024,
+            1024
+          ]
+        },
+        {
+          "name": "other_AO",
+          "rect": [
+            1024,
+            0,
+            1024,
+            1024
+          ]
+        },
+        {
+          "name": "RTG_AO_new",
+          "rect": [
+            0,
+            1024,
+            1024,
+            1024
+          ]
+        },
+        {
+          "name": "Pioneer_tex_01",
+          "rect": [
+            1024,
+            1024,
+            512,
+            512
+          ]
+        },
+        {
+          "name": "pioneer_tex_02",
+          "rect": [
+            1536,
+            1024,
+            512,
+            512
+          ]
+        },
+        {
+          "name": "Tex_black",
+          "rect": [
+            1024,
+            1536,
+            256,
+            256
+          ]
+        },
+        {
+          "name": "foil_gold",
+          "rect": [
+            1280,
+            1536,
+            256,
+            256
+          ]
+        },
+        {
+          "name": "foil_silver",
+          "rect": [
+            1536,
+            1536,
+            256,
+            256
+          ]
+        },
+        {
+          "name": "silver_flat",
+          "rect": [
+            1792,
+            1536,
+            256,
+            256
+          ]
+        }
+      ]
+    },
+    "materialsBefore": 11,
+    "materialsAfter": 1,
+    "dropped": [
+      {
+        "node": "Foil_trans",
+        "material": "norm_trans",
+        "triangles": 2,
+        "reason": "quadrilátero sem textura nem alfa dentro de uma caixa de instrumento; não é a placa"
+      }
+    ]
+  },
+  "triangles": 8187,
+  "measurements": {
+    "dishDiameterMetersX": 2.74,
+    "dishExtentMetersY": 2.828,
+    "dishDepthMeters": 0.562,
+    "boundsMin": [
+      -2.261,
+      -6.834,
+      -0.742
+    ],
+    "boundsMax": [
+      2.255,
+      1.413,
+      1.798
+    ],
+    "reference": "P-S05: refletor de 2,74 m"
+  },
+  "parts": [
+    {
+      "name": "Bus",
+      "triangles": 4829,
+      "vertices": 5642,
+      "pivot": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "boundsMin": [
+        -1.396,
+        -1.175,
+        -0.742
+      ],
+      "boundsMax": [
+        1.389,
+        0.893,
+        1.505
+      ]
+    },
+    {
+      "name": "Dish",
+      "triangles": 1212,
+      "vertices": 764,
+      "pivot": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "boundsMin": [
+        -1.37,
+        -1.415,
+        0.0
+      ],
+      "boundsMax": [
+        1.37,
+        1.413,
+        0.562
+      ]
+    },
+    {
+      "name": "Feed",
+      "triangles": 170,
+      "vertices": 193,
+      "pivot": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "boundsMin": [
+        -0.189,
+        -0.188,
+        1.122
+      ],
+      "boundsMax": [
+        0.211,
+        0.189,
+        1.798
+      ]
+    },
+    {
+      "name": "RtgBoomA",
+      "triangles": 912,
+      "vertices": 1023,
+      "pivot": [
+        0.7794228634059949,
+        0.44999999999999996,
+        -0.06798018197431865
+      ],
+      "boundsMin": [
+        0.24,
+        0.052,
+        -0.235
+      ],
+      "boundsMax": [
+        2.255,
+        1.378,
+        0.368
+      ]
+    },
+    {
+      "name": "RtgBoomB",
+      "triangles": 902,
+      "vertices": 1003,
+      "pivot": [
+        -0.7794228634059949,
+        0.44999999999999996,
+        -0.06798018197431865
+      ],
+      "boundsMin": [
+        -2.261,
+        0.047,
+        -0.235
+      ],
+      "boundsMax": [
+        -0.244,
+        1.373,
+        0.083
+      ]
+    },
+    {
+      "name": "MagnetometerBoom",
+      "triangles": 162,
+      "vertices": 168,
+      "pivot": [
+        0.0,
+        -1.1750728324336448,
+        0.006646060773718432
+      ],
+      "boundsMin": [
+        -0.038,
+        -6.834,
+        -0.06
+      ],
+      "boundsMax": [
+        0.034,
+        -0.722,
+        0.076
+      ]
+    }
+  ],
+  "rig": {
+    "root": "Spin_Root",
+    "hinges": [
+      {
+        "name": "RtgBoomA",
+        "pivot": [
+          0.7794228634059949,
+          0.44999999999999996,
+          -0.06798018197431865
+        ],
+        "axis": [
+          -0.49999999999999994,
+          0.8660254037844387,
+          0.0
+        ],
+        "axisVerified": false
+      },
+      {
+        "name": "RtgBoomB",
+        "pivot": [
+          -0.7794228634059949,
+          0.44999999999999996,
+          -0.06798018197431865
+        ],
+        "axis": [
+          -0.49999999999999994,
+          -0.8660254037844387,
+          0.0
+        ],
+        "axisVerified": false
+      },
+      {
+        "name": "MagnetometerBoom",
+        "pivot": [
+          0.0,
+          -1.1750728324336448,
+          0.006646060773718432
+        ],
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "axisVerified": false
+      }
+    ],
+    "sockets": [
+      {
+        "name": "Reflector",
+        "position": [
+          0.0,
+          0.0,
+          0.28099524974823
+        ]
+      },
+      {
+        "name": "Feed",
+        "position": [
+          -0.000642255370092184,
+          0.00020379798603956098,
+          1.7984998832499741
+        ]
+      },
+      {
+        "name": "EquipmentCompartment",
+        "position": [
+          0.0,
+          0.0,
+          -0.4421617861042904
+        ]
+      },
+      {
+        "name": "RtgBoomA",
+        "position": [
+          2.186504706743743,
+          1.2812059840810006,
+          -0.06798018197431865
+        ]
+      },
+      {
+        "name": "RtgBoomB",
+        "position": [
+          -2.2086952213007764,
+          1.247299222101474,
+          -0.05915890746692121
+        ]
+      },
+      {
+        "name": "MagnetometerBoom",
+        "position": [
+          -0.0018584343393019936,
+          -6.8340731407420945,
+          0.03815413743743079
+        ]
+      },
+      {
+        "name": "Plaque",
+        "position": [
+          1.0506312855018745,
+          -0.0026221627226445873,
+          0.2362938231615821
+        ]
+      },
+      {
+        "name": "Photopolarimeter",
+        "position": [
+          0.67,
+          -0.39,
+          -0.3
+        ]
+      }
+    ],
+    "plaque": {
+      "center": [
+        1.0506312855018745,
+        -0.0026221627226445873,
+        0.2362938231615821
+      ],
+      "normal": [
+        0.33060179685233243,
+        -0.13113825145122443,
+        -0.9346150067938802
+      ],
+      "up": [
+        0.9417455015996534,
+        -0.0189960666110268,
+        0.3357894573540487
+      ],
+      "sizeMeters": [
+        0.152,
+        0.229,
+        0.008
+      ],
+      "strutSeparationMeters": 0.166,
+      "struts": [
+        [
+          [
+            1.374899720678054,
+            -0.019192166088447267,
+            0.3531828410640756
+          ],
+          [
+            0.2629220334071316,
+            -0.23808583018565604,
+            -0.009304416583951536
+          ]
+        ],
+        [
+          [
+            1.3709596987432302,
+            0.0009455967789735939,
+            0.34924272386299293
+          ],
+          [
+            0.3342812246223683,
+            0.26318007375679736,
+            -0.05439641383532745
+          ]
+        ]
+      ],
+      "note": "O modelo NÃO traz a placa. Posição: entre os dois suportes da antena do lado +X, a 70% do caminho do corpo ao aro; a posição real na sonda não foi verificada (conferir com foto oficial). 152 x 229 mm (P-S12) a conferir"
+    },
+    "unverified": [
+      "eixo de articulação das hastes",
+      "posição do Photopolarimeter"
+    ]
+  }
+}

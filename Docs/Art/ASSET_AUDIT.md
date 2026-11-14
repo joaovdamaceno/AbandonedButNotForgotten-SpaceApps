@@ -21,7 +21,7 @@ Estados usados: **Página verificada** (lida, não baixada) · **Pendente — eq
 | Crédito na página | **NASA/JPL-Caltech** |
 | Arquivos anunciados | GLB `24883_MER_static.glb` **11,36 MB**; USDZ 3,01 MB (ambos de 08/03/2024) |
 | Observação | O nome “static” sugere modelo sem peças articuladas; separar rodas/braço/mastro/antena é trabalho de MAR-011. 11,36 MB excede o orçamento: decimar e reempacotar texturas. |
-| Estado | **Página verificada · Pendente — equipe** (a equipe fornecerá o arquivo; nada baixado) |
+| Estado | **Página verificada · Não usado** — em 14/11/2026 a MAR-011 substituiu o GLB oficial por um modelo próprio riggado (G-MAR-02 em `ASSET_CREDITS.md`, `Assets/_Game/Chapters/Mars/Art/Rover/RIG.md`). O GLB da NASA não foi baixado |
 | Responsável / prioridade / tarefa | R4 · P0 · MAR-011 |
 
 Componentes reconhecíveis que o modelo final **e** o proxy precisam ter (conferir cada item no GLB e em foto da missão):
@@ -51,7 +51,7 @@ Componentes: base tetraédrica com **três pétalas** que abrem; aglomerados de 
 | Página | https://science.nasa.gov/3d-resources/pioneer/ — “Pioneer 10”, atualizada 24/06/2025 |
 | Crédito na página | Fonte: **NASA/JPL/Eyes on the Solar System** |
 | Arquivo anunciado | `Pioneer 10.glb (Original)` **1,95 MB**, 14/04/2025; espelho https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Pioneer%2010 |
-| Estado | **Página verificada · Pendente — equipe** (nada baixado) |
+| Estado | **Recebido da equipe e incorporado (PIO-002)** · SHA-256 `81443a7fa01cca0dda878cd27692b3307f9c332c4eb8e55a844499d7b350573c` · derivado em `Assets/_Game/Chapters/Pioneer10/Art/` · origem exata do arquivo não verificada (tamanho compatível com a página) |
 | Responsável / prioridade / tarefa | R5 · P0 · PIO-002 |
 
 Componentes reconhecíveis: refletor de alto ganho de **2,74 m** (P-S05) com eixo de spin paralelo ao eixo da antena; compartimento de equipamentos atrás do prato; RTGs em hastes (página NASA Pioneer 10: “two SNAP-19 radioisotope thermal generators”, ~140 W no encontro com Júpiter — o roteiro **não** exibe a contagem; o artista segue a geometria oficial, ver P-S sources §Divergências 4); haste do magnetômetro (instrumento HVM listado na página); fotopolarímetro IPP; **placa** presa aos suportes da antena (alumínio anodizado dourado, P-S12). Massa 258 kg (página).
@@ -74,14 +74,14 @@ Componentes reconhecíveis (página NASA Surveyor 3 + S3-03/S3-12): **câmera de
 | ID | Recurso | Fonte identificada | Estado | Resp. · prioridade · tarefa | Fallback / limite |
 | --- | --- | --- | --- | --- | --- |
 | R-MAR-01 | Panorama de Eagle (“Lion King”) | NASA/JPL (roteiro §Assets) | Referência a localizar | R4 · P0 · MAR-012 | Terreno próprio guiado pela foto |
-| R-MAR-02 | Escudo e Heat Shield Rock | PIA07402 (MS15), PIA07324 (MS16) | Página citada, não baixada | R4 · P0 · MAR-015 | Modelo próprio; foto real creditada em M20 |
+| R-MAR-02 | Escudo e Heat Shield Rock | PIA07402 (MS15), PIA07324 (MS16) | Legendas lidas em 14/11/2026; imagens não baixadas | R4 · P0 · MAR-015 | Modelo próprio procedural entregue (G-MAR-01); capturas de revisão em `Docs/Art/ShieldField_Captures/`. **Imagens reais importadas na MAR-006** (P-MAR-02 e P-MAR-03, com crédito e hash); a foto de M20 pode reutilizá-las. **Revisado (comparação com as imagens reais em `Docs/Art/ShieldField_Captures/08` e `09`):** destroço principal como cúpula convexa amassada com o lado rompido aberto e meteorito cinza-metálico claro, achatado e craterado. Ainda procedural e provisório; a arte final é da R4 (MAR-018/MAR-020) |
 | R-MAR-03 | Mapa de hematita TES / globo Gusev–Meridiani | MS03 (NASA Meridiani Planum) | Página citada | R4 · P0 · MAR-013 | Globo low-cost com dois pontos e rótulos |
 | R-MAR-04 | Céu da tempestade de 2018 | MS29 (stills, sem vídeo) | Página citada | R4 · P0 · MAR-016 | Fog + gradiente próprios |
 | R-MAR-05 | Imagens de Spirit (Husband Hill, Comanche, Home Plate) | MS20–MS24 | Páginas citadas | R4 · P0 · MAR-017 | Cartões com foto creditada |
 | R-MAR-06 | Silhueta Delta II | Fotos NASA de lançamento | Não localizado | R4 · P0 · MAR-013 | Silhueta 2D/low-poly ≤ 3 mil tri |
 | R-PIO-01 | Atlas-Centaur do lançamento | Fotos/desenhos em P-S02 | **Provisório** (PIO-004, G-PIO-04): silhueta com medidas aproximadas; conferir com o desenho oficial | R5 · P0 · PIO-004 | Silhueta + quads de emissão |
-| R-PIO-02 | Júpiter histórico da Pioneer | P-S10 | Download pendente (PIO-007) | R7 · P0 · PIO-007 | Confirmar que é produto Pioneer, não Juno |
-| R-PIO-03 | Ganimedes 1973 | P-S09 | Download pendente (PIO-007) | R7 · P0 · PIO-007 | Manter resolução histórica |
+| R-PIO-02 | Júpiter histórico da Pioneer | P-S10 | **Importado (PIO-007)**: montagem sequencial AC73-9341 da página oficial, SHA-256 `a4d9e5c428849cd4cd956d048e9f25f11f488ec23f98bfb97bd2fb40f8829e0b`; produto Pioneer 10 confirmado (não é Juno) | R7 · P0 · PIO-007 | Montagem de quadros, não foto única; revisão lado a lado da R7 pendente |
+| R-PIO-03 | Ganimedes 1973 | P-S09 | **Importado (PIO-007)**: AC73-9279 da página oficial, SHA-256 `ddee488aadd1007a1162f6d979971add063111260f696d7140eda9c38e1f53fe` (636,08 KB como anunciado) | R7 · P0 · PIO-007 | Resolução histórica preservada, sem ampliação; revisão da R7 pendente |
 | R-PIO-04 | Placa (contornos) | P-S11, P-S12 | Adaptação pendente | R5 · P0 · PIO-009 | Figuras humanas em silhueta lisa, “adaptação educativa” |
 | R-PIO-05 | Antena DSN | Catálogo NASA 3D tem “70 meter dish” (https://science.nasa.gov/3d-resources/70-meter-dish/) | **Candidato** — página do item não lida | R5 · P0 · PIO-011 | Silhueta 2D de prato a partir de foto creditada |
 | R-PIO-06 | Campo de estrelas | Textura própria | **Gerado** (PIO-003, G-PIO-01 em ASSET_CREDITS) | R5 · P0 · PIO-003 | Uma textura de céu + uma malha de estrelas brilhantes (1 draw call), sem milhares de objetos |
