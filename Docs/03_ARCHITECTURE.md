@@ -92,7 +92,7 @@ Tipos em `Assets/_Game/Core/Contracts/` (assembly `Abandoned.SpaceApps`, namespa
 | `IChapterDirector` | `IChapterDirector.cs` | Contrato do `ChapterDirector` (CORE-005) |
 | `InteractionCandidate` (struct), `IInteractionService` | `InteractionCandidate.cs`, `IInteractionService.cs` | Contrato do `InteractionService`/`HoldAction` (CORE-003) |
 | `EvidenceRecord`, `EvidenceKind`, `EvidenceAuthorship`, `IEvidenceStore` | `EvidenceRecord.cs`, `IEvidenceStore.cs` | Evidências da sessão (CORE-005) |
-| `ShotDefinition`, `ShotKeyframe`, `ShotEvent`, `ShotEasing` | `ShotDefinition.cs` | Plano de câmera (CORE-004) |
+| `ShotDefinition`, `ShotKeyframe`, `ShotEvent`, `ShotEasing` | `ShotDefinition.cs` | Plano de câmera (CORE-004). `ContinueFromPreviousShot` (acrescentado na CORE-004) faz o plano partir da pose/FOV atuais da câmera, sem salto |
 | `SubtitleCue`, `SubtitlePosition` | `SubtitleCue.cs` | Legenda por chave; janela de tempo **ou** gatilho (UI-004) |
 | `SequenceDefinition` (ScriptableObject), `ActorMark` | `SequenceDefinition.cs` | Planos, legendas e marcas de atores num único relógio (CORE-004) |
 | `ContractValidation` | `ContractValidation.cs` | Regra de ID e mensagens de erro |

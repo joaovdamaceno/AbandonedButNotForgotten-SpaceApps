@@ -58,6 +58,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("ID do alvo de LookAt. Vazio = usa a rotação dos keyframes.")] string lookAtTargetId;
         [SerializeField] ShotEasing easing = ShotEasing.EaseInOut;
         [SerializeField, Tooltip("Altura mínima da câmera sobre o chão real, em metros (impede câmera abaixo da malha).")] float minGroundClearanceMeters = 0.3f;
+        [SerializeField, Tooltip("Começa exatamente da pose e do FOV atuais da câmera (fim do plano anterior ou câmera de gameplay), ignorando o keyframe 0. Use quando a continuidade é prevista.")] bool continueFromPreviousShot;
         [SerializeField] List<ShotKeyframe> keyframes = new List<ShotKeyframe>();
         [SerializeField] List<ShotEvent> events = new List<ShotEvent>();
 
@@ -67,8 +68,9 @@ namespace Abandoned.SpaceApps
 
         public ShotDefinition(string shotId, float durationSeconds, string rigId, IEnumerable<ShotKeyframe> keyframes,
             string lookAtTargetId = null, ShotEasing easing = ShotEasing.EaseInOut, float minGroundClearanceMeters = 0.3f,
-            IEnumerable<ShotEvent> events = null)
+            IEnumerable<ShotEvent> events = null, bool continueFromPreviousShot = false)
         {
+            this.continueFromPreviousShot = continueFromPreviousShot;
             this.shotId = shotId;
             this.durationSeconds = durationSeconds;
             this.rigId = rigId;
@@ -86,6 +88,9 @@ namespace Abandoned.SpaceApps
         public ShotEasing Easing => easing;
         public float MinGroundClearanceMeters => minGroundClearanceMeters;
         public IReadOnlyList<ShotKeyframe> Keyframes => keyframes;
+
+        /// <summary>O plano parte da pose/FOV atuais da câmera; o keyframe 0 só define o instante inicial.</summary>
+        public bool ContinueFromPreviousShot => continueFromPreviousShot;
         public IReadOnlyList<ShotEvent> Events => events;
 
         public List<string> Validate()
