@@ -3,6 +3,20 @@
 Scripts, dados, prefabs, arte e cena do capítulo. Roteiro: `Docs/Chapters/02_PIONEER_10.md`. Fontes: `Docs/Chapters/02_PIONEER_SOURCES.md`.
 Código de jogo em `Runtime/` (caminho usado por todas as tarefas PIO), ferramentas de Editor em `Editor/` (assembly `Abandoned.SpaceApps.Editor`), testes em `Tests/` (assembly `Abandoned.SpaceApps.Core.Tests`). A pasta vazia `Scripts/` continua porque o validador da CORE-001 e a arquitetura a listam; unificar com `Runtime/` é decisão de R1.
 
+## Dados do capítulo (PIO-001)
+
+Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de produção), fora de `Assets/`.
+
+| Arquivo | Conteúdo |
+| --- | --- |
+| `Data/Chapters/Pioneer10.json` | Oito estados com ID estável e ordem explícita (375 s nominais, até 381 s com o alongamento de leitura de PIO.07.06 e PIO.04.09), 45 cues (janela local ou gatilho com tempo mínimo de leitura), grupos de texto, **mapa de fatos → fontes**, divergências entre fontes e correções aplicadas |
+| `Data/Localization/Pioneer10.pt-BR.json`, `Pioneer10.en.json` | 78 chaves iguais nos dois idiomas, por grupo (`narrative`, `hud`, `instrument`, `card`) e `status` (`approved` = transcrito do roteiro; `derived` = montado ou traduzido a partir do roteiro, **a revisar pela R7**) |
+
+- **Tempo** é local ao estado, no relógio ativo; datas históricas são dados. A recepção na Terra (rádio) fica separada da operação na sonda (lançamento) no campo `kind` de cada fato.
+- **IDs de gatilho** de `PIO.Imaging` seguem o código integrado (`Gate4`, `Gate6`, `GateRecovery`, `Gate8`); os de `PIO.Plaque` e `PIO.Listening` são **propostos** e devem ser confirmados por PIO-009 e PIO-011.
+- **Validar:** `python Tools/validate_pioneer_data.py` (JSON, IDs, soma de 375 s, janelas sem sobreposição, chaves PT/EN iguais, fontes, datas UTC, termos que o registro de fontes manda evitar) e o teste `PioneerDataTests`, que cruza os dados com `PioneerPresentation.StateIds`, as constantes de texto do código e as sequências `PIO_Launch/Belt/Imaging`.
+- **Cartões de data** (`PIO.Card.*`): o roteiro só cita o texto de alguns; os marcados `derived` usam apenas datas e frases do roteiro.
+
 ## Palco espacial (PIO-003)
 
 | Arquivo | Papel |
