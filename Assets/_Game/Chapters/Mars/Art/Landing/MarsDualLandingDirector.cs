@@ -24,7 +24,7 @@ namespace Abandoned.SpaceApps
         [SerializeField] SequenceDefinition eagleSequence;
 
         readonly List<MarsLandingLabel> visibleLabels = new List<MarsLandingLabel>();
-        readonly List<string> visibleKeys = new List<string>();
+        long visibleMask;
         SequenceDirector sequenceDirector;
         CameraDirector cameraDirector;
         float lastTime = -1f;
@@ -247,20 +247,24 @@ namespace Abandoned.SpaceApps
 
         void RefreshLabels(float time)
         {
-            var before = string.Join("|", visibleKeys);
+            // Sem alocação por quadro: o conjunto visível é comparado por máscara de bits (AGENTS.md).
             visibleLabels.Clear();
-            visibleKeys.Clear();
-            foreach (var label in data.Labels)
+            var mask = 0L;
+            var all = data.Labels;
+            for (var i = 0; i < all.Count; i++)
             {
-                if (label.IsVisibleAt(time))
+                if (all[i].IsVisibleAt(time))
                 {
-                    visibleLabels.Add(label);
-                    visibleKeys.Add(label.TextKey);
+                    visibleLabels.Add(all[i]);
+                    mask |= 1L << i;
                 }
             }
 
-            if (before != string.Join("|", visibleKeys))
+            if (mask != visibleMask)
+            {
+                visibleMask = mask;
                 LabelsChanged?.Invoke(visibleLabels);
+            }
         }
 
         public List<string> ValidateSetup()
