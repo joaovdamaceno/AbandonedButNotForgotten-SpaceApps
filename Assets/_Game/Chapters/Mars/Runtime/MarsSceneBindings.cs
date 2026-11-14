@@ -14,13 +14,13 @@ namespace Abandoned.SpaceApps
 
     /// <summary>
     /// Dados de montagem do capítulo de Marte (MAR-009): referências SERIALIZADAS a todos os prefabs e dados (nada é procurado por nome),
-    /// a tabela etapa → região das 32 etapas e o orçamento de 360 s. A montagem de Editor (<c>MarsChapterAssembly</c>) instancia estes
+    /// a tabela etapa → região das 32 etapas e o orçamento de 375,8 s. A montagem de Editor (<c>MarsChapterAssembly</c>) instancia estes
     /// prefabs de forma determinística; o <see cref="MarsChapterBindings"/> usa a tabela em execução.
     /// </summary>
     [CreateAssetMenu(fileName = "MarsSceneBindings", menuName = "Abandoned/Mars Scene Bindings")]
     public sealed class MarsSceneBindings : ScriptableObject
     {
-        public const float TargetSeconds = 360f;
+        public const float TargetSeconds = 375.8f;
         public const float BudgetToleranceSeconds = 1f;
 
         [Header("Dados")]

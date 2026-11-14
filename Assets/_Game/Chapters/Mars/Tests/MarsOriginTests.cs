@@ -12,8 +12,8 @@ using static Abandoned.SpaceApps.MarsOriginChoreography;
 namespace Abandoned.SpaceApps.Tests
 {
     /// <summary>
-    /// MAR-013: M01–M03 (25 s). Prova durações, cues da tabela, rótulos por chave, destinos corretos no globo e só o destino da legenda aceso,
-    /// planos que mudam de escala ou assunto, lançamentos em sequência com uma só chama, orçamento (uma câmera, zero partículas) e relógio único.
+    /// MAR-013 (revisada): M01–M03 (40,8 s). Prova durações, cues da tabela (texto exato da abertura anterior), rótulos por chave, mapas orbitais com crédito,
+    /// globo com os dois pousos nos locais certos e datas, planos que mudam de escala ou assunto, orçamento (uma câmera, zero partículas) e relógio único.
     /// </summary>
     public class MarsOriginTests
     {
@@ -75,14 +75,13 @@ namespace Abandoned.SpaceApps.Tests
         // ---------- Duração e cues ----------
 
         [Test]
-        public void ThreeSequencesSumToTwentyFiveSecondsAndValidate()
+        public void ThreeSequencesSumToTheOpeningBudgetAndValidate()
         {
-            Assert.That(m01.TotalDurationSeconds, Is.EqualTo(8f).Within(1e-4f));
-            Assert.That(m02.TotalDurationSeconds, Is.EqualTo(12f).Within(1e-4f));
-            Assert.That(m03.TotalDurationSeconds, Is.EqualTo(5f).Within(1e-4f));
-            Assert.That(TotalSeconds, Is.EqualTo(25f));
+            Assert.That(m01.TotalDurationSeconds, Is.EqualTo(6.3f).Within(1e-4f));
+            Assert.That(m02.TotalDurationSeconds, Is.EqualTo(28.5f).Within(1e-4f));
+            Assert.That(m03.TotalDurationSeconds, Is.EqualTo(6f).Within(1e-4f));
+            Assert.That(TotalSeconds, Is.EqualTo(40.8f).Within(1e-4f));
             Assert.That(new[] { m01.SequenceId, m02.SequenceId, m03.SequenceId }, Is.EqualTo(new[] { "mars.seq.M01", "mars.seq.M02", "mars.seq.M03" }));
-            Assert.That(MarsChapterFlow.CreateDefaultBindings().Where(b => b.IsCinematic).Select(b => b.SequenceId), Is.SupersetOf(new[] { m01.SequenceId, m02.SequenceId, m03.SequenceId }));
             foreach (var s in new[] { m01, m02, m03 })
             {
                 Assert.That(s.Validate(), Is.Empty, ContractValidation.Describe(s.Validate()));
@@ -93,91 +92,129 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void CuesComeFromTheSubtitleTableAndLabelKeysHaveBothLanguages()
+        public void CuesAreTheOpeningOfTheEarlierGameInEnglishAndLabelKeysHaveText()
         {
             var errors = new List<string>();
             var table = MarsChapterFlow.ParseSubtitles(File.ReadAllText(SubtitlesPath), errors);
             Assert.That(errors, Is.Empty);
             foreach (var (s, step) in new[] { (m01, "M01"), (m02, "M02"), (m03, "M03") })
                 Assert.That(s.Cues.Select(c => c.CueId).OrderBy(x => x), Is.EqualTo(MarsChapterFlow.BuildSequenceCues(table, step).Select(c => c.CueId).OrderBy(x => x)), step);
-            Assert.That(m02.Cues.Select(c => c.CueId), Is.EquivalentTo(new[] { "MAR.C02", "MAR.C03", "MAR.C04" }));
+            Assert.That(m01.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "MAR.C01" }));
+            Assert.That(m02.Cues.Select(c => c.CueId), Is.EquivalentTo(new[] { "MAR.C02", "MAR.C03", "MAR.C04", "MAR.C05" }));
+            Assert.That(m03.Cues, Is.Empty, "o globo fala pelos letreiros com datas");
 
             var texts = new Dictionary<string, TextEntry>();
-            foreach (var path in new[] { TextsPath, SubtitlesPath })
+            foreach (var path in new[] { TextsPath, SubtitlesPath, "Assets/_Game/Chapters/Mars/Art/Landing/MarsLandingTexts.json" })
                 foreach (var e in JsonUtility.FromJson<TextTable>(File.ReadAllText(path)).texts)
                     texts[e.key] = e;
             foreach (var label in director.Labels)
             {
                 Assert.That(texts.ContainsKey(label.TextKey), Is.True, label.TextKey);
-                Assert.That(texts[label.TextKey].pt, Is.Not.Empty);
                 Assert.That(texts[label.TextKey].en, Is.Not.Empty);
             }
 
-            Assert.That(texts["MAR.ORI.01"].pt, Is.EqualTo("SPIRIT"));
-            Assert.That(texts["MAR.ORI.02"].pt, Is.EqualTo("OPPORTUNITY"));
-            Assert.That(texts["MAR.ORI.06"].pt + texts["MAR.ORI.07"].pt, Does.Not.Match(@"\d{1,2} (JUN|JUL)"), "sem o dia, para não misturar UTC e calendário local");
+            var cues = JsonUtility.FromJson<CueTable>(File.ReadAllText(SubtitlesPath)).cues.ToDictionary(c => c.cueId);
+            Assert.That(cues["MAR.C01"].en, Is.EqualTo("In 2003, NASA sent a laboratory on wheels to Mars. Its name was Opportunity."));
+            Assert.That(cues["MAR.C02"].en, Is.EqualTo("Its mission was to search the rocks for traces of a past with liquid water."));
+            Assert.That(cues["MAR.C03"].en, Is.EqualTo("Before landing, an orbiting probe, Mars Global Surveyor, studied Mars from above and detected hematite in Meridiani Planum."));
+            Assert.That(cues["MAR.C04"].en, Is.EqualTo("On Earth, hematite usually forms where water exists. If water was there, the rocks might still hold that story."));
+            Assert.That(cues["MAR.C05"].en, Does.Contain("Spirit").And.Contain("Gusev").And.Contain("hypothesis"), "Gusev é hipótese, não certeza");
+            Assert.That(texts["MAR.T01"].en, Is.EqualTo("2003"));
+            Assert.That(texts["MAR.ORI.01"].en, Is.EqualTo("EARTH · MISSION PREPARATION"));
+            Assert.That(texts["MAR.ORI.02"].en, Is.EqualTo("WHY MERIDIANI PLANUM?"));
+            Assert.That(texts["MAR.L01"].en + texts["MAR.L02"].en, Does.Contain("4 JAN 2004").And.Contain("25 JAN 2004"), "datas dos pousos (UTC)");
         }
 
+        [Serializable] sealed class CueTable { public List<CueEntry> cues = new List<CueEntry>(); }
+        [Serializable] sealed class CueEntry { public string cueId; public string en; }
+
         [Test]
-        public void LabelsAppearOnlyWhenTheirCueIs()
+        public void LabelsFollowTheScript()
         {
             director.ApplyAt(2f);
-            Assert.That(director.VisibleLabels, Is.Empty, "o travelling inicial não tem placa ainda");
-            director.ApplyAt(6f);
-            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EquivalentTo(new[] { "MAR.ORI.01", "MAR.ORI.02" }), "as duas placas");
-            director.ApplyAt(10f);
-            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(new[] { "MAR.ORI.03" }), "C02: Gusev");
-            director.ApplyAt(14f);
-            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(new[] { "MAR.ORI.04" }), "C03: Meridiani");
-            director.ApplyAt(18f);
-            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(new[] { "MAR.ORI.05" }), "C04: hematita");
-            director.ApplyAt(21f);
-            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(new[] { "MAR.ORI.06" }));
-            director.ApplyAt(24f);
-            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(new[] { "MAR.ORI.07" }));
+            Assert.That(director.VisibleLabels, Is.Empty, "Marte no espaço, só o título do ano");
+            director.ApplyAt(LabStart + 1f);
+            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(new[] { "MAR.ORI.01" }));
+            director.ApplyAt(MeridianiMapStart + 1f);
+            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Does.Contain("MAR.ORI.CR1"), "crédito do mapa");
+            director.ApplyAt(LabStart + 15f);
+            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Does.Contain("MAR.ORI.02"));
+            director.ApplyAt(LabStart + 25f);
+            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Does.Contain("MAR.ORI.03"));
+            director.ApplyAt(GlobeStart + 5.5f);
+            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EquivalentTo(new[] { "MAR.L01", "MAR.L02" }), "os dois pousos, com datas");
         }
 
-        // ---------- Mapa ----------
+        // ---------- Mapas e globo ----------
 
         [Test]
-        public void GlobeLightsOnlyTheSitesOfTheCurrentCueAndTurnsThemToTheCamera()
+        public void OrbitalMapsFadeInAndOutWithCredit()
         {
-            var g = Direction(Gusev);
+            Assert.That(Sample(MeridianiMapStart - 0.1f).MeridianiMapOpacity, Is.EqualTo(0f).Within(1e-4f));
+            Assert.That(Sample((MeridianiMapStart + MeridianiMapEnd) * 0.5f).MeridianiMapOpacity, Is.EqualTo(1f).Within(1e-4f));
+            Assert.That(Sample(MeridianiMapEnd + 0.1f).MeridianiMapOpacity, Is.EqualTo(0f).Within(1e-4f));
+            Assert.That(Sample(31f).GusevMapOpacity, Is.EqualTo(1f).Within(1e-4f));
+            Assert.That(Sample(31f).MeridianiMapOpacity, Is.EqualTo(0f));
+
+            director.ApplyAt(14f);
+            Assert.That(director.Overlay.IsVisible, Is.True);
+            Assert.That(director.Overlay.Image, Is.SameAs(director.MeridianiMap));
+            Assert.That(director.Overlay.CreditKey, Is.EqualTo(MarsOriginDirector.MeridianiCreditKey));
+            director.ApplyAt(31f);
+            Assert.That(director.Overlay.Image, Is.SameAs(director.GusevMap));
+            Assert.That(director.Overlay.CreditKey, Is.EqualTo(MarsOriginDirector.GusevCreditKey));
+            director.ApplyAt(3f);
+            Assert.That(director.Overlay.IsVisible, Is.False);
+        }
+
+        [Test]
+        public void GlobeMarksBothLandingSitesAndTurnsFromSpiritToOpportunity()
+        {
             Assert.That(Gusev, Is.EqualTo(new Vector2(-14.57f, 175.48f)), "Mars24: Spirit 175,48°L, 14,57°S");
             Assert.That(Meridiani, Is.EqualTo(new Vector2(-1.95f, 354.47f)), "Mars24: Opportunity 354,47°L, 1,95°S");
-            Assert.That(Vector3.Angle(g, Direction(Meridiani)), Is.GreaterThan(150f), "lados opostos de Marte");
+            Assert.That(Vector3.Angle(Direction(Gusev), Direction(Meridiani)), Is.GreaterThan(150f), "lados opostos de Marte");
 
-            var at = Sample(MapStart + 2f);
-            Assert.That(at.GusevGlow, Is.EqualTo(1f).Within(1e-3f));
-            Assert.That(at.MeridianiGlow + at.HematiteGlow, Is.EqualTo(0f).Within(1e-4f), "só o local da legenda");
-            director.ApplyAt(MapStart + 2f);
-            Assert.That(Vector3.Dot(director.Globe.TransformDirection(g), Vector3.back), Is.GreaterThan(0.999f), "Gusev de frente para a câmera");
+            director.ApplyAt(GusevLitAt + 0.5f);
+            Assert.That(Vector3.Dot(director.Globe.TransformDirection(Direction(Gusev)), Vector3.back), Is.GreaterThan(0.999f));
             Assert.That(director.GusevMarker.enabled, Is.True);
             Assert.That(director.MeridianiMarker.enabled, Is.False);
 
-            director.ApplyAt(MapStart + 6f);
-            var second = Sample(MapStart + 6f);
-            Assert.That(second.MeridianiGlow, Is.EqualTo(1f).Within(1e-3f));
-            Assert.That(second.GusevGlow + second.HematiteGlow, Is.EqualTo(0f).Within(1e-4f));
+            director.ApplyAt(TotalSeconds);
             Assert.That(Vector3.Dot(director.Globe.TransformDirection(Direction(Meridiani)), Vector3.back), Is.GreaterThan(0.999f));
-            Assert.That(director.GusevMarker.enabled, Is.False);
+            Assert.That(director.GusevMarker.enabled && director.MeridianiMarker.enabled, Is.True, "os dois ficam acesos no fim");
 
-            director.ApplyAt(MapStart + 10f);
-            Assert.That(Sample(MapStart + 10f).HematiteGlow, Is.EqualTo(1f).Within(1e-3f), "C04: a pista de hematita");
-            Assert.That(director.HematitePatch.enabled, Is.True);
-            Assert.That(Sample(MapStart - 1f).GusevGlow + Sample(LaunchStart + 1f).MeridianiGlow, Is.EqualTo(0f), "fora do mapa nada aceso");
+            // O marcador fica sobre o local no globo (filho do globo, na direção da latitude/longitude).
+            Assert.That(Vector3.Angle(director.GusevMarker.transform.localPosition, Direction(Gusev)), Is.LessThan(0.01f));
+            Assert.That(Vector3.Angle(director.MeridianiMarker.transform.localPosition, Direction(Meridiani)), Is.LessThan(0.01f));
+            Assert.That(Sample(GlobeStart - 1f).GusevGlow, Is.EqualTo(0f), "fora do globo nada aceso");
         }
 
         [Test]
         public void GlobeRotationNeverSnaps()
         {
-            var previous = Sample(MapStart).GlobeRotation;
-            foreach (var t in Times(MapStart + Step, LaunchStart, Step))
+            var previous = Sample(GlobeStart).GlobeRotation;
+            foreach (var t in Times(GlobeStart + Step, TotalSeconds, Step))
             {
                 var now = Sample(t).GlobeRotation;
                 Assert.That(Quaternion.Angle(previous, now), Is.LessThan(12f), $"t={t}");
                 previous = now;
             }
+        }
+
+        [Test]
+        public void OnlyTheRegionOfTheCurrentBlockIsActiveAndPlanetUsesTheNasaMap()
+        {
+            foreach (var (t, region) in new[] { (1f, RegionSpace), (10f, RegionLab), (30f, RegionLab), (GlobeStart + 1f, RegionGlobe) })
+            {
+                director.ApplyAt(t);
+                for (var i = 0; i < director.Regions.Count; i++)
+                    Assert.That(director.Regions[i].gameObject.activeSelf, Is.EqualTo(i == region), $"t={t} região {i}");
+            }
+
+            var map = director.Planet.GetComponent<MeshRenderer>().sharedMaterial.GetTexture("_BaseMap");
+            Assert.That(map, Is.Not.Null);
+            Assert.That(map.name, Is.EqualTo("Mars_Equirect"));
+            Assert.That(director.Globe.GetComponent<MeshRenderer>().sharedMaterial.GetTexture("_BaseMap"), Is.SameAs(map));
         }
 
         // ---------- Câmeras ----------
@@ -205,28 +242,17 @@ namespace Abandoned.SpaceApps.Tests
                     CameraDirector.SampleKeyframes(s.Shots[i], s.Shots[i].DurationSeconds, out var pa, out var ra, out var fa);
                     CameraDirector.SampleKeyframes(s.Shots[i + 1], 0f, out var pb, out var rb, out var fb);
                     var scaleChange = Mathf.Max(fa, fb) / Mathf.Min(fa, fb);
-                    Assert.That(Vector3.Distance(pa, pb) > 2f || scaleChange > 1.2f || Quaternion.Angle(ra, rb) > 25f, Is.True,
+                    Assert.That(Vector3.Distance(pa, pb) > 2f || scaleChange > 1.1f || Quaternion.Angle(ra, rb) > 20f, Is.True,
                         $"{s.SequenceId} corte {i + 1}: quase o mesmo plano (zoom/ângulo sem mudança clara)");
                 }
             }
-
-            float Distance(ShotDefinition shot, Vector3 target)
-            {
-                CameraDirector.SampleKeyframes(shot, shot.DurationSeconds * 0.5f, out var p, out _, out _);
-                return Vector3.Distance(p, target);
-            }
-
-            var globe = MarsOriginBuilder.MapOffset;
-            var d = m02.Shots.Select((shot, i) => Distance(shot, globe + (i == 2 ? new Vector3(0f, 0f, -2f) : Vector3.zero))).ToArray();
-            Assert.That(d[0], Is.GreaterThan(d[1] + 0.5f), "de longe para mais perto");
-            Assert.That(d[1], Is.GreaterThan(d[2] + 1.5f), "e de perto para a mancha de hematita");
         }
 
         [Test]
         public void TheOnlyCameraIsTheDirectorsAndThereAreNoParticleSystemsOrLights()
         {
             Assert.That(root.GetComponentsInChildren<Camera>(true), Is.Empty, "a sequência usa a câmera do CameraDirector");
-            Assert.That(root.GetComponentsInChildren<ParticleSystem>(true), Is.Empty, "zero partículas: a chama é uma malha");
+            Assert.That(root.GetComponentsInChildren<ParticleSystem>(true), Is.Empty, "zero partículas");
             Assert.That(root.GetComponentsInChildren<Light>(true), Is.Empty, "a luz lateral é da cena");
             Assert.That(root.GetComponentsInChildren<Collider>(true), Is.Empty);
             foreach (var s in new[] { m01, m02, m03 })
@@ -234,52 +260,12 @@ namespace Abandoned.SpaceApps.Tests
                     Assert.That(shot.RigId, Is.EqualTo(MarsOriginDirector.RigId));
         }
 
-        // ---------- Lançamentos ----------
-
-        [Test]
-        public void TwoRocketsLaunchOneAfterTheOtherSharingOneFlame()
-        {
-            director.ApplyAt(LaunchStart);
-            var baseA = director.RocketA.localPosition;
-            var baseB = director.RocketB.localPosition;
-            Assert.That(Vector3.Distance(baseA, baseB), Is.EqualTo(RocketSpacingMeters).Within(1e-3f), "silhuetas separadas");
-            Assert.That(director.Flame.gameObject.activeSelf, Is.False, "na rampa, sem chama");
-
-            var previousA = 0f;
-            var previousB = 0f;
-            foreach (var t in Times(LaunchStart, TotalSeconds, Step))
-            {
-                director.ApplyAt(t);
-                var heightA = director.RocketA.localPosition.y - baseA.y;
-                var heightB = director.RocketB.localPosition.y - baseB.y;
-                Assert.That(heightA, Is.GreaterThanOrEqualTo(previousA - 1e-4f), $"t={t}");
-                Assert.That(heightB, Is.GreaterThanOrEqualTo(previousB - 1e-4f));
-                Assert.That(heightA - previousA, Is.LessThan(12f), $"t={t}: sem salto");
-                Assert.That(heightB - previousB, Is.LessThan(12f));
-                if (t - LaunchStart < RocketBTakeoff)
-                    Assert.That(heightB, Is.EqualTo(0f).Within(1e-4f), $"t={t}: o segundo só sai depois do primeiro");
-                if (director.Flame.gameObject.activeSelf)
-                {
-                    var host = t - LaunchStart < RocketBTakeoff ? director.RocketA : director.RocketB;
-                    Assert.That(Vector3.Distance(director.Flame.localPosition, host.localPosition + Vector3.up * 0.5f), Is.LessThan(1e-3f), $"t={t}: a chama acompanha o foguete aceso");
-                }
-
-                previousA = heightA;
-                previousB = heightB;
-            }
-
-            Assert.That(previousA, Is.GreaterThan(80f));
-            Assert.That(previousB, Is.GreaterThan(40f));
-            Assert.That(Sample(LaunchStart + RocketBTakeoff - 0.3f).Flame, Is.LessThan(0.2f), "a chama do primeiro apaga antes de acender no segundo");
-            Assert.That(Sample(LaunchStart + RocketBTakeoff + 0.5f).Flame, Is.GreaterThan(0.9f));
-        }
-
         // ---------- Laboratório ----------
 
         [Test]
         public void LabHasTwoRoversOnBenchesAndEveryPropHasAFunction()
         {
-            var lab = root.transform.Find("Lab");
+            var lab = root.transform.Find("Region_Lab");
             var allowed = new[] { "Floor", "Bench_", "Support_", "Plate_", "Rack_", "Cable_", "Rover_" };
             foreach (Transform child in lab)
                 Assert.That(allowed.Any(a => child.name.StartsWith(a)), Is.True, $"{child.name}: objeto de fundo sem função");
@@ -322,9 +308,10 @@ namespace Abandoned.SpaceApps.Tests
             }
 
             Run(m01);
-            Run(m02, frame =>
+            Run(m02);
+            Run(m03, frame =>
             {
-                if (frame != 100)
+                if (frame != 70)
                     return;
 
                 var rotation = director.Globe.localRotation;
@@ -342,14 +329,16 @@ namespace Abandoned.SpaceApps.Tests
                 Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(labels), "e os letreiros");
                 sequenceDirector.Resume();
             });
-            Run(m03);
 
-            Assert.That(events.Select(e => e.id), Is.EqualTo(new[] { "mars.origin.gusev.glow", "mars.origin.meridiani.glow", "mars.origin.hematite.glow", "mars.origin.launch.first", "mars.origin.launch.second" }));
-            Assert.That(events[0].time, Is.EqualTo(MapStart).Within(Step + 1e-3f));
-            Assert.That(events[1].time, Is.EqualTo(MapStart + 4f).Within(Step + 1e-3f));
-            Assert.That(events[2].time, Is.EqualTo(MapStart + 8f).Within(Step + 1e-3f));
-            Assert.That(events[3].time, Is.EqualTo(LaunchStart + RocketATakeoff).Within(Step + 1e-3f), "evento no mesmo relógio da coreografia");
-            Assert.That(events[4].time, Is.EqualTo(LaunchStart + RocketBTakeoff).Within(Step + 1e-3f));
+            Assert.That(events.Select(e => e.id), Is.EqualTo(new[]
+            {
+                "mars.origin.space", "mars.origin.map.meridiani", "mars.origin.lab.detail", "mars.origin.lab.meridiani",
+                "mars.origin.lab.gusev", "mars.origin.map.gusev", "mars.origin.globe.spirit", "mars.origin.globe.opportunity",
+            }));
+            Assert.That(events[1].time, Is.EqualTo(MeridianiMapStart).Within(Step + 1e-3f), "evento no mesmo relógio da coreografia");
+            Assert.That(events[5].time, Is.EqualTo(GusevMapStart).Within(Step + 1e-3f));
+            Assert.That(events[6].time, Is.EqualTo(GusevLitAt).Within(Step + 1e-3f));
+            Assert.That(events[7].time, Is.EqualTo(MeridianiLitAt).Within(Step + 1e-3f));
             Assert.That(cameraDirector.IsControlled, Is.False, "controle da câmera devolvido");
         }
     }

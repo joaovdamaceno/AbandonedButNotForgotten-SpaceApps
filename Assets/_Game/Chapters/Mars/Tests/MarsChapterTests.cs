@@ -146,8 +146,8 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(bindings.Rover.GetComponentsInChildren<Renderer>(true).Length, Is.GreaterThan(10), "o modelo da MAR-011 está no VisualRoot");
 
             var sums = MarsChapterFlow.CreateDefaultBindings().Sum(b => b.ReferenceSeconds);
-            Assert.That(sums, Is.EqualTo(360f).Within(0.01f), "orçamento de 360 s");
-            Assert.That(bindings.Bindings.Chapter.TargetDurationSeconds, Is.EqualTo(360f));
+            Assert.That(sums, Is.EqualTo(375.8f).Within(0.01f), "orçamento de 375,8 s");
+            Assert.That(bindings.Bindings.Chapter.TargetDurationSeconds, Is.EqualTo(375.8f).Within(0.01f));
             Assert.That(bindings.Bindings.Chapter.SceneName, Is.EqualTo("Mars"));
         }
 

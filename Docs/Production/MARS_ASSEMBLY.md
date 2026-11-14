@@ -15,8 +15,8 @@ Entrega: `Scenes/Mars.unity` (montada por `Editor/MarsChapterAssembly.cs`), `Dat
 4. Ao descarregar, chamar `Teardown()` (também feito em `OnDisable`).
 5. A memória escolhida (M30) vai ao memorial sozinha, via `MarsTransmission.SelectedRecord`.
 
-## Orçamento de 360 s
-As 32 etapas somam 360 s de referência (validado). Cinemáticas: 146 s; gameplay: 214 s de referência editorial, sem cronômetro que conclua etapa. A meta de 5–7 min depende de teste com pessoas.
+## Orçamento de 375,8 s
+As 32 etapas somam 375,8 s de referência (validado). Cinemáticas: 161,8 s; gameplay: 214 s de referência editorial, sem cronômetro que conclua etapa. A meta de 5–7 min depende de teste com pessoas.
 
 ## Limitações
 - **Eagle (M07–M15) usa um piso provisório identificado** (`Eagle · PLACEHOLDER (MAR-012 pendente)`): a MAR-012 não foi integrada. Quando for, basta atribuir o prefab em `MarsSceneBindings.eagleEnvironment` e reconstruir. Sem o terreno real, a distância entre a estação e os alvos da RAT/blueberries não foi conferida em cena.

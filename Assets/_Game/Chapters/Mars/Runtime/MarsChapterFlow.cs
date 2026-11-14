@@ -12,7 +12,7 @@ namespace Abandoned.SpaceApps
     /// Três relógios separados: o <b>ativo</b> (<see cref="IActiveTimeSource"/>, SessionClock) mede a etapa de gameplay e
     /// congela na pausa; a <b>etapa</b> só termina quando seus eventos chegam na ordem da tabela; a <b>cinemática</b>
     /// (SequenceDirector) tem relógio próprio e encerra a etapa pelo seu <c>Finished</c>. Os segundos de referência
-    /// (soma 360 s) são editoriais: nenhuma etapa conclui porque o tempo passou.
+    /// (soma 375,8 s) são editoriais: nenhuma etapa conclui porque o tempo passou.
     /// </para>
     /// <para>
     /// Regras: evento fora de ordem, de outra etapa, repetido ou desconhecido é ignorado; a última etapa só conclui uma
@@ -29,9 +29,9 @@ namespace Abandoned.SpaceApps
     /// Gameplay: ao receber StepStarted habilite a atividade; ela chama <see cref="Raise"/> com os eventos abaixo, em ordem.
     /// <code>
     /// Etapa ref.s Tipo       Entrada (selo / objetivo)            Eventos de conclusão, em ordem               [dono]
-    /// M01    8  Cinemática mars.seq.M01 · MAR.T01               mars.seq.M01                                 [MAR-013/018]
-    /// M02   12  Cinemática mars.seq.M02                         mars.seq.M02                                 [MAR-013/018]
-    /// M03    5  Cinemática mars.seq.M03                         mars.seq.M03                                 [MAR-013/018]
+    /// M01  6,3  Cinemática mars.seq.M01 · MAR.T01               mars.seq.M01                                 [MAR-013/018]
+    /// M02 28,5  Cinemática mars.seq.M02                         mars.seq.M02                                 [MAR-013/018]
+    /// M03    6  Cinemática mars.seq.M03                         mars.seq.M03                                 [MAR-013/018]
     /// M04   18  Cinemática mars.seq.M04 · MAR.T02               mars.seq.M04                                 [MAR-014/018]
     /// M05    4  Cinemática mars.seq.M05                         mars.seq.M05                                 [MAR-014/018]
     /// M06    5  Cinemática mars.seq.M06                         mars.seq.M06                                 [MAR-014/018]
@@ -80,7 +80,7 @@ namespace Abandoned.SpaceApps
         public const string MarsChapterId = "mars";
         public const int ExpectedStepCount = 32;
         public const int ExpectedCueCount = 49;
-        public const float ReferenceDurationSeconds = 360f;
+        public const float ReferenceDurationSeconds = 375.8f;
 
         public const string ClockSequence = "sequence";
         public const string ClockStep = "step";
@@ -656,9 +656,9 @@ namespace Abandoned.SpaceApps
         /// <summary>Tabela aprovada das 32 etapas (ver remarks da classe).</summary>
         public static List<StepBinding> CreateDefaultBindings() => new List<StepBinding>
         {
-            StepBinding.Cinematic("M01", 8f, "mars.seq.M01", "MAR.T01"),
-            StepBinding.Cinematic("M02", 12f, "mars.seq.M02"),
-            StepBinding.Cinematic("M03", 5f, "mars.seq.M03"),
+            StepBinding.Cinematic("M01", 6.3f, "mars.seq.M01", "MAR.T01"),
+            StepBinding.Cinematic("M02", 28.5f, "mars.seq.M02"),
+            StepBinding.Cinematic("M03", 6f, "mars.seq.M03"),
             StepBinding.Cinematic("M04", 18f, "mars.seq.M04", "MAR.T02"),
             StepBinding.Cinematic("M05", 4f, "mars.seq.M05"),
             StepBinding.Cinematic("M06", 5f, "mars.seq.M06"),
@@ -743,7 +743,7 @@ namespace Abandoned.SpaceApps
 
         /// <summary>
         /// Confere capítulo, tabela de etapas e legendas entre si: 32 etapas com binding único, referência somando
-        /// 360 s, eventos únicos e válidos, 49 cues sem ID/chave duplicada, PT e EN preenchidos, relógio coerente com o
+        /// 375,8 s, eventos únicos e válidos, 49 cues sem ID/chave duplicada, PT e EN preenchidos, relógio coerente com o
         /// tipo da etapa, janela dentro da referência e gatilho que é evento da própria etapa.
         /// </summary>
         public static List<string> Validate(ChapterDefinition chapterDefinition, SubtitleTable table, IReadOnlyList<StepBinding> bindings)

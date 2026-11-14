@@ -1,13 +1,13 @@
-# MAR-013 — Laboratório, mapa e lançamentos (M01–M03, 25 s)
+# MAR-013 (revisada) — Abertura: Marte, laboratório, mapas orbitais e globo (M01–M03, 40,8 s)
 
-`Prefabs/MarsPreparationStage.prefab` (laboratório, globo, lançamentos e `MarsOriginDirector`), `Timelines/MarsOrigin_M01/M02/M03.asset` (8/12/5 s) e `Art/Origin/`. Tudo procedural; nenhum asset externo.
+Segue a abertura do jogo anterior, em inglês: **M01** (6,3 s) Marte no espaço com o título "2003"; **M02** (28,5 s) laboratório com os dois rovers ("EARTH · MISSION PREPARATION"), mapa orbital de Meridiani/hematita ("WHY MERIDIANI PLANUM?") e o mesmo tratamento para a Spirit e Gusev ("WHY GUSEV CRATER?", hipótese de lago antigo, não certeza); **M03** (6 s) globo com os dois pousos e datas (Spirit · Gusev · 4 JAN 2004 UTC; Opportunity · Meridiani · 25 JAN 2004 UTC). Os lançamentos foram removidos (a abertura anterior não os tinha).
 
-## Decisões e desvios
-- **Sem `.playable`:** o projeto não tem o pacote Timeline; as sequências são `SequenceDefinition` (CORE-004) com keyframes de câmera densos. Câmera, globo, lançamentos e letreiros leem o mesmo tempo.
-- **Mapa:** globo estilizado com os dois destinos em lat/lon da NASA GISS Mars24, conferidas em 14/11/2026 (Spirit 175,48°L 14,57°S; Opportunity 354,47°L 1,95°S). **Não é o mapa de hematita do TES**: nenhuma imagem externa foi importada por falta de origem/licença verificadas. A mancha de hematita é um círculo de 7° em torno de Meridiani, ilustrativo.
-- **Lançamentos:** duas silhuetas genéricas (não afirmam o modelo exato do Delta II) e uma única chama reaproveitada; rótulos só com mês e ano (JUN/JUL 2003).
-- **Texto:** `Art/Origin/MarsOriginTexts.json`, chaves `MAR.ORI.*`; `MAR.T01` (título de M01) continua em `MarsSubtitles.json`.
-- Luz lateral e contraste: a luz com sombra é da cena; o prefab não tem luzes, câmeras, partículas nem colisores.
+- Planeta e globo usam o modelo NASA "Planet Mars" reamostrado (`Textures/Mars_Equirect.jpg`, ver `ArtSource/Mars/R-MAR-05/SOURCE.md`). Mapas orbitais com crédito: Meridiani (NASA/JPL-Caltech/Arizona State University) e Gusev (PIA05346).
+- `MarsOriginDirector.Overlay` expõe imagem, chave de crédito e opacidade do mapa orbital; **a UI ainda precisa desenhar esse painel** (pendente, ver limitações).
+- Falas: `MAR.C01`–`C05` em `Data/MarsSubtitles.json`; títulos/créditos `MAR.ORI.*` em `Art/Origin/MarsOriginTexts.json`; datas em `MAR.L01/L02` (`MarsLandingTexts.json`).
+- O campo `pt` espelha o inglês (pedido do responsável); sem tradução.
 
 ## Limitações
-Sem validação em WebGL nem em perfil baixo real; Unity 6000.6.8f1 (o projeto fixa 6.7f1). Julgamento visual (laboratório, globo) pendente de revisão por outra função. Integração na cena do capítulo fica para a MAR-018/MAR-009.
+- O painel do mapa orbital não é desenhado por nenhuma UI ainda; o laboratório é o procedural da MAR-013 (o laboratório detalhado da edição anterior não foi portado: 384 mil triângulos, acima do orçamento Web).
+- A textura equirretangular é calibrada a olho; os marcadores usam lat/lon da NASA GISS Mars24 e não medem posição.
+- Sem verificação visual em GPU nesta entrega além dos testes de comportamento.
