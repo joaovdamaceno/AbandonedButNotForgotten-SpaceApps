@@ -1,0 +1,681 @@
+/*
+ * UI-001 · Componentes compartilhados pelos três capítulos (R2).
+ * Prefixo sa- ; BEM: bloco__elemento--modificador. Estados de interação usam classes
+ * (.sa-hold--holding etc.) aplicadas pelo código de UI-003; nunca só a cor muda.
+ * USS não tem @media: a variante compacta é a classe .sa-layout--narrow, aplicada por
+ * ResponsiveLayoutClass quando a largura lógica do painel fica abaixo de 1100 px.
+ */
+
+/* ---------- Tipografia ---------- */
+
+.sa-root {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Regular.ttf");
+    color: var(--sa-color-ink);
+    font-size: var(--sa-text-body);
+}
+
+.sa-font-regular { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Regular.ttf"); }
+.sa-font-semibold { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf"); }
+.sa-font-bold { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf"); }
+.sa-font-mono { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf"); }
+
+.sa-text {
+    white-space: normal;
+    margin: 0;
+    padding: 0;
+}
+
+/* Carimbo: datas, locais, IDs de instrumento. Mono, caixa alta autoral (USS não transforma texto). */
+.sa-stamp {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: var(--sa-color-ink-muted);
+    margin: 0;
+    padding: 0;
+}
+
+.sa-stamp--accent {
+    color: var(--sa-accent);
+}
+
+.sa-stamp--hud {
+    color: var(--sa-accent-hud);
+}
+
+/* ---------- Botões ---------- */
+
+.unity-button.sa-button {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-body);
+    min-height: var(--sa-hit-min);
+    padding: 0 var(--sa-space-5);
+    margin: 0;
+    border-width: 2px;
+    border-radius: var(--sa-radius-md);
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    transition-duration: 0.12s;
+    transition-property: background-color, border-color, scale;
+}
+
+/* Ação principal: tinta sólida, rótulo de verbo. Um por pasta/tela. */
+.unity-button.sa-button--primary {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: 22px;
+    min-height: 56px;
+    background-color: var(--sa-accent);
+    border-color: var(--sa-accent);
+    color: var(--sa-color-paper);
+}
+
+.unity-button.sa-button--primary:hover {
+    background-color: var(--sa-color-ink);
+    border-color: var(--sa-color-ink);
+}
+
+.unity-button.sa-button--primary:active {
+    scale: 0.98 0.98;
+}
+
+/* Foco por teclado: anel duplo (tinta + amarelo) — visível no papel e sobre o 3D. */
+.unity-button.sa-button:focus,
+.unity-button.sa-button.sa-is-focused {
+    border-color: var(--sa-color-focus);
+    border-width: 4px;
+}
+
+.unity-button.sa-button--secondary {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: var(--sa-color-ink);
+    color: var(--sa-color-ink);
+}
+
+.unity-button.sa-button--link {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    color: var(--sa-color-ink-muted);
+    font-size: var(--sa-text-label);
+    min-height: 40px;
+    padding: 0 var(--sa-space-2);
+}
+
+.unity-button.sa-button--link:hover {
+    color: var(--sa-color-ink);
+}
+
+.unity-button.sa-button--hud {
+    background-color: var(--sa-color-plate);
+    border-color: var(--sa-color-plate-edge);
+    color: var(--sa-color-on-plate);
+    font-size: var(--sa-text-label);
+}
+
+.unity-button.sa-button:disabled {
+    opacity: 0.45;
+}
+
+/* ---------- Dossiê (arquivo 2D) ---------- */
+
+.sa-dossier {
+    flex-grow: 1;
+    background-color: var(--sa-color-paper-shade);
+    padding: var(--sa-space-5) var(--sa-safe-margin);
+    justify-content: space-between;
+}
+
+.sa-dossier__header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom-width: 2px;
+    border-bottom-color: var(--sa-color-ink);
+    padding-bottom: var(--sa-space-3);
+    margin-bottom: var(--sa-space-5);
+}
+
+.sa-dossier__game-title {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: var(--sa-text-display);
+    color: var(--sa-color-ink);
+    margin: 0;
+    padding: 0;
+}
+
+.sa-dossier__lede {
+    font-size: var(--sa-text-body);
+    color: var(--sa-color-ink-muted);
+    margin: 0;
+    padding: 0;
+    -unity-text-align: lower-right;
+    max-width: 420px;
+    white-space: normal;
+}
+
+.sa-dossier__folders {
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.sa-dossier__footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--sa-space-4);
+}
+
+.sa-dossier__footer-group {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Aviso de não afiliação: encolhe e quebra linha, nunca sobrepõe os botões. */
+.sa-dossier__disclaimer {
+    flex-shrink: 1;
+    white-space: normal;
+    -unity-text-align: middle-right;
+    margin-left: var(--sa-space-4);
+}
+
+.sa-folder__meta {
+    white-space: normal;
+}
+
+.sa-folder {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    max-width: 380px;
+    min-width: 260px;
+    margin: 0 var(--sa-space-3);
+    background-color: var(--sa-color-paper);
+    border-width: 1px;
+    border-color: var(--sa-color-paper-edge);
+    border-top-width: 6px;
+    border-top-color: var(--sa-accent);
+    border-radius: var(--sa-radius-sm);
+    padding: var(--sa-space-4);
+}
+
+.sa-folder__tab-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--sa-space-3);
+}
+
+.sa-folder__photo {
+    height: 150px;
+    flex-shrink: 0;
+    border-radius: var(--sa-radius-sm);
+    background-color: var(--sa-color-ink);
+    margin-bottom: var(--sa-space-3);
+    justify-content: flex-end;
+    padding: var(--sa-space-2);
+    overflow: hidden;
+}
+
+/* Marca explícita de imagem pendente: nunca parecer foto real. */
+.sa-photo--pending {
+    background-color: var(--sa-color-blueprint);
+    border-width: 2px;
+    border-color: var(--sa-color-ink-muted);
+    justify-content: center;
+    align-items: center;
+}
+
+.sa-photo__caption {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 13px;
+    color: var(--sa-color-ink);
+    background-color: rgba(242, 234, 219, 0.85);
+    padding: 2px 6px;
+    margin: 0;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.sa-folder__title {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: var(--sa-text-title);
+    color: var(--sa-color-ink);
+    margin: 0 0 var(--sa-space-1) 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.sa-folder__question {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: 24px;
+    color: var(--sa-color-ink);
+    margin: var(--sa-space-3) 0 var(--sa-space-3) 0;
+    padding: 0;
+    white-space: normal;
+    flex-grow: 1;
+}
+
+.sa-folder__actions {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sa-folder__duration {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 15px;
+    color: var(--sa-color-ink-muted);
+    margin: 0;
+    padding: 0;
+}
+
+.sa-folder .unity-button.sa-button--primary {
+    min-width: 168px;
+}
+
+/* ---------- HUD ---------- */
+
+.sa-hud {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--sa-space-5) var(--sa-safe-margin);
+    color: var(--sa-color-on-plate);
+}
+
+.sa-hud__top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.sa-hud__bottom {
+    position: absolute;
+    left: var(--sa-safe-margin);
+    right: var(--sa-safe-margin);
+    bottom: var(--sa-space-5);
+    align-items: center;
+}
+
+.sa-plate {
+    background-color: var(--sa-color-plate);
+    border-width: 1px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-md);
+    padding: var(--sa-space-3) var(--sa-space-4);
+}
+
+/* Objetivo persistente: camada própria, nunca dentro da legenda. */
+.sa-objective {
+    max-width: 520px;
+    border-left-width: 6px;
+    border-left-color: var(--sa-accent-hud);
+}
+
+.sa-objective__label {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-hud);
+    color: var(--sa-color-on-plate);
+    margin: var(--sa-space-1) 0 0 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.sa-objective__meta {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 15px;
+    color: var(--sa-color-on-plate-muted);
+    margin: var(--sa-space-1) 0 0 0;
+    padding: 0;
+}
+
+/* Pausa: ícone desenhado (as fontes não têm glifo ⏸) + texto + tecla. */
+.sa-pause {
+    flex-direction: row;
+    align-items: center;
+}
+
+.sa-icon-pause {
+    flex-direction: row;
+    width: 16px;
+    height: 18px;
+    justify-content: space-between;
+    margin-right: var(--sa-space-2);
+}
+
+.sa-icon-pause__bar {
+    width: 5px;
+    height: 18px;
+    background-color: var(--sa-color-on-plate);
+    border-radius: 1px;
+}
+
+.sa-keyhint {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 14px;
+    color: var(--sa-color-on-plate-muted);
+    margin: 0 0 0 var(--sa-space-2);
+    padding: 0;
+}
+
+/* Prompt E compartilhado (CORE-003/UI-003): tecla + verbo + objeto + progresso. */
+.sa-hold {
+    flex-direction: row;
+    align-items: center;
+    min-width: 360px;
+    max-width: 640px;
+    margin-bottom: var(--sa-space-4);
+}
+
+.sa-keycap {
+    width: 48px;
+    height: 48px;
+    border-width: 3px;
+    border-color: var(--sa-color-on-plate);
+    border-radius: var(--sa-radius-md);
+    justify-content: center;
+    align-items: center;
+    margin-right: var(--sa-space-3);
+    flex-shrink: 0;
+}
+
+.sa-keycap__glyph {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: 26px;
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+    -unity-text-align: middle-center;
+}
+
+.sa-hold__body {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.sa-hold__label {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-hud);
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.sa-hold__status {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 14px;
+    color: var(--sa-color-on-plate-muted);
+    margin: 2px 0 0 0;
+    padding: 0;
+}
+
+.sa-progress {
+    height: 10px;
+    margin-top: var(--sa-space-2);
+    background-color: var(--sa-color-track);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.sa-progress__fill {
+    height: 100%;
+    width: 0;
+    background-color: var(--sa-accent-hud);
+    border-radius: 5px;
+}
+
+/* Estados do prompt: texto de status + forma da tecla mudam junto com a cor. */
+.sa-hold--rearm .sa-keycap {
+    border-color: var(--sa-color-on-plate-muted);
+    border-width: 2px;
+}
+
+.sa-hold--rearm .sa-keycap__glyph { color: var(--sa-color-on-plate-muted); }
+
+.sa-hold--holding .sa-keycap {
+    background-color: var(--sa-accent-hud);
+    border-color: var(--sa-accent-hud);
+    scale: 0.94 0.94;
+}
+
+.sa-hold--holding .sa-keycap__glyph { color: var(--sa-color-ink); }
+
+.sa-hold--paused .sa-keycap { border-color: var(--sa-color-warn); }
+
+.sa-hold--paused .sa-progress__fill { background-color: var(--sa-color-warn); }
+
+.sa-hold--done .sa-keycap {
+    background-color: var(--sa-color-confirm);
+    border-color: var(--sa-color-confirm);
+}
+
+.sa-hold--done .sa-keycap__glyph { color: var(--sa-color-ink); }
+
+.sa-hold--done .sa-progress__fill { background-color: var(--sa-color-confirm); }
+
+/* Legenda: só existe quando há texto (texto vazio = elemento oculto, sem placa). */
+.sa-subtitle {
+    max-width: var(--sa-subtitle-max-width);
+    background-color: var(--sa-color-plate);
+    border-radius: var(--sa-radius-md);
+    padding: var(--sa-space-2) var(--sa-space-5);
+}
+
+.sa-subtitle__text {
+    font-size: var(--sa-text-subtitle);
+    color: var(--sa-color-on-plate);
+    -unity-text-align: middle-center;
+    white-space: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.sa-subtitle--hidden {
+    display: none;
+}
+
+/* Toast de evidência: confirmação curta (2 s) com ✓ (glifo presente na Outfit). */
+.sa-toast {
+    flex-direction: row;
+    align-items: center;
+    margin-top: var(--sa-space-3);
+    border-left-width: 6px;
+    border-left-color: var(--sa-color-confirm);
+}
+
+.sa-toast__mark {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: 22px;
+    color: var(--sa-color-confirm);
+    margin: 0 var(--sa-space-2) 0 0;
+    padding: 0;
+}
+
+/* Indicador de borda quando o alvo está fora do quadro: seta desenhada + nome do alvo. */
+.sa-edge-cue {
+    position: absolute;
+    right: var(--sa-space-4);
+    top: 46%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.sa-edge-cue__arrow {
+    width: 18px;
+    height: 18px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-color: var(--sa-accent-hud);
+    rotate: 45deg;
+    margin-left: var(--sa-space-2);
+}
+
+/* Selo IMAGINAÇÃO (Pioneer): permanente durante a fantasia, moldura ciano. */
+.sa-seal-imagination {
+    border-width: 3px;
+    border-color: var(--sa-color-imagination);
+    border-radius: var(--sa-radius-sm);
+    padding: var(--sa-space-1) var(--sa-space-3);
+    background-color: var(--sa-color-plate-strong);
+}
+
+.sa-seal-imagination .sa-stamp {
+    color: var(--sa-color-imagination);
+    font-size: 16px;
+    letter-spacing: 3px;
+}
+
+/* ---------- Painel de instrumento ---------- */
+
+.sa-instrument {
+    position: absolute;
+    right: var(--sa-safe-margin);
+    top: 96px;
+    width: 420px;
+    background-color: var(--sa-color-plate-strong);
+    border-width: 1px;
+    border-color: var(--sa-color-plate-edge);
+    border-top-width: 6px;
+    border-top-color: var(--sa-accent-hud);
+    border-radius: var(--sa-radius-md);
+    padding: var(--sa-space-4);
+}
+
+.sa-instrument__title {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: 24px;
+    color: var(--sa-color-on-plate);
+    margin: var(--sa-space-1) 0 var(--sa-space-3) 0;
+    padding: 0;
+    white-space: normal;
+}
+
+.sa-readout {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--sa-space-2) 0;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--sa-color-plate-edge);
+}
+
+.sa-readout__label {
+    font-size: 18px;
+    color: var(--sa-color-on-plate-muted);
+    margin: 0;
+    padding: 0;
+}
+
+.sa-readout__value {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 18px;
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+}
+
+.sa-result {
+    margin-top: var(--sa-space-4);
+    padding: var(--sa-space-3);
+    border-width: 2px;
+    border-color: var(--sa-color-confirm);
+    border-radius: var(--sa-radius-sm);
+}
+
+.sa-result__text {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: var(--sa-text-hud);
+    color: var(--sa-color-on-plate);
+    margin: var(--sa-space-1) 0 0 0;
+    padding: 0;
+    white-space: normal;
+}
+
+/* Fila de comando Surveyor: etapa atual = marcador cheio + negrito; futuras = contorno. */
+.sa-command {
+    margin-top: var(--sa-space-4);
+}
+
+.sa-command__step {
+    flex-direction: row;
+    align-items: center;
+    margin: 3px 0;
+}
+
+.sa-command__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: var(--sa-color-on-plate-muted);
+    margin-right: var(--sa-space-2);
+}
+
+.sa-command__text {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 16px;
+    color: var(--sa-color-on-plate-muted);
+    margin: 0;
+    padding: 0;
+}
+
+.sa-command__step--done .sa-command__dot {
+    background-color: var(--sa-color-on-plate-muted);
+}
+
+.sa-command__step--current .sa-command__dot {
+    background-color: var(--sa-accent-hud);
+    border-color: var(--sa-accent-hud);
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+}
+
+.sa-command__step--current .sa-command__text {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    color: var(--sa-color-on-plate);
+}
+
+/* ---------- Folha de componentes (somente referência) ---------- */
+
+.sa-sheet {
+    flex-grow: 1;
+    background-color: #2A2723;
+    padding: var(--sa-space-5) var(--sa-safe-margin);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.sa-sheet__cell {
+    width: 50%;
+    padding: var(--sa-space-2);
+}
+
+.sa-sheet__caption {
+    white-space: normal;
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: 13px;
+    color: var(--sa-color-on-plate-muted);
+    margin: 0 0 var(--sa-space-1) 0;
+    padding: 0;
+}
+
+/* ---------- Variante compacta (largura lógica < 1100, p.ex. 4:3) ---------- */
+
+.sa-layout--narrow .sa-dossier__game-title { font-size: 32px; }
+.sa-layout--narrow .sa-dossier__lede { display: none; }
+.sa-layout--narrow .sa-folder { min-width: 0; margin: 0 var(--sa-space-2); padding: var(--sa-space-3); }
+.sa-layout--narrow .sa-folder__photo { height: 128px; }
+.sa-layout--narrow .sa-folder__title { font-size: 26px; }
+.sa-layout--narrow .sa-folder__meta { font-size: 13px; letter-spacing: 0.5px; }
+.sa-layout--narrow .sa-folder__question { font-size: 22px; }
+.sa-layout--narrow .sa-folder .unity-button.sa-button--primary { min-width: 0; flex-grow: 1; }
+.sa-layout--narrow .sa-folder__duration { margin-right: var(--sa-space-2); }
+.sa-layout--narrow .sa-instrument { width: 380px; }
+.sa-layout--narrow .sa-objective { max-width: 440px; }
