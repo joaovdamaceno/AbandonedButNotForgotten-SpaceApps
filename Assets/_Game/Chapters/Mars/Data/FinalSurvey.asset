@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093a90197dc44b06b7a652904f9d2fba, type: 3}
+  m_Name: FinalSurvey
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.FinalSurveyData
+  reachMeters: 3
+  sunHoldSeconds: 4
+  valleyHoldSeconds: 4
+  antennaHoldSeconds: 4
+  sunWidth: 480
+  sunHeight: 270
+  valleyWidth: 960
+  valleyHeight: 540
+  maxFrameAdjustDegrees: 15
+  antennaDegreesPerSecond: 60
+  sunVerbKey: MAR.VERB.captureSun
+  sunObjectKey: MAR.OBJ.sun
+  valleyVerbKey: MAR.VERB.captureValley
+  valleyObjectKey: MAR.OBJ.valley
+  antennaVerbKey: MAR.VERB.orientAntenna
+  antennaObjectKey: MAR.OBJ.antenna
+  confirmVerbKey: MAR.VERB.confirmMemory
+  confirmObjectKey: MAR.OBJ.memory
+  sunReferenceId: mars.ev.sun.reference
+  sunReferenceResultKey: MAR.SUN.reference
+  sunDustId: mars.ev.sun.dust
+  sunDustResultKey: MAR.SUN.dust
+  sunComparisonId: mars.ev.sun.comparison
+  sunComparisonResultKey: MAR.SUN.comparison
+  valleyPhotoId: mars.ev.valley.photo
+  valleyPhotoResultKey: MAR.VALLEY.photo
+  sunScienceRef: MS27
+  valleyScienceRef: MS26
+  memoryValleyKey: MAR.MEMORY.valley
+  memoryScienceKey: MAR.MEMORY.science
+  transmissionNoteKey: MAR.TRANSMISSION.note
