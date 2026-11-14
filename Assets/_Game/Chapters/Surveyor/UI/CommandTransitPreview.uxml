@@ -1,0 +1,42 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Template name="Transit" src="CommandTransit.uxml" />
+    <Style src="../../../UI/Design/SpaceAppsTokens.uss" />
+    <Style src="../../../UI/Design/SpaceAppsComponents.uss" />
+    <Style src="CommandTransit.uss" />
+    <Style src="CommandTransitPreview.uss" />
+    <ui:VisualElement class="sa-root sa-chapter--surveyor command-preview">
+        <ui:VisualElement class="command-header">
+            <ui:Label name="archive" class="sa-stamp transit-accent" />
+            <ui:Button name="language" class="command-tool" />
+        </ui:VisualElement>
+        <ui:VisualElement class="command-body">
+            <ui:VisualElement class="command-copy-column">
+                <ui:Label name="preview" class="sa-stamp command-muted" />
+                <ui:Label name="title" class="command-heading" />
+                <ui:Label name="description" class="command-description" />
+                <ui:VisualElement class="command-directions">
+                    <ui:Button name="left" class="command-secondary" />
+                    <ui:Button name="right" class="command-secondary" />
+                </ui:VisualElement>
+                <ui:Label name="keys" class="transit-help" />
+                <ui:Button name="start" class="transit-primary command-start" />
+                <ui:VisualElement class="command-actions">
+                    <ui:Button name="pause" class="command-secondary" />
+                    <ui:Button name="return" class="command-secondary" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="command-widget-column">
+                <ui:Instance template="Transit" name="command-widget" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="pause-overlay" class="command-overlay">
+            <ui:VisualElement name="pause-card" class="command-pause-card">
+                <ui:Label name="pause-title" class="command-pause-title" />
+                <ui:Label name="pause-description" class="command-description" />
+                <ui:Button name="resume" class="transit-primary" />
+                <ui:Button name="restart-paused" class="command-secondary" />
+                <ui:Button name="return-paused" class="command-secondary" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
