@@ -19,7 +19,9 @@ namespace Abandoned.SpaceApps.EditorTools
         {
             public readonly List<string> Errors = new List<string>();
             public readonly List<string> Lines = new List<string>();
+            /// <summary>Triângulos do LOD0 (o LOD1 não entra na conta).</summary>
             public int Triangles;
+            public int Lod1Triangles;
             public int Materials;
             public float DishDiameterMeters;
         }
@@ -36,8 +38,31 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var renderers = spin.GetComponentsInChildren<MeshRenderer>(true);
             var materials = new HashSet<Material>();
+            Bounds? lod1Bounds = null;
             foreach (var renderer in renderers)
             {
+                if (renderer.name == PioneerProbeBuilder.Lod1Name)
+                {
+                    var lodFilter = renderer.GetComponent<MeshFilter>();
+                    if (lodFilter == null || lodFilter.sharedMesh == null)
+                        report.Errors.Add("Lod1: renderer sem malha.");
+                    else
+                    {
+                        report.Lod1Triangles = (int)(lodFilter.sharedMesh.GetIndexCount(0) / 3);
+                        lod1Bounds = renderer.bounds;
+                    }
+
+                    foreach (var lodMaterial in renderer.sharedMaterials)
+                    {
+                        if (lodMaterial == null)
+                            report.Errors.Add("Lod1: material ausente.");
+                        else
+                            materials.Add(lodMaterial);
+                    }
+
+                    continue;
+                }
+
                 var filter = renderer.GetComponent<MeshFilter>();
                 if (filter == null || filter.sharedMesh == null)
                 {
@@ -65,6 +90,25 @@ namespace Abandoned.SpaceApps.EditorTools
             if (report.Materials > 3)
                 report.Errors.Add($"{report.Materials} materiais (meta: até 3, IMPORT_RULES §5).");
 
+            // LOD1 (IMPORT_RULES §5, "sim (planos distantes)"): LODGroup com LOD0 = peças e LOD1 = malha única, bem menor,
+            // com a mesma silhueta.
+            var group = rig.GetComponentInParent<LODGroup>(true);
+            if (group == null)
+                report.Errors.Add("LODGroup ausente na raiz da sonda (LOD1 exigido pela IMPORT_RULES §5).");
+            else
+            {
+                var lods = group.GetLODs();
+                if (lods.Length != 2 || lods[0].renderers.Length == 0 || lods[1].renderers.Length != 1 || lods[1].renderers[0] == null || lods[1].renderers[0].name != PioneerProbeBuilder.Lod1Name)
+                    report.Errors.Add("LODGroup deve ter LOD0 = peças do modelo e LOD1 = a malha única 'Lod1'.");
+                else if (lods[0].renderers.Any(r => r == null || r.name == PioneerProbeBuilder.Lod1Name))
+                    report.Errors.Add("o LOD0 não pode conter renderer nulo nem o 'Lod1'.");
+            }
+
+            if (report.Lod1Triangles <= 0)
+                report.Errors.Add("Lod1 sem triângulos.");
+            else if (report.Lod1Triangles > report.Triangles * PioneerProbeBuilder.Lod1MaxTriangleFraction)
+                report.Errors.Add($"Lod1 com {report.Lod1Triangles} triângulos; o limite é {PioneerProbeBuilder.Lod1MaxTriangleFraction:P0} do LOD0 ({report.Triangles}).");
+
             var bounds = new Dictionary<string, Bounds>();
             foreach (var name in new[] { "Bus", "Dish", "Feed", "RtgBoomA", "RtgBoomB", "MagnetometerBoom", "Plaque" })
             {
@@ -81,6 +125,17 @@ namespace Abandoned.SpaceApps.EditorTools
 
             if (bounds.Count < 7)
                 return report;
+
+            // Silhueta do LOD1: a caixa do LOD1 não pode diferir da do LOD0 em mais de duas células da grade, em nenhum eixo.
+            if (lod1Bounds.HasValue)
+            {
+                var whole = bounds.Values.Aggregate((a, b) => { a.Encapsulate(b); return a; });
+                var tolerance = PioneerProbeBuilder.Lod1CellMeters * 2f;
+                var delta = lod1Bounds.Value.size - whole.size;
+                report.Lines.Add($"Lod1: {report.Lod1Triangles} triângulos ({(float)report.Lod1Triangles / Mathf.Max(1, report.Triangles):P0} do LOD0); caixa difere do LOD0 em {Mathf.Abs(delta.x):0.000}/{Mathf.Abs(delta.y):0.000}/{Mathf.Abs(delta.z):0.000} m");
+                if (Mathf.Abs(delta.x) > tolerance || Mathf.Abs(delta.y) > tolerance || Mathf.Abs(delta.z) > tolerance)
+                    report.Errors.Add($"a silhueta do Lod1 difere do LOD0 em {delta} m (tolerância {tolerance:0.00} m por eixo).");
+            }
 
             // Escala: o refletor mede 2,74 m (P-S05) no eixo X.
             report.DishDiameterMeters = bounds["Dish"].size.x;
