@@ -50,6 +50,29 @@ A sonda é `Regions/DeepSpace/Probe/ProbeSpin`: eixo Z local = eixo da antena = 
 
 Uma câmera, sem pós-processamento (nenhum SSAO, DOF ou motion blur), sem MSAA/HDR; duas luzes direcionais sem sombra; materiais URP Lit/Unlit sem reflexo de ambiente; ambiente plano escuro e sem skybox. Medições estimadas da prévia em `Docs/Art/Pioneer10_Stage/STAGE_STATS.md` (não substituem o profiler da build Web).
 
+## Modelo da sonda (PIO-002)
+
+Prefab `Art/PioneerActors.prefab` (raiz `PioneerActors`, componente `PioneerProbeRig`), derivado do GLB da NASA fornecido pela equipe. Origem, SHA-256, medidas e alterações em `ArtSource/Pioneer10/PIO-002/SOURCE.md`; direitos em `ASSET_CREDITS.md`.
+
+| Arquivo | Papel |
+| --- | --- |
+| `ArtSource/Pioneer10/PIO-002/original/Pioneer 10.glb` | Original (LFS), fora do build. **Origem exata não verificada** (ver SOURCE.md) |
+| `Tools/convert_pioneer10.py` (raiz do repositório) | Decodifica Draco, separa 6 peças, converte eixos, reduz 11 materiais a 1 (atlas 2048). Precisa de Python com DracoPy, numpy e Pillow; sem Blender |
+| `Data/Assets/Pioneer10.json` e `Pioneer10.geometry.json` | Manifesto e geometria derivada (entrada do builder) |
+| `Art/Probe/Meshes/`, `Art/Probe/Textures/PioneerAtlas.png`, `Art/PioneerMaterials/` | Malhas, atlas e 2 materiais (`PIO_ProbeAtlas`, `PIO_PlaqueAnodized_PROXY`) |
+| `Runtime/PioneerProbeRig.cs` | Pivôs: `SetSpinDegrees`, `SetBoomDegrees`, `SetCruise`, `TryGetSocket`, `ValidateSetup`. Sem ciência, entrada nem estados de capítulo |
+| `Editor/PioneerProbeBuilder.cs` | Builder CORE-006 `pioneer10.probe`: prefab, materiais e cena `Art/Probe/Preview/ProbePreview.unity` |
+| `Editor/PioneerProbeChecks.cs`, `Tests/PioneerProbeTests.cs` | Verificações e testes EditMode do prefab/rig |
+| `Editor/PioneerProbeCapture.cs` | Prévia em `Docs/Art/Pioneer10_Probe/` (menu PIO-002 → Capturar sonda) |
+
+**Hierarquia.** `PioneerActors/Spin_Root` (sobre o eixo da antena, +Z local, z = 0 no vértice do refletor) contém `Bus`, `Dish`, `Feed`, as três hastes (`RtgBoomA`, `RtgBoomB`, `MagnetometerBoom`, cada uma com pivô na dobradiça) e `Plaque`; `Sockets` contém `Reflector`, `Feed`, `EquipmentCompartment`, `RtgBoomA`, `RtgBoomB`, `MagnetometerBoom`, `Plaque` e `Photopolarimeter`. Não há esqueleto skinned (IMPORT_RULES §7: Animation Type None); o “rig” é só hierarquia de pivôs.
+
+**Contrato com o palco (PIO-003 → PIO-014).** O `Spin_Root` do modelo corresponde ao `ProbeSpin` do palco: ao trocar a silhueta, instancie `PioneerActors` no lugar de `ProvisionalSilhouette` dentro de `Regions/DeepSpace/Probe/ProbeSpin` e não gire o `Spin_Root` por conta própria (a rotação continua sendo do `PioneerPresentation`; evite aplicar duas vezes). Os sockets têm os mesmos nomes dos de `ProbeSpin/Sockets`, então as atividades continuam encontrando seus pontos: copie a pose de cada socket do modelo para o socket do palco, ou use `TryGetSocket`. Escala real (refletor 2,74 m), nenhuma escala na raiz.
+
+**Limitações (hipóteses e provisórios).** Ângulo 0 das hastes = pose do modelo = cruzeiro; o eixo de cada dobradiça é **hipótese** (`axisVerified = false`) e o limite de 90° é do rig, não dado histórico. O socket `Photopolarimeter` é provisório. O modelo **não traz a placa**: o nó `Plaque` (malha `_PROXY`, 152 × 229 mm) está entre os dois suportes da antena do lado +X, posição não verificada em referência. O refletor mede 2,740 m em X e 2,828 m em Y. LOD1 não foi criado (8,2 mil triângulos, 2 materiais).
+
+**Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.probe`. Para regerar os dados a partir do GLB: `python Tools/convert_pioneer10.py`. Não edite o prefab à mão: altere o builder.
+
 ## Lançamento (PIO-004)
 
 | Arquivo | Papel |
