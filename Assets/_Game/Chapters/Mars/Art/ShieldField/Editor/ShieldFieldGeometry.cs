@@ -28,7 +28,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
 
         // ---------- Escudo ----------
         public const float ShieldRadius = 1.325f;          // ≈ 2,65 m de diâmetro: aproximação, a conferir
-        public const float ConeSlopeDegrees = 20f;         // calota rasa (cone de ~70° de semiabertura): aproximação
+        public const float ConeSlopeDegrees = 26f;         // cúpula do destroço em PIA07402 (mais alta que a calota nominal): aproximação
         public const float Thickness = 0.035f;
         public const float FlankSpanDegrees = 40f;
         public const float FlankInnerFraction = 0.42f;
@@ -149,7 +149,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
         public static Vector3 Inner(float s, float phi)
         {
             var r = s * Rim(phi);
-            var dent = 0.05f * s * (Perlin(s * 2.4f + 4f, phi * 0.9f + 8f) - 0.5f) + 0.035f * s * s * s * (Perlin(s * 5f + 40f, phi * 2.1f) - 0.5f);
+            var dent = 0.14f * s * (Perlin(s * 2.4f + 4f, phi * 0.9f + 8f) - 0.5f) + 0.09f * s * s * s * (Perlin(s * 5f + 40f, phi * 2.1f) - 0.5f); // amassado: o destroço real está torcido
             return new Vector3(r * Mathf.Cos(phi), r * Slope + dent, r * Mathf.Sin(phi));
         }
 
@@ -168,48 +168,52 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
 
         static PiecePose SolveMain()
         {
+            // Em PIA07402 o destroço principal é uma CÚPULA convexa apoiada pela borda; o lado rompido fica aberto e deixa ver
+            // a manta prateada por dentro. A casca é construída com a concavidade para cima e então virada de cabeça para baixo.
             var toFlank = new Vector3(FlankCenter.x - MainCenter.x, 0f, FlankCenter.y - MainCenter.y);
             var yaw = Quaternion.AngleAxis(Vector3.SignedAngle(Vector3.right, toFlank, Vector3.up), Vector3.up);
-            var toStation = new Vector3(ShieldStation.x - MainCenter.x, 0f, ShieldStation.y - MainCenter.y).normalized;
-            var lowDirection = Quaternion.AngleAxis(-28f, Vector3.up) * toStation;
-            const float tilt = 4f;
-            var rotation = Quaternion.AngleAxis(tilt, Vector3.Cross(Vector3.up, lowDirection)) * yaw;
+            var flip = Quaternion.AngleAxis(180f, Vector3.right);
+            var lowDirection = toFlank.normalized;
+            const float tilt = 6f; // o lado rompido desce um pouco, como na foto
+            var rotation = Quaternion.AngleAxis(tilt, Vector3.Cross(Vector3.up, lowDirection)) * yaw * flip;
 
             var pose = new PiecePose { Rotation = rotation };
-            var phiLow = -Vector3.SignedAngle(Vector3.right, Quaternion.Inverse(yaw) * lowDirection, Vector3.up) * Mathf.Deg2Rad;
-            pose.Supports.Add(new Support { Name = "Apex", Local = Outer(0.01f, phiLow) });
 
-            // Areia acumulada em volta da borda: o aro apoia-se em pontos ao longo de todo o arco que sobrou, e o miolo
-            // apoia-se em dois anéis mais internos. O vértice afunda na areia; o restante é o mesmo corpo rígido.
+            // Virada, a face "interna" (prateada) fica embaixo: a borda toca a areia pelos pontos dela. Areia acumulada em
+            // volta do aro; o miolo da cúpula fica oco acima do terreno.
             const int rimSamples = 14;
             for (var k = 0; k < rimSamples; k++)
             {
                 var u = (k + 0.5f) / rimSamples;
-                pose.Supports.Add(new Support { Name = "Rim" + k.ToString("00"), Local = OuterAtArc(0.985f, u) });
+                pose.Supports.Add(new Support { Name = "Rim" + k.ToString("00"), Local = InnerAtArc(0.985f, u) });
             }
 
-            for (var k = 0; k < 7; k++)
-            {
-                var u = (k + 0.5f) / 7f;
-                pose.Supports.Add(new Support { Name = "Mid" + k.ToString("00"), Local = OuterAtArc(0.6f, u) });
-                pose.Supports.Add(new Support { Name = "Core" + k.ToString("00"), Local = OuterAtArc(0.28f, u) });
-            }
+            // Pontas do corte: o fragmento quebrado também descansa na areia.
+            pose.Supports.Add(new Support { Name = "CutA", Local = Inner(0.97f, CutB(0.97f) + 0.04f) });
+            pose.Supports.Add(new Support { Name = "CutB", Local = Inner(0.97f, CutA(0.97f) + Mathf.PI * 2f - 0.04f) });
 
-            var apex = pose.Supports[0].Local;
+            var apex = Inner(0.01f, 0f);
             var origin = new Vector3(MainCenter.x, 0f, MainCenter.y) - rotation * new Vector3(apex.x, 0f, apex.z);
-            origin.y = BaseHeight(MainCenter.x, MainCenter.y) - 0.15f - (rotation * apex).y;
+            var lowest = float.MaxValue;
+            foreach (var support in pose.Supports)
+            {
+                var p = origin + rotation * support.Local;
+                lowest = Mathf.Min(lowest, p.y - BaseHeight(p.x, p.z));
+            }
+
+            origin.y += -lowest - 0.05f; // soma: a origem já traz a altura da rotação; a borda afunda 5 cm na areia
             pose.Origin = origin;
             foreach (var support in pose.Supports)
                 support.World = pose.ToWorld(support.Local);
             return pose;
         }
 
-        /// <summary>Ponto da face externa a uma fração u (0–1) do arco do destroço principal (o complemento do setor quebrado).</summary>
-        static Vector3 OuterAtArc(float s, float u)
+        /// <summary>Ponto da face interna a uma fração u (0–1) do arco do destroço principal (o complemento do setor quebrado).</summary>
+        static Vector3 InnerAtArc(float s, float u)
         {
             var start = CutB(s) + 0.2f;
             var end = CutA(s) + Mathf.PI * 2f - 0.2f;
-            return Outer(s, Mathf.Lerp(start, end, u));
+            return Inner(s, Mathf.Lerp(start, end, u));
         }
 
         static PiecePose SolveFlank()
@@ -451,7 +455,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             return vertices.Count - 1;
         }
 
-        public const float MeteoriteRadiusX = 0.135f, MeteoriteRadiusY = 0.105f, MeteoriteRadiusZ = 0.12f;
+        public const float MeteoriteRadiusX = 0.15f, MeteoriteRadiusY = 0.09f, MeteoriteRadiusZ = 0.115f;
 
         /// <summary>
         /// Meteorito de ferro e níquel: elipsoide do tamanho de uma bola de basquete, com marcas em forma de impressão
@@ -462,10 +466,10 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             Icosphere(subdivisions, out var directions, out var triangles);
             var rng = new System.Random(2005);
             var pits = new List<(Vector3 dir, float radius, float depth)>();
-            for (var i = 0; i < 26; i++)
+            for (var i = 0; i < 52; i++)
             {
                 var dir = new Vector3((float)rng.NextDouble() * 2 - 1, (float)rng.NextDouble() * 2 - 1, (float)rng.NextDouble() * 2 - 1).normalized;
-                pits.Add((dir, Mathf.Lerp(0.26f, 0.5f, (float)rng.NextDouble()), Mathf.Lerp(0.14f, 0.26f, (float)rng.NextDouble())));
+                pits.Add((dir, Mathf.Lerp(0.15f, 0.34f, (float)rng.NextDouble()), Mathf.Lerp(0.12f, 0.24f, (float)rng.NextDouble())));
             }
 
             var d = new Draft();
@@ -473,7 +477,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             var positions = new List<Vector3>();
             foreach (var dir in directions)
             {
-                var r = 1f + 0.16f * (Perlin(dir.x * 1.7f + 5f, dir.y * 1.7f + dir.z * 1.3f) - 0.5f);
+                var r = 1f + 0.1f * (Perlin(dir.x * 1.7f + 5f, dir.y * 1.7f + dir.z * 1.3f) - 0.5f);
                 foreach (var (pd, pr, depth) in pits)
                 {
                     var angle = Mathf.Acos(Mathf.Clamp(Vector3.Dot(dir, pd), -1f, 1f));
@@ -482,7 +486,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
                 }
 
                 var p = new Vector3(dir.x * r * MeteoriteRadiusX, dir.y * r * MeteoriteRadiusY, dir.z * r * MeteoriteRadiusZ);
-                p.y = Mathf.Max(p.y, -MeteoriteRadiusY * 0.78f); // base achatada onde repousa
+                p.y = Mathf.Max(p.y, -MeteoriteRadiusY * 0.6f); // base achatada onde repousa, como na foto
                 positions.Add(p);
                 minY = Mathf.Min(minY, p.y);
             }
