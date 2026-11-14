@@ -1,0 +1,181 @@
+{
+  "nodes": {
+    "Body": {
+      "lod0": 11652,
+      "lod1": 4660,
+      "ratio": 0.4
+    },
+    "Rocker_L": {
+      "lod0": 1380,
+      "lod1": 620,
+      "ratio": 0.45
+    },
+    "Steer_FL": {
+      "lod0": 1336,
+      "lod1": 534,
+      "ratio": 0.4
+    },
+    "Wheel_FL": {
+      "lod0": 2624,
+      "lod1": 787,
+      "ratio": 0.3
+    },
+    "Bogie_L": {
+      "lod0": 1848,
+      "lod1": 738,
+      "ratio": 0.4
+    },
+    "Wheel_ML": {
+      "lod0": 2624,
+      "lod1": 786,
+      "ratio": 0.3
+    },
+    "Steer_RL": {
+      "lod0": 1336,
+      "lod1": 534,
+      "ratio": 0.4
+    },
+    "Wheel_RL": {
+      "lod0": 2624,
+      "lod1": 787,
+      "ratio": 0.3
+    },
+    "Rocker_R": {
+      "lod0": 1380,
+      "lod1": 620,
+      "ratio": 0.45
+    },
+    "Steer_FR": {
+      "lod0": 1336,
+      "lod1": 534,
+      "ratio": 0.4
+    },
+    "Wheel_FR": {
+      "lod0": 2624,
+      "lod1": 787,
+      "ratio": 0.3
+    },
+    "Bogie_R": {
+      "lod0": 1848,
+      "lod1": 738,
+      "ratio": 0.4
+    },
+    "Wheel_MR": {
+      "lod0": 2624,
+      "lod1": 787,
+      "ratio": 0.3
+    },
+    "Steer_RR": {
+      "lod0": 1336,
+      "lod1": 534,
+      "ratio": 0.4
+    },
+    "Wheel_RR": {
+      "lod0": 2624,
+      "lod1": 786,
+      "ratio": 0.3
+    },
+    "PMA_Mast": {
+      "lod0": 1916,
+      "lod1": 862,
+      "ratio": 0.45
+    },
+    "PMA_Head": {
+      "lod0": 1728,
+      "lod1": 776,
+      "ratio": 0.45
+    },
+    "HGA_Gimbal": {
+      "lod0": 628,
+      "lod1": 282,
+      "ratio": 0.45
+    },
+    "HGA_Dish": {
+      "lod0": 2216,
+      "lod1": 996,
+      "ratio": 0.45
+    },
+    "IDD_Shoulder": {
+      "lod0": 1028,
+      "lod1": 462,
+      "ratio": 0.45
+    },
+    "IDD_Elbow": {
+      "lod0": 764,
+      "lod1": 342,
+      "ratio": 0.45
+    },
+    "IDD_Wrist": {
+      "lod0": 200,
+      "lod1": 90,
+      "ratio": 0.45
+    },
+    "IDD_Turret": {
+      "lod0": 872,
+      "lod1": 392,
+      "ratio": 0.45
+    },
+    "Tool_APXS": {
+      "lod0": 624,
+      "lod1": 280,
+      "ratio": 0.45
+    },
+    "Tool_MB": {
+      "lod0": 480,
+      "lod1": 216,
+      "ratio": 0.45
+    },
+    "Tool_MI": {
+      "lod0": 292,
+      "lod1": 130,
+      "ratio": 0.45
+    },
+    "Tool_RAT": {
+      "lod0": 620,
+      "lod1": 278,
+      "ratio": 0.45
+    }
+  },
+  "lod0_triangles": 50564,
+  "lod1_triangles": 19338,
+  "scale_audit_blender_frame": {
+    "Anchor_Pancam_height_m": 1.468,
+    "Wheel_FL": [
+      0.62,
+      -0.67,
+      0.13
+    ],
+    "Wheel_RR": [
+      -0.62,
+      0.61,
+      0.13
+    ],
+    "wheel_radius_m": 0.13,
+    "track_m": 1.24,
+    "wheelbase_m": 1.28,
+    "overall_length_m": 1.6,
+    "overall_width_with_wings_m": 2.24,
+    "forward": "Blender -Y -> FBX +Z -> Unity +Z",
+    "left": "Blender +X -> Unity -X"
+  },
+  "files_sha256": {
+    "MER_Rover.fbx": "0030df29420652e0ef2a10d0477d2c6306584bca4735792d0ba6aa19a0f743e1",
+    "Textures/T_MER_Atlas_BaseColor.png": "da2e5d92c2ee30138bec77fff459dfaacfc29db1857e32676e702457a281ebd7",
+    "Textures/T_MER_Atlas_MetallicSmoothness.png": "b42c8a7d47b051223fb386ae356057436ac8e34fa03ae9962943a3e183320f17",
+    "Textures/T_MER_Atlas_Normal.png": "8b991c69bcf1cba4342df6050c7bf5bc03312c8ed41d113420c929fad6b08aea",
+    "Textures/T_MER_Solar_BaseColor.png": "745af3d77956dd9c51eb41b7499d870cf2fa4eff16c0596551327bf9d432bf34",
+    "Textures/T_MER_Solar_MetallicSmoothness.png": "13306da8e1702b2d38ed5efbc63ea9073816523956b7cabcad14c4231859f5e7",
+    "Textures/T_MER_Solar_Normal.png": "0ef7e0e147fde834e2a28cb638807a841bfd64cdc1692a9ae8288250d5301d7b"
+  },
+  "materials": [
+    "M_MER_Atlas",
+    "M_MER_Solar"
+  ],
+  "textures": {
+    "atlas_px": 2048,
+    "solar_px": 1024,
+    "channels": "BaseColor sRGB; Normal OpenGL +Y; MetallicSmoothness R=metal A=smoothness"
+  },
+  "source": "SourceAssets/Mars/MER/MER_Rover.blend (gerado por generator/build.py)",
+  "blender": "5.3.0"
+}

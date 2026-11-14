@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_TWINS.md (M08–M09) e 01_MARS_SOURCES.md (MS03, MS13). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-003. Mesmo formato de 'texts' em MarsSubtitles.json (key, pt, en); a UI/localização pode juntar as tabelas.",
+    "As imagens do MI mostram FORMA e DISTRIBUIÇÃO; a identificação do mineral é a medição Mössbauer, apresentada à parte (MS13). O resultado final reutiliza MAR.RESULT01 de MarsSubtitles.json."
+  ],
+  "texts": [
+    { "key": "MAR.VERB.observe", "pt": "OBSERVAR", "en": "OBSERVE" },
+    { "key": "MAR.VERB.recordSoil", "pt": "REGISTRAR O SOLO", "en": "RECORD THE SOIL" },
+    { "key": "MAR.VERB.recordRock", "pt": "REGISTRAR AS ESFERAS NA ROCHA", "en": "RECORD THE SPHERES IN THE ROCK" },
+    { "key": "MAR.OBJ.outcrop", "pt": "ESFERAS", "en": "SPHERES" },
+    { "key": "MAR.OBJ.soil", "pt": "SOLO", "en": "SOIL" },
+    { "key": "MAR.OBJ.rock", "pt": "ROCHA", "en": "ROCK" },
+    { "key": "MAR.BLUE.mi.soil", "pt": "MI · esferas soltas no solo: forma e distribuição", "en": "MI · loose spheres in the soil: shape and distribution" },
+    { "key": "MAR.BLUE.mi.rock", "pt": "MI · esferas presas na rocha: forma e distribuição", "en": "MI · spheres embedded in the rock: shape and distribution" },
+    { "key": "MAR.BLUE.mossbauer", "pt": "MÖSSBAUER · medição do mineral, à parte das imagens", "en": "MÖSSBAUER · mineral measurement, separate from the images" },
+    { "key": "MAR.BLUE.note", "pt": "A imagem mostra a forma; só a medição identifica o mineral.", "en": "The image shows the shape; only the measurement identifies the mineral." }
+  ]
+}
