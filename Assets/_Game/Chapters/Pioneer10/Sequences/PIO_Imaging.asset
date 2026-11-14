@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: PIO_Imaging
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: PIO_Imaging
+  shots:
+  - shotId: PIO04.Learn
+    durationSeconds: 16
+    rigId: PIO.Imaging
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 46
+    - timeSeconds: 16
+      positionMeters: {x: 0, y: 0, z: 0.2}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 46
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Imaging.Learn
+  - shotId: PIO04.Sweep
+    durationSeconds: 32
+    rigId: PIO.Imaging
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0.2}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 46
+    - timeSeconds: 32
+      positionMeters: {x: 0, y: 0, z: 0.4}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 46
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Imaging.Sweep
+    - timeSeconds: 12
+      eventId: PIO.Imaging.Gate4
+    - timeSeconds: 18
+      eventId: PIO.Imaging.Gate6
+    - timeSeconds: 24
+      eventId: PIO.Imaging.GateRecovery
+    - timeSeconds: 30
+      eventId: PIO.Imaging.Gate8
+  - shotId: PIO04.Reveal
+    durationSeconds: 26
+    rigId: PIO.Imaging
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0.4}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 46
+    - timeSeconds: 26
+      positionMeters: {x: 0, y: 0, z: 0.4}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 46
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Imaging.Reveal
+  cues:
+  - cueId: PIO.04.01
+    textKey: PIO.04.01
+    startSeconds: 0
+    endSeconds: 8
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.04.02
+    textKey: PIO.04.02
+    startSeconds: 8
+    endSeconds: 16
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.04.03
+    textKey: PIO.04.03
+    startSeconds: 28
+    endSeconds: 34
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.04.04
+    textKey: PIO.04.04
+    startSeconds: 34
+    endSeconds: 40
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.04.05
+    textKey: PIO.04.05
+    startSeconds: 40
+    endSeconds: 46
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.04.06
+    textKey: PIO.04.06
+    startSeconds: 48
+    endSeconds: 55
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.04.07
+    textKey: PIO.04.07
+    startSeconds: 55
+    endSeconds: 63
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.04.08
+    textKey: PIO.04.08
+    startSeconds: 63
+    endSeconds: 69
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.04.09
+    textKey: PIO.04.09
+    startSeconds: 69
+    endSeconds: 74
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []
