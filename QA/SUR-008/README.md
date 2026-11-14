@@ -45,3 +45,7 @@ A primeira execução Web revelou glifo central sem cobertura na fonte. Foi subs
 A tarefa entrega Observe → Sample; a pá da SUR-009, eclipse/visita e integração dos três capítulos pertencem às tarefas seguintes. Não instalar os Core ou o diagnóstico do preview na cena publicada: injetar os serviços existentes conforme [SURVEYOR_OBSERVATION.md](../../Docs/Production/SURVEYOR_OBSERVATION.md).
 
 Sem publicação no itch.io, teste em iframe, rede fria, Firefox/Edge separados, teste humano de compreensão, garantia de FPS ou certificação de duração de capítulo. A confirmação de áudio original está configurada; não houve avaliação auditiva humana. Configurações locais GraphicsSettings/QualitySettings/PackageManagerSettings foram preservadas byte a byte e não fazem parte do PR.
+
+## Revalidação da integração
+
+A branch recebeu `develop` até `5f316f5`, em merge local `e7bb697`. Os **22 testes foram repetidos e aprovados** nessa base integrada (XML atualizado). As mudanças recentes de LocalizationService/SubtitlePresenter não alteram o preview nem os contratos consumidos por ele. O pacote Web foi gerado com o código funcional SUR-008 do commit `f147fcf` e base `211ab0d`, antes da incorporação dessas entregas independentes; não foi recompilado para incorporar conteúdo de outros capítulos.

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="22" result="Passed" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 23:16:00Z" end-time="2026-11-14 23:16:04Z" duration="4,3707347">
-  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="809" result="Passed" start-time="2026-11-14 23:16:00Z" end-time="2026-11-14 23:16:04Z" duration="4.370735" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="22" result="Passed" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 23:32:24Z" end-time="2026-11-14 23:32:28Z" duration="4,3186506">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="844" result="Passed" start-time="2026-11-14 23:32:24Z" end-time="2026-11-14 23:32:28Z" duration="4.318651" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="EditMode" />
     </properties>
-    <test-suite type="Assembly" id="1872" name="Abandoned.SpaceApps.Surveyor.Observation.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Observation.Tests.dll" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:16:00Z" end-time="2026-11-14 23:16:04Z" duration="3.971028" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1910" name="Abandoned.SpaceApps.Surveyor.Observation.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Observation.Tests.dll" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:32:24Z" end-time="2026-11-14 23:32:28Z" duration="3.964560" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="1136" />
+        <property name="_PID" value="28928" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="EditMode" />
         <property name="EditorOnly" value="True" />
       </properties>
-      <test-suite type="TestSuite" id="1873" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:16:00Z" end-time="2026-11-14 23:16:04Z" duration="3.968769" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1911" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:32:24Z" end-time="2026-11-14 23:32:28Z" duration="3.961598" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1874" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:16:00Z" end-time="2026-11-14 23:16:04Z" duration="3.966924" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1912" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:32:24Z" end-time="2026-11-14 23:32:28Z" duration="3.959898" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestSuite" id="1875" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:16:00Z" end-time="2026-11-14 23:16:04Z" duration="3.965104" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestSuite" id="1913" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:32:24Z" end-time="2026-11-14 23:32:28Z" duration="3.958264" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-suite type="TestSuite" id="1876" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:16:00Z" end-time="2026-11-14 23:16:04Z" duration="3.963009" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestSuite" id="1914" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:32:24Z" end-time="2026-11-14 23:32:28Z" duration="3.956549" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-suite type="TestSuite" id="1877" name="ObservationTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:16:00Z" end-time="2026-11-14 23:16:04Z" duration="3.961186" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <test-suite type="TestSuite" id="1915" name="ObservationTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 23:32:24Z" end-time="2026-11-14 23:32:28Z" duration="3.954651" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
                 <properties />
-                <test-suite type="TestFixture" id="1847" name="ObservationIntegrationTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationIntegrationTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationIntegrationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-14 23:16:00Z" end-time="2026-11-14 23:16:04Z" duration="3.464675" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <test-suite type="TestFixture" id="1885" name="ObservationIntegrationTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationIntegrationTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationIntegrationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-14 23:32:24Z" end-time="2026-11-14 23:32:28Z" duration="3.426176" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
                   <properties />
-                  <test-case id="1848" name="LandingFirstImageAndThreeRealPicturesSurviveTwoRestarts" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationIntegrationTests.LandingFirstImageAndThreeRealPicturesSurviveTwoRestarts" methodname="LandingFirstImageAndThreeRealPicturesSurviveTwoRestarts" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationIntegrationTests" runstate="Runnable" seed="565132696" result="Passed" start-time="2026-11-14 23:15:48Z" end-time="2026-11-14 23:16:04Z" duration="16.204849" asserts="0">
+                  <test-case id="1886" name="LandingFirstImageAndThreeRealPicturesSurviveTwoRestarts" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationIntegrationTests.LandingFirstImageAndThreeRealPicturesSurviveTwoRestarts" methodname="LandingFirstImageAndThreeRealPicturesSurviveTwoRestarts" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationIntegrationTests" runstate="Runnable" seed="1690776408" result="Passed" start-time="2026-11-14 23:32:12Z" end-time="2026-11-14 23:32:28Z" duration="15.610956" asserts="0">
                     <properties>
                       <property name="_JOINTYPE" value="UnityCombinatorial" />
                       <property name="retryIteration" value="0" />
@@ -34,132 +34,132 @@ Releasing render texture that is set to be RenderTexture.active!
 ]]></output>
                   </test-case>
                 </test-suite>
-                <test-suite type="TestFixture" id="1849" name="ObservationTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.488712" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <test-suite type="TestFixture" id="1887" name="ObservationTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.519426" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
                   <properties />
-                  <test-case id="1871" name="BuiltAssetsHaveReferencesAndAllThreeTargetsAndBilingualCues" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.BuiltAssetsHaveReferencesAndAllThreeTargetsAndBilingualCues" methodname="BuiltAssetsHaveReferencesAndAllThreeTargetsAndBilingualCues" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1978322313" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.173760" asserts="0">
+                  <test-case id="1909" name="BuiltAssetsHaveReferencesAndAllThreeTargetsAndBilingualCues" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.BuiltAssetsHaveReferencesAndAllThreeTargetsAndBilingualCues" methodname="BuiltAssetsHaveReferencesAndAllThreeTargetsAndBilingualCues" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="686650583" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.194138" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1864" name="ClosingWhileCommandIsPendingInvalidatesItAndReleasesInput" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ClosingWhileCommandIsPendingInvalidatesItAndReleasesInput" methodname="ClosingWhileCommandIsPendingInvalidatesItAndReleasesInput" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1803124994" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.007823" asserts="0">
+                  <test-case id="1902" name="ClosingWhileCommandIsPendingInvalidatesItAndReleasesInput" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ClosingWhileCommandIsPendingInvalidatesItAndReleasesInput" methodname="ClosingWhileCommandIsPendingInvalidatesItAndReleasesInput" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1622791111" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.007114" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1853" name="DesiredAlignmentDoesNotPermitPhotographWhileMirrorIsElsewhere" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.DesiredAlignmentDoesNotPermitPhotographWhileMirrorIsElsewhere" methodname="DesiredAlignmentDoesNotPermitPhotographWhileMirrorIsElsewhere" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1036485261" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.004416" asserts="0">
+                  <test-case id="1891" name="DesiredAlignmentDoesNotPermitPhotographWhileMirrorIsElsewhere" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.DesiredAlignmentDoesNotPermitPhotographWhileMirrorIsElsewhere" methodname="DesiredAlignmentDoesNotPermitPhotographWhileMirrorIsElsewhere" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1334697314" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.004353" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1850" name="DesiredPointingNeverMovesMirrorBeforeTheCommandArrives" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.DesiredPointingNeverMovesMirrorBeforeTheCommandArrives" methodname="DesiredPointingNeverMovesMirrorBeforeTheCommandArrives" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1825460824" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.060077" asserts="0">
+                  <test-case id="1888" name="DesiredPointingNeverMovesMirrorBeforeTheCommandArrives" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.DesiredPointingNeverMovesMirrorBeforeTheCommandArrives" methodname="DesiredPointingNeverMovesMirrorBeforeTheCommandArrives" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1838737623" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.058028" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1870" name="DisplayedAvailabilityMatchesSharedServiceAndLocalAction" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.DisplayedAvailabilityMatchesSharedServiceAndLocalAction" methodname="DisplayedAvailabilityMatchesSharedServiceAndLocalAction" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="735697930" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.008911" asserts="0">
+                  <test-case id="1908" name="DisplayedAvailabilityMatchesSharedServiceAndLocalAction" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.DisplayedAvailabilityMatchesSharedServiceAndLocalAction" methodname="DisplayedAvailabilityMatchesSharedServiceAndLocalAction" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1360652040" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.009075" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-suite type="ParameterizedMethod" id="1859" name="FrameEdgesAndBehindCameraAreExplicit" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.047782" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <test-suite type="ParameterizedMethod" id="1897" name="FrameEdgesAndBehindCameraAreExplicit" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.053767" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
                     <properties />
-                    <test-case id="1854" name="FrameEdgesAndBehindCameraAreExplicit(0.22f,0.22f,1,True)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit(0.22f,0.22f,1,True)" methodname="FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1479901437" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.005162" asserts="0">
+                    <test-case id="1892" name="FrameEdgesAndBehindCameraAreExplicit(0.22f,0.22f,1,True)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit(0.22f,0.22f,1,True)" methodname="FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="14578585" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.005947" asserts="0">
                       <properties>
                         <property name="retryIteration" value="0" />
                         <property name="repeatIteration" value="0" />
                       </properties>
                     </test-case>
-                    <test-case id="1855" name="FrameEdgesAndBehindCameraAreExplicit(0.78f,0.78f,1,True)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit(0.78f,0.78f,1,True)" methodname="FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="451288760" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.003857" asserts="0">
+                    <test-case id="1893" name="FrameEdgesAndBehindCameraAreExplicit(0.78f,0.78f,1,True)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit(0.78f,0.78f,1,True)" methodname="FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1136641336" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.005453" asserts="0">
                       <properties>
                         <property name="retryIteration" value="0" />
                         <property name="repeatIteration" value="0" />
                       </properties>
                     </test-case>
-                    <test-case id="1856" name="FrameEdgesAndBehindCameraAreExplicit(0.219f,0.5f,1,False)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit(0.219f,0.5f,1,False)" methodname="FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1753713374" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.004450" asserts="0">
+                    <test-case id="1894" name="FrameEdgesAndBehindCameraAreExplicit(0.219f,0.5f,1,False)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit(0.219f,0.5f,1,False)" methodname="FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1450295007" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.005684" asserts="0">
                       <properties>
                         <property name="retryIteration" value="0" />
                         <property name="repeatIteration" value="0" />
                       </properties>
                     </test-case>
-                    <test-case id="1857" name="FrameEdgesAndBehindCameraAreExplicit(0.781f,0.5f,1,False)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit(0.781f,0.5f,1,False)" methodname="FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="836807791" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.003712" asserts="0">
+                    <test-case id="1895" name="FrameEdgesAndBehindCameraAreExplicit(0.781f,0.5f,1,False)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit(0.781f,0.5f,1,False)" methodname="FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1611412569" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.005552" asserts="0">
                       <properties>
                         <property name="retryIteration" value="0" />
                         <property name="repeatIteration" value="0" />
                       </properties>
                     </test-case>
-                    <test-case id="1858" name="FrameEdgesAndBehindCameraAreExplicit(0.5f,0.5f,-1,False)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit(0.5f,0.5f,-1,False)" methodname="FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="137706320" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.003577" asserts="0">
+                    <test-case id="1896" name="FrameEdgesAndBehindCameraAreExplicit(0.5f,0.5f,-1,False)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.FrameEdgesAndBehindCameraAreExplicit(0.5f,0.5f,-1,False)" methodname="FrameEdgesAndBehindCameraAreExplicit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1986999244" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.005161" asserts="0">
                       <properties>
                         <property name="retryIteration" value="0" />
                         <property name="repeatIteration" value="0" />
                       </properties>
                     </test-case>
                   </test-suite>
-                  <test-case id="1862" name="HoldingEAcrossReceptionCannotCloseResultOrStartNextTarget" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.HoldingEAcrossReceptionCannotCloseResultOrStartNextTarget" methodname="HoldingEAcrossReceptionCannotCloseResultOrStartNextTarget" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1498069042" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.009375" asserts="0">
+                  <test-case id="1900" name="HoldingEAcrossReceptionCannotCloseResultOrStartNextTarget" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.HoldingEAcrossReceptionCannotCloseResultOrStartNextTarget" methodname="HoldingEAcrossReceptionCannotCloseResultOrStartNextTarget" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1234997977" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.009782" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1851" name="HUsesTheSameDelayedQueueAndCannotDuplicateCommands" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.HUsesTheSameDelayedQueueAndCannotDuplicateCommands" methodname="HUsesTheSameDelayedQueueAndCannotDuplicateCommands" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="675416049" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.005375" asserts="0">
+                  <test-case id="1889" name="HUsesTheSameDelayedQueueAndCannotDuplicateCommands" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.HUsesTheSameDelayedQueueAndCannotDuplicateCommands" methodname="HUsesTheSameDelayedQueueAndCannotDuplicateCommands" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1651916304" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.008400" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1865" name="LensChangeWaitsForTransitAndDoesNotMoveObserver" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.LensChangeWaitsForTransitAndDoesNotMoveObserver" methodname="LensChangeWaitsForTransitAndDoesNotMoveObserver" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="965095829" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.011547" asserts="0">
+                  <test-case id="1903" name="LensChangeWaitsForTransitAndDoesNotMoveObserver" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.LensChangeWaitsForTransitAndDoesNotMoveObserver" methodname="LensChangeWaitsForTransitAndDoesNotMoveObserver" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1389668416" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.011272" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1852" name="MousePreparesPointingOnlyWhileOverThePictureAndNeverMovesTheMirror" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.MousePreparesPointingOnlyWhileOverThePictureAndNeverMovesTheMirror" methodname="MousePreparesPointingOnlyWhileOverThePictureAndNeverMovesTheMirror" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1419752908" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.062565" asserts="0">
+                  <test-case id="1890" name="MousePreparesPointingOnlyWhileOverThePictureAndNeverMovesTheMirror" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.MousePreparesPointingOnlyWhileOverThePictureAndNeverMovesTheMirror" methodname="MousePreparesPointingOnlyWhileOverThePictureAndNeverMovesTheMirror" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="45775143" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.058045" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1867" name="ReconfiguringInTheSameStepRestoresExistingPictures" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ReconfiguringInTheSameStepRestoresExistingPictures" methodname="ReconfiguringInTheSameStepRestoresExistingPictures" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="644233579" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.015839" asserts="0">
+                  <test-case id="1905" name="ReconfiguringInTheSameStepRestoresExistingPictures" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ReconfiguringInTheSameStepRestoresExistingPictures" methodname="ReconfiguringInTheSameStepRestoresExistingPictures" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="72213777" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.016599" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1861" name="ReleasePreservesPreparationAndPauseFreezesHoldAndTransit" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ReleasePreservesPreparationAndPauseFreezesHoldAndTransit" methodname="ReleasePreservesPreparationAndPauseFreezesHoldAndTransit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1019795351" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.022439" asserts="0">
+                  <test-case id="1899" name="ReleasePreservesPreparationAndPauseFreezesHoldAndTransit" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ReleasePreservesPreparationAndPauseFreezesHoldAndTransit" methodname="ReleasePreservesPreparationAndPauseFreezesHoldAndTransit" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="245088871" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.013817" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1868" name="RestartClearsPhotosAndCameraCommands" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.RestartClearsPhotosAndCameraCommands" methodname="RestartClearsPhotosAndCameraCommands" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="771709138" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.007940" asserts="0">
+                  <test-case id="1906" name="RestartClearsPhotosAndCameraCommands" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.RestartClearsPhotosAndCameraCommands" methodname="RestartClearsPhotosAndCameraCommands" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="789944448" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.017956" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1869" name="ReturningFromAnEvidenceCallbackCannotReopenTheResultOrLeakInput" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ReturningFromAnEvidenceCallbackCannotReopenTheResultOrLeakInput" methodname="ReturningFromAnEvidenceCallbackCannotReopenTheResultOrLeakInput" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="666907307" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.008589" asserts="0">
+                  <test-case id="1907" name="ReturningFromAnEvidenceCallbackCannotReopenTheResultOrLeakInput" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ReturningFromAnEvidenceCallbackCannotReopenTheResultOrLeakInput" methodname="ReturningFromAnEvidenceCallbackCannotReopenTheResultOrLeakInput" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1389576317" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.009591" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1863" name="ReviewingOnePictureDoesNotAdvanceOrCreateAnotherRecord" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ReviewingOnePictureDoesNotAdvanceOrCreateAnotherRecord" methodname="ReviewingOnePictureDoesNotAdvanceOrCreateAnotherRecord" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="845551140" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.008756" asserts="0">
+                  <test-case id="1901" name="ReviewingOnePictureDoesNotAdvanceOrCreateAnotherRecord" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ReviewingOnePictureDoesNotAdvanceOrCreateAnotherRecord" methodname="ReviewingOnePictureDoesNotAdvanceOrCreateAnotherRecord" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1641641636" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.009481" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1860" name="ThreeTargetsFinishWithKeyboardAndHAndProduceThreeDistinctRecords" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ThreeTargetsFinishWithKeyboardAndHAndProduceThreeDistinctRecords" methodname="ThreeTargetsFinishWithKeyboardAndHAndProduceThreeDistinctRecords" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="306426120" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.010653" asserts="0">
+                  <test-case id="1898" name="ThreeTargetsFinishWithKeyboardAndHAndProduceThreeDistinctRecords" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ThreeTargetsFinishWithKeyboardAndHAndProduceThreeDistinctRecords" methodname="ThreeTargetsFinishWithKeyboardAndHAndProduceThreeDistinctRecords" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1746324220" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.010874" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
                     </properties>
                   </test-case>
-                  <test-case id="1866" name="ToggleModeCanStartAndStopPreparationWithoutHoldingE" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ToggleModeCanStartAndStopPreparationWithoutHoldingE" methodname="ToggleModeCanStartAndStopPreparationWithoutHoldingE" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="443194331" result="Passed" start-time="2026-11-14 23:16:04Z" end-time="2026-11-14 23:16:04Z" duration="0.007641" asserts="0">
+                  <test-case id="1904" name="ToggleModeCanStartAndStopPreparationWithoutHoldingE" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests.ToggleModeCanStartAndStopPreparationWithoutHoldingE" methodname="ToggleModeCanStartAndStopPreparationWithoutHoldingE" classname="Abandoned.SpaceApps.Chapters.Surveyor.ObservationTests.ObservationTests" runstate="Runnable" seed="1998412278" result="Passed" start-time="2026-11-14 23:32:28Z" end-time="2026-11-14 23:32:28Z" duration="0.009743" asserts="0">
                     <properties>
                       <property name="retryIteration" value="0" />
                       <property name="repeatIteration" value="0" />
