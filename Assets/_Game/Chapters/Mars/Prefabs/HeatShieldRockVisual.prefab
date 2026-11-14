@@ -44,8 +44,8 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2455007798474586245}
   serializedVersion: 3
-  m_LocalReferencePoint: {x: 0.0023851693, y: 0.09453535, z: 0.0006012991}
-  m_Size: 0.27787143
+  m_LocalReferencePoint: {x: 0.0014164746, y: 0.0724201, z: 0.001237765}
+  m_Size: 0.30456102
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
@@ -80,7 +80,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.12
-  m_Center: {x: 0, y: 0.084, z: 0}
+  m_Center: {x: 0, y: 0.072000004, z: 0}
 --- !u!1 &3246541751777041723
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 3246541751777041723}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.189, z: 0}
+  m_LocalPosition: {x: 0, y: 0.162, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -260,7 +260,7 @@ Transform:
   m_GameObject: {fileID: 8952164675054693422}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.105, z: 0}
+  m_LocalPosition: {x: 0, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

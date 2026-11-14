@@ -21,7 +21,7 @@ Estados usados: **Página verificada** (lida, não baixada) · **Pendente — eq
 | Crédito na página | **NASA/JPL-Caltech** |
 | Arquivos anunciados | GLB `24883_MER_static.glb` **11,36 MB**; USDZ 3,01 MB (ambos de 08/03/2024) |
 | Observação | O nome “static” sugere modelo sem peças articuladas; separar rodas/braço/mastro/antena é trabalho de MAR-011. 11,36 MB excede o orçamento: decimar e reempacotar texturas. |
-| Estado | **Página verificada · Pendente — equipe** (a equipe fornecerá o arquivo; nada baixado) |
+| Estado | **Página verificada · Não usado** — em 14/11/2026 a MAR-011 substituiu o GLB oficial por um modelo próprio riggado (G-MAR-02 em `ASSET_CREDITS.md`, `Assets/_Game/Chapters/Mars/Art/Rover/RIG.md`). O GLB da NASA não foi baixado |
 | Responsável / prioridade / tarefa | R4 · P0 · MAR-011 |
 
 Componentes reconhecíveis que o modelo final **e** o proxy precisam ter (conferir cada item no GLB e em foto da missão):
@@ -74,7 +74,7 @@ Componentes reconhecíveis (página NASA Surveyor 3 + S3-03/S3-12): **câmera de
 | ID | Recurso | Fonte identificada | Estado | Resp. · prioridade · tarefa | Fallback / limite |
 | --- | --- | --- | --- | --- | --- |
 | R-MAR-01 | Panorama de Eagle (“Lion King”) | NASA/JPL (roteiro §Assets) | Referência a localizar | R4 · P0 · MAR-012 | Terreno próprio guiado pela foto |
-| R-MAR-02 | Escudo e Heat Shield Rock | PIA07402 (MS15), PIA07324 (MS16) | Legendas lidas em 14/11/2026; imagens não baixadas | R4 · P0 · MAR-015 | Modelo próprio procedural entregue (G-MAR-01); capturas de revisão em `Docs/Art/ShieldField_Captures/`. Foto real creditada em M20 pendente |
+| R-MAR-02 | Escudo e Heat Shield Rock | PIA07402 (MS15), PIA07324 (MS16) | Legendas lidas em 14/11/2026; imagens não baixadas | R4 · P0 · MAR-015 | Modelo próprio procedural entregue (G-MAR-01); capturas de revisão em `Docs/Art/ShieldField_Captures/`. **Imagens reais importadas na MAR-006** (P-MAR-02 e P-MAR-03, com crédito e hash); a foto de M20 pode reutilizá-las. **Revisado (comparação com as imagens reais em `Docs/Art/ShieldField_Captures/08` e `09`):** destroço principal como cúpula convexa amassada com o lado rompido aberto e meteorito cinza-metálico claro, achatado e craterado. Ainda procedural e provisório; a arte final é da R4 (MAR-018/MAR-020) |
 | R-MAR-03 | Mapa de hematita TES / globo Gusev–Meridiani | MS03 (NASA Meridiani Planum) | Página citada | R4 · P0 · MAR-013 | Globo low-cost com dois pontos e rótulos |
 | R-MAR-04 | Céu da tempestade de 2018 | MS29 (stills, sem vídeo) | Página citada | R4 · P0 · MAR-016 | Fog + gradiente próprios |
 | R-MAR-05 | Imagens de Spirit (Husband Hill, Comanche, Home Plate) | MS20–MS24 | Páginas citadas | R4 · P0 · MAR-017 | Cartões com foto creditada |
