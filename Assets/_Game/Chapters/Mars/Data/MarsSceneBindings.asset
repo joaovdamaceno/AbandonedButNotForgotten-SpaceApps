@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b0c29fb39bb32019d8ab407f5fda3f, type: 3}
+  m_Name: MarsSceneBindings
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.MarsSceneBindings
+  chapter: {fileID: 11400000, guid: 69f0a519ab2a77e25b5b5f773c20271f, type: 2}
+  subtitlesJson: {fileID: 4900000, guid: 4c58510be0384e32a90c469ff61a1689, type: 3}
+  sequenceCatalog: {fileID: 11400000, guid: 1fd2aaf72462078c3870fc4f4a477912, type: 2}
+  lighting: {fileID: 11400000, guid: 733a26992b89d7a45b35c33b188d6f53, type: 2}
+  originStage: {fileID: 1337183990646409109, guid: 4a18d425c1a6c9ea082a4c965f90b656, type: 3}
+  landingAssembly: {fileID: 4108962522010841694, guid: 6c93f645cced1ae57b15c0474d13a457, type: 3}
+  eagleEnvironment: {fileID: 0}
+  shieldField: {fileID: 9101365858224603645, guid: 813e1af506f2e8462b9a5318b2460674, type: 3}
+  victoriaStage: {fileID: 7378905493469639384, guid: 1ff53441cab449666ad8520da0208e64, type: 3}
+  valleyStage: {fileID: 5719413407530156569, guid: ddd91feffb50aa96a82c95e5ec14423e, type: 3}
+  spiritStage: {fileID: 2131632460245408356, guid: 12f3f5f6015f6d8dfa8213d9d8dbb10f, type: 3}
+  memorialStage: {fileID: 3677672224140546641, guid: f41e4f3dfad67a2eaa315ca927474487, type: 3}
+  roverGameplay: {fileID: 1000, guid: 087c3abd3d3a4f87802f21f224d67e68, type: 3}
+  roverVisual: {fileID: 875994326791551016, guid: 0e941e315a7c579e951bbc21c1f0af1c, type: 3}
+  blueberries: {fileID: 6860618397106470679, guid: 01fc6e01c72bf515abbeb3b1cac5c28b, type: 3}
+  ratActivity: {fileID: 2938091144788516315, guid: bd3d0c49d4fb69a24ae9e00f9fff177d, type: 3}
+  compositionActivity: {fileID: 242888737812348718, guid: 3caed03f32e866556982c72c65c3f38a, type: 3}
+  shieldInteractions: {fileID: 195898048619892880, guid: 7512d74f2d017d9d785bd18cadd21984, type: 3}
+  stormControls: {fileID: 5455103525066888094, guid: 9b3e44b116fc23d5d82065290d379c60, type: 3}
+  finalSurvey: {fileID: 7684044139469725863, guid: 66d693ae46256ceb9bef2fef0d8ccb34, type: 3}
+  cameraAnchors: {fileID: 4480858976486418961, guid: ead9d30e98393a3f8acbc7b6be244351, type: 3}
+  stepRegions:
+  - stepId: M01
+    regionId: mars.origin
+  - stepId: M02
+    regionId: mars.origin
+  - stepId: M03
+    regionId: mars.origin
+  - stepId: M04
+    regionId: mars.landing
+  - stepId: M05
+    regionId: mars.landing
+  - stepId: M06
+    regionId: mars.landing
+  - stepId: M07
+    regionId: mars.eagle
+  - stepId: M08
+    regionId: mars.eagle
+  - stepId: M09
+    regionId: mars.eagle
+  - stepId: M10
+    regionId: mars.eagle
+  - stepId: M11
+    regionId: mars.eagle
+  - stepId: M12
+    regionId: mars.eagle
+  - stepId: M13
+    regionId: mars.eagle
+  - stepId: M14
+    regionId: mars.eagle
+  - stepId: M15
+    regionId: mars.eagle
+  - stepId: M16
+    regionId: mars.shield
+  - stepId: M17
+    regionId: mars.shield
+  - stepId: M18
+    regionId: mars.shield
+  - stepId: M19
+    regionId: mars.shield
+  - stepId: M20
+    regionId: mars.shield
+  - stepId: M21
+    regionId: mars.victoria
+  - stepId: M22
+    regionId: mars.spirit
+  - stepId: M23
+    regionId: mars.valley
+  - stepId: M24
+    regionId: mars.valley
+  - stepId: M25
+    regionId: mars.valley
+  - stepId: M26
+    regionId: mars.valley
+  - stepId: M27
+    regionId: mars.valley
+  - stepId: M28
+    regionId: mars.valley
+  - stepId: M29
+    regionId: mars.valley
+  - stepId: M30
+    regionId: mars.valley
+  - stepId: M31
+    regionId: mars.memorial
+  - stepId: M32
+    regionId: mars.memorial
