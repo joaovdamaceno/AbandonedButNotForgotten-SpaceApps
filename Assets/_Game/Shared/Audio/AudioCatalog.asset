@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ca97ea9b79aa345aed9c2d7140dcef, type: 3}
+  m_Name: AudioCatalog
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.AudioCatalog
+  cues:
+  - id: MUS_PIO_PARTIDA
+    bus: 1
+    clips: []
+    loop: 1
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_CUR
+    bus: 1
+    clips: []
+    loop: 1
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_DISTANCIA
+    bus: 1
+    clips: []
+    loop: 1
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_ESCUTA
+    bus: 1
+    clips: []
+    loop: 1
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_PIO_LAUNCH
+    bus: 2
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_SCAN
+    bus: 2
+    clips: []
+    loop: 1
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 40
+  - id: SFX_PIO_RADIATION_NOISE
+    bus: 2
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_CMD_SENT
+    bus: 3
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_PIO_DETECTOR_TICK
+    bus: 3
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0.05
+    maxSeconds: 0
+  - id: SFX_RADIO_RECEIVED
+    bus: 2
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_RADIO_NOISE
+    bus: 2
+    clips: []
+    loop: 1
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 12
+  - id: SFX_HOLD_START
+    bus: 3
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_HOLD_LOOP
+    bus: 2
+    clips: []
+    loop: 1
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 30
+  - id: SFX_HOLD_DONE
+    bus: 3
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_HOLD_RELEASE
+    bus: 3
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
