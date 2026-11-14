@@ -83,13 +83,25 @@ def setup(c,state):
 def sync(client,state,statuses,include_metadata=False):
     if not state.get('project'):return {'skipped':'Project not configured.'}
     c=project_client(client);p=state['project'];parts=[]
+    # Não regravar todos os cartões a cada comando: isso polui o histórico com
+    # movimentações em nome da pessoa cujo token executou a sincronização.
+    current={};after=None
+    while True:
+        page=c.graphql('query($p:ID!,$after:String) { node(id:$p) { ... on ProjectV2 { items(first:100,after:$after) { pageInfo { hasNextPage endCursor } nodes { id fieldValueByName(name:"Status") { ... on ProjectV2ItemFieldSingleSelectValue { optionId } } } } } } }',
+                       {'p':p['id'],'after':after})['node']['items']
+        current.update({item['id']:(item.get('fieldValueByName') or {}).get('optionId') for item in page['nodes']})
+        if not page['pageInfo']['hasNextPage']:break
+        after=page['pageInfo']['endCursor']
+    updated=0
     tasks={t['id']:t for t in json.loads((ROOT/'Data/backlog.json').read_text(encoding='utf-8'))}
     def add(item,field,value):
         parts.append('a'+str(len(parts))+':updateProjectV2ItemFieldValue(input:{projectId:'+json.dumps(p['id'])+',itemId:'+json.dumps(item)+',fieldId:'+json.dumps(field)+',value:{'+value+'}}) { projectV2Item { id } }')
     for id,status in statuses.items():
         item=state['issues'].get(id,{}).get('projectItemId')
         if not item:continue
-        add(item,p['statusFieldId'],'singleSelectOptionId:'+json.dumps(p['statusOptions'][status]))
+        if current.get(item)!=p['statusOptions'][status]:
+            add(item,p['statusFieldId'],'singleSelectOptionId:'+json.dumps(p['statusOptions'][status]))
+            updated+=1
         if include_metadata:
             t=tasks[id];chapter={'MAR':'Gêmeas','PIO':'Pioneer 10','SUR':'Surveyor 3'}.get(id[:3],'Compartilhado')
             for name,value in [('Função',t['role']),('Prioridade',t['priority']),('Capítulo',chapter)]:
@@ -104,7 +116,7 @@ def sync(client,state,statuses,include_metadata=False):
                 if attempt==2 or not any(code in str(e) for code in ['HTTP 502','HTTP 503','HTTP 504','HTTP 429']):raise
                 time.sleep(2+attempt*2)
         if include_metadata and start%100==0:print(f'Project field updates: {min(start+10,len(parts))}/{len(parts)}',flush=True)
-    return {'updated':len(statuses),'project':p['url']}
+    return {'updated':updated,'unchanged':len(statuses)-updated,'project':p['url']}
 
 def verify(c,state):
     c=project_client(c);pid=state['project']['id']
