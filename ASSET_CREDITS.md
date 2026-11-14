@@ -11,6 +11,16 @@ Fonte única de procedência e direitos. Regras: [Docs/Art/IMPORT_RULES.md](Docs
 
 As fontes são distribuídas dentro do build Web; a OFL permite incorporação em software, exige manter o aviso de copyright/licença (arquivos `OFL.txt`) e proíbe vender a fonte isoladamente. Os créditos do jogo listam as duas famílias.
 
+## Gerados pelo projeto (procedurais, sem fonte externa)
+
+Criados por código do próprio repositório, de forma determinística (mesma semente → mesmos bytes). Não são imagens nem modelos de missão e não devem ser apresentados como tal.
+
+| ID | Recurso | Gerador | Caminho local | Natureza / limite | Resp. |
+| --- | --- | --- | --- | --- | --- |
+| G-PIO-01 | Céu da Pioneer: textura equiretangular 2048×1024 (estrelas fracas + faixa difusa), malha de 520 estrelas brilhantes e paleta 8×2 | `PioneerStageArt.Starfield` / `BrightStars` / `StarPalette` (sementes 1972 e 2003) | `Assets/_Game/Chapters/Pioneer10/Art/Stage/Textures/PIO_Starfield.png`, `PIO_StarPalette.png`, `Meshes/PIO_BrightStars.asset` | Campo de estrelas **ilustrativo** (R-PIO-06): posições aleatórias, não um catálogo estelar; o marcador de Aldebaran é um objeto separado, numa direção de palco | R5 · PIO-003 |
+| G-PIO-02 | Júpiter artístico **provisório** (faixas ocre/creme e oval discreta), 1024×512 | `PioneerStageArt.JupiterBands` (semente 1973) | `Art/Stage/Textures/PIO_JupiterProvisional.png` | Esfera de composição, não foto. As imagens históricas da missão vêm da PIO-007 com crédito; trocar por textura NASA creditada só no polimento (PIO-016) | R5 · PIO-003 |
+| G-PIO-03 | Silhueta **provisória** da Pioneer 10 (refletor parabólico, compartimento hexagonal, hastes, RTGs, magnetômetro, placa, fotopolarímetro) | `PioneerStageArt.Dish` / `Prism` / `Box` + `PioneerStageBuilder.BuildProbe` | `Art/Stage/Meshes/`, filho `ProvisionalSilhouette` em `Art/SpaceStage.prefab` | Só o refletor de 2,74 m tem fonte (P-S05); placa de 152×229 mm a conferir com P-S12; demais proporções e ângulos aproximados. Substituída pelo modelo NASA da PIO-002 (A-PIO), que preserva os sockets | R5 · PIO-003 |
+
 ## Planejados (não baixados nem importados)
 
 | ID | Recurso | Origem verificada | Crédito na página | Estado | Verificação antes de importar | Resp. |
