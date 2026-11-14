@@ -1,0 +1,14 @@
+# PIO-014 — evidência de validação
+
+Executado em 14/11/2026 sobre `feature/PIO-014-rota-completa`, base `develop` com PIO-012 (e depois mesclada com `211ab0d`, correção de `Tools/sync_readiness.py` e documentos de QA), Unity **6000.6.7f1** / URP 17.6, Windows, batchmode (Unity fechada).
+
+| Verificação | Resultado |
+| --- | --- |
+| Testes da tarefa (`PioneerFlowTests`) | **19/19** passaram |
+| Suíte EditMode completa (antes da mescla final, que só trouxe `Tools/` e documentos) | **788 passaram, 18 falharam de 806** (`editmode.xml`). As 18 falhas são **todas** `MarsEagleTests` (MAR-012, de outra pessoa): `Assets/_Game/Chapters/Mars/Prefabs/EagleEnvironment.prefab` nunca foi commitado. Não é desta tarefa; nada da MAR-012 foi alterado |
+| Builder `pioneer10.zchapter` reexecutado | Arquivos idênticos (cena, `PioneerChapter.asset`, sequência do Júpiter) |
+| Build WebGL da cena `Pioneer10.unity` (cache limpo, base mesclada) | Sucesso: 17 arquivos, 14,74 MiB, shaders 3/3, hashes conferidos |
+
+**Como os testes provam a rota sem injetar conclusões.** Usam o `ChapterDirector`, o `SessionClock`, o `InputRouter` e o `InteractionService` **reais**; só o `SceneManager` é trocado por um carregador instantâneo que, ao descartar a cena, faz o que o `OnDestroy` faria. A cena `Pioneer10` é a montada pelos builders. Um operador só mexe no teclado (E mantido 3,4 s, solto, toque de 0,1 s, solto) e a rota atravessa os oito estados: nenhum teste chama `CompleteStep` nem `Completed`. Cobertura: tabela de etapas igual ao roteiro, com as chaves do dossiê; sequência de cada estado com a duração nominal (soma 375 s) e a cena toda ligada; prévias fora do pacote e das Build Settings; os oito estados na ordem, cada um concluindo uma vez e o capítulo terminando uma vez (estado Completion, memorial aberto); tempo ativo por estado vindo do `SessionClock`, relatado como do operador (`CountsAsHumanResult` falso); nada conclui por tempo (2 min parado no Launch) e a pausa congela o relógio do estado; Voltar ao arquivo chega ao dossiê com tudo solto; Repetir recarrega a cena e recomeça do Launch; **reiniciar em cada um dos oito estados** (volta ao começo, relatório vazio, nenhuma atividade antiga rodando, nenhum lease antigo, mesmo número de GameObjects e um só `StepEntered`); reiniciar duas vezes não duplica nenhuma conclusão; destruir a cena solta os ouvintes; o estado 3 é só cinema e conclui pelo fim da sequência de 27 s.
+
+**Não executado:** Play Mode e a cena carregada de verdade pelo `SceneManager`; a ligação do dossiê ao capítulo (é do shell da R2: o slot `pioneer10` do `ChapterCatalog` segue vazio, passo documentado no README) e a inclusão da cena nas Build Settings (R1); o enquadramento da sequência do estado 3 (`PIO_JupiterApproach`, nenhuma outra tarefa a montava) não foi visto no 3D; teste humano; o áudio real. A duração medida é do operador, não um resultado humano.
