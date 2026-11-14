@@ -99,14 +99,22 @@ namespace Abandoned.SpaceApps.EditorTools
             panel.match = 1f;
         }
 
+        /// <summary>
+        /// Abre a cena existente e sincroniza os objetos por nome; só cria o que falta. Recriar tudo mudaria os
+        /// fileIDs locais a cada execução e geraria diffs/conflitos de YAML sem mudança real.
+        /// </summary>
         static void BuildPreviewScene()
         {
             Directory.CreateDirectory(Path.GetDirectoryName(PreviewScenePath) ?? DesignRoot);
             var previous = SceneManager.GetActiveScene().path;
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            var scene = File.Exists(PreviewScenePath)
+                ? EditorSceneManager.OpenScene(PreviewScenePath, OpenSceneMode.Single)
+                : EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
-            var cameraObject = new GameObject("Câmera de prévia");
-            var camera = cameraObject.AddComponent<Camera>();
+            var cameraObject = FindOrCreate(scene, "Câmera de prévia");
+            var camera = cameraObject.GetComponent<Camera>();
+            if (camera == null)
+                camera = cameraObject.AddComponent<Camera>();
             camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = new Color32(0xC9, 0x9A, 0x6E, 0xFF);
 
@@ -114,18 +122,33 @@ namespace Abandoned.SpaceApps.EditorTools
             var order = 0;
             foreach (var (name, layout, _, active) in PreviewLayouts)
             {
-                var go = new GameObject(name);
-                var document = go.AddComponent<UIDocument>();
+                var go = FindOrCreate(scene, name);
+                var document = go.GetComponent<UIDocument>();
+                if (document == null)
+                    document = go.AddComponent<UIDocument>();
                 document.panelSettings = panel;
                 document.visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(layout);
                 document.sortingOrder = order++;
-                go.AddComponent<ResponsiveLayoutClass>();
+                if (go.GetComponent<ResponsiveLayoutClass>() == null)
+                    go.AddComponent<ResponsiveLayoutClass>();
                 go.SetActive(active);
             }
 
+            EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene, PreviewScenePath);
             if (!string.IsNullOrEmpty(previous) && previous != PreviewScenePath)
                 EditorSceneManager.OpenScene(previous);
+        }
+
+        static GameObject FindOrCreate(Scene scene, string name)
+        {
+            foreach (var root in scene.GetRootGameObjects())
+            {
+                if (root.name == name)
+                    return root;
+            }
+
+            return new GameObject(name);
         }
     }
 }
