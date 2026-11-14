@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: MarsDualLanding_M05
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: mars.seq.M05
+  shots:
+  - shotId: mars.landing.eagle
+    durationSeconds: 4
+    rigId: mars.landing.opportunity
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 1.5
+    continueFromPreviousShot: 1
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 6, y: 2.0292041, z: -46}
+      eulerAnglesDegrees: {x: 2.9242296, y: 352.5686, z: -0.000000013357607}
+      fieldOfViewDegrees: 20
+    - timeSeconds: 0.25
+      positionMeters: {x: 6.067383, y: 2.1074893, z: -45.77539}
+      eulerAnglesDegrees: {x: 3.0346262, y: 352.44965, z: -0.000000013358947}
+      fieldOfViewDegrees: 20.22
+    - timeSeconds: 0.5
+      positionMeters: {x: 6.2578125, y: 2.3287306, z: -45.140625}
+      eulerAnglesDegrees: {x: 3.3520124, y: 352.10742, z: 0}
+      fieldOfViewDegrees: 20.840923
+    - timeSeconds: 0.75
+      positionMeters: {x: 6.553711, y: 2.6725051, z: -44.154297}
+      eulerAnglesDegrees: {x: 3.8614821, y: 351.55737, z: -0.000000026741134}
+      fieldOfViewDegrees: 21.80328
+    - timeSeconds: 1
+      positionMeters: {x: 6.9375, y: 3.118391, z: -42.875}
+      eulerAnglesDegrees: {x: 4.553265, y: 350.80878, z: 0.000000026764896}
+      fieldOfViewDegrees: 23.046846
+    - timeSeconds: 1.25
+      positionMeters: {x: 7.3916016, y: 3.6459658, z: -41.36133}
+      eulerAnglesDegrees: {x: 5.419853, y: 349.86774, z: -0.000000053600484}
+      fieldOfViewDegrees: 24.511145
+    - timeSeconds: 1.5
+      positionMeters: {x: 7.8984375, y: 4.2348075, z: -39.671875}
+      eulerAnglesDegrees: {x: 6.4531775, y: 348.74, z: 0.000000053701097}
+      fieldOfViewDegrees: 26.135925
+    - timeSeconds: 1.75
+      positionMeters: {x: 8.44043, y: 4.864494, z: -37.865234}
+      eulerAnglesDegrees: {x: 7.6415806, y: 347.4338, z: 0.00000010767795}
+      fieldOfViewDegrees: 27.861637
+    - timeSeconds: 2
+      positionMeters: {x: 9, y: 5.514602, z: -36}
+      eulerAnglesDegrees: {x: 8.966473, y: 345.96375, z: 0}
+      fieldOfViewDegrees: 29.62989
+    - timeSeconds: 2.25
+      positionMeters: {x: 9.55957, y: 6.1647105, z: -34.134766}
+      eulerAnglesDegrees: {x: 10.398797, y: 344.3549, z: -0.00000032551154}
+      fieldOfViewDegrees: 31.383825
+    - timeSeconds: 2.5
+      positionMeters: {x: 10.1015625, y: 6.7943964, z: -32.328125}
+      eulerAnglesDegrees: {x: 11.895817, y: 342.64755, z: -0.00000021812791}
+      fieldOfViewDegrees: 33.068413
+    - timeSeconds: 2.75
+      positionMeters: {x: 10.608398, y: 7.3832383, z: -30.638672}
+      eulerAnglesDegrees: {x: 13.398991, y: 340.902, z: 0.00000021941591}
+      fieldOfViewDegrees: 34.63055
+    - timeSeconds: 3
+      positionMeters: {x: 11.0625, y: 7.9108133, z: -29.125}
+      eulerAnglesDegrees: {x: 14.833904, y: 339.2018, z: 0.00000044160456}
+      fieldOfViewDegrees: 36.018986
+    - timeSeconds: 3.25
+      positionMeters: {x: 11.446289, y: 8.356699, z: -27.845703}
+      eulerAnglesDegrees: {x: 16.11295, y: 337.65433, z: -0.00000022217108}
+      fieldOfViewDegrees: 37.183983
+    - timeSeconds: 3.5
+      positionMeters: {x: 11.7421875, y: 8.700474, z: -26.859375}
+      eulerAnglesDegrees: {x: 17.140705, y: 336.38635, z: 0}
+      fieldOfViewDegrees: 38.076797
+    - timeSeconds: 3.75
+      positionMeters: {x: 11.932617, y: 8.921715, z: -26.22461}
+      eulerAnglesDegrees: {x: 17.821152, y: 335.5337, z: 0.0000008968054}
+      fieldOfViewDegrees: 38.648857
+    - timeSeconds: 4
+      positionMeters: {x: 12, y: 9, z: -26}
+      eulerAnglesDegrees: {x: 18.065453, y: 335.22485, z: 0}
+      fieldOfViewDegrees: 38.8508
+    events:
+    - timeSeconds: 0
+      eventId: mars.landing.eagle.rest
+  cues:
+  - cueId: MAR.C08
+    textKey: MAR.C08
+    startSeconds: 0
+    endSeconds: 4
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []
