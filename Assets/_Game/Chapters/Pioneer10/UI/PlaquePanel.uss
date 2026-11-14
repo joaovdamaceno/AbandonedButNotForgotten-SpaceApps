@@ -1,0 +1,183 @@
+/* PIO-009 · Painel da placa. Usa tokens/componentes da UI-001; só o que é específico da Pioneer fica aqui. */
+
+.pio-plaque {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    --pio-gold: #E3B55F;
+    --pio-gold-dim: rgba(227, 181, 95, 0.62);
+    --pio-gold-bright: #FFE9B0;
+}
+
+/* Palco do jogo: 900 × 560 centralizado (cabe nos 960 px lógicos do 4:3). */
+.pio-plaque__stage {
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    width: 900px;
+    height: 560px;
+    translate: -50% 0;
+    flex-direction: row;
+    padding: 30px;
+    border-radius: var(--sa-radius-lg);
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    background-color: var(--sa-color-plate-strong);
+}
+
+/* ---------- Quadro da placa (300 × 450, 2:3). Os contornos usam os MESMOS números de PioneerPlaqueArt.SlotRects. ---------- */
+
+.pio-plaque__board {
+    width: 300px;
+    height: 450px;
+    flex-shrink: 0;
+    border-width: 4px;
+    border-color: var(--pio-gold);
+    border-radius: 14px;
+    background-color: rgba(44, 34, 20, 0.96);
+}
+
+.pio-plaque__slot {
+    position: absolute;
+    border-width: 3px;
+    border-color: var(--pio-gold-dim);
+    border-radius: var(--sa-radius-md);
+    background-color: rgba(12, 14, 18, 0.45);
+}
+
+.pio-plaque__slot--0 { left: 8px; top: 8px; width: 120px; height: 108px; }
+.pio-plaque__slot--1 { left: 8px; top: 128px; width: 168px; height: 168px; }
+.pio-plaque__slot--2 { left: 8px; top: 308px; width: 276px; height: 126px; }
+.pio-plaque__slot--3 { left: 140px; top: 8px; width: 144px; height: 108px; }
+.pio-plaque__slot--4 { left: 188px; top: 128px; width: 96px; height: 168px; }
+
+/* Símbolo esmaecido: a dica do que vai ali (nome sempre escrito). */
+.pio-plaque__slot-icon {
+    position: absolute;
+    left: 6px;
+    top: 4px;
+    right: 6px;
+    bottom: 26px;
+    opacity: 0.34;
+}
+
+.pio-plaque__slot-name {
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    bottom: 3px;
+    height: 22px;
+    margin: 0;
+    padding: 0;
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: 15px;
+    color: var(--sa-color-on-plate);
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+}
+
+.pio-plaque__check {
+    display: none;
+    position: absolute;
+    right: 4px;
+    top: 2px;
+    margin: 0;
+    padding: 0;
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: 26px;
+    color: var(--sa-color-confirm);
+}
+
+/* Estados do contorno: forma + cor (largura do traço), nunca só a cor. */
+.pio-plaque__slot--hint { border-color: var(--pio-gold); border-width: 4px; }
+.pio-plaque__slot--pulse { border-color: var(--pio-gold-bright); border-width: 6px; background-color: rgba(227, 181, 95, 0.2); }
+.pio-plaque__slot--focus { border-color: var(--sa-color-focus); border-width: 6px; }
+.pio-plaque__slot--retry { border-color: var(--sa-color-warn); border-width: 5px; }
+
+.pio-plaque__slot--placed {
+    border-color: var(--sa-color-confirm);
+    border-width: 4px;
+    background-color: rgba(143, 217, 154, 0.12);
+}
+
+.pio-plaque__slot--placed .pio-plaque__slot-icon { opacity: 1; }
+.pio-plaque__slot--placed .pio-plaque__check { display: flex; }
+
+/* ---------- Arte (PNGs gerados) ---------- */
+
+.pio-plaque__icon {
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.pio-plaque__icon--0 { background-image: url("/Assets/_Game/Chapters/Pioneer10/Art/Plaque/Textures/PIO_Plaque_hydrogen.png"); }
+.pio-plaque__icon--1 { background-image: url("/Assets/_Game/Chapters/Pioneer10/Art/Plaque/Textures/PIO_Plaque_pulsars.png"); }
+.pio-plaque__icon--2 { background-image: url("/Assets/_Game/Chapters/Pioneer10/Art/Plaque/Textures/PIO_Plaque_solar-system.png"); }
+.pio-plaque__icon--3 { background-image: url("/Assets/_Game/Chapters/Pioneer10/Art/Plaque/Textures/PIO_Plaque_pioneer-scale.png"); }
+.pio-plaque__icon--4 { background-image: url("/Assets/_Game/Chapters/Pioneer10/Art/Plaque/Textures/PIO_Plaque_people.png"); }
+
+/* ---------- Lado direito: bandeja, mensagem e prompt de E ---------- */
+
+.pio-plaque__side {
+    flex-grow: 1;
+    margin-left: 30px;
+    justify-content: space-between;
+}
+
+.pio-plaque__tray { flex-direction: column; }
+
+.pio-plaque__card {
+    flex-direction: row;
+    align-items: center;
+    height: 64px;
+    margin-bottom: 8px;
+    padding: 0 12px;
+    border-width: 3px;
+    border-color: var(--pio-gold-dim);
+    border-radius: var(--sa-radius-md);
+    background-color: rgba(44, 34, 20, 0.9);
+}
+
+.pio-plaque__card-icon { width: 52px; height: 52px; flex-shrink: 0; margin-right: 14px; }
+
+.pio-plaque__card-name {
+    margin: 0;
+    padding: 0;
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-hud);
+    color: var(--sa-color-on-plate);
+    white-space: nowrap;
+}
+
+/* Foco do teclado: barra grossa à esquerda (forma) e contorno claro. Selecionada: contorno grosso e fundo mais claro. */
+.pio-plaque__card--focus { border-color: var(--sa-color-focus); border-left-width: 14px; }
+.pio-plaque__card--selected { border-color: var(--pio-gold-bright); border-width: 5px; background-color: rgba(227, 181, 95, 0.18); }
+.pio-plaque__card--dragging { opacity: 0.9; border-color: var(--pio-gold-bright); }
+
+.pio-plaque__retry {
+    display: none;
+    margin: 0 0 var(--sa-space-3) 0;
+    border-color: var(--sa-color-warn);
+    border-width: 2px;
+}
+
+.pio-plaque__hold { margin: 0; max-width: 100%; }
+
+.pio-plaque__assist {
+    display: none;
+    height: 6px;
+    margin-top: var(--sa-space-1);
+}
+
+.pio-plaque__assist-fill { background-color: var(--sa-color-focus); }
+
+/* Concluída: bandeja vazia e prompt no estado final. */
+.pio-plaque--complete .pio-plaque__retry { display: none; }
+
+/* ---------- 4:3 (largura lógica < 1100 px, classe aplicada por ResponsiveLayoutClass) ---------- */
+
+.sa-layout--narrow .pio-plaque__stage { top: 60px; padding: 24px; }
+.sa-layout--narrow .pio-plaque__side { margin-left: 24px; }
+.sa-layout--narrow .pio-plaque .sa-hold { min-width: 0; }
+.sa-layout--narrow .pio-plaque__card-name { font-size: 20px; }

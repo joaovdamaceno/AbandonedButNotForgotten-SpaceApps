@@ -13,7 +13,7 @@ Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de
 | `Data/Localization/Pioneer10.pt-BR.json`, `Pioneer10.en.json` | 102 chaves iguais nos dois idiomas, por grupo (`narrative`, `hud`, `instrument`, `card`) e `status` (`approved` = transcrito do roteiro; `derived` = montado ou traduzido a partir do roteiro, **a revisar pela R7**) |
 
 - **Tempo** é local ao estado, no relógio ativo; datas históricas são dados. A recepção na Terra (rádio) fica separada da operação na sonda (lançamento) no campo `kind` de cada fato.
-- **IDs de gatilho** de `PIO.Imaging` seguem o código integrado (`Gate4`, `Gate6`, `GateRecovery`, `Gate8`); os de `PIO.Plaque` e `PIO.Listening` são **propostos** e devem ser confirmados por PIO-009 e PIO-011.
+- **IDs de gatilho** de `PIO.Imaging` seguem o código integrado (`Gate4`, `Gate6`, `GateRecovery`, `Gate8`); os de `PIO.Plaque` foram **confirmados** pela PIO-009 (`PioneerPlaqueActivity` aciona `PIO.Plaque.Hydrogen`, `.Pulsars`, `.SolarSystem`, `.PioneerScale` e `.People`); os de `PIO.Listening` continuam **propostos** e devem ser confirmados pela PIO-011.
 - **Validar:** `python Tools/validate_pioneer_data.py` (JSON, IDs, soma de 375 s, janelas sem sobreposição, chaves PT/EN iguais, fontes, datas UTC, termos que o registro de fontes manda evitar) e o teste `PioneerDataTests`, que cruza os dados com `PioneerPresentation.StateIds`, as constantes de texto do código e as sequências `PIO_Launch/Belt/Imaging`.
 - **Cartões de data** (`PIO.Card.*`): o roteiro só cita o texto de alguns; os marcados `derived` usam apenas datas e frases do roteiro.
 
@@ -221,3 +221,35 @@ Prefab `Art/PioneerActors.prefab` (raiz `PioneerActors`, componente `PioneerProb
 **Limitações.** O diagrama e o gráfico são **qualitativos**: as inclinações das linhas, o espaçamento dos anéis, o ângulo do arco e as barras são decisão gráfica, não dados. Que o cruzamento de 1998 é de distância ao Sol vem da fonte P-S13; o que 1976 e 13 JUN 1983 marcam (distância orbital de Saturno e de Netuno) vem do roteiro e a R7 precisa conferir as datas contra fonte primária. A câmera 3D fica atrás do painel (a sonda não aparece). Sem áudio nem legenda real (AUD-002/UI-004), com textos por chave. Play Mode e navegador não foram exercitados. O contraste não foi medido nos pixels.
 
 **Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.stage.outbound`.
+## Placa de cinco símbolos (PIO-009)
+
+| Arquivo | Papel |
+| --- | --- |
+| `Sequences/PIO_Plaque.asset` | 47 s: chegada à placa 0–9, cinco peças 9–38 (marco `PIO.Plaque.Gate` em 37,5 s), placa inteira 38–47. Legendas PIO.05.01 e .07 por janela; PIO.05.02–06 **por gatilho**, 4 s cada |
+| `Runtime/PioneerPlaqueActivity.cs` | Lógica do estado (sem UI): seleção, encaixe, setas + E, ajuda de segurar E, contorno errado sem perda, marco 5/5 |
+| `Runtime/PlaquePanelView.cs` + `UI/PlaquePanel.uxml/.uss/.prefab` | Painel UI Toolkit: quadro 2:3 com cinco contornos nomeados e a bandeja com as cinco peças; só desenha um `PlaqueViewState` e devolve cliques e soltar do arrastar. Textos por chave (`PIO.UI.*`) |
+| `Art/PlaqueEducational.svg` | SVG mestre da placa educativa (traço dourado). Gerado: **não editar à mão** |
+| `Art/Plaque/Textures/PIO_Plaque_*.png` | Os cinco símbolos (256 px, transparentes) usados pelo painel; saem da MESMA lista de formas do SVG |
+| `Editor/PioneerPlaqueArt.cs` | Lista de formas (círculos, traços, polígonos) que gera o SVG e rasteriza os PNGs com antisserrilhado 4×4 |
+| `Editor/PioneerPlaqueBuilder.cs` | Builder CORE-006 `pioneer10.stage.plaque` (raiz `[R5] Pioneer Plaque`, depois de `pioneer10.stage`) |
+| `Editor/PioneerPlaqueCapture.cs` | Prévias em `Docs/Art/Pioneer10_Plaque/<estado>_<L>x<A>.png` nas 3 resoluções do UI_SPEC, com as auditorias `QA/PIO-009/contrast-audit.txt` e `layout-audit.txt` (menu PIO-009) |
+| `Tests/PioneerPlaqueTests.cs` | 19 testes EditMode |
+
+**Como joga.** Toda peça mostra símbolo e nome, e cada contorno também (o símbolo esmaecido e o nome escrito): ninguém decifra código. Caminhos equivalentes e sem penalidade:
+- **Mouse:** clicar a peça e depois o contorno, ou arrastar. Soltar a até **96 px** (lógicos, a 720p) de um contorno livre encaixa; solto longe, a peça só volta, sem mensagem.
+- **Teclado:** as setas percorrem as peças restantes; E (toque) seleciona; as setas percorrem os contornos; E encaixa.
+- **Ajuda:** segurar E por 2 s encaixa a peça focada (ou a selecionada) no contorno correto. As cinco levam ≤ 30 s assistidas (teste).
+
+O contorno **correto** da peça selecionada pulsa devagar (1,4 s de período; com movimento reduzido fica parado e destacado). Um contorno errado devolve a peça e mostra uma mensagem **neutra** (`PIO.UI.plaque_retry`); nenhum encaixe é removido nem contado. Cada encaixe abre a legenda da peça por gatilho e o próximo item já está disponível. A sequência espera 5/5 no marco de 37,5 s; nada conclui por tempo. A placa 3D continua presa à sonda: a atividade não a move nem a oculta.
+
+**Prompt de E.** Uma só classe `sa-hold--available|rearm|holding|paused|done`. Pressionar e soltar em até 0,35 s é um **toque**; segurar mais mostra a ajuda; soltar no meio pausa sem apagar nada. O E que ainda estava pressionado quando a atividade abriu fica em *rearme* até soltar.
+
+**Arte.** Adaptação **educativa**, identificada como tal, não a reprodução fiel da gravura (NASA P-S11/P-S12): hidrogênio, mapa de pulsares, Sistema Solar (terceiro corpo, a Terra, marcado, e o arco até Júpiter), escala da Pioneer e **pessoas em silhueta lisa**, sem detalhe anatômico. As linhas dos pulsares, as marcas e a régua são **esquemáticas** e não carregam períodos nem medidas reais. Material: alumínio anodizado dourado, não ouro maciço. Registro em `ASSET_CREDITS.md` (G-PIO-06) e `Docs/Production/REUSE.md`.
+
+**Textos novos (PIO-001).** `PIO.UI.hydrogen`, `.pulsars`, `.solar`, `.scale`, `.people` e `PIO.UI.plaque_retry` (PT/EN, status `derived`: a R7 precisa revisar) em `Data/Localization/`, reimportados em `PioneerData.asset` pelo importador da PIO-013. `PIO.UI.plaque`, `PIO.UI.snap` e as legendas PIO.05.* já existiam.
+
+**Uso pelo controlador (PIO-014):** `plaque.Initialize(sequenceDirector, interactionService, inputRouter, sessionClock, resolverDeTexto)`, `Completed += () => chapterDirector.CompleteStep("PIO.Plaque")`, `Begin(skippable)`; `Cancel()` na mudança de estado. Eventos: `PieceFitted(peça, n)`, `WrongOutline`, `AllPiecesFitted` (uma vez) e `RevealStarted` (38 s). `SetReducedMotion(true)` para a configuração global. Os gatilhos das legendas saem pela `SequenceDirector` da própria atividade; `PioneerNarration.RaiseTrigger` é só uma fachada para o mesmo `director.Trigger`.
+
+**Limitações.** Os textos dos contornos e das peças ainda são chaves até a UI-004. Os nomes e a frase neutra são `derived` (R7). O quadro é um layout simplificado (contornos lado a lado, sem a sobreposição das figuras com a silhueta da Pioneer da gravura). A arrastada só foi exercitada pela lógica e pela função de snap (`NearestOutline`): os eventos de ponteiro do painel não foram simulados em Play Mode. Play Mode e navegador não foram executados.
+
+**Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.stage.plaque`.
