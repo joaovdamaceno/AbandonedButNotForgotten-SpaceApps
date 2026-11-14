@@ -27,6 +27,8 @@ Configure `SurveyorTelevision` antes da entrada em FirstImage com ChapterDirecto
 
 O prefab de preview contém seus Core somente para execução isolada. Na cena global, injete os serviços compartilhados; não duplique os Core do preview em Boot. Só ChapterDirector executa `CompleteStep("FirstImage", "Observe")`. `CueEntered`/`CueExited` publicam SubtitleCue; `DrawLocalSubtitles=false` desativa a legenda local quando UI-004 assumir. `TextResolver` recebe localização global; fallback em `UI/TelevisionTexts.json`.
 
+Com UI-003 disponível, o HUD global pode consumir o mesmo candidato de InteractionService. Durante este painel de instrumento, escolha uma apresentação do comando: o botão local já mostra o preparo acumulado do adaptador SUR-004, evitando duplicar o prompt de E. Esta entrega não instala o HUD global nem altera seu contrato.
+
 Builder: **Abandoned Space Apps → Surveyor → SUR-007 Reconstruir primeira imagem**, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SurveyorTelevisionBuilder.BuildFromCommandLine`. Módulo CORE-006 `surveyor.television`, GUIDs/cena estáveis. Cenas globais e pacotes não são alterados.
 
 ## História e autoria

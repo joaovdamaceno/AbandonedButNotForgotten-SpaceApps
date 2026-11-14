@@ -2,7 +2,7 @@
 
 Implementação em **14/11/2026**, iniciada em develop **1c503be**. Core sequencial até **CORE-006** (`934a2fd`, #93), com atualização **CORE-001/MCP** (`30d78a3`, #104). Issue #65 assumida depois de confirmar os bloqueadores nativos #60 e #4 fechados/integrados. Não houve alteração de contratos Core, pacotes, BuildSettings ou cenas de outros responsáveis.
 
-Após a retomada, incorporado develop **077d6a7**. As novas entregas de Marte/Pioneer/UI não alteraram os contratos Core, pipeline, fontes/tokens ou assets Surveyor usados por este preview. O conflito em `REUSE.md` foi resolvido preservando os registros dos dois lados. A build Web isolada registrada abaixo foi produzida antes dessa incorporação; a regressão no Editor é repetida sobre a base incorporada. Não é uma aprovação da build Web integrada dos três capítulos.
+Após a retomada, incorporados develop **077d6a7** e **ab74291** (inclui UI-003). As novas entregas de Marte/Pioneer/UI não alteraram os contratos Core, pipeline, fontes/tokens ou assets Surveyor usados por este preview. O conflito em `REUSE.md` foi resolvido preservando os registros atualizados da equipe e a linha SUR-007. A build Web isolada registrada abaixo foi produzida antes dessas incorporações; a regressão no Editor foi repetida sobre a base incorporada. Não é uma aprovação da build Web integrada dos três capítulos.
 
 ## Entrega
 
@@ -14,7 +14,7 @@ Interface PT/EN, alternativa por alternância, botão mantido equivalente a E, p
 
 ## Verificação no Editor
 
-[Suíte NUnit na base incorporada](editmode.xml): **588/588 passaram**, zero falhas/skips, **13 casos SUR-007**, em Unity **6000.6.7f1 / URP 17.6.0**, Windows/D3D11, RTX 3050 Laptop 6 GB. A suíte na base anterior também passou (255/255). Cobertura:
+[Suíte NUnit na base incorporada](editmode.xml): **659/659 passaram**, zero falhas/skips, **13 casos SUR-007**, em Unity **6000.6.7f1 / URP 17.6.0**, Windows/D3D11, RTX 3050 Laptop 6 GB. As suítes nas bases anteriores também passaram (255/255 e 588/588). Cobertura:
 
 - Bloqueio de imagem/candidato antes do pouso e ausência de recepção automática sem ordem.
 - E mantido entre etapas, soltura e novo pressionamento, preparo parcial, alternância e envio único.
