@@ -29,4 +29,6 @@ Leia `Docs/01_MASTER_CONTEXT.md`, o roteiro do capítulo e a tarefa inteira ante
 4. PR para develop com `Closes #numero`, comportamento, arquivos, teste e limitações. Revisor de função diferente. Não fechar tarefa sem evidência.
 5. R1 integra, smoke Web verifica, depois o PR é aprovado. A liberação de dependentes acontece após merge e fechamento, não apenas ao mover um cartão.
 
+Autorização do proprietário em 14/11/2026 para as tarefas executadas pelo assistente: após revisão técnica, validação pertinente e evidências no PR, pode integrar em `develop` e concluir a issue sem aguardar outra pessoa ou deixar o cartão em Revisão. Não simular aprovação humana, ignorar falhas ou liberar dependências antes do merge confirmado. Continuar respeitando ownership, bloqueadores e uma tarefa ativa por pessoa.
+
 As fontes anteriores podem orientar a solução. Registre origem, licença e o que foi reescrito/adaptado em `Docs/Production/REUSE.md`; não altere datas nem invente autoria ou execução de testes.
