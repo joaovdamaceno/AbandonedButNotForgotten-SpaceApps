@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="200" result="Passed" total="200" passed="200" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-14 15:22:16Z" end-time="2026-11-14 15:22:18Z" duration="1,6561279">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="200" result="Passed" start-time="2026-11-14 15:22:16Z" end-time="2026-11-14 15:22:18Z" duration="1.656128" total="200" passed="200" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1112" name="Abandoned.SpaceApps.Core.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Core.Tests.dll" runstate="Runnable" testcasecount="103" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.165915" total="103" passed="103" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30052" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1113" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="103" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.162433" total="103" passed="103" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1114" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="103" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.159378" total="103" passed="103" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1115" name="Tests" fullname="Abandoned.SpaceApps.Tests" runstate="Runnable" testcasecount="103" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.151908" total="103" passed="103" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="ChapterFlowTests" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.278071" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1007" name="ActiveTimeCountsOnlyWhilePlayingAndNotPaused" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.ActiveTimeCountsOnlyWhilePlayingAndNotPaused" methodname="ActiveTimeCountsOnlyWhilePlayingAndNotPaused" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="726845132" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.068910" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1002" name="AnyChapterStartsWithoutAnotherCompletedInOrder2Then1Then3Twice" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.AnyChapterStartsWithoutAnotherCompletedInOrder2Then1Then3Twice" methodname="AnyChapterStartsWithoutAnotherCompletedInOrder2Then1Then3Twice" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="60331906" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.013090" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1014" name="EvidenceStoreLimitsPlayerPhotosAndKeepsArchiveImages" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.EvidenceStoreLimitsPlayerPhotosAndKeepsArchiveImages" methodname="EvidenceStoreLimitsPlayerPhotosAndKeepsArchiveImages" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="1726817556" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.015452" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1010" name="HugeFrameAfterASuspendedTabIsClamped" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.HugeFrameAfterASuspendedTabIsClamped" methodname="HugeFrameAfterASuspendedTabIsClamped" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="235765248" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001524" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1006" name="LoadFailureReturnsToTheDossierWithAMessage" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.LoadFailureReturnsToTheDossierWithAMessage" methodname="LoadFailureReturnsToTheDossierWithAMessage" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="1797595243" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.009995" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1008" name="LongPauseNeverIncreasesActiveSeconds" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.LongPauseNeverIncreasesActiveSeconds" methodname="LongPauseNeverIncreasesActiveSeconds" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="863961077" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002570" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1009" name="PauseIsLayeredAndHoldsThePausedInputContext" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.PauseIsLayeredAndHoldsThePausedInputContext" methodname="PauseIsLayeredAndHoldsThePausedInputContext" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="1058047818" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002317" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1005" name="RapidDoubleBeginDuringLoadingOpensTheSceneOnce" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.RapidDoubleBeginDuringLoadingOpensTheSceneOnce" methodname="RapidDoubleBeginDuringLoadingOpensTheSceneOnce" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="1973467632" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.010487" asserts="0">
+                <properties />
+                <output><![CDATA[[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+]]></output>
+              </test-case>
+              <test-case id="1011" name="RestartClearsEvidenceAndActiveTimeAndReloadsTheScene" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.RestartClearsEvidenceAndActiveTimeAndReloadsTheScene" methodname="RestartClearsEvidenceAndActiveTimeAndReloadsTheScene" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="233374698" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.007261" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1004" name="ReturningAndSwitchingDestroyPlayerPhotosAndClearEvidence" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.ReturningAndSwitchingDestroyPlayerPhotosAndClearEvidence" methodname="ReturningAndSwitchingDestroyPlayerPhotosAndClearEvidence" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="544845221" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.004432" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1016" name="SettingsAreSanitizedAndCopiesCannotChangeTheStore" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.SettingsAreSanitizedAndCopiesCannotChangeTheStore" methodname="SettingsAreSanitizedAndCopiesCannotChangeTheStore" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="1574670219" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.005570" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1015" name="SettingsDefaultWhenMissingOrCorruptAndRoundTrip" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.SettingsDefaultWhenMissingOrCorruptAndRoundTrip" methodname="SettingsDefaultWhenMissingOrCorruptAndRoundTrip" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="1893206023" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.004750" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1013" name="StepsAreRejectedOutsidePlayingAndInvalidChaptersAreRefused" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.StepsAreRejectedOutsidePlayingAndInvalidChaptersAreRefused" methodname="StepsAreRejectedOutsidePlayingAndInvalidChaptersAreRefused" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="335355907" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002510" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1012" name="StepsFollowTheTableAndAreIdempotent" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.StepsFollowTheTableAndAreIdempotent" methodname="StepsFollowTheTableAndAreIdempotent" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="2100383744" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001777" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1003" name="SwitchingChapterUnloadsTheOldSceneBeforeLoadingTheNext" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.SwitchingChapterUnloadsTheOldSceneBeforeLoadingTheNext" methodname="SwitchingChapterUnloadsTheOldSceneBeforeLoadingTheNext" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="1681327637" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001511" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1017" name="TutorialSeenIsInformationOnlyAndProgressIsNeverPersisted" fullname="Abandoned.SpaceApps.Tests.ChapterFlowTests.TutorialSeenIsInformationOnlyAndProgressIsNeverPersisted" methodname="TutorialSeenIsInformationOnlyAndProgressIsNeverPersisted" classname="Abandoned.SpaceApps.Tests.ChapterFlowTests" runstate="Runnable" seed="1704457369" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.003098" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1018" name="ContractTests" fullname="Abandoned.SpaceApps.Tests.ContractTests" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" testcasecount="23" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.107263" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1038" name="BranchingNeedsAnExplicitNextStep" fullname="Abandoned.SpaceApps.Tests.ContractTests.BranchingNeedsAnExplicitNextStep" methodname="BranchingNeedsAnExplicitNextStep" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="825333635" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.003966" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1029" name="CandidateValidation" fullname="Abandoned.SpaceApps.Tests.ContractTests.CandidateValidation" methodname="CandidateValidation" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1717197498" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001772" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1021" name="ChapterRejectsBrokenStepTables" fullname="Abandoned.SpaceApps.Tests.ContractTests.ChapterRejectsBrokenStepTables" methodname="ChapterRejectsBrokenStepTables" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="154287834" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.003680" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1022" name="ChapterRejectsInvalidScalarFields" fullname="Abandoned.SpaceApps.Tests.ContractTests.ChapterRejectsInvalidScalarFields" methodname="ChapterRejectsInvalidScalarFields" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="2005093408" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001322" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1035" name="ClearingOrLosingTheActiveCandidateCancelsTheHold" fullname="Abandoned.SpaceApps.Tests.ContractTests.ClearingOrLosingTheActiveCandidateCancelsTheHold" methodname="ClearingOrLosingTheActiveCandidateCancelsTheHold" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1137320682" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.006741" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1037" name="CompleteStepIsIdempotentAndFollowsTheTable" fullname="Abandoned.SpaceApps.Tests.ContractTests.CompleteStepIsIdempotentAndFollowsTheTable" methodname="CompleteStepIsIdempotentAndFollowsTheTable" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="461751944" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001509" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1020" name="DefaultChapterReportsErrorsInsteadOfThrowing" fullname="Abandoned.SpaceApps.Tests.ContractTests.DefaultChapterReportsErrorsInsteadOfThrowing" methodname="DefaultChapterReportsErrorsInsteadOfThrowing" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1463163337" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001674" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1036" name="DirectorRejectsNullAndInvalidChapters" fullname="Abandoned.SpaceApps.Tests.ContractTests.DirectorRejectsNullAndInvalidChapters" methodname="DirectorRejectsNullAndInvalidChapters" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1407236596" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002347" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1027" name="EvidenceAuthorshipRules" fullname="Abandoned.SpaceApps.Tests.ContractTests.EvidenceAuthorshipRules" methodname="EvidenceAuthorshipRules" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="190001458" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001274" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1028" name="EvidenceStoreIsIdempotentAndRejectsInvalidRecords" fullname="Abandoned.SpaceApps.Tests.ContractTests.EvidenceStoreIsIdempotentAndRejectsInvalidRecords" methodname="EvidenceStoreIsIdempotentAndRejectsInvalidRecords" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="19350615" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.003756" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1019" name="ExampleChapterIsValid" fullname="Abandoned.SpaceApps.Tests.ContractTests.ExampleChapterIsValid" methodname="ExampleChapterIsValid" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1924263000" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001294" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1041" name="ExampleFlowRequestsInteractionPresentsEvidenceAndCompletesTheChapter" fullname="Abandoned.SpaceApps.Tests.ContractTests.ExampleFlowRequestsInteractionPresentsEvidenceAndCompletesTheChapter" methodname="ExampleFlowRequestsInteractionPresentsEvidenceAndCompletesTheChapter" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1676808869" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.006480" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1039" name="FinishingIsOnceOnlyAndOnlyFromATerminalStep" fullname="Abandoned.SpaceApps.Tests.ContractTests.FinishingIsOnceOnlyAndOnlyFromATerminalStep" methodname="FinishingIsOnceOnlyAndOnlyFromATerminalStep" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="464523325" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001884" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1032" name="HoldProgressesCompletesAndRequiresRearm" fullname="Abandoned.SpaceApps.Tests.ContractTests.HoldProgressesCompletesAndRequiresRearm" methodname="HoldProgressesCompletesAndRequiresRearm" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1316256825" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.007564" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1030" name="InteractionRejectsInvalidCandidateWithClearMessage" fullname="Abandoned.SpaceApps.Tests.ContractTests.InteractionRejectsInvalidCandidateWithClearMessage" methodname="InteractionRejectsInvalidCandidateWithClearMessage" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1078288934" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001121" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1031" name="OnlyTheActiveAvailableCandidateCanBeginAndOptionalOnesDoNotStealTheMainAction" fullname="Abandoned.SpaceApps.Tests.ContractTests.OnlyTheActiveAvailableCandidateCanBeginAndOptionalOnesDoNotStealTheMainAction" methodname="OnlyTheActiveAvailableCandidateCanBeginAndOptionalOnesDoNotStealTheMainAction" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="196384520" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001412" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1034" name="ReleasingCancelsTheHoldWithoutCompletingIt" fullname="Abandoned.SpaceApps.Tests.ContractTests.ReleasingCancelsTheHoldWithoutCompletingIt" methodname="ReleasingCancelsTheHoldWithoutCompletingIt" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1260341461" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001158" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1040" name="RestartDiscardsStateAndReturnsToTheInitialStep" fullname="Abandoned.SpaceApps.Tests.ContractTests.RestartDiscardsStateAndReturnsToTheInitialStep" methodname="RestartDiscardsStateAndReturnsToTheInitialStep" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="170202743" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001266" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1026" name="SequenceUsesOneClockAndChecksCuesAndMarks" fullname="Abandoned.SpaceApps.Tests.ContractTests.SequenceUsesOneClockAndChecksCuesAndMarks" methodname="SequenceUsesOneClockAndChecksCuesAndMarks" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="273924134" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.013564" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1024" name="ShotValidation" fullname="Abandoned.SpaceApps.Tests.ContractTests.ShotValidation" methodname="ShotValidation" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1051122545" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002437" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1025" name="SubtitleCueRequiresTimeWindowOrTriggerNotBoth" fullname="Abandoned.SpaceApps.Tests.ContractTests.SubtitleCueRequiresTimeWindowOrTriggerNotBoth" methodname="SubtitleCueRequiresTimeWindowOrTriggerNotBoth" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="486230752" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001034" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1033" name="TheEThatOpensAnActivityDoesNotStartTheNextHold" fullname="Abandoned.SpaceApps.Tests.ContractTests.TheEThatOpensAnActivityDoesNotStartTheNextHold" methodname="TheEThatOpensAnActivityDoesNotStartTheNextHold" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="1475783051" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.000823" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1023" name="TransitionsComeOnlyFromTheTable" fullname="Abandoned.SpaceApps.Tests.ContractTests.TransitionsComeOnlyFromTheTable" methodname="TransitionsComeOnlyFromTheTable" classname="Abandoned.SpaceApps.Tests.ContractTests" runstate="Runnable" seed="807086526" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001133" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1042" name="InputRouterDeviceTests" fullname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests" classname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.351839" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1047" name="ERealKeyHeldThroughAContextChangeIsRearmedByRelease" fullname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests.ERealKeyHeldThroughAContextChangeIsRearmedByRelease" methodname="ERealKeyHeldThroughAContextChangeIsRearmedByRelease" classname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests" runstate="Runnable" seed="511243843" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.296884" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1043" name="ETravelsFromTheKeyboardAsDownAndUpOnce" fullname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests.ETravelsFromTheKeyboardAsDownAndUpOnce" methodname="ETravelsFromTheKeyboardAsDownAndUpOnce" classname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests" runstate="Runnable" seed="2007927187" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.016229" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1046" name="HelpOnlyWorksInGameplay" fullname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests.HelpOnlyWorksInGameplay" methodname="HelpOnlyWorksInGameplay" classname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests" runstate="Runnable" seed="767779068" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.007544" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1045" name="PauseKeysAndPanelNavigationAreDelivered" fullname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests.PauseKeysAndPanelNavigationAreDelivered" methodname="PauseKeysAndPanelNavigationAreDelivered" classname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests" runstate="Runnable" seed="41259282" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.014868" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1044" name="WasdAndArrowsDriveTheNormalizedMoveVectorOnlyInGameplay" fullname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests.WasdAndArrowsDriveTheNormalizedMoveVectorOnlyInGameplay" methodname="WasdAndArrowsDriveTheNormalizedMoveVectorOnlyInGameplay" classname="Abandoned.SpaceApps.Tests.InputRouterDeviceTests" runstate="Runnable" seed="1731022288" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.009830" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1048" name="InputRouterTests" fullname="Abandoned.SpaceApps.Tests.InputRouterTests" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.031649" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1054" name="AcquireRequiresAnOwnerLabel" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.AcquireRequiresAnOwnerLabel" methodname="AcquireRequiresAnOwnerLabel" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="1806207460" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002347" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1049" name="DefaultContextIsPanelSoGameplayInputIsOffUntilAcquired" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.DefaultContextIsPanelSoGameplayInputIsOffUntilAcquired" methodname="DefaultContextIsPanelSoGameplayInputIsOffUntilAcquired" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="994377244" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001841" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1059" name="DisablingReleasesTheLogicalKey" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.DisablingReleasesTheLogicalKey" methodname="DisablingReleasesTheLogicalKey" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="524920280" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002442" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1055" name="EachActionIsDeliveredOnlyToTheContextsThatAcceptIt" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.EachActionIsDeliveredOnlyToTheContextsThatAcceptIt" methodname="EachActionIsDeliveredOnlyToTheContextsThatAcceptIt" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="1835764637" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.003640" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1050" name="EDownAndUpAreDeliveredOnceAndHeldDoesNotRepeat" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.EDownAndUpAreDeliveredOnceAndHeldDoesNotRepeat" methodname="EDownAndUpAreDeliveredOnceAndHeldDoesNotRepeat" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="1865772365" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001462" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1051" name="EHeldAcrossAContextChangeNeverStartsAnythingInTheNewContext" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.EHeldAcrossAContextChangeNeverStartsAnythingInTheNewContext" methodname="EHeldAcrossAContextChangeNeverStartsAnythingInTheNewContext" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="1198065769" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002041" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1052" name="EPressedDuringACinematicIsIgnored" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.EPressedDuringACinematicIsIgnored" methodname="EPressedDuringACinematicIsIgnored" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="584193654" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001272" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1057" name="FocusLossReleasesEverythingAndLeavesNoPhantomKey" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.FocusLossReleasesEverythingAndLeavesNoPhantomKey" methodname="FocusLossReleasesEverythingAndLeavesNoPhantomKey" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="1197529983" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002340" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1053" name="LeasesStackAndDisposeSafelyOutOfOrderAndTwice" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.LeasesStackAndDisposeSafelyOutOfOrderAndTwice" methodname="LeasesStackAndDisposeSafelyOutOfOrderAndTwice" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="907785125" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001622" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1058" name="LookIsPerFrameAndOnlyInGameplay" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.LookIsPerFrameAndOnlyInGameplay" methodname="LookIsPerFrameAndOnlyInGameplay" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="884030768" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002099" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1056" name="NavigationIgnoresNeutralAndRoundsDiagonals" fullname="Abandoned.SpaceApps.Tests.InputRouterTests.NavigationIgnoresNeutralAndRoundsDiagonals" methodname="NavigationIgnoresNeutralAndRoundsDiagonals" classname="Abandoned.SpaceApps.Tests.InputRouterTests" runstate="Runnable" seed="1635722856" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001180" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1060" name="InteractionServiceTests" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.047191" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1072" name="ChangingModeCancelsARunningHold" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.ChangingModeCancelsARunningHold" methodname="ChangingModeCancelsARunningHold" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="1586104579" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.006158" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1068" name="CinematicBlocksPromptAndExecution" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.CinematicBlocksPromptAndExecution" methodname="CinematicBlocksPromptAndExecution" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="255721027" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001386" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1075" name="ClearingTheCandidateCancelsTheHoldAndAnInvalidOneIsRejected" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.ClearingTheCandidateCancelsTheHoldAndAnInvalidOneIsRejected" methodname="ClearingTheCandidateCancelsTheHoldAndAnInvalidOneIsRejected" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="46753157" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001785" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1065" name="EHeldBeforeTheTargetIsAvailableDoesNotStartIt" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.EHeldBeforeTheTargetIsAvailableDoesNotStartIt" methodname="EHeldBeforeTheTargetIsAvailableDoesNotStartIt" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="454441925" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001169" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1067" name="FocusLossCancelsTheHoldOnce" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.FocusLossCancelsTheHoldOnce" methodname="FocusLossCancelsTheHoldOnce" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="2080843515" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002200" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1069" name="FrozenClockDoesNotAdvanceAndProgressIsReportedOnlyWhenItChanges" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.FrozenClockDoesNotAdvanceAndProgressIsReportedOnlyWhenItChanges" methodname="FrozenClockDoesNotAdvanceAndProgressIsReportedOnlyWhenItChanges" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="1681270863" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002658" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1077" name="HoldActionTracksProgressAndCompletesOnlyOnce" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.HoldActionTracksProgressAndCompletesOnlyOnce" methodname="HoldActionTracksProgressAndCompletesOnlyOnce" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="2033869268" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001688" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1062" name="KeepingEPressedNeverCrossesToTheNextActivity" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.KeepingEPressedNeverCrossesToTheNextActivity" methodname="KeepingEPressedNeverCrossesToTheNextActivity" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="218940852" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.003319" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1074" name="OptionalTargetsDoNotStealTheMainAction" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.OptionalTargetsDoNotStealTheMainAction" methodname="OptionalTargetsDoNotStealTheMainAction" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="537436407" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001805" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1066" name="PauseCancelsTheHoldAndResumingWithEHeldStartsNothing" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.PauseCancelsTheHoldAndResumingWithEHeldStartsNothing" methodname="PauseCancelsTheHoldAndResumingWithEHeldStartsNothing" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="1803432479" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002230" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1061" name="PressHoldAndCompleteRaisesEachEventOnce" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.PressHoldAndCompleteRaisesEachEventOnce" methodname="PressHoldAndCompleteRaisesEachEventOnce" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="1168723752" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001318" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1064" name="ReleasingEPausesTheOperationWithoutCompletingIt" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.ReleasingEPausesTheOperationWithoutCompletingIt" methodname="ReleasingEPausesTheOperationWithoutCompletingIt" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="304881074" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001387" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1076" name="RequireReleaseOnlyWaitsWhileTheKeyIsDown" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.RequireReleaseOnlyWaitsWhileTheKeyIsDown" methodname="RequireReleaseOnlyWaitsWhileTheKeyIsDown" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="1544807148" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.002219" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1070" name="ToggleModeStartsOnPressStopsOnSecondPressAndIgnoresRelease" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.ToggleModeStartsOnPressStopsOnSecondPressAndIgnoresRelease" methodname="ToggleModeStartsOnPressStopsOnSecondPressAndIgnoresRelease" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="1671743866" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001431" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1071" name="ToggleModeStillCancelsOnPauseAndCompletionNeedsNoRearmWhenTheKeyIsUp" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.ToggleModeStillCancelsOnPauseAndCompletionNeedsNoRearmWhenTheKeyIsUp" methodname="ToggleModeStillCancelsOnPauseAndCompletionNeedsNoRearmWhenTheKeyIsUp" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="2069371871" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001644" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1073" name="UpdatingTheActiveCandidateEveryFrameDoesNotCancelItsHold" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.UpdatingTheActiveCandidateEveryFrameDoesNotCancelItsHold" methodname="UpdatingTheActiveCandidateEveryFrameDoesNotCancelItsHold" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="1481047381" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001254" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1063" name="ZeroSecondHoldCompletesOnTheNextTickAndStillRequiresRearm" fullname="Abandoned.SpaceApps.Tests.InteractionServiceTests.ZeroSecondHoldCompletesOnTheNextTickAndStillRequiresRearm" methodname="ZeroSecondHoldCompletesOnTheNextTickAndStillRequiresRearm" classname="Abandoned.SpaceApps.Tests.InteractionServiceTests" runstate="Runnable" seed="2059778474" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:46Z" duration="0.001502" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1078" name="ProjectSetupTests" fullname="Abandoned.SpaceApps.Tests.ProjectSetupTests" classname="Abandoned.SpaceApps.Tests.ProjectSetupTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:47Z" duration="0.856313" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1080" name="ApplyingTwiceKeepsPipelineGuidsAndConformance" fullname="Abandoned.SpaceApps.Tests.ProjectSetupTests.ApplyingTwiceKeepsPipelineGuidsAndConformance" methodname="ApplyingTwiceKeepsPipelineGuidsAndConformance" classname="Abandoned.SpaceApps.Tests.ProjectSetupTests" runstate="Runnable" seed="434734370" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:47Z" duration="0.825356" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1081" name="EveryEditorFolderCompilesIntoTheEditorAssembly" fullname="Abandoned.SpaceApps.Tests.ProjectSetupTests.EveryEditorFolderCompilesIntoTheEditorAssembly" methodname="EveryEditorFolderCompilesIntoTheEditorAssembly" classname="Abandoned.SpaceApps.Tests.ProjectSetupTests" runstate="Runnable" seed="217695583" result="Passed" start-time="2026-11-14 15:20:47Z" end-time="2026-11-14 15:20:47Z" duration="0.010922" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1079" name="ProjectMatchesCore001Spec" fullname="Abandoned.SpaceApps.Tests.ProjectSetupTests.ProjectMatchesCore001Spec" methodname="ProjectMatchesCore001Spec" classname="Abandoned.SpaceApps.Tests.ProjectSetupTests" runstate="Runnable" seed="649528016" result="Passed" start-time="2026-11-14 15:20:47Z" end-time="2026-11-14 15:20:47Z" duration="0.015486" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1082" name="SceneBuilderTests" fullname="Abandoned.SpaceApps.Tests.SceneBuilderTests" classname="Abandoned.SpaceApps.Tests.SceneBuilderTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-14 15:20:47Z" end-time="2026-11-14 15:20:55Z" duration="7.328509" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1086" name="ABuilderCannotWriteAssetsInAnotherOwnersFolder" fullname="Abandoned.SpaceApps.Tests.SceneBuilderTests.ABuilderCannotWriteAssetsInAnotherOwnersFolder" methodname="ABuilderCannotWriteAssetsInAnotherOwnersFolder" classname="Abandoned.SpaceApps.Tests.SceneBuilderTests" runstate="Runnable" seed="753936992" result="Passed" start-time="2026-11-14 15:20:47Z" end-time="2026-11-14 15:20:48Z" duration="0.813724" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1085" name="ABuilderThatTouchesAnotherOwnersRootIsRejectedAndNothingIsSaved" fullname="Abandoned.SpaceApps.Tests.SceneBuilderTests.ABuilderThatTouchesAnotherOwnersRootIsRejectedAndNothingIsSaved" methodname="ABuilderThatTouchesAnotherOwnersRootIsRejectedAndNothingIsSaved" classname="Abandoned.SpaceApps.Tests.SceneBuilderTests" runstate="Runnable" seed="1653150436" result="Passed" start-time="2026-11-14 15:20:48Z" end-time="2026-11-14 15:20:50Z" duration="1.544473" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1087" name="MissingMaterialIsReportedBeforeSaving" fullname="Abandoned.SpaceApps.Tests.SceneBuilderTests.MissingMaterialIsReportedBeforeSaving" methodname="MissingMaterialIsReportedBeforeSaving" classname="Abandoned.SpaceApps.Tests.SceneBuilderTests" runstate="Runnable" seed="1469482413" result="Passed" start-time="2026-11-14 15:20:50Z" end-time="2026-11-14 15:20:50Z" duration="0.670683" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1088" name="ModulesMustHaveUniqueIdsAndRootsAndOwnedPaths" fullname="Abandoned.SpaceApps.Tests.SceneBuilderTests.ModulesMustHaveUniqueIdsAndRootsAndOwnedPaths" methodname="ModulesMustHaveUniqueIdsAndRootsAndOwnedPaths" classname="Abandoned.SpaceApps.Tests.SceneBuilderTests" runstate="Runnable" seed="737620587" result="Passed" start-time="2026-11-14 15:20:50Z" end-time="2026-11-14 15:20:50Z" duration="0.094245" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1089" name="PreflightBlocksWrongTargetEmptySceneListAndBrokenScenes" fullname="Abandoned.SpaceApps.Tests.SceneBuilderTests.PreflightBlocksWrongTargetEmptySceneListAndBrokenScenes" methodname="PreflightBlocksWrongTargetEmptySceneListAndBrokenScenes" classname="Abandoned.SpaceApps.Tests.SceneBuilderTests" runstate="Runnable" seed="1692188754" result="Passed" start-time="2026-11-14 15:20:50Z" end-time="2026-11-14 15:20:51Z" duration="0.639580" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1083" name="RebuildingTwiceKeepsGuidsFileIdsAndTheSameFiles" fullname="Abandoned.SpaceApps.Tests.SceneBuilderTests.RebuildingTwiceKeepsGuidsFileIdsAndTheSameFiles" methodname="RebuildingTwiceKeepsGuidsFileIdsAndTheSameFiles" classname="Abandoned.SpaceApps.Tests.SceneBuilderTests" runstate="Runnable" seed="170150929" result="Passed" start-time="2026-11-14 15:20:51Z" end-time="2026-11-14 15:20:53Z" duration="1.473337" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1084" name="TwoOwnersShareASceneWithoutTouchingEachOther" fullname="Abandoned.SpaceApps.Tests.SceneBuilderTests.TwoOwnersShareASceneWithoutTouchingEachOther" methodname="TwoOwnersShareASceneWithoutTouchingEachOther" classname="Abandoned.SpaceApps.Tests.SceneBuilderTests" runstate="Runnable" seed="1094408460" result="Passed" start-time="2026-11-14 15:20:53Z" end-time="2026-11-14 15:20:54Z" duration="1.912551" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1090" name="WebGLWithoutTheQaProfileWarnsAndNamesThePipelineUsed" fullname="Abandoned.SpaceApps.Tests.SceneBuilderTests.WebGLWithoutTheQaProfileWarnsAndNamesThePipelineUsed" methodname="WebGLWithoutTheQaProfileWarnsAndNamesThePipelineUsed" classname="Abandoned.SpaceApps.Tests.SceneBuilderTests" runstate="Runnable" seed="2048287466" result="Passed" start-time="2026-11-14 15:20:54Z" end-time="2026-11-14 15:20:55Z" duration="0.172561" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1091" name="SequenceDirectorTests" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.134976" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1101" name="ActorsReallyMoveOnTheSameClock" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.ActorsReallyMoveOnTheSameClock" methodname="ActorsReallyMoveOnTheSameClock" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1861163110" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.042550" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1110" name="CameraControlIsExclusive" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.CameraControlIsExclusive" methodname="CameraControlIsExclusive" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="951300071" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.001790" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1104" name="CompletionReleasesCameraAndInputExactlyOnce" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.CompletionReleasesCameraAndInputExactlyOnce" methodname="CompletionReleasesCameraAndInputExactlyOnce" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1871588048" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.002980" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1106" name="ConcurrentExitRequestsFromCallbacksReleaseControlOnce" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.ConcurrentExitRequestsFromCallbacksReleaseControlOnce" methodname="ConcurrentExitRequestsFromCallbacksReleaseControlOnce" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1212129251" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.002765" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1093" name="ConnectedShotsPlayWithoutAnInvoluntaryJump" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.ConnectedShotsPlayWithoutAnInvoluntaryJump" methodname="ConnectedShotsPlayWithoutAnInvoluntaryJump" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1342749441" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.008222" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1096" name="DefaultGroundProbeUsesTheRealTerrainCollider" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.DefaultGroundProbeUsesTheRealTerrainCollider" methodname="DefaultGroundProbeUsesTheRealTerrainCollider" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1478799424" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.006395" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1098" name="EventsAreIdenticalAt30And60FpsIncludingClipBoundaries" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.EventsAreIdenticalAt30And60FpsIncludingClipBoundaries" methodname="EventsAreIdenticalAt30And60FpsIncludingClipBoundaries" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1734747790" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.003629" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1097" name="ExactlyOneAudioListenerStaysActive" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.ExactlyOneAudioListenerStaysActive" methodname="ExactlyOneAudioListenerStaysActive" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="543754264" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.002261" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1109" name="InvalidReferencesAreReportedBeforeAnyEffect" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.InvalidReferencesAreReportedBeforeAnyEffect" methodname="InvalidReferencesAreReportedBeforeAnyEffect" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1785308146" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.003360" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1092" name="KeyframesInterpolatePositionFovAndEasing" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.KeyframesInterpolatePositionFovAndEasing" methodname="KeyframesInterpolatePositionFovAndEasing" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1756914593" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.002172" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1100" name="PauseFreezesCameraActorsAndTextTogether" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.PauseFreezesCameraActorsAndTextTogether" methodname="PauseFreezesCameraActorsAndTextTogether" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="991511294" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.002359" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1107" name="PlayingAnotherSequenceCancelsThePreviousOneFirst" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.PlayingAnotherSequenceCancelsThePreviousOneFirst" methodname="PlayingAnotherSequenceCancelsThePreviousOneFirst" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1584812721" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.005583" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1103" name="PreviewShowsEarlierAndLaterStatesWithoutEventsOrControl" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.PreviewShowsEarlierAndLaterStatesWithoutEventsOrControl" methodname="PreviewShowsEarlierAndLaterStatesWithoutEventsOrControl" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="527606981" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.003018" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1102" name="RestartingMidShotStartsCleanFromZero" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.RestartingMidShotStartsCleanFromZero" methodname="RestartingMidShotStartsCleanFromZero" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1998340253" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.002890" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1095" name="RigsLookTargetsAndGroundClearanceApply" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.RigsLookTargetsAndGroundClearanceApply" methodname="RigsLookTargetsAndGroundClearanceApply" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1787013176" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.005099" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1111" name="SequenceClockOnlyMovesForwardWithActiveTime" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.SequenceClockOnlyMovesForwardWithActiveTime" methodname="SequenceClockOnlyMovesForwardWithActiveTime" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1561356124" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.001854" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1105" name="SkipOnlyWhenAllowedFiresRemainingEventsWithoutFlashingSubtitles" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.SkipOnlyWhenAllowedFiresRemainingEventsWithoutFlashingSubtitles" methodname="SkipOnlyWhenAllowedFiresRemainingEventsWithoutFlashingSubtitles" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="189559803" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.003460" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1099" name="TheFirstFrameIsAppliedOnPlayWithoutWaitingForATick" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.TheFirstFrameIsAppliedOnPlayWithoutWaitingForATick" methodname="TheFirstFrameIsAppliedOnPlayWithoutWaitingForATick" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="1907483394" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.002156" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1108" name="TriggeredSubtitleIsNotCutByTheEndOfTheSequence" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.TriggeredSubtitleIsNotCutByTheEndOfTheSequence" methodname="TriggeredSubtitleIsNotCutByTheEndOfTheSequence" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="975283491" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.007065" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1094" name="WithoutContinuityTheCutIsIntentional" fullname="Abandoned.SpaceApps.Tests.SequenceDirectorTests.WithoutContinuityTheCutIsIntentional" methodname="WithoutContinuityTheCutIsIntentional" classname="Abandoned.SpaceApps.Tests.SequenceDirectorTests" runstate="Runnable" seed="516373454" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.001885" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1133" name="Abandoned.SpaceApps.Mars.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Mars.Tests.dll" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.219324" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30052" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1134" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.162433" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1135" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.159378" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1136" name="Tests" fullname="Abandoned.SpaceApps.Tests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.151908" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1116" name="MarsFlowTests" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.212324" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1125" name="CanceledSequenceNeverCompletesAndSkippedDoes" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.CanceledSequenceNeverCompletesAndSkippedDoes" methodname="CanceledSequenceNeverCompletesAndSkippedDoes" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="1471703653" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.041049" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1118" name="ChapterAssetPassesTheGlobalContractValidator" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.ChapterAssetPassesTheGlobalContractValidator" methodname="ChapterAssetPassesTheGlobalContractValidator" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="1453072876" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.030595" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1119" name="ChapterHas32ExplicitStepsAnd360SecondReference" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.ChapterHas32ExplicitStepsAnd360SecondReference" methodname="ChapterHas32ExplicitStepsAnd360SecondReference" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="1086210613" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.004057" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1126" name="CompletionWaitsForResultReadingAndPauseFreezesIt" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.CompletionWaitsForResultReadingAndPauseFreezesIt" methodname="CompletionWaitsForResultReadingAndPauseFreezesIt" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="1055203082" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.008227" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1123" name="DiscoveryCuesOpenOnlyAfterTheirMeasurement" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.DiscoveryCuesOpenOnlyAfterTheirMeasurement" methodname="DiscoveryCuesOpenOnlyAfterTheirMeasurement" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="574493788" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.008135" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1122" name="FullRunEntersEachStepOnceInOrderAndFinishesOnce" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.FullRunEntersEachStepOnceInOrderAndFinishesOnce" methodname="FullRunEntersEachStepOnceInOrderAndFinishesOnce" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="435065053" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.014340" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1131" name="IgnoresOtherChapters" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.IgnoresOtherChapters" methodname="IgnoresOtherChapters" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="2126937995" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.003887" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1124" name="InvalidForeignOutOfOrderAndRepeatedEventsAreIgnored" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.InvalidForeignOutOfOrderAndRepeatedEventsAreIgnored" methodname="InvalidForeignOutOfOrderAndRepeatedEventsAreIgnored" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="1436549163" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.016884" asserts="0">
+                <properties />
+                <output><![CDATA[[MarsChapterFlow] evento 'mars.spheres.soilRecorded' ignorado na etapa 'M01' (esperado: 'mars.seq.M01').
+[MarsChapterFlow] evento 'evento.inexistente' ignorado na etapa 'M01' (esperado: 'mars.seq.M01').
+[MarsChapterFlow] evento '' ignorado na etapa 'M01' (esperado: 'mars.seq.M01').
+[MarsChapterFlow] evento 'mars.seq.M02' ignorado na etapa 'M01' (esperado: 'mars.seq.M01').
+[MarsChapterFlow] evento 'mars.seq.M01' ignorado na etapa 'M02' (esperado: 'mars.seq.M02').
+[MarsChapterFlow] evento 'mars.spheres.rockRecorded' ignorado na etapa 'M09' (esperado: 'mars.spheres.soilRecorded').
+[MarsChapterFlow] evento 'mars.spheres.hematiteIdentified' ignorado na etapa 'M09' (esperado: 'mars.spheres.soilRecorded').
+[MarsChapterFlow] evento 'mars.spheres.soilRecorded' ignorado na etapa 'M09' (esperado: 'mars.spheres.rockRecorded').
+[MarsChapterFlow] evento 'mars.apxs.measured' ignorado na etapa 'M09' (esperado: 'mars.spheres.rockRecorded').
+]]></output>
+              </test-case>
+              <test-case id="1130" name="LateBindingCatchesUpAndShutdownReleases" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.LateBindingCatchesUpAndShutdownReleases" methodname="LateBindingCatchesUpAndShutdownReleases" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="1563943674" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.010214" asserts="0">
+                <properties />
+                <output><![CDATA[[MarsChapterFlow] evento 'mars.seq.M02' ignorado na etapa '<nenhuma>' (esperado: '<nenhum>').
+]]></output>
+              </test-case>
+              <test-case id="1117" name="RealAssetsValidateWithoutDivergences" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.RealAssetsValidateWithoutDivergences" methodname="RealAssetsValidateWithoutDivergences" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="1042171787" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.005461" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1132" name="RealDirectorPauseFreezesStepClockAndRestartReentersOnce" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.RealDirectorPauseFreezesStepClockAndRestartReentersOnce" methodname="RealDirectorPauseFreezesStepClockAndRestartReentersOnce" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="874241985" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.018459" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1129" name="RestartMidRunClosesCuesAndReentersOnce" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.RestartMidRunClosesCuesAndReentersOnce" methodname="RestartMidRunClosesCuesAndReentersOnce" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="2081726153" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.009086" asserts="0">
+                <properties />
+                <output><![CDATA[[MarsChapterFlow] evento 'mars.mossbauer.measured' ignorado na etapa 'M01' (esperado: 'mars.seq.M01').
+]]></output>
+              </test-case>
+              <test-case id="1127" name="ResultCaptionsWaitTheirTurnOneAtATime" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.ResultCaptionsWaitTheirTurnOneAtATime" methodname="ResultCaptionsWaitTheirTurnOneAtATime" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="1575670455" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.006290" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1128" name="StepClockCueHoldsCompletionUntilItEnds" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.StepClockCueHoldsCompletionUntilItEnds" methodname="StepClockCueHoldsCompletionUntilItEnds" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="1656634863" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.004909" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1120" name="SubtitlesHave49UniqueCuesWithPortugueseAndEnglish" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.SubtitlesHave49UniqueCuesWithPortugueseAndEnglish" methodname="SubtitlesHave49UniqueCuesWithPortugueseAndEnglish" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="807764819" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.006415" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1121" name="ValidationRejectsBrokenData" fullname="Abandoned.SpaceApps.Tests.MarsFlowTests.ValidationRejectsBrokenData" methodname="ValidationRejectsBrokenData" classname="Abandoned.SpaceApps.Tests.MarsFlowTests" runstate="Runnable" seed="1121071967" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:55Z" duration="0.012656" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1164" name="Abandoned.SpaceApps.Surveyor.Commands.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Commands.Tests.dll" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-14 15:21:04Z" end-time="2026-11-14 15:21:15Z" duration="10.793181" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30052" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1165" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.162433" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1166" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.159378" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1167" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-14 15:21:04Z" end-time="2026-11-14 15:21:15Z" duration="10.789181" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1168" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-14 15:21:04Z" end-time="2026-11-14 15:21:15Z" duration="10.787985" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1169" name="CommandTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-14 15:21:04Z" end-time="2026-11-14 15:21:15Z" duration="10.786752" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1137" name="CommandDelayIntegrationTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayIntegrationTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayIntegrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-14 15:21:04Z" end-time="2026-11-14 15:21:15Z" duration="10.375827" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1138" name="BuilderPreservesSceneAndGuidsAcrossRebuilds" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayIntegrationTests.BuilderPreservesSceneAndGuidsAcrossRebuilds" methodname="BuilderPreservesSceneAndGuidsAcrossRebuilds" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayIntegrationTests" runstate="Runnable" seed="1929210926" result="Passed" start-time="2026-11-14 15:20:55Z" end-time="2026-11-14 15:20:56Z" duration="1.022428" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1139" name="RuntimePrefabSeparatesImmediateHudFromDelayedMirrorAndSurvivesRestart" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayIntegrationTests.RuntimePrefabSeparatesImmediateHudFromDelayedMirrorAndSurvivesRestart" methodname="RuntimePrefabSeparatesImmediateHudFromDelayedMirrorAndSurvivesRestart" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayIntegrationTests" runstate="Runnable" seed="965120254" result="Passed" start-time="2026-11-14 15:20:56Z" end-time="2026-11-14 15:21:15Z" duration="18.647206" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="1140" name="CommandDelayTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.405295" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1145" name="ChangingStepInvalidatesThePendingPhysicalOperation" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.ChangingStepInvalidatesThePendingPhysicalOperation" methodname="ChangingStepInvalidatesThePendingPhysicalOperation" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="518030443" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.195638" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1147" name="ExplicitExitAndReentryNeverReviveTheOldCallback" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.ExplicitExitAndReentryNeverReviveTheOldCallback" methodname="ExplicitExitAndReentryNeverReviveTheOldCallback" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="84668893" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.004592" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1153" name="HeldKeyAcrossStateChangeDoesNotPrepareTheNextInstrument" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.HeldKeyAcrossStateChangeDoesNotPrepareTheNextInstrument" methodname="HeldKeyAcrossStateChangeDoesNotPrepareTheNextInstrument" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="130102364" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.064660" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1152" name="HeldKeyCannotConfirmTheNextOfferedAction" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.HeldKeyCannotConfirmTheNextOfferedAction" methodname="HeldKeyCannotConfirmTheNextOfferedAction" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="589326836" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.006069" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1163" name="HudBindsSentInTheSameFrameWhileThePhysicalEffectIsStillPending" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.HudBindsSentInTheSameFrameWhileThePhysicalEffectIsStillPending" methodname="HudBindsSentInTheSameFrameWhileThePhysicalEffectIsStillPending" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="2095820970" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.010879" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1162" name="InvalidOrInactiveRequestsDoNotMutateTheQueue" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.InvalidOrInactiveRequestsDoNotMutateTheQueue" methodname="InvalidOrInactiveRequestsDoNotMutateTheQueue" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="242336854" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.004732" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1141" name="OnlyOnePendingOrderAndOneExecutionDespiteRepeatedTicks" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.OnlyOnePendingOrderAndOneExecutionDespiteRepeatedTicks" methodname="OnlyOnePendingOrderAndOneExecutionDespiteRepeatedTicks" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="640448277" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.003773" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1143" name="PauseAtPointSixPreservesRemainingTransit" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.PauseAtPointSixPreservesRemainingTransit" methodname="PauseAtPointSixPreservesRemainingTransit" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="737699632" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.005143" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1150" name="PauseDuringHoldPreservesPreparationAndRequiresKeyboardRearm" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.PauseDuringHoldPreservesPreparationAndRequiresKeyboardRearm" methodname="PauseDuringHoldPreservesPreparationAndRequiresKeyboardRearm" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="387983381" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.004623" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1157" name="PhysicalCallbackCanChangeStateWithoutPublishingOldReceipt" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.PhysicalCallbackCanChangeStateWithoutPublishingOldReceipt" methodname="PhysicalCallbackCanChangeStateWithoutPublishingOldReceipt" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="1400756729" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.004765" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1148" name="ReconfigureRemovesOldBindingsAndOperations" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.ReconfigureRemovesOldBindingsAndOperations" methodname="ReconfigureRemovesOldBindingsAndOperations" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="1436906619" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.004244" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1156" name="ReentrantOperationCannotExecuteOrEnqueueItselfAgain" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.ReentrantOperationCannotExecuteOrEnqueueItselfAgain" methodname="ReentrantOperationCannotExecuteOrEnqueueItselfAgain" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="933717025" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.004239" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1149" name="ReleasingKeepsPreparationWithoutSending" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.ReleasingKeepsPreparationWithoutSending" methodname="ReleasingKeepsPreparationWithoutSending" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="1405323456" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.005209" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1144" name="RestartInvalidatesOldGenerationAndDoesNotAutoReenter" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.RestartInvalidatesOldGenerationAndDoesNotAutoReenter" methodname="RestartInvalidatesOldGenerationAndDoesNotAutoReenter" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="1310705085" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.008657" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1146" name="ReturnToDossierCancelsAndStopsTime" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.ReturnToDossierCancelsAndStopsTime" methodname="ReturnToDossierCancelsAndStopsTime" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="89543904" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.003309" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1142" name="SendingDoesNotConsumeTheCurrentFrameDelta" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.SendingDoesNotConsumeTheCurrentFrameDelta" methodname="SendingDoesNotConsumeTheCurrentFrameDelta" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="1329290844" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.007006" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1155" name="SentEventIsImmediateAndCancellationInsideItIsSafe" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.SentEventIsImmediateAndCancellationInsideItIsSafe" methodname="SentEventIsImmediateAndCancellationInsideItIsSafe" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="1526808536" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.004721" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1154" name="SentTargetIsASnapshotAndCursorContinuesToRespond" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.SentTargetIsASnapshotAndCursorContinuesToRespond" methodname="SentTargetIsASnapshotAndCursorContinuesToRespond" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="164973513" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.006984" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1158" name="ThrowingOperationIsConsumedOnceAndErrorRemainsVisible" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.ThrowingOperationIsConsumedOnceAndErrorRemainsVisible" methodname="ThrowingOperationIsConsumedOnceAndErrorRemainsVisible" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="2047534872" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.021096" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1151" name="ToggleModePausesAndResumesPreparation" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.ToggleModePausesAndResumesPreparation" methodname="ToggleModePausesAndResumesPreparation" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="1709886506" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.006816" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-suite type="ParameterizedMethod" id="1161" name="TransitUsesActiveTimeAtBothFrameRates" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.TransitUsesActiveTimeAtBothFrameRates" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.013994" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                    <properties />
+                    <test-case id="1159" name="TransitUsesActiveTimeAtBothFrameRates(30)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.TransitUsesActiveTimeAtBothFrameRates(30)" methodname="TransitUsesActiveTimeAtBothFrameRates" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="1233685457" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.005942" asserts="0">
+                      <properties />
+                    </test-case>
+                    <test-case id="1160" name="TransitUsesActiveTimeAtBothFrameRates(60)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests.TransitUsesActiveTimeAtBothFrameRates(60)" methodname="TransitUsesActiveTimeAtBothFrameRates" classname="Abandoned.SpaceApps.Chapters.Surveyor.CommandTests.CommandDelayTests" runstate="Runnable" seed="7870363" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:15Z" duration="0.003644" asserts="0">
+                      <properties />
+                    </test-case>
+                  </test-suite>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1186" name="Abandoned.SpaceApps.Surveyor.Launch.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Launch.Tests.dll" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-14 15:21:22Z" end-time="2026-11-14 15:21:35Z" duration="12.704331" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30052" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1187" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.162433" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1188" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.159378" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1189" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-14 15:21:04Z" end-time="2026-11-14 15:21:15Z" duration="10.789181" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1190" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-14 15:21:04Z" end-time="2026-11-14 15:21:15Z" duration="10.787985" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1191" name="LaunchTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-14 15:21:22Z" end-time="2026-11-14 15:21:35Z" duration="12.684258" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1170" name="SurveyorLaunchIntegrationTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchIntegrationTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchIntegrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-14 15:21:22Z" end-time="2026-11-14 15:21:35Z" duration="12.426734" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1171" name="RebuildPreservesTheSceneAndAssetGuidsWithoutDuplicatingServices" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchIntegrationTests.RebuildPreservesTheSceneAndAssetGuidsWithoutDuplicatingServices" methodname="RebuildPreservesTheSceneAndAssetGuidsWithoutDuplicatingServices" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchIntegrationTests" runstate="Runnable" seed="613954923" result="Passed" start-time="2026-11-14 15:21:15Z" end-time="2026-11-14 15:21:16Z" duration="1.201208" asserts="0">
+                    <properties />
+                    <output><![CDATA[Main Object Name '' does not match filename 'SurveyorLaunchPreview'
+Main Object Name '' does not match filename 'SurveyorLaunch'
+Main Object Name '' does not match filename 'SurveyorLaunchPreview'
+Main Object Name '' does not match filename 'SurveyorLaunch'
+]]></output>
+                  </test-case>
+                  <test-case id="1172" name="RuntimeUpdateOperatesTheRealPrefabAndFocusPausePreservesTheCommand" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchIntegrationTests.RuntimeUpdateOperatesTheRealPrefabAndFocusPausePreservesTheCommand" methodname="RuntimeUpdateOperatesTheRealPrefabAndFocusPausePreservesTheCommand" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchIntegrationTests" runstate="Runnable" seed="1268329214" result="Passed" start-time="2026-11-14 15:21:16Z" end-time="2026-11-14 15:21:35Z" duration="18.271042" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    </properties>
+                    <output><![CDATA[[ChapterDirector] Begin('surveyor.launch.preview') ignorado no estado Playing.
+]]></output>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="1173" name="SurveyorLaunchTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.252798" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1184" name="DataUsesTheCommonThreeCuesAndBilingualIds" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.DataUsesTheCommonThreeCuesAndBilingualIds" methodname="DataUsesTheCommonThreeCuesAndBilingualIds" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="1779975819" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.124738" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1178" name="DelayedCommandExecutesOnceThenOnlyChapterOwnerAdvances" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.DelayedCommandExecutesOnceThenOnlyChapterOwnerAdvances" methodname="DelayedCommandExecutesOnceThenOnlyChapterOwnerAdvances" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="4666786" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.055558" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1174" name="GateNeverExpiresOrAdvancesWithoutConfirmation" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.GateNeverExpiresOrAdvancesWithoutConfirmation" methodname="GateNeverExpiresOrAdvancesWithoutConfirmation" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="1753707115" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.005172" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1175" name="HeldBeforeTheCandidateAppearsRequiresRelease" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.HeldBeforeTheCandidateAppearsRequiresRelease" methodname="HeldBeforeTheCandidateAppearsRequiresRelease" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="39672811" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.006799" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1179" name="LateConfirmationRetainsSubtitleReadTime" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.LateConfirmationRetainsSubtitleReadTime" methodname="LateConfirmationRetainsSubtitleReadTime" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="1457307199" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.007592" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1177" name="PauseFreezesBothClocksAndHeldKeyCannotResumeAnOperation" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.PauseFreezesBothClocksAndHeldKeyCannotResumeAnOperation" methodname="PauseFreezesBothClocksAndHeldKeyCannotResumeAnOperation" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="1716698696" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.005299" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1183" name="ReconfigureDoesNotAccumulateHandlersOrCameraLeases" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.ReconfigureDoesNotAccumulateHandlersOrCameraLeases" methodname="ReconfigureDoesNotAccumulateHandlersOrCameraLeases" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="1079830764" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.005427" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1176" name="ReleasingPreservesProgressAndOnlyTheRemainderIsNeeded" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.ReleasingPreservesProgressAndOnlyTheRemainderIsNeeded" methodname="ReleasingPreservesProgressAndOnlyTheRemainderIsNeeded" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="2109612748" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.006211" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1180" name="RestartInvalidatesInFlightCommandAndDoesNotDuplicateCallbacks" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.RestartInvalidatesInFlightCommandAndDoesNotDuplicateCallbacks" methodname="RestartInvalidatesInFlightCommandAndDoesNotDuplicateCallbacks" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="2080769001" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.006317" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1181" name="ReturnClearsCandidateAndCameraAndReentryStartsFromZero" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.ReturnClearsCandidateAndCameraAndReentryStartsFromZero" methodname="ReturnClearsCandidateAndCameraAndReentryStartsFromZero" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="428023935" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.005859" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1182" name="ToggleModeKeepsRunningAfterReleaseAndCanBePaused" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.ToggleModeKeepsRunningAfterReleaseAndCanBePaused" methodname="ToggleModeKeepsRunningAfterReleaseAndCanBePaused" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="1348712007" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.006639" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1185" name="ViewHidesEmptySubtitleAndRelocalizesWithoutChangingState" fullname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests.ViewHidesEmptySubtitleAndRelocalizesWithoutChangingState" methodname="ViewHidesEmptySubtitleAndRelocalizesWithoutChangingState" classname="Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests.SurveyorLaunchTests" runstate="Runnable" seed="1361081941" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:35Z" duration="0.010303" asserts="0">
+                    <properties />
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1214" name="Abandoned.SpaceApps.Surveyor.Midcourse.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Midcourse.Tests.dll" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-11-14 15:21:42Z" end-time="2026-11-14 15:22:01Z" duration="19.088702" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30052" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1215" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.162433" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1216" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-11-14 15:20:46Z" end-time="2026-11-14 15:20:55Z" duration="9.159378" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1217" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-11-14 15:21:04Z" end-time="2026-11-14 15:21:15Z" duration="10.789181" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1218" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-11-14 15:21:04Z" end-time="2026-11-14 15:21:15Z" duration="10.787985" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1219" name="MidcourseTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-11-14 15:21:42Z" end-time="2026-11-14 15:22:01Z" duration="19.081863" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1192" name="MidcourseIntegrationTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseIntegrationTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseIntegrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-14 15:21:42Z" end-time="2026-11-14 15:22:00Z" duration="18.706578" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1193" name="RebuildPreservesGuidsSceneAndReferences" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseIntegrationTests.RebuildPreservesGuidsSceneAndReferences" methodname="RebuildPreservesGuidsSceneAndReferences" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseIntegrationTests" runstate="Runnable" seed="1819074308" result="Passed" start-time="2026-11-14 15:21:35Z" end-time="2026-11-14 15:21:36Z" duration="0.707423" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1194" name="RuntimePrefabConfirmsCorrectsPausesTheBurnAndHandsOffToDescent" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseIntegrationTests.RuntimePrefabConfirmsCorrectsPausesTheBurnAndHandsOffToDescent" methodname="RuntimePrefabConfirmsCorrectsPausesTheBurnAndHandsOffToDescent" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseIntegrationTests" runstate="Runnable" seed="1139800271" result="Passed" start-time="2026-11-14 15:21:36Z" end-time="2026-11-14 15:22:00Z" duration="24.599961" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    </properties>
+                    <output><![CDATA[[ChapterDirector] Begin('surveyor.midcourse.preview') ignorado no estado Playing.
+]]></output>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="1195" name="MidcourseTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-14 15:22:00Z" end-time="2026-11-14 15:22:01Z" duration="0.368770" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1199" name="AssistanceUsesActiveIdleTimeAndStillNeedsAnOrder" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.AssistanceUsesActiveIdleTimeAndStillNeedsAnOrder" methodname="AssistanceUsesActiveIdleTimeAndStillNeedsAnOrder" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="301964736" result="Passed" start-time="2026-11-14 15:22:00Z" end-time="2026-11-14 15:22:00Z" duration="0.149821" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1206" name="CuesAndReferenceBudgetComeFromTheAuthoredSequence" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.CuesAndReferenceBudgetComeFromTheAuthoredSequence" methodname="CuesAndReferenceBudgetComeFromTheAuthoredSequence" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="864283724" result="Passed" start-time="2026-11-14 15:22:00Z" end-time="2026-11-14 15:22:01Z" duration="0.069431" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1202" name="EffectStartsOnlyAfterTransitAndBurnFreezesInPause" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.EffectStartsOnlyAfterTransitAndBurnFreezesInPause" methodname="EffectStartsOnlyAfterTransitAndBurnFreezesInPause" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="920460422" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.007076" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1213" name="EmptySubtitlePlateDisappearsAndEnglishKeepsTheObjective" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.EmptySubtitlePlateDisappearsAndEnglishKeepsTheObjective" methodname="EmptySubtitlePlateDisappearsAndEnglishKeepsTheObjective" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="643818145" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.013250" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1197" name="HelpAlignsButNeverSendsTheCorrection" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.HelpAlignsButNeverSendsTheCorrection" methodname="HelpAlignsButNeverSendsTheCorrection" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="1754042423" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.007696" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1196" name="KeyboardAloneReachesTheZoneAndFinishes" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.KeyboardAloneReachesTheZoneAndFinishes" methodname="KeyboardAloneReachesTheZoneAndFinishes" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="306185875" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.010570" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-suite type="ParameterizedMethod" id="1210" name="LaunchHandoffWorksRegardlessOfSubscriptionOrder" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.LaunchHandoffWorksRegardlessOfSubscriptionOrder" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.022919" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                    <properties />
+                    <test-case id="1208" name="LaunchHandoffWorksRegardlessOfSubscriptionOrder(True)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.LaunchHandoffWorksRegardlessOfSubscriptionOrder(True)" methodname="LaunchHandoffWorksRegardlessOfSubscriptionOrder" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="1055411819" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.013448" asserts="0">
+                      <properties />
+                    </test-case>
+                    <test-case id="1209" name="LaunchHandoffWorksRegardlessOfSubscriptionOrder(False)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.LaunchHandoffWorksRegardlessOfSubscriptionOrder(False)" methodname="LaunchHandoffWorksRegardlessOfSubscriptionOrder" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="249145565" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.006620" asserts="0">
+                      <properties />
+                    </test-case>
+                  </test-suite>
+                  <test-case id="1201" name="LeavingAlignmentWhileHoldingPausesAndRequiresRelease" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.LeavingAlignmentWhileHoldingPausesAndRequiresRelease" methodname="LeavingAlignmentWhileHoldingPausesAndRequiresRelease" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="524513341" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.008726" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1212" name="NextConsumerKeepsItsCameraAndCommandScopeWhenEnteredFirst" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.NextConsumerKeepsItsCameraAndCommandScopeWhenEnteredFirst" methodname="NextConsumerKeepsItsCameraAndCommandScopeWhenEnteredFirst" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="415470497" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.009207" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1198" name="NoInputNeverCompletesEvenAfterTheReferenceBudget" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.NoInputNeverCompletesEvenAfterTheReferenceBudget" methodname="NoInputNeverCompletesEvenAfterTheReferenceBudget" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="1793162528" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.006184" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1200" name="PartialPreparationSurvivesReleaseMisalignmentAndPause" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.PartialPreparationSurvivesReleaseMisalignmentAndPause" methodname="PartialPreparationSurvivesReleaseMisalignmentAndPause" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="1268561271" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.006384" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1211" name="PointerTargetUnitsAndTheVisibleCircleUseTheSameScale" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.PointerTargetUnitsAndTheVisibleCircleUseTheSameScale" methodname="PointerTargetUnitsAndTheVisibleCircleUseTheSameScale" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="1709039978" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.004650" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1204" name="ReentryDoesNotGrowTransientSequences" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.ReentryDoesNotGrowTransientSequences" methodname="ReentryDoesNotGrowTransientSequences" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="20896012" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.007545" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1207" name="ReferencePlaythroughIsAboutThirtySevenActiveSeconds" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.ReferencePlaythroughIsAboutThirtySevenActiveSeconds" methodname="ReferencePlaythroughIsAboutThirtySevenActiveSeconds" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="347780506" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.007797" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1203" name="RestartDuringTransitInvalidatesTheOldCorrection" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.RestartDuringTransitInvalidatesTheOldCorrection" methodname="RestartDuringTransitInvalidatesTheOldCorrection" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="294964188" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.008721" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1205" name="ToggleModeCanSendAndHoldCannotLeakPastTheAct" fullname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests.ToggleModeCanSendAndHoldCannotLeakPastTheAct" methodname="ToggleModeCanSendAndHoldCannotLeakPastTheAct" classname="Abandoned.SpaceApps.Chapters.Surveyor.MidcourseTests.MidcourseTests" runstate="Runnable" seed="458426578" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.016879" asserts="0">
+                    <properties />
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1228" name="Abandoned.SpaceApps.Surveyor.Site.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Site.Tests.dll" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.698739" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30052" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1229" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.694628" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1230" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.691185" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1231" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.687636" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1232" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.684236" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1233" name="SiteTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.679727" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1220" name="SurveyorSiteTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.675121" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1222" name="AllConsumerAnchorsRemainLocalToTheVisibleRig" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests.AllConsumerAnchorsRemainLocalToTheVisibleRig" methodname="AllConsumerAnchorsRemainLocalToTheVisibleRig" classname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests" runstate="Runnable" seed="2014210817" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.414644" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1223" name="AuditRejectsAFloatingLegAndABuriedCamera" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests.AuditRejectsAFloatingLegAndABuriedCamera" methodname="AuditRejectsAFloatingLegAndABuriedCamera" classname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests" runstate="Runnable" seed="354354968" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:01Z" duration="0.309122" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1224" name="AuditRejectsFloatingRockAndObstructedTarget" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests.AuditRejectsFloatingRockAndObstructedTarget" methodname="AuditRejectsFloatingRockAndObstructedTarget" classname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests" runstate="Runnable" seed="1324834048" result="Passed" start-time="2026-11-14 15:22:01Z" end-time="2026-11-14 15:22:02Z" duration="0.283220" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1225" name="RealGroundColliderMatchesReconstructionAtFeetAndWorkArea" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests.RealGroundColliderMatchesReconstructionAtFeetAndWorkArea" methodname="RealGroundColliderMatchesReconstructionAtFeetAndWorkArea" classname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests" runstate="Runnable" seed="600862355" result="Passed" start-time="2026-11-14 15:22:02Z" end-time="2026-11-14 15:22:02Z" duration="0.252905" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1226" name="RebuildPreservesOwnedGuidsFileIdsAndAnotherOwnersRoot" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests.RebuildPreservesOwnedGuidsFileIdsAndAnotherOwnersRoot" methodname="RebuildPreservesOwnedGuidsFileIdsAndAnotherOwnersRoot" classname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests" runstate="Runnable" seed="1605414169" result="Passed" start-time="2026-11-14 15:22:02Z" end-time="2026-11-14 15:22:08Z" duration="5.785622" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1221" name="SceneHasGroundedHardwareVisibleTargetsAndNoMissingReferences" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests.SceneHasGroundedHardwareVisibleTargetsAndNoMissingReferences" methodname="SceneHasGroundedHardwareVisibleTargetsAndNoMissingReferences" classname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests" runstate="Runnable" seed="1833630363" result="Passed" start-time="2026-11-14 15:22:08Z" end-time="2026-11-14 15:22:08Z" duration="0.587531" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1227" name="TelevisionOwnsOneBufferAndReleasesItWhenDisabled" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests.TelevisionOwnsOneBufferAndReleasesItWhenDisabled" methodname="TelevisionOwnsOneBufferAndReleasesItWhenDisabled" classname="Abandoned.SpaceApps.Chapters.Surveyor.SiteTests.SurveyorSiteTests" runstate="Runnable" seed="10924330" result="Passed" start-time="2026-11-14 15:22:08Z" end-time="2026-11-14 15:22:17Z" duration="8.898454" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1253" name="Abandoned.SpaceApps.Surveyor.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Tests.dll" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:18Z" duration="0.463399" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30052" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1254" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:18Z" duration="0.461964" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1255" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:18Z" duration="0.460837" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1256" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:18Z" duration="0.459931" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1257" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:18Z" duration="0.459037" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1258" name="Tests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:18Z" duration="0.457982" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1234" name="SurveyorScienceTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:18Z" duration="0.456488" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1235" name="CatalogLoadsAsTypedUnityAssetAndMatchesManifest" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.CatalogLoadsAsTypedUnityAssetAndMatchesManifest" methodname="CatalogLoadsAsTypedUnityAssetAndMatchesManifest" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="2033845739" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.047944" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1250" name="ComponentCannotLoseItsReferenceOrPretendToBeBuilt" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.ComponentCannotLoseItsReferenceOrPretendToBeBuilt" methodname="ComponentCannotLoseItsReferenceOrPretendToBeBuilt" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="1624649363" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.012601" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1244" name="CueCannotAccidentallyBindAnUnresolvedCounter" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.CueCannotAccidentallyBindAnUnresolvedCounter" methodname="CueCannotAccidentallyBindAnUnresolvedCounter" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="2091855790" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.004688" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1247" name="DuplicateCueDoesNotMaskMissingCue" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.DuplicateCueDoesNotMaskMissingCue" methodname="DuplicateCueDoesNotMaskMissingCue" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="967406936" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.004182" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1252" name="EmptyCatalogAndVisualManifestFailClearly" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.EmptyCatalogAndVisualManifestFailClearly" methodname="EmptyCatalogAndVisualManifestFailClearly" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="607910647" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.004788" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1236" name="EveryScriptCueHasPublishableEvidence" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.EveryScriptCueHasPublishableEvidence" methodname="EveryScriptCueHasPublishableEvidence" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="444966464" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.015406" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1245" name="ImaginedVisitCannotLoseItsQualification" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.ImaginedVisitCannotLoseItsQualification" methodname="ImaginedVisitCannotLoseItsQualification" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="2145061881" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.003969" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1248" name="MissingCitationIsReportedWithoutNullReference" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.MissingCitationIsReportedWithoutNullReference" methodname="MissingCitationIsReportedWithoutNullReference" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="1810309084" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.004716" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1246" name="MissingSourceAndUnreachableMuseumCannotSupportReleasedFact" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.MissingSourceAndUnreachableMuseumCannotSupportReleasedFact" methodname="MissingSourceAndUnreachableMuseumCannotSupportReleasedFact" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="296146185" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.008450" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1251" name="MissingSourceCollectionReturnsErrorsWithoutThrowing" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.MissingSourceCollectionReturnsErrorsWithoutThrowing" methodname="MissingSourceCollectionReturnsErrorsWithoutThrowing" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="1740750242" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:17Z" duration="0.024634" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1237" name="RebuildingPreservesGuidAndSerializedContent" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.RebuildingPreservesGuidAndSerializedContent" methodname="RebuildingPreservesGuidAndSerializedContent" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="60153545" result="Passed" start-time="2026-11-14 15:22:17Z" end-time="2026-11-14 15:22:18Z" duration="0.282504" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-suite type="ParameterizedMethod" id="1243" name="UnresolvedClaimsCannotBeEnabledForDisplay" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.UnresolvedClaimsCannotBeEnabledForDisplay" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-14 15:22:18Z" end-time="2026-11-14 15:22:18Z" duration="0.024430" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                    <properties />
+                    <test-case id="1238" name="UnresolvedClaimsCannotBeEnabledForDisplay(&quot;SUR.C.TestCounts&quot;)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.UnresolvedClaimsCannotBeEnabledForDisplay(&quot;SUR.C.TestCounts&quot;)" methodname="UnresolvedClaimsCannotBeEnabledForDisplay" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="1673939162" result="Passed" start-time="2026-11-14 15:22:18Z" end-time="2026-11-14 15:22:18Z" duration="0.004960" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1239" name="UnresolvedClaimsCannotBeEnabledForDisplay(&quot;SUR.C.LandingTime&quot;)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.UnresolvedClaimsCannotBeEnabledForDisplay(&quot;SUR.C.LandingTime&quot;)" methodname="UnresolvedClaimsCannotBeEnabledForDisplay" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="1001071997" result="Passed" start-time="2026-11-14 15:22:18Z" end-time="2026-11-14 15:22:18Z" duration="0.003477" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1240" name="UnresolvedClaimsCannotBeEnabledForDisplay(&quot;SUR.C.Coordinates&quot;)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.UnresolvedClaimsCannotBeEnabledForDisplay(&quot;SUR.C.Coordinates&quot;)" methodname="UnresolvedClaimsCannotBeEnabledForDisplay" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="1630782179" result="Passed" start-time="2026-11-14 15:22:18Z" end-time="2026-11-14 15:22:18Z" duration="0.003463" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1241" name="UnresolvedClaimsCannotBeEnabledForDisplay(&quot;SUR.C.Pressure&quot;)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.UnresolvedClaimsCannotBeEnabledForDisplay(&quot;SUR.C.Pressure&quot;)" methodname="UnresolvedClaimsCannotBeEnabledForDisplay" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="1982398477" result="Passed" start-time="2026-11-14 15:22:18Z" end-time="2026-11-14 15:22:18Z" duration="0.003556" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1242" name="UnresolvedClaimsCannotBeEnabledForDisplay(&quot;SUR.C.ApolloDates&quot;)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.UnresolvedClaimsCannotBeEnabledForDisplay(&quot;SUR.C.ApolloDates&quot;)" methodname="UnresolvedClaimsCannotBeEnabledForDisplay" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="263844108" result="Passed" start-time="2026-11-14 15:22:18Z" end-time="2026-11-14 15:22:18Z" duration="0.003538" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                  </test-suite>
+                  <test-case id="1249" name="VisualInventoryHasNoFictitiousImports" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests.VisualInventoryHasNoFictitiousImports" methodname="VisualInventoryHasNoFictitiousImports" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorScienceTests" runstate="Runnable" seed="1236995894" result="Passed" start-time="2026-11-14 15:22:18Z" end-time="2026-11-14 15:22:18Z" duration="0.007196" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[Saving results to: C:/Users/Damaceno/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

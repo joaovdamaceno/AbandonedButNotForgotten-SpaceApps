@@ -174,7 +174,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             if(sequence!=null)
             {
                 sequence.CueEntered-=enterHandler;sequence.CueExited-=exitHandler;
-                sequence.EventRaised-=eventHandler;sequence.Finished-=finishHandler;sequence.Cancel();
+                sequence.EventRaised-=eventHandler;sequence.Finished-=finishHandler;
+                if(sequence.Current==launch)sequence.Cancel();
             }
             if(interactions!=null && candidateId!=null)interactions.ClearCandidate(candidateId);
             inputLease?.Dispose();inputLease=null;candidateId=null;subtitleKey=null;

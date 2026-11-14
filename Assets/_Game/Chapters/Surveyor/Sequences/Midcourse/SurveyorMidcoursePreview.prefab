@@ -1,0 +1,334 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6447668001698939698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8252831224340126311}
+  - component: {fileID: 7080474330992117770}
+  - component: {fileID: 1249287188202140923}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8252831224340126311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6447668001698939698}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6428800325630030114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &7080474330992117770
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6447668001698939698}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.03, g: 0.047, b: 0.075, a: 1}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 45
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 0
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &1249287188202140923
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6447668001698939698}
+  m_Enabled: 1
+--- !u!1 &7182092428366556978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6428800325630030114}
+  - component: {fileID: 97089598071727967}
+  - component: {fileID: 8673433721128508107}
+  - component: {fileID: 4336765008187857289}
+  - component: {fileID: 3667674767593972305}
+  - component: {fileID: 2032663807665313576}
+  - component: {fileID: 2944334409259538283}
+  - component: {fileID: 1448744207322688210}
+  - component: {fileID: 886156457244207351}
+  - component: {fileID: 1361767685231626698}
+  - component: {fileID: 5107247832871382243}
+  - component: {fileID: 519468460929385701}
+  - component: {fileID: 6855331705975595374}
+  - component: {fileID: 4293599227023480324}
+  m_Layer: 0
+  m_Name: SurveyorMidcoursePreview
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6428800325630030114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8252831224340126311}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97089598071727967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e1498211ba8d14aa928881c50318b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.ChapterDirector
+  sessionClock: {fileID: 0}
+  inputRouter: {fileID: 0}
+--- !u!114 &8673433721128508107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abaf88cb0af417244bfee9cb772feb2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SessionClock
+--- !u!114 &4336765008187857289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e74f7e74fd8af439a9aab5c611e774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.InputRouter
+  defaultContext: 0
+--- !u!114 &3667674767593972305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a082267a3ab8f4cac8caf4ef64dfa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.InteractionService
+  router: {fileID: 0}
+  holdMode: 0
+--- !u!114 &2032663807665313576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74d20f38ecd42d46b039c7687084ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.CameraDirector
+  targetCamera: {fileID: 7080474330992117770}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  groundProbeHeightMeters: 1000
+--- !u!114 &2944334409259538283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323a17b203e33154cb66d8b8093e9fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDirector
+  cameraDirector: {fileID: 0}
+  inputRouter: {fileID: 0}
+--- !u!114 &1448744207322688210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d828ee2b32bc60a4ea909a67a8ccd3a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorCommandDelay
+--- !u!114 &886156457244207351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1391ff161bb3fa41a2f69d80a1e12b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorCommandInteraction
+--- !u!114 &1361767685231626698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa3876f74a335e408044a6964f072f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorMidcourse
+--- !u!114 &5107247832871382243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1992db7ad4a994c9b796b36b2400da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorMidcourseView
+--- !u!114 &519468460929385701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48779dafb91f9d1409eca042afe48e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorMidcoursePreviewHost
+  owner: {fileID: 97089598071727967}
+  clock: {fileID: 8673433721128508107}
+  router: {fileID: 4336765008187857289}
+  service: {fileID: 3667674767593972305}
+  cameraDirector: {fileID: 2032663807665313576}
+  sequence: {fileID: 2944334409259538283}
+  queue: {fileID: 1448744207322688210}
+  action: {fileID: 886156457244207351}
+  flow: {fileID: 1361767685231626698}
+  view: {fileID: 5107247832871382243}
+  document: {fileID: 6855331705975595374}
+  texts: {fileID: 4900000, guid: ba68ed96a21742e419a99b5da1c5c463, type: 3}
+  chapter: {fileID: 11400000, guid: 84f84c2d494177645b93c7f6e1e9fda6, type: 2}
+  cruise: {fileID: 11400000, guid: 576b6616fdd724045b47325c8de0810b, type: 2}
+--- !u!114 &6855331705975595374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: fdf13f7f7960c184aabd653e2551e974, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 4fdb11a583320094ab68d112bcfaa789, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &4293599227023480324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182092428366556978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac34b30927708c4f9e72c5a77ea6fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.UI.ResponsiveLayoutClass
+  document: {fileID: 6855331705975595374}
+  narrowBelowLogicalWidth: 1100

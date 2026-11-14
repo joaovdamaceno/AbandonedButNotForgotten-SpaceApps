@@ -1,0 +1,45 @@
+.mid-root { flex-grow: 1; padding: 24px 44px 28px; background-color: #080C13; color: #EEE9DD; }
+.mid-header { height: 42px; flex-direction: row; align-items: center; justify-content: space-between; }
+.mid-toolbar { flex-direction: row; }
+.mid-tool { min-width: 62px; height: 36px; font-size: 16px; color: #B7C1CD; background-color: transparent; border-width: 0; }
+.mid-tool:hover, .mid-tool:focus { color: #EDBF70; }
+.mid-accent { color: #EDBF70; }
+.mid-muted { color: #97A6B7; }
+.mid-entry { flex-grow: 1; justify-content: center; max-width: 750px; }
+.mid-title { white-space: normal; font-size: 60px; margin: 0 0 26px; padding: 0; -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf"); }
+.mid-description { font-size: 23px; color: #BFC9D4; white-space: normal; margin-bottom: 26px; padding: 0; }
+.mid-primary { min-height: 52px; margin: 0; padding: 9px 14px; font-size: 19px; background-color: #EDBF70; color: #111923; border-width: 2px; border-color: #EDBF70; border-radius: 4px; white-space: normal; -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf"); }
+.mid-primary:hover, .mid-primary:focus { background-color: #FFE0A5; border-color: #FFE0A5; }
+.mid-primary:disabled { background-color: #14202C; color: #8C9BAB; border-color: #374558; }
+.mid-secondary { height: 40px; margin-top: 10px; font-size: 17px; color: #C4CDD8; background-color: transparent; border-width: 1px; border-color: #405069; border-radius: 3px; }
+.mid-secondary:hover, .mid-secondary:focus { color: #EDBF70; border-color: #EDBF70; }
+.mid-flight { flex-grow: 1; padding-top: 22px; }
+.mid-identification { height: 90px; }
+.mid-date-row { flex-direction: row; justify-content: space-between; align-items: center; margin-top: 12px; }
+.mid-date { font-size: 30px; margin: 0; padding: 0; }
+.mid-body { flex-grow: 1; flex-direction: row; align-items: center; }
+.mid-map-column { flex-grow: 1; margin-right: 32px; }
+.mid-map { flex-shrink: 0; }
+.mid-map-legend { flex-direction: row; justify-content: space-between; margin-top: 14px; }
+.mid-map-legend Label { font-size: 12px; letter-spacing: 1px; }
+.mid-instrument { width: 300px; flex-shrink: 0; }
+.mid-destination { font-size: 28px; margin: 12px 0 8px; padding: 0; white-space: normal; }
+.mid-status { color: #BACEC1; font-size: 20px; margin-top: 22px; margin-bottom: 12px; padding: 0; white-space: normal; }
+.mid-help { font-size: 16px; color: #9DAFC0; margin-top: 12px; padding: 0; white-space: normal; }
+.mid-help-emphasis { color: #EDBF70; }
+.mid-meter { height: 4px; background-color: #283848; margin-bottom: 16px; }
+.mid-fill { height: 4px; width: 0; background-color: #EDBF70; }
+.mid-radio { margin-top: 20px; }
+.mid-radio-fill { background-color: #9AC7D3; }
+.mid-subtitle-plate { align-self: center; max-width: 1050px; padding: 10px 20px; margin-top: 18px; min-height: 62px; border-top-width: 1px; border-top-color: #344150; }
+.mid-subtitle { font-size: 24px; white-space: normal; -unity-text-align: middle-center; padding: 0; margin: 0; }
+.mid-overlay { position: absolute; left: 0; right: 0; top: 0; bottom: 0; align-items: center; justify-content: center; background-color: rgba(5,8,13,0.96); }
+.mid-pause-card { width: 460px; padding: 34px; background-color: #101923; border-width: 1px; border-color: #455367; border-radius: 4px; }
+.mid-pause-title { font-size: 34px; margin: 0 0 18px; padding: 0; }
+.sa-layout--narrow .mid-root { padding-left: 26px; padding-right: 26px; }
+.sa-layout--narrow .mid-instrument { width: 270px; }
+.sa-layout--narrow .mid-map-column { margin-right: 22px; }
+.sa-layout--narrow .mid-title { font-size: 48px; }
+.sa-layout--narrow .mid-subtitle { font-size: 22px; }
+.sa-layout--narrow .mid-date { font-size: 26px; }
+.sa-layout--narrow .mid-date-row .sa-stamp { font-size: 11px; letter-spacing: 0; }

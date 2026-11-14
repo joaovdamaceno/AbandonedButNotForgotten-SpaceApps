@@ -58,6 +58,14 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             interactions.SetCandidate(candidate);
             if (router.IsInteractPhysicallyHeld) interactions.RequireRelease();
         }
+        /// <summary>Alinhamento pode suspender o hold sem apagar o preparo acumulado.</summary>
+        public void SetAvailable(bool available)
+        {
+            if (!offered || candidate.Available == available) return;
+            candidate.Available = available;
+            RegisterCandidate();
+            Changed?.Invoke();
+        }
         public bool BeginConfirmation()
         {
             if (IsHolding && interactions.Mode == HoldMode.Toggle) { interactions.CancelHold(); return true; }
