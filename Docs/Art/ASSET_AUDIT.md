@@ -79,7 +79,7 @@ Componentes reconhecíveis (página NASA Surveyor 3 + S3-03/S3-12): **câmera de
 | R-MAR-04 | Céu da tempestade de 2018 | MS29 (stills, sem vídeo) | Página citada | R4 · P0 · MAR-016 | Fog + gradiente próprios |
 | R-MAR-05 | Imagens de Spirit (Husband Hill, Comanche, Home Plate) | MS20–MS24 | Páginas citadas | R4 · P0 · MAR-017 | Cartões com foto creditada |
 | R-MAR-06 | Silhueta Delta II | Fotos NASA de lançamento | Não localizado | R4 · P0 · MAR-013 | Silhueta 2D/low-poly ≤ 3 mil tri |
-| R-PIO-01 | Atlas-Centaur do lançamento | Fotos/desenhos em P-S02 | Referência identificada | R5 · P0 · PIO-004 | Silhueta + quads de emissão |
+| R-PIO-01 | Atlas-Centaur do lançamento | Fotos/desenhos em P-S02 | **Provisório** (PIO-004, G-PIO-04): silhueta com medidas aproximadas; conferir com o desenho oficial | R5 · P0 · PIO-004 | Silhueta + quads de emissão |
 | R-PIO-02 | Júpiter histórico da Pioneer | P-S10 | Download pendente (PIO-007) | R7 · P0 · PIO-007 | Confirmar que é produto Pioneer, não Juno |
 | R-PIO-03 | Ganimedes 1973 | P-S09 | Download pendente (PIO-007) | R7 · P0 · PIO-007 | Manter resolução histórica |
 | R-PIO-04 | Placa (contornos) | P-S11, P-S12 | Adaptação pendente | R5 · P0 · PIO-009 | Figuras humanas em silhueta lisa, “adaptação educativa” |
