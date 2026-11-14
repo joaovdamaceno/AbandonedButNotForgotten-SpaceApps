@@ -17,7 +17,8 @@ namespace Abandoned.SpaceApps
     /// <para>
     /// Regras: evento fora de ordem, de outra etapa, repetido ou desconhecido é ignorado; a última etapa só conclui uma
     /// vez; legendas de resultado (clock <c>trigger</c>) abrem apenas quando o evento da medição é aceito, e a etapa
-    /// espera a leitura mínima delas antes de concluir; reinício (novo StepEntered) fecha legendas e zera o estado.
+    /// espera a leitura mínima delas antes de concluir; uma legenda por vez (a seguinte espera em fila, na ordem de
+    /// chegada, e mantém seu tempo de leitura); reinício (novo StepEntered) fecha legendas e zera o estado.
     /// Nenhuma frase de jogo em C#: textos PT/EN em <c>MarsSubtitles.json</c>.
     /// </para>
     /// </summary>
@@ -70,7 +71,8 @@ namespace Abandoned.SpaceApps
     /// </code>
     /// Legendas: <c>clock=sequence</c> (28) vão nas SequenceDefinitions (<see cref="BuildSequenceCues"/>);
     /// <c>clock=step</c> (14) e <c>clock=trigger</c> (7) são emitidas aqui por <see cref="CueEntered"/>/<see cref="CueExited"/>,
-    /// com a mesma assinatura do SequenceDirector, para o SubtitlePresenter (UI-004) ouvir as duas fontes.
+    /// com a mesma assinatura do SequenceDirector, para o SubtitlePresenter (UI-004) ouvir as duas fontes. Nunca há duas
+    /// legendas de etapa abertas ao mesmo tempo: um resultado que chega com outra legenda na tela espera a vez.
     /// </remarks>
     [DisallowMultipleComponent]
     public sealed class MarsChapterFlow : MonoBehaviour
@@ -235,6 +237,18 @@ namespace Abandoned.SpaceApps
             }
         }
 
+        sealed class PendingCue
+        {
+            public readonly SubtitleCue Cue;
+            public readonly float DurationSeconds;
+
+            public PendingCue(SubtitleCue cue, float durationSeconds)
+            {
+                Cue = cue;
+                DurationSeconds = durationSeconds;
+            }
+        }
+
         sealed class ActiveCue
         {
             public readonly SubtitleCue Cue;
@@ -258,6 +272,7 @@ namespace Abandoned.SpaceApps
         readonly Dictionary<string, List<SubtitleCue>> stepClockCues = new Dictionary<string, List<SubtitleCue>>();
         readonly Dictionary<string, List<SubtitleCue>> triggeredCues = new Dictionary<string, List<SubtitleCue>>();
         readonly List<ActiveCue> activeCues = new List<ActiveCue>();
+        readonly List<PendingCue> pendingCues = new List<PendingCue>();
         readonly HashSet<string> openedCueIds = new HashSet<string>();
 
         IChapterDirector director;
@@ -302,8 +317,8 @@ namespace Abandoned.SpaceApps
                 ? current.CompletionEvents[nextEventIndex]
                 : null;
 
-        /// <summary>Todos os eventos chegaram; a etapa espera a leitura mínima das legendas abertas para concluir.</summary>
-        public bool IsAwaitingCueReading => current != null && completionPending && activeCues.Count > 0;
+        /// <summary>Todos os eventos chegaram; a etapa espera a leitura das legendas abertas ou na fila para concluir.</summary>
+        public bool IsAwaitingCueReading => current != null && completionPending && (activeCues.Count > 0 || pendingCues.Count > 0);
 
         public SubtitleTable Subtitles => subtitles;
         public IReadOnlyList<StepBinding> Steps => effectiveSteps.Count > 0 ? (IReadOnlyList<StepBinding>)effectiveSteps : CreateDefaultBindings();
@@ -487,6 +502,7 @@ namespace Abandoned.SpaceApps
             ++entryToken;
             completionPending = false;
             completionRequested = false;
+            pendingCues.Clear();
 
             var closing = new List<ActiveCue>(activeCues);
             activeCues.Clear();
@@ -498,7 +514,8 @@ namespace Abandoned.SpaceApps
 
         void TryComplete()
         {
-            if (current == null || !completionPending || completionRequested || activeCues.Count > 0 || director == null)
+            if (current == null || !completionPending || completionRequested || activeCues.Count > 0 || pendingCues.Count > 0
+                || director == null)
                 return;
 
             var stepId = current.StepId;
@@ -546,24 +563,33 @@ namespace Abandoned.SpaceApps
                     return;
             }
 
-            // Depois do último evento nenhuma fala nova começa: a etapa só espera a leitura das que já abriram.
+            // Depois do último evento nenhuma fala nova entra: a etapa só espera as que já abriram ou estão na fila.
             List<SubtitleCue> timed;
-            if (completionPending || current == null || !stepClockCues.TryGetValue(current.StepId, out timed))
-                return;
-
-            foreach (var cue in timed)
+            if (!completionPending && current != null && stepClockCues.TryGetValue(current.StepId, out timed))
             {
-                if (openedCueIds.Contains(cue.CueId) || stepSeconds + epsilon < cue.StartSeconds)
-                    continue;
+                foreach (var cue in timed)
+                {
+                    if (openedCueIds.Contains(cue.CueId) || stepSeconds + epsilon < cue.StartSeconds)
+                        continue;
 
-                openedCueIds.Add(cue.CueId);
-                if (stepSeconds + epsilon >= cue.EndSeconds)
-                    continue;
+                    openedCueIds.Add(cue.CueId);
+                    if (stepSeconds + epsilon < cue.EndSeconds)
+                        pendingCues.Add(new PendingCue(cue, cue.EndSeconds - cue.StartSeconds));
+                }
+            }
 
-                activeCues.Add(new ActiveCue(cue, cue.EndSeconds));
-                CueEntered?.Invoke(cue);
-                if (token != entryToken)
-                    return;
+            OpenNextPending(token);
+        }
+
+        /// <summary>Uma legenda por vez: abre a próxima da fila quando nenhuma está na tela, com sua duração inteira.</summary>
+        void OpenNextPending(int token)
+        {
+            while (activeCues.Count == 0 && pendingCues.Count > 0 && token == entryToken)
+            {
+                var next = pendingCues[0];
+                pendingCues.RemoveAt(0);
+                activeCues.Add(new ActiveCue(next.Cue, stepSeconds + next.DurationSeconds));
+                CueEntered?.Invoke(next.Cue);
             }
         }
 
@@ -579,11 +605,10 @@ namespace Abandoned.SpaceApps
                     continue;
 
                 openedCueIds.Add(cue.CueId);
-                activeCues.Add(new ActiveCue(cue, stepSeconds + cue.MinimumReadSeconds));
-                CueEntered?.Invoke(cue);
-                if (token != entryToken)
-                    return;
+                pendingCues.Add(new PendingCue(cue, cue.MinimumReadSeconds));
             }
+
+            OpenNextPending(token);
         }
 
         void Ignore(string eventId)
