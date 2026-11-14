@@ -1,0 +1,279 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: MarsOrigin_M02
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: mars.seq.M02
+  shots:
+  - shotId: mars.origin.map.gusev
+    durationSeconds: 4
+    rigId: mars.origin
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 497.5, y: 1.2, z: -8}
+      eulerAnglesDegrees: {x: 8.14778, y: 17.354023, z: 0}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 0.25
+      positionMeters: {x: 497.50787, y: 1.1977539, z: -7.9955077}
+      eulerAnglesDegrees: {x: 8.1390915, y: 17.31178, z: 0.00000010780762}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 0.5
+      positionMeters: {x: 497.5301, y: 1.1914062, z: -7.9828124}
+      eulerAnglesDegrees: {x: 8.114419, y: 17.19225, z: 0.00000010780099}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 0.75
+      positionMeters: {x: 497.5646, y: 1.181543, z: -7.963086}
+      eulerAnglesDegrees: {x: 8.07579, y: 17.005493, z: 0.000000107790655}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 1
+      positionMeters: {x: 497.60938, y: 1.16875, z: -7.9375}
+      eulerAnglesDegrees: {x: 8.025144, y: 16.761309, z: -0.00000021555434}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 1.25
+      positionMeters: {x: 497.66235, y: 1.1536133, z: -7.9072266}
+      eulerAnglesDegrees: {x: 7.964422, y: 16.469482, z: 0}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 1.5
+      positionMeters: {x: 497.7215, y: 1.1367188, z: -7.8734374}
+      eulerAnglesDegrees: {x: 7.895615, y: 16.13998, z: -0.00000010774311}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 1.75
+      positionMeters: {x: 497.78473, y: 1.1186523, z: -7.8373046}
+      eulerAnglesDegrees: {x: 7.8208, y: 15.783326, z: -0.00000032317107}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 2
+      positionMeters: {x: 497.85, y: 1.1, z: -7.8}
+      eulerAnglesDegrees: {x: 7.7422023, y: 15.41035, z: -0.00000010770351}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 2.25
+      positionMeters: {x: 497.91528, y: 1.0813477, z: -7.7626953}
+      eulerAnglesDegrees: {x: 7.6622005, y: 15.032422, z: 0}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 2.5
+      positionMeters: {x: 497.97852, y: 1.0632813, z: -7.7265625}
+      eulerAnglesDegrees: {x: 7.5833526, y: 14.661548, z: 0}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 2.75
+      positionMeters: {x: 498.03766, y: 1.0463867, z: -7.6927733}
+      eulerAnglesDegrees: {x: 7.508387, y: 14.310336, z: -0.00000010764468}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 3
+      positionMeters: {x: 498.09064, y: 1.03125, z: -7.6625}
+      eulerAnglesDegrees: {x: 7.440194, y: 13.992166, z: 0}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 3.25
+      positionMeters: {x: 498.1354, y: 1.018457, z: -7.636914}
+      eulerAnglesDegrees: {x: 7.381791, y: 13.720638, z: 0.00000010761361}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 3.5
+      positionMeters: {x: 498.16992, y: 1.0085938, z: -7.6171875}
+      eulerAnglesDegrees: {x: 7.336277, y: 13.5096245, z: 0.000000053801283}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 3.75
+      positionMeters: {x: 498.19214, y: 1.0022461, z: -7.604492}
+      eulerAnglesDegrees: {x: 7.306763, y: 13.373015, z: 0}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 4
+      positionMeters: {x: 498.2, y: 1, z: -7.6}
+      eulerAnglesDegrees: {x: 7.296279, y: 13.324446, z: 0.000000053796455}
+      fieldOfViewDegrees: 34
+    events:
+    - timeSeconds: 0
+      eventId: mars.origin.gusev.glow
+  - shotId: mars.origin.map.meridiani
+    durationSeconds: 4
+    rigId: mars.origin
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 502.2, y: -0.8, z: -6.2}
+      eulerAnglesDegrees: {x: 352.18787, y: 337.83356, z: 0}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 0.25
+      positionMeters: {x: 502.191, y: -0.79550785, z: -6.1955075}
+      eulerAnglesDegrees: {x: 352.22125, y: 337.8989, z: 0.00000021542574}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 0.5
+      positionMeters: {x: 502.16562, y: -0.78281254, z: -6.182812}
+      eulerAnglesDegrees: {x: 352.31613, y: 338.08405, z: 0.00000010768865}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 0.75
+      positionMeters: {x: 502.12616, y: -0.76308596, z: -6.163086}
+      eulerAnglesDegrees: {x: 352.46524, y: 338.37448, z: 0.00000010765122}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 1
+      positionMeters: {x: 502.075, y: -0.7375, z: -6.1375}
+      eulerAnglesDegrees: {x: 352.66162, y: 338.75586, z: 0}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 1.25
+      positionMeters: {x: 502.01447, y: -0.7072266, z: -6.1072264}
+      eulerAnglesDegrees: {x: 352.89844, y: 339.21472, z: -0.00000010754674}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 1.5
+      positionMeters: {x: 501.94687, y: -0.67343754, z: -6.073437}
+      eulerAnglesDegrees: {x: 353.16852, y: 339.73666, z: 0}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 1.75
+      positionMeters: {x: 501.8746, y: -0.6373047, z: -6.037305}
+      eulerAnglesDegrees: {x: 353.46423, y: 340.30603, z: 0.000000107419815}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 2
+      positionMeters: {x: 501.8, y: -0.6, z: -6}
+      eulerAnglesDegrees: {x: 353.77722, y: 340.90662, z: 0}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 2.25
+      positionMeters: {x: 501.7254, y: -0.5626953, z: -5.962695}
+      eulerAnglesDegrees: {x: 354.09818, y: 341.52008, z: 0.00000010729039}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 2.5
+      positionMeters: {x: 501.65314, y: -0.5265625, z: -5.926563}
+      eulerAnglesDegrees: {x: 354.41675, y: 342.12732, z: -0.00000016084563}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 2.75
+      positionMeters: {x: 501.58554, y: -0.49277344, z: -5.8927736}
+      eulerAnglesDegrees: {x: 354.72168, y: 342.70697, z: 0.00000021435234}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 3
+      positionMeters: {x: 501.525, y: -0.4625, z: -5.8625}
+      eulerAnglesDegrees: {x: 355.00076, y: 343.23596, z: 0.00000005356462}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 3.25
+      positionMeters: {x: 501.47382, y: -0.43691406, z: -5.836914}
+      eulerAnglesDegrees: {x: 355.241, y: 343.69037, z: 0}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 3.5
+      positionMeters: {x: 501.4344, y: -0.4171875, z: -5.817188}
+      eulerAnglesDegrees: {x: 355.42902, y: 344.04504, z: 0}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 3.75
+      positionMeters: {x: 501.409, y: -0.4044922, z: -5.8044925}
+      eulerAnglesDegrees: {x: 355.5513, y: 344.27563, z: 0.000000053522108}
+      fieldOfViewDegrees: 28
+    - timeSeconds: 4
+      positionMeters: {x: 501.4, y: -0.4, z: -5.8}
+      eulerAnglesDegrees: {x: 355.5948, y: 344.35782, z: 0}
+      fieldOfViewDegrees: 28
+    events:
+    - timeSeconds: 0
+      eventId: mars.origin.meridiani.glow
+  - shotId: mars.origin.map.hematite
+    durationSeconds: 4
+    rigId: mars.origin
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 500.4, y: 0.3, z: -4.1}
+      eulerAnglesDegrees: {x: 7.988387, y: 349.21585, z: 0.00000010776745}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 0.25
+      positionMeters: {x: 500.39777, y: 0.29775393, z: -4.0943847}
+      eulerAnglesDegrees: {x: 7.9511275, y: 349.24643, z: 0.00000016163645}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 0.5
+      positionMeters: {x: 500.39142, y: 0.29140627, z: -4.0785155}
+      eulerAnglesDegrees: {x: 7.844682, y: 349.33517, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 0.75
+      positionMeters: {x: 500.38153, y: 0.281543, z: -4.0538573}
+      eulerAnglesDegrees: {x: 7.6757555, y: 349.4765, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 1
+      positionMeters: {x: 500.36874, y: 0.26875, z: -4.021875}
+      eulerAnglesDegrees: {x: 7.4499702, y: 349.66415, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 1.25
+      positionMeters: {x: 500.3536, y: 0.2536133, z: -3.984033}
+      eulerAnglesDegrees: {x: 7.1726294, y: 349.89447, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 1.5
+      positionMeters: {x: 500.33673, y: 0.23671876, z: -3.9417968}
+      eulerAnglesDegrees: {x: 6.8492355, y: 350.16205, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 1.75
+      positionMeters: {x: 500.31866, y: 0.21865235, z: -3.8966308}
+      eulerAnglesDegrees: {x: 6.486168, y: 350.46246, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 2
+      positionMeters: {x: 500.3, y: 0.2, z: -3.85}
+      eulerAnglesDegrees: {x: 6.0912223, y: 350.78934, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 2.25
+      positionMeters: {x: 500.28134, y: 0.18134767, z: -3.803369}
+      eulerAnglesDegrees: {x: 5.6742067, y: 351.13284, z: 0.000000026811799}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 2.5
+      positionMeters: {x: 500.26328, y: 0.16328126, z: -3.758203}
+      eulerAnglesDegrees: {x: 5.247568, y: 351.48373, z: -0.000000026792716}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 2.75
+      positionMeters: {x: 500.2464, y: 0.14638673, z: -3.7159667}
+      eulerAnglesDegrees: {x: 4.826749, y: 351.82864, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 3
+      positionMeters: {x: 500.23126, y: 0.13125001, z: -3.678125}
+      eulerAnglesDegrees: {x: 4.4304266, y: 352.1535, z: 0.00000005352078}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 3.25
+      positionMeters: {x: 500.21844, y: 0.118457034, z: -3.6461425}
+      eulerAnglesDegrees: {x: 4.080285, y: 352.44095, z: -0.000000053496446}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 3.5
+      positionMeters: {x: 500.2086, y: 0.108593754, z: -3.6214843}
+      eulerAnglesDegrees: {x: 3.8002594, y: 352.66974, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 3.75
+      positionMeters: {x: 500.20224, y: 0.1022461, z: -3.6056151}
+      eulerAnglesDegrees: {x: 3.6152065, y: 352.82095, z: -0.000000026733625}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 4
+      positionMeters: {x: 500.2, y: 0.1, z: -3.6}
+      eulerAnglesDegrees: {x: 3.5487854, y: 352.87454, z: 0}
+      fieldOfViewDegrees: 30
+    events:
+    - timeSeconds: 0
+      eventId: mars.origin.hematite.glow
+  cues:
+  - cueId: MAR.C02
+    textKey: MAR.C02
+    startSeconds: 0
+    endSeconds: 4
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: MAR.C03
+    textKey: MAR.C03
+    startSeconds: 4
+    endSeconds: 8
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: MAR.C04
+    textKey: MAR.C04
+    startSeconds: 8
+    endSeconds: 12
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []
