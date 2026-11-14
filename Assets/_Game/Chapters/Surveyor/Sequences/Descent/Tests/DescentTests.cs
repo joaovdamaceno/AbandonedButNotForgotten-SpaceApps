@@ -90,8 +90,13 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.DescentTests
         }
         [Test]public void AnomalyExplanationKeepsPriorityOverAnEarlyReceipt()
         {
+            float start=-1,end=-1;
+            flow.CueEntered+=c=>{if(c.CueId=="SUR-S08-PLAYER")start=flow.TimeSeconds;};
+            flow.CueExited+=c=>{if(c.CueId=="SUR-S08-PLAYER")end=flow.TimeSeconds;};
             To(12);Confirm();Advance(1.35f);Assert.That(flow.CutoffReceived,Is.True);Assert.That(flow.SubtitleKey,Is.EqualTo("SUR-S07"));
-            To(17.1f);Assert.That(flow.SubtitleKey,Is.EqualTo("descent.player.receipt"));
+            Assert.That(start,Is.EqualTo(-1),"A leitura do recibo só começa depois da explicação da anomalia.");
+            To(17.1f);Assert.That(flow.SubtitleKey,Is.EqualTo("descent.player.receipt"));To(21.2f);
+            Assert.That(start,Is.GreaterThanOrEqualTo(16.99f));Assert.That(end-start,Is.GreaterThanOrEqualTo(3.99f));
         }
         [Test]public void GraceCannotExtendIndefinitelyAndFallbackKeepsItsReadingWindow()
         {

@@ -2,6 +2,8 @@
 
 Implementação em **14/11/2026**, a partir de `develop` **70620fe**. Última CORE integrada: **CORE-006**, merge **934a2fd**, PR #93. Dependências nativas **#60 SUR-002, #62 SUR-004 e #4 CORE-004** confirmadas fechadas/integradas antes da atribuição. Validação no Unity **6000.6.7f1 / URP 17.6.0**, Windows D3D11, RTX 3050 Laptop 6 GB.
 
+Durante a implementação, a PIO-004 entrou em develop. A branch incorporou **0691f2e** sem descartar alterações da equipe; a suíte abaixo foi repetida depois dessa integração.
+
 ## Entrega e cena
 
 Cena funcional: `Assets/_Game/Chapters/Surveyor/Sequences/Descent/Preview/SurveyorDescentPreview.unity`. Play → **Iniciar descida**. Um esquema técnico acompanha a aproximação; o corte automático não confirma; E mantido por três segundos envia o comando com atraso ativo de 1,3 s. A equipe assume quando não há confirmação, sem Game Over. Primeiro e segundo reerguimentos aproximados de 10 m e 3 m acontecem para todos. O terceiro contato assenta a sonda; data/região e o próximo objetivo encerram o ato.
@@ -12,7 +14,7 @@ Orçamento editorial de **40 s**, com tolerância de confirmação e leitura que
 
 ## Testes executados
 
-[Suíte NUnit](editmode.xml): **234/234 passaram**, sem falhas ou skips; **25 casos novos SUR-006**. Inclui execução real do prefab em Play Mode e testes de comportamento para:
+[Suíte NUnit](editmode.xml): **242/242 passaram**, sem falhas ou skips; **25 casos novos SUR-006**. Inclui execução real do prefab em Play Mode e testes de comportamento para:
 
 - Comando cedo, tarde e ausente, sempre com os três contatos e sem terminar o capítulo inteiro.
 - Ordem antecipada recebida sem apagar os reerguimentos ou desligar os motores antes do momento encenado.
