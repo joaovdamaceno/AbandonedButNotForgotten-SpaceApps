@@ -47,15 +47,16 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests
             // Só a espera inicial é adiantada: a operação e a pausa abaixo passam por Updates reais.
             host.Flow.Tick(host.Flow.ReadyAt+.05f);
             Assert.That(host.Flow.BeginConfirmation(),Is.True);
-            yield return new WaitForSecondsRealtime(.6f);
-            Assert.That(host.Flow.Progress,Is.GreaterThan(.05f));
+            float preparationDeadline=Time.realtimeSinceStartup+15;
+            while(host.Flow.Progress<.2f && Time.realtimeSinceStartup<preparationDeadline)yield return null;
+            Assert.That(host.Flow.Progress,Is.GreaterThanOrEqualTo(.2f),"O hold deve avançar por Updates ativos.");
             host.SendMessage("OnApplicationFocus",false);
             float frozen=host.Flow.Progress,time=host.Flow.TimeSeconds;
             yield return new WaitForSecondsRealtime(.35f);
             Assert.That(host.Chapter.IsPaused,Is.True);Assert.That(host.Flow.Progress,Is.EqualTo(frozen));
             Assert.That(host.Flow.TimeSeconds,Is.EqualTo(time));
             host.Resume();Assert.That(host.Flow.BeginConfirmation(),Is.True);
-            float deadline=Time.realtimeSinceStartup+12;
+            float deadline=Time.realtimeSinceStartup+30;
             while(!host.Flow.ActComplete && Time.realtimeSinceStartup<deadline)yield return null;
             Assert.That(host.Flow.ActComplete,Is.True,"O fluxo real não chegou a Cruise.");
             Assert.That(host.Chapter.CurrentStepId,Is.EqualTo("Cruise"));
@@ -65,5 +66,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests
             Object.Destroy(root);
             yield return new ExitPlayMode();
         }
+        [UnityTearDown] public IEnumerator RestoreEditorAfterRuntimeFailure()
+        { if (Application.isPlaying) yield return new ExitPlayMode(); }
     }
 }

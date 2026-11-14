@@ -1,0 +1,23 @@
+.command-preview { flex-grow: 1; padding: 28px 48px; background-color: #080C13; color: #EEE9DD; }
+.command-header { height: 42px; flex-direction: row; align-items: center; justify-content: space-between; }
+.command-tool { background-color: transparent; border-width: 0; color: #BBC5CF; font-size: 18px; width: 60px; height: 38px; }
+.command-tool:focus, .command-tool:hover { color: #EDBF70; }
+.command-body { flex-direction: row; flex-grow: 1; align-items: center; padding-top: 20px; }
+.command-copy-column { width: 46%; padding-right: 50px; }
+.command-heading { white-space: normal; font-size: 50px; margin: 20px 0; padding: 0; -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf"); }
+.command-description { font-size: 22px; color: #BAC5D0; white-space: normal; padding: 0; margin-bottom: 22px; }
+.command-muted { color: #93A0B1; }
+.command-widget-column { width: 54%; padding: 25px 30px; border-left-width: 1px; border-left-color: #2D3A4B; }
+.command-directions, .command-actions { flex-direction: row; }
+.command-secondary { flex-grow: 1; min-height: 42px; margin: 4px; padding: 7px 12px; color: #C3CFDA; background-color: #111C28; border-color: #415166; border-width: 1px; border-radius: 3px; font-size: 17px; }
+.command-secondary:hover, .command-secondary:focus { color: #EDBF70; border-color: #EDBF70; }
+.command-start { margin-top: 26px; margin-bottom: 10px; }
+.command-overlay { position: absolute; left: 0; right: 0; top: 0; bottom: 0; align-items: center; justify-content: center; background-color: rgba(5,8,13,0.96); }
+.command-pause-card { width: 460px; padding: 34px; background-color: #101923; border-color: #455367; border-width: 1px; border-radius: 5px; }
+.command-pause-title { font-size: 34px; padding: 0; white-space: normal; margin: 0 0 18px; }
+.sa-layout--narrow .command-preview { padding-left: 28px; padding-right: 28px; }
+.sa-layout--narrow .command-copy-column { padding-right: 26px; }
+.sa-layout--narrow .command-heading { font-size: 40px; }
+.sa-layout--narrow .command-widget-column { padding-left: 24px; padding-right: 0; }
+.sa-layout--narrow .transit-title { font-size: 29px; }
+.sa-layout--narrow .transit-legend Label { font-size: 16px; }
