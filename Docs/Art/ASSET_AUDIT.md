@@ -51,7 +51,7 @@ Componentes: base tetraédrica com **três pétalas** que abrem; aglomerados de 
 | Página | https://science.nasa.gov/3d-resources/pioneer/ — “Pioneer 10”, atualizada 24/06/2025 |
 | Crédito na página | Fonte: **NASA/JPL/Eyes on the Solar System** |
 | Arquivo anunciado | `Pioneer 10.glb (Original)` **1,95 MB**, 14/04/2025; espelho https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Pioneer%2010 |
-| Estado | **Página verificada · Pendente — equipe** (nada baixado) |
+| Estado | **Recebido da equipe e incorporado (PIO-002)** · SHA-256 `81443a7fa01cca0dda878cd27692b3307f9c332c4eb8e55a844499d7b350573c` · derivado em `Assets/_Game/Chapters/Pioneer10/Art/` · origem exata do arquivo não verificada (tamanho compatível com a página) |
 | Responsável / prioridade / tarefa | R5 · P0 · PIO-002 |
 
 Componentes reconhecíveis: refletor de alto ganho de **2,74 m** (P-S05) com eixo de spin paralelo ao eixo da antena; compartimento de equipamentos atrás do prato; RTGs em hastes (página NASA Pioneer 10: “two SNAP-19 radioisotope thermal generators”, ~140 W no encontro com Júpiter — o roteiro **não** exibe a contagem; o artista segue a geometria oficial, ver P-S sources §Divergências 4); haste do magnetômetro (instrumento HVM listado na página); fotopolarímetro IPP; **placa** presa aos suportes da antena (alumínio anodizado dourado, P-S12). Massa 258 kg (página).
