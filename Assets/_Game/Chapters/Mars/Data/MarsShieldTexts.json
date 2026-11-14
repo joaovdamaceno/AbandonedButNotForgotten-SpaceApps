@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_TWINS.md (M16–M20) e 01_MARS_SOURCES.md (MS14, MS15, MS16). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-006. Mesmo formato de 'texts' em MarsSubtitles.json (key, pt, en); a UI/localização pode juntar as tabelas.",
+    "O escudo é hardware descartado; a Heat Shield Rock é um meteorito independente (ferro e níquel segundo os espectrômetros do rover). Nenhum texto liga a rocha ao escudo nem a Eagle. O resultado final do meteorito reutiliza MAR.RESULT04 de MarsSubtitles.json.",
+    "Créditos: PIA07402 traz 'NASA/JPL/Cornell' na legenda; a imagem do artigo JPL de 19/1/2005 não traz legenda de crédito, então vale a linha padrão da política de imagens do JPL."
+  ],
+  "texts": [
+    { "key": "MAR.VERB.photograph", "pt": "FOTOGRAFAR", "en": "PHOTOGRAPH" },
+    { "key": "MAR.VERB.measure", "pt": "MEDIR", "en": "MEASURE" },
+    { "key": "MAR.OBJ.shield", "pt": "ESCUDO TÉRMICO", "en": "HEAT SHIELD" },
+    { "key": "MAR.OBJ.metalRock", "pt": "ROCHA METÁLICA", "en": "METALLIC ROCK" },
+    { "key": "MAR.SHIELD.photo", "pt": "Sua foto · escudo térmico descartado", "en": "Your photo · discarded heat shield" },
+    { "key": "MAR.SHIELD.archive", "pt": "Imagem real · escudo quebrado em duas peças, invertido no impacto", "en": "Real image · shield broken in two pieces, inverted on impact" },
+    { "key": "MAR.METEORITE.photo", "pt": "Seu registro · rocha metálica", "en": "Your record · metallic rock" },
+    { "key": "MAR.METEORITE.archive", "pt": "Imagem real · Heat Shield Rock, meteorito de ferro e níquel", "en": "Real image · Heat Shield Rock, an iron-nickel meteorite" },
+    { "key": "MAR.CREDIT.shield", "pt": "NASA/JPL/Cornell · 21 dez. 2004 (sol 324)", "en": "NASA/JPL/Cornell · Dec. 21, 2004 (sol 324)" },
+    { "key": "MAR.CREDIT.meteorite", "pt": "Courtesy NASA/JPL-Caltech · imagem do artigo JPL de 19 jan. 2005", "en": "Courtesy NASA/JPL-Caltech · image from the JPL article of Jan. 19, 2005" }
+  ]
+}

@@ -74,7 +74,7 @@ Componentes reconhecíveis (página NASA Surveyor 3 + S3-03/S3-12): **câmera de
 | ID | Recurso | Fonte identificada | Estado | Resp. · prioridade · tarefa | Fallback / limite |
 | --- | --- | --- | --- | --- | --- |
 | R-MAR-01 | Panorama de Eagle (“Lion King”) | NASA/JPL (roteiro §Assets) | Referência a localizar | R4 · P0 · MAR-012 | Terreno próprio guiado pela foto |
-| R-MAR-02 | Escudo e Heat Shield Rock | PIA07402 (MS15), PIA07324 (MS16) | Legendas lidas em 14/11/2026; imagens não baixadas | R4 · P0 · MAR-015 | Modelo próprio procedural entregue (G-MAR-01); capturas de revisão em `Docs/Art/ShieldField_Captures/`. Foto real creditada em M20 pendente |
+| R-MAR-02 | Escudo e Heat Shield Rock | PIA07402 (MS15), PIA07324 (MS16) | Legendas lidas em 14/11/2026; imagens não baixadas | R4 · P0 · MAR-015 | Modelo próprio procedural entregue (G-MAR-01); capturas de revisão em `Docs/Art/ShieldField_Captures/`. **Imagens reais importadas na MAR-006** (P-MAR-02 e P-MAR-03, com crédito e hash); a foto de M20 pode reutilizá-las. **Atenção R4:** em PIA07402 o destroço principal aparece como uma cúpula com o lado rompido, diferente da calota côncava da reconstrução procedural; conferir na MAR-018/MAR-020 |
 | R-MAR-03 | Mapa de hematita TES / globo Gusev–Meridiani | MS03 (NASA Meridiani Planum) | Página citada | R4 · P0 · MAR-013 | Globo low-cost com dois pontos e rótulos |
 | R-MAR-04 | Céu da tempestade de 2018 | MS29 (stills, sem vídeo) | Página citada | R4 · P0 · MAR-016 | Fog + gradiente próprios |
 | R-MAR-05 | Imagens de Spirit (Husband Hill, Comanche, Home Plate) | MS20–MS24 | Páginas citadas | R4 · P0 · MAR-017 | Cartões com foto creditada |
