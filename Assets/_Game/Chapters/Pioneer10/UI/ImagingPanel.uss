@@ -126,7 +126,7 @@
     border-width: 2px;
     border-color: var(--sa-color-plate-edge);
     border-radius: var(--sa-radius-sm);
-    background-color: var(--sa-color-track);
+    background-color: var(--sa-color-plate-strong); /* escura e quase opaca: o contraste do cursor e da zona é medido no render */
 }
 
 .pio-img__zone {
@@ -150,7 +150,7 @@
     bottom: -4px;
     width: 8px;
     margin-left: -4px;
-    background-color: var(--sa-color-on-plate-muted);
+    background-color: var(--sa-color-on-plate);
 }
 
 .pio-img__cursor--in { background-color: var(--sa-color-focus); }
@@ -184,3 +184,16 @@
 }
 
 .pio-img__recovery { margin-top: var(--sa-space-3); }
+
+/* ---------- 4:3 (largura lógica < 1100 px, classe aplicada por ResponsiveLayoutClass) ---------- */
+
+.sa-layout--narrow .pio-img__frame {
+    left: 47%;
+    width: 51%;
+    padding: var(--sa-space-3);
+}
+
+.sa-layout--narrow .pio-img__channel-label { font-size: 14px; }
+.sa-layout--narrow .pio-img__image { min-height: 100px; }
+.sa-layout--narrow .pio-img__disc { width: 150px; height: 150px; }
+.sa-layout--narrow .pio-img .sa-hold { min-width: 0; }

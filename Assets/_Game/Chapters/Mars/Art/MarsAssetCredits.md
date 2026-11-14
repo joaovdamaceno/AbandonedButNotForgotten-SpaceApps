@@ -22,3 +22,7 @@ Registro do capítulo de Marte. A fonte única de direitos do projeto continua s
 ## M-LANDING · Conjunto de pouso (MAR-014)
 
 Gerado por código próprio (`Art/Landing/Editor`): cápsula, escudo, paraquedas, módulo, airbags, texturas procedurais. Sem imagens, modelos ou logotipos externos. Fatos: NASA GISS Mars24 (datas), NASA/JPL (sequência de pouso e desembarque). Licença: produção própria do projeto.
+
+## M-ORIGIN · Laboratório, globo e lançamentos (MAR-013)
+
+Gerado por código próprio (`Art/Origin/Editor`): bancadas, globo estilizado, silhuetas de foguete e chama. Rovers: modelo próprio da MAR-011. Sem imagens, modelos ou logotipos externos; o globo não é o mapa do TES. Fatos: NASA (locais de pouso e hematita em Meridiani). Licença: produção própria do projeto.

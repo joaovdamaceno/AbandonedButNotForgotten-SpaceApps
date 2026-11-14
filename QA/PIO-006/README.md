@@ -12,3 +12,20 @@ Executado em 14/11/2026 sobre `feature/PIO-006-varredura-ipp` (base `develop` f4
 Cobertura dos testes: hold antecipado durante o aprendizado, soltar e retomar, passagem perdida sem apagar faixas, toque entre dois quadros, ajuda após 6/12 s (janela ampliada), 15/30/60 FPS com o mesmo resultado, 6/8 e 8/8 disparando uma vez, retomada idempotente (e sem efeito fora da interrupção), pausa congelando o cursor, marcos da sequência, execução completa sem vazar leases, pular e cancelar.
 
 **Não executado:** Play Mode, build aberta no navegador, profiler Web, FPS real (a execução "a 15–30 FPS" é simulada com relógio ativo manual). Sem PIO-008 nada chama a retomada depois da faixa 6 no jogo integrado (os testes a chamam diretamente).
+
+## Conformidade com o UI_SPEC e a arquitetura (PR de correção)
+
+Base `develop` e61073c, já mesclada nesta branch (última CORE integrada: CORE-006). Executado em batchmode, Unity 6000.6.7f1.
+
+| Verificação | Resultado |
+| --- | --- |
+| Suíte EditMode completa (base mesclada) | **494 passaram, 26 falharam de 520** (`editmode.xml`). As 26 falhas são **todas** `MarsLandingTests` (MAR-014, de outra pessoa), com NullReference no `SetUp`: 15 scripts de `Mars/Art/Landing` foram commitados sem o `.meta`, então a Unity gera GUIDs novos e o prefab `MerLandingAssembly` perde os componentes. Não é desta tarefa e não foi alterado aqui. `PioneerImagingTests` passou a 20 testes (ValidateSetup, `ResponsiveLayoutClass`, estados do prompt), todos passando. Antes da mescla: 494/494 |
+| Capturas | 25 PNGs em `Docs/Art/Pioneer10_Imaging/<estado>_<L>x<A>.png`: 11 estados em 1280×720; 7 também em 960×600 e 1024×768 (4:3, classe `sa-layout--narrow`). Fundo claro #C99A6E (pior caso) |
+| Contraste medido no render (`contrast-audit.txt`) | 0 falhas. Pior texto: números das faixas 8,83:1 (mín. 4,5:1); pior não-texto: cursor × zona 4,07:1 (mín. 3:1) |
+| Layout (`layout-audit.txt`) | 0 falhas: quadro dentro da tela, imagem, trilha, prompt e legenda dentro do quadro; exatamente uma classe `sa-hold--*` por captura |
+| Builder reexecutado | Arquivos idênticos |
+| Build WebGL (`Pioneer10.unity`, cache limpo) | Sucesso: 17 arquivos, 13,91 MiB, shaders 3/3, hashes conferidos |
+
+A auditoria achou e corrigi: o cursor de fase (#C9C2B4) sobre a trilha translúcida dava 2,59:1 (abaixo de 3:1). A trilha agora usa `--sa-color-plate-strong` e o cursor `--sa-color-on-plate`. Cores translúcidas do cursor e da zona são compostas por cálculo, e o texto é medido nos pixels.
+
+**Não executado:** Play Mode, navegador, teste humano de compreensão, leitura com 3D atrás do painel. O contraste foi medido no render offscreen do Editor, não no player WebGL.
