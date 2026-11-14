@@ -1,0 +1,26 @@
+test_all_pages_are_read_and_prs_are_excluded (__main__.ReadinessTests.test_all_pages_are_read_and_prs_are_excluded) ... ok
+test_apply_preserves_unmanaged_labels_and_check_never_calls_project_hook (__main__.ReadinessTests.test_apply_preserves_unmanaged_labels_and_check_never_calls_project_hook) ... ok
+test_claim_assigns_and_marks_doing_after_dependencies (__main__.ReadinessTests.test_claim_assigns_and_marks_doing_after_dependencies) ... ok
+test_claim_does_not_steal_review_or_another_persons_task (__main__.ReadinessTests.test_claim_does_not_steal_review_or_another_persons_task) ... ok
+test_claim_refuses_blocked_task_without_writes (__main__.ReadinessTests.test_claim_refuses_blocked_task_without_writes) ... ok
+test_claim_refuses_missing_assignment_and_rolls_back_concurrent_wip (__main__.ReadinessTests.test_claim_refuses_missing_assignment_and_rolls_back_concurrent_wip) ... ok
+test_cli_default_is_readonly_and_bad_claim_returns_nonzero (__main__.ReadinessTests.test_cli_default_is_readonly_and_bad_claim_returns_nonzero) ... ok
+test_closed_without_integration_does_not_unlock_dependency (__main__.ReadinessTests.test_closed_without_integration_does_not_unlock_dependency) ... ok
+test_merged_main_is_supported_and_issue_close_event_does_not_prove_integration (__main__.ReadinessTests.test_merged_main_is_supported_and_issue_close_event_does_not_prove_integration) ... ok
+test_missing_mapping_wrong_title_and_cycle_are_safe (__main__.ReadinessTests.test_missing_mapping_wrong_title_and_cycle_are_safe) ... ok
+test_missing_project_hook_is_explicit (__main__.ReadinessTests.test_missing_project_hook_is_explicit) ... ok
+test_only_closed_and_integrated_is_done (__main__.ReadinessTests.test_only_closed_and_integrated_is_done) ... ok
+test_only_exact_closing_lines_outside_code_are_accepted (__main__.ReadinessTests.test_only_exact_closing_lines_outside_code_are_accepted) ... ok
+test_open_integrated_is_not_done_and_reopening_removes_old_proof (__main__.ReadinessTests.test_open_integrated_is_not_done_and_reopening_removes_old_proof) ... ok
+test_optional_backlog_review_external_block_and_unassignment (__main__.ReadinessTests.test_optional_backlog_review_external_block_and_unassignment) ... ok
+test_optional_can_be_claimed_explicitly_and_existing_claim_is_idempotent (__main__.ReadinessTests.test_optional_can_be_claimed_explicitly_and_existing_claim_is_idempotent) ... ok
+test_pr_merge_marks_only_mapped_issues_and_closes_in_same_run (__main__.ReadinessTests.test_pr_merge_marks_only_mapped_issues_and_closes_in_same_run) ... ok
+test_unclaimed_optional_stays_in_backlog_but_cannot_bypass_dependencies (__main__.ReadinessTests.test_unclaimed_optional_stays_in_backlog_but_cannot_bypass_dependencies) ... ok
+test_wip_counts_another_open_assignment_even_if_blocked (__main__.ReadinessTests.test_wip_counts_another_open_assignment_even_if_blocked) ... ok
+test_workflow_executes_only_default_branch_code_and_never_injects_pr_body (__main__.ReadinessTests.test_workflow_executes_only_default_branch_code_and_never_injects_pr_body) ... ok
+test_wrong_repo_wrong_base_or_unmerged_pr_never_marks_integrated (__main__.ReadinessTests.test_wrong_repo_wrong_base_or_unmerged_pr_never_marks_integrated) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.011s
+
+OK

@@ -1,0 +1,823 @@
+{
+  "issues": 84,
+  "edges": 204,
+  "relationships": [
+    {
+      "task": "CORE-002",
+      "blockedBy": "CORE-001"
+    },
+    {
+      "task": "CORE-003",
+      "blockedBy": "CORE-002"
+    },
+    {
+      "task": "CORE-004",
+      "blockedBy": "CORE-002"
+    },
+    {
+      "task": "CORE-005",
+      "blockedBy": "CORE-002"
+    },
+    {
+      "task": "CORE-006",
+      "blockedBy": "CORE-001"
+    },
+    {
+      "task": "CORE-006",
+      "blockedBy": "CORE-002"
+    },
+    {
+      "task": "UI-002",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "UI-002",
+      "blockedBy": "UI-001"
+    },
+    {
+      "task": "UI-003",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "UI-003",
+      "blockedBy": "UI-001"
+    },
+    {
+      "task": "UI-004",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "UI-004",
+      "blockedBy": "UI-001"
+    },
+    {
+      "task": "UI-005",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "UI-005",
+      "blockedBy": "UI-003"
+    },
+    {
+      "task": "UI-006",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "UI-006",
+      "blockedBy": "UI-003"
+    },
+    {
+      "task": "UI-007",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "UI-007",
+      "blockedBy": "UI-003"
+    },
+    {
+      "task": "AUD-002",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "AUD-002",
+      "blockedBy": "AUD-001"
+    },
+    {
+      "task": "QA-001",
+      "blockedBy": "CORE-001"
+    },
+    {
+      "task": "QA-002",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "QA-002",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "QA-002",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "UI-008",
+      "blockedBy": "UI-002"
+    },
+    {
+      "task": "UI-008",
+      "blockedBy": "UI-004"
+    },
+    {
+      "task": "MAR-001",
+      "blockedBy": "CORE-002"
+    },
+    {
+      "task": "MAR-001",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "MAR-001",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "MAR-002",
+      "blockedBy": "CORE-002"
+    },
+    {
+      "task": "MAR-002",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "MAR-002",
+      "blockedBy": "MAR-001"
+    },
+    {
+      "task": "MAR-003",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "MAR-003",
+      "blockedBy": "MAR-001"
+    },
+    {
+      "task": "MAR-004",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "MAR-004",
+      "blockedBy": "MAR-001"
+    },
+    {
+      "task": "MAR-005",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "MAR-005",
+      "blockedBy": "MAR-004"
+    },
+    {
+      "task": "MAR-006",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "MAR-006",
+      "blockedBy": "MAR-001"
+    },
+    {
+      "task": "MAR-007",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "MAR-007",
+      "blockedBy": "MAR-001"
+    },
+    {
+      "task": "MAR-008",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "MAR-008",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "MAR-008",
+      "blockedBy": "MAR-001"
+    },
+    {
+      "task": "MAR-009",
+      "blockedBy": "MAR-001"
+    },
+    {
+      "task": "MAR-009",
+      "blockedBy": "MAR-002"
+    },
+    {
+      "task": "MAR-009",
+      "blockedBy": "MAR-003"
+    },
+    {
+      "task": "MAR-009",
+      "blockedBy": "MAR-005"
+    },
+    {
+      "task": "MAR-009",
+      "blockedBy": "MAR-006"
+    },
+    {
+      "task": "MAR-009",
+      "blockedBy": "MAR-007"
+    },
+    {
+      "task": "MAR-009",
+      "blockedBy": "MAR-008"
+    },
+    {
+      "task": "MAR-009",
+      "blockedBy": "MAR-018"
+    },
+    {
+      "task": "MAR-010",
+      "blockedBy": "MAR-009"
+    },
+    {
+      "task": "MAR-010",
+      "blockedBy": "QA-001"
+    },
+    {
+      "task": "MAR-011",
+      "blockedBy": "ART-001"
+    },
+    {
+      "task": "MAR-011",
+      "blockedBy": "CORE-001"
+    },
+    {
+      "task": "MAR-012",
+      "blockedBy": "ART-001"
+    },
+    {
+      "task": "MAR-012",
+      "blockedBy": "MAR-011"
+    },
+    {
+      "task": "MAR-013",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "MAR-013",
+      "blockedBy": "MAR-011"
+    },
+    {
+      "task": "MAR-014",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "MAR-014",
+      "blockedBy": "MAR-011"
+    },
+    {
+      "task": "MAR-015",
+      "blockedBy": "ART-001"
+    },
+    {
+      "task": "MAR-016",
+      "blockedBy": "ART-001"
+    },
+    {
+      "task": "MAR-017",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "MAR-017",
+      "blockedBy": "MAR-011"
+    },
+    {
+      "task": "MAR-018",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "MAR-018",
+      "blockedBy": "MAR-013"
+    },
+    {
+      "task": "MAR-018",
+      "blockedBy": "MAR-014"
+    },
+    {
+      "task": "MAR-018",
+      "blockedBy": "MAR-017"
+    },
+    {
+      "task": "MAR-018",
+      "blockedBy": "MAR-019"
+    },
+    {
+      "task": "MAR-019",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "MAR-019",
+      "blockedBy": "MAR-011"
+    },
+    {
+      "task": "MAR-020",
+      "blockedBy": "MAR-012"
+    },
+    {
+      "task": "MAR-020",
+      "blockedBy": "MAR-015"
+    },
+    {
+      "task": "MAR-020",
+      "blockedBy": "MAR-016"
+    },
+    {
+      "task": "MAR-020",
+      "blockedBy": "MAR-018"
+    },
+    {
+      "task": "MAR-020",
+      "blockedBy": "QA-001"
+    },
+    {
+      "task": "MAR-021",
+      "blockedBy": "MAR-020"
+    },
+    {
+      "task": "MAR-022",
+      "blockedBy": "MAR-018"
+    },
+    {
+      "task": "MAR-022",
+      "blockedBy": "MAR-019"
+    },
+    {
+      "task": "PIO-002",
+      "blockedBy": "ART-001"
+    },
+    {
+      "task": "PIO-003",
+      "blockedBy": "CORE-001"
+    },
+    {
+      "task": "PIO-003",
+      "blockedBy": "CORE-002"
+    },
+    {
+      "task": "PIO-003",
+      "blockedBy": "ART-001"
+    },
+    {
+      "task": "PIO-004",
+      "blockedBy": "PIO-003"
+    },
+    {
+      "task": "PIO-004",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "PIO-004",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "PIO-005",
+      "blockedBy": "PIO-003"
+    },
+    {
+      "task": "PIO-005",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "PIO-005",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "PIO-006",
+      "blockedBy": "PIO-003"
+    },
+    {
+      "task": "PIO-006",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "PIO-006",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "PIO-008",
+      "blockedBy": "PIO-006"
+    },
+    {
+      "task": "PIO-008",
+      "blockedBy": "PIO-007"
+    },
+    {
+      "task": "PIO-008",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "PIO-009",
+      "blockedBy": "PIO-003"
+    },
+    {
+      "task": "PIO-009",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "PIO-009",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "PIO-010",
+      "blockedBy": "PIO-003"
+    },
+    {
+      "task": "PIO-010",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "PIO-010",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "PIO-011",
+      "blockedBy": "PIO-003"
+    },
+    {
+      "task": "PIO-011",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "PIO-011",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "PIO-012",
+      "blockedBy": "PIO-003"
+    },
+    {
+      "task": "PIO-012",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "PIO-013",
+      "blockedBy": "PIO-001"
+    },
+    {
+      "task": "PIO-013",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "PIO-014",
+      "blockedBy": "PIO-002"
+    },
+    {
+      "task": "PIO-014",
+      "blockedBy": "PIO-004"
+    },
+    {
+      "task": "PIO-014",
+      "blockedBy": "PIO-005"
+    },
+    {
+      "task": "PIO-014",
+      "blockedBy": "PIO-008"
+    },
+    {
+      "task": "PIO-014",
+      "blockedBy": "PIO-009"
+    },
+    {
+      "task": "PIO-014",
+      "blockedBy": "PIO-010"
+    },
+    {
+      "task": "PIO-014",
+      "blockedBy": "PIO-011"
+    },
+    {
+      "task": "PIO-014",
+      "blockedBy": "PIO-012"
+    },
+    {
+      "task": "PIO-014",
+      "blockedBy": "PIO-013"
+    },
+    {
+      "task": "PIO-014",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "PIO-015",
+      "blockedBy": "PIO-014"
+    },
+    {
+      "task": "PIO-015",
+      "blockedBy": "QA-001"
+    },
+    {
+      "task": "PIO-016",
+      "blockedBy": "PIO-014"
+    },
+    {
+      "task": "PIO-017",
+      "blockedBy": "PIO-001"
+    },
+    {
+      "task": "SUR-002",
+      "blockedBy": "CORE-001"
+    },
+    {
+      "task": "SUR-002",
+      "blockedBy": "CORE-002"
+    },
+    {
+      "task": "SUR-002",
+      "blockedBy": "ART-001"
+    },
+    {
+      "task": "SUR-002",
+      "blockedBy": "SUR-001"
+    },
+    {
+      "task": "SUR-003",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "SUR-003",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "SUR-003",
+      "blockedBy": "SUR-001"
+    },
+    {
+      "task": "SUR-004",
+      "blockedBy": "CORE-002"
+    },
+    {
+      "task": "SUR-004",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "SUR-004",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "SUR-005",
+      "blockedBy": "SUR-003"
+    },
+    {
+      "task": "SUR-005",
+      "blockedBy": "SUR-004"
+    },
+    {
+      "task": "SUR-005",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "SUR-006",
+      "blockedBy": "SUR-002"
+    },
+    {
+      "task": "SUR-006",
+      "blockedBy": "SUR-004"
+    },
+    {
+      "task": "SUR-006",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "SUR-007",
+      "blockedBy": "SUR-002"
+    },
+    {
+      "task": "SUR-007",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "SUR-008",
+      "blockedBy": "SUR-004"
+    },
+    {
+      "task": "SUR-008",
+      "blockedBy": "SUR-007"
+    },
+    {
+      "task": "SUR-008",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "SUR-009",
+      "blockedBy": "SUR-002"
+    },
+    {
+      "task": "SUR-009",
+      "blockedBy": "SUR-004"
+    },
+    {
+      "task": "SUR-009",
+      "blockedBy": "CORE-003"
+    },
+    {
+      "task": "SUR-010",
+      "blockedBy": "SUR-009"
+    },
+    {
+      "task": "SUR-010",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "SUR-011",
+      "blockedBy": "SUR-007"
+    },
+    {
+      "task": "SUR-011",
+      "blockedBy": "SUR-004"
+    },
+    {
+      "task": "SUR-011",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "SUR-012",
+      "blockedBy": "SUR-002"
+    },
+    {
+      "task": "SUR-012",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "SUR-012",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "SUR-013",
+      "blockedBy": "SUR-002"
+    },
+    {
+      "task": "SUR-013",
+      "blockedBy": "SUR-012"
+    },
+    {
+      "task": "SUR-013",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "SUR-013",
+      "blockedBy": "CORE-005"
+    },
+    {
+      "task": "SUR-014",
+      "blockedBy": "SUR-001"
+    },
+    {
+      "task": "SUR-014",
+      "blockedBy": "CORE-004"
+    },
+    {
+      "task": "SUR-015",
+      "blockedBy": "QA-001"
+    },
+    {
+      "task": "SUR-015",
+      "blockedBy": "SUR-003"
+    },
+    {
+      "task": "SUR-015",
+      "blockedBy": "SUR-005"
+    },
+    {
+      "task": "SUR-015",
+      "blockedBy": "SUR-006"
+    },
+    {
+      "task": "SUR-015",
+      "blockedBy": "SUR-008"
+    },
+    {
+      "task": "SUR-015",
+      "blockedBy": "SUR-010"
+    },
+    {
+      "task": "SUR-015",
+      "blockedBy": "SUR-011"
+    },
+    {
+      "task": "SUR-015",
+      "blockedBy": "SUR-013"
+    },
+    {
+      "task": "SUR-015",
+      "blockedBy": "SUR-014"
+    },
+    {
+      "task": "SUR-016",
+      "blockedBy": "SUR-015"
+    },
+    {
+      "task": "SUR-017",
+      "blockedBy": "SUR-001"
+    },
+    {
+      "task": "SUR-017",
+      "blockedBy": "SUR-015"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "MAR-010"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "MAR-020"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "PIO-015"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "SUR-015"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "CORE-006"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "UI-002"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "UI-004"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "UI-005"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "UI-006"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "UI-007"
+    },
+    {
+      "task": "INT-001",
+      "blockedBy": "AUD-002"
+    },
+    {
+      "task": "SCI-001",
+      "blockedBy": "UI-004"
+    },
+    {
+      "task": "SCI-001",
+      "blockedBy": "MAR-001"
+    },
+    {
+      "task": "SCI-001",
+      "blockedBy": "PIO-001"
+    },
+    {
+      "task": "SCI-001",
+      "blockedBy": "SUR-001"
+    },
+    {
+      "task": "ART-002",
+      "blockedBy": "INT-001"
+    },
+    {
+      "task": "QA-003",
+      "blockedBy": "INT-001"
+    },
+    {
+      "task": "QA-003",
+      "blockedBy": "QA-002"
+    },
+    {
+      "task": "QA-004",
+      "blockedBy": "INT-001"
+    },
+    {
+      "task": "QA-005",
+      "blockedBy": "INT-001"
+    },
+    {
+      "task": "QA-005",
+      "blockedBy": "QA-001"
+    },
+    {
+      "task": "REL-001",
+      "blockedBy": "QA-003"
+    },
+    {
+      "task": "REL-001",
+      "blockedBy": "QA-005"
+    },
+    {
+      "task": "REL-001",
+      "blockedBy": "SCI-001"
+    },
+    {
+      "task": "REL-001",
+      "blockedBy": "ART-002"
+    },
+    {
+      "task": "REL-002",
+      "blockedBy": "REL-001"
+    },
+    {
+      "task": "REL-002",
+      "blockedBy": "QA-004"
+    },
+    {
+      "task": "AUD-003",
+      "blockedBy": "AUD-002"
+    },
+    {
+      "task": "AUD-003",
+      "blockedBy": "INT-001"
+    }
+  ],
+  "nativeDependenciesApplied": true
+}

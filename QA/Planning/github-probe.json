@@ -1,0 +1,26 @@
+{
+  "login": "joaovdamaceno",
+  "scopes": "gist, repo, workflow",
+  "projectsAccessible": false,
+  "projectsError": "GraphQL: Your token has not been granted the required scopes to execute this query. The 'id' field requires one of the following scopes: ['read:project'], but your token has only been granted the: ['gist', 'repo', 'workflow'] scopes. Please modify your token's scopes at: https://github.com/settings/tokens.; Your token has not been granted the required scopes to execute this query. The 'title' field requires one of the following scopes: ['read:project'], but your token has only been granted the: ['gist', 'repo', 'workflow'] scopes. Please modify your token's scopes at: https://github.com/settings/tokens.; Your token has not been granted the required scopes to execute this query. The 'number' field requires one of the following scopes: ['read:project'], but your token has only been granted the: ['gist', 'repo', 'workflow'] scopes. Please modify your token's scopes at: https://github.com/settings/tokens.; Your token has not been granted the required scopes to execute this query. The 'url' field requires one of the following scopes: ['read:project'], but your token has only been granted the: ['gist', 'repo', 'workflow'] scopes. Please modify your token's scopes at: https://github.com/settings/tokens.; Your token has not been granted the required scopes to execute this query. The 'public' field requires one of the following scopes: ['read:project'], but your token has only been granted the: ['gist', 'repo', 'workflow'] scopes. Please modify your token's scopes at: https://github.com/settings/tokens.",
+  "viewInput": {
+    "name": "CreateProjectV2ViewInput",
+    "inputFields": [
+      {
+        "name": "clientMutationId"
+      },
+      {
+        "name": "projectId"
+      },
+      {
+        "name": "name"
+      },
+      {
+        "name": "layout"
+      },
+      {
+        "name": "configuration"
+      }
+    ]
+  }
+}
