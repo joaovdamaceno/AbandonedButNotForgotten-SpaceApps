@@ -33,6 +33,7 @@ Cada anchor é registrado como rig no `CameraDirector` com o próprio ID. Um `Sh
 | `PIO.Launch.Ellipse` | Launch | PIO01.C · gráfico Terra–Lua (PIO-004 no `DeepSpace/LaunchDiagramSocket`) |
 | `PIO.Launch` ● | Launch | PIO01.D · sonda livre, antena e RTGs (primeiro hold) |
 | `PIO.Belt` ● | Belt | Plano longo quase vazio: sonda pequena no cinturão real |
+| `PIO.Belt.Sensor` | Belt | Registro de poeira: dorso do refletor à esquerda, instrumento de UI à direita (PIO-005) |
 | `PIO.JupiterApproach` ● | JupiterApproach | PIO03.B · Júpiter em ~2/3 do quadro, sonda no terço inferior |
 | `PIO.JupiterApproach.Instrument` | JupiterApproach | PIO03.C · close do fotopolarímetro voltado a Júpiter |
 | `PIO.Imaging` ● | Imaging | Júpiter e sonda à esquerda; **quadro de UI reservado à direita** (`TryGetUiFrame`) |
@@ -64,6 +65,20 @@ Uma câmera, sem pós-processamento (nenhum SSAO, DOF ou motion blur), sem MSAA/
 **Hold do RTG:** o cartão abre o contexto `Panel` com o candidato `PIO.Launch.Rtg` (texto `PIO.UI.rtg`). O E mantido desde antes do cartão é ignorado até ser solto (InputRouter); soltar pausa sem perder o progresso; a pausa do shell congela tudo. Retorno visual: calor nos RTGs (laranja) → pulsos pela haste → eletricidade no compartimento (ciano). Os cartões de título, data (“2 MAR 1972 · FLÓRIDA / 3 MAR · UTC”) e linhas de antena/RTG são eventos da sequência (`PIO.Launch.Title`, `.DateCard`, `.Callouts`) para a camada de UI; os textos vêm da PIO-001/UI-004.
 
 **Sem tremor:** não há vibração de câmera em nenhum modo (a vibração do roteiro é opcional); o movimento é dolly curto e o acompanhamento do foguete.
+
+## Cinturão (PIO-005)
+
+| Arquivo | Papel |
+| --- | --- |
+| `Sequences/PIO_Belt.asset` | 58 s: mapa 0–12, fantasia 12–27 (15 s), espaço real 27–40, registros 40–58. A trava `PIO.Belt.Gate` segura PIO.02.06 até os 5 registros |
+| `Runtime/BeltInvestigation.cs` | Lógica do estado (sem UI): fantasia sem dano, 5 registros por E mantido (2 s cada), clique, ajuda aos 6/12 s, saída e conclusão únicas |
+| `Runtime/BeltPanelView.cs` + `UI/BeltPanel.uxml/.uss/.prefab` | Painel UI Toolkit; só desenha um `BeltViewState` e devolve cliques. Textos por chave `PIO.UI.*` |
+| `Editor/PioneerBeltBuilder.cs` | Builder CORE-006 `pioneer10.stage.belt` (raiz `[R5] Pioneer Belt`, depois de `pioneer10.stage`) |
+| `Editor/PioneerBeltCapture.cs` | Prévia do painel em `Docs/Art/Pioneer10_Belt/` (menu PIO-005). **Precisa da janela da Unity em primeiro plano**; sem foco o painel sai preto |
+
+**Uso pelo controlador (PIO-014):** `belt.Initialize(sequenceDirector, interactionService, inputRouter, sessionClock, resolverDeTexto)`, `Completed += () => chapterDirector.CompleteStep("PIO.Belt")`, `Begin(skippable)`; `Cancel()` na mudança de estado. O resolvedor devolve o texto da chave (PT/EN) e `{count}` recebe o número de registros.
+
+**Sem Game Over:** não há vida, dano nem repetição. A fantasia termina pelo relógio narrativo e os registros só avançam por ação do jogador (E mantido, clique ou "Ajuda de alinhamento" acionada).
 
 ### Movimento reduzido e pausa
 
