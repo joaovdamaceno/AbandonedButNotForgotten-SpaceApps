@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="../Design/SpaceAppsTokens.uss" />
+    <Style src="../Design/SpaceAppsComponents.uss" />
+    <Style src="DossierScreen.uss" />
+    <ui:VisualElement name="dossier-root" class="sa-root sa-dossier">
+        <ui:VisualElement class="sa-dossier__header">
+            <ui:VisualElement>
+                <ui:Label name="header-stamp" class="sa-stamp" />
+                <ui:Label name="game-title" class="sa-dossier__game-title" />
+            </ui:VisualElement>
+            <ui:Label name="lede" class="sa-dossier__lede" />
+        </ui:VisualElement>
+        <ui:Label name="error-banner" class="sa-dossier__error" />
+        <ui:VisualElement name="folders" class="sa-dossier__folders" />
+        <ui:VisualElement class="sa-dossier__footer">
+            <ui:VisualElement class="sa-dossier__footer-group">
+                <ui:Label name="language-label" class="sa-stamp sa-dossier__footer-label" />
+                <ui:Button name="language-pt" class="sa-button sa-button--secondary sa-lang" />
+                <ui:Button name="language-en" class="sa-button sa-button--secondary sa-lang" />
+                <ui:Button name="settings-button" class="sa-button sa-button--link" />
+                <ui:Button name="credits-button" class="sa-button sa-button--link" />
+            </ui:VisualElement>
+            <ui:Label name="disclaimer" class="sa-stamp sa-dossier__disclaimer" />
+        </ui:VisualElement>
+        <ui:VisualElement name="panel-overlay" class="sa-modal">
+            <ui:VisualElement name="panel-card" class="sa-modal__card">
+                <ui:Label name="panel-stamp" class="sa-stamp sa-stamp--accent" />
+                <ui:Label name="panel-title" class="sa-modal__title" />
+                <ui:ScrollView name="panel-body" mode="Vertical" class="sa-modal__body" />
+                <ui:VisualElement name="panel-actions" class="sa-modal__actions" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="loading-overlay" class="sa-loading">
+            <ui:Label name="loading-stamp" class="sa-stamp sa-stamp--accent" />
+            <ui:Label name="loading-title" class="sa-loading__title" />
+            <ui:Label name="loading-chapter" class="sa-loading__chapter" />
+            <ui:VisualElement class="sa-loading__track">
+                <ui:VisualElement name="loading-fill" class="sa-loading__fill" />
+            </ui:VisualElement>
+            <ui:Label name="loading-note" class="sa-loading__note" />
+            <ui:Label name="loading-hint" class="sa-loading__hint" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
