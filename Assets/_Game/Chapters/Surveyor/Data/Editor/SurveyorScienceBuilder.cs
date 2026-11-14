@@ -81,8 +81,9 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.EditorTools
             var errors = new List<string>();
             var manifest = JsonUtility.FromJson<Manifest>(json);
             if (manifest == null) { errors.Add("Manifesto visual ausente."); return errors; }
+            if (science == null) { errors.Add("Catálogo científico ausente."); return errors; }
             var sources = new Dictionary<string, SurveyorScience.Source>();
-            foreach (var source in science.Sources)
+            foreach (var source in science.Sources ?? Array.Empty<SurveyorScience.Source>())
                 if (source != null && !string.IsNullOrEmpty(source.id)) sources[source.id] = source;
             var ids = new HashSet<string>();
             foreach (var reference in manifest.visualReferences ?? Array.Empty<VisualReference>())

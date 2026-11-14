@@ -134,6 +134,14 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.Tests
         }
 
         [Test]
+        public void MissingSourceCollectionReturnsErrorsWithoutThrowing()
+        {
+            JsonUtility.FromJsonOverwrite("{\"sources\":null}", science);
+            Assert.That(SurveyorScienceBuilder.ValidateReferences(json, science), Is.Not.Empty);
+            Assert.That(SurveyorScienceBuilder.ValidateReferences(json, null), Is.Not.Empty);
+        }
+
+        [Test]
         public void EmptyCatalogAndVisualManifestFailClearly()
         {
             var empty = ScriptableObject.CreateInstance<SurveyorScience>();
