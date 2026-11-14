@@ -51,7 +51,7 @@ namespace Abandoned.SpaceApps.UI
         public static int CountEnabledAudioListeners()
         {
             var count = 0;
-            foreach (var listener in UnityEngine.Object.FindObjectsByType<AudioListener>(FindObjectsSortMode.None))
+            foreach (var listener in UnityEngine.Object.FindObjectsByType<AudioListener>())
             {
                 if (listener != null && listener.enabled && listener.gameObject.activeInHierarchy)
                     count++;
