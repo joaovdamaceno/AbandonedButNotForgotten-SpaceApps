@@ -1,0 +1,23 @@
+{
+    "status": "passed",
+    "utc": "2026-11-14T21:06:23.6240000Z",
+    "graphicsDevice": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 6GB Laptop GPU (0x000025EC) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "unityVersion": "6000.6.7f1",
+    "qualityName": "Very Low",
+    "cycles": 4,
+    "restarts": 3,
+    "allocations": 4,
+    "releases": 4,
+    "sourceGated": true,
+    "scanTopToBottom": true,
+    "monochrome": true,
+    "scanPausePreserved": true,
+    "observerPositionPreserved": true,
+    "pictureRetained": true,
+    "returnReleased": true,
+    "beforeMean": 0.11339425295591354,
+    "halfTopMean": 0.3138996660709381,
+    "halfBottomMean": 0.11373326927423477,
+    "fullRange": 0.20392157137393951,
+    "errors": []
+}

@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+ <Style src="../../../UI/Design/SpaceAppsTokens.uss" /><Style src="../../../UI/Design/SpaceAppsComponents.uss" /><Style src="DescentTelemetry.uss" /><Style src="TelevisionPanel.uss" />
+ <ui:VisualElement class="sa-root sa-chapter--surveyor descent-root">
+  <ui:VisualElement class="descent-header"><ui:Label name="archive" class="sa-stamp descent-muted" /><ui:VisualElement class="descent-toolbar"><ui:Button name="language" class="descent-tool" /><ui:Button name="pause" class="descent-tool" /></ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement name="entry" class="descent-entry"><ui:Label name="title" class="descent-title" /><ui:Label name="description" class="descent-description" /><ui:Button name="start" class="descent-primary" /></ui:VisualElement>
+  <ui:VisualElement name="flight" class="tv-flight">
+   <ui:Label name="phase" class="sa-stamp descent-accent" />
+   <ui:VisualElement class="tv-body">
+    <ui:VisualElement name="screen-slot" class="tv-screen-slot"><ui:VisualElement name="screen" class="tv-screen"><ui:Image name="image" class="tv-image" picking-mode="Ignore" /><ui:Label name="standby" class="sa-stamp tv-standby" /></ui:VisualElement></ui:VisualElement>
+    <ui:VisualElement name="instrument" class="tv-instrument">
+     <ui:Label name="mode" class="sa-stamp descent-accent" /><ui:Label name="status" class="descent-status" />
+     <ui:VisualElement class="descent-meter"><ui:VisualElement name="progress" class="descent-fill" /></ui:VisualElement>
+     <ui:Button name="confirm" class="descent-primary" /><ui:Label name="help" class="descent-help" />
+     <ui:Label name="provenance" class="sa-stamp tv-context" /><ui:Label name="location" class="tv-location" />
+     <ui:Label name="next" class="descent-description tv-next" /><ui:Button name="restart" class="descent-secondary" /><ui:Button name="return" class="descent-secondary" />
+    </ui:VisualElement>
+   </ui:VisualElement>
+   <ui:VisualElement class="tv-caption-slot"><ui:VisualElement name="subtitle-plate" class="descent-subtitle-plate"><ui:Label name="subtitle" class="descent-subtitle" /></ui:VisualElement></ui:VisualElement>
+  </ui:VisualElement>
+  <ui:VisualElement name="pause-overlay" class="descent-overlay"><ui:VisualElement name="pause-card" class="descent-pause-card"><ui:Label name="pause-title" class="descent-pause-title" /><ui:Label name="pause-description" class="descent-description" /><ui:Button name="resume" class="descent-primary" /><ui:Button name="restart-paused" class="descent-secondary" /><ui:Button name="return-paused" class="descent-secondary" /></ui:VisualElement></ui:VisualElement>
+ </ui:VisualElement>
+</ui:UXML>
