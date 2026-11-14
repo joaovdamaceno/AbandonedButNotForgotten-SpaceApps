@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "pioneer10",
+  "source": "Docs/Chapters/02_PIONEER_10.md (estados, legendas e HUD) e Docs/Chapters/02_PIONEER_SOURCES.md (fatos, fontes e divergências)",
+  "notes": [
+    "Fonte única de ordem, duração, cues e fatos do capítulo Pioneer 10 (PIO-001). Os textos PT/EN ficam em Data/Localization/Pioneer10.pt-BR.json e Pioneer10.en.json; nenhum texto narrativo é literal em script.",
+    "Tempo é LOCAL ao estado, em segundos do relógio ativo (SequenceClock): pausa, arquivo e carregamento não contam. Datas históricas são dados, nunca derivadas do tempo da partida.",
+    "A ordem dos estados é explícita (campo 'order' e lista 'states'); nenhum código avança a história somando 1 a um enum.",
+    "timing.kind = window: legenda por janela de tempo local. timing.kind = trigger: abre quando o evento acontece e fica pelo menos minimumReadSeconds; um 'gate' marca a ação que a sequência espera antes de seguir.",
+    "Números como 5, 8 e 4 (registros, faixas, contatos) são amostragem de gameplay, não contagem histórica: ver 'relativeIndicators'.",
+    "IDs de gatilho de PIO.Imaging seguem o código já integrado (PioneerImaging). Os de PIO.Plaque e PIO.Listening são PROPOSTOS aqui e devem ser confirmados por PIO-009 e PIO-011."
+  ],
+  "timeBudget": {
+    "nominalSeconds": 375,
+    "approvalRangeSeconds": [300, 420],
+    "excludes": "arquivo, carregamento e pausa",
+    "readingStretch": [
+      {"cueId": "PIO.07.06", "nominalSeconds": 4, "maxSeconds": 7, "note": "A animação pode alongar até 7 s sem cortar a legenda."},
+      {"cueId": "PIO.04.09", "nominalSeconds": 5, "maxSeconds": 8, "note": "Mesmo critério se o idioma precisar de mais tempo."}
+    ],
+    "maxWithStretchSeconds": 381,
+    "rule": "Nunca acelerar a leitura para preservar um número exato de segundos."
+  },
+  "states": [
+    {
+      "id": "PIO.Launch", "order": 1, "nominalSeconds": 40, "globalStartSeconds": 0, "globalEndSeconds": 40,
+      "summary": "Reconhece a sonda, a orientação e os RTGs; segura E no cartão do gerador.",
+      "requiredExit": "Introdução lida e demonstração de energia concluída.",
+      "hold": {"id": "PIO.Launch.Rtg", "seconds": 3, "promptKey": "PIO.UI.rtg"},
+      "shots": ["PIO01.A", "PIO01.B", "PIO01.C", "PIO01.D"]
+    },
+    {
+      "id": "PIO.Belt", "order": 2, "nominalSeconds": 58, "globalStartSeconds": 40, "globalEndSeconds": 98,
+      "summary": "15 s de imaginação identificada e cinco registros guiados de poeira.",
+      "requiredExit": "Cinco registros reais estilizados, sem dano.",
+      "hold": {"id": "PIO.Belt.Record", "seconds": 10, "promptKey": "PIO.UI.dust", "note": "Um registro a cada 2 s; mínimo de 10 s."},
+      "shots": ["PIO02.Map", "PIO02.Fantasy", "PIO02.Reality", "PIO02.Record"]
+    },
+    {
+      "id": "PIO.JupiterApproach", "order": 3, "nominalSeconds": 27, "globalStartSeconds": 98, "globalEndSeconds": 125,
+      "summary": "Vê a escala de Júpiter e a demora do rádio.",
+      "requiredExit": "Revelação e explicação terminadas."
+    },
+    {
+      "id": "PIO.Imaging", "order": 4, "nominalSeconds": 74, "globalStartSeconds": 125, "globalEndSeconds": 199,
+      "summary": "Monta oito faixas em dois canais, aplica o comando de recuperação e vê as fotos históricas.",
+      "requiredExit": "8/8 faixas, comando confirmado e duas imagens reveladas.",
+      "hold": {"id": "PIO.Imaging.Scan", "seconds": null, "promptKey": "PIO.UI.scan", "note": "Hold contínuo é aceito; sem penalidade por hold antecipado."},
+      "interruption": {"afterStrip": 6, "gateId": "PIO.Imaging.Gate6", "recoveryGateId": "PIO.Imaging.GateRecovery"}
+    },
+    {
+      "id": "PIO.Plaque", "order": 5, "nominalSeconds": 47, "globalStartSeconds": 199, "globalEndSeconds": 246,
+      "summary": "Encaixa cinco símbolos de uma mensagem.",
+      "requiredExit": "Cinco partes identificadas, sem pontuação.",
+      "pieces": ["hydrogen", "pulsars", "solarSystem", "pioneerScale", "people"]
+    },
+    {
+      "id": "PIO.Outbound", "order": 6, "nominalSeconds": 39, "globalStartSeconds": 246, "globalEndSeconds": 285,
+      "summary": "Acompanha distância e redução de potência; prioriza a transmissão.",
+      "requiredExit": "Economia confirmada, sem desligamento fatal por erro.",
+      "hold": {"id": "PIO.Outbound.Power", "seconds": 3, "promptKey": "PIO.UI.power"}
+    },
+    {
+      "id": "PIO.Listening", "order": 7, "nominalSeconds": 52, "globalStartSeconds": 285, "globalEndSeconds": 337,
+      "summary": "Sintoniza três contatos e presencia uma quarta tentativa sem resposta.",
+      "requiredExit": "Três contatos e a janela final de silêncio concluídos.",
+      "contacts": [
+        {"id": "PIO.Listening.Contact1", "holdSeconds": 2, "zoneWidthFraction": 0.30, "factId": "F-CONTACT-2002-03"},
+        {"id": "PIO.Listening.Contact2", "holdSeconds": 2, "zoneWidthFraction": 0.30, "factId": "F-CONTACT-2002-04"},
+        {"id": "PIO.Listening.Contact3", "holdSeconds": null, "zoneWidthFraction": 0.30, "factId": "F-CONTACT-2003-01", "note": "Volume menor e sinal visual mais fraco; zona ainda legível."},
+        {"id": "PIO.Listening.Attempt4", "holdSeconds": null, "zoneWidthFraction": null, "factId": "F-CONTACT-2003-02", "note": "Inevitável e honesta: não há zona escondida nem frequência correta; sem erro/alarme de falha do jogador."}
+      ],
+      "silenceSeconds": 2.5
+    },
+    {
+      "id": "PIO.Farewell", "order": 8, "nominalSeconds": 38, "globalStartSeconds": 337, "globalEndSeconds": 375,
+      "summary": "Entende que perder a comunicação não interrompe a trajetória.",
+      "requiredExit": "Memorial e tela de conclusão (Voltar ao arquivo / Repetir).",
+      "lastSecondsOffer": 2
+    }
+  ],
+  "cues": [
+    {"id": "PIO.01.01", "state": "PIO.Launch", "textKey": "PIO.01.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 7}},
+    {"id": "PIO.01.02", "state": "PIO.Launch", "textKey": "PIO.01.02", "timing": {"kind": "window", "startSeconds": 8, "endSeconds": 16}},
+    {"id": "PIO.01.03", "state": "PIO.Launch", "textKey": "PIO.01.03", "timing": {"kind": "window", "startSeconds": 18, "endSeconds": 25}},
+    {"id": "PIO.01.04", "state": "PIO.Launch", "textKey": "PIO.01.04", "timing": {"kind": "window", "startSeconds": 26, "endSeconds": 32}},
+    {"id": "PIO.01.05", "state": "PIO.Launch", "textKey": "PIO.01.05", "timing": {"kind": "window", "startSeconds": 33, "endSeconds": 40}},
+
+    {"id": "PIO.02.01", "state": "PIO.Belt", "textKey": "PIO.02.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 6}},
+    {"id": "PIO.02.02", "state": "PIO.Belt", "textKey": "PIO.02.02", "timing": {"kind": "window", "startSeconds": 6, "endSeconds": 12}},
+    {"id": "PIO.02.03", "state": "PIO.Belt", "textKey": "PIO.02.03", "timing": {"kind": "window", "startSeconds": 13, "endSeconds": 20}},
+    {"id": "PIO.02.04", "state": "PIO.Belt", "textKey": "PIO.02.04", "timing": {"kind": "window", "startSeconds": 27, "endSeconds": 34}},
+    {"id": "PIO.02.05", "state": "PIO.Belt", "textKey": "PIO.02.05", "timing": {"kind": "window", "startSeconds": 34, "endSeconds": 40}},
+    {"id": "PIO.02.06", "state": "PIO.Belt", "textKey": "PIO.02.06", "timing": {"kind": "window", "startSeconds": 51, "endSeconds": 58}, "gate": {"id": "PIO.Belt.Gate", "condition": "5/5 registros"}},
+
+    {"id": "PIO.03.01", "state": "PIO.JupiterApproach", "textKey": "PIO.03.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 8}},
+    {"id": "PIO.03.02", "state": "PIO.JupiterApproach", "textKey": "PIO.03.02", "timing": {"kind": "window", "startSeconds": 9, "endSeconds": 17}},
+    {"id": "PIO.03.03", "state": "PIO.JupiterApproach", "textKey": "PIO.03.03", "timing": {"kind": "window", "startSeconds": 18, "endSeconds": 26}},
+
+    {"id": "PIO.04.01", "state": "PIO.Imaging", "textKey": "PIO.04.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 8}},
+    {"id": "PIO.04.02", "state": "PIO.Imaging", "textKey": "PIO.04.02", "timing": {"kind": "window", "startSeconds": 8, "endSeconds": 16}},
+    {"id": "PIO.04.03", "state": "PIO.Imaging", "textKey": "PIO.04.03", "timing": {"kind": "trigger", "triggerId": "PIO.Imaging.Gate4", "afterEvent": "faixa 4 concluída", "minimumReadSeconds": 6}},
+    {"id": "PIO.04.04", "state": "PIO.Imaging", "textKey": "PIO.04.04", "timing": {"kind": "trigger", "triggerId": "PIO.Imaging.Gate6", "afterEvent": "faixa 6 concluída (interrupção por radiação)", "minimumReadSeconds": 6}},
+    {"id": "PIO.04.05", "state": "PIO.Imaging", "textKey": "PIO.04.05", "timing": {"kind": "trigger", "triggerId": "PIO.Imaging.GateRecovery", "afterEvent": "sequência de recuperação confirmada", "minimumReadSeconds": 6}},
+    {"id": "PIO.04.06", "state": "PIO.Imaging", "textKey": "PIO.04.06", "timing": {"kind": "window", "startSeconds": 48, "endSeconds": 55}, "gate": {"id": "PIO.Imaging.Gate8", "condition": "8/8 faixas"}},
+    {"id": "PIO.04.07", "state": "PIO.Imaging", "textKey": "PIO.04.07", "timing": {"kind": "window", "startSeconds": 55, "endSeconds": 63}},
+    {"id": "PIO.04.08", "state": "PIO.Imaging", "textKey": "PIO.04.08", "timing": {"kind": "window", "startSeconds": 63, "endSeconds": 69}},
+    {"id": "PIO.04.09", "state": "PIO.Imaging", "textKey": "PIO.04.09", "timing": {"kind": "window", "startSeconds": 69, "endSeconds": 74}},
+
+    {"id": "PIO.05.01", "state": "PIO.Plaque", "textKey": "PIO.05.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 8}},
+    {"id": "PIO.05.02", "state": "PIO.Plaque", "textKey": "PIO.05.02", "timing": {"kind": "trigger", "triggerId": "PIO.Plaque.Hydrogen", "afterEvent": "peça hidrogênio encaixada", "minimumReadSeconds": 4}},
+    {"id": "PIO.05.03", "state": "PIO.Plaque", "textKey": "PIO.05.03", "timing": {"kind": "trigger", "triggerId": "PIO.Plaque.Pulsars", "afterEvent": "peça pulsares encaixada", "minimumReadSeconds": 4}},
+    {"id": "PIO.05.04", "state": "PIO.Plaque", "textKey": "PIO.05.04", "timing": {"kind": "trigger", "triggerId": "PIO.Plaque.SolarSystem", "afterEvent": "peça sistema encaixada", "minimumReadSeconds": 4}},
+    {"id": "PIO.05.05", "state": "PIO.Plaque", "textKey": "PIO.05.05", "timing": {"kind": "trigger", "triggerId": "PIO.Plaque.PioneerScale", "afterEvent": "peça silhueta encaixada", "minimumReadSeconds": 4}},
+    {"id": "PIO.05.06", "state": "PIO.Plaque", "textKey": "PIO.05.06", "timing": {"kind": "trigger", "triggerId": "PIO.Plaque.People", "afterEvent": "peça pessoas encaixada", "minimumReadSeconds": 4}},
+    {"id": "PIO.05.07", "state": "PIO.Plaque", "textKey": "PIO.05.07", "timing": {"kind": "window", "startSeconds": 38, "endSeconds": 46}, "gate": {"id": "PIO.Plaque.Gate", "condition": "5/5 peças"}},
+
+    {"id": "PIO.06.01", "state": "PIO.Outbound", "textKey": "PIO.06.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 8}},
+    {"id": "PIO.06.02", "state": "PIO.Outbound", "textKey": "PIO.06.02", "timing": {"kind": "window", "startSeconds": 8, "endSeconds": 16}},
+    {"id": "PIO.06.03", "state": "PIO.Outbound", "textKey": "PIO.06.03", "timing": {"kind": "window", "startSeconds": 17, "endSeconds": 24}},
+    {"id": "PIO.06.04", "state": "PIO.Outbound", "textKey": "PIO.06.04", "timing": {"kind": "window", "startSeconds": 25, "endSeconds": 33}},
+    {"id": "PIO.06.05", "state": "PIO.Outbound", "textKey": "PIO.06.05", "timing": {"kind": "window", "startSeconds": 33, "endSeconds": 39}},
+
+    {"id": "PIO.07.01", "state": "PIO.Listening", "textKey": "PIO.07.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 7}},
+    {"id": "PIO.07.02", "state": "PIO.Listening", "textKey": "PIO.07.02", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact1", "afterEvent": "contato 1 concluído", "minimumReadSeconds": 5}},
+    {"id": "PIO.07.03", "state": "PIO.Listening", "textKey": "PIO.07.03", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact2", "afterEvent": "contato 2 concluído", "minimumReadSeconds": 5}},
+    {"id": "PIO.07.04", "state": "PIO.Listening", "textKey": "PIO.07.04", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact3", "afterEvent": "contato 3 concluído", "minimumReadSeconds": 7}},
+    {"id": "PIO.07.05", "state": "PIO.Listening", "textKey": "PIO.07.05", "timing": {"kind": "window", "startSeconds": 39, "endSeconds": 45}},
+    {"id": "PIO.07.06", "state": "PIO.Listening", "textKey": "PIO.07.06", "timing": {"kind": "window", "startSeconds": 48, "endSeconds": 52}, "readingStretchMaxSeconds": 7},
+
+    {"id": "PIO.08.01", "state": "PIO.Farewell", "textKey": "PIO.08.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 8}},
+    {"id": "PIO.08.02", "state": "PIO.Farewell", "textKey": "PIO.08.02", "timing": {"kind": "window", "startSeconds": 9, "endSeconds": 17}},
+    {"id": "PIO.08.03", "state": "PIO.Farewell", "textKey": "PIO.08.03", "timing": {"kind": "window", "startSeconds": 18, "endSeconds": 26}},
+    {"id": "PIO.08.04", "state": "PIO.Farewell", "textKey": "PIO.08.04", "timing": {"kind": "window", "startSeconds": 27, "endSeconds": 35}}
+  ],
+  "textGroups": {
+    "narrative": "Legendas PIO.NN.NN: o canal narrativo. Uma ideia por legenda, no máximo duas linhas, leitura revista em 720p.",
+    "hud": "Rótulos e prompts PIO.UI.*: verbo + objeto + progresso, em fonte de leitura normal.",
+    "instrument": ["PIO.UI.red", "PIO.UI.blue", "PIO.UI.nearer", "PIO.UI.farther", "PIO.UI.received", "PIO.UI.no_signal"],
+    "card": "Cartões de data PIO.Card.*: dados históricos em UTC (recepção na Terra) ou data local de operação, sempre dizendo qual.",
+    "relativeIndicators": [
+      {"key": "PIO.UI.dust", "meaning": "Cinco registros de poeira = amostragem de gameplay, não contagem histórica de impactos."},
+      {"key": "PIO.UI.scan", "meaning": "Oito conjuntos de linhas = síntese de muitos registros do fotopolarímetro, não oito linhas históricas."},
+      {"key": "PIO.UI.plaque", "meaning": "Cinco peças = adaptação educativa da placa, sem pontuação."},
+      {"key": "PIO.UI.tune", "meaning": "Quatro janelas de escuta = síntese dos contatos reais; o medidor de proximidade é relativo, sem unidade física."}
+    ],
+    "assetRefs": [
+      {"id": "A-PIO", "audit": "Docs/Art/ASSET_AUDIT.md", "status": "integrado na PIO-002"},
+      {"id": "R-PIO-01", "audit": "Docs/Art/ASSET_AUDIT.md", "status": "provisório (PIO-004)"},
+      {"id": "R-PIO-02", "audit": "Docs/Art/ASSET_AUDIT.md", "status": "download pendente (PIO-007)", "source": "P-S10"},
+      {"id": "R-PIO-03", "audit": "Docs/Art/ASSET_AUDIT.md", "status": "download pendente (PIO-007)", "source": "P-S09"},
+      {"id": "R-PIO-04", "audit": "Docs/Art/ASSET_AUDIT.md", "status": "adaptação pendente (PIO-009)", "source": "P-S11, P-S12"},
+      {"id": "R-PIO-05", "audit": "Docs/Art/ASSET_AUDIT.md", "status": "candidato (PIO-011)"}
+    ]
+  },
+  "facts": [
+    {"id": "F-FIRST", "claim": "Primeira missão NASA aos planetas exteriores, primeira travessia do cinturão e primeiro sobrevoo de Júpiter.", "sources": ["P-S01", "P-S02"], "use": "Identidade do dossiê e conclusão; \"primeira\" é histórica, não recorde atual.", "states": ["PIO.Farewell"]},
+    {"id": "F-LAUNCH", "claim": "Lançamento na noite de 2/3/1972 na Flórida, que corresponde a 3/3/1972 em UTC (01:49 GMT).", "kind": "operationOnProbe", "local": "1972-03-02 · Flórida", "utc": "1972-03-03T01:49Z", "sources": ["P-S03", "P-S04"], "use": "Cartão duplo de data, sem misturar hora UTC com dia local.", "states": ["PIO.Launch"], "conflict": "C-LAUNCH-UTC"},
+    {"id": "F-MOON", "claim": "Cruzou a distância orbital da Lua em menos de 11 horas.", "sources": ["P-S02", "P-S05"], "use": "Elipse com órbita gráfica; não afirmar que voou rente à superfície lunar.", "states": ["PIO.Launch"]},
+    {"id": "F-SPIN", "claim": "A rotação estabiliza a atitude e o eixo da antena se relaciona ao eixo de spin.", "sources": ["P-S05"], "use": "Rotação visual constante; não usar \"sempre de pé\" no espaço.", "states": ["PIO.Launch", "PIO.Imaging"]},
+    {"id": "F-RTG", "claim": "Os RTGs fornecem energia pela conversão do calor do decaimento radioativo.", "sources": ["P-S02", "P-S16"], "use": "Cartão calor→eletricidade; sem painéis solares e sem recarga solar.", "states": ["PIO.Launch", "PIO.Outbound"], "caution": "Nenhuma contagem de RTGs em texto (divergência C-RTG-COUNT)."},
+    {"id": "F-DUST", "claim": "O risco importante incluía partículas pequenas desconhecidas, não uma parede de asteroides.", "sources": ["P-S02", "P-S08"], "use": "Contraste entre a fantasia identificada e o espaço real vazio.", "states": ["PIO.Belt"]},
+    {"id": "F-BELT", "claim": "Entrada no cinturão em julho de 1972; saída no começo de 1973 (15/2/1973 como fechamento).", "sources": ["P-S01", "P-S02"], "use": "O filme usa julho→fevereiro, com meses comprimidos.", "states": ["PIO.Belt"], "conflict": "C-BELT-EXIT"},
+    {"id": "F-CHANNELS", "claim": "Canais vermelho e azul medidos pelo fotopolarímetro; o verde é reconstruído no processamento.", "sources": ["P-S06", "P-S07", "P-S08"], "use": "O minigame não imita uma câmera RGB; oito faixas representam muitos registros.", "states": ["PIO.Imaging"]},
+    {"id": "F-RADIATION", "claim": "A radiação disparou funções de comando indevidas; sequências de recuperação ajudaram a reconfigurar o instrumento.", "sources": ["P-S08"], "use": "O botão representa o trabalho da equipe, acompanhado de elipse temporal.", "states": ["PIO.Imaging"]},
+    {"id": "F-DELAY-JUPITER", "claim": "Luz de rádio: cerca de 46 minutos em um sentido e 92 de ida e volta no encontro de Júpiter.", "sources": ["P-S19"], "use": "Explicação de dezenas de minutos; o indicador Terra→sonda→Terra é uma animação editorial.", "states": ["PIO.JupiterApproach", "PIO.Imaging"]},
+    {"id": "F-IO-LOST", "claim": "Houve perda da imagem de Io e de partes de outras imagens.", "sources": ["P-S02", "P-S08"], "use": "Não mostrar Io como foto histórica recebida pela Pioneer 10.", "states": ["PIO.Imaging"]},
+    {"id": "F-GANYMEDE", "claim": "A Pioneer produziu imagens próximas de Ganimedes.", "sources": ["P-S09"], "use": "Foto histórica real aparece depois da montagem de Júpiter.", "states": ["PIO.Imaging"]},
+    {"id": "F-PLAQUE", "claim": "Placa de alumínio anodizado dourado com símbolos da humanidade e da origem.", "sources": ["P-S11", "P-S12"], "use": "Adaptação de cinco peças; o material não é ouro maciço.", "states": ["PIO.Plaque", "PIO.Farewell"]},
+    {"id": "F-ORBITS", "claim": "Cruzar distâncias orbitais não equivale a visitar os planetas; ir além de Netuno não equivale a cruzar a heliopausa.", "sources": ["P-S01", "P-S02"], "use": "Diagrama orbital com datas, sem Saturno ou Urano junto à sonda e sem falsa borda do Sistema Solar.", "states": ["PIO.Outbound"]},
+    {"id": "F-VOYAGER", "claim": "Em 17/2/1998 a Voyager 1 superou a distância heliocêntrica da Pioneer 10.", "sources": ["P-S13"], "use": "Duas linhas de gráfico com referência \"distância ao Sol\"; sem modelar encontro.", "states": ["PIO.Outbound"]},
+    {"id": "F-ROUTINE-END", "claim": "A rotina científica terminou em 31/3/1997 por motivos orçamentários; contatos intermitentes continuaram.", "sources": ["P-S01", "P-S14"], "use": "Ficha opcional do arquivo, separada da redução de potência; não atribuir o marco de 1997 à energia.", "states": [], "optional": true},
+    {"id": "F-CONTACT-2002-03", "claim": "Aquisição em 3/3/2002, trinta anos depois do lançamento.", "kind": "receptionOnEarth", "utc": "2002-03-03", "sources": ["P-S14", "P-S15"], "use": "Contato 1 da escuta. O aniversário usa 3 MAR por coerência com o UTC.", "states": ["PIO.Listening"]},
+    {"id": "F-CONTACT-2002-04", "claim": "Últimos dados de telemetria recebidos em 27/4/2002.", "kind": "receptionOnEarth", "utc": "2002-04-27", "sources": ["P-S14", "P-S15"], "use": "Contato 2. Última telemetria é diferente do último sinal.", "states": ["PIO.Listening"]},
+    {"id": "F-CONTACT-2003-01", "claim": "Último sinal, portadora muito fraca, em 23/1/2003.", "kind": "receptionOnEarth", "utc": "2003-01-23", "sources": ["P-S14"], "use": "Contato 3. Não declarar dados novos.", "states": ["PIO.Listening"]},
+    {"id": "F-CONTACT-2003-02", "claim": "Em 7/2/2003 nenhum sinal foi detectado.", "kind": "receptionOnEarth", "utc": "2003-02-07", "sources": ["P-S14"], "use": "Tentativa 4: sem resposta, sem culpar o jogador. Uma nova busca em 2006 também não detectou sinal (arquivo opcional; a cena não afirma que fevereiro de 2003 foi a última tentativa de toda a história).", "states": ["PIO.Listening"]},
+    {"id": "F-LAST-DELAY", "claim": "No último contato a distância era cerca de 12,23 bilhões de km e a luz levava 11 h 20 min em um sentido.", "sources": ["P-S01", "P-S02"], "use": "Fato histórico fixo, referente ao último sinal de janeiro; não é o tempo do minigame nem a distância atual de 2026.", "states": ["PIO.Listening"]},
+    {"id": "F-POWER", "claim": "A queda de potência explica a incapacidade de continuar transmitindo; não há telemetria de um \"instante da bateria zerada\".", "sources": ["P-S14"], "use": "\"Sem energia suficiente para nos alcançar\"; sem explosão nem shutdown interno literal.", "states": ["PIO.Listening"]},
+    {"id": "F-ALDEBARAN", "claim": "A trajetória geral aponta para a região de Aldebaran; milhões de anos são uma escala histórica.", "sources": ["P-S16"], "use": "Estrela distante e direção geral; não prometer interceptação nem iluminar a sonda.", "states": ["PIO.Farewell"]}
+  ],
+  "sourceConflicts": [
+    {"id": "C-LAUNCH-UTC", "summary": "P-S01 combina 2 de março com 01:49 UT na tabela; os relatórios contemporâneos P-S03 e P-S04 registram 3 de março GMT.", "resolution": "Prevalece P-S03/P-S04. Guardar o conflito; a data local da Flórida continua 2 de março."},
+    {"id": "C-BELT-EXIT", "summary": "Fontes NASA usam janeiro de 1973 para a saída de uma região definida e fevereiro para a conclusão oficial da travessia.", "resolution": "Texto principal usa meses e fevereiro como fechamento (P-S02 especifica 15 de fevereiro), sem cronômetro diário de fronteira física."},
+    {"id": "C-PDS-HOST", "summary": "A ficha PDS do host (instrument_host:spacecraft.p10) menciona painéis solares e dados até 1983, incompatíveis com os relatórios e os últimos contatos.", "resolution": "Não é fonte autorizada para esses itens e NÃO foi copiada. A ficha do instrumento ipp.p10 (P-S06) é usada junto de P-S08."},
+    {"id": "C-RTG-COUNT", "summary": "Páginas resumidas contam pares e unidades de RTG de modo inconsistente.", "resolution": "Nenhuma quantidade textual de RTGs; o modelo e os desenhos oficiais prevalecem."},
+    {"id": "C-FRONTIER", "summary": "Divulgação antiga usa \"deixar o Sistema Solar\" no sentido de ir além dos planetas.", "resolution": "Linguagem precisa: além das órbitas planetárias; sem afirmar heliopausa medida pela Pioneer."}
+  ],
+  "correctionsApplied": [
+    "Abertura: \"uma pequena sonda partiu para os planetas exteriores\" em vez de \"ninguém tinha ido além de Marte\".",
+    "Estabilidade por spin explicada sem prometer apontamento automático à Terra.",
+    "\"Geradores\" no texto principal; \"baterias nucleares\" só explicado, nunca como bateria recarregável.",
+    "Fantasia das pedras com selo visível, 15 s e sem dano; a seção factual ensina o contraste.",
+    "Nomear o instrumento e os comandos indevidos em vez de \"a radiação bagunçou o computador\".",
+    "Canal verde apresentado como estimado no processamento.",
+    "Placa de alumínio anodizado dourado; a história de \"três semanas\" fica fora das legendas P0 (pesquisa opcional P2).",
+    "Aldebaran: direção geral, escala de milhões de anos, sem previsão de encontro e sem iluminar a placa."
+  ]
+}
