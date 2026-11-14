@@ -1,0 +1,44 @@
+.descent-root { flex-grow: 1; padding: 24px 44px 28px; background-color: #080C13; color: #EEE9DD; }
+.descent-header { height: 42px; flex-direction: row; align-items: center; justify-content: space-between; }
+.descent-toolbar { flex-direction: row; }
+.descent-tool { min-width: 60px; height: 36px; font-size: 16px; color: #B7C1CD; background-color: transparent; border-width: 0; }
+.descent-tool:hover, .descent-tool:focus { color: #EDBF70; }
+.descent-muted { color: #97A6B7; }
+.descent-accent { color: #EDBF70; }
+.descent-entry { flex-grow: 1; justify-content: center; max-width: 740px; }
+.descent-title { font-size: 60px; white-space: normal; margin: 0 0 24px; padding: 0; -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf"); }
+.descent-description { font-size: 23px; color: #BAC7D4; white-space: normal; padding: 0; margin-bottom: 26px; }
+.descent-primary { min-height: 52px; margin: 0; padding: 9px 14px; font-size: 20px; color: #111923; background-color: #EDBF70; border-color: #EDBF70; border-width: 2px; border-radius: 4px; white-space: normal; -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf"); }
+.descent-primary:hover, .descent-primary:focus { background-color: #FFE0A5; border-color: #FFE0A5; }
+.descent-primary:disabled { background-color: #14202C; color: #8B9AAA; border-color: #374558; }
+.descent-secondary { height: 40px; margin-top: 10px; font-size: 17px; color: #C4CDD8; background-color: transparent; border-width: 1px; border-color: #405069; border-radius: 3px; }
+.descent-secondary:hover, .descent-secondary:focus { border-color: #EDBF70; color: #EDBF70; }
+.descent-flight { flex-grow: 1; padding-top: 26px; }
+.descent-body { flex-direction: row; flex-grow: 1; align-items: center; }
+.descent-schematic { flex-grow: 1; margin-right: 38px; }
+.descent-diagram { height: 360px; }
+.descent-schematic .sa-stamp { font-size: 12px; letter-spacing: 1px; }
+.descent-contacts { font-size: 21px; color: #D1CBBE; padding: 0; margin-top: 14px; white-space: normal; }
+.descent-instrument { width: 320px; flex-shrink: 0; }
+.descent-status { font-size: 27px; color: #D6C397; white-space: normal; margin: 16px 0 20px; padding: 0; }
+.descent-meter { height: 4px; margin-bottom: 16px; background-color: #273746; }
+.descent-fill { height: 4px; width: 0; background-color: #EDBF70; }
+.descent-radio { margin-top: 20px; margin-bottom: 10px; }
+.descent-radio-fill { background-color: #9AC7D3; }
+.descent-help { font-size: 17px; color: #A1B2C3; white-space: normal; padding: 0; margin-top: 12px; }
+.descent-camera { font-size: 12px; letter-spacing: 0; color: #98ADB8; white-space: normal; margin-top: 22px; }
+.descent-landing-stamp { margin-top: 26px; }
+.descent-date { font-size: 24px; padding: 0; margin-bottom: 8px; }
+.descent-location { font-size: 17px; white-space: normal; color: #EDBF70; padding: 0; }
+.descent-subtitle-plate { align-self: center; max-width: 1050px; padding: 10px 20px; min-height: 62px; margin-top: 16px; border-top-width: 1px; border-top-color: #344150; }
+.descent-subtitle { font-size: 24px; white-space: normal; -unity-text-align: middle-center; margin: 0; padding: 0; }
+.descent-overlay { position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center; justify-content: center; background-color: rgba(5,8,13,0.96); }
+.descent-pause-card { width: 460px; padding: 34px; background-color: #101923; border-color: #455367; border-width: 1px; border-radius: 4px; }
+.descent-pause-title { font-size: 34px; padding: 0; margin: 0 0 18px; }
+.sa-layout--narrow .descent-root { padding-left: 26px; padding-right: 26px; }
+.sa-layout--narrow .descent-instrument { width: 278px; }
+.sa-layout--narrow .descent-schematic { margin-right: 24px; }
+.sa-layout--narrow .descent-diagram { height: 330px; }
+.sa-layout--narrow .descent-status { font-size: 24px; }
+.sa-layout--narrow .descent-subtitle { font-size: 22px; }
+.sa-layout--narrow .descent-date { font-size: 22px; }
