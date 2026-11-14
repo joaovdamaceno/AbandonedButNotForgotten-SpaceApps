@@ -1,0 +1,37 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="../SpaceAppsTokens.uss" />
+    <Style src="../SpaceAppsComponents.uss" />
+    <ui:VisualElement name="hud-root" picking-mode="Ignore" class="sa-root sa-hud sa-chapter--mars">
+        <ui:VisualElement class="sa-hud__top" picking-mode="Ignore">
+            <ui:VisualElement name="objective" class="sa-plate sa-objective">
+                <ui:Label text="OPPORTUNITY · MERIDIANI · 2004" class="sa-stamp sa-stamp--hud" />
+                <ui:Label text="Prepare e analise a rocha" class="sa-objective__label" />
+                <ui:Label text="McKittrick · 4 m" class="sa-objective__meta" />
+            </ui:VisualElement>
+            <ui:VisualElement picking-mode="Ignore" style="align-items: flex-end;">
+            <ui:VisualElement class="sa-plate sa-pause">
+                <ui:VisualElement class="sa-icon-pause"><ui:VisualElement class="sa-icon-pause__bar" /><ui:VisualElement class="sa-icon-pause__bar" /></ui:VisualElement>
+                <ui:Label text="Pausa" class="sa-hold__label" />
+                <ui:Label text="P / Esc" class="sa-keyhint" />
+            </ui:VisualElement>
+                <ui:VisualElement class="sa-plate sa-toast">
+                    <ui:Label text="✓" class="sa-toast__mark" />
+                    <ui:Label text="Hematita · no solo e na rocha" class="sa-hold__label" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="sa-hud__bottom" picking-mode="Ignore">
+            <ui:VisualElement class="sa-plate sa-hold sa-hold--holding">
+                <ui:VisualElement class="sa-keycap"><ui:Label text="E" class="sa-keycap__glyph" /></ui:VisualElement>
+                <ui:VisualElement class="sa-hold__body">
+                    <ui:Label text="Segure E · esmerilhar" class="sa-hold__label" />
+                    <ui:Label text="OPERANDO · 60%" class="sa-hold__status" />
+                    <ui:VisualElement class="sa-progress"><ui:VisualElement class="sa-progress__fill" style="width: 60%;" /></ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="subtitle" class="sa-subtitle">
+                <ui:Label text="A RAT esmerilha a camada externa e revela material menos alterado." class="sa-subtitle__text" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
