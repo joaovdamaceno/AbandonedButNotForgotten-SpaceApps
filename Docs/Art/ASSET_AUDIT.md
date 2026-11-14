@@ -21,7 +21,7 @@ Estados usados: **Página verificada** (lida, não baixada) · **Pendente — eq
 | Crédito na página | **NASA/JPL-Caltech** |
 | Arquivos anunciados | GLB `24883_MER_static.glb` **11,36 MB**; USDZ 3,01 MB (ambos de 08/03/2024) |
 | Observação | O nome “static” sugere modelo sem peças articuladas; separar rodas/braço/mastro/antena é trabalho de MAR-011. 11,36 MB excede o orçamento: decimar e reempacotar texturas. |
-| Estado | **Página verificada · Pendente — equipe** (a equipe fornecerá o arquivo; nada baixado) |
+| Estado | **Página verificada · Não usado** — em 14/11/2026 a MAR-011 substituiu o GLB oficial por um modelo próprio riggado (G-MAR-02 em `ASSET_CREDITS.md`, `Assets/_Game/Chapters/Mars/Art/Rover/RIG.md`). O GLB da NASA não foi baixado |
 | Responsável / prioridade / tarefa | R4 · P0 · MAR-011 |
 
 Componentes reconhecíveis que o modelo final **e** o proxy precisam ter (conferir cada item no GLB e em foto da missão):
