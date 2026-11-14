@@ -1,6 +1,6 @@
 # Registro de recursos — novo projeto
 
-Fonte única de procedência e direitos. Regras: [Docs/Art/IMPORT_RULES.md](Docs/Art/IMPORT_RULES.md). Inventário e estado de recebimento: [Docs/Art/ASSET_AUDIT.md](Docs/Art/ASSET_AUDIT.md). Áudio: [Docs/Art/AUDIO_CUE_SHEET.md](Docs/Art/AUDIO_CUE_SHEET.md). Links de referência não representam assets baixados ou aprovados. Não há licença aberta global atribuída ao código original.
+Fonte única de procedência e direitos. Regras: [Docs/Art/IMPORT_RULES.md](Docs/Art/IMPORT_RULES.md). Inventário e estado de recebimento: [Docs/Art/ASSET_AUDIT.md](Docs/Art/ASSET_AUDIT.md). Áudio: `Docs/Art/AUDIO_CUE_SHEET.md` (entregue pela AUD-001). Links de referência não representam assets baixados ou aprovados. Não há licença aberta global atribuída ao código original.
 
 ## Importados (no repositório)
 
