@@ -32,3 +32,8 @@ Para cada importação registrar: nome, autor/instituição, URL específica, da
 
 - **Surveyor 3 da equipe:** `files.zip` fornecido pelo usuário em 14/11/2026. Autor individual não informado; crédito à equipe fornecedora. Originais e hashes em `SourceAssets/Surveyor3/README.md`; uso no projeto solicitado pelo usuário. Não é apresentado como um modelo oficial NASA. Cópia otimizada e atlas em `Assets/_Game/Chapters/Surveyor/Art/TeamModel/`; alterações e conversor descritos em `Art/SITE_README.md`. A versão com retrofoguete permanece fora de Assets.
 - **Solo, rochas e materiais lunares próprios:** geração procedural desta tarefa em `Assets/_Game/Chapters/Surveyor/Art/SiteGenerated/`. Referências institucionais de forma/ciência: NASA/JPL TR 32-1177, [Part I](https://ntrs.nasa.gov/citations/19670028267), [Part II](https://ntrs.nasa.gov/citations/19670028832), e [NASA SP-284](https://ntrs.nasa.gov/citations/19720019081). Não foram copiadas fotografias como texturas nem declarados os dados como um DEM real.
+
+## SUR-003 — telemetria e som da abertura
+
+- **LaunchBed.wav:** síntese original desta tarefa, produzida por `SurveyorLaunchBuilder` em 14/11/2026; loop de 4 s, PCM mono 22.050 Hz, ondas de 55/82,5/110 Hz. Caminho: `Assets/_Game/Chapters/Surveyor/Sequences/Audio/LaunchBed.wav`. Sem gravação externa, composição de terceiros ou voz. É sonificação cinematográfica, não áudio registrado da missão; segue a licença/autoria do código próprio do projeto.
+- **Diagrama, retículo, anel e layout:** desenho vetorial em UI Toolkit/Painter2D feito nesta tarefa, em `Chapters/Surveyor/UI/`. Sem imagens históricas importadas. Fontes Outfit e IBM Plex Mono reutilizadas da UI-001, conforme créditos e OFL acima.
