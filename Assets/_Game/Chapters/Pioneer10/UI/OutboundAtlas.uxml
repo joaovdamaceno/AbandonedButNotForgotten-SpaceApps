@@ -1,0 +1,78 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="OutboundAtlas.uss" />
+    <!-- PIO-010. Sem frases literais: todo rótulo recebe uma chave PIO.UI.* / PIO.Card.* resolvida pelo capítulo.
+         O diagrama orbital e o gráfico são desenhados por Painter2D (OutboundAtlasView); os rótulos ficam sobre eles. -->
+    <ui:VisualElement name="outbound-root" picking-mode="Ignore" class="sa-root pio-out">
+        <ui:VisualElement name="frame" picking-mode="Ignore" class="sa-instrument pio-out__frame">
+
+            <!-- Cabeçalho: cartão de data e a nota científica da composição. -->
+            <ui:VisualElement picking-mode="Ignore" class="pio-out__head">
+                <ui:Label name="card" class="pio-out__card" />
+                <ui:VisualElement picking-mode="Ignore" class="pio-out__notes">
+                    <ui:Label name="note" class="pio-out__note" />
+                    <ui:Label name="note-2" class="pio-out__note pio-out__note--second" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement picking-mode="Ignore" class="pio-out__body">
+
+                <!-- Energia dos geradores (24–39 s): barras relativas, sem valores. Rádio com contorno e ícone próprios. -->
+                <ui:VisualElement name="power-col" picking-mode="Ignore" class="sa-plate pio-out__power">
+                    <ui:Label name="power-title" class="pio-out__small" />
+                    <ui:VisualElement picking-mode="Ignore" class="pio-out__row">
+                        <ui:VisualElement picking-mode="Ignore" class="pio-out__glyph pio-out__glyph--radio" />
+                        <ui:Label name="radio-label" class="pio-out__small" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="bar-radio" picking-mode="Ignore" class="pio-out__bar pio-out__bar--radio"><ui:VisualElement name="fill-radio" picking-mode="Ignore" class="pio-out__fill" /></ui:VisualElement>
+                    <ui:Label name="instruments-label" class="pio-out__small pio-out__small--space" />
+                    <ui:VisualElement name="bar-0" picking-mode="Ignore" class="pio-out__bar"><ui:VisualElement name="fill-0" picking-mode="Ignore" class="pio-out__fill" /></ui:VisualElement>
+                    <ui:VisualElement name="bar-1" picking-mode="Ignore" class="pio-out__bar"><ui:VisualElement name="fill-1" picking-mode="Ignore" class="pio-out__fill" /></ui:VisualElement>
+                    <ui:VisualElement name="bar-2" picking-mode="Ignore" class="pio-out__bar"><ui:VisualElement name="fill-2" picking-mode="Ignore" class="pio-out__fill" /></ui:VisualElement>
+                    <ui:VisualElement name="bar-3" picking-mode="Ignore" class="pio-out__bar"><ui:VisualElement name="fill-3" picking-mode="Ignore" class="pio-out__fill" /></ui:VisualElement>
+                    <ui:Label name="power-ok" class="pio-out__small pio-out__ok" />
+                </ui:VisualElement>
+
+                <ui:VisualElement picking-mode="Ignore" class="pio-out__diagram">
+                    <ui:Label name="diagram-title" class="pio-out__small" />
+
+                    <!-- Diagrama orbital 2D (1976 e 1983): anéis esquemáticos e o arco de saída; nenhum planeta ao lado da sonda. -->
+                    <ui:VisualElement name="orbit" picking-mode="Ignore" class="pio-out__canvas">
+                        <ui:Label name="sun-label" class="pio-out__tag" />
+                        <ui:Label name="ring-0" class="pio-out__tag" />
+                        <ui:Label name="ring-1" class="pio-out__tag" />
+                        <ui:Label name="ring-2" class="pio-out__tag" />
+                        <ui:Label name="ring-3" class="pio-out__tag" />
+                        <ui:Label name="scheme" class="pio-out__tag pio-out__tag--scheme" />
+                    </ui:VisualElement>
+
+                    <!-- Gráfico de 1998: DUAS linhas de distância ao Sol; a Voyager 1 passa a distância da Pioneer, sem encontro. -->
+                    <ui:VisualElement name="chart" picking-mode="Ignore" class="pio-out__canvas">
+                        <ui:Label name="axis-y" class="pio-out__tag" />
+                        <ui:Label name="axis-x" class="pio-out__tag" />
+                        <ui:Label name="line-pioneer" class="pio-out__tag" />
+                        <ui:Label name="line-voyager" class="pio-out__tag" />
+                        <ui:Label name="chart-scheme" class="pio-out__tag pio-out__tag--scheme" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Tempo de comunicação: grandeza SEPARADA da distância heliocêntrica (barra relativa, sem valores). -->
+            <ui:VisualElement picking-mode="Ignore" class="pio-out__foot">
+                <ui:VisualElement picking-mode="Ignore" class="pio-out__comm">
+                    <ui:Label name="comm-label" class="pio-out__small" />
+                    <ui:VisualElement picking-mode="Ignore" class="pio-out__bar pio-out__bar--thin"><ui:VisualElement name="comm-fill" picking-mode="Ignore" class="pio-out__fill pio-out__fill--comm" /></ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement name="hold" class="sa-plate sa-hold pio-out__hold" picking-mode="Ignore">
+                    <ui:VisualElement class="sa-keycap" picking-mode="Ignore"><ui:Label text="E" class="sa-keycap__glyph" /></ui:VisualElement>
+                    <ui:VisualElement class="sa-hold__body" picking-mode="Ignore">
+                        <ui:Label name="hold-label" class="sa-hold__label" />
+                        <ui:VisualElement class="sa-progress" picking-mode="Ignore"><ui:VisualElement name="progress-fill" class="sa-progress__fill" /></ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
