@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="../Design/SpaceAppsTokens.uss" />
+    <Style src="../Design/SpaceAppsComponents.uss" />
+    <Style src="DossierScreen.uss" />
+    <ui:VisualElement name="folder" class="sa-folder">
+        <ui:VisualElement class="sa-folder__tab-row">
+            <ui:Label name="folder-label" class="sa-stamp sa-stamp--accent" />
+            <ui:Button name="folder-details" class="sa-button sa-button--link" />
+        </ui:VisualElement>
+        <ui:VisualElement name="folder-photo" class="sa-folder__photo sa-photo--pending">
+            <ui:Label name="folder-photo-caption" class="sa-photo__caption" />
+        </ui:VisualElement>
+        <ui:Label name="folder-title" class="sa-folder__title" />
+        <ui:Label name="folder-meta" class="sa-stamp sa-folder__meta" />
+        <ui:Label name="folder-question" class="sa-folder__question" />
+        <ui:Label name="folder-status" class="sa-folder__status" />
+        <ui:VisualElement class="sa-folder__actions">
+            <ui:Label name="folder-duration" class="sa-folder__duration" />
+            <ui:Button name="folder-start" class="sa-button sa-button--primary" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
