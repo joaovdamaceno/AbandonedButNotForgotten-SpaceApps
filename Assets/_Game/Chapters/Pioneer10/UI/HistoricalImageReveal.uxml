@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="HistoricalImageReveal.uss" />
+    <!-- PIO-008. Mesmo quadro do painel da varredura (UiFrame do anchor PIO.Imaging): cobre a composição por crossfade.
+         Sem frases literais: rótulos por chaves PIO.UI.*; as imagens entram por background-image no componente. -->
+    <ui:VisualElement name="reveal-root" picking-mode="Ignore" class="sa-root pio-rev" style="display: none;">
+        <ui:VisualElement name="reveal-frame" picking-mode="Ignore" class="sa-instrument pio-rev__frame">
+            <ui:VisualElement picking-mode="Ignore" class="pio-rev__stage">
+                <ui:VisualElement name="reveal-jupiter" picking-mode="Ignore" class="pio-rev__image" />
+                <ui:VisualElement name="reveal-ganymede" picking-mode="Ignore" class="pio-rev__image" />
+                <!-- Io: imagem PERDIDA. Moldura tracejada vazia, para não parecer foto recebida. -->
+                <ui:VisualElement name="reveal-io" picking-mode="Ignore" class="pio-rev__io">
+                    <ui:VisualElement picking-mode="Ignore" class="pio-rev__io-box" />
+                    <ui:Label name="reveal-io-label" class="pio-rev__label" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement picking-mode="Ignore" class="sa-plate pio-rev__footer">
+                <ui:Label name="reveal-real" class="pio-rev__real" />
+                <ui:Label name="reveal-caption" class="pio-rev__label" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
