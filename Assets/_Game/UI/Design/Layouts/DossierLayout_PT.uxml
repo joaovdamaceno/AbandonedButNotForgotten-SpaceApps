@@ -1,0 +1,71 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="../SpaceAppsTokens.uss" />
+    <Style src="../SpaceAppsComponents.uss" />
+    <ui:VisualElement name="dossier-root" class="sa-root sa-dossier">
+        <ui:VisualElement class="sa-dossier__header">
+            <ui:VisualElement>
+                <ui:Label text="ARQUIVO · TRÊS MISSÕES" class="sa-stamp" />
+                <ui:Label text="Abandoned, But Not Forgotten" class="sa-dossier__game-title" />
+            </ui:VisualElement>
+            <ui:Label text="Escolha uma pasta. Cada capítulo começa e termina sozinho." class="sa-dossier__lede" />
+        </ui:VisualElement>
+        <ui:VisualElement name="folders" class="sa-dossier__folders">
+            <ui:VisualElement name="folder-mars" class="sa-folder sa-chapter--mars">
+                <ui:VisualElement class="sa-folder__tab-row">
+                    <ui:Label text="CAPÍTULO I" class="sa-stamp sa-stamp--accent" />
+                    <ui:Button text="Detalhes" class="sa-button sa-button--link" />
+                </ui:VisualElement>
+                <ui:VisualElement class="sa-folder__photo sa-photo--pending">
+                    <ui:Label text="FOTO NASA · PENDENTE" class="sa-photo__caption" />
+                </ui:VisualElement>
+                <ui:Label text="Spirit &amp; Opportunity" class="sa-folder__title" />
+                <ui:Label text="MARTE · 2004–2018" class="sa-stamp sa-folder__meta" />
+                <ui:Label text="Marte já teve água líquida?" class="sa-folder__question" />
+                <ui:VisualElement class="sa-folder__actions">
+                    <ui:Label text="5–7 MIN" class="sa-folder__duration" />
+                    <ui:Button name="folder-mars-start" text="Iniciar" class="sa-button sa-button--primary" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="folder-pioneer" class="sa-folder sa-chapter--pioneer">
+                <ui:VisualElement class="sa-folder__tab-row">
+                    <ui:Label text="CAPÍTULO II" class="sa-stamp sa-stamp--accent" />
+                    <ui:Button text="Detalhes" class="sa-button sa-button--link" />
+                </ui:VisualElement>
+                <ui:VisualElement class="sa-folder__photo sa-photo--pending">
+                    <ui:Label text="FOTO NASA · PENDENTE" class="sa-photo__caption" />
+                </ui:VisualElement>
+                <ui:Label text="Pioneer 10" class="sa-folder__title" />
+                <ui:Label text="JÚPITER E ALÉM · 1972–2003" class="sa-stamp sa-folder__meta" />
+                <ui:Label text="O que havia além de Marte?" class="sa-folder__question" />
+                <ui:VisualElement class="sa-folder__actions">
+                    <ui:Label text="5–7 MIN" class="sa-folder__duration" />
+                    <ui:Button name="folder-pioneer-start" text="Iniciar" class="sa-button sa-button--primary" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="folder-surveyor" class="sa-folder sa-chapter--surveyor">
+                <ui:VisualElement class="sa-folder__tab-row">
+                    <ui:Label text="CAPÍTULO III" class="sa-stamp sa-stamp--accent" />
+                    <ui:Button text="Detalhes" class="sa-button sa-button--link" />
+                </ui:VisualElement>
+                <ui:VisualElement class="sa-folder__photo sa-photo--pending">
+                    <ui:Label text="FOTO NASA · PENDENTE" class="sa-photo__caption" />
+                </ui:VisualElement>
+                <ui:Label text="Surveyor 3" class="sa-folder__title" />
+                <ui:Label text="LUA · 1967" class="sa-stamp sa-folder__meta" />
+                <ui:Label text="O solo lunar sustentaria uma missão com pessoas?" class="sa-folder__question" />
+                <ui:VisualElement class="sa-folder__actions">
+                    <ui:Label text="5–7 MIN" class="sa-folder__duration" />
+                    <ui:Button name="folder-surveyor-start" text="Iniciar" class="sa-button sa-button--primary" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="sa-dossier__footer">
+            <ui:VisualElement class="sa-dossier__footer-group">
+                <ui:Button text="Idioma · PT" class="sa-button sa-button--secondary" />
+                <ui:Button text="Som e texto" class="sa-button sa-button--link" />
+                <ui:Button text="Créditos e fontes" class="sa-button sa-button--link" />
+            </ui:VisualElement>
+            <ui:Label text="Produção educativa independente · sem afiliação ou endosso da NASA" class="sa-stamp sa-dossier__disclaimer" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

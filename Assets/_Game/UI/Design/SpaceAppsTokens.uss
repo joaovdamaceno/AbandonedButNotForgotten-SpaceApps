@@ -1,0 +1,85 @@
+/*
+ * UI-001 · Tokens do sistema visual (R2). Fonte de verdade: Docs/Art/UI_SPEC.md.
+ * Unidades em pixels lógicos do painel: referência 1280×720, escala pela ALTURA (match = 1),
+ * logo a altura lógica é sempre 720 e a largura varia de 960 (4:3) a 1280 (16:9) ou mais.
+ * Contrastes medidos (WCAG 2.x) estão na especificação. Não usar cor como único portador de estado.
+ * O projeto é Linear: a transparência mistura em espaço linear e clareia placas escuras; por isso
+ * o alfa das placas é alto (0,94) e o contraste é medido nos pixels renderizados, não só na tabela sRGB.
+ */
+
+:root, .sa-root {
+    /* Arquivo / dossiê: papel quente e tinta escura */
+    --sa-color-paper: #F2EADB;
+    --sa-color-paper-shade: #E4D8C2;
+    --sa-color-paper-edge: #C9B99D;
+    --sa-color-ink: #1F1A14;
+    --sa-color-ink-muted: #5A5045;
+    --sa-color-blueprint: #8FA3B0;
+
+    /* HUD sobre o 3D: placas escuras translúcidas e texto claro */
+    --sa-color-plate: rgba(12, 14, 18, 0.94);
+    --sa-color-plate-strong: rgba(12, 14, 18, 0.97);
+    --sa-color-plate-edge: rgba(245, 241, 232, 0.22);
+    --sa-color-on-plate: #F5F1E8;
+    --sa-color-on-plate-muted: #C9C2B4;
+    --sa-color-track: rgba(245, 241, 232, 0.18);
+
+    /* Estados: sempre acompanhados de texto e forma */
+    --sa-color-focus: #FFD166;
+    --sa-color-confirm: #8FD99A;
+    --sa-color-warn: #F2A541;
+    --sa-color-imagination: #6FD6E8;
+
+    /* Identidade por capítulo: tom profundo no papel, tom claro no HUD */
+    --sa-color-mars: #8E3B17;
+    --sa-color-mars-hud: #F0946A;
+    --sa-color-pioneer: #6B5216;
+    --sa-color-pioneer-hud: #E9C770;
+    --sa-color-surveyor: #36414D;
+    --sa-color-surveyor-hud: #F2B84B;
+
+    /* Acento ativo (sobrescrito por .sa-chapter--*) */
+    --sa-accent: #1F1A14;
+    --sa-accent-hud: #F5F1E8;
+
+    /* Espaçamento (grade de 4 px) */
+    --sa-space-1: 4px;
+    --sa-space-2: 8px;
+    --sa-space-3: 12px;
+    --sa-space-4: 16px;
+    --sa-space-5: 24px;
+    --sa-space-6: 32px;
+    --sa-space-7: 48px;
+
+    /* Escala tipográfica (px lógicos; mínimo absoluto 16) */
+    --sa-text-label: 16px;
+    --sa-text-body: 20px;
+    --sa-text-hud: 22px;
+    --sa-text-question: 26px;
+    --sa-text-subtitle: 28px;
+    --sa-text-title: 30px;
+    --sa-text-display: 40px;
+
+    --sa-radius-sm: 4px;
+    --sa-radius-md: 8px;
+    --sa-radius-lg: 12px;
+
+    --sa-hit-min: 48px;
+    --sa-subtitle-max-width: 880px;
+    --sa-safe-margin: 32px;
+}
+
+.sa-chapter--mars {
+    --sa-accent: #8E3B17;
+    --sa-accent-hud: #F0946A;
+}
+
+.sa-chapter--pioneer {
+    --sa-accent: #6B5216;
+    --sa-accent-hud: #E9C770;
+}
+
+.sa-chapter--surveyor {
+    --sa-accent: #36414D;
+    --sa-accent-hud: #F2B84B;
+}
