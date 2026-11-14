@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_TWINS.md (M13–M14) e 01_MARS_SOURCES.md (MS10, MS11). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-005. Mesmo formato de 'texts' em MarsSubtitles.json (key, pt, en); a UI/localização pode juntar as tabelas. A descoberta final reutiliza MAR.RESULT03 ('Evidências de água antiga') de MarsSubtitles.json.",
+    "O APXS informa ELEMENTOS e o Mössbauer identifica MINERAIS de ferro; a RAT só prepara a superfície e não mede água (MS10). Resultados qualitativos: nenhum espectro numérico. Nunca afirmar água atual nem vida."
+  ],
+  "texts": [
+    { "key": "MAR.VERB.apxs", "pt": "MEDIR OS ELEMENTOS", "en": "MEASURE THE ELEMENTS" },
+    { "key": "MAR.VERB.mossbauer", "pt": "IDENTIFICAR O MINERAL", "en": "IDENTIFY THE MINERAL" },
+    { "key": "MAR.OBJ.cavity", "pt": "CAVIDADE", "en": "CAVITY" },
+    { "key": "MAR.COMP.apxs", "pt": "ELEMENTO · enxofre abundante", "en": "ELEMENT · abundant sulfur" },
+    { "key": "MAR.COMP.mossbauer", "pt": "MINERAL · jarosita", "en": "MINERAL · jarosite" },
+    { "key": "MAR.COMP.note", "pt": "A RAT prepara a superfície; o APXS informa os elementos e o Mössbauer, os minerais de ferro.", "en": "The RAT prepares the surface; the APXS reports the elements and the Mössbauer the iron minerals." }
+  ]
+}
