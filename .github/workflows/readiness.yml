@@ -1,0 +1,41 @@
+name: Disponibilidade das tarefas
+
+on:
+  issues:
+    types: [opened, closed, reopened, labeled, unlabeled, assigned, unassigned]
+  pull_request_target:
+    types: [closed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+concurrency:
+  group: readiness-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  recalculate:
+    if: github.repository == 'joaovdamaceno/AbandonedButNotForgotten-SpaceApps'
+    runs-on: ubuntu-latest
+    steps:
+      # Nunca executar o código do head do PR com o token de escrita.
+      - name: Obter somente código confiável da branch padrão
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validar regras sem acessar a rede
+        run: python Tools/test_readiness.py
+      - name: Recalcular dependências e disponibilidade
+        env:
+          GH_TOKEN: ${{ github.token }}
+          # Opcional. O Client/hook compartilhado define como acessar Projects.
+          PROJECTS_TOKEN: ${{ secrets.PROJECTS_TOKEN }}
+        run: python Tools/sync_readiness.py --apply

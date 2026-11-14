@@ -1,0 +1,724 @@
+[
+  {
+    "id": "PIO-001",
+    "title": "Congelar dados científicos, estados e legendas PT/EN da Pioneer",
+    "role": "R7",
+    "priority": "P0",
+    "hours": 0.5,
+    "depends_on": [],
+    "files": [
+      "Data/Chapters/Pioneer10.json",
+      "Data/Localization/Pioneer10.pt-BR.json",
+      "Data/Localization/Pioneer10.en.json"
+    ],
+    "owned_paths": [
+      "Data/Chapters/Pioneer10.json",
+      "Data/Localization/Pioneer10.pt-BR.json",
+      "Data/Localization/Pioneer10.en.json"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Dados versionados dos oito estados, de todos os cue IDs e dos textos exatos PT/EN; mapa de fatos para fontes.",
+    "instructions": [
+      "Transcreva as janelas e legendas aprovadas sem inventar comunicação oficial. Use duração local por estado e eventos de hold; não dependa da posição numérica de um enum para avançar a história.",
+      "Cadastre lançamento local em 2 de março/UTC em 3 de março, últimos dados em 27/4/2002, último sinal em 23/1/2003 e tentativa sem resposta em 7/2/2003. Diferencie recepção na Terra de operação na sonda.",
+      "Separe narrativa, labels de instrumento, indicadores relativos e referências de asset. Corrija divergências conforme o registro de fontes; não copie a ficha PDS de host que menciona painéis solares."
+    ],
+    "acceptance": [
+      "As chaves PT/EN coincidem, sem texto narrativo previsto como literal nos scripts.",
+      "A soma nominal é 375 segundos, com alongamento de leitura documentado.",
+      "Existem oito IDs estáveis e ordem explícita, sem referência à campanha antiga."
+    ],
+    "tests": [
+      "Validar JSON e unicidade dos IDs.",
+      "Conferir sobreposição e lacunas de legenda em cada estado.",
+      "R7 compara datas e afirmações críticas com fontes primárias."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/pioneer-10/",
+      "https://ipnpr.jpl.nasa.gov/progress_report/IX/IXE.PDF",
+      "https://science.nasa.gov/missions/pioneer/pioneer-10-sends-last-signal/",
+      "https://pds.nasa.gov/ds-view/pds/viewContext.jsp?identifier=urn%3Anasa%3Apds%3Acontext%3Ainstrument%3Aipp.p10"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-002",
+    "title": "Preparar prefab leve da Pioneer com referência NASA e créditos",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "ART-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Art/PioneerActors.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Art/PioneerMaterials/",
+      "Data/Assets/Pioneer10.json"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Art/PioneerActors.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Art/PioneerMaterials/",
+      "Data/Assets/Pioneer10.json"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Prefab leve com antena, corpo, hastes/RTGs e placa identificados, materiais compartilhados e escala consistente.",
+    "instructions": [
+      "Receba o arquivo da equipe ou baixe o GLB oficial da NASA, registrando origem, hash e licença. Confira se carenagem e configuração de cruzeiro exigem assets distintos.",
+      "Use o refletor de aproximadamente 2,74 m para conferir a escala. Não anime RTGs abrindo como painéis solares nem remova componentes por causa de um resumo de página incorreto.",
+      "Se o arquivo ainda faltar, entregue uma silhueta baseada nas referências e um único ponto de substituição; registre que é provisória. Preserve nomes dos filhos para trocar a malha sem quebrar atividades."
+    ],
+    "acceptance": [
+      "Modelo ou fallback tem origem rastreável e nenhuma textura ausente.",
+      "Meta: LOD0 até 60 mil triângulos e texturas 2K/1K com override Web.",
+      "Placa ligada aos suportes da antena, sem peças flutuando."
+    ],
+    "tests": [
+      "Abrir prefab e conferir escala, eixos e enquadramento.",
+      "Listar materiais, texturas e triângulos; estimar custo Web.",
+      "Confirmar que o asset resolve no build sem download em runtime."
+    ],
+    "sources": [
+      "https://science.nasa.gov/3d-resources/pioneer/",
+      "https://www.nasa.gov/history/50-years-ago-pioneer-10-launches-to-explore-jupiter/",
+      "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-003",
+    "title": "Montar cena espacial única e apresentação de escala",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "CORE-001",
+      "CORE-002",
+      "ART-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Scenes/Pioneer10.unity",
+      "Assets/_Game/Chapters/Pioneer10/Runtime/PioneerPresentation.cs",
+      "Assets/_Game/Chapters/Pioneer10/Art/SpaceStage.prefab"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Scenes/Pioneer10.unity",
+      "Assets/_Game/Chapters/Pioneer10/Runtime/PioneerPresentation.cs",
+      "Assets/_Game/Chapters/Pioneer10/Art/SpaceStage.prefab"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Palco nativo com Pioneer, Júpiter, céu compartilhado e anchors dos oito estados, sem duplicar lógica científica.",
+    "instructions": [
+      "Crie uma câmera 3D principal e quadro de imagem em UI. Use diagrama 2D para órbitas e silhueta para DSN; não converta distâncias astronômicas em coordenadas enormes da Unity.",
+      "Defina direção de luz por grupo de planos e nomeie anchors pela função. Cada corte revela veículo, instrumento ou consequência; evite ângulos consecutivos quase iguais.",
+      "Comece com o contrato do prefab e uma silhueta referenciada; integre o asset definitivo em PIO-014. Não espere PIO-002 terminar para compor o palco."
+    ],
+    "acceptance": [
+      "A cena abre isoladamente com preview dos oito anchors.",
+      "A câmera não atravessa a sonda nem apresenta jitter por coordenadas enormes.",
+      "Uma câmera principal, sem SSAO, DOF ou motion blur no perfil leve."
+    ],
+    "tests": [
+      "Capturar os oito anchors e revisar continuidade e silhueta.",
+      "Medir draw calls, triângulos e luzes.",
+      "Testar movimento reduzido com câmera estável."
+    ],
+    "sources": [
+      "https://science.nasa.gov/3d-resources/pioneer/",
+      "https://www.nasa.gov/history/50-years-ago-pioneer-10-launches-to-explore-jupiter/"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-004",
+    "title": "Dirigir lançamento nativo de 40 segundos e primeiro hold",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "PIO-003",
+      "CORE-003",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Launch.asset",
+      "Assets/_Game/Chapters/Pioneer10/Art/LaunchSilhouette.prefab"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Launch.asset",
+      "Assets/_Game/Chapters/Pioneer10/Art/LaunchSilhouette.prefab"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Partida completa em 40 segundos: título, Atlas noturno, elipse lunar, sonda girando e tutorial do RTG.",
+    "instructions": [
+      "Siga os quatro planos PIO01.A–D e suas funções. Use silhueta do Atlas baseada em referência, chama quente e fumaça cinza limitada; evite uma mancha branca por bloom.",
+      "Mostre 2 MAR na Flórida / 3 MAR em UTC e elipse antes do cruzeiro. Não invente animação de hastes sem referência. O primeiro hold de E dura três segundos e apresenta calor transformado em eletricidade.",
+      "Cancelamento, skip autorizado pelo shell e pausa encerram partículas e holds corretamente. O estado Belt deve começar uma única vez."
+    ],
+    "acceptance": [
+      "Existe participação durante a abertura, sem leitura obrigatória extra de dossiê.",
+      "RTGs não parecem painéis e o mapa lunar não parece um voo rente à Lua.",
+      "Movimento reduzido retira tremor e preserva a informação."
+    ],
+    "tests": [
+      "Reproduzir os 40 segundos e conferir leitura PT/EN.",
+      "Pausar e retomar no lançamento e no hold.",
+      "Segurar E antes da tela e provar que a ação espera a liberação."
+    ],
+    "sources": [
+      "https://www.nasa.gov/history/50-years-ago-pioneer-10-launches-to-explore-jupiter/",
+      "https://ipnpr.jpl.nasa.gov/progress_report/IX/IXE.PDF"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-005",
+    "title": "Implementar fantasia do cinturão e cinco registros guiados",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "PIO-003",
+      "CORE-003",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/BeltInvestigation.cs",
+      "Assets/_Game/Chapters/Pioneer10/UI/BeltPanel.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Belt.asset"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/BeltInvestigation.cs",
+      "Assets/_Game/Chapters/Pioneer10/UI/BeltPanel.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Belt.asset"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Estado de 58 segundos com fantasia identificada de 15 segundos, contraste factual e aquisição guiada 5/5.",
+    "instructions": [
+      "Na fantasia, mantenha o selo IMAGINAÇÃO em todos os frames. Contatos são gráficos e sem dano; o deslocamento é opcional e não existe condição de sobrevivência.",
+      "No trecho factual, use campo quase vazio. Mostre cinco registros grandes numerados, foco automático e hold de E adquirindo um registro a cada dois segundos; clique é uma alternativa.",
+      "O contador sintetiza medições, não cinco impactos históricos. Após 6/12 segundos de dificuldade, reforce o controle e ofereça assistência; não esconda a resposta numa mira."
+    ],
+    "acceptance": [
+      "Não existe Game Over, vida ou repetição do labirinto.",
+      "Os cinco registros são concluíveis só com teclado, sem caçar hotspots.",
+      "A diferença entre imaginação e observação real é explícita."
+    ],
+    "tests": [
+      "Concluir a fantasia mantendo a sonda parada.",
+      "Registrar cinco eventos com E mantido após liberar o comando de abertura.",
+      "Pausar e reiniciar em 3/5, sem registro duplicado ou callback antigo."
+    ],
+    "sources": [
+      "https://www.nasa.gov/history/50-years-ago-pioneer-10-launches-to-explore-jupiter/",
+      "https://ntrs.nasa.gov/citations/20190002224"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-006",
+    "title": "Construir varredura IPP em oito faixas e dois canais",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 1.5,
+    "depends_on": [
+      "PIO-003",
+      "CORE-003",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/PioneerImaging.cs",
+      "Assets/_Game/Chapters/Pioneer10/UI/ImagingPanel.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Imaging.asset"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/PioneerImaging.cs",
+      "Assets/_Game/Chapters/Pioneer10/UI/ImagingPanel.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Imaging.asset"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Varredura IPP em oito faixas e dois canais, com progresso preservado ao soltar E.",
+    "instructions": [
+      "Siga PIO.Imaging: apresentação, oito conjuntos de linhas em janelas largas e revelação. Um hold contínuo registra a próxima janela válida; não exija ritmo ou cliques precisos.",
+      "As primeiras quatro faixas vermelhas e as quatro azuis são síntese de muitos registros. A composição indica que o verde é estimado no processamento.",
+      "Emita um evento em 6/8 para a interrupção de radiação implementada em PIO-008. A retomada é idempotente e preserva a imagem ao pausar."
+    ],
+    "acceptance": [
+      "É possível chegar a 8/8 mantendo E, sem coordenação fina.",
+      "Perder uma passagem não apaga faixas e a ajuda amplia a tolerância.",
+      "UI com foco e instrução legível, usando uma câmera 3D principal."
+    ],
+    "tests": [
+      "Testar hold antecipado, liberação e retomada.",
+      "Executar a 15–30 FPS sem perder janelas válidas.",
+      "Confirmar eventos de 6/8 e 8/8 disparando uma vez."
+    ],
+    "sources": [
+      "https://pds.nasa.gov/ds-view/pds/viewContext.jsp?identifier=urn%3Anasa%3Apds%3Acontext%3Ainstrument%3Aipp.p10",
+      "https://history.arc.nasa.gov/Astrogram/astrogram_1973_12.pdf"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-007",
+    "title": "Selecionar fotos históricas exatas e registrar proveniência",
+    "role": "R7",
+    "priority": "P0",
+    "hours": 0.5,
+    "depends_on": [],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Art/Historical/",
+      "Data/Assets/PioneerHistoricalImages.json"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Art/Historical/",
+      "Data/Assets/PioneerHistoricalImages.json"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Fotos históricas de Júpiter e Ganimedes com origem, missão/data, crédito, hash e resolução Web.",
+    "instructions": [
+      "Escolha produtos reais da Pioneer 10 em páginas oficiais e confira a legenda do download. Conceito artístico ou fotografia Juno/Voyager não serve como resultado histórico de 1973.",
+      "Preserve o detalhe original, inclusive a baixa resolução de Ganimedes. Não crie detalhe por IA ou upscale para rotular depois como fotografia real.",
+      "Exporte versões de até 1024 px, sem duplicatas 4K na build. Guarde URL e hash do original no registro e o original fora das dependências publicadas quando necessário."
+    ],
+    "acceptance": [
+      "Cada imagem tem missão, ano, crédito e origem conferidos.",
+      "A versão Web é comprimida e legível sem recriar detalhes.",
+      "O resultado informa Imagem real / Pioneer 10 / 1973 / NASA."
+    ],
+    "tests": [
+      "Comparar imagem e fonte lado a lado com R7.",
+      "Validar hash, dimensões e importação.",
+      "Auditar dependências para não incluir originais pesados sem uso."
+    ],
+    "sources": [
+      "https://science.nasa.gov/resource/pioneer-10-ganymede/",
+      "https://science.nasa.gov/resource/pioneer-10-at-jupiter/",
+      "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-008",
+    "title": "Integrar recuperação de radiação e revelação fotográfica",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 0.5,
+    "depends_on": [
+      "PIO-006",
+      "PIO-007",
+      "CORE-003"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/ImagingRecovery.cs",
+      "Assets/_Game/Chapters/Pioneer10/UI/HistoricalImageReveal.prefab"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/ImagingRecovery.cs",
+      "Assets/_Game/Chapters/Pioneer10/UI/HistoricalImageReveal.prefab"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Interrupção em 6/8 sem falha, recuperação e revelação das duas imagens históricas.",
+    "instructions": [
+      "Use ruído localizado e texto sobre comando indevido no instrumento. Não pisque a tela inteira nem invente a avaria de um computador moderno.",
+      "Foque um único botão de E. Apresente uma elipse temporal e retome o progresso; não sugira comunicação instantânea na distância de Júpiter.",
+      "Após 8/8, revele a reconstrução e faça crossfade para a fotografia NASA. Diferencie Io perdida de Ganimedes recebida."
+    ],
+    "acceptance": [
+      "Recuperação não provoca dano, reset ou softlock.",
+      "Sem flashes repetitivos; leitura e controle funcionam com som desligado.",
+      "As duas fotos têm créditos e datas corretos."
+    ],
+    "tests": [
+      "Pausar durante a interrupção e retomar.",
+      "Acionar E várias vezes, verificando uma única recuperação.",
+      "Conferir acessibilidade e perfil leve no navegador."
+    ],
+    "sources": [
+      "https://ntrs.nasa.gov/citations/20190002224",
+      "https://history.arc.nasa.gov/Astrogram/astrogram_1973_12.pdf",
+      "https://science.nasa.gov/resource/pioneer-10-ganymede/"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-009",
+    "title": "Implementar placa de cinco símbolos com teclado e snap",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "PIO-003",
+      "CORE-003",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/PioneerPlaqueActivity.cs",
+      "Assets/_Game/Chapters/Pioneer10/UI/PlaquePanel.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Art/PlaqueEducational.svg"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/PioneerPlaqueActivity.cs",
+      "Assets/_Game/Chapters/Pioneer10/UI/PlaquePanel.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Art/PlaqueEducational.svg"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Placa de cinco partes com seleção clara, snap, alternativa sem arrastar e frases PT/EN.",
+    "instructions": [
+      "Adapte a placa em contorno dourado e humanos em silhuetas lisas conforme a direção da equipe. Preserve hidrogênio, pulsares, Sol/Terra, escala e pessoas.",
+      "Ofereça clique peça→alvo, arrastar, setas+E e hold assistido. O contorno correto pulsa após seleção; snap de 96 px em 720p. Não exija decifrar símbolos sem explicação.",
+      "Cada encaixe mostra uma frase de 3–4 segundos. O próximo item já fica disponível; erro não remove acertos. A execução assistida completa as cinco peças em até 30 segundos."
+    ],
+    "acceptance": [
+      "É possível concluir sem mouse, precisão fina ou áudio.",
+      "Placa física de alumínio dourado continua presa à sonda.",
+      "Cinco partes recebem as frases localizadas e progresso 5/5."
+    ],
+    "tests": [
+      "Concluir com teclado e depois com cliques.",
+      "Errar contorno, pausar e reiniciar em 3/5.",
+      "Revisar símbolos e a adaptação artística com as fontes."
+    ],
+    "sources": [
+      "https://science.nasa.gov/resource/pioneer-plaque/",
+      "https://history.arc.nasa.gov/Astrogram/astrogram_1972_3.pdf"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-010",
+    "title": "Montar percurso orbital e síntese de economia de energia",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 0.5,
+    "depends_on": [
+      "PIO-003",
+      "CORE-003",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Outbound.asset",
+      "Assets/_Game/Chapters/Pioneer10/UI/OutboundAtlas.prefab"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Outbound.asset",
+      "Assets/_Game/Chapters/Pioneer10/UI/OutboundAtlas.prefab"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Montagem de 39 segundos com marcos orbitais, queda de potência e ultrapassagem simbólica da Voyager.",
+    "instructions": [
+      "Use um diagrama 2D e cartões de 1976/1983. Cruzar a distância orbital não é visitar Saturno ou Netuno; não coloque os planetas junto à sonda.",
+      "Diferencie ir além das órbitas de cruzar a heliopausa. O gráfico de 1998 compara distância ao Sol em rotas diferentes, sem encontro nem uma segunda sonda 3D.",
+      "Hold de E por três segundos prioriza comunicação com barras relativas. Não invente valores históricos nem uma sequência exata de desligamentos."
+    ],
+    "acceptance": [
+      "A viagem continuada e a necessidade de economizar energia ficam claras.",
+      "Nenhum falso encontro com Saturno, Urano, Netuno ou Voyager.",
+      "Rótulos separam distância heliocêntrica e tempo de comunicação."
+    ],
+    "tests": [
+      "Revisar ciência em PT/EN.",
+      "Pausar durante o hold e preservar o estado.",
+      "Capturar em 720p e revisar legibilidade."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/pioneer-10/",
+      "https://www.jpl.nasa.gov/news/voyager-1-now-most-distant-human-made-object-in-space/"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-011",
+    "title": "Criar escuta DSN com três contatos e silêncio inevitável",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 1.25,
+    "depends_on": [
+      "PIO-003",
+      "CORE-003",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/PioneerListening.cs",
+      "Assets/_Game/Chapters/Pioneer10/UI/ListeningPanel.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Art/DsnSilhouette.prefab"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/PioneerListening.cs",
+      "Assets/_Game/Chapters/Pioneer10/UI/ListeningPanel.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Art/DsnSilhouette.prefab"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Sintonia em 52 segundos com três zonas generosas, resultados históricos distintos e quarta tentativa sem resposta.",
+    "instructions": [
+      "Use uma silhueta de antena baseada em fotografia NASA identificada e creditada. Setas/mouse ajustam uma zona de 30%; indicadores visuais de proximidade equivalem ao feedback sonoro.",
+      "Ofereça varredura assistida por hold de E. Resultados: março de 2002 sinal, abril de 2002 últimos dados, janeiro de 2003 portadora fraca sem telemetria.",
+      "Na janela de 7/2/2003 não existe frequência secreta. Após a escuta, mostre Nenhum sinal / Sua escuta funcionou e reserve 2,5 segundos de silêncio real. Não culpe o jogador."
+    ],
+    "acceptance": [
+      "Os contatos são concluíveis sem audição e sem timing estreito.",
+      "Últimos dados e último sinal aparecem como coisas diferentes.",
+      "Sem Game Over: a quarta tentativa converge com clareza para o final."
+    ],
+    "tests": [
+      "Concluir só com teclado e volume zero.",
+      "Manter E durante cada rodada sem confirmar também a seguinte.",
+      "Pausar no silêncio e reiniciar sem ruído ou animações antigas."
+    ],
+    "sources": [
+      "https://science.nasa.gov/missions/pioneer/pioneer-10-sends-last-signal/",
+      "https://ipnpr.jpl.nasa.gov/progress_report/IX/IXE.PDF",
+      "https://www.nasa.gov/history/50-years-ago-pioneer-10-launches-to-explore-jupiter/"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-012",
+    "title": "Dirigir despedida e conclusão nativas de 38 segundos",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "PIO-003",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Farewell.asset"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Farewell.asset"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Antena terrestre→antena da sonda, detalhe da placa, direção de Aldebaran e memorial de 38 segundos.",
+    "instructions": [
+      "Siga quatro enquadramentos diferentes, mantendo eixo e spin. Um match cut conecta a escuta terrestre à sonda em silêncio; não repita o mesmo zoom.",
+      "Aldebaran é um ponto avermelhado distante e não ilumina a nave. A luz de apresentação da placa apaga antes do plano aberto. O texto diz direção geral e escala de milhões de anos.",
+      "Memorial Pioneer 10 / 1972–2003 / Em viagem. Voltar ao arquivo e Repetir são as ações finais; não iniciar outro capítulo automaticamente."
+    ],
+    "acceptance": [
+      "Fica claro que a comunicação acabou, mas a trajetória continua.",
+      "Nenhum plano atravessa geometria ou aproxima planetas falsamente.",
+      "A tela de conclusão não conta como tempo ativo de capítulo."
+    ],
+    "tests": [
+      "Reproduzir PT/EN e movimento reduzido.",
+      "Pausar e reiniciar na transição das antenas.",
+      "Verificar frames pretos intencionais e ausência de caixas vazias."
+    ],
+    "sources": [
+      "https://science.nasa.gov/missions/pioneer/pioneer-10-sends-last-signal/",
+      "https://science.nasa.gov/resource/pioneer-plaque/",
+      "https://www.nasa.gov/history/50-years-ago-pioneer-10-launches-to-explore-jupiter/"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-013",
+    "title": "Vincular todas as legendas e cues sonoros aos estados",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "PIO-001",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Data/PioneerData.asset",
+      "Assets/_Game/Chapters/Pioneer10/Audio/PioneerCueMap.asset"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Data/PioneerData.asset",
+      "Assets/_Game/Chapters/Pioneer10/Audio/PioneerCueMap.asset"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Mapa de dados, legendas, cues musicais, respirações e silêncio ligado ao player global.",
+    "instructions": [
+      "Importe os textos de PIO-001. Respeite cues por hold e tempos mínimos de leitura; ajuste quebras de linha em 720p sem reduzir a fonte.",
+      "Solicite ao AudioBus quatro estados: Partida, Curiosidade, Distância e Escuta, com crossfade de 1,5–2 segundos. Nenhuma faixa entra sem licença e crédito registrados.",
+      "Ruído de rádio é interface, não som espacial. Evite loops cansativos e reserve o silêncio final. Não gere locução de IA."
+    ],
+    "acceptance": [
+      "PT/EN têm as mesmas chaves e as caixas somem sem texto.",
+      "Pausa e cancelamento interrompem áudio sem vazamento para o arquivo.",
+      "No Web o clique inicial libera áudio; legendas funcionam sem som."
+    ],
+    "tests": [
+      "Ouvir o capítulo com fone e volume comum.",
+      "Trocar idioma fora da atividade e revisar retorno.",
+      "Alongar a leitura de PIO.07.06/PIO.04.09 se necessário, sem cortar textos."
+    ],
+    "sources": [
+      "https://www.nasa.gov/history/50-years-ago-pioneer-10-launches-to-explore-jupiter/",
+      "https://science.nasa.gov/missions/pioneer/pioneer-10-sends-last-signal/"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-014",
+    "title": "Integrar a rota completa Pioneer e reset por capítulo",
+    "role": "R5",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "PIO-002",
+      "PIO-004",
+      "PIO-005",
+      "PIO-008",
+      "PIO-009",
+      "PIO-010",
+      "PIO-011",
+      "PIO-012",
+      "PIO-013",
+      "CORE-005"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/PioneerChapterController.cs",
+      "Assets/_Game/Chapters/Pioneer10/Scenes/Pioneer10.unity",
+      "Assets/_Game/Chapters/Pioneer10/Tests/PioneerFlowTests.cs"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Runtime/PioneerChapterController.cs",
+      "Assets/_Game/Chapters/Pioneer10/Scenes/Pioneer10.unity",
+      "Assets/_Game/Chapters/Pioneer10/Tests/PioneerFlowTests.cs"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Rota completa dossiê→oito estados→resultado→arquivo sem comandos manuais do Editor.",
+    "instructions": [
+      "Configure o capítulo pelo contrato global e não edite o shell de R2. Monte um grafo explícito e conecte referências no Inspector ou em builder local.",
+      "Cancele operações por estado, consuma E uma vez e resete progresso, imagens e áudio. Preview é ferramenta de desenvolvimento e não entra no pacote final.",
+      "Mantenha uma fonte para duração e eventos. Meça tempo ativo real, excluindo pausa, arquivo e carregamento; não conclua atividades por cronômetro."
+    ],
+    "acceptance": [
+      "Os oito estados passam na ordem, com uma única conclusão.",
+      "Repetir limpa interações sem duplicar áudio ou listeners.",
+      "Duração do operador assistido não é relatada como resultado humano."
+    ],
+    "tests": [
+      "PlayMode: ordem, interrupção em 6/8, reset e contatos mais silêncio.",
+      "Percurso com teclado automatizado sem injetar diretamente conclusões.",
+      "Reiniciar em cada atividade e revisar objetos/alocações acumuladas."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/pioneer-10/",
+      "https://science.nasa.gov/missions/pioneer/pioneer-10-sends-last-signal/"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-015",
+    "title": "Homologar primeiro uso e custo Web do capítulo Pioneer",
+    "role": "R7",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "PIO-014",
+      "QA-001"
+    ],
+    "files": [
+      "QA/Pioneer10/acceptance.md",
+      "QA/Pioneer10/browser-metrics.json"
+    ],
+    "owned_paths": [
+      "QA/Pioneer10/acceptance.md",
+      "QA/Pioneer10/browser-metrics.json"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Relatório reproduzível de percurso, compreensão, desempenho e capturas no Web real.",
+    "instructions": [
+      "Na build Web, confira áudio, fullscreen, foco/pausa e teclado. Registre dispositivo, GPU, resolução, download, frametime e memória com os limites de medição.",
+      "Faça uma primeira experiência humana ou registre a pendência. Pergunte sobre cinturão real, linhas da câmera, RTG e último dado/sinal. Não transforme automação em mediana humana.",
+      "Meça a meta de 5–7 minutos. Se ultrapassar sete, reduza esperas e planos repetitivos; não corte leitura nem decida pelo jogador. Abra correções concretas para falhas encontradas."
+    ],
+    "acceptance": [
+      "O relatório separa resultado testado, meta e pendência.",
+      "Nenhum download externo durante a missão; conteúdo incremental busca até 12 MB.",
+      "Perfil leve conserva objetivos legíveis, fotos e shaders corretos."
+    ],
+    "tests": [
+      "Testar Chrome/Edge e Firefox desktop; iframe real quando disponível.",
+      "Observar memória em duas reinicializações.",
+      "Registrar a primeira partida humana ou a pendência, sem fabricar resultados."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/pioneer-10/",
+      "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+    ],
+    "cutline": "Preservar esta entrega no fim de semana; cortar apenas o polimento opcional indicado no roteiro."
+  },
+  {
+    "id": "PIO-016",
+    "title": "Polir antena, metal e transições com luz de recorte",
+    "role": "R5",
+    "priority": "P1",
+    "hours": 2,
+    "depends_on": [
+      "PIO-014"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Pioneer10/Art/PioneerMaterials/",
+      "Assets/_Game/Chapters/Pioneer10/Art/SpaceStage.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Sequences/"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Pioneer10/Art/PioneerMaterials/",
+      "Assets/_Game/Chapters/Pioneer10/Art/SpaceStage.prefab",
+      "Assets/_Game/Chapters/Pioneer10/Sequences/"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Polimento visual adicional sem alterar fluxo ou orçamento Web da versão P0.",
+    "instructions": [
+      "Refine o refletor e a placa por normal maps comprimidos em vez de milhares de malhas; compare com fotografia NASA.",
+      "Reveja cortes por função, movimento reduzido e luminância no escuro. Conserve escala visual das estrelas e dispense luzes volumétricas.",
+      "Não ative efeitos caros sem medir. O capítulo P0 continua jogável se esta tarefa for adiada."
+    ],
+    "acceptance": [
+      "Comparação antes/depois comprova a melhoria visual.",
+      "Nenhum material perdido ou regressão relevante no perfil leve."
+    ],
+    "tests": [
+      "Capturas fixas a 720p.",
+      "Comparar frametime e draw calls antes/depois."
+    ],
+    "sources": [
+      "https://science.nasa.gov/3d-resources/pioneer/",
+      "https://www.nasa.gov/history/50-years-ago-pioneer-10-launches-to-explore-jupiter/"
+    ],
+    "cutline": "Adiar por inteiro se algum capítulo P0 ou QA estiver bloqueado; não é dependência da entrega."
+  },
+  {
+    "id": "PIO-017",
+    "title": "Expandir arquivo histórico com marcos opcionais verificados",
+    "role": "R5",
+    "priority": "P2",
+    "hours": 0.5,
+    "depends_on": [
+      "PIO-001"
+    ],
+    "files": [
+      "Data/Chapters/Pioneer10OptionalFacts.json"
+    ],
+    "owned_paths": [
+      "Data/Chapters/Pioneer10OptionalFacts.json"
+    ],
+    "context": "Você implementa o Capítulo II Pioneer 10 do projeto de Abandoned, But Not Forgotten, planejado em 14/11/2026. O público inclui pessoas que nunca jogaram; são 5–7 minutos por capítulo, com meta nominal de 375 s. Unity 6000.6.7f1, URP 17.6, Web desktop/itch.io e teclado/mouse, priorizando computadores modestos. Leia o contexto mestre do repositório e Docs/Chapters/02_PIONEER_10.md e 02_PIONEER_SOURCES.md antes de editar. Não importe a campanha antiga inteira, não crie vídeos nem locução de IA. Reutilize os contratos globais; não escreva outro sistema de pausa/localização. Nenhuma tarefa está pronta só por estar descrita. Preserve referências científicas, atribuição, acessibilidade e a propriedade dos arquivos abaixo.",
+    "deliverable": "Notas históricas opcionais verificadas sem ampliar o caminho obrigatório.",
+    "instructions": [
+      "Confirme cada afirmação em fonte primária. A história de três semanas para a placa não está aprovada; omita se só houver fonte secundária.",
+      "Marcos de órbitas não são encontros. Separe estimativa futura de evento observado e não apresente valor de 2003 como distância atual.",
+      "Deixe essas notas no arquivo opcional, acessível sem consumir o tempo da pessoa antes de iniciar."
+    ],
+    "acceptance": [
+      "Todo item tem fonte original e contexto.",
+      "Nenhuma nota altera a duração ou o fluxo obrigatório."
+    ],
+    "tests": [
+      "Validar links e obter revisão R7.",
+      "Navegar pelo teclado."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/pioneer-10/",
+      "https://ntrs.nasa.gov/citations/20190002224",
+      "https://history.arc.nasa.gov/Astrogram/astrogram_1972_3.pdf"
+    ],
+    "cutline": "Fora do compromisso de domingo; não bloquear legendas ou minigames com estes fatos."
+  }
+]

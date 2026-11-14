@@ -1,0 +1,15 @@
+{
+  "taskCount": 84,
+  "p0Hours": 79.25,
+  "checks": [
+    "IDs, required fields, role/priority and bounded estimates",
+    "All dependency targets and no P0→P1/P2",
+    "Directed dependency graph has no cycles",
+    "Every task has a complete AI-ready Markdown prompt",
+    "Relative Markdown links resolve",
+    "Three chapters contain bilingual narrative tables",
+    "Production Python scripts parse without executing runtime code"
+  ],
+  "errors": [],
+  "note": "Planning structure only. No new Unity build, gameplay or human session was executed."
+}

@@ -1,0 +1,774 @@
+[
+  {
+    "id": "SUR-001",
+    "title": "Travar os fatos, referências visuais e inventário da Surveyor 3",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Data/SurveyorScience.asset",
+      "Assets/_Game/Chapters/Surveyor/Art/ReferenceManifest.json"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Data/SurveyorScience.asset",
+      "Assets/_Game/Chapters/Surveyor/Art/ReferenceManifest.json"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Lista auditada de fatos, referências de pose/cenário e assets com direitos, pronta para as demais tarefas.",
+    "instructions": [
+      "Ler os dois documentos de capítulo e conferir no relatório contemporâneo os fatos usados no HUD e nas legendas.",
+      "Registrar os conflitos 00:04:17/00:04:53, coordenadas e datas da Apollo; usar minuto/região no HUD, 19/11 para pouso Apollo e 20/11 para visita.",
+      "Adotar 6.326 como total da missão, 4 trincheiras/4 carga/13 impactos como histórico; não usar 98 kPa sem ensaio e conversão reconciliados.",
+      "Escolher referências NASA para a cratera, pá, câmera, LM e fotografia final. Não confundir artigo de teste de museu com câmera lunar; registrar URL, autor, termos e destino de importação."
+    ],
+    "acceptance": [
+      "Nenhuma alegação depende apenas de Wikipédia ou de um resumo com erro conhecido.",
+      "Toda frase científica do roteiro tem fonte vinculada ou está explicitamente marcada como reconstrução.",
+      "Pá e cores não são usadas como prova de água lunar.",
+      "Nenhum asset é declarado recebido/importado antes de existir."
+    ],
+    "tests": [
+      "Revisão cruzada por R7 dos itens controversos.",
+      "Abrir as URLs e registrar o identificador da figura/fotografia.",
+      "Comparar fatos dos cues SUR-S01–S31 com a tabela científica."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/surveyor-3/",
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf",
+      "https://www.nasa.gov/history/55-years-ago-apollo-12-makes-a-pinpoint-landing-on-the-moon/",
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/AnalysSurvIIIMtrial.pdf"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-002",
+    "title": "Montar o cenário único e os apoios da sonda na encosta",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 1.25,
+    "depends_on": [
+      "CORE-001",
+      "CORE-002",
+      "ART-001",
+      "SUR-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Scenes/Surveyor.unity",
+      "Assets/_Game/Chapters/Surveyor/Art/LunarSite.prefab",
+      "Assets/_Game/Chapters/Surveyor/Art/SurveyorVisibleRig.prefab"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Scenes/Surveyor.unity",
+      "Assets/_Game/Chapters/Surveyor/Art/LunarSite.prefab",
+      "Assets/_Game/Chapters/Surveyor/Art/SurveyorVisibleRig.prefab"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Cena própria de Surveyor com um ponto de câmera, solo próximo, horizonte e componentes visíveis apoiados.",
+    "instructions": [
+      "Construir região detalhada de cerca de 40 × 40 m e contexto de cratera de 200 m por skyline; manter escala e inclinação baseadas no relatório/fotos.",
+      "Preparar câmera/espelho, três pernas e pá: usar modelo legal recebido ou reconstrução leve explícita dos componentes que entram no quadro.",
+      "Fixar anchors para marcas de patas, trincheira, carga, impacto, eclipse e visita; tudo em coordenadas locais do rig.",
+      "Usar uma luz principal, ambiente sem sombra extra, material lunar com variação macro e câmera TV de 640×480. Não criar vento ou poeira atmosférica e não editar o builder global."
+    ],
+    "acceptance": [
+      "Três enquadramentos educativos acessíveis sem câmera sob o solo.",
+      "Pernas, marcas e rochas com apoio verificável em ângulo baixo.",
+      "Scene não depende de laboratório ou de arquivos do projeto anterior.",
+      "Perfil Leve preserva o relevo, as sombras úteis e o texto."
+    ],
+    "tests": [
+      "Capturar wide/detail e as três âncoras.",
+      "Validar nenhum collider/pá intercepta a câmera.",
+      "Medir triângulos, materiais e texturas na cena real."
+    ],
+    "sources": [
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf",
+      "https://science.nasa.gov/resource/apollo-12-and-surveyor-3/"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-003",
+    "title": "Criar o lançamento por telemetria e confirmar Centaur",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "CORE-004",
+      "CORE-005",
+      "SUR-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorLaunch.asset",
+      "Assets/_Game/Chapters/Surveyor/UI/LaunchTelemetry.uxml",
+      "Assets/_Game/Chapters/Surveyor/UI/LaunchTelemetry.uss"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorLaunch.asset",
+      "Assets/_Game/Chapters/Surveyor/UI/LaunchTelemetry.uxml",
+      "Assets/_Game/Chapters/Surveyor/UI/LaunchTelemetry.uss"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Ato 1 de 28 s: propósito, lançamento esquemático e primeira ordem sem janela de reflexo.",
+    "instructions": [
+      "Implementar SUR-S01–S03 no sistema comum; identificar 17/04/1967 · 07:05 UTC e guardar os detalhes históricos no arquivo.",
+      "Representar lançamento por retículo e tendência de altitude. Não usar imagem fictícia da câmera ou reconstrução 3D cara do foguete.",
+      "O comando Centaur exige segurar E por 2,5 s, com anel largo e estável. A ação permanece disponível até confirmar, sem expirar ou falhar.",
+      "Trocar o grave por silêncio e mapa de cruzeiro na confirmação; não adicionar voz de IA."
+    ],
+    "acceptance": [
+      "A pessoa entende o propósito e encontra E em menos de 8 s.",
+      "O anel não exige timing; soltar E conserva o progresso.",
+      "Não há duplicação de eventos entre legenda e fim de clip.",
+      "Todas as transições usam o proprietário de estado do capítulo."
+    ],
+    "tests": [
+      "Entrar pelo dossiê e repetir o ato.",
+      "Pausar durante o hold de E e retomar.",
+      "Reproduzir sem áudio: o conteúdo continua compreensível."
+    ],
+    "sources": [
+      "https://ntrs.nasa.gov/api/citations/19680009189/downloads/19680009189.pdf",
+      "https://science.nasa.gov/mission/surveyor-3/"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-004",
+    "title": "Integrar a fila didática de comandos Terra–Lua",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "CORE-002",
+      "CORE-003",
+      "CORE-005"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorCommandDelay.cs",
+      "Assets/_Game/Chapters/Surveyor/UI/CommandTransit.uxml",
+      "Assets/_Game/Chapters/Surveyor/Tests/CommandDelayTests.cs"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorCommandDelay.cs",
+      "Assets/_Game/Chapters/Surveyor/UI/CommandTransit.uxml",
+      "Assets/_Game/Chapters/Surveyor/Tests/CommandDelayTests.cs"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Adaptador local de comandos com atraso de 1,3 s, feedback imediato e uma operação pendente.",
+    "instructions": [
+      "Consumir o contrato comum de interação. Uma ação aceita muda a UI para Enviado imediatamente; o relógio de trânsito só avança com a missão ativa.",
+      "Enfileirar uma ordem física por vez, com identificador de geração do estado para descartar callbacks antigos após reinício ou saída.",
+      "Não atrasar pausa, navegação de UI ou cursor. O alvo desejado é um contorno; o espelho real só se move depois da chegada da ordem.",
+      "Tratar repetição de E, liberar/pressionar e opção de acessibilidade por alternância. Documentar 1,3 s como ida representativa, não ida e volta completas."
+    ],
+    "acceptance": [
+      "Uma confirmação nunca executa duas vezes.",
+      "Reiniciar ou sair invalida a ordem antiga.",
+      "Pausar em 0,6 s e retomar conserva o tempo restante.",
+      "O HUD responde em um frame apesar da simulação de rádio."
+    ],
+    "tests": [
+      "Testar execução única, pausa e invalidação por geração.",
+      "Manter a tecla pressionada na troca de estado.",
+      "Registrar latência de UI separada do atraso físico."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/surveyor-3/"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-005",
+    "title": "Implementar a correção de meio de curso guiada",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "SUR-003",
+      "SUR-004",
+      "CORE-003"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorMidcourse.cs",
+      "Assets/_Game/Chapters/Surveyor/UI/MidcoursePanel.uxml",
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorCruise.asset"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorMidcourse.cs",
+      "Assets/_Game/Chapters/Surveyor/UI/MidcoursePanel.uxml",
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorCruise.asset"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Ato 2 de 37 s: calendário, alvo Oceano das Tempestades e pequena queima confirmada pelo jogador.",
+    "instructions": [
+      "Mostrar origem na Terra e destino na Lua em mapa legível, com círculo alvo de 35% da largura e erro inicial pequeno.",
+      "Mouse ou setas escolhem a orientação, H alinha e segurar E por 3 s confirma. O sistema calcula a queima, sem teste de combustível ou reflexos.",
+      "Após 8 s sem ação, reforçar a instrução; após 15 s, oferecer H e ampliar a tolerância. Não completar a descoberta escondido.",
+      "Usar SUR-S04–S06 e transição gráfica do mapa para o altímetro. Não apresentar delta-v inventado como registro de 1967."
+    ],
+    "acceptance": [
+      "Sempre existe solução alcançável pelo teclado.",
+      "Pausar ou soltar E não perde progresso.",
+      "O comando respeita a fila de 1,3 s e recebe confirmação.",
+      "Mapa e alvo explicam o destino sem um bloco longo de texto."
+    ],
+    "tests": [
+      "Executar só com teclado, com mouse/E e usando H.",
+      "Pausar durante a queima.",
+      "Conferir duração e legibilidade em 960×600."
+    ],
+    "sources": [
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf",
+      "https://ntrs.nasa.gov/api/citations/19680009189/downloads/19680009189.pdf"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-006",
+    "title": "Encenar os três contatos e o corte dos motores sem falha por habilidade",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 1.25,
+    "depends_on": [
+      "SUR-002",
+      "SUR-004",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorDescent.cs",
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorDescent.asset",
+      "Assets/_Game/Chapters/Surveyor/UI/DescentTelemetry.uxml"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorDescent.cs",
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorDescent.asset",
+      "Assets/_Game/Chapters/Surveyor/UI/DescentTelemetry.uxml"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Ato 3 de 40 s: radar, dois reerguimentos e assentamento histórico, com intervenção da equipe compreensível.",
+    "instructions": [
+      "Não mostrar vídeo da câmera antes do pouso. Usar silhueta técnica, altímetro e pulsação estrutural.",
+      "Quando o corte automático não confirmar, destacar mensagem âmbar e oferecer hold de E por 3 s numa janela de pelo menos 15 s. O comando transita por 1,3 s.",
+      "Mostrar elevações aproximadas de 10 m e 3 m como pontos históricos da encenação. Comando cedo não apaga os eventos; atraso do jogador não os causa.",
+      "Se não houver entrada, a equipe envia o corte com legenda explícita, sem Game Over. Encerrar com 00:04 UTC · 20 ABR 1967 · Oceano das Tempestades."
+    ],
+    "acceptance": [
+      "Todo jogador chega ao solo e entende a anomalia.",
+      "Os dois impulsos são distintos; movimento reduzido usa pulsação na interface.",
+      "Nenhum log inventado é apresentado como transcrição oficial.",
+      "A câmera só pode ser ligada depois do estado assentado."
+    ],
+    "tests": [
+      "Testar E cedo, tarde e ausência de E.",
+      "Pausar durante o comando e durante o impulso.",
+      "A legenda de contingência só aparece quando a equipe assume."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/surveyor-3/",
+      "https://ntrs.nasa.gov/api/citations/19680009189/downloads/19680009189.pdf",
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-007",
+    "title": "Revelar a primeira imagem por TV sem tornar o texto ilegível",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "SUR-002",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorTelevision.cs",
+      "Assets/_Game/Chapters/Surveyor/Shaders/SurveyorScan.shader",
+      "Assets/_Game/Chapters/Surveyor/Sequences/FirstImage.asset"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorTelevision.cs",
+      "Assets/_Game/Chapters/Surveyor/Shaders/SurveyorScan.shader",
+      "Assets/_Game/Chapters/Surveyor/Sequences/FirstImage.asset"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Primeira imagem depois do pouso, com varredura acelerada, RenderTexture limitada e interface nítida.",
+    "instructions": [
+      "Segurar E por 2 s recebe a imagem; depois da ordem chegar, revelar o cenário em 4 s por um shader simples, sem VideoPlayer.",
+      "Representar um modo de 200 linhas e documentar também o modo histórico de 600 linhas. Não alterar a resolução do texto do HUD.",
+      "Usar SUR-S10 e reservar um momento para contemplar a imagem antes da próxima ação.",
+      "Manter o observador no ponto da câmera e o movimento no espelho. Liberar a RenderTexture ao sair do capítulo."
+    ],
+    "acceptance": [
+      "Não existe imagem de superfície antes do pouso.",
+      "A imagem revelada é a mesma cena das observações seguintes.",
+      "Texto não recebe ruído nem linhas de varredura.",
+      "RenderTexture tem até 640×480 e não é alocada novamente a cada frame."
+    ],
+    "tests": [
+      "Testar o shader no Web com perfil Leve.",
+      "Capturar a primeira imagem antes e depois da varredura.",
+      "Reiniciar três vezes e conferir criação e descarte da RenderTexture."
+    ],
+    "sources": [
+      "https://airandspace.si.edu/collection-objects/camera-television-surveyor/nasm_A19761264000",
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-008",
+    "title": "Guiar três observações com espelho, lentes e alternativa H",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "SUR-004",
+      "SUR-007",
+      "CORE-003"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorObservation.cs",
+      "Assets/_Game/Chapters/Surveyor/Data/SurveyorObservationTargets.asset"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorObservation.cs",
+      "Assets/_Game/Chapters/Surveyor/Data/SurveyorObservationTargets.asset"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Três registros reconhecíveis: marcas da chegada, encosta e pata da sonda, com enquadramento guiado.",
+    "instructions": [
+      "Apresentar os alvos em ordem, um objetivo de cada vez, com âncora visível e moldura ampla. Mouse ou setas escolhem a orientação desejada.",
+      "E envia a orientação do espelho; H oferece enquadramento assistido pelo mesmo caminho de comando e atraso.",
+      "Quando o espelho chegar ao alvo, segurar E por 1,5 s registra a imagem. Oferecer alternância contextual de 25/100 mm, sem nova tecla obrigatória.",
+      "Guardar até três registros, usar SUR-S11–S13 e fornecer confirmação e retorno à visão ampla. Não aceitar foto só porque o cursor desejado chegou antes do espelho."
+    ],
+    "acceptance": [
+      "O prompt exibido usa o mesmo predicado que aceita a ação.",
+      "Os três alvos são concluíveis com teclado e H.",
+      "O espelho para de responder aos comandos da observação depois de fechar a tela.",
+      "Registros da partida e total histórico são apresentados separadamente."
+    ],
+    "tests": [
+      "Testar fora da moldura, no limite e com H.",
+      "Verificar legibilidade em 960×600 e 1280×720.",
+      "Reabrir um resultado e confirmar que um E não abre e fecha duas telas."
+    ],
+    "sources": [
+      "https://airandspace.si.edu/collection-objects/camera-television-surveyor/nasm_A19761264000",
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-009",
+    "title": "Abrir uma trincheira com deformação, pá e recolhimento seguros",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 1.5,
+    "depends_on": [
+      "SUR-002",
+      "SUR-004",
+      "CORE-003"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorScoop.cs",
+      "Assets/_Game/Chapters/Surveyor/Art/Trench.prefab",
+      "Assets/_Game/Chapters/Surveyor/Art/ScoopRig.prefab"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorScoop.cs",
+      "Assets/_Game/Chapters/Surveyor/Art/Trench.prefab",
+      "Assets/_Game/Chapters/Surveyor/Art/ScoopRig.prefab"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Uma escavação legível de quatro passes, operada por E, com cavidade e bordas visivelmente modificadas.",
+    "instructions": [
+      "Criar poses de repouso, acima do alvo e contato. Segurar E por 12 s acumula quatro passes e altera a malha ou blend shape do mesmo sulco.",
+      "Mostrar mudança de profundidade ou borda a cada 0,8–1,2 s. Emitir poucos grãos balísticos; não criar fumaça ou poeira suspensa na Lua.",
+      "Limitar a profundidade visual a 18 cm. Soltar E pausa deformação e áudio juntos, preservando o avanço.",
+      "Recolher primeiro verticalmente 8 cm, depois lateralmente e só então retornar ao repouso. Cancelamento também usa a pose segura; incluir SUR-S14–S15."
+    ],
+    "acceptance": [
+      "O antes/depois mostra cavidade e bordas consistentes.",
+      "A ferramenta não atravessa a superfície ao recolher.",
+      "Não há avanço enquanto E estiver solto.",
+      "A área da foto de resultado é a mesma área escavada."
+    ],
+    "tests": [
+      "Capturar poses a cada 10% da escavação e do recolhimento.",
+      "Cancelar e pausar em contato e a 90% do progresso.",
+      "Inspecionar com câmera de QA em ângulo baixo."
+    ],
+    "sources": [
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf",
+      "https://science.nasa.gov/mission/surveyor-3/"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-010",
+    "title": "Executar um teste de carga e um impacto, com registro histórico separado",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "SUR-009",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorSoilTests.cs",
+      "Assets/_Game/Chapters/Surveyor/Data/SurveyorSoilResults.asset",
+      "Assets/_Game/Chapters/Surveyor/Sequences/SoilWorkMontage.asset"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Scripts/SurveyorSoilTests.cs",
+      "Assets/_Game/Chapters/Surveyor/Data/SurveyorSoilResults.asset",
+      "Assets/_Game/Chapters/Surveyor/Sequences/SoilWorkMontage.asset"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Duas ações curtas e um resultado que conecta o comportamento do solo ao planejamento da Apollo.",
+    "instructions": [
+      "Segurar E por 4 s pressiona uma área adjacente e cria uma marca. Segurar E por 2 s na ação seguinte solta a pá de pequena altura, com resposta distinta.",
+      "A curva de resistência é qualitativa. Não inventar 98 kPa, força medida ou sensor de pressão. O resultado explica grãos, coesão e planejamento.",
+      "Comparar fotos de antes e depois geradas nesta partida; identificar separadamente a imagem histórica que aparecer em seguida.",
+      "Usar montagem de 6 s para as outras operações reais. Identificar 4 trincheiras, 4 testes de carga e 13 impactos como total da missão, não ações do jogador. Incluir SUR-S16–S19."
+    ],
+    "acceptance": [
+      "A pessoa distingue cavar, pressionar e soltar.",
+      "As áreas ficam ao alcance do mesmo braço.",
+      "O texto não implica água nem certifica qualquer local lunar.",
+      "O registro histórico é separado do progresso da partida."
+    ],
+    "tests": [
+      "Conferir que um toque não pula os dois testes.",
+      "Comparar fotografia com o estado atual do sulco.",
+      "Pedir revisão científica de R7."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/surveyor-3/",
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-011",
+    "title": "Enquadrar o eclipse de 24 de abril com atmosfera terrestre",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 0.5,
+    "depends_on": [
+      "SUR-007",
+      "SUR-004",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorEclipse.asset",
+      "Assets/_Game/Chapters/Surveyor/Art/EarthEclipse.prefab"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorEclipse.asset",
+      "Assets/_Game/Chapters/Surveyor/Art/EarthEclipse.prefab"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Cena de 26 s com ordem do espelho, ocultação do Sol pela Terra e contorno avermelhado.",
+    "instructions": [
+      "Mostrar 24 ABR 1967. Segurar E envia o enquadramento sugerido; o espelho sobe até seu limite mecânico.",
+      "A inclinação do rig permite olhar para a Terra. Não girar o corpo da sonda ou teleportar a câmera.",
+      "Usar discos ou geometria simples com dimensões coerentes, exposição controlada e borda vermelha tênue. Não fazer um anel anular branco perfeito.",
+      "Exibir SUR-S20–S21, reservar 8 s sem texto para a imagem e retornar à trincheira para continuidade."
+    ],
+    "acceptance": [
+      "A Terra é o corpo que oculta o Sol.",
+      "Não há mancha branca estourada ocupando a tela.",
+      "A transição respeita o ponto de câmera e o tempo das legendas.",
+      "A cena funciona no perfil Leve sem volumetria."
+    ],
+    "tests": [
+      "Conferir a composição com os diagramas e fotografias indicados.",
+      "Capturar o eclipse nas duas qualidades.",
+      "Testar a opção de movimento reduzido."
+    ],
+    "sources": [
+      "https://www.nasa.gov/history/eclipses-near-and-far/",
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/NASA-SP-184.pdf"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-012",
+    "title": "Encerrar 1967 e avançar 31 meses sem repetição longa",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 0.5,
+    "depends_on": [
+      "SUR-002",
+      "CORE-004",
+      "CORE-005"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorNight.asset",
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorTimePassage.asset"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorNight.asset",
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorTimePassage.asset"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Trecho de 30 s de noite, fim da transmissão e elipse clara até novembro de 1969.",
+    "instructions": [
+      "Usar o mesmo enquadramento da trincheira com sombra crescente e tendência qualitativa de temperatura, sem unidades inventadas.",
+      "Mostrar 6.326 imagens como total histórico e 4 MAI 1967 como último contato. Não criar uma última frase oficial da sonda.",
+      "Usar quatro mudanças de luz e calendário 1967 → 1968 → NOV 1969. Escrever 31 meses; não usar 32 dias terrestres nem exigir 32 ciclos completos.",
+      "Incluir SUR-S22–S25. Remover caixas de legenda vazias, encerrar áudio de interface e conservar apenas as imagens ainda necessárias ao resultado."
+    ],
+    "acceptance": [
+      "A passagem de anos é reconhecível em menos de 15 s.",
+      "Não há afirmação de uma falha interna não observada.",
+      "O HUD desaparece por completo.",
+      "A pessoa não precisa esperar manualmente por amanheceres."
+    ],
+    "tests": [
+      "Conferir datas em PT/EN.",
+      "Assistir sem áudio e perguntar se a missão de 1967 terminou.",
+      "Pausar antes da elipse e verificar continuidade das legendas."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/surveyor-3/",
+      "https://ntrs.nasa.gov/api/citations/19680009189/downloads/19680009189.pdf",
+      "https://www.nasa.gov/history/55-years-ago-apollo-12-makes-a-pinpoint-landing-on-the-moon/"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-013",
+    "title": "Montar a visita imaginada da Apollo 12 e a fotografia histórica final",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "SUR-002",
+      "SUR-012",
+      "CORE-004",
+      "CORE-005"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorVisit.asset",
+      "Assets/_Game/Chapters/Surveyor/Art/ApolloVisitRig.prefab",
+      "Assets/_Game/Chapters/Surveyor/Data/SurveyorEnding.asset"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Sequences/SurveyorVisit.asset",
+      "Assets/_Game/Chapters/Surveyor/Art/ApolloVisitRig.prefab",
+      "Assets/_Game/Chapters/Surveyor/Data/SurveyorEnding.asset"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Final de 50 s: aviso poético, pouso em 19/11, visita em 20/11, fotografia real e retorno ao arquivo.",
+    "instructions": [
+      "Exibir SUR-S26 antes da imagem: a câmera já estava desligada. Depois não mostrar um HUD que afirme estar gravando historicamente.",
+      "Intrepid desce a aproximadamente 180 m; a poeira é baixa e balística. Mudar para 20 NOV 1969 antes da chegada de botas, luva e sombra.",
+      "Manter a âncora da câmera, mostrar apenas componentes humanos necessários e cortar para preto na retirada. A fotografia NASA entra aos 32 s do ato.",
+      "SUR-S29 entra aos 32 s, S30 aos 38 s e S31 aos 44 s; título termina aos 50 s. Câmera, pá e outras peças voltaram; corpo ficou. Exigir soltar E antes de confirmar o final."
+    ],
+    "acceptance": [
+      "A reconstrução é esclarecida antes e a foto real é identificada no fim.",
+      "Pouso e visita têm datas diferentes.",
+      "SUR-S29–S31 respeitam os mínimos sem sobreposição.",
+      "Não há vento lunar, som aéreo de passos, astronauta inteiro obrigatório ou vídeo pré-renderizado."
+    ],
+    "tests": [
+      "Assistir sem áudio e conferir compreensão do final.",
+      "Revisar quadro a quadro para detectar clipping.",
+      "Terminar segurando E e verificar que o menu não abre automaticamente."
+    ],
+    "sources": [
+      "https://www.nasa.gov/history/55-years-ago-apollo-12-makes-a-pinpoint-landing-on-the-moon/",
+      "https://science.nasa.gov/resource/apollo-12-and-surveyor-3/",
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/AnalysSurvIIIMtrial.pdf"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-014",
+    "title": "Importar os 31 cues e textos PT/EN do capítulo",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 0.5,
+    "depends_on": [
+      "SUR-001",
+      "CORE-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Data/SurveyorSubtitles.asset",
+      "Assets/_Game/Chapters/Surveyor/Localization/surveyor.pt-BR.json",
+      "Assets/_Game/Chapters/Surveyor/Localization/surveyor.en.json"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Data/SurveyorSubtitles.asset",
+      "Assets/_Game/Chapters/Surveyor/Localization/surveyor.pt-BR.json",
+      "Assets/_Game/Chapters/Surveyor/Localization/surveyor.en.json"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Textos aprovados em dados separados do código, vinculados aos eventos locais dos atos.",
+    "instructions": [
+      "Transcrever SUR-S01–S31, textos de UI e objetivos do roteiro; não trocar por frases genéricas sobre outras datas.",
+      "Vincular cues a eventos locais e clips. Não usar um relógio absoluto que continue correndo enquanto a pessoa usa um instrumento.",
+      "Preservar os mínimos de leitura e duas linhas. Texto ampliado pode dividir um cue em duas telas, conservando o tempo conjunto.",
+      "Testar PT/EN sem narração de IA. A caixa de legenda desaparece quando não há texto."
+    ],
+    "acceptance": [
+      "PT/EN têm as mesmas chaves sem faltas.",
+      "Texto histórico não fica hardcoded em scripts.",
+      "Legendas e objetivos não se sobrepõem.",
+      "O final mantém 50 s com leitura completa."
+    ],
+    "tests": [
+      "Validar chaves duplicadas e faltantes.",
+      "Reproduzir atos com fonte normal e ampliada.",
+      "Trocar o idioma em pausa e continuar."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/surveyor-3/",
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf",
+      "https://www.nasa.gov/history/55-years-ago-apollo-12-makes-a-pinpoint-landing-on-the-moon/"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-015",
+    "title": "Validar Surveyor completa no Web e publicar evidências de aceitação",
+    "role": "R6",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "QA-001",
+      "SUR-003",
+      "SUR-005",
+      "SUR-006",
+      "SUR-008",
+      "SUR-010",
+      "SUR-011",
+      "SUR-013",
+      "SUR-014"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Tests/SurveyorFlowTests.cs",
+      "Assets/_Game/Chapters/Surveyor/QA/Surveyor/Acceptance.md"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Tests/SurveyorFlowTests.cs",
+      "Assets/_Game/Chapters/Surveyor/QA/Surveyor/Acceptance.md"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Relatório do capítulo completo: fluxo, inputs, geometria, custo e medidas observadas, sem inventar teste humano.",
+    "instructions": [
+      "Entrar pelo dossiê e concluir até voltar ao arquivo. Saltos de estado não contam como jornada completa.",
+      "Testar pausa, foco e reinício durante comando pendente, contato da pá, primeira varredura e final. Não deixar callback tardio ou foto duplicada.",
+      "Registrar Web Leve em Chrome e Edge/Firefox conforme a matriz global, em 960×600 e 1280×720; medir memória, draw calls e tempo ativo, com capturas de antes/depois.",
+      "Entregar os artefatos a R7 para cinco novatos. Se faltar dispositivo ou pessoa, marcar pendente. Corrigir P0 antes do polimento."
+    ],
+    "acceptance": [
+      "A jornada alcança End sem exceções.",
+      "Não há Game Over nem gatilho por reflexo.",
+      "A referência fica em 300–420 s; automação identificada não vira mediana humana.",
+      "Legendas, fontes, escavação e natureza imaginada da visita passam na revisão."
+    ],
+    "tests": [
+      "Testar fluxo e geração de comandos automaticamente.",
+      "Fazer percurso com teclado, E mantido entre estados e uso dos instrumentos.",
+      "Registrar compreensão de três perguntas e duração pelo protocolo global."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/surveyor-3/",
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf",
+      "https://www.nasa.gov/history/55-years-ago-apollo-12-makes-a-pinpoint-landing-on-the-moon/"
+    ],
+    "cutline": "Preservar este comportamento no P0; refinamentos visuais podem ser cortados sem remover a informação principal."
+  },
+  {
+    "id": "SUR-016",
+    "title": "Refinar materiais, sombras e animação curta da visita",
+    "role": "R6",
+    "priority": "P1",
+    "hours": 1.5,
+    "depends_on": [
+      "SUR-015"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Art/LunarSite.prefab",
+      "Assets/_Game/Chapters/Surveyor/Art/ApolloVisitRig.prefab",
+      "Assets/_Game/Chapters/Surveyor/Materials/"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Art/LunarSite.prefab",
+      "Assets/_Game/Chapters/Surveyor/Art/ApolloVisitRig.prefab",
+      "Assets/_Game/Chapters/Surveyor/Materials/"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Polimento cinematográfico sem novas cenas ou dependências pesadas.",
+    "instructions": [
+      "Comparar quadros aprovados com referências NASA; melhorar variação macro do solo, metais, penumbra e luva.",
+      "Respeitar ownership de R6 e orçamento de ART-001. Consumir pós-processamento comum, sem reescrever o sistema global.",
+      "Conferir que a luva não atravessa a lente e que a poeira não permanece suspensa.",
+      "Se houver risco para o prazo, manter a encenação P0 simples e adiar este refinamento."
+    ],
+    "acceptance": [
+      "Nenhuma regressão de duração, Web ou legibilidade.",
+      "A foto NASA continua como evidência real.",
+      "Capturas comparáveis de antes/depois são registradas."
+    ],
+    "tests": [
+      "Comparar duas qualidades nas mesmas câmeras.",
+      "Reexecutar trajetória da pá e visita.",
+      "Verificar custo de materiais e draw calls."
+    ],
+    "sources": [
+      "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf",
+      "https://science.nasa.gov/resource/apollo-12-and-surveyor-3/"
+    ],
+    "cutline": "Cortar antes de qualquer comportamento P0 ou auditoria histórica."
+  },
+  {
+    "id": "SUR-017",
+    "title": "Adicionar a peça retornada ao arquivo sem confundir câmera de teste",
+    "role": "R6",
+    "priority": "P1",
+    "hours": 0.5,
+    "depends_on": [
+      "SUR-001",
+      "SUR-015"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Surveyor/Data/ReturnedCameraCard.asset",
+      "Assets/_Game/Chapters/Surveyor/Art/ReturnedCameraArchive/"
+    ],
+    "owned_paths": [
+      "Assets/_Game/Chapters/Surveyor/Data/ReturnedCameraCard.asset",
+      "Assets/_Game/Chapters/Surveyor/Art/ReturnedCameraArchive/"
+    ],
+    "context": "Novo projeto WebGL desktop, Unity 6000.6.7f1/URP 17.6, capítulo Surveyor 3 de 5–7 min. Planejamento em Docs/Chapters/03_SURVEYOR_3.md e registro factual em 03_SURVEYOR_SOURCES.md. Segurar E opera, soltar pausa; sem reflexos, sem caça a pixels, sem narração IA. Toda implementação desta issue ainda precisa ser feita. Trabalhe apenas nos caminhos de ownership e consuma os contratos comuns já aprovados; não modifique cenas globais nem outros capítulos.",
+    "deliverable": "Cartão opcional sobre a câmera recuperada, apenas com identidade e direitos da imagem confirmados.",
+    "instructions": [
+      "Confirmar inventário da câmera de voo versus artigo de teste A19761264000. Não atribuir a história lunar à peça errada.",
+      "Conferir termos específicos do Smithsonian. Se não houver reutilização permitida, usar link e a imagem NASA.",
+      "Não afirmar local atual de exposição da pá sem fonte primária.",
+      "Manter o cartão fora da duração do capítulo e sem abertura automática no epílogo."
+    ],
+    "acceptance": [
+      "Identificação e atribuição corretas.",
+      "Não há leitura obrigatória adicional.",
+      "O asset não aumenta o download sem justificativa."
+    ],
+    "tests": [
+      "R7 revisa créditos e URL.",
+      "Testar arquivo e retorno ao capítulo.",
+      "Conferir resolução e compressão Web."
+    ],
+    "sources": [
+      "https://airandspace.si.edu/multimedia-gallery/image/2006-1139hjpg",
+      "https://science.nasa.gov/resource/apollo-12-and-surveyor-3/"
+    ],
+    "cutline": "Opcional; o final P0 com foto NASA é completo."
+  }
+]

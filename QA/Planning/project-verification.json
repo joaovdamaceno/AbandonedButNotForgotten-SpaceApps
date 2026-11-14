@@ -1,0 +1,134 @@
+{
+  "url": "https://github.com/users/joaovdamaceno/projects/1",
+  "private": true,
+  "items": 84,
+  "statusCounts": {
+    "Backlog": 8,
+    "Bloqueada": 69,
+    "Pronta": 7
+  },
+  "views": [
+    {
+      "name": "Kanban geral",
+      "layout": "BOARD_LAYOUT",
+      "filter": "",
+      "verticalGroupByFields": {
+        "nodes": [
+          {
+            "name": "Status"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Prontas · P0",
+      "layout": "TABLE_LAYOUT",
+      "filter": "label:\"status:ready\" label:\"priority:P0\"",
+      "verticalGroupByFields": {
+        "nodes": []
+      }
+    },
+    {
+      "name": "Por função",
+      "layout": "TABLE_LAYOUT",
+      "filter": "",
+      "verticalGroupByFields": {
+        "nodes": []
+      }
+    },
+    {
+      "name": "Opcional",
+      "layout": "TABLE_LAYOUT",
+      "filter": "-label:\"priority:P0\"",
+      "verticalGroupByFields": {
+        "nodes": []
+      }
+    },
+    {
+      "name": "R1",
+      "layout": "BOARD_LAYOUT",
+      "filter": "label:\"role:R1\"",
+      "verticalGroupByFields": {
+        "nodes": [
+          {
+            "name": "Status"
+          }
+        ]
+      }
+    },
+    {
+      "name": "R2",
+      "layout": "BOARD_LAYOUT",
+      "filter": "label:\"role:R2\"",
+      "verticalGroupByFields": {
+        "nodes": [
+          {
+            "name": "Status"
+          }
+        ]
+      }
+    },
+    {
+      "name": "R3",
+      "layout": "BOARD_LAYOUT",
+      "filter": "label:\"role:R3\"",
+      "verticalGroupByFields": {
+        "nodes": [
+          {
+            "name": "Status"
+          }
+        ]
+      }
+    },
+    {
+      "name": "R4",
+      "layout": "BOARD_LAYOUT",
+      "filter": "label:\"role:R4\"",
+      "verticalGroupByFields": {
+        "nodes": [
+          {
+            "name": "Status"
+          }
+        ]
+      }
+    },
+    {
+      "name": "R5",
+      "layout": "BOARD_LAYOUT",
+      "filter": "label:\"role:R5\"",
+      "verticalGroupByFields": {
+        "nodes": [
+          {
+            "name": "Status"
+          }
+        ]
+      }
+    },
+    {
+      "name": "R6",
+      "layout": "BOARD_LAYOUT",
+      "filter": "label:\"role:R6\"",
+      "verticalGroupByFields": {
+        "nodes": [
+          {
+            "name": "Status"
+          }
+        ]
+      }
+    },
+    {
+      "name": "R7",
+      "layout": "BOARD_LAYOUT",
+      "filter": "label:\"role:R7\"",
+      "verticalGroupByFields": {
+        "nodes": [
+          {
+            "name": "Status"
+          }
+        ]
+      }
+    }
+  ],
+  "allFieldsPopulated": true,
+  "errors": []
+}

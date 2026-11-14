@@ -1,0 +1,972 @@
+[
+  {
+    "id": "MAR-001",
+    "title": "Definir dados e fluxo exclusivo dos 32 acontecimentos de Marte",
+    "role": "R3",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "CORE-002",
+      "CORE-004",
+      "CORE-005"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsChapterFlow.cs",
+      "Assets/_Game/Chapters/Mars/Data/MarsChapter.asset",
+      "Assets/_Game/Chapters/Mars/Data/MarsSubtitles.json"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M01–M32 são a sequência aprovada; estados não dependem da ordem numérica de um enum. Esta tarefa começa quando os contratos globais estiverem prontos.",
+    "deliverable": "Fluxo configurável com 32 IDs estáveis, eventos de conclusão e dados PT/EN separados da lógica.",
+    "instructions": [
+      "Mapear cada Mxx para entrada, ações disponíveis e próximo estado explícito.",
+      "Cadastrar as 49 cues PT/EN; resultados usam eventos e não um relógio que ignora o jogador.",
+      "Consumir os contratos globais; não editar o controlador central nem depender da ordem de um enum.",
+      "Separar relógio ativo, etapa e cinematic; documentar os bindings para integração."
+    ],
+    "acceptance": [
+      "32 etapas em ordem, sem entrada dupla ou salto de ciência.",
+      "Referência de 360 s; cada atividade espera sua conclusão real.",
+      "Pausa e reinício não duplicam eventos.",
+      "Legenda de descoberta nunca antecede a medição."
+    ],
+    "tests": [
+      "Progredir com eventos válidos/inválidos e reiniciar.",
+      "Verificar chaves PT/EN e IDs ausentes/duplicados."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/mer-opportunity/",
+      "https://science.nasa.gov/mission/mer-spirit/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsChapterFlow.cs",
+      "Assets/_Game/Chapters/Mars/Data/MarsChapter.asset",
+      "Assets/_Game/Chapters/Mars/Data/MarsSubtitles.json"
+    ]
+  },
+  {
+    "id": "MAR-002",
+    "title": "Criar controle da Opportunity e tutorial por ações reais",
+    "role": "R3",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "CORE-002",
+      "CORE-003",
+      "MAR-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsRoverController.cs",
+      "Assets/_Game/Chapters/Mars/Runtime/MarsTutorial.cs",
+      "Assets/_Game/Chapters/Mars/Prefabs/MarsRoverGameplay.prefab"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M06–M10 orientam pessoas que nunca jogaram. O sistema E/segurar E é fornecido por CORE-003.",
+    "deliverable": "Rover com WASD/setas, câmera acessível, colisão e tutorial por movimento, olhar e interação.",
+    "instructions": [
+      "Consumir o rig de MAR-011; placeholder é apenas temporário durante desenvolvimento.",
+      "Ensinar avanço de 2 m, olhar e E num alvo de inspeção já visível.",
+      "Movimento suave com WASD e setas; não exigir Shift ou estacionamento preciso.",
+      "H enquadra; aos 12 s reforçar orientação e aos 25 s oferecer ajuda, sem resolver ciência."
+    ],
+    "acceptance": [
+      "Tutorial some por ação cumprida e pode ser repetido.",
+      "WASD/setas completam percurso sem habilidade de mouse.",
+      "Rover para durante instrumento, pausa e filme.",
+      "Não há giro instantâneo para poses impostas."
+    ],
+    "tests": [
+      "Primeiro uso com preferências limpas e tutorial já visto.",
+      "Conferir colisão nas curvas e recuperação de orientação."
+    ],
+    "sources": [
+      "https://www.jpl.nasa.gov/news/opportunity-rolls-onto-martian-ground/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsRoverController.cs",
+      "Assets/_Game/Chapters/Mars/Runtime/MarsTutorial.cs",
+      "Assets/_Game/Chapters/Mars/Prefabs/MarsRoverGameplay.prefab"
+    ]
+  },
+  {
+    "id": "MAR-003",
+    "title": "Implementar observação guiada das blueberries sem caça à mira",
+    "role": "R3",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "CORE-003",
+      "MAR-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Runtime/BlueberriesActivity.cs",
+      "Assets/_Game/Chapters/Mars/Data/BlueberriesActivity.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/BlueberriesInteraction.prefab"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M08–M09 registram esferas no solo e na rocha em 12 s de referência. MI não identifica composição sozinho.",
+    "deliverable": "Duas macrovisões guiadas e resultado mineralógico separado, usando o prompt comum.",
+    "instructions": [
+      "E inicia; uma nova pressão sustentada opera após soltar.",
+      "Quatro segundos registram solo e quatro registram esferas na rocha; amostras já enquadradas.",
+      "MI registra forma/distribuição; o resultado mineralógico por Mössbauer é apresentado separadamente.",
+      "Guardar imagem e resultado qualitativo; concluir só após os dois registros."
+    ],
+    "acceptance": [
+      "Nenhum E escondido ou busca aleatória com mouse.",
+      "Soltar E pausa sem perder trabalho.",
+      "Resultado mostra hematita e distribuição no solo/rocha.",
+      "Cor ou fotografia não são apresentadas como determinação mineral."
+    ],
+    "tests": [
+      "Abrir, segurar, soltar, retomar e pressionar E repetidamente.",
+      "Verificar objetivo/círculo em 1280×720 e 960×600."
+    ],
+    "sources": [
+      "https://astrobiology.nasa.gov/news/check-type-iron-blueberries/",
+      "https://science.nasa.gov/resource/meridiani-planum-2/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Runtime/BlueberriesActivity.cs",
+      "Assets/_Game/Chapters/Mars/Data/BlueberriesActivity.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/BlueberriesInteraction.prefab"
+    ]
+  },
+  {
+    "id": "MAR-004",
+    "title": "Construir RAT acessível com cavidade rasa e feedback contínuo",
+    "role": "R3",
+    "priority": "P0",
+    "hours": 1.75,
+    "depends_on": [
+      "CORE-003",
+      "MAR-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsRatActivity.cs",
+      "Assets/_Game/Chapters/Mars/Runtime/RatCavitySurface.cs",
+      "Assets/_Game/Chapters/Mars/Prefabs/RatActivity.prefab"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M11–M12 preparam uma cavidade rasa de cerca de 45 mm. E sustentado substitui A/D e temperatura.",
+    "deliverable": "Esmerilhamento com 18 s úteis de E sustentado numa etapa de 27 s, pausando ao soltar.",
+    "instructions": [
+      "Rotação, contato e avanço respondem ao progresso real.",
+      "Três faixas de remoção no mesmo disco, com borda e interior legíveis à macro.",
+      "Som e poeira respondem no mesmo quadro e desaceleram ao soltar.",
+      "Não incluir dano, A/D, aquecimento punitivo ou telemetria inventada."
+    ],
+    "acceptance": [
+      "Sem E não há progresso; soltar preserva trabalho.",
+      "A cavidade muda visivelmente sem atravessar a ferramenta.",
+      "Disco circular e raso, sem pontos de análise fora dele.",
+      "Só uma conclusão libera a etapa seguinte."
+    ],
+    "tests": [
+      "Operar continuamente e em intervalos, com pausa no meio.",
+      "Revisar macro/lateral com partículas reduzidas."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/science-instruments/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsRatActivity.cs",
+      "Assets/_Game/Chapters/Mars/Runtime/RatCavitySurface.cs",
+      "Assets/_Game/Chapters/Mars/Prefabs/RatActivity.prefab"
+    ]
+  },
+  {
+    "id": "MAR-005",
+    "title": "Encadear APXS e Mössbauer na mesma cavidade",
+    "role": "R3",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "CORE-003",
+      "MAR-004"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsCompositionActivity.cs",
+      "Assets/_Game/Chapters/Mars/Data/CompositionResults.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/CompositionActivity.prefab"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M13–M14: RAT prepara a superfície, APXS mede elementos e Mössbauer identifica minerais de ferro.",
+    "deliverable": "Duas medições com E sustentado; resultados de enxofre e jarosita compõem evidência de água antiga.",
+    "instructions": [
+      "APXS por 6 s e Mössbauer por 6 s, incluindo 4 s de E em cada; leitura/recuo por 6 s.",
+      "Usar a âncora da cavidade RAT; não espalhar pontos pela rocha.",
+      "Retrair 10 cm pela normal antes de rotacionar e expor folga configurável.",
+      "Resultados qualitativos de elementos/minerais alimentam caderno e descoberta; sem espectro numérico inventado."
+    ],
+    "acceptance": [
+      "Não medir antes de concluir RAT.",
+      "Entrada e saída da ferramenta sem interseção visível.",
+      "Resultado diferencia elemento de mineral.",
+      "Descoberta não afirma água atual ou vida."
+    ],
+    "tests": [
+      "Pausar/reiniciar entre APXS e Mössbauer.",
+      "Comparar trajetória lateral e âncora em duas escalas da rocha."
+    ],
+    "sources": [
+      "https://www.jpl.nasa.gov/news/opportunity-rover-finds-strong-evidence-meridiani-planum-was-wet/",
+      "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/science-instruments/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsCompositionActivity.cs",
+      "Assets/_Game/Chapters/Mars/Data/CompositionResults.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/CompositionActivity.prefab"
+    ]
+  },
+  {
+    "id": "MAR-006",
+    "title": "Fazer escudo e meteorito como descobertas distintas",
+    "role": "R3",
+    "priority": "P0",
+    "hours": 1.5,
+    "depends_on": [
+      "CORE-003",
+      "MAR-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Runtime/ShieldSurveyActivity.cs",
+      "Assets/_Game/Chapters/Mars/Runtime/MeteoriteActivity.cs",
+      "Assets/_Game/Chapters/Mars/Data/HeatShieldResults.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/ShieldInteractions.prefab"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M16–M20: o hardware descartado explica o pouso; Heat Shield Rock é uma rocha espacial independente.",
+    "deliverable": "Foto do escudo, análise de ferro/níquel e imagem histórica creditada no resultado do meteorito.",
+    "instructions": [
+      "Fotografar escudo já enquadrado com 4 s de E e explicar sua função.",
+      "Meteorito tem alvo próprio; 6 s de E para análise e 4 s de resultado.",
+      "Mostrar imagem real creditada nos dois resultados.",
+      "Bloquear RAT no metal e distinguir amostra de destroço."
+    ],
+    "acceptance": [
+      "Mesmo círculo E, verbos claros nos dois objetos.",
+      "Um resultado não conclui o outro.",
+      "Meteorito não é explicado como pedaço do escudo.",
+      "Elipse de 2005 não parece local ao lado de Eagle."
+    ],
+    "tests": [
+      "Concluir a ordem prevista e tentar reinteragir com escudo já concluído.",
+      "Verificar capturas e liberação de memória ao reiniciar."
+    ],
+    "sources": [
+      "https://www.jpl.nasa.gov/news/opportunity-rover-finds-an-iron-meteorite-on-mars/",
+      "https://www.jpl.nasa.gov/images/pia07402-heat-shield-in-pieces/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Runtime/ShieldSurveyActivity.cs",
+      "Assets/_Game/Chapters/Mars/Runtime/MeteoriteActivity.cs",
+      "Assets/_Game/Chapters/Mars/Data/HeatShieldResults.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/ShieldInteractions.prefab"
+    ]
+  },
+  {
+    "id": "MAR-007",
+    "title": "Criar conservação interativa e recuperação na tempestade de2007",
+    "role": "R3",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "CORE-003",
+      "MAR-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Runtime/Storm2007Activity.cs",
+      "Assets/_Game/Chapters/Mars/Data/Storm2007.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/Storm2007Controls.prefab"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M21 tem 25 s de referência: ameaça, conservação, semanas condensadas e recuperação. Não confundir com a perda em 2018.",
+    "deliverable": "Oito segundos de E sustentado reduzem atividades e permitem a elipse de semanas e recuperação.",
+    "instructions": [
+      "Medidor GERAÇÃO SOLAR · Wh/sol; somente marcos publicados >700 antes e 128 em julho de 2007.",
+      "Não tratar geração como bateria, potência ou curva histórica completa.",
+      "Reduzir rodas, braço e instrumentos; comunicações limitadas, não rádio morto para sempre.",
+      "Céu clareia por passagem das semanas; E conserva a máquina, não afasta tempestade."
+    ],
+    "acceptance": [
+      "A recuperação em 2007 fica inequívoca.",
+      "Sem E a ação de conservação não está concluída.",
+      "Após elipse de semanas, motor retoma e jogo avança.",
+      "Sem tornado destrutivo ou derrota do jogador."
+    ],
+    "tests": [
+      "Pausar durante E sustentado e durante a elipse.",
+      "Conferir unidade e ausência de números intermediários inventados."
+    ],
+    "sources": [
+      "https://www.jpl.nasa.gov/news/martian-skies-brighten-slightly/",
+      "https://www.nasa.gov/solar-system/the-fact-and-fiction-of-martian-dust-storms/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Runtime/Storm2007Activity.cs",
+      "Assets/_Game/Chapters/Mars/Data/Storm2007.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/Storm2007Controls.prefab"
+    ]
+  },
+  {
+    "id": "MAR-008",
+    "title": "Montar Sol, vale, antena e escolha da última imagem",
+    "role": "R3",
+    "priority": "P0",
+    "hours": 1.75,
+    "depends_on": [
+      "CORE-003",
+      "CORE-005",
+      "MAR-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsFinalSurvey.cs",
+      "Assets/_Game/Chapters/Mars/Runtime/MarsTransmission.cs",
+      "Assets/_Game/Chapters/Mars/Data/FinalSurvey.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/FinalSurveyInteractions.prefab"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M23–M30: 2018 tem 54 s de referência, sem caça à mira nem estação artificial de transmissão.",
+    "deliverable": "Referência solar, foto do vale, Sol atenuado, orientação da antena e seleção da memória com E/setas.",
+    "instructions": [
+      "Observações usam 4 s de E e enquadramento automático; ajuste opcional nunca bloqueia.",
+      "Captura do vale limitada a 960×540; uma foto é suficiente.",
+      "Após a segunda observação solar, transmissão prevalece sobre foto opcional.",
+      "Mover só antena; setas alternam foto e E confirma com comando distinto do que abriu a seleção."
+    ],
+    "acceptance": [
+      "Os dois registros do Sol têm imagens e comparação.",
+      "Transmissão funciona ainda ao lado do mirante.",
+      "Nenhum giro do chassi ou timeout escolhe foto.",
+      "Imagem selecionada chega ao memorial; restart libera memória."
+    ],
+    "tests": [
+      "Concluir parado no mirante e com diferentes orientações do rover.",
+      "Alternar imagens, pausar e confirmar E sem dupla ativação."
+    ],
+    "sources": [
+      "https://www.jpl.nasa.gov/news/mars-rover-opportunity-begins-study-of-valleys-origin/",
+      "https://science.nasa.gov/mission/mer-opportunity/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsFinalSurvey.cs",
+      "Assets/_Game/Chapters/Mars/Runtime/MarsTransmission.cs",
+      "Assets/_Game/Chapters/Mars/Data/FinalSurvey.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/FinalSurveyInteractions.prefab"
+    ]
+  },
+  {
+    "id": "MAR-009",
+    "title": "Integrar o capítulo sem alterar o controlador global",
+    "role": "R3",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "MAR-001",
+      "MAR-002",
+      "MAR-003",
+      "MAR-005",
+      "MAR-006",
+      "MAR-007",
+      "MAR-008",
+      "MAR-018"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsChapterBindings.cs",
+      "Assets/_Game/Chapters/Mars/Data/MarsSceneBindings.asset",
+      "Assets/_Game/Chapters/Mars/Editor/MarsChapterAssembly.cs"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. Os sistemas entregam prefabs/dados próprios. R1 continua dono da cena global e das fronteiras entre capítulos.",
+    "deliverable": "Montagem determinística de Marte, referências serializadas, transições e orçamento de 360 s.",
+    "instructions": [
+      "Montar por referências serializadas de prefabs; não procurar objetos por nome.",
+      "Desativar região anterior antes da seguinte, sem duplicar luzes e colisores.",
+      "Preservar pausa, reinício, dossiê e conclusão globais.",
+      "Entregar a R1 bindings e passos de montagem, sem anunciar QA humano aprovado."
+    ],
+    "acceptance": [
+      "Dossiê → M01 → M32 → arquivo funciona sem Preview.",
+      "Sem referências nulas, câmeras ocultas renderizando ou estados simultâneos.",
+      "Datas e lugares coerentes nas elipses.",
+      "Reconstrução preserva apoio e posição dos objetos."
+    ],
+    "tests": [
+      "Executar fluxo com teclado/mouse após montagem limpa.",
+      "Reiniciar antes/depois da RAT e durante 2018."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/mer-opportunity/",
+      "https://science.nasa.gov/mission/mer-spirit/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Runtime/MarsChapterBindings.cs",
+      "Assets/_Game/Chapters/Mars/Data/MarsSceneBindings.asset",
+      "Assets/_Game/Chapters/Mars/Editor/MarsChapterAssembly.cs"
+    ]
+  },
+  {
+    "id": "MAR-010",
+    "title": "Validar primeira experiência deMarte e regressões visuais",
+    "role": "R3",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "MAR-009",
+      "QA-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Tests/MarsFlowTests.cs",
+      "Assets/_Game/Chapters/Mars/Tests/MarsAcceptance.md",
+      "Assets/_Game/Chapters/Mars/Tests/MarsTiming.json"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. Automação não prova compreensão de novatos nem emoção cinematográfica. Medir a campanha completa na Web.",
+    "deliverable": "Checklist executado, logs de progressão e roteiro humano com duração, ajuda e compreensão registradas.",
+    "instructions": [
+      "Validar inputs, reinício, pausa, hold/release, fotos e fim sem injetar descobertas.",
+      "Revisar pouso, airbags, braço, rastro, apoios e atmosfera em ângulo baixo.",
+      "Solicitar ao QA global teste com iniciante sem orientação oral; registrar tempo e ajuda.",
+      "Separar automação, hardware testado e pendências humanas no relatório."
+    ],
+    "acceptance": [
+      "Pode iniciar e concluir com E e teclas básicas.",
+      "300–420 s é meta medida, não forçada por relógio.",
+      "Pessoa explica RAT/água antiga e 2007 versus 2018.",
+      "Falhas não são escondidas por Preview ou teleporte de QA."
+    ],
+    "tests": [
+      "Jornada completa com erros contados e hardware identificado.",
+      "Pessoa leiga informa alvo e causa da perda sem orientação oral."
+    ],
+    "sources": [
+      "https://www.jpl.nasa.gov/news/opportunity-rover-finds-strong-evidence-meridiani-planum-was-wet/",
+      "https://science.nasa.gov/mission/mer-opportunity/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Tests/MarsFlowTests.cs",
+      "Assets/_Game/Chapters/Mars/Tests/MarsAcceptance.md",
+      "Assets/_Game/Chapters/Mars/Tests/MarsTiming.json"
+    ]
+  },
+  {
+    "id": "MAR-011",
+    "title": "Auditar modeloNASA e preparar rig/material compartilhado dos gêmeos",
+    "role": "R4",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "ART-001",
+      "CORE-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Art/Rover/",
+      "Assets/_Game/Chapters/Mars/Prefabs/SpiritVisual.prefab",
+      "Assets/_Game/Chapters/Mars/Prefabs/OpportunityVisual.prefab",
+      "Assets/_Game/Chapters/Mars/Art/MarsAssetCredits.md"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. A equipe fornecerá o arquivo NASA; não copiar a Unity antiga inteira. Auditar o asset oficial e preparar duas instâncias com recursos compartilhados.",
+    "deliverable": "Dois prefabs visuais com malhas/materiais compartilhados, escala auditada e anchors de rig documentados.",
+    "instructions": [
+      "Registrar origem, licença e arquivos efetivamente usados; não anunciar download antes de receber.",
+      "Conferir unidades, eixo frontal, mast, rodas, braço e encaixe do pino.",
+      "Preservar normal RGB exigida pelo shader glTFast, evitando repack incompatível.",
+      "Criar LODs sem quebrar o perfil e sem duplicar texturas entre os dois rovers."
+    ],
+    "acceptance": [
+      "Pino encaixado, rodas e esterço com sentidos coerentes.",
+      "Painéis e materiais legíveis na Web.",
+      "Prefabs mantêm escala e anchors compatíveis.",
+      "Arquivo não recebido permanece registrado como bloqueio real."
+    ],
+    "tests": [
+      "Inspecionar frente/lado/alto e animação de esterço.",
+      "Comparar cor e normal em PC/Web."
+    ],
+    "sources": [
+      "https://science.nasa.gov/resource/spirit-and-opportunity-rover-3d-model/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Art/Rover/",
+      "Assets/_Game/Chapters/Mars/Prefabs/SpiritVisual.prefab",
+      "Assets/_Game/Chapters/Mars/Prefabs/OpportunityVisual.prefab",
+      "Assets/_Game/Chapters/Mars/Art/MarsAssetCredits.md"
+    ]
+  },
+  {
+    "id": "MAR-012",
+    "title": "Construir Eagle orgânica com percurso e rocha assentados",
+    "role": "R4",
+    "priority": "P0",
+    "hours": 1.5,
+    "depends_on": [
+      "ART-001",
+      "MAR-011"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Art/Eagle/",
+      "Assets/_Game/Chapters/Mars/Prefabs/EagleEnvironment.prefab",
+      "Assets/_Game/Chapters/Mars/Prefabs/McKittrickVisual.prefab",
+      "Assets/_Game/Chapters/Mars/Prefabs/BlueberriesVisual.prefab"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M05–M14: pequena Eagle, afloramentos e rota curta orientada. Não substituir geologia por planície com montanhas gigantes.",
+    "deliverable": "Ambiente Eagle modular, solo variado e dois alvos científicos baseados em fotografias.",
+    "instructions": [
+      "Modelar bacia, estratos claros, solo escuro e concreções de escala plausível.",
+      "Compor curva que revela RAT; colisores não podem bloquear a condução.",
+      "Assentar rochas grandes por centro e bordas depois de finalizar a topografia.",
+      "Usar materiais compartilhados e LODs, sem mapa preenchido por malhas densas."
+    ],
+    "acceptance": [
+      "Solo sem repetição evidente de uma única escala.",
+      "Afloramentos sem vão mostrando céu em ângulo baixo.",
+      "Alvos distintos e prompts visíveis.",
+      "WASD/setas bastam, sem posicionamento fino."
+    ],
+    "tests": [
+      "Percurso com colisores e vistas baixas sob rochas.",
+      "Comparar capturas às referências NASA."
+    ],
+    "sources": [
+      "https://science.nasa.gov/resource/meridiani-planum-2/",
+      "https://science.nasa.gov/mission/mer-opportunity/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Art/Eagle/",
+      "Assets/_Game/Chapters/Mars/Prefabs/EagleEnvironment.prefab",
+      "Assets/_Game/Chapters/Mars/Prefabs/McKittrickVisual.prefab",
+      "Assets/_Game/Chapters/Mars/Prefabs/BlueberriesVisual.prefab"
+    ]
+  },
+  {
+    "id": "MAR-013",
+    "title": "Autorar laboratório, mapa e lançamentos curtos com propósito",
+    "role": "R4",
+    "priority": "P0",
+    "hours": 1.5,
+    "depends_on": [
+      "CORE-004",
+      "MAR-011"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Prefabs/MarsPreparationStage.prefab",
+      "Assets/_Game/Chapters/Mars/Timelines/MarsOrigin.playable",
+      "Assets/_Game/Chapters/Mars/Art/Origin/"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M01–M03 somam 25 s. Cada plano muda assunto ou escala. O arquivo detalhado já é opcional no menu.",
+    "deliverable": "Três sequências nativas: dois rovers, globo dos destinos e lançamentos separados.",
+    "instructions": [
+      "Laboratório utilitário com cabos, suportes e materiais coerentes; detalhe prioritário no rover.",
+      "Luz lateral e contraste recortam o equipamento, sem objetos de fundo sem função.",
+      "Mapa real destaca só o local relacionado à legenda.",
+      "Reutilizar foguete/efeito em sequência, não duas campanhas; sem vídeo."
+    ],
+    "acceptance": [
+      "Identifica gêmeas e pergunta científica em 25 s.",
+      "Destinos legíveis sem texto longo.",
+      "Sem salto de zoom entre quase o mesmo plano.",
+      "Cues seguem o documento de produção."
+    ],
+    "tests": [
+      "Assistir sem áudio e explicar os destinos.",
+      "Contar câmeras e partículas no perfil baixo."
+    ],
+    "sources": [
+      "https://science.nasa.gov/resource/spirit-and-opportunity-rover-3d-model/",
+      "https://science.nasa.gov/resource/meridiani-planum-2/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Prefabs/MarsPreparationStage.prefab",
+      "Assets/_Game/Chapters/Mars/Timelines/MarsOrigin.playable",
+      "Assets/_Game/Chapters/Mars/Art/Origin/"
+    ]
+  },
+  {
+    "id": "MAR-014",
+    "title": "Criar pouso split com continuidade deescudo, módulo eairbags",
+    "role": "R4",
+    "priority": "P0",
+    "hours": 2,
+    "depends_on": [
+      "CORE-004",
+      "MAR-011"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Prefabs/MerLandingAssembly.prefab",
+      "Assets/_Game/Chapters/Mars/Timelines/MarsDualLanding.playable",
+      "Assets/_Game/Chapters/Mars/Art/Landing/"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M04–M06 somam 27 s. O split compara pousos em datas diferentes; o mesmo payload persiste entre planos.",
+    "deliverable": "Rig de pouso, split de 18 s e entrega suave do controle após verificações.",
+    "instructions": [
+      "Volume externo esconde rover dobrado; airbags escondem pétalas fechadas.",
+      "Sequenciar escudo, paraquedas, descarte, tether, inflação, impacto e parada.",
+      "Câmeras ficam acima do terreno; dois quiques bastam com elipse explícita.",
+      "Desinflar continuamente, abrir só depois de parar e marcar desembarque em 31 JAN."
+    ],
+    "acceptance": [
+      "Datas 4/25 JAN 2004 UTC e intervalo de 21 dias visíveis.",
+      "Rover/pétalas não vazam nem escudo desaparece.",
+      "Nenhuma câmera sob o terreno.",
+      "Split encerra expandindo Opportunity sem snap."
+    ],
+    "tests": [
+      "Revisar cada corte quadro a quadro e em ângulo baixo.",
+      "Na Web, só duas renderizações durante split; depois uma."
+    ],
+    "sources": [
+      "https://www.giss.nasa.gov/tools/mars24/help/landers.html",
+      "https://www.jpl.nasa.gov/news/opportunity-rolls-onto-martian-ground/",
+      "https://science.nasa.gov/mission/mer-spirit/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Prefabs/MerLandingAssembly.prefab",
+      "Assets/_Game/Chapters/Mars/Timelines/MarsDualLanding.playable",
+      "Assets/_Game/Chapters/Mars/Art/Landing/"
+    ]
+  },
+  {
+    "id": "MAR-015",
+    "title": "Assentar campo do escudo e meteorito usando imagens reais",
+    "role": "R4",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "ART-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Art/ShieldField/",
+      "Assets/_Game/Chapters/Mars/Prefabs/ShieldFieldEnvironment.prefab",
+      "Assets/_Game/Chapters/Mars/Prefabs/HeatShieldRockVisual.prefab"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M16–M20: PIA07402 mostra escudo invertido e flanco quebrado. Meteorito é outro objeto, independente do hardware.",
+    "deliverable": "Palco com destroços apoiados e meteorito metálico craterado, sem planície vazia.",
+    "instructions": [
+      "Criar ondulações rasas, marca do impacto e areia nas bordas.",
+      "Apoiar centro e bordas da carcaça curva de acordo com sua forma.",
+      "Meteorito em escala de bola de basquete e área de aproximação livre.",
+      "Preparar anchors para MAR-006 sem editar scripts de interação."
+    ],
+    "acceptance": [
+      "Nenhum fragmento flutua nem intercepta o rover.",
+      "Enquadramento conecta hardware e ciência sem confundi-los.",
+      "Não reutilizar McKittrick com outro material.",
+      "Materiais e LODs preservam identidade."
+    ],
+    "tests": [
+      "Revisar de frente/lado/ângulo baixo e apoio em vários pontos.",
+      "Comparar com PIA07402 e PIA07324."
+    ],
+    "sources": [
+      "https://www.jpl.nasa.gov/images/pia07402-heat-shield-in-pieces/",
+      "https://science.nasa.gov/photojournal/opportunitys-view-on-sol-354/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Art/ShieldField/",
+      "Assets/_Game/Chapters/Mars/Prefabs/ShieldFieldEnvironment.prefab",
+      "Assets/_Game/Chapters/Mars/Prefabs/HeatShieldRockVisual.prefab"
+    ]
+  },
+  {
+    "id": "MAR-016",
+    "title": "Criar Victoria e vale com dois estados de poeira eficientes",
+    "role": "R4",
+    "priority": "P0",
+    "hours": 1.25,
+    "depends_on": [
+      "ART-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Art/LateMars/",
+      "Assets/_Game/Chapters/Mars/Prefabs/VictoriaStage.prefab",
+      "Assets/_Game/Chapters/Mars/Prefabs/PerseveranceValleyStage.prefab",
+      "Assets/_Game/Chapters/Mars/Art/LateMars/MarsStormProfile.asset"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. 2007 e 2018 usam regiões diferentes. Tensão vem de luz/atmosfera, não de um tornado destrutivo.",
+    "deliverable": "Dois palcos compactos e parâmetros ambientais para conservação e observações solares.",
+    "instructions": [
+      "Victoria tem borda de cratera; vale tem canais e inclinação baseados em imagens.",
+      "Expor luz, atmosfera e partículas em um perfil por evento.",
+      "Fog com profundidade integra rover e não apaga toda geometria opaca na Web.",
+      "Capear partículas e definir perfil baixo que preserve ciência e objetivos."
+    ],
+    "acceptance": [
+      "Sol e HUD legíveis durante obscurecimento.",
+      "Rover atrás da poeira, sem silhueta preta imune.",
+      "2007 recupera luz; 2018 termina sem sinal.",
+      "Sem poeira branca estourada ou flash."
+    ],
+    "tests": [
+      "Comparar limpo/denso nos dois perfis.",
+      "Conferir profundidade no Chrome com shader efetivamente ativo."
+    ],
+    "sources": [
+      "https://www.nasa.gov/solar-system/the-fact-and-fiction-of-martian-dust-storms/",
+      "https://www.jpl.nasa.gov/news/mars-rover-opportunity-begins-study-of-valleys-origin/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Art/LateMars/",
+      "Assets/_Game/Chapters/Mars/Prefabs/VictoriaStage.prefab",
+      "Assets/_Game/Chapters/Mars/Prefabs/PerseveranceValleyStage.prefab",
+      "Assets/_Game/Chapters/Mars/Art/LateMars/MarsStormProfile.asset"
+    ]
+  },
+  {
+    "id": "MAR-017",
+    "title": "Montar Spirit em45s sem apagarsuaciência ou inventarseufim",
+    "role": "R4",
+    "priority": "P0",
+    "hours": 1.5,
+    "depends_on": [
+      "CORE-004",
+      "MAR-011"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Timelines/SpiritInterlude.playable",
+      "Assets/_Game/Chapters/Mars/Prefabs/SpiritInterludeStage.prefab",
+      "Assets/_Game/Chapters/Mars/Art/SpiritArchive/"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M22 tem oito batidas em 45 s. A outra metade recebe descobertas e despedida, sem segunda campanha navegável.",
+    "deliverable": "Montagem Spirit com Husband Hill, Comanche, sílica, Home Plate, Troy e último inverno.",
+    "instructions": [
+      "Usar os intervalos 0–5, 5–11, 11–17, 17–22, 22–27, 27–32, 32–39 e 39–45 s.",
+      "Imagens oficiais e palcos pequenos substituem animações caras; registrar créditos.",
+      "Sílica é revelada pela roda fixa arrastada, não rodando normalmente.",
+      "Último contato em 22 MAR 2010, busca encerrada em 25 MAI 2011; frio como causa provável."
+    ],
+    "acceptance": [
+      "Uma informação principal por imagem/legenda.",
+      "Home Plate não mostra vulcão ativo no tempo da missão.",
+      "Spirit não volta a dirigir depois de Troy.",
+      "Retorno à Opportunity identifica claramente 2018."
+    ],
+    "tests": [
+      "Revisão factual MS20–25 e leitura em 960×600.",
+      "Assistir sem áudio e explicar o fim da Spirit."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/mer-spirit/",
+      "https://science.nasa.gov/resource/nasas-mars-rover-spirits-view-southward-from-husband-hill/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Timelines/SpiritInterlude.playable",
+      "Assets/_Game/Chapters/Mars/Prefabs/SpiritInterludeStage.prefab",
+      "Assets/_Game/Chapters/Mars/Art/SpiritArchive/"
+    ]
+  },
+  {
+    "id": "MAR-018",
+    "title": "Integrar edição cinematográfica e entrega de câmeras deMarte",
+    "role": "R4",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "CORE-004",
+      "MAR-013",
+      "MAR-014",
+      "MAR-017",
+      "MAR-019"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Timelines/MarsChapterSequences.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/MarsCameraAnchors.prefab",
+      "Assets/_Game/Chapters/Mars/Art/MarsLightingBindings.asset"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. Montagem tem função narrativa. Câmera, atores e legendas consomem a mesma fonte de duração. R1 mantém a cena global.",
+    "deliverable": "Bindings de origem, pouso, ciência, elipses e final; folgas e pontos de corte documentados.",
+    "instructions": [
+      "Ligar IDs de cues sem duplicar falas em código.",
+      "Interpolar FOV/posição; evitar câmera ativa cortando para dentro da rocha.",
+      "Descoberta usa enquadramento diferente do minigame e não repete escavação.",
+      "Desativar câmeras/luzes de palcos anteriores e entregar eventos a MAR-009."
+    ],
+    "acceptance": [
+      "Novo plano muda escala, assunto ou ação de modo claro.",
+      "Sem caixa de legenda vazia, snap, tremor contínuo ou replay da RAT.",
+      "Pausa e reinício recuperam câmera e exposição.",
+      "Somente split renderiza dois pontos de vista."
+    ],
+    "tests": [
+      "Assistir montagem completa e registrar pontos de corte.",
+      "Contar câmeras/objetos ativos por etapa."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/mer-opportunity/",
+      "https://science.nasa.gov/mission/mer-spirit/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Timelines/MarsChapterSequences.asset",
+      "Assets/_Game/Chapters/Mars/Prefabs/MarsCameraAnchors.prefab",
+      "Assets/_Game/Chapters/Mars/Art/MarsLightingBindings.asset"
+    ]
+  },
+  {
+    "id": "MAR-019",
+    "title": "Criar memorial das duas máquinas com foto real do jogador",
+    "role": "R4",
+    "priority": "P0",
+    "hours": 1,
+    "depends_on": [
+      "CORE-004",
+      "MAR-011"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Timelines/MarsMemorial.playable",
+      "Assets/_Game/Chapters/Mars/Prefabs/MarsMemorialStage.prefab",
+      "Assets/_Game/Chapters/Mars/Art/Memorial/"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M31–M32 somam 34 s. Terminar nas máquinas imóveis; não acrescentar novo voo orbital depois do título.",
+    "deliverable": "Retrato preto de recorte, foto escolhida em runtime e díptico Spirit/Opportunity.",
+    "instructions": [
+      "Respeitar blocos de 6 s: mecanismos, contato, recorte, foto e díptico.",
+      "Consumir textura selecionada por MAR-008 sem fingir a fotografia do jogador.",
+      "45,16 km como recorde na época; anos operacionais 2004–2010 e 2004–2018.",
+      "Após quatro segundos finais, expor controles globais de arquivo/replay."
+    ],
+    "acceptance": [
+      "Não repete cena anterior com zoom.",
+      "Memória escolhida é a mostrada.",
+      "Sem retorno extra a Marte após título.",
+      "Nenhuma fala humana é atribuída ao rover."
+    ],
+    "tests": [
+      "Testar cada seleção; textura ausente deve ter fallback legível sem exceção.",
+      "Conferir legibilidade no perfil leve."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/mer-opportunity/",
+      "https://science.nasa.gov/mission/mer-spirit/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Timelines/MarsMemorial.playable",
+      "Assets/_Game/Chapters/Mars/Prefabs/MarsMemorialStage.prefab",
+      "Assets/_Game/Chapters/Mars/Art/Memorial/"
+    ]
+  },
+  {
+    "id": "MAR-020",
+    "title": "Conferir apoios, macroinstrumento e integração do rover no Web",
+    "role": "R4",
+    "priority": "P0",
+    "hours": 0.75,
+    "depends_on": [
+      "MAR-012",
+      "MAR-015",
+      "MAR-016",
+      "MAR-018",
+      "QA-001"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Tests/MarsVisualChecklist.md",
+      "Assets/_Game/Chapters/Mars/Editor/MarsSupportAudit.cs"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. Revisar regressões conhecidas: rastros no rover, câmera sob chão e peças flutuando. Ajustes precisam sobreviver ao rebuild.",
+    "deliverable": "Auditoria visual e de apoio com pontos amostrados e ajustes persistidos em prefabs/builders.",
+    "instructions": [
+      "Verificar centro/bordas de afloramentos e escudo depois do terreno pronto.",
+      "Rastro usa colisor exclusivo do terreno e limpa em teleporte.",
+      "Conferir normal RGB, sombras, fog e material do rover na build Web.",
+      "Persistir correções; arrastar um objeto no Editor sem salvar builder não basta."
+    ],
+    "acceptance": [
+      "Sem vão nos pontos de apoio definidos.",
+      "Câmeras de pouso acima do chão em cada corte.",
+      "RAT recua sem clipping visível.",
+      "Perfis leve/equilibrado sem mancha branca ou ciência ilegível."
+    ],
+    "tests": [
+      "Rebuild limpo, auditoria e capturas de ângulo baixo.",
+      "Verificar shaders após troca explícita para plataforma Web."
+    ],
+    "sources": [
+      "https://www.jpl.nasa.gov/images/pia07402-heat-shield-in-pieces/",
+      "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/science-instruments/"
+    ],
+    "cutline": "Obrigatório no fim de semana. Simplificar detalhe secundário antes de cortar a ação ou a evidência.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Tests/MarsVisualChecklist.md",
+      "Assets/_Game/Chapters/Mars/Editor/MarsSupportAudit.cs"
+    ]
+  },
+  {
+    "id": "MAR-021",
+    "title": "Polir microtextura e recortes de luz das amostras",
+    "role": "R4",
+    "priority": "P1",
+    "hours": 1,
+    "depends_on": [
+      "MAR-020"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Art/Eagle/MacroFinish/"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. Polimento posterior ao capítulo completo; evitar elevar download para ocultar modelagem básica.",
+    "deliverable": "Microvariação de material e luz macro que reforçam profundidade sem mudar controles/tempos.",
+    "instructions": [
+      "Reutilizar atlas e variar cor/normal em escala coerente.",
+      "Comparar cavidade antes/depois sem marcadores quadrados.",
+      "Preservar LODs e orçamento Web."
+    ],
+    "acceptance": [
+      "Macro legível no perfil leve.",
+      "Sem texturas de 4K desnecessárias.",
+      "Controles e duração iguais ao P0."
+    ],
+    "tests": [
+      "Comparar frames e bytes da build antes/depois."
+    ],
+    "sources": [
+      "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/science-instruments/"
+    ],
+    "cutline": "Polimento opcional. Cortar se qualquer capítulo P0 ainda estiver pendente.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Art/Eagle/MacroFinish/"
+    ]
+  },
+  {
+    "id": "MAR-022",
+    "title": "Refinar assinatura sonora e pausas emocionais deMarte",
+    "role": "R4",
+    "priority": "P1",
+    "hours": 1,
+    "depends_on": [
+      "MAR-018",
+      "MAR-019"
+    ],
+    "files": [
+      "Assets/_Game/Chapters/Mars/Data/MarsAudioCueOverrides.asset"
+    ],
+    "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. R7 é dono do áudio/Mixer global. Esta tarefa entrega apenas pedidos e bindings de eventos de Marte.",
+    "deliverable": "Eventos e crossfades de Marte revisados no fluxo real.",
+    "instructions": [
+      "Servo curto na ativação, retomada de 2007 e recuo.",
+      "Reduzir vento contínuo e reservar silêncio para o último contato.",
+      "Não incluir música comercial sem licença."
+    ],
+    "acceptance": [
+      "Áudio não duplica nem toca ao pausar.",
+      "Sem helicóptero, clipping ou corte de volume.",
+      "Legendas bastam com áudio mudo."
+    ],
+    "tests": [
+      "Revisão humana com fones e alto-falantes em volume moderado."
+    ],
+    "sources": [
+      "https://www.nasa.gov/solar-system/the-fact-and-fiction-of-martian-dust-storms/"
+    ],
+    "cutline": "Polimento opcional. Cortar se qualquer capítulo P0 ainda estiver pendente.",
+    "owned_paths": [
+      "Assets/_Game/Chapters/Mars/Data/MarsAudioCueOverrides.asset"
+    ]
+  }
+]

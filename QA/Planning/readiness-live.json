@@ -1,0 +1,796 @@
+{
+  "mode": "check",
+  "tasks": {
+    "CORE-001": {
+      "status": "ready",
+      "reason": "Dependências integradas; pode ser assumida.",
+      "unmet": [],
+      "number": 1
+    },
+    "CORE-002": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-001",
+      "unmet": [
+        "CORE-001"
+      ],
+      "number": 2
+    },
+    "CORE-003": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-002",
+      "unmet": [
+        "CORE-002"
+      ],
+      "number": 3
+    },
+    "CORE-004": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-002",
+      "unmet": [
+        "CORE-002"
+      ],
+      "number": 4
+    },
+    "CORE-005": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-002",
+      "unmet": [
+        "CORE-002"
+      ],
+      "number": 5
+    },
+    "CORE-006": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-001, CORE-002",
+      "unmet": [
+        "CORE-001",
+        "CORE-002"
+      ],
+      "number": 6
+    },
+    "ART-001": {
+      "status": "ready",
+      "reason": "Dependências integradas; pode ser assumida.",
+      "unmet": [],
+      "number": 7
+    },
+    "UI-001": {
+      "status": "ready",
+      "reason": "Dependências integradas; pode ser assumida.",
+      "unmet": [],
+      "number": 8
+    },
+    "UI-002": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-005, UI-001",
+      "unmet": [
+        "CORE-005",
+        "UI-001"
+      ],
+      "number": 9
+    },
+    "UI-003": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-003, UI-001",
+      "unmet": [
+        "CORE-003",
+        "UI-001"
+      ],
+      "number": 10
+    },
+    "UI-004": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-004, UI-001",
+      "unmet": [
+        "CORE-004",
+        "UI-001"
+      ],
+      "number": 11
+    },
+    "UI-005": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-003, UI-003",
+      "unmet": [
+        "CORE-003",
+        "UI-003"
+      ],
+      "number": 12
+    },
+    "UI-006": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-005, UI-003",
+      "unmet": [
+        "CORE-005",
+        "UI-003"
+      ],
+      "number": 13
+    },
+    "UI-007": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-005, UI-003",
+      "unmet": [
+        "CORE-005",
+        "UI-003"
+      ],
+      "number": 14
+    },
+    "AUD-001": {
+      "status": "ready",
+      "reason": "Dependências integradas; pode ser assumida.",
+      "unmet": [],
+      "number": 15
+    },
+    "AUD-002": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-004, AUD-001",
+      "unmet": [
+        "CORE-004",
+        "AUD-001"
+      ],
+      "number": 16
+    },
+    "QA-001": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-001",
+      "unmet": [
+        "CORE-001"
+      ],
+      "number": 17
+    },
+    "QA-002": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-003, CORE-004, CORE-005",
+      "unmet": [
+        "CORE-003",
+        "CORE-004",
+        "CORE-005"
+      ],
+      "number": 18
+    },
+    "UI-008": {
+      "status": "backlog",
+      "reason": "Opcional não iniciado; bloqueadores continuam listados e são exigidos ao assumir.",
+      "unmet": [
+        "UI-002",
+        "UI-004"
+      ],
+      "number": 19
+    },
+    "MAR-001": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-002, CORE-004, CORE-005",
+      "unmet": [
+        "CORE-002",
+        "CORE-004",
+        "CORE-005"
+      ],
+      "number": 20
+    },
+    "MAR-002": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-002, CORE-003, MAR-001",
+      "unmet": [
+        "CORE-002",
+        "CORE-003",
+        "MAR-001"
+      ],
+      "number": 21
+    },
+    "MAR-003": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-003, MAR-001",
+      "unmet": [
+        "CORE-003",
+        "MAR-001"
+      ],
+      "number": 22
+    },
+    "MAR-004": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-003, MAR-001",
+      "unmet": [
+        "CORE-003",
+        "MAR-001"
+      ],
+      "number": 23
+    },
+    "MAR-005": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-003, MAR-004",
+      "unmet": [
+        "CORE-003",
+        "MAR-004"
+      ],
+      "number": 24
+    },
+    "MAR-006": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-003, MAR-001",
+      "unmet": [
+        "CORE-003",
+        "MAR-001"
+      ],
+      "number": 25
+    },
+    "MAR-007": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-003, MAR-001",
+      "unmet": [
+        "CORE-003",
+        "MAR-001"
+      ],
+      "number": 26
+    },
+    "MAR-008": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-003, CORE-005, MAR-001",
+      "unmet": [
+        "CORE-003",
+        "CORE-005",
+        "MAR-001"
+      ],
+      "number": 27
+    },
+    "MAR-009": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: MAR-001, MAR-002, MAR-003, MAR-005, MAR-006, MAR-007, MAR-008, MAR-018",
+      "unmet": [
+        "MAR-001",
+        "MAR-002",
+        "MAR-003",
+        "MAR-005",
+        "MAR-006",
+        "MAR-007",
+        "MAR-008",
+        "MAR-018"
+      ],
+      "number": 28
+    },
+    "MAR-010": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: MAR-009, QA-001",
+      "unmet": [
+        "MAR-009",
+        "QA-001"
+      ],
+      "number": 29
+    },
+    "MAR-011": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: ART-001, CORE-001",
+      "unmet": [
+        "ART-001",
+        "CORE-001"
+      ],
+      "number": 30
+    },
+    "MAR-012": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: ART-001, MAR-011",
+      "unmet": [
+        "ART-001",
+        "MAR-011"
+      ],
+      "number": 31
+    },
+    "MAR-013": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-004, MAR-011",
+      "unmet": [
+        "CORE-004",
+        "MAR-011"
+      ],
+      "number": 32
+    },
+    "MAR-014": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-004, MAR-011",
+      "unmet": [
+        "CORE-004",
+        "MAR-011"
+      ],
+      "number": 33
+    },
+    "MAR-015": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: ART-001",
+      "unmet": [
+        "ART-001"
+      ],
+      "number": 34
+    },
+    "MAR-016": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: ART-001",
+      "unmet": [
+        "ART-001"
+      ],
+      "number": 35
+    },
+    "MAR-017": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-004, MAR-011",
+      "unmet": [
+        "CORE-004",
+        "MAR-011"
+      ],
+      "number": 36
+    },
+    "MAR-018": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-004, MAR-013, MAR-014, MAR-017, MAR-019",
+      "unmet": [
+        "CORE-004",
+        "MAR-013",
+        "MAR-014",
+        "MAR-017",
+        "MAR-019"
+      ],
+      "number": 37
+    },
+    "MAR-019": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-004, MAR-011",
+      "unmet": [
+        "CORE-004",
+        "MAR-011"
+      ],
+      "number": 38
+    },
+    "MAR-020": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: MAR-012, MAR-015, MAR-016, MAR-018, QA-001",
+      "unmet": [
+        "MAR-012",
+        "MAR-015",
+        "MAR-016",
+        "MAR-018",
+        "QA-001"
+      ],
+      "number": 39
+    },
+    "MAR-021": {
+      "status": "backlog",
+      "reason": "Opcional não iniciado; bloqueadores continuam listados e são exigidos ao assumir.",
+      "unmet": [
+        "MAR-020"
+      ],
+      "number": 40
+    },
+    "MAR-022": {
+      "status": "backlog",
+      "reason": "Opcional não iniciado; bloqueadores continuam listados e são exigidos ao assumir.",
+      "unmet": [
+        "MAR-018",
+        "MAR-019"
+      ],
+      "number": 41
+    },
+    "PIO-001": {
+      "status": "ready",
+      "reason": "Dependências integradas; pode ser assumida.",
+      "unmet": [],
+      "number": 42
+    },
+    "PIO-002": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: ART-001",
+      "unmet": [
+        "ART-001"
+      ],
+      "number": 43
+    },
+    "PIO-003": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-001, CORE-002, ART-001",
+      "unmet": [
+        "CORE-001",
+        "CORE-002",
+        "ART-001"
+      ],
+      "number": 44
+    },
+    "PIO-004": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-003, CORE-003, CORE-004",
+      "unmet": [
+        "PIO-003",
+        "CORE-003",
+        "CORE-004"
+      ],
+      "number": 45
+    },
+    "PIO-005": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-003, CORE-003, CORE-004",
+      "unmet": [
+        "PIO-003",
+        "CORE-003",
+        "CORE-004"
+      ],
+      "number": 46
+    },
+    "PIO-006": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-003, CORE-003, CORE-004",
+      "unmet": [
+        "PIO-003",
+        "CORE-003",
+        "CORE-004"
+      ],
+      "number": 47
+    },
+    "PIO-007": {
+      "status": "ready",
+      "reason": "Dependências integradas; pode ser assumida.",
+      "unmet": [],
+      "number": 48
+    },
+    "PIO-008": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-006, PIO-007, CORE-003",
+      "unmet": [
+        "PIO-006",
+        "PIO-007",
+        "CORE-003"
+      ],
+      "number": 49
+    },
+    "PIO-009": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-003, CORE-003, CORE-004",
+      "unmet": [
+        "PIO-003",
+        "CORE-003",
+        "CORE-004"
+      ],
+      "number": 50
+    },
+    "PIO-010": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-003, CORE-003, CORE-004",
+      "unmet": [
+        "PIO-003",
+        "CORE-003",
+        "CORE-004"
+      ],
+      "number": 51
+    },
+    "PIO-011": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-003, CORE-003, CORE-004",
+      "unmet": [
+        "PIO-003",
+        "CORE-003",
+        "CORE-004"
+      ],
+      "number": 52
+    },
+    "PIO-012": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-003, CORE-004",
+      "unmet": [
+        "PIO-003",
+        "CORE-004"
+      ],
+      "number": 53
+    },
+    "PIO-013": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-001, CORE-004",
+      "unmet": [
+        "PIO-001",
+        "CORE-004"
+      ],
+      "number": 54
+    },
+    "PIO-014": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-002, PIO-004, PIO-005, PIO-008, PIO-009, PIO-010, PIO-011, PIO-012, PIO-013, CORE-005",
+      "unmet": [
+        "PIO-002",
+        "PIO-004",
+        "PIO-005",
+        "PIO-008",
+        "PIO-009",
+        "PIO-010",
+        "PIO-011",
+        "PIO-012",
+        "PIO-013",
+        "CORE-005"
+      ],
+      "number": 55
+    },
+    "PIO-015": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: PIO-014, QA-001",
+      "unmet": [
+        "PIO-014",
+        "QA-001"
+      ],
+      "number": 56
+    },
+    "PIO-016": {
+      "status": "backlog",
+      "reason": "Opcional não iniciado; bloqueadores continuam listados e são exigidos ao assumir.",
+      "unmet": [
+        "PIO-014"
+      ],
+      "number": 57
+    },
+    "PIO-017": {
+      "status": "backlog",
+      "reason": "Opcional não iniciado; bloqueadores continuam listados e são exigidos ao assumir.",
+      "unmet": [
+        "PIO-001"
+      ],
+      "number": 58
+    },
+    "SUR-001": {
+      "status": "ready",
+      "reason": "Dependências integradas; pode ser assumida.",
+      "unmet": [],
+      "number": 59
+    },
+    "SUR-002": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-001, CORE-002, ART-001, SUR-001",
+      "unmet": [
+        "CORE-001",
+        "CORE-002",
+        "ART-001",
+        "SUR-001"
+      ],
+      "number": 60
+    },
+    "SUR-003": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-004, CORE-005, SUR-001",
+      "unmet": [
+        "CORE-004",
+        "CORE-005",
+        "SUR-001"
+      ],
+      "number": 61
+    },
+    "SUR-004": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: CORE-002, CORE-003, CORE-005",
+      "unmet": [
+        "CORE-002",
+        "CORE-003",
+        "CORE-005"
+      ],
+      "number": 62
+    },
+    "SUR-005": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: SUR-003, SUR-004, CORE-003",
+      "unmet": [
+        "SUR-003",
+        "SUR-004",
+        "CORE-003"
+      ],
+      "number": 63
+    },
+    "SUR-006": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: SUR-002, SUR-004, CORE-004",
+      "unmet": [
+        "SUR-002",
+        "SUR-004",
+        "CORE-004"
+      ],
+      "number": 64
+    },
+    "SUR-007": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: SUR-002, CORE-004",
+      "unmet": [
+        "SUR-002",
+        "CORE-004"
+      ],
+      "number": 65
+    },
+    "SUR-008": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: SUR-004, SUR-007, CORE-003",
+      "unmet": [
+        "SUR-004",
+        "SUR-007",
+        "CORE-003"
+      ],
+      "number": 66
+    },
+    "SUR-009": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: SUR-002, SUR-004, CORE-003",
+      "unmet": [
+        "SUR-002",
+        "SUR-004",
+        "CORE-003"
+      ],
+      "number": 67
+    },
+    "SUR-010": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: SUR-009, CORE-004",
+      "unmet": [
+        "SUR-009",
+        "CORE-004"
+      ],
+      "number": 68
+    },
+    "SUR-011": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: SUR-007, SUR-004, CORE-004",
+      "unmet": [
+        "SUR-007",
+        "SUR-004",
+        "CORE-004"
+      ],
+      "number": 69
+    },
+    "SUR-012": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: SUR-002, CORE-004, CORE-005",
+      "unmet": [
+        "SUR-002",
+        "CORE-004",
+        "CORE-005"
+      ],
+      "number": 70
+    },
+    "SUR-013": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: SUR-002, SUR-012, CORE-004, CORE-005",
+      "unmet": [
+        "SUR-002",
+        "SUR-012",
+        "CORE-004",
+        "CORE-005"
+      ],
+      "number": 71
+    },
+    "SUR-014": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: SUR-001, CORE-004",
+      "unmet": [
+        "SUR-001",
+        "CORE-004"
+      ],
+      "number": 72
+    },
+    "SUR-015": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: QA-001, SUR-003, SUR-005, SUR-006, SUR-008, SUR-010, SUR-011, SUR-013, SUR-014",
+      "unmet": [
+        "QA-001",
+        "SUR-003",
+        "SUR-005",
+        "SUR-006",
+        "SUR-008",
+        "SUR-010",
+        "SUR-011",
+        "SUR-013",
+        "SUR-014"
+      ],
+      "number": 73
+    },
+    "SUR-016": {
+      "status": "backlog",
+      "reason": "Opcional não iniciado; bloqueadores continuam listados e são exigidos ao assumir.",
+      "unmet": [
+        "SUR-015"
+      ],
+      "number": 74
+    },
+    "SUR-017": {
+      "status": "backlog",
+      "reason": "Opcional não iniciado; bloqueadores continuam listados e são exigidos ao assumir.",
+      "unmet": [
+        "SUR-001",
+        "SUR-015"
+      ],
+      "number": 75
+    },
+    "INT-001": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: MAR-010, MAR-020, PIO-015, SUR-015, CORE-006, UI-002, UI-004, UI-005, UI-006, UI-007, AUD-002",
+      "unmet": [
+        "MAR-010",
+        "MAR-020",
+        "PIO-015",
+        "SUR-015",
+        "CORE-006",
+        "UI-002",
+        "UI-004",
+        "UI-005",
+        "UI-006",
+        "UI-007",
+        "AUD-002"
+      ],
+      "number": 76
+    },
+    "SCI-001": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: UI-004, MAR-001, PIO-001, SUR-001",
+      "unmet": [
+        "UI-004",
+        "MAR-001",
+        "PIO-001",
+        "SUR-001"
+      ],
+      "number": 77
+    },
+    "ART-002": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: INT-001",
+      "unmet": [
+        "INT-001"
+      ],
+      "number": 78
+    },
+    "QA-003": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: INT-001, QA-002",
+      "unmet": [
+        "INT-001",
+        "QA-002"
+      ],
+      "number": 79
+    },
+    "QA-004": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: INT-001",
+      "unmet": [
+        "INT-001"
+      ],
+      "number": 80
+    },
+    "QA-005": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: INT-001, QA-001",
+      "unmet": [
+        "INT-001",
+        "QA-001"
+      ],
+      "number": 81
+    },
+    "REL-001": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: QA-003, QA-005, SCI-001, ART-002",
+      "unmet": [
+        "QA-003",
+        "QA-005",
+        "SCI-001",
+        "ART-002"
+      ],
+      "number": 82
+    },
+    "REL-002": {
+      "status": "blocked",
+      "reason": "Aguardando integração de: REL-001, QA-004",
+      "unmet": [
+        "REL-001",
+        "QA-004"
+      ],
+      "number": 83
+    },
+    "AUD-003": {
+      "status": "backlog",
+      "reason": "Opcional não iniciado; bloqueadores continuam listados e são exigidos ao assumir.",
+      "unmet": [
+        "AUD-002",
+        "INT-001"
+      ],
+      "number": 84
+    }
+  },
+  "labelChanges": {},
+  "staleIntegrationRemoved": [],
+  "project": "Somente consulta: não foram alterados campos do Project.",
+  "nativeDependencies": "O DAG de Data/backlog.json é a fonte de verdade; dependências nativas não foram consultadas.",
+  "event": null,
+  "claim": null
+}

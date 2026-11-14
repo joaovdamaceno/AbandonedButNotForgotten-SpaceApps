@@ -1,0 +1,365 @@
+Seguinte, quero basicamente que você planeje TODAS AS SONDSA, historias, legendas, cutscenes, TUDO! Então por exemplo, opportunity, terá cutscene A, B, que tem tais legendas, quais cenas, o tempo tal, quais módulos globais precisam ser feitas, quais módulos gerais precisam ser feitas, para então, você além de fazer um documento de TUDO detalhamente do que tem que ser feito no jogo, e além disso, crie um novo repositório git, junto de criar o kanban do GitHub nos projetos, com TODAS as tasks necessárias para fazer o jogo, imagino que como vamos estar em 6 pessoas, tem que ter tasks claras mostrando quais precisam de outras tasks prontas por exemplo e tals, para por exemplo, 1 pessoa n pegar a task q depende de outra q outra pessoa ta fazendo, para ter o melhor workflow de tasks. Além disso vamos estar fazendo as sondas: Spirity & Opportunity, Piooner 10 e a Surveyor 3. O tempo de gameplay médio deve ser de 5-7 minutos. O jogo tem que ser bem otimizado para o webgl rodar no itchio em computadores ruins também, tenha isso em mente, além disso, pessoas leigas que não jogam vao jogar o jogo, então deve ter um foco e um tutorial bem forte para as pessoas saberem EXATAMENTE o que fazer, e não ter que ter muita habilidade para fazer as minigames, a pessoa não pode perder tempo sem saber o que fazer, além disso tudo tem que ser factual sobre as sondas, os modelos 3d e cenários tem q ser baseados nas imagens reais. E lembre-se, como vamos usar bastante a IA, cada task tem que ser quase um prompt, com todo o contexto e etc. Inclusive acho que legal as tasks ter um prompt mestre, ou um arquivo contexto mestre para ser usado a primeira vez no chat, vou colocar isso no modo planejamento, então planeje tudo, saiba quais agentes vai usar e etc, os modelos 3d da pra usar o da própria nasa: https://science.nasa.gov/3d-resources/pioneer/, https://science.nasa.gov/resource/spirit-and-opportunity-rover-3d-model/ eu vou mandar o arquivo 3d depois. Vou dar uma geral de como deve ser o jogo no geral para você saber mais ou menos: o menu inicial vai ter uma seleção de fases, um exemplo seria tipo um dossiê, como se fosse um arquivo da nasa, um papel em uma pasta, algo simples, fotos e blueprints, nome da sonda algumas informações e descrição e já era, porem aqui n pode ter mta coisa pra ler, pq se a pessoa avaliando realmente for ler, ela n pode perder NENHUM tempo nessa parte, vc sempre tem q lembrar que estamos correndo contra o tempo para mostrar as coisas no pouco tempo do critico. Alem de tudo isso, cria um arquivo para lermos como vai ficar a gameplay exata para podermos revisar o que vai acontecer e ver se ta tudo certo, para n ter que ler todas as tasks. Dai a pessoa seleciona as fases e começa o capitulo, o primeiro capitulo é da spirity & opportunity:
+1. [MUDA] Terra · preparação (v2 00:08)
+
+Tela: laboratório com dois rovers iguais lado a lado, cada um com o nome embaixo.
+Fala: “Marte já teve água? Para descobrir, a NASA construiu dois robôs geólogos gêmeos: Spirit e Opportunity.”
+
+2. [MUDA] Mapa com os dois destinos (v2 00:13–00:28; junta o mapa de hematita e “Por que Meridiani?”)
+
+Tela: Marte inteiro, com dois pontos em lados opostos e os nomes em letra grande.
+Fala: “A Spirit iria para a Cratera Gusev, uma cratera de impacto gigante que pode ter sido um lago.”
+Fala: “A Opportunity iria para Meridiani Planum, onde minerais sugeriam que Marte teve um passado úmido.”
+Fala: “Ali, uma sonda em órbita tinha visto hematita. Na Terra, ela costuma se formar na água.”
+Base: a NASA descreve Gusev Crater, a possible former lake in a giant impact crater e diz que Opportunity landed at Meridiani Planum, a place where mineral deposits suggested that Mars had a wet history. 
+nasa
+nasa
+
+3. [MUDA] Lançamento (era a primeira cena, v2 00:02)
+
+Fala: “Em junho e julho de 2003, as gêmeas partiram, uma de cada vez.”
+Base: as duas were launched toward Mars on June 10 and July 7, 2003. 
+solarviews
+
+4. [NOVO] Pouso em tela dividida (substitui v2 00:29–00:42)
+
+Tela: tela dividida por uma linha horizontal, com a Spirit em cima e a Opportunity embaixo. As duas metades mostram a mesma sequência ao mesmo tempo: escudo em chamas, paraquedas, airbags, quiques, parada e pétalas abrindo.
+Letreiros: em cada metade, um letreiro com o dobro do tamanho da legenda: “SPIRIT · CRATERA GUSEV · 4 JAN 2004” e “OPPORTUNITY · MERIDIANI PLANUM · 25 JAN 2004”.
+Fala: “Em janeiro de 2004, as duas chegaram a lados opostos de Marte.”
+Atenção: os pousos não foram juntos. Spirit landed in Gusev crater on 4 January 2004 UTC. It was followed 21 days later by Opportunity. Por isso cada metade precisa mostrar a sua data. 
+si
+Datas diferentes nas fontes: páginas da NASA dão 3 e 24 de janeiro porque usam o horário da Califórnia (Jan. 3 and Jan. 24, 2004 PST). Em UTC e no horário de Brasília, são 4 e 25. 
+nasa
+
+5. [NOVO] A tela se abre para a Opportunity
+
+Tela: a Opportunity rola para dentro de uma cratera pequena. A metade dela cresce até ocupar a tela inteira, e a da Spirit sai com o letreiro “Spirit · Cratera Gusev”.
+Fala: “A Opportunity parou bem dentro de uma cratera pequena, a Eagle. Agora, você é a Opportunity.”
+Base: foi um “hole-in-one” landing inside a small crater nicknamed by the science team “Eagle Crater.” A cratera tem about 22 meters (72 feet) in diameter, 3 meters (10 feet) deep. 
+nasa
+apache
+(análise): modelar essa bacia em volta do módulo, no lugar da planície com morro, e usar céu caramelo na descida.
+
+6. [MANTÉM] Primeiras rodas (v2 00:43–00:50)
+
+Uma semana de verificações; a Opportunity desce do módulo em 31/1/2004.
+
+7. [NOVO] Cartão de controles
+
+Tela: no centro, maior que a legenda, antes do primeiro movimento:
+MOVER: W A S D ou ← ↑ → ↓
+INTERAGIR: E · aperte para começar · segure para usar os instrumentos
+O cartão some quando o jogador anda e aperta E pela primeira vez. Depois fica pequeno num canto da tela.
+Ato 2: Eagle Crater, 2004
+
+8. [MUDA] Até as esferas (v2 00:51–01:01)
+
+Objetivo: “Procure por hematita nas rochas”.
+(análise): a fala “Afloramentos claros. Algumas pequenas esferas chamam a atenção.” entra aqui, com o rover parado. Na v2 ela vinha em 01:27, depois das esferas.
+Botão: “E · observar as pequenas esferas”.
+
+9. [MUDA] Microscópio (v2 01:02–01:11)
+
+Interação: segure E para examinar, sem mirar.
+Fala: “São esferas de hematita. Estão no chão e também presas dentro da rocha.”
+Painel: Objetivo 1 com o texto inteiro, marcando “composição: hematita · distribuição: no solo e na rocha”.
+
+10. [MANTÉM] Até McKittrick (v2 01:12–01:41)
+
+Mantém a fala “Mas uma pista não basta…”.
+
+11. [MANTÉM] O braço se aproxima (v2 01:42–01:48)
+
+12. [MUDA] RAT (v2 01:49–02:02)
+
+Interação: segure E para esmerilhar. Soltar E pausa.
+O que sai: a pressão fica automática; saem o A/D e a temperatura.
+
+13. [MUDA] Medir a composição (volta a etapa removida na v2; análise)
+
+Interação: segure E para encostar o espectrômetro APXS e depois o Mössbauer.
+Resultado: “Esta rocha tem muito enxofre.” O APXS instrument on Opportunity detected abundant sulfur in the outcrop. 
+nasa
+Etiqueta: “Objetivo 1 · composição”.
+
+14. [MUDA] Água antiga (v2 02:03–02:15)
+
+Fala: “Camadas, concreções e composição química contam a mesma história.”
+Fala: “Evidência forte: ali já houve água líquida, há muito tempo.” (análise: substitui “Água confirmada”)
+Painel: Objetivo 2 com o texto inteiro, marcando “sedimentação · água”.
+
+15. [MUDA de lugar] Abril de 2004 · missão cumprida (era v2 03:01)
+
+Fala: “Os 90 sóis planejados terminaram, para as duas gêmeas. E as duas seguiram trabalhando.”
+Base: a Spirit completed its planned 90-sol mission, e a Opportunity também. 
+Wikipedia
+Ato 3: escudo e meteorito, 2005
+
+16. [MANTÉM] “2005. Seguindo adiante…” e a direção de 5 m (v2 02:16–02:32)
+
+17. [MUDA] Escudo (v2 02:33–02:38)
+
+Interação: segure E para fotografar, sem mira.
+
+18. [MANTÉM] Rocha metálica (v2 02:39–02:46)
+
+Objetivo: “Examine a rocha metálica: de onde ela veio?”
+
+19. [MUDA] Meteorito (v2 02:47–02:52)
+
+Interação: segure E para analisar.
+Resultado: ferro e níquel.
+Fala: “Pedras vindas do espaço também caem em Marte e abrem crateras.”
+Etiquetas: “Objetivo 1 · composição” e “Objetivo 2 · crateras de impacto”.
+
+20. [MANTÉM] Heat Shield Rock (v2 02:53–03:00)
+
+Ato 4: a tempestade de 2007 (volta)
+
+21. [NOVO] “2007 · A tempestade”
+
+Tela: a Opportunity parada na borda de uma cratera grande, com o céu escurecendo e um medidor de energia no canto.
+Fala: “Tempestades de poeira são comuns em Marte. Todo ano surgem algumas do tamanho de continentes.”
+Fala: “E, a cada poucos anos, uma cresce até cobrir o planeta inteiro.”
+Fala: “Em 2007, uma dessas escureceu o céu da Opportunity.”
+Interação: o medidor cai de cerca de 700 para 128. “Segure E para desligar tudo o que não é essencial”: rodas, braço, câmeras e até o rádio por alguns dias.
+Fala: “Ela esperou, gastando quase nada. Semanas depois, o céu clareou. A Opportunity sobreviveu.”
+Base:
+“Every year there are some moderately big dust storms that pop up on Mars and they cover continent-sized areas and last for weeks at a time,” 
+nasa
+Once every three Mars years (about 5 ½ Earth years), on average, normal storms grow into planet-encircling dust storms, e a de 2007 foi uma delas. 
+nasa
+Em 2007, a Opportunity estava perched on the edge of Victoria Crater, waiting to descend into the crater until a severe regional dust storm clears. 
+astronomy
+Antes da tempestade, os painéis davam about 700 watt hours of electricity per day, e a energia chegou a cair even lower, to 128 watt hours. 
+spaceflightnow
+nasa
+the rover team suspended driving and most observations, including use of the robotic arm, cameras and spectrometers, e o rover chegou a ficar dias sem falar com a Terra. 
+nasa
+Ela voltou a andar on Sol 1271 (August 21, 2007), its first since mid-July. 
+planetary
+Ato 5: a despedida da Spirit
+
+22. [NOVO] “Enquanto isso, na Cratera Gusev…”
+
+Tela: a tela se divide de novo, com a Spirit em cima e a Opportunity parada embaixo. Letreiro grande: “SPIRIT · CRATERA GUSEV”.
+Feitos (um cartão por vez):
+By late 2005, Spirit had driven up a nearby landmark, Husband Hill. Foi a primeira vez que um rover subiu um morro em outro planeta. 
+space
+Em Comanche, Spirit found rocks 10 times richer in key chemicals (magnesium and iron carbonates) than any other Martian rocks studied before. É sinal de água antiga pouco ácida, mais amigável à vida. 
+nasa
+Arrastando uma roda quebrada, Spirit churned up soil and found 90% pure silica at “Home Plate.” Na Terra, isso é típico de fontes termais ou saídas de vapor. 
+nasa
+Em Home Plate, an ancient volcano erupted, com explosões causadas por água quente. 
+nasa
+Rodou 4.8 miles (7.73 kilometers) e operated for more than six years after landing in January 2004 for what was planned as a three-month mission. 
+nasa
+marsdaily
+Etiqueta: “Objetivo 2 · vulcões e fontes hidrotermais”.
+Como ela parou (falas):
+“Em maio de 2009, a Spirit atolou em areia fofa, num lugar chamado Troy.”
+“Por meses, a equipe tentou soltá-la. Em 2010, ela virou uma estação parada.”
+“Presa num ângulo ruim, não conseguia recarregar as baterias no inverno. O frio venceu os aquecedores.”
+“O último sinal chegou em 22 de março de 2010. Em 25 de maio de 2011, a NASA se despediu.”
+Base:
+on May 1, the rover drove into soft soil at Troy, on the west side of “Home Plate,” and became mired. 
+astronomy
+In January 2010, the rover team declared Spirit a stationary research station. 
+astronomy
+Ela ficou presa at an angle that hampered recharging of its batteries. 
+Wikipedia
+The most probable cause of the loss of contact was the excessive cold that made its survival heaters ineffective. 
+nasa
+O último contato foi em 22 de março de 2010, e on May 25, 2011, after more than an Earth year since Spirit’s last communication, the team ended their search. 
+astronomy
+Tela: a metade da Spirit escurece com “SPIRIT · 2004–2010”, e a metade da Opportunity cresce de volta.
+Fala: “Agora, só a Opportunity continuava.”
+Ato 6: Perseverance Valley, 2018
+
+23. [MUDA] 2018 (v2 03:07)
+
+Fala: “Em 2018, a Opportunity explorava Perseverance Valley.” (análise)
+Fala: “Os cientistas queriam saber o que cavou esse vale: água, lama com pedras ou o vento.”
+Fala: “O céu começava a escurecer.”
+Etiqueta: “Objetivo 2 · erosão por água ou vento”.
+Base: sobre o vale, a NASA diz que It might have been flowing water, or might have been a debris flow in which a small amount of water lubricated a turbulent mix of mud and boulders, or might have been an even drier process, such as wind erosion. 
+sciencedaily
+
+24. [MANTÉM] Medir o Sol (v2 03:15–03:23)
+
+Mantém a fala “Sua energia vem do Sol…”.
+
+25. [MUDA] Pancam: referência (v2 03:24–03:28)
+
+Interação: segure E para fotografar o Sol.
+
+26. [MUDA] Foto do vale (v2 03:29–03:32)
+
+Interação: segure E para fotografar o vale.
+
+27. [MUDA] Sol através da poeira (v2 03:33–03:42)
+
+Fala nova: “Não era a primeira tempestade: em 2007 ela já tinha sobrevivido a uma. Mas esta cobriu o planeta inteiro.”
+
+28. [MUDA] Pancam: poeira (v2 03:43–03:49)
+
+Interação: segure E para fotografar o Sol de novo.
+(análise): a segunda imagem bem mais escura que a primeira.
+
+29. [MUDA] Enviar imagem (v2 03:50–04:00)
+
+Interação: segure E para apontar a antena para a Terra.
+(análise): sai a direção até um ponto de transmissão. Mantém a fala “Se esta for a última chance…”.
+
+30. [MANTÉM] Escolha da imagem e transmissão (v2 04:01–04:09)
+
+Interação: aperte E na imagem que deve ficar.
+Ato 7: fim
+
+31. [MUDA] Epílogo (v2 04:10–04:44)
+
+Mantém: as falas atuais do epílogo.
+Fala: “Último sinal: 10 de junho de 2018.”
+Fala: “Ela rodou 45,16 km, um recorde fora da Terra.”
+Último plano (análise: mostrar onde ela está hoje):
+Tela: as duas gêmeas paradas, cada uma no seu lugar.
+Fala: “As gêmeas continuam em Marte: a Spirit em Gusev, a Opportunity em Perseverance Valley.”
+Base: Opportunity last communicated with Earth on June 10, 2018, as a planet-wide dust storm blanketed the solar-powered rover’s location on Mars. Ela holds the off-Earth roving distance record after accruing 28.06 miles (45.16 kilometers) of driving on Mars. 
+nasa
+nasa
+
+32. [MUDA] Tela final
+
+Tela: “Spirit 2004–2010 · Opportunity 2004–2018”.
+
+O segundo capitulo da pioneer:Roteiro (cena a cena, com orçamento de tempo)
+
+Os textos abaixo são a base. Pode reescrever para soar mais natural, mas mantenha o conteúdo, os fatos e o tom.
+
+Cena 1 — "Ninguém nunca tinha ido tão longe" (0:00–0:45)
+Abre em preto. Título da fase no padrão da Opportunity: Pioneer 10.
+Noite de 2 de março de 1972, Cabo Kennedy. Close na sonda pequena dentro do foguete. Texto: "1972. Nenhuma máquina humana tinha ido além de Marte. Esta pequena sonda, do tamanho de um carro, ia tentar."
+Lançamento noturno: chama iluminando a plataforma, câmera tremendo, corte para o silêncio do espaço.
+Contador estilizado: "11 horas depois, ela já tinha passado a Lua." Texto: "Era a máquina mais rápida que a humanidade já tinha construído!"
+A sonda se abre e começa a girar devagar. Texto: "A Pioneer gira como um pião. Assim ela fica sempre de pé e apontada para a Terra."
+Texto rápido sobre energia: "Ela não usa painéis solares. Leva 'baterias nucleares' (RTG), porque vai para longe do Sol."
+Música: começa misteriosa e cresce no lançamento. Depois do lançamento, só o ambiente do espaço.
+Cena 2 — MINIGAME 1: "O cinturão do medo" (0:45–1:55)
+A sonda cruza a órbita de Marte. Texto: "Depois de Marte, havia um lugar onde ninguém tinha passado: o cinturão de asteroides." (15 de julho de 1972)
+Texto: "Alguns cientistas tinham medo: e se ela batesse numa pedra e fosse destruída?"
+Parte A — "O que os cientistas imaginavam" (~20 s):
+A tela muda de estilo: moldura de desenho/lousa, cores fortes e o selo visível "IMAGINAÇÃO" num canto.
+Um campo exagerado de asteroides vem na direção da sonda. A criança arrasta (ou usa as setas) para desviar das pedras grandes, que são lentas e fáceis.
+Se bater, a pedra só "quica" com um som engraçado. Nada de dano nem de reinício.
+Parte B — "O que aconteceu de verdade" (~25 s):
+A moldura da imaginação racha e cai. A câmera abre num plano realista: espaço quase vazio, com um ou outro asteroide muito distante como um pontinho de luz.
+Texto: "Na vida real, o cinturão é quase vazio! A rota foi planejada para passar a milhões de quilômetros do asteroide mais próximo."
+Mini interação: os detectores da sonda piscam quando grãos de poeira minúsculos passam. A criança toca em 5 grãos brilhantes para "registrar" a poeira. Contador: "Poeira registrada: 5/5".
+Fechamento, com o calendário passando rápido: "Sete meses depois, em fevereiro de 1973, ela saiu do outro lado inteira. Agora sabíamos: dá para passar!"
+Música: na Parte A, tensa mas lúdica, estilo desenho animado. Na Parte B, um corte suave para algo calmo e maravilhado.
+Cena 3 — "O rei dos planetas" (1:55–2:25)
+Viagem de meses comprimida. Júpiter vai crescendo de um ponto até ocupar a tela.
+Texto: "Novembro de 1973. Pela primeira vez, uma máquina humana chegava perto de Júpiter, o maior planeta do Sistema Solar."
+Texto: "As mensagens já levavam mais de 45 minutos para chegar. Um comando e sua resposta podiam levar 1 hora e meia!"
+Plano grandioso: a sonda girando, pequenininha diante de Júpiter. Pausa contemplativa curta.
+Música: grandiosa, com um toque de suspense.
+Cena 4 — MINIGAME 2: "Uma foto linha por linha" + a radiação (2:25–3:45)
+Explicação (fato real): "A Pioneer não tinha uma câmera como a do celular. Como ela girava, o telescópio via só uma linha fininha a cada volta. A foto era montada linha por linha!"
+Mecânica:
+Tela dividida. À esquerda, a sonda girando, com um feixe/linha de luz que varre o espaço a cada volta. À direita, um "quadro" vazio onde a imagem de Júpiter vai sendo montada.
+A cada volta, quando o feixe passa sobre Júpiter, a criança aperta (ou segura) o botão "Gravar!". A faixa vira uma linha nova no quadro.
+A janela de acerto é larga e fica destacada. Se errar, aquela linha fica vazia e a sonda simplesmente gira de novo.
+Para ficar curto: cada acerto preenche uma faixa larga, e ~8 acertos completam a imagem.
+Primeiro passe em vermelho, segundo em azul (fato: a câmera via em duas cores). No fim, as duas se juntam e aparece a cor.
+Reviravolta da radiação (no meio do segundo passe):
+Um medidor de radiação sobe para o vermelho, a tela chuvisca e aparecem "comandos fantasmas" na tela de controle.
+Texto: "Júpiter tem uma radiação milhares de vezes mais forte que a da Terra. Ela começou a bagunçar o computador da sonda!"
+Interação: um botão pulsante "Enviar comando de reserva" (fato: a equipe tinha deixado comandos prontos para emergências). A criança aperta e o chuvisco diminui. É impossível falhar.
+Texto honesto: "Algumas fotos se perderam, inclusive a da lua Io. Mas a sonda aguentou!"
+Revelação:
+A imagem montada pela criança dá lugar, com um crossfade, à foto real de Júpiter tirada pela Pioneer 10 (NASA, domínio público). Selo: "Foto real, 1973".
+Em seguida, uma foto real de Ganimedes. Texto: "Ela tirou as primeiras fotos de perto de Ganimedes, a maior lua do Sistema Solar."
+Texto sobre ciência: "Ela também mediu o campo magnético, a radiação e o 'peso' de Júpiter e das suas luas. Tudo isso ajudou as sondas que viriam depois."
+Duração alvo do minigame: 45–60 s.
+Música: concentração/curiosidade, com tensão na radiação e alívio triunfante na revelação.
+Cena 5 — INTERAÇÃO 3: "Uma carta para as estrelas" (3:45–4:35)
+A gravidade de Júpiter lança a sonda para fora do Sistema Solar. Texto: "Depois de Júpiter, a Pioneer 10 nunca mais voltaria. Ela agora ia rumo às estrelas."
+Close lento na placa dourada presa à sonda, brilhando à luz de Júpiter.
+Texto: "Ela leva uma placa de ouro: uma mensagem para quem a encontrar, daqui a milhões de anos. Foi criada em só 3 semanas!"
+Mecânica (quebra-cabeça de encaixe, ~25–30 s):
+A placa aparece vazia com 5 contornos. Abaixo, 5 peças: hidrogênio, mapa de pulsares, Sistema Solar, silhueta da sonda, pessoas.
+A criança arrasta cada peça até o contorno, com snap automático quando chega perto.
+Cada encaixe mostra uma frase curta:
+Hidrogênio: "O átomo mais comum do Universo. Serve de 'régua' para entender o resto."
+Pulsares: "Um mapa usando estrelas que piscam, para mostrar onde fica o nosso Sol."
+Sistema Solar: "A sonda saiu do terceiro planeta: a Terra!"
+Silhueta: "O desenho da própria Pioneer, para mostrar o tamanho das pessoas."
+Pessoas: "Quem mandou a mensagem. Uma delas está acenando: olá!"
+Cuidado com o público infantil: as figuras humanas da placa original estão sem roupa. Desenhe uma versão simplificada da placa em traço dourado, com as pessoas como silhuetas lisas e sem detalhes anatômicos. Nada de usar a gravura original em alta resolução.
+Música: tema principal em versão delicada, quase uma caixinha de música.
+Cena 6 — "Além de todos os planetas" (4:35–5:15)
+Montagem com a sonda passando por anéis de órbita estilizados, com etiquetas de data:
+"1976 — órbita de Saturno." Texto: "Ela descobriu que a 'cauda' magnética de Júpiter chega até aqui!"
+"1979 — órbita de Urano."
+"13 de junho de 1983 — órbita de Netuno." Pausa. Texto: "Pela primeira vez, uma máquina humana estava além de todos os planetas conhecidos!"
+Energia caindo: medidor de RTG diminuindo e ícones de instrumentos apagando um a um. Texto: "A energia foi ficando fraca. Os cientistas desligavam instrumentos para economizar."
+Momento de "passar o bastão" (1998): só texto e um indicador simples de distância subindo na tela, sem desenhar outra sonda. Texto: "Em 1998, a Voyager 1 passou à frente e virou a máquina humana mais distante. A Pioneer 10 tinha mostrado o caminho."
+Não diga que elas estavam perto uma da outra. Elas seguem em direções diferentes do espaço. Enquadre como um "passar o bastão" simbólico, com texto ou efeito que deixe isso claro (por exemplo, tela dividida ou corte entre as duas).
+Música: tema de jornada, crescendo no "além de todos os planetas" e ficando reflexiva com a energia caindo.
+Cena 7 — INTERAÇÃO 4: "Escutando um sussurro" (5:15–6:00)
+Sala de controle / antena de 70 m da Deep Space Network à noite. Texto: "A Pioneer ficou tão longe que o sinal dela era mais fraco que um sussurro."
+Mecânica (sintonia de rádio, ~25–30 s):
+A criança gira um botão de sintonia (arrastar em círculo ou setas) enquanto uma onda chiada vai ficando limpa. Ao achar a frequência certa, aparece um "bip" e uma luz verde. A zona correta é grande e o áudio fica mais limpo quanto mais perto ela chega.
+Isso acontece em 3 rodadas rápidas, cada uma mais fraca e com etiqueta de data:
+"3 de março de 2002 — 30 anos de viagem! Ela respondeu!"
+"27 de abril de 2002 — os últimos dados chegaram."
+"23 de janeiro de 2003 — um último sinal, de 12 bilhões de km. Ele levou mais de 11 horas para chegar."
+Quarta tentativa: "Fevereiro de 2003." A criança gira o botão e só há silêncio. Não é falha da criança: depois de alguns segundos, o botão para sozinho e a interface mostra com calma: "Nenhum sinal."
+Texto: "A energia acabou e a Pioneer 10 ficou em silêncio. Mas ela não parou."
+Silêncio total de 2–3 s. É o momento emocional da fase.
+Cena 8 — "Rumo a Aldebaran" — final (6:00–6:45)
+A câmera sai da Terra e volta para a sonda, ainda girando devagar no escuro.
+Uma estrela vermelha brilhante ao fundo se destaca: Aldebaran, o "olho do Touro". Pode desenhar sutilmente a constelação de Touro.
+Texto: "Ela segue em direção à estrela vermelha Aldebaran. A viagem vai levar cerca de 2 milhões de anos."
+Texto: "A Pioneer 10 foi a primeira a atravessar o cinturão de asteroides e a primeira a visitar Júpiter. Graças a ela, Voyager, Juno e outras sondas sabiam que o caminho era possível."
+Plano final: a placa dourada reflete a luz de Aldebaran. A câmera se afasta devagar e a sonda vira um ponto entre estrelas vivas e coloridas (não um vazio triste).
+Texto final, esperançoso: "Toda grande viagem começa com alguém que vai primeiro. A Pioneer 10 foi primeiro, por todos nós."
+Música: tema principal em versão final, cheia de esperança, terminando suave.
+Transição seguindo exatamente o fluxo da Opportunity (tela de conclusão, menu ou próxima sonda). .o terceiro capitulo da surveyor 3:Gameplay revisada: tudo pela visão da sonda
+Premissa: o jogador é a Surveyor 3 e nunca sai do ponto de vista dela. A tela é o que a sonda percebe: a telemetria (altitude, temperatura, sinal com a Terra) e, depois do pouso, a câmera de TV, com imagens que chegam linha por linha. Os comandos do jogador são as ordens que a Terra enviaria, e todos chegam com o atraso de cerca de 1,3 s que existe entre a Terra e a Lua.
+Licença poética: na missão real a câmera só funcionou depois do pouso. Por isso, nos atos 1 a 3 a “visão” da sonda é só telemetria, sons e vibração. A imagem de verdade só aparece quando ela está na Lua, o que torna essa primeira imagem um momento forte.
+Ato 1: Lançamento, tela escura
+•	Só há HUD: contagem regressiva em UTC (07:05:01, 17 abr 1967), tremor de tela e grave crescente.
+•	Interação: confirmar o religamento do Centaur saindo da órbita de estacionamento, quando um anel se fecha no HUD.
+•	Informação no HUD: “Atlas-Centaur AC-12 · LC-36B · massa 997,9 kg”.
+Ato 2: Cruzeiro, sons e números
+•	Silêncio, bipes de telemetria e um contador de distância subindo durante cerca de 3 dias acelerados.
+•	Interação: a correção de meio de curso. O jogador alinha a orientação no HUD e dosa a queima para centralizar o alvo no Oceano das Tempestades.
+Ato 3: O pouso que quicou, o clímax sem imagem
+•	O altímetro do radar desce. A 4,3 m o desligamento deveria acontecer, mas o HUD pisca “CUTOFF: NO SIGNAL” porque as rochas refletivas cegaram o radar.
+•	O jogador sente o choque, o HUD mostra a sonda subindo de novo até 10 m, depois um segundo quique até 3 m. Ele precisa mandar o comando de desligamento a tempo, levando o atraso do sinal em conta.
+•	Depois do impacto final, o silêncio e a mensagem “00:04:17 UTC · 20 abr 1967 · 3° S, 23,41° O”.
+Ato 4: Abrir os olhos, a câmera liga
+•	Primeira imagem: a tela se desenha linha por linha em 200 linhas. É a primeira vez que o jogador “vê”.
+•	Explorar: mover o espelho na horizontal e na vertical e alternar entre as lentes de 25 mm (ampla) e 100 mm (zoom). Dá para descobrir:
+o	as marcas das patas dos quiques no solo, detalhe real que aparece nas fotos da Surveyor 3;
+o	a encosta da cratera onde a sonda parou;
+o	o próprio corpo da sonda e as patas.
+•	A pá no quadro: o braço entra na imagem da câmera, exatamente como nas fotos reais. O jogador cava trincheiras de até 18 cm, aperta o solo e solta a pá. Um contador mostra 4 trincheiras, 4 testes de carga e 13 de impacto.
+•	24 abr 1967, o eclipse: a câmera é apontada para cima e a Terra passa na frente do Sol, formando um anel de luz.
+•	Resultado no HUD: “Solo semelhante a areia úmida · ~98 kPa · suporta o Módulo Lunar”.
+Ato 5: Dormir
+•	As sombras se alongam no quadro e a temperatura despenca. O contador de imagens congela em 6.326.
+•	Em 4 mai 1967 aparece “Último contato” e a tela escurece.
+•	Passagem do tempo: num timelapse com a câmera parada, o Sol nasce e se põe na mesma paisagem cerca de 32 vezes, que é o número de dias lunares entre maio de 1967 e novembro de 1969. Um contador de data corre até 19 nov 1969.
+Ato 6: A visita, cutscene final
+•	Um ponto brilhante surge no céu: o Intrepid descendo. A poeira levantada pelo pouso, a cerca de 180 m, varre a paisagem e mancha a lente. Isso faz referência à poeira real que coloriu a sonda de marrom.
+•	Silêncio, sem som de passos porque não há ar.
+•	Pés de astronauta entram no quadro, com botas, marcas na poeira e a sombra comprida. O jogador nunca vê um rosto.
+•	Uma luva se aproxima da lente, a imagem treme, a câmera é desacoplada, e a tela corta para preto. Na missão real, foi exatamente a câmera que Pete Conrad e Alan Bean levaram de volta.
+•	Créditos com fatos: “Apollo 12 · 20 nov 1969 · câmera e pá retiradas · hoje no Smithsonian National Air and Space Museum”.
+O que esse formato muda
+•	Ritmo: começa cego, ganha visão no meio e termina perdendo a visão. Esse arco dá peso emocional à experiência.
+•	Precisão histórica: a cutscene final é ficção narrativa, porque a câmera estava desligada desde 1967. Ela pode ser apresentada como “a imagem que a Surveyor nunca chegou a fazer”, e uma ficha final esclarece isso.
+Produção mais simples: não é preciso modelar o astronauta inteiro, só botas, luva e sombra, e o cenário é praticamente um só.
+
+Alem disso, precisa denovo, do arquivo contexto global pra todo mundo baixar usar, ter algo bem definido de padrão de código, e cada task tem q ser basicamente um prompt já também! TUDO SUPER DETALHADO! Coloque bastante foco nas tasks, são 7 pessoas no projeto
