@@ -1,0 +1,37 @@
+travel-pt-1280x720 instrument (x:936.00, y:270.00, width:300.00, height:251.00) inside=True
+travel-pt-1280x720 flight-map (x:44.00, y:187.00, width:860.00, height:387.00) inside=True
+travel-pt-1280x720 help hidden
+travel-pt-1280x720 phase=Travel targetDiameter=0.35 mapAspect=0,450 aligned=False help=0
+guidance-pt-1280x720 instrument (x:936.00, y:214.00, width:300.00, height:358.00) inside=True
+guidance-pt-1280x720 flight-map (x:44.00, y:167.00, width:860.00, height:387.00) inside=True
+guidance-pt-1280x720 help (x:938.00, y:529.00, width:294.00, height:41.00) inside=True
+guidance-pt-1280x720 phase=Guidance targetDiameter=0.35 mapAspect=0,450 aligned=False help=0
+signal-pt-1280x720 instrument (x:936.00, y:214.00, width:300.00, height:358.00) inside=True
+signal-pt-1280x720 flight-map (x:44.00, y:167.00, width:860.00, height:387.00) inside=True
+signal-pt-1280x720 help (x:938.00, y:529.00, width:294.00, height:41.00) inside=True
+signal-pt-1280x720 phase=Guidance targetDiameter=0.35 mapAspect=0,450 aligned=True help=0
+burn-pt-1280x720 instrument (x:936.00, y:297.00, width:300.00, height:276.00) inside=True
+burn-pt-1280x720 flight-map (x:44.00, y:227.00, width:860.00, height:387.00) inside=True
+burn-pt-1280x720 help hidden
+burn-pt-1280x720 phase=Burn targetDiameter=0.35 mapAspect=0,450 aligned=True help=0
+handoff-pt-1280x720 instrument (x:936.00, y:257.00, width:300.00, height:276.00) inside=True
+handoff-pt-1280x720 flight-map (x:44.00, y:187.00, width:860.00, height:387.00) inside=True
+handoff-pt-1280x720 help hidden
+handoff-pt-1280x720 phase=Handoff targetDiameter=0.35 mapAspect=0,450 aligned=True help=0
+complete-pt-1280x720 instrument (x:936.00, y:245.00, width:300.00, height:380.00) inside=True
+complete-pt-1280x720 flight-map (x:44.00, y:227.00, width:860.00, height:387.00) inside=True
+complete-pt-1280x720 help hidden
+complete-pt-1280x720 phase=Inactive targetDiameter=0.35 mapAspect=0,450 aligned=True help=0
+help-pt-960x600 instrument (x:807.60, y:230.40, width:300.00, height:409.20) inside=True
+help-pt-960x600 flight-map (x:44.40, y:237.60, width:730.80, height:330.00) inside=True
+help-pt-960x600 help (x:810.00, y:544.80, width:294.00, height:40.80) inside=True
+help-pt-960x600 phase=Guidance targetDiameter=0.35 mapAspect=0,452 aligned=False help=2
+pause-pt-960x600 instrument (x:807.60, y:309.60, width:300.00, height:250.80) inside=True
+pause-pt-960x600 flight-map (x:44.40, y:255.60, width:730.80, height:328.80) inside=True
+pause-pt-960x600 help hidden
+pause-pt-960x600 pause-center-error=0,600
+pause-pt-960x600 phase=Burn targetDiameter=0.35 mapAspect=0,450 aligned=True help=0
+guidance-en-1024x768 instrument (x:663.75, y:222.19, width:270.00, height:345.94) inside=True
+guidance-en-1024x768 flight-map (x:26.25, y:224.06, width:615.94, height:277.50) inside=True
+guidance-en-1024x768 help (x:665.62, y:525.94, width:264.38, height:40.31) inside=True
+guidance-en-1024x768 phase=Guidance targetDiameter=0.35 mapAspect=0,451 aligned=False help=0
