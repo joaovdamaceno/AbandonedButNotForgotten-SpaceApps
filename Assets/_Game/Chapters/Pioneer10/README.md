@@ -10,7 +10,7 @@ Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de
 | Arquivo | Conteúdo |
 | --- | --- |
 | `Data/Chapters/Pioneer10.json` | Oito estados com ID estável e ordem explícita (375 s nominais, até 381 s com o alongamento de leitura de PIO.07.06 e PIO.04.09), 45 cues (janela local ou gatilho com tempo mínimo de leitura), grupos de texto, **mapa de fatos → fontes**, divergências entre fontes e correções aplicadas |
-| `Data/Localization/Pioneer10.pt-BR.json`, `Pioneer10.en.json` | 78 chaves iguais nos dois idiomas, por grupo (`narrative`, `hud`, `instrument`, `card`) e `status` (`approved` = transcrito do roteiro; `derived` = montado ou traduzido a partir do roteiro, **a revisar pela R7**) |
+| `Data/Localization/Pioneer10.pt-BR.json`, `Pioneer10.en.json` | 83 chaves iguais nos dois idiomas, por grupo (`narrative`, `hud`, `instrument`, `card`) e `status` (`approved` = transcrito do roteiro; `derived` = montado ou traduzido a partir do roteiro, **a revisar pela R7**) |
 
 - **Tempo** é local ao estado, no relógio ativo; datas históricas são dados. A recepção na Terra (rádio) fica separada da operação na sonda (lançamento) no campo `kind` de cada fato.
 - **IDs de gatilho** de `PIO.Imaging` seguem o código integrado (`Gate4`, `Gate6`, `GateRecovery`, `Gate8`); os de `PIO.Plaque` e `PIO.Listening` são **propostos** e devem ser confirmados por PIO-009 e PIO-011.
@@ -21,7 +21,7 @@ Fonte única de ordem, tempos, cues, textos e fatos. Fica em `Data/` (entrada de
 
 | Arquivo | Papel |
 | --- | --- |
-| `Data/PioneerData.asset` | Estados, 45 cues e 78 textos PT/EN importados de `Data/` (PIO-001). `GetText(chave, idioma)` devolve vazio para chave ou idioma desconhecidos (a caixa de legenda some); `ReadingSeconds` estima o tempo de leitura sem nunca acelerá-la |
+| `Data/PioneerData.asset` | Estados, 45 cues e 83 textos PT/EN importados de `Data/` (PIO-001). `GetText(chave, idioma)` devolve vazio para chave ou idioma desconhecidos (a caixa de legenda some); `ReadingSeconds` estima o tempo de leitura sem nunca acelerá-la |
 | `Audio/PioneerCueMap.asset` | Música por estado (Partida, Curiosidade, Distância, Escuta; crossfade de 1,75 s, dentro de 1,5–2 s), efeitos de interface, o quase silêncio da virada do cinturão (nível 0,15 em 1,5 s) e o silêncio real de 2,5 s da tentativa 4. **Só IDs de cue da folha de cues (AUD-001): nenhum clipe, nenhuma licença adquirida** |
 | `Runtime/PioneerNarration.cs` | Escuta a `SequenceDirector`: mostra e esconde a legenda, troca de idioma sem reiniciar, pede música só quando o cue muda e aplica os efeitos do mapa. `Cancel()` encerra tudo e ignora eventos até o próximo `EnterState` |
 | `Runtime/IPioneerAudioPort.cs` | Porta de pedidos de áudio, **sem implementação**: o `AudioDirector` (AUD-002) a adapta (`SetCue(cueId, fadeSeconds)` do contrato) |
@@ -177,3 +177,22 @@ Prefab `Art/PioneerActors.prefab` (raiz `PioneerActors`, componente `PioneerProb
 **Limitações.** O quadro de imagem é uma representação gráfica das faixas, sem a fotografia (PIO-008 e PIO-007). Ruído, aviso de radiação, botão de recuperação e revelação são da PIO-008. Os textos ainda são as chaves (UI-004). Duração de passagem (3 s) e largura da janela são decisão de jogabilidade, não dado histórico. Play Mode e navegador não foram exercitados.
 
 **Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.stage.imaging`.
+
+## Recuperação de radiação e revelação histórica (PIO-008)
+
+| Arquivo | Papel |
+| --- | --- |
+| `Runtime/ImagingRecovery.cs` | Em `RadiationInterruption` (6/8): ruído estático e localizado no quadro da imagem, aviso (`PIO.UI.radiation`) e UM botão de E (`PIO.UI.recover`, toque confirma; também clicável). A confirmação envia o pacote (`PIO.UI.sent`) por uma elipse temporal de 4 s de tempo ATIVO e só então chama `ResumeAfterRecovery()`. Vive no `RecoverySlot` do painel da PIO-006, sem editar o UXML dela |
+| `Runtime/HistoricalImageReveal.cs` + `UI/HistoricalImageReveal.uxml/.uss/.prefab` | Depois de `RevealStarted` (48 s): crossfade de 1 s para a montagem real de Júpiter aos +7 s (legenda PIO.04.07, que fala de Io) e para Ganimedes aos +15 s (PIO.04.08). Rodapé com `PIO.UI.real` (Pioneer 10 · 1973 · NASA) e a data (`PIO.UI.jupiter`, `PIO.UI.ganymede`); Io aparece como "imagem perdida" (`PIO.UI.io_lost`) |
+| `UI/ImagingRecovery.uss` | Estilo do aviso, do botão, da barra do pacote e do ruído |
+| `Editor/PioneerRecoveryBuilder.cs` | Builder CORE-006 `pioneer10.stage.imaging.recovery` (raiz `[R5] Pioneer Imaging Recovery`, depois de `pioneer10.stage.imaging`) |
+| `Editor/PioneerRecoveryCapture.cs` | Prévia em `Docs/Art/Pioneer10_Recovery/` (menu PIO-008; **precisa da janela da Unity em primeiro plano**) |
+| `Tests/PioneerRecoveryTests.cs` | 16 testes EditMode |
+
+**Sem falha, sem flash.** Nada reinicia nem apaga faixas: o E repetido envia **um** pacote, o E que ainda estava mantido da varredura não confirma sozinho (o hold é rearmado), pausar congela o pacote (tempo ativo) e cancelar a varredura zera o estado. O ruído é estático (sete faixas finas e opacas a 12–26%), o aviso não pulsa e as passagens de imagem são só opacidade, uma vez. Tudo funciona sem som. O aviso tem triângulo e borda grossa (não depende só de cor). O prompt de E da varredura se recolhe enquanto o botão de recuperação está à vista (um único E por vez).
+
+**Uso pelo controlador (PIO-014):** depois de `imaging.Initialize(...)`, chamar `recovery.Initialize(interactionService, sessionClock, resolverDeTexto)` e `reveal.Initialize(sessionClock, resolverDeTexto)`. Ambos escutam os eventos da `PioneerImaging` e se limpam sozinhos quando a varredura termina ou é cancelada.
+
+**Textos novos (PIO-001):** `PIO.UI.radiation` (do roteiro, `approved`) e `PIO.UI.sent`, `PIO.UI.jupiter`, `PIO.UI.ganymede`, `PIO.UI.io_lost` (`derived`: a R7 precisa revisar). A legenda de Júpiter diz que é uma **montagem**.
+
+**Limitações.** Revisão da R7 pendente (textos `derived` e a data de Júpiter só como "dezembro de 1973", porque a página da NASA não dá o instante de cada quadro). A duração de 4 s do pacote e os instantes de entrada das fotos são decisão editorial, não dado histórico. A revelação é guiada por tempo ativo próprio (não pelo relógio da sequência): em pausa congelam juntos, mas não foi medida a deriva em sessões longas. Sem áudio (AUD-002/UI-004 ainda não existem) e sem caixa de legenda real. Play Mode e navegador não foram exercitados.
