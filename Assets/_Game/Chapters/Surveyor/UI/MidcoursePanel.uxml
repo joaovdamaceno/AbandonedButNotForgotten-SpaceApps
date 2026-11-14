@@ -1,0 +1,49 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+ <Style src="../../../UI/Design/SpaceAppsTokens.uss" />
+ <Style src="../../../UI/Design/SpaceAppsComponents.uss" />
+ <Style src="MidcoursePanel.uss" />
+ <ui:VisualElement class="sa-root sa-chapter--surveyor mid-root">
+  <ui:VisualElement class="mid-header">
+   <ui:Label name="archive" class="sa-stamp mid-muted" />
+   <ui:VisualElement class="mid-toolbar"><ui:Button name="language" class="mid-tool" /><ui:Button name="pause" class="mid-tool" /></ui:VisualElement>
+  </ui:VisualElement>
+  <ui:VisualElement name="entry" class="mid-entry">
+   <ui:Label name="title" class="mid-title" />
+   <ui:Label name="description" class="mid-description" />
+   <ui:Button name="start" class="mid-primary" />
+  </ui:VisualElement>
+  <ui:VisualElement name="flight" class="mid-flight">
+   <ui:VisualElement class="mid-identification">
+    <ui:Label name="phase" class="sa-stamp mid-accent" />
+    <ui:VisualElement class="mid-date-row"><ui:Label name="date" class="mid-date" /><ui:Label name="journey" class="sa-stamp mid-muted" /></ui:VisualElement>
+   </ui:VisualElement>
+   <ui:VisualElement class="mid-body">
+    <ui:VisualElement class="mid-map-column">
+     <ui:VisualElement name="flight-map" class="mid-map" />
+     <ui:VisualElement class="mid-map-legend"><ui:Label name="earth" class="sa-stamp mid-muted" /><ui:Label name="diagram" class="sa-stamp mid-muted" /><ui:Label name="moon" class="sa-stamp mid-muted" /></ui:VisualElement>
+     <ui:Label name="keys" class="mid-help" />
+    </ui:VisualElement>
+    <ui:VisualElement name="instrument" class="mid-instrument">
+     <ui:Label name="destination-kicker" class="sa-stamp mid-muted" />
+     <ui:Label name="destination" class="mid-destination" />
+     <ui:Label name="latin" class="sa-stamp mid-accent" />
+     <ui:Label name="status" class="mid-status" />
+     <ui:VisualElement class="mid-meter"><ui:VisualElement name="preparation" class="mid-fill" /></ui:VisualElement>
+     <ui:Button name="confirm" class="mid-primary" />
+     <ui:VisualElement class="mid-meter mid-radio"><ui:VisualElement name="radio" class="mid-fill mid-radio-fill" /></ui:VisualElement>
+     <ui:Label name="help" class="mid-help" />
+     <ui:Button name="assist" class="mid-secondary" />
+     <ui:Button name="restart" class="mid-secondary" />
+     <ui:Button name="return" class="mid-secondary" />
+    </ui:VisualElement>
+   </ui:VisualElement>
+   <ui:VisualElement name="subtitle-plate" class="mid-subtitle-plate" picking-mode="Ignore"><ui:Label name="subtitle" class="mid-subtitle" /></ui:VisualElement>
+  </ui:VisualElement>
+  <ui:VisualElement name="pause-overlay" class="mid-overlay">
+   <ui:VisualElement name="pause-card" class="mid-pause-card">
+    <ui:Label name="pause-title" class="mid-pause-title" /><ui:Label name="pause-description" class="mid-description" />
+    <ui:Button name="resume" class="mid-primary" /><ui:Button name="restart-paused" class="mid-secondary" /><ui:Button name="return-paused" class="mid-secondary" />
+   </ui:VisualElement>
+  </ui:VisualElement>
+ </ui:VisualElement>
+</ui:UXML>
