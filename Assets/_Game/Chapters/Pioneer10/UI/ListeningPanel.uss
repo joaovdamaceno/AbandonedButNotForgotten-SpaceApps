@@ -1,0 +1,135 @@
+/* PIO-011 · Painel da escuta. Tokens/componentes da UI-001; só o específico fica aqui. Nada pisca nem se move sozinho. */
+
+.pio-lis {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Quadro do anchor PIO.Listening (0,56 · 0,07 · 0,40 · 0,33), embaixo à direita; .sa-instrument fixa top, por isso top: auto. */
+.pio-lis__frame {
+    position: absolute;
+    left: 56%;
+    top: auto;
+    bottom: 7%;
+    width: 40%;
+    height: 33%;
+    padding: var(--sa-space-3);
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pio-lis__head { flex-direction: column; }
+
+.pio-lis__card {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0 0 0 var(--sa-space-2);
+    border-left-width: 4px;
+    border-left-color: var(--sa-color-focus);
+    white-space: normal;
+}
+
+.pio-lis__status {
+    font-size: var(--sa-text-label);
+    -unity-font-style: bold;
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0 0 0 var(--sa-space-2);
+    white-space: normal;
+}
+
+.pio-lis__note { font-size: 14px; color: var(--sa-color-on-plate-muted); margin: 0; padding: 0 0 0 var(--sa-space-2); white-space: normal; }
+
+.pio-lis__small { font-size: 14px; color: var(--sa-color-on-plate); margin: 0; padding: 0; white-space: nowrap; }
+
+.pio-lis__assist { margin-left: var(--sa-space-3); -unity-font-style: bold; }
+
+/* Onda: barras fixas (a forma muda só com o estado, nunca por tempo). */
+.pio-lis__wave {
+    height: 34px;
+    flex-direction: row;
+    align-items: center;
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-md);
+    background-color: rgb(14, 17, 22);
+    padding: 2px 4px;
+}
+
+.pio-lis__bar { flex-grow: 1; flex-basis: 0; margin: 0 1px; background-color: var(--sa-color-on-plate); min-width: 2px; }
+
+.pio-lis__tuner { flex-direction: row; align-items: center; height: 28px; }
+
+.pio-lis__scale {
+    flex-grow: 1;
+    flex-basis: 0;
+    height: 18px;
+    margin: 0 var(--sa-space-2);
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: 9px;
+    background-color: rgb(14, 17, 22);
+}
+
+/* Zona: contorno grosso, não só cor; engrossa e preenche quando o botão está dentro. */
+.pio-lis__zone {
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    border-width: 3px;
+    border-color: var(--sa-color-focus);
+    border-radius: 9px;
+    background-color: rgba(255, 208, 90, 0.18);
+}
+
+.pio-lis__zone--in { background-color: rgba(255, 208, 90, 0.5); }
+
+.pio-lis__knob {
+    position: absolute;
+    top: -6px;
+    width: 22px;
+    height: 26px;
+    margin-left: -11px;
+    border-width: 3px;
+    border-color: var(--sa-color-focus);
+    border-radius: 6px;
+    background-color: var(--sa-color-on-plate);
+}
+
+/* Setas por borda (triângulo): apontam para a zona; ficam ocultas dentro dela. */
+.pio-lis__arrow {
+    width: 0;
+    height: 0;
+    border-top-width: 9px;
+    border-bottom-width: 9px;
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.pio-lis__arrow--left { border-right-width: 14px; border-right-color: var(--sa-color-focus); }
+.pio-lis__arrow--right { border-left-width: 14px; border-left-color: var(--sa-color-focus); }
+
+.pio-lis__prox { flex-direction: row; align-items: center; height: 18px; }
+
+.pio-lis__meter {
+    flex-grow: 1;
+    flex-basis: 0;
+    height: 10px;
+    margin-left: var(--sa-space-2);
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.pio-lis__meter-fill { height: 100%; width: 0; background-color: var(--sa-color-focus); }
+
+.pio-lis__hold { flex-shrink: 0; }
+
+.sa-layout--narrow .pio-lis__frame { left: 46%; width: 52%; padding: var(--sa-space-2); }
+.sa-layout--narrow .pio-lis .sa-hold { min-width: 0; }
