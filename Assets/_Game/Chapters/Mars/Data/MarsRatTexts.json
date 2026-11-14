@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_TWINS.md (M11 Braço se aproxima; M12 RAT). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-004. Mesmo formato de 'texts' em MarsSubtitles.json (key, pt, en); a UI/localização pode juntar as tabelas.",
+    "Verbo e objeto do círculo E (E + verbo + objeto): o mesmo padrão de todas as atividades de Marte."
+  ],
+  "texts": [
+    { "key": "MAR.VERB.approach", "pt": "APROXIMAR O BRAÇO", "en": "MOVE THE ARM IN" },
+    { "key": "MAR.VERB.grind", "pt": "ESMERILHAR", "en": "GRIND" },
+    { "key": "MAR.OBJ.rock", "pt": "ROCHA", "en": "ROCK" }
+  ]
+}
