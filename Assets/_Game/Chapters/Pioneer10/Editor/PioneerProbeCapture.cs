@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -30,6 +31,8 @@ namespace Abandoned.SpaceApps.EditorTools
             public float Fov;
             public float SpinDegrees;
             public float BoomDegrees;
+            /// <summary>0 = automático; 1 = força o LOD0; 2 = força o LOD1 (comparação de silhueta).</summary>
+            public int ForceLod;
         }
 
         static readonly Frame[] Frames =
@@ -43,6 +46,10 @@ namespace Abandoned.SpaceApps.EditorTools
             new Frame { Name = "06_haste_rtg_cruzeiro", Position = new Vector3(3.2f, 2.4f, -1.2f), Target = new Vector3(1.4f, 0.8f, 0f), Fov = 40f },
             new Frame { Name = "07_haste_rtg_45graus", Position = new Vector3(3.2f, 2.4f, -1.2f), Target = new Vector3(1.4f, 0.8f, 0f), Fov = 40f, BoomDegrees = 45f },
             new Frame { Name = "08_spin_90graus", Position = new Vector3(5.5f, 3.2f, 7f), Target = new Vector3(0f, -0.6f, 0.4f), Fov = 40f, SpinDegrees = 90f },
+            new Frame { Name = "09_lod0_distante", Position = new Vector3(14f, 5f, 18f), Target = new Vector3(0f, -0.4f, 0.3f), Fov = 30f, ForceLod = 1 },
+            new Frame { Name = "10_lod1_distante", Position = new Vector3(14f, 5f, 18f), Target = new Vector3(0f, -0.4f, 0.3f), Fov = 30f, ForceLod = 2 },
+            new Frame { Name = "11_lod0_tres_quartos", Position = new Vector3(5.5f, 3.2f, 7f), Target = new Vector3(0f, -0.6f, 0.4f), Fov = 40f, ForceLod = 1 },
+            new Frame { Name = "12_lod1_tres_quartos", Position = new Vector3(5.5f, 3.2f, 7f), Target = new Vector3(0f, -0.6f, 0.4f), Fov = 40f, ForceLod = 2 },
         };
 
         [MenuItem("Abandoned Space Apps/PIO-002/Capturar sonda")]
@@ -102,6 +109,9 @@ namespace Abandoned.SpaceApps.EditorTools
                 foreach (var frame in Frames)
                 {
                     rig.SetCruise();
+                    var lodGroup = rig.GetComponentInParent<LODGroup>(true);
+                    if (lodGroup != null)
+                        lodGroup.ForceLOD(frame.ForceLod - 1); // 0 → -1 = automático
                     rig.SetSpinDegrees(frame.SpinDegrees);
                     if (frame.BoomDegrees > 0f)
                         rig.SetBoomDegrees(PioneerBoom.RtgBoomA, frame.BoomDegrees);
@@ -153,7 +163,54 @@ namespace Abandoned.SpaceApps.EditorTools
             return image;
         }
 
+        /// <summary>
+        /// Estimativa analítica, a partir das configurações de importação e das malhas: textura = lado² × bits por texel do
+        /// formato do override WebGL × 4/3 (mipmaps); malha = vértices × 32 B (posição, normal, UV) + índices. Não substitui
+        /// o profiler da build Web (04_WEB_AND_QA: orçamento de residência de texturas ≈ 96 MiB).
+        /// </summary>
+        static List<string> WebCost(PioneerProbeRig rig)
+        {
+            var lines = new List<string>();
+            var importer = AssetImporter.GetAtPath(PioneerProbeBuilder.AtlasPath) as TextureImporter;
+            if (importer != null)
+            {
+                var web = importer.GetPlatformTextureSettings("WebGL");
+                var side = Mathf.Min(web.overridden ? web.maxTextureSize : importer.maxTextureSize, 2048);
+                var bitsPerTexel = web.format == TextureImporterFormat.DXT1 ? 4f : web.format == TextureImporterFormat.DXT5 ? 8f : 32f;
+                var mebibytes = side * (double)side * bitsPerTexel / 8.0 * (importer.mipmapEnabled ? 4.0 / 3.0 : 1.0) / (1024.0 * 1024.0);
+                lines.Add($"Atlas {side}×{side} em {web.format} (override WebGL {(web.overridden ? "ligado" : "desligado")}), mipmaps {(importer.mipmapEnabled ? "ligados" : "desligados")}: ≈ {mebibytes:0.0} MiB de textura residente (orçamento total ≈ 96 MiB).");
+            }
+
+            long vertices = 0, indexBytes = 0;
+            foreach (var filter in rig.GetComponentInParent<LODGroup>(true).GetComponentsInChildren<MeshFilter>(true))
+            {
+                if (filter.sharedMesh == null)
+                    continue;
+                vertices += filter.sharedMesh.vertexCount;
+                indexBytes += filter.sharedMesh.GetIndexCount(0) * (filter.sharedMesh.indexFormat == UnityEngine.Rendering.IndexFormat.UInt32 ? 4 : 2);
+            }
+
+            lines.Add($"Malhas (LOD0 + LOD1 + placa): {vertices} vértices ≈ {(vertices * 32 + indexBytes) / 1024.0:0} KiB sem compressão de malha (a compressão média do build reduz isso).");
+            lines.Add("Sem download em runtime: atlas, malhas e materiais estão em `Assets/` e entram no pacote da cena; o original (`ArtSource/`) não vai para o build.");
+            return lines;
+        }
+
         static string Describe(PioneerProbeRig rig)
+        {
+            // saída determinística em qualquer máquina: números sempre com ponto decimal
+            var previous = System.Globalization.CultureInfo.CurrentCulture;
+            System.Globalization.CultureInfo.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+            try
+            {
+                return DescribeInvariant(rig);
+            }
+            finally
+            {
+                System.Globalization.CultureInfo.CurrentCulture = previous;
+            }
+        }
+
+        static string DescribeInvariant(PioneerProbeRig rig)
         {
             rig.SetCruise();
             rig.SetSpinDegrees(0f);
@@ -166,6 +223,11 @@ namespace Abandoned.SpaceApps.EditorTools
             text.AppendLine("- " + PioneerProbeChecks.Describe(report));
             text.AppendLine("- Meta do LOD0: até 60 mil triângulos; materiais: até 3.");
             foreach (var line in report.Lines)
+                text.AppendLine("- " + line);
+            text.AppendLine();
+            text.AppendLine("## Custo Web estimado (não medido no navegador)");
+            text.AppendLine();
+            foreach (var line in WebCost(rig))
                 text.AppendLine("- " + line);
             text.AppendLine();
             text.AppendLine(report.Errors.Count == 0 ? "Verificações: **conformes**." : "Verificações com erro:\n" + string.Join("\n", report.Errors.Select(e => "- " + e)));
