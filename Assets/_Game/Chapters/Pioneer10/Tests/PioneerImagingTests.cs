@@ -330,5 +330,68 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(imaging.ResumeAfterRecovery(), Is.False, "cancelado: nada a retomar");
             Assert.That(completed, Is.Zero);
         }
+
+        [Test]
+        public void ValidateSetupIsEmptyOnTheBuiltSceneAndComplainsAboutMissingReferences()
+        {
+            Assert.That(imaging.ValidateSetup(), Is.Empty);
+
+            var bare = new GameObject("bare").AddComponent<PioneerImaging>();
+            var errors = bare.ValidateSetup();
+            Object.DestroyImmediate(bare.gameObject);
+            Assert.That(errors.Any(e => e.Contains("sequence")), Is.True);
+            Assert.That(errors.Any(e => e.Contains("presentation")), Is.True);
+            Assert.That(errors.Any(e => e.Contains("panel")), Is.True);
+        }
+
+        [Test]
+        public void ThePanelPrefabHasTheResponsiveClassAndEveryElementTheViewUses()
+        {
+            var panel = Object.FindFirstObjectByType<ImagingPanelView>(FindObjectsInactive.Include);
+            Assert.That(panel, Is.Not.Null);
+            Assert.That(panel.GetComponent<Abandoned.SpaceApps.UI.ResponsiveLayoutClass>(), Is.Not.Null, "UI_SPEC: todo UIDocument de tela cheia");
+            Assert.That(panel.ValidateSetup(), Is.Empty);
+        }
+
+        [Test]
+        public void ThePromptStateFollowsAvailableRearmHoldingPausedAndDone()
+        {
+            Press(keyboard.eKey); // E já pressionado ao abrir a atividade
+            imaging.Begin();
+            Step(1f / 30f);
+            Assert.That(imaging.ViewState().Hold, Is.EqualTo(ImagingHoldState.Rearm), "o E que abriu não conta");
+            Release(keyboard.eKey);
+            Step(1f / 30f);
+            Assert.That(imaging.ViewState().Hold, Is.EqualTo(ImagingHoldState.Available));
+
+            Press(keyboard.eKey);
+            Step(1f / 30f);
+            Assert.That(imaging.ViewState().Hold, Is.EqualTo(ImagingHoldState.Holding));
+            RunUntil(() => imaging.CapturedCount >= 1);
+            Release(keyboard.eKey);
+            Step(1f / 30f);
+            Assert.That(imaging.ViewState().Hold, Is.EqualTo(ImagingHoldState.Paused), "soltou com faixas registradas");
+
+            Press(keyboard.eKey);
+            RunUntil(() => imaging.IsInterrupted);
+            Assert.That(imaging.ViewState().Hold, Is.EqualTo(ImagingHoldState.Paused), "interrompida: o progresso está preservado");
+            imaging.ResumeAfterRecovery();
+            RunUntil(() => imaging.Phase == ImagingPhase.Assembled);
+            Release(keyboard.eKey);
+            Assert.That(imaging.ViewState().Hold, Is.EqualTo(ImagingHoldState.Done));
+        }
+
+        [Test]
+        public void ReleasingBeforeAnyStripIsNotPausedBecauseNothingIsPreserved()
+        {
+            imaging.Begin();
+            Step(1f / 30f);
+            Press(keyboard.eKey);
+            Step(1f / 30f);
+            Release(keyboard.eKey);
+            Step(1f / 30f);
+            Assert.That(imaging.CapturedCount, Is.Zero);
+            Assert.That(imaging.ViewState().Hold, Is.EqualTo(ImagingHoldState.Available));
+        }
     }
 }

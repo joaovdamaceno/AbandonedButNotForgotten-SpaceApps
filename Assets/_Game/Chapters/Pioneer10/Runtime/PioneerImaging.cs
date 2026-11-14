@@ -24,6 +24,20 @@ namespace Abandoned.SpaceApps
         Blue = 1,
     }
 
+    /// <summary>Estado do prompt de E (UI_SPEC): vira UMA classe <c>sa-hold--*</c>; nenhum depende só de cor.</summary>
+    public enum ImagingHoldState
+    {
+        /// <summary>Candidato ativo; pressionar E segura.</summary>
+        Available = 0,
+        /// <summary>O E que abriu a atividade ainda está pressionado: nada começa até soltar.</summary>
+        Rearm = 1,
+        Holding = 2,
+        /// <summary>Soltou E (ou a interrupção parou a aquisição) com faixas já registradas: o progresso está preservado.</summary>
+        Paused = 3,
+        /// <summary>8/8.</summary>
+        Done = 4,
+    }
+
     /// <summary>O que o painel desenha neste quadro (sem tipos de UI: a lógica é testável sem painel).</summary>
     public struct ImagingViewState
     {
@@ -47,6 +61,7 @@ namespace Abandoned.SpaceApps
         public bool Interrupted;
         /// <summary>Faixa alvo da passagem (0–7); 8 quando completo.</summary>
         public int Target;
+        public ImagingHoldState Hold;
     }
 
     /// <summary>
@@ -103,7 +118,7 @@ namespace Abandoned.SpaceApps
 
         ImagingPhase phase;
         bool running, candidateOpen, holding, tapPending, assisted, passCaptured, passMissed, completedRaised;
-        bool interruptionRaised, recoveryDone, allRaised, revealRaised, skipped;
+        bool interruptionRaised, recoveryDone, allRaised, revealRaised, skipped, pausedByRelease;
         string waitingGate;
         float passClock, idleSeconds, missedTimer;
         int captured, missedPasses;
@@ -433,12 +448,16 @@ namespace Abandoned.SpaceApps
 
             holding = true;
             tapPending = true;
+            pausedByRelease = false;
         }
 
         void OnHoldCanceled(string id)
         {
-            if (id == CandidateId)
-                holding = false; // soltar só pausa: as faixas registradas permanecem
+            if (id != CandidateId)
+                return;
+
+            holding = false; // soltar só pausa: as faixas registradas permanecem
+            pausedByRelease = captured > 0;
         }
 
         void OnHoldCompleted(string id)
@@ -483,7 +502,7 @@ namespace Abandoned.SpaceApps
 
             if (presentation != null)
                 presentation.UnbindSequenceDirector();
-            running = assisted = passCaptured = passMissed = false;
+            running = assisted = passCaptured = passMissed = pausedByRelease = false;
             interruptionRaised = recoveryDone = allRaised = revealRaised = false;
             waitingGate = null;
             phase = ImagingPhase.Idle;
@@ -513,7 +532,85 @@ namespace Abandoned.SpaceApps
                 Assisted = assisted,
                 Interrupted = phase == ImagingPhase.Interrupted,
                 Target = captured,
+                Hold = HoldState(),
             };
+        }
+
+        /// <summary>
+        /// Estado do prompt de E. O rearme vem do InputRouter, que já suprime o E pressionado quando o contexto muda:
+        /// E fisicamente pressionado sem hold ativo = a atividade abriu com E pressionado, e nada começa até soltar.
+        /// </summary>
+        ImagingHoldState HoldState()
+        {
+            if (phase == ImagingPhase.Assembled || phase == ImagingPhase.Done)
+                return ImagingHoldState.Done;
+            if (phase == ImagingPhase.Interrupted)
+                return ImagingHoldState.Paused; // a aquisição parou com as faixas preservadas
+            if (holding)
+                return ImagingHoldState.Holding;
+            if (router != null && router.IsInteractPhysicallyHeld)
+                return ImagingHoldState.Rearm;
+            return pausedByRelease ? ImagingHoldState.Paused : ImagingHoldState.Available;
+        }
+
+        /// <summary>
+        /// Erros de montagem (lista vazia = conforme): referências, sequência de 74 s com os marcos e as 9 legendas,
+        /// anchor com quadro de UI e painel ligado ao UXML. Usado pelo builder e pelo Inspector.
+        /// </summary>
+        public System.Collections.Generic.List<string> ValidateSetup()
+        {
+            var errors = new System.Collections.Generic.List<string>();
+            const string owner = "PioneerImaging";
+            if (sequence == null)
+                errors.Add($"{owner}: sequence não atribuída.");
+            else
+            {
+                errors.AddRange(sequence.Validate().ConvertAll(e => $"{owner}: {e}"));
+                if (Mathf.Abs(sequence.TotalDurationSeconds - 74f) > 0.01f)
+                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro pede 74 s.");
+
+                var events = new System.Collections.Generic.HashSet<string>();
+                foreach (var shot in sequence.Shots)
+                {
+                    if (shot.Events == null)
+                        continue;
+                    foreach (var shotEvent in shot.Events)
+                        events.Add(shotEvent.eventId);
+                }
+
+                foreach (var required in new[] { EventLearn, EventSweep, EventGateChannels, EventGateInterruption, EventGateRecovery, EventGateComplete, EventReveal })
+                {
+                    if (!events.Contains(required))
+                        errors.Add($"{owner}: a sequência não dispara o evento '{required}'.");
+                }
+
+                var cueKeys = new System.Collections.Generic.HashSet<string>();
+                foreach (var cue in sequence.Cues)
+                    cueKeys.Add(cue.TextKey);
+                for (var i = 1; i <= 9; i++)
+                {
+                    var key = "PIO.04.0" + i;
+                    if (!cueKeys.Contains(key))
+                        errors.Add($"{owner}: falta a legenda {key}.");
+                }
+            }
+
+            if (presentation == null)
+                errors.Add($"{owner}: presentation (palco da PIO-003) não atribuída.");
+            else
+            {
+                if (!presentation.TryGetAnchor(StateId, out _))
+                    errors.Add($"{owner}: o palco não tem o anchor {StateId}.");
+                else if (!presentation.TryGetUiFrame(StateId, out _))
+                    errors.Add($"{owner}: o anchor {StateId} não reserva quadro de UI.");
+            }
+
+            if (panel == null)
+                errors.Add($"{owner}: panel (ImagingPanelView) não atribuído.");
+            else
+                errors.AddRange(panel.ValidateSetup());
+
+            return errors;
         }
 
         void PushView()
