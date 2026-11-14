@@ -347,7 +347,7 @@ namespace Abandoned.SpaceApps.Tests
         [Test]
         public void ThePanelPrefabHasTheResponsiveClassAndEveryElementTheViewUses()
         {
-            var panel = Object.FindFirstObjectByType<ImagingPanelView>(FindObjectsInactive.Include);
+            var panel = Object.FindAnyObjectByType<ImagingPanelView>(FindObjectsInactive.Include);
             Assert.That(panel, Is.Not.Null);
             Assert.That(panel.GetComponent<Abandoned.SpaceApps.UI.ResponsiveLayoutClass>(), Is.Not.Null, "UI_SPEC: todo UIDocument de tela cheia");
             Assert.That(panel.ValidateSetup(), Is.Empty);
