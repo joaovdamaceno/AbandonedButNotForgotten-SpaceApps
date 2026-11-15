@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70727ea5bd91e9e489d1dcb8f893b0a7, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.ChapterDefinition
   chapterId: surveyor3
   titleKey: sur.chapter.title
@@ -18,50 +18,38 @@ MonoBehaviour:
   questionKey: sur.chapter.question
   cover: {fileID: 21300000, guid: ec5ffec62e1c72c4681b9361707e4fad, type: 2}
   sceneName: SurveyorChapter
-  targetDurationSeconds: 360
-  initialSequenceId: surveyor.seq.Launch
+  targetDurationSeconds: 375
+  initialSequenceId: sur.doc.Prologue
   steps:
-  - stepId: Launch
+  - stepId: Prologue
     nextStepIds:
-    - Cruise
+    - Arrival
     isTerminal: 0
-  - stepId: Cruise
+  - stepId: Arrival
     nextStepIds:
-    - Descent
+    - Activation
     isTerminal: 0
-  - stepId: Descent
+  - stepId: Activation
     nextStepIds:
-    - FirstImage
+    - Science
     isTerminal: 0
-  - stepId: FirstImage
+  - stepId: Science
     nextStepIds:
-    - Observe
+    - Findings
     isTerminal: 0
-  - stepId: Observe
+  - stepId: Findings
     nextStepIds:
-    - Sample
+    - Night
     isTerminal: 0
-  - stepId: Sample
+  - stepId: Night
     nextStepIds:
-    - Eclipse
+    - Reunion
     isTerminal: 0
-  - stepId: Eclipse
+  - stepId: Reunion
     nextStepIds:
-    - LunarNight
+    - Legacy
     isTerminal: 0
-  - stepId: LunarNight
-    nextStepIds:
-    - TimePassage
-    isTerminal: 0
-  - stepId: TimePassage
-    nextStepIds:
-    - ImaginedVisit
-    isTerminal: 0
-  - stepId: ImaginedVisit
-    nextStepIds:
-    - HistoricalReceipt
-    isTerminal: 0
-  - stepId: HistoricalReceipt
+  - stepId: Legacy
     nextStepIds:
     - End
     isTerminal: 0

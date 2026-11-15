@@ -25,7 +25,19 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             void Loaded(Scene scene,LoadSceneMode mode)
             {
                 if(scene.name!=name)return;SceneManager.sceneLoaded-=Loaded;
-                try{SurveyorChapterHost chapter=null;foreach(var root in scene.GetRootGameObjects()){chapter=root.GetComponentInChildren<SurveyorChapterHost>();if(chapter!=null)break;}if(chapter==null)throw new InvalidOperationException("Surveyor chapter host missing.");chapter.Initialize(Owner,Clock,Input,Interactions,Settings);done();}
+                try
+                {
+                    SurveyorDocumentaryHost documentary=null;SurveyorChapterHost chapter=null;
+                    foreach(var root in scene.GetRootGameObjects())
+                    {
+                        documentary=root.GetComponentInChildren<SurveyorDocumentaryHost>();if(documentary!=null)break;
+                        chapter=root.GetComponentInChildren<SurveyorChapterHost>();
+                    }
+                    if(documentary!=null)documentary.Initialize(Owner,Clock,Input,Interactions,Settings);
+                    else if(chapter!=null)chapter.Initialize(Owner,Clock,Input,Interactions,Settings);
+                    else throw new InvalidOperationException("Surveyor chapter host missing.");
+                    done();
+                }
                 catch(Exception e){SceneManager.UnloadSceneAsync(scene);failed(e.Message);}
             }
             SceneManager.sceneLoaded+=Loaded;
