@@ -26,6 +26,10 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string PrefabPath = ArtFolder + "/SpaceStage.prefab";
         public const string StageRootName = "[R5] Pioneer Stage";
         public const string InstanceName = "SpaceStage";
+        /// <summary>Textura de Júpiter da NASA (JPL/Caltech, de imagens da Voyager), original preservado em ArtSource.</summary>
+        public const string JupiterSourcePath = "ArtSource/Pioneer10/PIO-003/original/Jupiter.jpg";
+        public const string JupiterTexturePath = StageFolder + "/Textures/PIO_Jupiter_NASA.jpg";
+        public const string ModelInstanceName = "PioneerActors";
 
         // Layout do palco, em metros. Nada além de ~1 km da origem: precisão de float folgada, sem jitter.
         public static readonly Vector3 LaunchSiteCenter = new Vector3(500f, 0f, -500f);
@@ -38,15 +42,8 @@ namespace Abandoned.SpaceApps.EditorTools
         public const float CameraFarMeters = 1500f;
         public const float CameraNearMeters = 0.08f;
 
-        // Sonda provisória (eixo +Z = eixo da antena = eixo de rotação, P-S05). Só o refletor de 2,74 m tem fonte.
-        public const float ReflectorDiameterMeters = 2.74f;
-        const float ReflectorDepthMeters = 0.32f;
+        // Sonda (eixo +Z = eixo da antena = eixo de rotação, P-S05): modelo da PIO-002, refletor de 2,74 m.
         const float CompartmentRadiusMeters = 0.71f;
-        const float CompartmentFrontZ = -0.08f;
-        const float CompartmentBackZ = -0.44f;
-        const float BoomZ = -0.26f;
-        const float PlaqueAngleDegrees = 90f;
-        const float PhotopolarimeterAngleDegrees = 330f;
 
         public override string Id => BuilderId;
         public override string Owner => "R5 · PIO-003";
@@ -79,21 +76,14 @@ namespace Abandoned.SpaceApps.EditorTools
 
         sealed class StageAssets
         {
-            public Mesh Dish, Compartment, Rod, Rtg, FeedHorn, PlaqueBox, InstrumentBox, Sphere, SkySphere, LowSphere, StarMesh;
-            public Material Ivory, DullGold, DarkMetal, Plaque, Jupiter, Sky, Stars, Ground, Aldebaran;
+            public Mesh Sphere, SkySphere, LowSphere, StarMesh;
+            public Material Jupiter, Sky, Stars, Ground, Aldebaran;
         }
 
         static StageAssets BuildAssets(SceneBuildContext context)
         {
             var a = new StageAssets
             {
-                Dish = MeshAsset(context, "PIO_Reflector", m => PioneerStageArt.Dish(m, ReflectorDiameterMeters * 0.5f, ReflectorDepthMeters, 0.025f, 40, 8)),
-                Compartment = MeshAsset(context, "PIO_Compartment", m => PioneerStageArt.Prism(m, "PIO_Compartment", 6, CompartmentRadiusMeters, CompartmentFrontZ - CompartmentBackZ)),
-                Rod = MeshAsset(context, "PIO_Rod", m => PioneerStageArt.Prism(m, "PIO_Rod", 6, 0.022f, 1f)),
-                Rtg = MeshAsset(context, "PIO_Rtg", m => PioneerStageArt.Prism(m, "PIO_Rtg", 8, 0.19f, 0.56f)),
-                FeedHorn = MeshAsset(context, "PIO_Feed", m => PioneerStageArt.Prism(m, "PIO_Feed", 10, 0.1f, 0.34f)),
-                PlaqueBox = MeshAsset(context, "PIO_PlaqueBox", m => PioneerStageArt.Box(m, "PIO_PlaqueBox", new Vector3(0.152f, 0.229f, 0.008f))),
-                InstrumentBox = MeshAsset(context, "PIO_InstrumentBox", m => PioneerStageArt.Box(m, "PIO_InstrumentBox", new Vector3(0.14f, 0.14f, 0.22f))),
                 Sphere = MeshAsset(context, "PIO_Sphere", m => PioneerStageArt.Sphere(m, "PIO_Sphere", 64, 32, false)),
                 SkySphere = MeshAsset(context, "PIO_SkySphere", m => PioneerStageArt.Sphere(m, "PIO_SkySphere", 48, 24, true)),
                 LowSphere = MeshAsset(context, "PIO_LowSphere", m => PioneerStageArt.Sphere(m, "PIO_LowSphere", 12, 6, false)),
@@ -102,19 +92,50 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var sky = TextureAsset(context, "PIO_Starfield.png", () => PioneerStageArt.Starfield(2048, 1024, 3400, 1972), 2048, false, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
             var palette = TextureAsset(context, "PIO_StarPalette.png", PioneerStageArt.StarPalette, 32, false, TextureWrapMode.Clamp, TextureWrapMode.Clamp, FilterMode.Point);
-            var jupiter = TextureAsset(context, "PIO_JupiterProvisional.png", () => PioneerStageArt.JupiterBands(1024, 512, 1973), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
+            var jupiter = JupiterTexture(context);
 
-            a.Ivory = Lit(context, "PIO_Ivory", new Color(0.86f, 0.84f, 0.78f), 0.1f, 0.42f);
-            // Metálico moderado: sem reflexo de ambiente (perfil leve), metal puro ficaria quase preto.
-            a.DullGold = Lit(context, "PIO_DullGold", new Color(0.66f, 0.52f, 0.29f), 0.3f, 0.4f);
-            a.DarkMetal = Lit(context, "PIO_DarkMetal", new Color(0.26f, 0.26f, 0.27f), 0.3f, 0.35f);
-            a.Plaque = Lit(context, "PIO_PlaqueAnodized", new Color(0.86f, 0.69f, 0.40f), 0.3f, 0.55f);
             a.Jupiter = Lit(context, "PIO_Jupiter", Color.white, 0f, 0.05f, jupiter);
             a.Ground = Lit(context, "PIO_GroundNight", new Color(0.032f, 0.033f, 0.038f), 0f, 0.08f);
             a.Sky = Unlit(context, "PIO_Sky", Color.white, sky);
             a.Stars = Unlit(context, "PIO_BrightStars", Color.white, palette);
             a.Aldebaran = Unlit(context, "PIO_AldebaranMarker", new Color(1f, 0.6f, 0.42f), null);
             return a;
+        }
+
+        /// <summary>
+        /// Copia o mapa de Júpiter da NASA (720×360, equiretangular) para o projeto, byte a byte, e o importa: sRGB, mipmaps,
+        /// repetição em U (volta ao redor do planeta) e fixo em V (polos). Substitui a textura gerada por código (G-PIO-02).
+        /// </summary>
+        static Texture2D JupiterTexture(SceneBuildContext context)
+        {
+            if (!File.Exists(JupiterSourcePath))
+                throw new InvalidOperationException("Textura de Júpiter ausente: " + JupiterSourcePath);
+
+            SceneBuildContext.EnsureFolder(Path.GetDirectoryName(JupiterTexturePath)?.Replace('\\', '/'));
+            var source = File.ReadAllBytes(JupiterSourcePath);
+            if (!File.Exists(JupiterTexturePath) || !File.ReadAllBytes(JupiterTexturePath).SequenceEqual(source))
+            {
+                File.WriteAllBytes(JupiterTexturePath, source);
+                AssetDatabase.ImportAsset(JupiterTexturePath, ImportAssetOptions.ForceUpdate);
+            }
+
+            var importer = (TextureImporter)AssetImporter.GetAtPath(JupiterTexturePath);
+            if (importer.textureType != TextureImporterType.Default || !importer.sRGBTexture || !importer.mipmapEnabled
+                || importer.wrapModeU != TextureWrapMode.Repeat || importer.wrapModeV != TextureWrapMode.Clamp
+                || importer.maxTextureSize != 1024 || importer.filterMode != FilterMode.Trilinear)
+            {
+                importer.textureType = TextureImporterType.Default;
+                importer.sRGBTexture = true;
+                importer.mipmapEnabled = true;
+                importer.wrapModeU = TextureWrapMode.Repeat;
+                importer.wrapModeV = TextureWrapMode.Clamp;
+                importer.filterMode = FilterMode.Trilinear;
+                importer.maxTextureSize = 1024;
+                importer.textureCompression = TextureImporterCompression.Compressed;
+                importer.SaveAndReimport();
+            }
+
+            return context.Asset<Texture2D>(JupiterTexturePath, () => throw new InvalidOperationException("textura não importada: " + JupiterTexturePath));
         }
 
         internal static Mesh MeshAsset(SceneBuildContext context, string name, Action<Mesh> fill, string folder = StageFolder)
@@ -242,7 +263,7 @@ namespace Abandoned.SpaceApps.EditorTools
             Ensure(deepSpace.transform, "LaunchDiagramSocket").transform.localPosition = LaunchDiagramCenter; // PIO-004 · elipse lunar
             var probe = Ensure(deepSpace.transform, "Probe");
             var spin = Ensure(probe.transform, "ProbeSpin");
-            var sockets = BuildProbe(spin.transform, a);
+            var sockets = BuildProbe(spin.transform);
 
             var jupiter = Visual(Ensure(deepSpace.transform, "Jupiter"), a.Sphere, a.Jupiter);
             jupiter.transform.localPosition = JupiterPosition;
@@ -282,110 +303,60 @@ namespace Abandoned.SpaceApps.EditorTools
 
         public static readonly Vector3 AldebaranDirection = new Vector3(0.2f, 0.08f, -1f);
 
-        /// <summary>Silhueta provisória + sockets nomeados (contrato com o modelo definitivo da PIO-002).</summary>
-        static List<Transform> BuildProbe(Transform spin, StageAssets a)
+        /// <summary>
+        /// Instancia o modelo definitivo da PIO-002 (<c>Art/PioneerActors.prefab</c>) dentro de <c>ProbeSpin</c> e devolve os
+        /// sockets nomeados do próprio modelo (os das hastes acompanham a articulação). A rotação continua sendo do
+        /// <c>ProbeSpin</c> (<see cref="PioneerPresentation"/>); o <c>Spin_Root</c> do modelo fica parado. A instância é reaproveitada
+        /// quando já existe, para o prefab do palco sair idêntico a cada reconstrução.
+        /// </summary>
+        static List<Transform> BuildProbe(Transform spin)
         {
-            var silhouette = Ensure(spin, "ProvisionalSilhouette").transform;
-            var socketRoot = Ensure(spin, "Sockets").transform;
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(PioneerProbeBuilder.PrefabAssetPath);
+            if (model == null)
+                throw new System.InvalidOperationException($"{PioneerProbeBuilder.PrefabAssetPath} ausente: rode o builder {PioneerProbeBuilder.ProbeBuilderId} antes do palco.");
+
+            GameObject instance = null;
+            foreach (var child in spin.Cast<Transform>().ToList())
+            {
+                if (instance == null && child.name == ModelInstanceName && PrefabUtility.GetCorrespondingObjectFromSource(child.gameObject) == model)
+                    instance = child.gameObject;
+                else
+                    Object.DestroyImmediate(child.gameObject); // silhueta provisória e sockets antigos
+            }
+
+            if (instance == null)
+            {
+                instance = (GameObject)PrefabUtility.InstantiatePrefab(model, spin);
+                instance.name = ModelInstanceName;
+            }
+
+            instance.transform.localPosition = Vector3.zero;
+            instance.transform.localRotation = Quaternion.identity;
+            instance.transform.localScale = Vector3.one;
+
+            var rig = instance.GetComponent<PioneerProbeRig>();
             var sockets = new List<Transform>();
-
-            Visual(Ensure(silhouette, "Reflector"), a.Dish, a.Ivory);
-
-            var compartment = Visual(Ensure(silhouette, "EquipmentCompartment"), a.Compartment, a.DullGold);
-            compartment.transform.localPosition = new Vector3(0f, 0f, CompartmentBackZ);
-
-            // Suportes da antena: do compartimento ao dorso do refletor.
-            var supports = Ensure(silhouette, "AntennaSupports").transform;
-            for (var i = 0; i < 6; i++)
+            foreach (var name in PioneerProbeRig.RequiredSockets)
             {
-                var angle = (i * 60f + 30f) * Mathf.Deg2Rad;
-                var radial = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
-                Rod(Ensure(supports, "Support" + i), a, radial * 0.58f + Vector3.forward * CompartmentFrontZ, radial * 0.98f + Vector3.forward * 0.12f, a.DarkMetal);
+                if (rig == null || !rig.TryGetSocket(name, out var socket))
+                    throw new System.InvalidOperationException($"{ModelInstanceName}: socket '{name}' ausente no modelo da sonda.");
+                sockets.Add(socket);
             }
 
-            // Alimentador sobre o eixo, em tripé.
-            var feed = Ensure(silhouette, "Feed").transform;
-            var horn = Visual(Ensure(feed, "Horn"), a.FeedHorn, a.DarkMetal);
-            horn.transform.localPosition = new Vector3(0f, 0f, 0.95f);
-            for (var i = 0; i < 3; i++)
-            {
-                var angle = (i * 120f + 90f) * Mathf.Deg2Rad;
-                var radial = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
-                Rod(Ensure(feed, "Strut" + i), a, radial * 1.05f + Vector3.forward * (ReflectorDepthMeters * 0.59f), radial * 0.06f + Vector3.forward * 1.0f, a.DarkMetal);
-            }
-
-            // Hastes dos RTGs (duas, com duas unidades cada) e do magnetômetro; ângulos aproximados.
-            Boom(silhouette, "RtgBoomA", a, 30f, 2.5f, true);
-            Boom(silhouette, "RtgBoomB", a, 150f, 2.5f, true);
-            Boom(silhouette, "MagnetometerBoom", a, 270f, 6.0f, false);
-
-            // Placa (alumínio anodizado dourado, P-S12) nos suportes da antena, voltada para trás/fora (P-S11).
-            var plaqueRadial = Radial(PlaqueAngleDegrees);
-            var plaqueStrut = (plaqueRadial * 0.40f + Vector3.forward * 0.20f).normalized;   // direção do suporte de 90°
-            var plaqueNormal = (plaqueRadial * 0.20f - Vector3.forward * 0.40f).normalized;  // ⟂ ao suporte, para trás/fora
-            var plaquePosition = plaqueRadial * 0.78f + Vector3.forward * 0.02f + plaqueNormal * (0.022f + 0.004f);
-            var plaque = Visual(Ensure(silhouette, "Plaque"), a.PlaqueBox, a.Plaque);
-            plaque.transform.localPosition = plaquePosition;
-            plaque.transform.localRotation = Quaternion.LookRotation(plaqueNormal, plaqueStrut);
-
-            var ippRadial = Radial(PhotopolarimeterAngleDegrees);
-            var ipp = Visual(Ensure(silhouette, "Photopolarimeter"), a.InstrumentBox, a.Ivory);
-            ipp.transform.localPosition = ippRadial * (CompartmentRadiusMeters + 0.06f) + Vector3.forward * -0.30f;
-            ipp.transform.localRotation = Quaternion.LookRotation(ippRadial, Vector3.forward);
-
-            sockets.Add(Socket(socketRoot, "Reflector", new Vector3(0f, 0f, ReflectorDepthMeters * 0.5f), Quaternion.identity));
-            sockets.Add(Socket(socketRoot, "Feed", new Vector3(0f, 0f, 1.1f), Quaternion.identity));
-            sockets.Add(Socket(socketRoot, "EquipmentCompartment", new Vector3(0f, 0f, (CompartmentFrontZ + CompartmentBackZ) * 0.5f), Quaternion.identity));
-            sockets.Add(Socket(socketRoot, "RtgBoomA", Radial(30f) * 2.6f + Vector3.forward * BoomZ, Quaternion.LookRotation(Radial(30f), Vector3.forward)));
-            sockets.Add(Socket(socketRoot, "RtgBoomB", Radial(150f) * 2.6f + Vector3.forward * BoomZ, Quaternion.LookRotation(Radial(150f), Vector3.forward)));
-            sockets.Add(Socket(socketRoot, "MagnetometerBoom", Radial(270f) * 6.1f + Vector3.forward * BoomZ, Quaternion.LookRotation(Radial(270f), Vector3.forward)));
-            sockets.Add(Socket(socketRoot, "Plaque", plaquePosition, Quaternion.LookRotation(plaqueNormal, plaqueStrut)));
-            sockets.Add(Socket(socketRoot, "Photopolarimeter", ipp.transform.localPosition, ipp.transform.localRotation));
             return sockets;
         }
 
-        static void Boom(Transform parent, string name, StageAssets a, float angleDegrees, float lengthMeters, bool rtg)
+        /// <summary>Centro e normal da placa no modelo (espaço do <c>Spin_Root</c>), para enquadrar o close sem constantes duplicadas.</summary>
+        static void ModelPlaque(out Vector3 center, out Vector3 normal)
         {
-            var radial = Radial(angleDegrees);
-            var boom = Ensure(parent, name).transform;
-            var start = radial * (CompartmentRadiusMeters - 0.05f) + Vector3.forward * BoomZ;
-            var end = radial * (CompartmentRadiusMeters + lengthMeters) + Vector3.forward * BoomZ;
-            Rod(Ensure(boom, "Truss"), a, start, end, a.DarkMetal);
-            if (rtg)
-            {
-                for (var i = 0; i < 2; i++)
-                {
-                    var unit = Visual(Ensure(boom, "Rtg" + i), a.Rtg, a.DarkMetal);
-                    unit.transform.localPosition = radial * (CompartmentRadiusMeters + lengthMeters - 1.25f + i * 0.66f) + Vector3.forward * BoomZ;
-                    unit.transform.localRotation = Quaternion.LookRotation(radial, Vector3.forward);
-                }
-            }
-            else
-            {
-                var sensor = Visual(Ensure(boom, "Sensor"), a.InstrumentBox, a.DarkMetal);
-                sensor.transform.localPosition = end;
-                sensor.transform.localRotation = Quaternion.LookRotation(radial, Vector3.forward);
-            }
-        }
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(PioneerProbeBuilder.PrefabAssetPath);
+            var rig = model != null ? model.GetComponent<PioneerProbeRig>() : null;
+            if (rig == null || rig.Plaque == null)
+                throw new System.InvalidOperationException($"{PioneerProbeBuilder.PrefabAssetPath} sem rig/placa: rode o builder {PioneerProbeBuilder.ProbeBuilderId} antes do palco.");
 
-        static void Rod(GameObject go, StageAssets a, Vector3 from, Vector3 to, Material material)
-        {
-            Visual(go, a.Rod, material);
-            go.transform.localPosition = from;
-            go.transform.localRotation = Quaternion.LookRotation(to - from, Mathf.Abs(Vector3.Dot((to - from).normalized, Vector3.up)) > 0.99f ? Vector3.forward : Vector3.up);
-            go.transform.localScale = new Vector3(1f, 1f, (to - from).magnitude);
+            center = model.transform.InverseTransformPoint(rig.Plaque.position);
+            normal = model.transform.InverseTransformDirection(rig.Plaque.forward);
         }
-
-        static Transform Socket(Transform parent, string name, Vector3 position, Quaternion rotation)
-        {
-            var socket = Ensure(parent, name).transform;
-            socket.localPosition = position;
-            socket.localRotation = rotation;
-            return socket;
-        }
-
-        static Vector3 Radial(float angleDegrees) =>
-            new Vector3(Mathf.Cos(angleDegrees * Mathf.Deg2Rad), Mathf.Sin(angleDegrees * Mathf.Deg2Rad), 0f);
 
         static void Ground(GameObject region, Material material)
         {
@@ -456,10 +427,16 @@ namespace Abandoned.SpaceApps.EditorTools
         /// <summary>Anchors na ordem do roteiro. Estados = um anchor cada; planos extras do lançamento antes do anchor do estado.</summary>
         static List<AnchorSpec> AnchorSpecs()
         {
+            // A placa vem do modelo (PIO-002). A sonda gira até o azimute da placa coincidir com o da CÂMERA (AlignSocket); por
+            // isso a câmera fica no plano (radial, eixo) da placa, ao longo da componente da normal nesse plano (sem
+            // deslocamento lateral, que desalinharia). A placa cai no centro do quadro depois do alinhamento.
+            ModelPlaque(out var plaqueCenter, out var modelPlaqueNormal);
             var plaqueRadial = new Vector3(0.8f, 0.6f, 0f);
-            var plaqueNormal = (plaqueRadial * 0.20f - Vector3.forward * 0.40f).normalized;
-            var plaqueAligned = plaqueRadial * 0.78f + Vector3.forward * 0.02f + plaqueNormal * 0.026f;
-            var plaqueCamera = plaqueAligned + plaqueNormal * 0.95f + Vector3.Cross(plaqueRadial, Vector3.forward) * 0.18f;
+            var plaqueTurn = Quaternion.AngleAxis(Mathf.Atan2(plaqueRadial.y, plaqueRadial.x) * Mathf.Rad2Deg - Mathf.Atan2(plaqueCenter.y, plaqueCenter.x) * Mathf.Rad2Deg, Vector3.forward);
+            var plaqueNormal = plaqueTurn * modelPlaqueNormal;
+            var plaqueAligned = plaqueTurn * plaqueCenter + plaqueNormal * 0.01f;
+            var plaqueView = (plaqueRadial * Vector3.Dot(plaqueNormal, plaqueRadial) + Vector3.forward * plaqueNormal.z).normalized;
+            var plaqueCamera = plaqueAligned + plaqueView * 1.3f;
             var jupiterRight = Vector3.Cross(Vector3.up, JupiterDirection).normalized;
             var imagingCamera = new Vector3(1.1f, 1.9f, -2.5f) + jupiterRight * 1.3f;
             var jupiterFlat = new Vector3(JupiterDirection.x, JupiterDirection.y, 0f).normalized;
