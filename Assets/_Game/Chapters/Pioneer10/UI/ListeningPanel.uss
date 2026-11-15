@@ -13,7 +13,7 @@
     position: absolute;
     left: 56%;
     top: auto;
-    bottom: 7%;
+    bottom: 16%; /* acima da legenda de base (UI-004): o UiFrame do anchor pedia 7%, que cobria a legenda */
     width: 40%;
     height: 33%;
     padding: var(--sa-space-3);

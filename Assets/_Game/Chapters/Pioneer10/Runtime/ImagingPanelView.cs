@@ -107,8 +107,11 @@ namespace Abandoned.SpaceApps
                 }
 
                 progressFill.style.width = Length.Percent(state.Captured * 100f / ImagingStrips);
-                SetText(scanLabel, ScanKey, text, ref lastScan, state.Captured);
             }
+
+            // Fora do bloco acima: o resolvedor pode só ficar disponível depois do primeiro quadro (e o idioma muda), e o texto do
+            // prompt não pode ficar preso na chave até a próxima faixa. SetText já ignora o que não mudou.
+            SetText(scanLabel, ScanKey, text, ref lastScan, state.Captured);
 
             // O cursor pode ficar parado fora da janela: só a zona reposiciona quando muda (ajuda ampliou).
             cursor.style.left = Length.Percent(state.PassProgress * 100f);
