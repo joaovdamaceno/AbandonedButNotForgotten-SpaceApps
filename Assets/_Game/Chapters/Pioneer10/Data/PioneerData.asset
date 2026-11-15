@@ -1040,6 +1040,42 @@ MonoBehaviour:
     enText: Magnetic field
     ptStatus: derived
     enStatus: derived
+  - key: PIO.UI.first_1
+    group: hud
+    ptText: "Primeira miss\xE3o aos planetas exteriores"
+    enText: First mission to the outer planets
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_2
+    group: hud
+    ptText: "Primeira projetada para ir al\xE9m de Marte"
+    enText: First designed to travel beyond Mars
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_3
+    group: hud
+    ptText: "Primeira a cruzar o cintur\xE3o de asteroides"
+    enText: First to cross the asteroid belt
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_4
+    group: hud
+    ptText: "Primeira a sobrevoar J\xFApiter"
+    enText: First to fly past Jupiter
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_5
+    group: hud
+    ptText: Primeira em rota para sair do Sistema Solar
+    enText: First on a path out of the Solar System
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_6
+    group: hud
+    ptText: "Primeira al\xE9m das \xF3rbitas dos planetas \xB7 1983"
+    enText: "First beyond the planets' orbits \xB7 1983"
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.spin
     group: hud
     ptText: "Segure E \xB7 girar"
