@@ -20,14 +20,14 @@ MonoBehaviour:
     captureCursor: 0
     coverCredit: 
   - slotId: pioneer10
-    chapter: {fileID: 0}
+    chapter: {fileID: 11400000, guid: 1916e74fd80eaca42824c1b2b65b192b, type: 2}
     chapterTexts: {fileID: 0}
     accentClass: sa-chapter--pioneer
     captureCursor: 0
     coverCredit: 
   - slotId: surveyor3
-    chapter: {fileID: 0}
-    chapterTexts: {fileID: 0}
+    chapter: {fileID: 11400000, guid: eaf153b39473be546b75501a6da1540c, type: 2}
+    chapterTexts: {fileID: 4900000, guid: c7c6d85ccf52bf546babc99037d17500, type: 3}
     accentClass: sa-chapter--surveyor
     captureCursor: 0
-    coverCredit: 
+    coverCredit: "NASA \xB7 AS12-48-7134"

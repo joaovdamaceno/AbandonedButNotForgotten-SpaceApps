@@ -18,7 +18,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.NightTests
             var host=Object.FindAnyObjectByType<SurveyorNightPreview>();host.Initialize();host.Clock.enabled=false;host.Begin();
             var position=host.Sequence.CameraDirector.TargetCamera.transform.position;
             Advance(host,6);yield return Capture(host,"last-contact-pt");
-            Assert.That(host.Document.rootVisualElement.Q<Label>("contact").text,Is.EqualTo("4 MAI 1967 · ÚLTIMO CONTATO"));
+            Assert.That(host.Document.rootVisualElement.Q<Label>("contact").text,Is.EqualTo("4 MAY 1967 · LAST CONTACT"));
             Advance(host,10);Assert.That(host.Flow.HudOpacity,Is.Zero);
             host.Pause.Controller.RequestPause();float t=host.Flow.TrackSeconds;Advance(host,3);Assert.That(host.Flow.TrackSeconds,Is.EqualTo(t));
             host.Pause.Controller.Continue();Assert.That(host.Owner.IsPaused,Is.False);

@@ -83,7 +83,6 @@ namespace Abandoned.SpaceApps.UI
         Label settingsTitle;
         Entry resume;
         Entry openSettings;
-        Entry fullscreen;
         Entry restart;
         Entry toDossier;
         Entry back;
@@ -214,13 +213,12 @@ namespace Abandoned.SpaceApps.UI
             entries.Clear();
             resume = Wire("btn-resume", () => controller.Continue());
             openSettings = Wire("btn-settings", () => ShowView(View.Settings));
-            fullscreen = Wire("btn-fullscreen", ToggleFullscreen);
             restart = Wire("btn-restart", () => Confirmable(Confirmation.Restart, () => director.RestartChapter()));
             toDossier = Wire("btn-dossier", () => Confirmable(Confirmation.Dossier, () => director.ReturnToDossier()));
             back = Wire("btn-back", () => ShowView(View.Main));
 
             mainFocusables.Clear();
-            mainFocusables.AddRange(new[] { resume.Element, openSettings.Element, fullscreen.Element, restart.Element, toDossier.Element });
+            mainFocusables.AddRange(new[] { resume.Element, openSettings.Element, restart.Element, toDossier.Element });
 
             pauseButton.AddManipulator(new Clickable(() => controller.RequestPause()));
             overlay.pickingMode = PickingMode.Position; // o fundo captura cliques: nada atrás reage com o menu aberto
@@ -385,13 +383,6 @@ namespace Abandoned.SpaceApps.UI
 
         // ---------- Ações ----------
 
-        void ToggleFullscreen()
-        {
-            Screen.fullScreen = !Screen.fullScreen;
-            // No navegador a mudança é assíncrona: relê o estado logo depois.
-            root.schedule.Execute(RefreshTexts).StartingIn(400);
-        }
-
         void Confirmable(Confirmation kind, Action action)
         {
             if (confirmation != kind)
@@ -478,7 +469,6 @@ namespace Abandoned.SpaceApps.UI
 
             resume.Label.text = T(PauseKeys.Resume);
             openSettings.Label.text = T(PauseKeys.Settings);
-            fullscreen.Label.text = T(Screen.fullScreen ? PauseKeys.FullscreenExit : PauseKeys.FullscreenEnter);
             restart.Label.text = T(confirmation == Confirmation.Restart ? PauseKeys.RestartConfirm : PauseKeys.Restart);
             toDossier.Label.text = T(confirmation == Confirmation.Dossier ? PauseKeys.DossierConfirm : PauseKeys.Dossier);
             back.Label.text = T(PauseKeys.Back);

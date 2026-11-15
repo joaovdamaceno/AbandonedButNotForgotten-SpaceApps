@@ -149,6 +149,7 @@ namespace Abandoned.SpaceApps.UI
             AddSensitivity();
             AddReducedMotion();
             AddQuality();
+            AddFullscreen();
             AddReset();
         }
 
@@ -313,6 +314,35 @@ namespace Abandoned.SpaceApps.UI
                         .Replace("{count}", count.ToString(CultureInfo.InvariantCulture));
                 },
             });
+        }
+
+        /// <summary>Tela cheia (opcional): estado do motor, não preferência salva. Só muda por clique/Enter (o navegador exige um gesto).</summary>
+        void AddFullscreen()
+        {
+            var element = NewRow(out var label, out var unused);
+            var line = new VisualElement { pickingMode = PickingMode.Ignore };
+            line.AddToClassList("sa-settings__line");
+            var toggle = NewChoice(() => ToggleFullscreen(element));
+            line.Add(toggle);
+            element.Add(line);
+
+            Register(new Row
+            {
+                Element = element,
+                Activate = () => ToggleFullscreen(element),
+                Refresh = () =>
+                {
+                    label.text = T(PauseKeys.Fullscreen);
+                    SetChoice(toggle, T(Screen.fullScreen ? PauseKeys.On : PauseKeys.Off), Screen.fullScreen);
+                },
+            });
+        }
+
+        void ToggleFullscreen(VisualElement element)
+        {
+            Screen.fullScreen = !Screen.fullScreen;
+            // No navegador a mudança é assíncrona: relê o estado logo depois.
+            element.schedule.Execute(Refresh).StartingIn(400);
         }
 
         void AddReset()

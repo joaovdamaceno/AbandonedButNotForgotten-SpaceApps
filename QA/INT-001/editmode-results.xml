@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0,4217007">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="1111" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.421701" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1675" name="Abandoned.SpaceApps.Core.Tests.dll" fullname="C:/www/projetos/AbandonedButNotForgotten-SpaceApps/Library/ScriptAssemblies/Abandoned.SpaceApps.Core.Tests.dll" runstate="Runnable" testcasecount="618" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.375739" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="32688" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1676" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="618" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.349477" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1677" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="618" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.338570" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1678" name="Tests" fullname="Abandoned.SpaceApps.Tests" runstate="Runnable" testcasecount="618" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.303654" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1420" name="BootIntegrationTests" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.280052" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1427" name="BootSceneHasOneHostOneCameraAndOneListener" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.BootSceneHasOneHostOneCameraAndOneListener" methodname="BootSceneHasOneHostOneCameraAndOneListener" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="643549596" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.137797" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1421" name="BuildSettingsHaveExactlyTheFiveGameScenesWithBootFirst" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.BuildSettingsHaveExactlyTheFiveGameScenesWithBootFirst" methodname="BuildSettingsHaveExactlyTheFiveGameScenesWithBootFirst" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="1998344945" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.003429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1422" name="BuildSettingsHaveNoPreviewPlaytestOrIsolatedEntryScene" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.BuildSettingsHaveNoPreviewPlaytestOrIsolatedEntryScene" methodname="BuildSettingsHaveNoPreviewPlaytestOrIsolatedEntryScene" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="285988223" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.003747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1424" name="CatalogHasTheThreeFoldersAvailableAndValid" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.CatalogHasTheThreeFoldersAvailableAndValid" methodname="CatalogHasTheThreeFoldersAvailableAndValid" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="669494386" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.004088" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1426" name="DossierContentIsCompleteInBothLanguages" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.DossierContentIsCompleteInBothLanguages" methodname="DossierContentIsCompleteInBothLanguages" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="209950528" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.010134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1425" name="EveryChapterSceneIsInBuildSettings" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.EveryChapterSceneIsInBuildSettings" methodname="EveryChapterSceneIsInBuildSettings" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="1402953646" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.000895" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1423" name="EverySceneInBuildSettingsExists" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.EverySceneInBuildSettingsExists" methodname="EverySceneInBuildSettingsExists" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="2147426164" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.000958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1431" name="EvidenceOfOneChapterNeverReachesTheNext" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.EvidenceOfOneChapterNeverReachesTheNext" methodname="EvidenceOfOneChapterNeverReachesTheNext" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="305575232" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.013479" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1432" name="FailedBindingHookReturnsToDossierWithoutKeepingTheChapter" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.FailedBindingHookReturnsToDossierWithoutKeepingTheChapter" methodname="FailedBindingHookReturnsToDossierWithoutKeepingTheChapter" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="1004881481" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.002525" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1429" name="RapidClicksAndLanguageSwitchWhileLoadingOpenTheSceneOnce" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.RapidClicksAndLanguageSwitchWhileLoadingOpenTheSceneOnce" methodname="RapidClicksAndLanguageSwitchWhileLoadingOpenTheSceneOnce" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="942558874" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.057313" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+]]></output>
+              </test-case>
+              <test-case id="1428" name="RealChaptersOpenInAnyOrderTwiceWithoutAnotherCompleted" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.RealChaptersOpenInAnyOrderTwiceWithoutAnotherCompleted" methodname="RealChaptersOpenInAnyOrderTwiceWithoutAnotherCompleted" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="238301039" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.004633" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1430" name="RestartInTheMiddleReloadsOnceAndEnteredFirstStepOnce" fullname="Abandoned.SpaceApps.Tests.BootIntegrationTests.RestartInTheMiddleReloadsOnceAndEnteredFirstStepOnce" methodname="RestartInTheMiddleReloadsOnceAndEnteredFirstStepOnce" classname="Abandoned.SpaceApps.Tests.BootIntegrationTests" runstate="Runnable" seed="833286743" result="Passed" start-time="2026-11-15 18:44:10Z" end-time="2026-11-15 18:44:10Z" duration="0.003597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/kauaviado/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
