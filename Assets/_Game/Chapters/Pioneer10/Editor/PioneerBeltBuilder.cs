@@ -19,7 +19,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string PanelPrefabPath = ChapterFolder + "/UI/BeltPanel.prefab";
         public const string PanelLayoutPath = ChapterFolder + "/UI/BeltPanel.uxml";
         public const string SequencePath = ChapterFolder + "/Sequences/PIO_Belt.asset";
-        /// <summary>Roteiro v2, cena 2: a sequência de cinema do capítulo (54 s). PIO_Belt segue sendo a da atividade interativa.</summary>
+        /// <summary>Roteiro v2, cena 2: a sequência de cinema do capítulo (50 s). PIO_Belt segue sendo a da atividade interativa.</summary>
         public const string CinemaSequencePath = ChapterFolder + "/Sequences/PIO_BeltCinema.asset";
         const string PanelSettingsPath = "Assets/_Game/UI/Design/SpaceAppsPanelSettings.asset"; // UI-001 (consumido, não editado)
         const string BeltFolder = ArtFolder + "/Belt";
@@ -101,8 +101,8 @@ namespace Abandoned.SpaceApps.EditorTools
             }
 
             var cinema = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(CinemaSequencePath);
-            if (cinema == null || Mathf.Abs(cinema.TotalDurationSeconds - 54f) > 0.01f)
-                errors.Add($"{BeltBuilderId}: o cinema do cinturão deve durar 54 s ({CinemaSequencePath}).");
+            if (cinema == null || Mathf.Abs(cinema.TotalDurationSeconds - 50f) > 0.01f)
+                errors.Add($"{BeltBuilderId}: o cinema do cinturão deve durar 50 s ({CinemaSequencePath}).");
             if (cinema != null)
             {
                 errors.AddRange(cinema.Validate().Select(e => $"{BeltBuilderId}: {e}"));
@@ -148,16 +148,16 @@ namespace Abandoned.SpaceApps.EditorTools
             baseMeters - baseMeters * Mathf.Tan(15f * Mathf.Deg2Rad) / Mathf.Tan(fovDegrees * 0.5f * Mathf.Deg2Rad);
 
         /// <summary>
-        /// Roteiro v2, cena 2 (só cinema, 54 s): 0–8 a sonda cruza a órbita de Marte (data 15 JUL 1972); 8–19 teleobjetiva de 10° com a
-        /// parede de pedras compactada atrás da sonda; 19–34 dolly zoom (10° a 30° com a câmera se aproximando, a sonda do mesmo
-        /// tamanho) enquanto o contador de dias acelera até 2 DEZ 1972 e a parede se abre; 34–44 corte para o espaço vazio e a pedra
-        /// solitária (307 Nike); 44–54 a sonda sai para o escuro limpo (o contador chega a 15 FEV 1973). O contador e o rótulo vêm de
+        /// Roteiro v2, cena 2 (só cinema, 50 s, o tempo do roteiro): 0–8 a sonda cruza a órbita de Marte (data 15 JUL 1972); 8–19 teleobjetiva
+        /// de 10° com a parede de pedras compactada atrás da sonda; 19–30 dolly zoom (10° a 30° com a câmera se aproximando, a sonda do
+        /// mesmo tamanho) enquanto o contador de dias acelera até 2 DEZ 1972 e a parede se abre; 30–40 corte para o espaço vazio e a pedra
+        /// solitária (307 Nike); 40–50 a sonda sai para o escuro limpo (o contador chega a 15 FEV 1973). O contador e o rótulo vêm de
         /// <see cref="PioneerBeltCounter"/>, pelo relógio desta sequência. O evento PIO.Belt.Reality baixa a música na revelação.
         /// </summary>
         public static SequenceDefinition CreateCinemaSequence()
         {
             var baseMeters = BeltFieldCamera.magnitude;
-            var dolly = new[] { (0f, 10f), (3f, 12.5f), (6f, 16f), (9f, 20f), (12f, 25f), (15f, 30f) };
+            var dolly = new[] { (0f, 10f), (2.2f, 12.5f), (4.4f, 16f), (6.6f, 20f), (8.8f, 25f), (11f, 30f) };
             var dollyKeys = new ShotKeyframe[dolly.Length];
             for (var i = 0; i < dolly.Length; i++)
                 dollyKeys[i] = Key(dolly[i].Item1, new Vector3(0f, 0f, DollyZ(baseMeters, dolly[i].Item2)), dolly[i].Item2);
@@ -170,7 +170,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 new ShotDefinition("PIO02.Fear", 11f, "PIO.Belt.Field",
                     new[] { Key(0f, new Vector3(0f, 0f, DollyZ(baseMeters, 10f)), 10f), Key(11f, new Vector3(0f, 0f, DollyZ(baseMeters, 10f) + 6f), 10f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
-                new ShotDefinition("PIO02.Days", 15f, "PIO.Belt.Field", dollyKeys,
+                new ShotDefinition("PIO02.Days", 11f, "PIO.Belt.Field", dollyKeys,
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
                 new ShotDefinition("PIO02.Nike", 10f, "PIO.Belt.Nike",
                     new[] { Key(0f, Vector3.zero, 30f), Key(10f, new Vector3(0f, 0f, 3f), 30f) },
@@ -186,9 +186,9 @@ namespace Abandoned.SpaceApps.EditorTools
                 new SubtitleCue("PIO.02.01", "PIO.02.01", 0f, 6f),
                 new SubtitleCue("PIO.02.02", "PIO.02.02", 6.5f, 12.5f),
                 new SubtitleCue("PIO.02.03", "PIO.02.03", 13f, 19f),
-                new SubtitleCue("PIO.02.04", "PIO.02.04", 34.5f, 41.5f),
-                new SubtitleCue("PIO.02.05", "PIO.02.05", 42f, 46f),
-                new SubtitleCue("PIO.02.06", "PIO.02.06", 46.5f, 53.5f),
+                new SubtitleCue("PIO.02.04", "PIO.02.04", 30.5f, 37.5f),
+                new SubtitleCue("PIO.02.05", "PIO.02.05", 38f, 42f),
+                new SubtitleCue("PIO.02.06", "PIO.02.06", 42.5f, 49.5f),
             };
 
             return SequenceDefinition.Create("PIO_BeltCinema", shots, cues);

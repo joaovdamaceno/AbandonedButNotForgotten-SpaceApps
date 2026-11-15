@@ -11,14 +11,14 @@
     "IDs de gatilho de PIO.Imaging seguem o código já integrado (PioneerImaging). Os de PIO.Plaque foram CONFIRMADOS pela PIO-009 (PioneerPlaqueActivity dispara PIO.Plaque.Hydrogen, Pulsars, SolarSystem, PioneerScale e People na SequenceDirector). Os de PIO.Listening continuam PROPOSTOS aqui e devem ser confirmados por PIO-011."
   ],
   "timeBudget": {
-    "nominalSeconds": 411,
+    "nominalSeconds": 407,
     "approvalRangeSeconds": [300, 420],
     "excludes": "arquivo, carregamento e pausa",
     "readingStretch": [
       {"cueId": "PIO.07.06", "nominalSeconds": 4, "maxSeconds": 7, "note": "A animação pode alongar até 7 s sem cortar a legenda."},
       {"cueId": "PIO.04.09", "nominalSeconds": 5, "maxSeconds": 8, "note": "Mesmo critério se o idioma precisar de mais tempo."}
     ],
-    "maxWithStretchSeconds": 417,
+    "maxWithStretchSeconds": 413,
     "rule": "Nunca acelerar a leitura para preservar um número exato de segundos."
   },
   "states": [
@@ -30,42 +30,42 @@
       "shots": ["PIO01.A", "PIO01.B", "PIO01.C", "PIO01.D"]
     },
     {
-      "id": "PIO.Belt", "order": 2, "nominalSeconds": 54, "globalStartSeconds": 40, "globalEndSeconds": 94,
+      "id": "PIO.Belt", "order": 2, "nominalSeconds": 50, "globalStartSeconds": 40, "globalEndSeconds": 90,
       "summary": "Roteiro v2, cena 2 (só cinema): a sonda cruza o cinturão; teleobjetiva e dolly zoom abrem a parede de pedras, o contador de dias acelera até 2 DEZ 1972, 307 Nike no vazio e a saída em 15 FEV 1973.",
       "requiredExit": "Sequência de 54 s terminada; nenhuma interação.",
       "shots": ["PIO02.Mars", "PIO02.Fear", "PIO02.Days", "PIO02.Nike", "PIO02.Exit"]
     },
     {
-      "id": "PIO.JupiterApproach", "order": 3, "nominalSeconds": 27, "globalStartSeconds": 94, "globalEndSeconds": 121,
+      "id": "PIO.JupiterApproach", "order": 3, "nominalSeconds": 27, "globalStartSeconds": 90, "globalEndSeconds": 117,
       "summary": "Vê a escala de Júpiter e a demora do rádio.",
       "requiredExit": "Revelação e explicação terminadas."
     },
     {
-      "id": "PIO.Imaging", "order": 4, "nominalSeconds": 74, "globalStartSeconds": 121, "globalEndSeconds": 195,
+      "id": "PIO.Imaging", "order": 4, "nominalSeconds": 74, "globalStartSeconds": 117, "globalEndSeconds": 191,
       "summary": "Monta oito faixas em dois canais, aplica o comando de recuperação e vê as fotos históricas.",
       "requiredExit": "8/8 faixas, comando confirmado e duas imagens reveladas.",
       "hold": {"id": "PIO.Imaging.Scan", "seconds": null, "promptKey": "PIO.UI.scan", "note": "Hold contínuo é aceito; sem penalidade por hold antecipado."},
       "interruption": {"afterStrip": 6, "gateId": "PIO.Imaging.Gate6", "recoveryGateId": "PIO.Imaging.GateRecovery"}
     },
     {
-      "id": "PIO.Closest", "order": 5, "nominalSeconds": 40, "globalStartSeconds": 195, "globalEndSeconds": 235,
+      "id": "PIO.Closest", "order": 5, "nominalSeconds": 40, "globalStartSeconds": 191, "globalEndSeconds": 231,
       "summary": "Roteiro v2, cena 5 (só cinema): as luas, a radiação, a máxima aproximação de Júpiter, a curva e a lição que mudou a Voyager.",
       "requiredExit": "Sequência de 40 s terminada; nenhuma interação."
     },
     {
-      "id": "PIO.Plaque", "order": 6, "nominalSeconds": 47, "globalStartSeconds": 235, "globalEndSeconds": 282,
+      "id": "PIO.Plaque", "order": 6, "nominalSeconds": 47, "globalStartSeconds": 231, "globalEndSeconds": 278,
       "summary": "Encaixa cinco símbolos de uma mensagem.",
       "requiredExit": "Cinco partes identificadas, sem pontuação.",
       "pieces": ["hydrogen", "pulsars", "solarSystem", "pioneerScale", "people"]
     },
     {
-      "id": "PIO.Outbound", "order": 7, "nominalSeconds": 39, "globalStartSeconds": 282, "globalEndSeconds": 321,
+      "id": "PIO.Outbound", "order": 7, "nominalSeconds": 39, "globalStartSeconds": 278, "globalEndSeconds": 317,
       "summary": "Acompanha distância e redução de potência; prioriza a transmissão.",
       "requiredExit": "Economia confirmada, sem desligamento fatal por erro.",
       "hold": {"id": "PIO.Outbound.Power", "seconds": 3, "promptKey": "PIO.UI.power"}
     },
     {
-      "id": "PIO.Listening", "order": 8, "nominalSeconds": 52, "globalStartSeconds": 321, "globalEndSeconds": 373,
+      "id": "PIO.Listening", "order": 8, "nominalSeconds": 52, "globalStartSeconds": 317, "globalEndSeconds": 369,
       "summary": "Sintoniza três contatos e presencia uma quarta tentativa sem resposta.",
       "requiredExit": "Três contatos e a janela final de silêncio concluídos.",
       "contacts": [
@@ -77,7 +77,7 @@
       "silenceSeconds": 2.5
     },
     {
-      "id": "PIO.Farewell", "order": 9, "nominalSeconds": 38, "globalStartSeconds": 373, "globalEndSeconds": 411,
+      "id": "PIO.Farewell", "order": 9, "nominalSeconds": 38, "globalStartSeconds": 369, "globalEndSeconds": 407,
       "summary": "Entende que perder a comunicação não interrompe a trajetória.",
       "requiredExit": "Memorial e tela de conclusão (Voltar ao arquivo / Repetir).",
       "lastSecondsOffer": 2
@@ -93,9 +93,9 @@
     {"id": "PIO.02.01", "state": "PIO.Belt", "textKey": "PIO.02.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 6}},
     {"id": "PIO.02.02", "state": "PIO.Belt", "textKey": "PIO.02.02", "timing": {"kind": "window", "startSeconds": 6.5, "endSeconds": 12.5}},
     {"id": "PIO.02.03", "state": "PIO.Belt", "textKey": "PIO.02.03", "timing": {"kind": "window", "startSeconds": 13, "endSeconds": 19}},
-    {"id": "PIO.02.04", "state": "PIO.Belt", "textKey": "PIO.02.04", "timing": {"kind": "window", "startSeconds": 34.5, "endSeconds": 41.5}},
-    {"id": "PIO.02.05", "state": "PIO.Belt", "textKey": "PIO.02.05", "timing": {"kind": "window", "startSeconds": 42, "endSeconds": 46}},
-    {"id": "PIO.02.06", "state": "PIO.Belt", "textKey": "PIO.02.06", "timing": {"kind": "window", "startSeconds": 46.5, "endSeconds": 53.5}},
+    {"id": "PIO.02.04", "state": "PIO.Belt", "textKey": "PIO.02.04", "timing": {"kind": "window", "startSeconds": 30.5, "endSeconds": 37.5}},
+    {"id": "PIO.02.05", "state": "PIO.Belt", "textKey": "PIO.02.05", "timing": {"kind": "window", "startSeconds": 38, "endSeconds": 42}},
+    {"id": "PIO.02.06", "state": "PIO.Belt", "textKey": "PIO.02.06", "timing": {"kind": "window", "startSeconds": 42.5, "endSeconds": 49.5}},
 
     {"id": "PIO.03.01", "state": "PIO.JupiterApproach", "textKey": "PIO.03.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 6}},
     {"id": "PIO.03.02", "state": "PIO.JupiterApproach", "textKey": "PIO.03.02", "timing": {"kind": "window", "startSeconds": 7, "endSeconds": 13}},

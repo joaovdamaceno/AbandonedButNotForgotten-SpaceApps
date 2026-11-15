@@ -18,7 +18,7 @@ MonoBehaviour:
     nominalSeconds: 40
   - id: PIO.Belt
     order: 2
-    nominalSeconds: 54
+    nominalSeconds: 50
   - id: PIO.JupiterApproach
     order: 3
     nominalSeconds: 27
@@ -125,8 +125,8 @@ MonoBehaviour:
     state: PIO.Belt
     textKey: PIO.02.04
     timing: 0
-    startSeconds: 34.5
-    endSeconds: 41.5
+    startSeconds: 30.5
+    endSeconds: 37.5
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -135,8 +135,8 @@ MonoBehaviour:
     state: PIO.Belt
     textKey: PIO.02.05
     timing: 0
-    startSeconds: 42
-    endSeconds: 46
+    startSeconds: 38
+    endSeconds: 42
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -145,8 +145,8 @@ MonoBehaviour:
     state: PIO.Belt
     textKey: PIO.02.06
     timing: 0
-    startSeconds: 46.5
-    endSeconds: 53.5
+    startSeconds: 42.5
+    endSeconds: 49.5
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
