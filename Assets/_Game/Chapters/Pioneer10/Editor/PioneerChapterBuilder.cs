@@ -84,6 +84,12 @@ namespace Abandoned.SpaceApps.EditorTools
             closestHudSo.FindProperty("sequence").objectReferenceValue = closest;
             closestHudSo.ApplyModifiedPropertiesWithoutUndo();
             so.FindProperty("closestHud").objectReferenceValue = closestHud;
+            var yearsHud = context.Component<PioneerYearsHud>(context.Child(root, "YearsHud"));
+            var yearsHudSo = new SerializedObject(yearsHud);
+            yearsHudSo.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();
+            yearsHudSo.FindProperty("sequence").objectReferenceValue = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(PioneerOutboundBuilder.SequencePath);
+            yearsHudSo.ApplyModifiedPropertiesWithoutUndo();
+            so.FindProperty("yearsHud").objectReferenceValue = yearsHud;
             so.FindProperty("imaging").objectReferenceValue = Only<PioneerImaging>();
             so.FindProperty("recovery").objectReferenceValue = Only<ImagingRecovery>();
             so.FindProperty("reveal").objectReferenceValue = Only<HistoricalImageReveal>();

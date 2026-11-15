@@ -67,6 +67,7 @@ namespace Abandoned.SpaceApps
         [SerializeField] PioneerBeltCounter beltCounter;
         [SerializeField, Tooltip("Cena 3: Júpiter nasce de um ponto e a Terra pequena entra para a comparação.")] PioneerJupiterReveal jupiterReveal;
         [SerializeField, Tooltip("Cena 5: medidor de radiação, estática, velocidade e comparação de distâncias.")] PioneerClosestHud closestHud;
+        [SerializeField, Tooltip("Cena 7: ano, linha do tempo, instrumentos e medidor de energia dos RTG.")] PioneerYearsHud yearsHud;
         [SerializeField] ImagingRecovery recovery;
         [SerializeField] HistoricalImageReveal reveal;
         [SerializeField] PioneerPlaqueActivity plaque;
@@ -147,6 +148,7 @@ namespace Abandoned.SpaceApps
             launch.CinemaMode = true;
             plaque.CinemaMode = true;
             outbound.CinemaMode = true;
+            outbound.YearsMode = true;      // cena 7: o HUD dos anos substitui o painel do atlas
             imaging.ThreeStepMode = true;   // cena 4: a foto em três passos (sem radiação nem recuperação)
             listening.SingleRound = true;   // cena 8: uma única rodada de sintonia
             launch.Initialize(sequenceDirector, interactions, router, time);
@@ -154,6 +156,7 @@ namespace Abandoned.SpaceApps
             beltCounter.Initialize(sequenceDirector, text);
             jupiterReveal.Initialize(sequenceDirector);
             closestHud.Initialize(sequenceDirector, text);
+            yearsHud.Initialize(sequenceDirector, text);
             imaging.Initialize(sequenceDirector, interactions, router, time, text);
             recovery.Initialize(interactions, time, text);
             reveal.Initialize(time, text);
@@ -344,6 +347,8 @@ namespace Abandoned.SpaceApps
                 jupiterReveal.Hide();
             if (closestHud != null)
                 closestHud.Hide();
+            if (yearsHud != null)
+                yearsHud.Hide();
             if (cinemaState != null)
             {
                 cinemaState = null;
@@ -412,6 +417,7 @@ namespace Abandoned.SpaceApps
             Require(beltCounter, nameof(beltCounter));
             Require(jupiterReveal, nameof(jupiterReveal));
             Require(closestHud, nameof(closestHud));
+            Require(yearsHud, nameof(yearsHud));
             Require(imaging, nameof(imaging));
             Require(recovery, nameof(recovery));
             Require(reveal, nameof(reveal));

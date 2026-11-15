@@ -980,6 +980,66 @@ MonoBehaviour:
     enText: "Probe to the clouds \xB7 130,000 km"
     ptStatus: derived
     enStatus: derived
+  - key: PIO.UI.past_uranus
+    group: hud
+    ptText: "Dist\xE2ncia orbital de Urano \xB7 a sonda n\xE3o visita o planeta"
+    enText: "Uranus's orbital distance \xB7 the probe does not visit the planet"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.end_tracking
+    group: hud
+    ptText: "31 MAR 1997 \xB7 fim do acompanhamento de rotina"
+    enText: "31 MAR 1997 \xB7 routine tracking ends"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.years_energy
+    group: hud
+    ptText: "Energia dos RTG \xB7 curva estilizada"
+    enText: "RTG power \xB7 stylised curve"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.years_launch
+    group: hud
+    ptText: "155 W \xB7 lan\xE7amento"
+    enText: "155 W \xB7 launch"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.years_jupiter
+    group: hud
+    ptText: "~140 W \xB7 J\xFApiter"
+    enText: "~140 W \xB7 Jupiter"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.inst_camera
+    group: hud
+    ptText: "C\xE2mera"
+    enText: Camera
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.inst_radiation
+    group: hud
+    ptText: "Radia\xE7\xE3o"
+    enText: Radiation
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.inst_plasma
+    group: hud
+    ptText: Plasma
+    enText: Plasma
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.inst_meteoroid
+    group: hud
+    ptText: Meteoroides
+    enText: Meteoroids
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.inst_magnetometer
+    group: hud
+    ptText: "Campo magn\xE9tico"
+    enText: Magnetic field
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.spin
     group: hud
     ptText: "Segure E \xB7 girar"
