@@ -698,7 +698,6 @@ namespace Abandoned.SpaceApps.UI
             AddBodyLabel(ChapterText(entry, QuestionKey(entry), DossierKeys.SlotQuestion), "sa-modal__question");
             AddBodyLabel(T(DossierKeys.DetailsTodo), "sa-stamp", "sa-modal__section");
             AddBodyLabel(T(DossierKeys.Slot(entry.SlotId, DossierKeys.SlotDetail)), "sa-modal__text");
-            AddBodyLabel(T(DossierKeys.DetailsOptional), "sa-modal__text", "sa-modal__text--muted");
 
             var slotId = entry.SlotId;
             if (flow.CanStart(slotId) == StartResult.Accepted)
