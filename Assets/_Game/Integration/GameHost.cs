@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Abandoned.SpaceApps.UI;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Abandoned.SpaceApps.Integration
 {
@@ -155,7 +156,21 @@ namespace Abandoned.SpaceApps.Integration
             mars.Flow.StepStarted += OnMarsStep;
             mars.Flow.StepEnded += OnMarsStepEnded;
             guidance?.SetMovementProbe(() => mars != null ? mars.Rover.DrivenMeters : 0f);
-            labels = new MarsLabelOverlay(hud.BottomColumn, localization.Resolver, mars);
+            // Letreiros da abertura no sistema visual do jogo: título como carimbo da legenda e nomes do globo em placa (como as outras sondas).
+            var subtitleHost = subtitles.GetComponentInParent<UIDocument>()?.rootVisualElement?.Q("subtitle-host");
+            labels = new MarsLabelOverlay(hud.BottomColumn, localization.Resolver, mars, subtitleHost, key => { titleStamp = key; ApplyStamp(); });
+        }
+
+        string stepStamp, titleStamp;
+
+        /// <summary>Carimbo da legenda: o letreiro de tela visível (título da cena) ou, sem ele, o carimbo da etapa.</summary>
+        void ApplyStamp()
+        {
+            var key = titleStamp ?? stepStamp;
+            if (string.IsNullOrEmpty(key))
+                subtitles.ClearStamp();
+            else
+                subtitles.SetStamp(key);
         }
 
         void OnMarsStep(MarsChapterFlow.StepBinding binding)
@@ -164,10 +179,8 @@ namespace Abandoned.SpaceApps.Integration
             if (binding.StepId == "M07" && guidance != null)
                 guidance.BeginTutorial("mars.tutorial", new GuidanceOptions { InteractCandidateId = "mars.tutorial.inspect", HelpAvailable = true, CorridorAvailable = false }, force: true);
 
-            if (string.IsNullOrEmpty(binding.StampKey))
-                subtitles.ClearStamp();
-            else
-                subtitles.SetStamp(binding.StampKey);
+            stepStamp = binding.StampKey;
+            ApplyStamp();
 
             if (binding.IsCinematic || string.IsNullOrEmpty(binding.ObjectiveKey))
             {
@@ -226,6 +239,7 @@ namespace Abandoned.SpaceApps.Integration
         {
             runningChapter = null;
             ApplyLanguage();
+            stepStamp = titleStamp = null;
             if (mars == null)
                 return;
 
