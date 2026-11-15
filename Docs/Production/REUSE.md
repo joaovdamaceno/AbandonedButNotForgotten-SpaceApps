@@ -50,3 +50,7 @@ Novo código de observação, dados, painel, composição e testes nesta base (`
 
 - Reutilização interna: SUR-002 LunarSite/SurveyorVisibleRig (modelo fornecido pela equipe, créditos e origem preservados); SUR-004 SurveyorCommandDelay/Interaction; SUR-007 SurveyorSiteViewport, SurveyorTelevisionOutput e Scan; SUR-008 RecordConfirm.wav (composição original do projeto); CORE/UI CameraDirector, SequenceDirector, SessionClock, ChapterDirector, InputRouter, InteractionService, SubtitlePresenter e LocalizationService. Sem copiar nem editar os arquivos dos donos. Novo módulo/configuração/cena e shader opaco de eclipse escritos nesta tarefa.
 - Referências factuais: NASA SP-184 pp.119–121/figs.3-97–98 e tabela1-1, https://ntrs.nasa.gov/citations/19690027073; NASA Eclipses Near and Far, https://www.nasa.gov/history/eclipses-near-and-far/. Consultas em14/11/2026. Imagem67-H-483 já registrada pela SUR-001, usada somente como referência de composição. Nenhum asset externo novo redistribuído. NASA não endossa o projeto. Detalhes em SURVEYOR_ECLIPSE.md.
+
+## SUR-012 — noite e passagem do tempo
+
+Reutiliza SUR-002 (cenário e modelo fornecido pela equipe), SUR-007 (TV640×480 e shader Scan), CORE-004/005 (câmera, sequência, progresso/evidências) e UI-004/006 (legendas, localização, pausa/preferências/foco). Origens e licenças dessas entregas permanecem nos respectivos registros. Código de montagem, sequências e textos locais adaptados do roteiro atual; nenhum asset externo novo. Fontes e simplificações em[SURVEYOR_NIGHT.md](SURVEYOR_NIGHT.md).
