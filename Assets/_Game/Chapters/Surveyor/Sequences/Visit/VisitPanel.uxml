@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+ <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss"/><Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss"/><Style src="/Assets/_Game/Shared/Localization/SubtitleLayer.uss"/><Style src="VisitPanel.uss"/>
+ <ui:VisualElement class="sa-root visit-root">
+  <ui:VisualElement name="slot" class="visit-slot"><ui:VisualElement name="frame" class="visit-frame"><ui:Image name="picture" class="visit-picture"/><ui:Label name="date" class="sa-stamp visit-date"/><ui:Label name="credit" class="visit-credit"/></ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement name="memorial" class="visit-memorial"><ui:Label name="title" class="visit-title"/><ui:Label name="location" class="sa-stamp"/></ui:VisualElement>
+  <ui:VisualElement name="subtitles" class="visit-subtitles"/>
+  <ui:Button name="return" class="visit-return"/>
+  <ui:VisualElement name="cover" class="visit-cover"><ui:VisualElement class="visit-card"><ui:Label name="cover-title" class="visit-card-title"/><ui:Label name="description"/><ui:Button name="begin"/></ui:VisualElement></ui:VisualElement>
+ </ui:VisualElement>
+</ui:UXML>
