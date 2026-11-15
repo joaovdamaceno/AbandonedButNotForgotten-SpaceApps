@@ -15,7 +15,7 @@ MonoBehaviour:
   sequenceId: sur.doc.Prologue
   shots:
   - shotId: sur.doc.arrival.question
-    durationSeconds: 12
+    durationSeconds: 11
     rigId: sur.craft
     lookAtTargetId: sur.touchdown
     easing: 1
@@ -26,13 +26,13 @@ MonoBehaviour:
       positionMeters: {x: 6, y: 2, z: -8}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 40
-    - timeSeconds: 12
-      positionMeters: {x: 5, y: 2, z: -7}
+    - timeSeconds: 11
+      positionMeters: {x: 5.4, y: 2, z: -7.5}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 40
     events: []
   - shotId: sur.doc.arrival.tools
-    durationSeconds: 13
+    durationSeconds: 12
     rigId: sur.craft
     lookAtTargetId: sur.optical
     easing: 1
@@ -43,7 +43,7 @@ MonoBehaviour:
       positionMeters: {x: 1.3196152, y: 1.9936038, z: -0.85044587}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 35
-    - timeSeconds: 13
+    - timeSeconds: 12
       positionMeters: {x: 1.0196152, y: 1.9436039, z: -0.5504459}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 35
@@ -51,24 +51,24 @@ MonoBehaviour:
   cues:
   - cueId: sur.doc.intro.1
     textKey: sur.doc.intro.1
-    startSeconds: 1
-    endSeconds: 9
+    startSeconds: 0
+    endSeconds: 6
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: sur.doc.intro.2
     textKey: sur.doc.intro.2
-    startSeconds: 10
-    endSeconds: 17
+    startSeconds: 7
+    endSeconds: 14
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: sur.doc.intro.3
     textKey: sur.doc.intro.3
-    startSeconds: 18
-    endSeconds: 25
+    startSeconds: 15
+    endSeconds: 23
     triggerId: 
     minimumReadSeconds: 0
     position: 0

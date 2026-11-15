@@ -48,7 +48,7 @@ namespace Abandoned.SpaceApps.EditorTools
         {
             ImportModel("ApolloA7L", true); ImportModel("ApolloLunarModule", false); ImportModel("SurveyorRecoverable", false); ImportModel("SurveyorRetro", false);
             var names = new[] { "Prologue", "Arrival", "Activation", "Science", "Findings", "Night", "Reunion", "Legacy", "End" };
-            var template = ChapterDefinition.Create("surveyor3", "sur.chapter.title", "sur.chapter.description", "sur.chapter.question", "SurveyorChapter", 375, "sur.doc.Prologue", names.Select((n, i) => new ChapterStep(n, i == names.Length - 1, i == names.Length - 1 ? System.Array.Empty<string>() : new[] { names[i + 1] })), Load<Sprite>(ReturnedCameraBuilder.CoverPath));
+            var template = ChapterDefinition.Create("surveyor3", "sur.chapter.title", "sur.chapter.description", "sur.chapter.question", "SurveyorChapter", 270, "sur.doc.Prologue", names.Select((n, i) => new ChapterStep(n, i == names.Length - 1, i == names.Length - 1 ? System.Array.Empty<string>() : new[] { names[i + 1] })), Load<Sprite>(ReturnedCameraBuilder.CoverPath));
             var chapter = c.Asset(SurveyorChapterBuilder.ChapterPath, () => template);
             if (chapter != template) { EditorUtility.CopySerialized(template, chapter); Object.DestroyImmediate(template); } EditorUtility.SetDirty(chapter);
             var panel = c.Asset(Folder + "/DocumentaryPanel.asset", () => Object.Instantiate(Load<PanelSettings>("Assets/_Game/UI/Design/SpaceAppsPanelSettings.asset")));
@@ -58,7 +58,9 @@ namespace Abandoned.SpaceApps.EditorTools
             var ground = Material(c, "LunarRegolith", new Color(.63f, .62f, .59f));
             ground.shader = Shader.Find("Abandoned/Surveyor Regolith");
             ground.SetTexture("_BaseMap", Load<Texture2D>(SurveyorArtPolish.Folder + "/Regolith.png"));
-            ground.SetTexture("_BumpMap", Load<Texture2D>(SurveyorSiteBuilder.GeneratedPath + "/RegolithNormal.png")); ground.SetFloat("_BumpScale", .6f); ground.EnableKeyword("_NORMALMAP");
+            ground.SetFloat("_BumpScale", .6f); ground.SetFloat("_UseCutColor", 0f);
+            var cutGround = c.Material(Folder + "/Art/ExcavatedRegolith.mat", "Abandoned/Surveyor Regolith");
+            cutGround.CopyPropertiesFromMaterial(ground); cutGround.SetFloat("_UseCutColor", 1f); EditorUtility.SetDirty(cutGround);
             var audio = c.Asset(Folder + "/DocumentaryAudio.asset", () => ScriptableObject.CreateInstance<AudioCatalog>());
             audio.Set(new[] { Music("sur.doc.departure", "Departure", .29f), Music("sur.doc.science", "Science", .18f), Music("sur.doc.return", "Return", .34f) }); EditorUtility.SetDirty(audio);
             var tracks = Tracks(c);
@@ -89,7 +91,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 var originalTile = site.transform.Find("NearGround_40m/Chunk_2_2").GetComponent<Renderer>(); originalTile.enabled = false;
                 var groove = trench.transform.Find("Groove").GetComponent<SkinnedMeshRenderer>();
                 var filterObject = Child(trench, "LiveSoil"); filterObject.transform.SetPositionAndRotation(groove.transform.position, groove.transform.rotation);
-                Get<MeshFilter>(filterObject).sharedMesh = groove.sharedMesh; Get<MeshRenderer>(filterObject).sharedMaterial = ground; groove.enabled = false;
+                Get<MeshFilter>(filterObject).sharedMesh = groove.sharedMesh; Get<MeshRenderer>(filterObject).sharedMaterial = cutGround; groove.enabled = false;
                 var soil = Get<SurveyorSoilSurface>(filterObject); soil.Configure(filterObject.GetComponent<MeshFilter>());
                 scoop.Configure(arm.transform, trench.transform, soil);
                 foreach (var r in spacecraft.GetComponentsInChildren<Renderer>()) if (r.name == "Team_ScoopLinkage" || r.name == "Team_ScoopTool") r.enabled = false;
@@ -180,7 +182,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 from[i] = Child(root, "Walk start " + i).transform; to[i] = Child(root, "Inspect position " + i).transform;
                 float x = i == 0 ? optical.position.x - .48f : -2.1f, z = i == 0 ? optical.position.z + .20f : -.8f;
                 to[i].position = SurveyorSiteGeometry.Ground(x, z, .012f); to[i].rotation = Quaternion.LookRotation(new Vector3(optical.position.x, 0f, optical.position.z) - new Vector3(x, 0, z));
-                from[i].position = to[i].position - to[i].forward * (i == 0 ? 3.6f : 4.2f);
+                from[i].position = to[i].position - to[i].forward * (i == 0 ? 2.8f : 3.2f);
                 from[i].position = SurveyorSiteGeometry.Ground(from[i].position.x, from[i].position.z, .012f);
                 actors[i].transform.SetPositionAndRotation(to[i].position, to[i].rotation);
             }
@@ -208,13 +210,13 @@ namespace Abandoned.SpaceApps.EditorTools
             SequenceDefinition Track(string id, ShotDefinition[] shots, params SubtitleCue[] cues) => SequenceDefinition.Create("sur.doc." + id, shots, cues);
             SubtitleCue Cue(string id, float a, float b) => new SubtitleCue("sur.doc." + id, "sur.doc." + id, a, b);
             var list = new[] {
-                Track("Prologue", new[]{ Shot("arrival.question",12,new Vector3(6,2,-8),new Vector3(5,2,-7),40,rig:"sur.craft"), Shot("arrival.tools",13,eye+new Vector3(1.6f,.4f,-1.8f),eye+new Vector3(1.3f,.35f,-1.5f),35,"sur.optical","sur.craft") }, Cue("intro.1",1,9),Cue("intro.2",10,17),Cue("intro.3",18,25)),
-                Track("Arrival", new[]{ Shot("descent.scale",10,new Vector3(9,4,-12),new Vector3(7,3,-10),42,rig:"sur.craft"), Shot("descent.separation",8,new Vector3(4,0,-6),new Vector3(4.2f,.1f,-6),44,rig:"sur.craft"), Shot("descent.ground",5,P(9,2,-12),P(8,1.8f,-11),40), Shot("descent.contacts",6,P(4,.5f,-4),P(4.1f,.6f,-4),46), Shot("descent.settled",6,P(6,2,-8),P(5.5f,2,-7),42) },Cue("arrival.1",1,8),Cue("arrival.2",10,18),Cue("arrival.3",23,31)),
-                Track("Activation",new[]{ Shot("activation.body",7,P(3,1.7f,-4),P(2.7f,1.6f,-3.5f),40),Shot("activation.eye",7,P(2,1.7f,1.1f),P(1.5f,1.7f,1.1f),35,"sur.optical"),Shot("activation.work",6,P(1.6f,1.8f,1.1f),P(1.6f,1.8f,1.1f),35,"sur.trench") },Cue("activation.1",0,8),Cue("activation.2",10,20)),
-                Track("Findings",new[]{ Shot("findings.trench",10,P(1.5f,.6f,3),P(1.3f,.55f,2.9f),40,"sur.trench"),Shot("findings.machine",10,P(5,1.7f,-6),P(5.3f,1.9f,-6.4f),40) },Cue("findings.1",0,9),Cue("findings.2",10,20)),
-                Track("Night",new[]{ Shot("night.eclipse",6,P(3,1.2f,-4),P(3.4f,1.3f,-4.5f),38), Shot("night.earth",12,P(0,1.65f,1.1f),P(0,1.65f,1.1f),10,"sur.eclipse"),Shot("night.shadow",17,P(6,1.2f,-3),P(6.5f,1.3f,-3.5f),42),Shot("night.wait",10,P(9,2,-11),P(10,2,-12),40) },Cue("night.1",0,8),Cue("night.2",9,18),Cue("night.3",21,29),Cue("night.4",33,43)),
-                Track("Reunion",new[]{ Shot("reunion.place",13,P(8,3,-9),P(7.5f,2.8f,-8.4f),44),Shot("reunion.human",13,P(-4,1.0f,-3),P(-3.8f,1.05f,-2.8f),44),Shot("reunion.inspection",13,eye+new Vector3(1.5f,.15f,-1.6f),eye+new Vector3(1.4f,.15f,-1.5f),44,"sur.optical"),Shot("reunion.return",16,P(4,2.2f,5),P(4.5f,2.4f,6),45) },Cue("reunion.1",0,8),Cue("reunion.2",10,20),Cue("reunion.3",24,35),Cue("reunion.4",39,50)),
-                Track("Legacy",new[]{Shot("legacy.photo",10,P(4.5f,2.4f,6),P(4.5f,2.4f,6),45,continuity:true),Shot("legacy.remains",5,P(5,2,-7),P(5.3f,2.1f,-7.5f),40)},Cue("legacy.1",0,9),Cue("legacy.2",10,15))
+                Track("Prologue", new[]{ Shot("arrival.question",11,new Vector3(6,2,-8),new Vector3(5.4f,2,-7.5f),40,rig:"sur.craft"), Shot("arrival.tools",12,eye+new Vector3(1.6f,.4f,-1.8f),eye+new Vector3(1.3f,.35f,-1.5f),35,"sur.optical","sur.craft") }, Cue("intro.1",0,6),Cue("intro.2",7,14),Cue("intro.3",15,23)),
+                Track("Arrival", new[]{ Shot("descent.scale",9,new Vector3(9,4,-12),new Vector3(7,3,-10),42,rig:"sur.craft"), Shot("descent.separation",8,new Vector3(4,0,-6),new Vector3(4.2f,.1f,-6),44,rig:"sur.craft"), Shot("descent.ground",6,P(9,2,-12),P(8,1.8f,-11),40), Shot("descent.contacts",8,P(4,.8f,-5),P(4.3f,.9f,-5.3f),44) },Cue("arrival.1",0,7),Cue("arrival.2",9,16),Cue("arrival.3",18,25),Cue("arrival.4",25,31)),
+                Track("Activation",new[]{ Shot("activation.body",7,P(3,1.7f,-4),P(2.7f,1.6f,-3.5f),40),Shot("activation.eye",5,eye+new Vector3(-1,.15f,-1.1f),eye+new Vector3(-.8f,.1f,-.9f),35,"sur.optical"),Shot("activation.work",4,P(1.6f,1.8f,1.1f),P(1.6f,1.8f,1.1f),35,"sur.trench") },Cue("activation.1",0,8),Cue("activation.2",9,16)),
+                Track("Findings",new[]{ Shot("findings.trench",8,P(1.5f,.6f,3),P(1.3f,.55f,2.9f),40,"sur.trench"),Shot("findings.machine",10,P(5,1.7f,-6),P(5.3f,1.9f,-6.4f),40) },Cue("findings.1",0,8),Cue("findings.2",9,18)),
+                Track("Night",new[]{ Shot("night.eclipse",4,P(3,1.2f,-4),P(3.4f,1.3f,-4.5f),38), Shot("night.earth",12,P(0,1.65f,1.1f),P(0,1.65f,1.1f),10,"sur.eclipse"),Shot("night.shadow",14,P(6,1.2f,-3),P(6.5f,1.3f,-3.5f),42),Shot("night.wait",8,P(9,2,-11),P(10,2,-12),40) },Cue("night.1",0,7),Cue("night.2",8,16),Cue("night.3",18,27),Cue("night.4",29,38)),
+                Track("Reunion",new[]{ Shot("reunion.place",10,P(8,2.3f,-8),P(7.5f,2.2f,-7.6f),42),Shot("reunion.human",6,P(-3,1.9f,.1f),P(-2.8f,1.8f,.2f),40,"sur.optical"),Shot("reunion.inspection",16,eye+new Vector3(-.95f,.3f,-1.15f),eye+new Vector3(-1.05f,.3f,-1.2f),46,"sur.optical"),Shot("reunion.return",12,P(4,2.2f,5),P(4.5f,2.4f,6),45) },Cue("reunion.1",0,8),Cue("reunion.2",9,17),Cue("reunion.3",19,28),Cue("reunion.4",31,42)),
+                Track("Legacy",new[]{Shot("legacy.photo",8,P(4.5f,2.4f,6),P(4.5f,2.4f,6),45,continuity:true),Shot("legacy.remains",5,P(5,2,-7),P(5.3f,2.1f,-7.5f),40)},Cue("legacy.1",0,8),Cue("legacy.2",8,13))
             };
             return list.Select(source =>
             {

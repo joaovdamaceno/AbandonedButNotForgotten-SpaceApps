@@ -72,7 +72,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                     current.y = Mathf.MoveTowards(current.y, floor + .13f, dt * .30f);
                 else
                 {
-                    Vector2 next = Vector2.MoveTowards(new Vector2(current.x, current.z), new Vector2(cursor.x, cursor.z), dt * (contact ? .055f : .30f));
+                    Vector2 next = Vector2.MoveTowards(new Vector2(current.x, current.z), new Vector2(cursor.x, cursor.z), dt * (contact ? .10f : .40f));
                     float height = MinTipHeight(next.x, next.y, contact ? 26f : 8f) + (contact ? .001f : .13f);
                     current = new Vector3(next.x, Mathf.Max(height, Mathf.MoveTowards(current.y, height, dt * .28f)), next.y);
                 }
@@ -86,13 +86,13 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             // A tilted bucket can rest on an excavation's edge while its lip spans the hollow.
             // Compress the supporting soil, not an unreachable point at the bottom of that hollow.
             if (press && InGroundContact) soil.Press(supportPoint, .012f);
-            contacting = contact; load = Mathf.MoveTowards(load, cut > 0f ? 1f : contact ? .28f : 0f, dt * 5f);
+            contacting = contact; load = Mathf.MoveTowards(load, cut > 0f ? 1f : InGroundContact ? .4f : 0f, dt * 5f);
             if (cut > 0f) Emit(before, current);
             SetPose(current, contact ? 26f : 8f); soil.Flush(dt);
             bool moving = Vector3.Distance(before, current) > .0002f;
             if (moving || contact)
             {
-                motor.volume = volume * Mathf.Lerp(.018f, .065f, load); motor.pitch = Mathf.Lerp(.95f, .73f, load);
+                motor.volume = volume * Mathf.Lerp(.028f, .11f, load); motor.pitch = Mathf.Lerp(.98f, .73f, load);
                 if (!motor.isPlaying) { motor.UnPause(); if (!motor.isPlaying) motor.Play(); }
             }
             else if (motor.isPlaying) motor.Stop();

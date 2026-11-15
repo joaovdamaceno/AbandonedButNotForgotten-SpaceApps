@@ -12,15 +12,16 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         [SerializeField] Texture2D archive;
         RenderTexture raw, processed;
         Material runtimeTreatment;
-        VisualElement root, screen, photo, controls, reticle, subtitleHost, creditsPanel;
+        VisualElement root, screen, photo, controls, reticle, subtitleHost, creditsPanel, guide, progressFill, progressTrack;
         Label date, title, objective, hint, state, credit;
-        Button action, effect, creditsButton;
+        Button action, creditsButton;
+        Label progressLabel;
+        int lastProgress = -1;
         Label creditsTitle, creditsBody;
         bool instrument, reducedEffect;
         Camera camera;
         public event Action ActionRequested;
         public event Action PauseRequested;
-        public event Action EffectRequested;
         public VisualElement SubtitleHost => subtitleHost;
         public VisualElement Screen => screen;
         public RenderTexture Raw => raw;
@@ -31,8 +32,9 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             root.style.position = Position.Absolute; root.style.left = 0; root.style.right = 0; root.style.top = 0; root.style.bottom = 0;
             screen = root.Q("picture"); photo = root.Q("archive-photo"); controls = root.Q("instrument-controls"); reticle = root.Q("tool-cursor");
             date = root.Q<Label>("date"); title = root.Q<Label>("title"); objective = root.Q<Label>("objective"); hint = root.Q<Label>("hint"); state = root.Q<Label>("tool-state"); credit = root.Q<Label>("photo-credit"); subtitleHost = root.Q("subtitle-host");
-            action = root.Q<Button>("action"); effect = root.Q<Button>("effect");
-            action.clicked += () => ActionRequested?.Invoke(); root.Q<Button>("pause").clicked += () => PauseRequested?.Invoke(); effect.clicked += () => EffectRequested?.Invoke();
+            action = root.Q<Button>("action");
+            guide = root.Q("drag-guide"); progressTrack = root.Q("work-progress"); progressFill = root.Q("work-fill"); progressLabel = root.Q<Label>("work-label");
+            action.clicked += () => ActionRequested?.Invoke(); root.Q<Button>("pause").clicked += () => PauseRequested?.Invoke();
             creditsButton = root.Q<Button>("credits"); creditsPanel = root.Q("credits-panel"); creditsTitle = root.Q<Label>("credits-title"); creditsBody = root.Q<Label>("credits-body");
             creditsButton.clicked += () => creditsPanel.style.display = DisplayStyle.Flex;
             root.Q<Button>("credits-close").clicked += () => creditsPanel.style.display = DisplayStyle.None;
@@ -45,6 +47,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         public void SetInstrument(bool value)
         {
             instrument = value; root.EnableInClassList("instrument", value); controls.style.display = value ? DisplayStyle.Flex : DisplayStyle.None;
+            if (!value) guide.style.display = DisplayStyle.None;
             camera.aspect = value ? 4f / 3f : 16f / 9f; Layout();
         }
         void Layout()
@@ -56,9 +59,9 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             float sh = Mathf.Min(h, w / aspect), sw = sh * aspect;
             screen.style.width = sw; screen.style.height = sh; screen.style.left = (w - sw) * .5f; screen.style.top = (h - sh) * .5f;
         }
-        public void SetText(string dateText, string titleText, string objectiveText, string instruction, string toolStatus, string actionText, string effectsText)
+        public void SetText(string dateText, string titleText, string objectiveText, string instruction, string toolStatus, string actionText)
         {
-            date.text = dateText; title.text = titleText; objective.text = objectiveText; hint.text = instruction; state.text = toolStatus; action.text = actionText; effect.text = effectsText;
+            date.text = dateText; title.text = titleText; objective.text = objectiveText; hint.text = instruction; state.text = toolStatus; action.text = actionText;
             action.style.display = string.IsNullOrEmpty(actionText) ? DisplayStyle.None : DisplayStyle.Flex;
             root.Q("mission-heading").style.display = string.IsNullOrEmpty(titleText) && string.IsNullOrEmpty(dateText) ? DisplayStyle.None : DisplayStyle.Flex;
         }
@@ -71,6 +74,23 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         {
             root.EnableInClassList("ended", ended); creditsButton.text = button; creditsTitle.text = titleText; creditsBody.text = body; root.Q<Button>("credits-close").text = close;
             if (!ended) creditsPanel.style.display = DisplayStyle.None;
+            if (ended) { progressTrack.style.display = DisplayStyle.None; guide.style.display = DisplayStyle.None; }
+        }
+        public void SetFeedback(float amount, bool contact, bool visible, string status)
+        {
+            progressTrack.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
+            root.EnableInClassList("tool-contact", contact); root.EnableInClassList("work-ready", amount >= 1f);
+            int value = Mathf.Clamp(Mathf.RoundToInt(amount * 100f), 0, 100);
+            if (value != lastProgress) { lastProgress = value; progressFill.style.width = Length.Percent(value); progressLabel.text = value + "%"; }
+            if (state.text != status) state.text = status;
+        }
+        public void Guide(Vector3 from, Vector3 to, bool visible)
+        {
+            guide.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None; if (!visible) return;
+            var a = camera.WorldToViewportPoint(from); var b = camera.WorldToViewportPoint(to);
+            guide.style.left = Mathf.Min(a.x, b.x) * screen.resolvedStyle.width;
+            guide.style.top = (1f - (a.y + b.y) * .5f) * screen.resolvedStyle.height;
+            guide.style.width = Mathf.Abs(b.x - a.x) * screen.resolvedStyle.width;
         }
         public void ApplyTextScale(float scale)
         {

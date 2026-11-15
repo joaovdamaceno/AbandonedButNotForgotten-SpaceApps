@@ -2,73 +2,128 @@ using UnityEngine;
 
 namespace Abandoned.SpaceApps.Chapters.Surveyor
 {
-    /// <summary>Whole skeletal actors sampled on active story time. No separate feet or camera-relative glove.</summary>
+    /// <summary>Whole-body poses on story time, with stance feet planted in world space.</summary>
     public sealed class SurveyorApolloCast : MonoBehaviour
     {
+        public const float CameraPickupSeconds = 27f, ScoopPickupSeconds = 35f, EndPoseSeconds = 44f;
         [SerializeField] GameObject[] astronauts;
         [SerializeField] AnimationClip walk, inspect, stand;
         [SerializeField] Transform[] start, stop;
         [SerializeField] Transform recoveredCamera, cameraHome, cameraHand, recoveredScoop, scoopHand;
         [SerializeField] Renderer[] cameraParts;
         [SerializeField] Transform nativeArm;
-        Vector3 scoopScale;
-        bool initialized;
         Transform[][] bones;
         Quaternion[][] footBind;
-        static readonly string[] BoneNames = { "Thigh_L", "Shin_L", "Foot_L", "Thigh_R", "Shin_R", "Foot_R", "UpperArm_R", "ForeArm_R", "Hand_R" };
+        Quaternion[] alignment;
+        Vector3[] modelForward;
+        float[][] lateral;
+        Vector3 scoopScale;
+        bool initialized;
+        static readonly string[] Names = { "Thigh_L", "Shin_L", "Foot_L", "Thigh_R", "Shin_R", "Foot_R", "UpperArm_R", "ForeArm_R", "Hand_R", "UpperArm_L", "ForeArm_L", "Hand_L", "Pelvis", "Spine", "Head" };
         public GameObject[] Astronauts => astronauts;
+        public Vector3 FacingDirection(int actor) => astronauts[actor].transform.TransformDirection(modelForward[actor]);
+        public Vector3 FootPosition(int actor, int leg) => bones[actor][leg * 3 + 2].position;
         public void Configure(GameObject[] actors, AnimationClip walking, AnimationClip inspection, AnimationClip idle, Transform[] from, Transform[] to)
         { astronauts = actors; walk = walking; inspect = inspection; stand = idle; start = from; stop = to; }
         public void ConfigureRecovery(Transform camera, Transform home, Transform hand, Transform scoop, Transform scoopCarry, Renderer[] parts, Transform arm)
         { recoveredCamera = camera; cameraHome = home; cameraHand = hand; recoveredScoop = scoop; scoopHand = scoopCarry; cameraParts = parts; nativeArm = arm; }
-        public void Evaluate(float seconds, bool visible)
+        void Initialize()
         {
-            if (!initialized)
+            if (initialized) return;
+            initialized = true; scoopScale = recoveredScoop.localScale;
+            int count = astronauts.Length;
+            bones = new Transform[count][]; footBind = new Quaternion[count][]; alignment = new Quaternion[count]; modelForward = new Vector3[count]; lateral = new float[count][];
+            for (int i = 0; i < count; i++)
             {
-                initialized = true; scoopScale = recoveredScoop.localScale; bones = new Transform[astronauts.Length][]; footBind = new Quaternion[astronauts.Length][];
-                for (int i = 0; i < astronauts.Length; i++)
-                {
-                    bones[i] = new Transform[BoneNames.Length]; var all = astronauts[i].GetComponentsInChildren<Transform>(true);
-                    for (int j = 0; j < BoneNames.Length; j++) foreach (var candidate in all) if (candidate.name == BoneNames[j]) { bones[i][j] = candidate; break; }
-                    stand.SampleAnimation(astronauts[i], 0f); footBind[i] = new[] { Quaternion.Inverse(astronauts[i].transform.rotation) * bones[i][2].rotation, Quaternion.Inverse(astronauts[i].transform.rotation) * bones[i][5].rotation };
-                }
-            }
-            for (int i = 0; i < astronauts.Length; i++)
-            {
-                var actor = astronauts[i]; actor.SetActive(visible);
-                if (!visible) continue;
-                float t = Mathf.Max(0f, seconds - i * 1.8f), walkSeconds = i == 0 ? 12f : 14f;
-                float u = Mathf.Clamp01(t / walkSeconds);
-                var position = Vector3.Lerp(start[i].position, stop[i].position, u); position.y = SurveyorLunarSurface.Height(position.x, position.z) + .012f;
-                actor.transform.SetPositionAndRotation(position, stop[i].rotation);
-                var clip = t < walkSeconds ? walk : i == 0 && t < 40f ? inspect : stand;
-                if (clip != null) clip.SampleAnimation(actor, t < walkSeconds ? t % clip.length : clip == inspect ? Mathf.Min(t - walkSeconds, clip.length - .01f) : 0f);
+                var actor = astronauts[i]; stand.SampleAnimation(actor, 0f);
+                bones[i] = new Transform[Names.Length]; var all = actor.GetComponentsInChildren<Transform>(true);
+                for (int b = 0; b < Names.Length; b++)
+                    foreach (var candidate in all) if (candidate.name == Names[b]) { bones[i][b] = candidate; break; }
+                // Imported foot bones run from ankle to toes. FBX +Z need not be the suit's front.
+                modelForward[i] = Vector3.ProjectOnPlane(actor.transform.InverseTransformDirection(bones[i][2].up + bones[i][5].up), Vector3.up).normalized;
+                alignment[i] = Quaternion.FromToRotation(modelForward[i], Vector3.forward);
+                footBind[i] = new Quaternion[2]; lateral[i] = new float[2];
                 for (int leg = 0; leg < 2; leg++)
                 {
-                    int b = leg * 3; var foot = bones[i][b + 2]; var target = foot.position;
-                    float phase = (t / 2f + leg * .5f) % 1f;
-                    float floor = SurveyorLunarSurface.Height(target.x, target.z) + .13f;
-                    target.y = t < walkSeconds && phase > .6f ? Mathf.Max(target.y, floor) : floor;
-                    IK(bones[i][b], bones[i][b + 1], foot, target, actor.transform.position + actor.transform.forward * 2f);
-                    foot.rotation = actor.transform.rotation * footBind[i][leg];
-                }
-                if (i == 0 && t >= walkSeconds)
-                {
-                    var hand = bones[i][8]; var goal = cameraHome.position + Vector3.down * .18f;
-                    if (seconds >= 34f) goal = Vector3.Lerp(goal, actor.transform.position + Vector3.up * 1.16f + actor.transform.forward * .38f, Mathf.SmoothStep(0f, 1f, (seconds - 34f) / 4f));
-                    IK(bones[i][6], bones[i][7], hand, goal, actor.transform.position + actor.transform.right + Vector3.up * 1.2f);
+                    var foot = bones[i][leg * 3 + 2];
+                    footBind[i][leg] = Quaternion.Inverse(actor.transform.rotation) * foot.rotation;
+                    lateral[i][leg] = (alignment[i] * actor.transform.InverseTransformPoint(foot.position)).x;
                 }
             }
-            bool carrying = visible && seconds >= 34f;
-            foreach (var part in cameraParts) part.enabled = !carrying;
-            recoveredCamera.gameObject.SetActive(carrying);
-            if (carrying) recoveredCamera.SetPositionAndRotation(cameraHand.position, cameraHand.rotation);
-            if (visible && seconds >= 43f)
+        }
+        public void Evaluate(float seconds, bool visible)
+        {
+            Initialize();
+            for (int i = 0; i < astronauts.Length; i++)
             {
-                nativeArm.gameObject.SetActive(false); recoveredScoop.gameObject.SetActive(true);
-                recoveredScoop.SetPositionAndRotation(scoopHand.position, scoopHand.rotation); recoveredScoop.localScale = scoopScale;
+                var actor = astronauts[i]; actor.SetActive(visible); if (!visible) continue;
+                float t = Mathf.Max(0f, seconds - i * 1.3f), duration = i == 0 ? 10f : 12f;
+                Vector3 route = Vector3.ProjectOnPlane(stop[i].position - start[i].position, Vector3.up), facing = route.normalized;
+                Vector3 right = Vector3.Cross(Vector3.up, facing);
+                float u = Mathf.Clamp01(t / duration), distance = route.magnitude * Mathf.SmoothStep(0f, 1f, u);
+                bool walking = t > 0f && t < duration;
+                // Pose before assigning world heading: an imported root track must not undo it.
+                stand.SampleAnimation(actor, 0f);
+                var position = start[i].position + facing * distance;
+                position.y = SurveyorLunarSurface.Height(position.x, position.z) + .012f;
+                actor.transform.SetPositionAndRotation(position, Quaternion.LookRotation(facing) * alignment[i]);
+                float phase = distance / .42f, settle = Mathf.SmoothStep(0f, 1f, (t - duration) / 2f);
+                float work = i == 0 ? settle * (1f - Mathf.SmoothStep(0f, 1f, (seconds - 31f) / 3f))
+                    : Mathf.SmoothStep(0f, 1f, (seconds - 30f) / 3f) * (1f - Mathf.SmoothStep(0f, 1f, (seconds - 38f) / 3f));
+                bones[i][12].position += Vector3.up * (-.05f + (walking ? .014f * Mathf.Pow(Mathf.Sin(phase * Mathf.PI * 2f), 2f) : -.035f * work));
+                bones[i][13].rotation = Quaternion.AngleAxis(walking ? 3f : 8f * work, right) * bones[i][13].rotation;
+                for (int leg = 0; leg < 2; leg++)
+                {
+                    float offset = leg * .5f, cycle = Mathf.Floor(phase + offset), p = phase + offset - cycle;
+                    float along = (cycle - offset) * .42f + .13f, lift = 0f;
+                    if (p >= .62f)
+                    {
+                        float swing = (p - .62f) / .38f;
+                        along += .42f * Mathf.SmoothStep(0f, 1f, swing); lift = .08f * Mathf.Sin(swing * Mathf.PI);
+                    }
+                    Vector3 planted = start[i].position + facing * along + right * lateral[i][leg];
+                    Vector3 neutral = position + right * lateral[i][leg];
+                    float blend = walking ? Mathf.Min(Mathf.Clamp01(t / .45f), Mathf.Clamp01((duration - t) / .8f)) : 0f;
+                    var target = Vector3.Lerp(neutral, planted, blend);
+                    target.y = SurveyorLunarSurface.Height(target.x, target.z) + .13f + lift * blend;
+                    int b = leg * 3; IK(bones[i][b], bones[i][b + 1], bones[i][b + 2], target, position + facing * 2f);
+                    bones[i][b + 2].rotation = actor.transform.rotation * footBind[i][leg];
+                }
+                for (int arm = 0; arm < 2; arm++)
+                {
+                    int b = arm == 0 ? 6 : 9; float side = arm == 0 ? 1f : -1f;
+                    Vector3 rest = position + Vector3.up * 1.02f + right * side * .38f + facing * .08f;
+                    Vector3 target = rest + facing * (walking ? Mathf.Sin((phase + arm * .5f) * Mathf.PI * 2f) * .075f : 0f);
+                    if (i == 0 && arm == 0 && !walking)
+                    {
+                        var grip = cameraHome.position + Vector3.down * .12f;
+                        var carry = position + Vector3.up * 1.12f + facing * .35f + right * .13f;
+                        target = Vector3.Lerp(rest, Vector3.Lerp(grip, carry, Mathf.SmoothStep(0f, 1f, (seconds - CameraPickupSeconds) / 3f)), settle);
+                    }
+                    if (i == 1 && arm == 1 && seconds > 30f)
+                    {
+                        var source = nativeArm.GetChild(0);
+                        var carry = position + Vector3.up * 1.02f + facing * .32f - right * .15f;
+                        target = Vector3.Lerp(rest, Vector3.Lerp(source.position, carry, Mathf.SmoothStep(0f, 1f, (seconds - ScoopPickupSeconds) / 3f)), Mathf.Clamp01((seconds - 30f) / 3f));
+                    }
+                    IK(bones[i][b], bones[i][b + 1], bones[i][b + 2], target, position + right * side * .85f + Vector3.up * 1.3f + facing * .15f);
+                }
+                float turn = Mathf.Clamp(Vector3.SignedAngle(facing, Vector3.ProjectOnPlane(cameraHome.position - bones[i][14].position, Vector3.up), Vector3.up), -28f, 28f);
+                bones[i][14].rotation = Quaternion.AngleAxis(turn * settle, Vector3.up) * bones[i][14].rotation;
             }
-            else recoveredScoop.gameObject.SetActive(false);
+            bool cameraCarried = visible && seconds >= CameraPickupSeconds, scoopCarried = visible && seconds >= ScoopPickupSeconds;
+            foreach (var part in cameraParts) part.enabled = !cameraCarried;
+            recoveredCamera.gameObject.SetActive(cameraCarried); nativeArm.gameObject.SetActive(!scoopCarried); recoveredScoop.gameObject.SetActive(scoopCarried);
+            if (cameraCarried)
+            {
+                float transfer = Mathf.SmoothStep(0f, 1f, (seconds - CameraPickupSeconds) / .8f);
+                recoveredCamera.SetPositionAndRotation(Vector3.Lerp(cameraHome.position, cameraHand.position, transfer), Quaternion.Slerp(cameraHome.rotation, cameraHand.rotation, transfer));
+            }
+            if (scoopCarried)
+            {
+                var source = nativeArm.GetChild(0); float transfer = Mathf.SmoothStep(0f, 1f, (seconds - ScoopPickupSeconds) / .8f);
+                recoveredScoop.SetPositionAndRotation(Vector3.Lerp(source.position, scoopHand.position, transfer), Quaternion.Slerp(source.rotation, scoopHand.rotation, transfer)); recoveredScoop.localScale = scoopScale;
+            }
         }
         static void IK(Transform upper, Transform lower, Transform end, Vector3 target, Vector3 pole)
         {

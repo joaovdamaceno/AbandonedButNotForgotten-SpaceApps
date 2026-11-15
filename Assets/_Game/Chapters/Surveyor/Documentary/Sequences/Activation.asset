@@ -32,7 +32,7 @@ MonoBehaviour:
       fieldOfViewDegrees: 40
     events: []
   - shotId: sur.doc.activation.eye
-    durationSeconds: 7
+    durationSeconds: 5
     rigId: world
     lookAtTargetId: sur.optical
     easing: 1
@@ -40,16 +40,16 @@ MonoBehaviour:
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 2, y: 2.0642533, z: 1.1}
+      positionMeters: {x: -1.2803848, y: 1.7436038, z: -0.15044594}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 35
-    - timeSeconds: 7
-      positionMeters: {x: 1.5, y: 1.9743224, z: 1.1}
+    - timeSeconds: 5
+      positionMeters: {x: -1.0803849, y: 1.6936039, z: 0.04955411}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 35
     events: []
   - shotId: sur.doc.activation.work
-    durationSeconds: 6
+    durationSeconds: 4
     rigId: world
     lookAtTargetId: sur.trench
     easing: 1
@@ -60,7 +60,7 @@ MonoBehaviour:
       positionMeters: {x: 1.6, y: 2.0923636, z: 1.1}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 35
-    - timeSeconds: 6
+    - timeSeconds: 4
       positionMeters: {x: 1.6, y: 2.0923636, z: 1.1}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 35
@@ -76,8 +76,8 @@ MonoBehaviour:
     priority: 0
   - cueId: sur.doc.activation.2
     textKey: sur.doc.activation.2
-    startSeconds: 10
-    endSeconds: 20
+    startSeconds: 9
+    endSeconds: 16
     triggerId: 
     minimumReadSeconds: 0
     position: 0
