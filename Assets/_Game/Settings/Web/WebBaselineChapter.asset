@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70727ea5bd91e9e489d1dcb8f893b0a7, type: 3}
+  m_Name: WebBaselineChapter
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.ChapterDefinition
+  chapterId: surveyor.webbaseline
+  titleKey: soil.title
+  descriptionKey: soil.description
+  questionKey: soil.sample
+  cover: {fileID: 0}
+  sceneName: WebBaseline
+  targetDurationSeconds: 60
+  initialSequenceId: surveyor.soil.preview
+  steps:
+  - stepId: Sample
+    nextStepIds:
+    - Eclipse
+    isTerminal: 0
+  - stepId: Eclipse
+    nextStepIds: []
+    isTerminal: 1

@@ -445,3 +445,33 @@ Sete faixas de **Scott Buckley (CC BY 4.0)** ligadas ao `AudioDirector` (AUD-002
 **Atribuição obrigatória (CC BY 4.0):** `ASSET_CREDITS.md` (linhas `M-SB-PIO-01…07`) e `credits.line.pioneer_music` em `DossierTexts.json` (PT e EN). A tela de créditos do dossiê precisa **exibir** essa linha.
 
 **Limitações.** **Nenhuma faixa foi ouvida por pessoa**: a escolha foi feita pela descrição da página de cada faixa e pelo envelope de volume medido; falta ouvir cada uma na cena. Os trechos são curtos e **repetem com emenda** se a cena durar mais (o minigame e a sintonia têm ritmo próprio); a emenda tem fade de 3 s. As faixas foram feitas para ouvir inteiras, então um corte no meio de uma frase musical é possível. O orçamento Web (4,35 MB de 10 MB para todo o áudio do jogo) não foi medido no navegador. Os efeitos sonoros (SFX) continuam **sem arquivo**.
+
+
+## Qualidade visual do lote de 15/11/2026 (PIO-031): céu, Aldebaran e a Terra da NASA
+
+- **Céu** (`PioneerStageArt.Starfield` e `BrightStars`): estrelas brilhantes redondas (discos de 10 lados); Via Láctea com poeira e núcleo mais quente; 9.000 estrelas fracas mais nítidas, quase metade agrupada perto da faixa; base mais escura.
+- **Aldebaran** (`AldebaranMarker` com `Core` e `Halo`): miolo liso de 14 m e halo aditivo de 110 m (`PioneerStageArt.GlowTexture`, `GlowQuad`; material aditivo `PIO_AldebaranHalo`). Novo anchor `PIO.Farewell.Away` (a Pioneer a 16 m, Aldebaran no alto à esquerda: `PioneerStageBuilder.FarewellAwayForward` resolve a direção de olhar) usado pelos planos de afastamento e do memorial; o plano aberto da despedida (`PIO.Farewell`) passou de 9,6 m para ~16 m.
+- **Terra da NASA** (`PioneerStageBuilder.EarthTexture`, mapa Blue Marble 2048×1024 de `ArtSource/Pioneer10/PIO-031/`): na Terra do gráfico Terra–Lua do lançamento (girada para mostrar as Américas) e na Terra de comparação com Júpiter; substitui a textura procedural.
+- **Tempo:** o teto de aprovação do capítulo nos dados passa de 420 s para 600 s, sem contar o tempo que a pessoa leva nas duas interações.
+- Evidência em `QA/PIO-031/README.md`.
+
+## O cinturão como ele é (PIO-032)
+
+- **Campo esparso** (`PioneerStageArt.SparseRockCenters` e `SparseRockField`, parâmetros em `PioneerStageBuilder`): 70 pedras pequenas (2,5 a 8 m), todas entre 90 e 520 m da sonda, a no mínimo 60 m umas das outras e longe do caminho da câmera (folga de 80 m); substitui a parede de 1.400 pedras vista de teleobjetiva.
+- **Planos** (`PioneerBeltBuilder.CreateCinemaSequence`, 50 s): 8–19 s visão larga do cinturão (650 m, aproximando-se devagar); 19–30 s zoom na sonda até 70 m (campo de visão de 38° a 26°) com o contador de dias. O dolly zoom e `DollyZ` saíram.
+- **Contador no HUD de cinema** (`PioneerBeltCounter` agora usa `CinemaHudView.SetBeltCounter`): o dia, a data, o rótulo do 307 Nike e a nota `PIO.UI.belt_far` ("o asteroide conhecido mais próximo ficou a milhões de quilômetros da sonda", de 25 a 30 s). O HUD é renderizado e conferido em imagem (`PioneerHudCapture`).
+- **Estrelas:** as fracas passam a ser geometria (3.000 discos de 8 lados), nítidas em qualquer zoom.
+- **Limitações.** Escala e distâncias são de composição; sem linha tracejada até a pedra; restam algumas estrelas fracas da textura que viram quadrados no zoom mais fechado. Evidência em `QA/PIO-032/README.md`.
+
+## A placa de ouro como cutscene (PIO-033)
+
+- **Placa dourada em 3D** (`PioneerStageBuilder`: objeto `PlaqueHero` em `PlaqueHeroCenter`, 3 × 4,5 × 0,05 m, material `PIO_PlaqueHeroGold` e face `PIO_PlaqueHeroFace` com a textura `PioneerStageArt.PlaqueBoard`): ouro anodizado com a moldura e as cinco gravuras da `PioneerPlaqueArt`. Só aparece nos anchors com `showPlaqueHero` (`PIO.Plaque.Board`).
+- **Planos** (`PioneerPlaqueBuilder.CreateSequence`, 33 s, rig `PIO.Plaque.Board`): chegada (placa inteira e depois a primeira peça), cinco zooms moderados (cada peça enquadrada com ~60% da altura, `PlaquePieceOffset`), recuo até a placa inteira. A câmera troca de peça nos últimos 0,8 s de cada legenda.
+- **Sem painel em cinema:** `PioneerPlaqueActivity.PushView` renderiza o estado `Idle` quando `CinemaMode` está ligado (a lógica de encaixe continua testada).
+- **Limitações.** Gravuras simplificadas do projeto (não a reprodução da placa real); sem Play Mode nem teste humano. Evidência em `QA/PIO-033/README.md`.
+
+## Câmeras abertas e a Terra com nome (PIO-034)
+
+- **Planos livres da abertura** (`PioneerStageBuilder`, anchors `PIO.Launch.Reveal` e `PIO.Launch`; `PioneerLaunchBuilder.CreateSequence`): a câmera fica a ~11 m e ~12,5 m da sonda, com campo de visão de 32° e 34° e um movimento lento. O modelo tem poucos polígonos e não aguenta planos colados.
+- **Rótulo da Terra** (`PioneerJupiterReveal`, `CinemaHudView.SetEarthLabel`, texto `PIO.UI.earth_label`): de 13,5 a 21,5 s, "Terra" com uma linha fina acompanha a Terra de comparação no HUD de cinema; a Terra ganhou emissão de base.
+- **Limitações.** Brilho dos RTGs ainda com esferas aditivas simples; sem Play Mode nem teste humano. Evidência em `QA/PIO-034/README.md`.

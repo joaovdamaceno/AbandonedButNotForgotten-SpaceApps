@@ -11,14 +11,14 @@
     "IDs de gatilho de PIO.Imaging seguem o código já integrado (PioneerImaging). Os de PIO.Plaque foram CONFIRMADOS pela PIO-009 (PioneerPlaqueActivity dispara PIO.Plaque.Hydrogen, Pulsars, SolarSystem, PioneerScale e People na SequenceDirector). Os de PIO.Listening continuam PROPOSTOS aqui e devem ser confirmados por PIO-011."
   ],
   "timeBudget": {
-    "nominalSeconds": 401,
-    "approvalRangeSeconds": [300, 420],
-    "excludes": "arquivo, carregamento e pausa",
+    "nominalSeconds": 417,
+    "approvalRangeSeconds": [300, 600],
+    "excludes": "arquivo, carregamento, pausa e o tempo que a pessoa leva nas duas interações (a foto e a sintonia de rádio)",
     "readingStretch": [
       {"cueId": "PIO.07.06", "nominalSeconds": 4, "maxSeconds": 7, "note": "A animação pode alongar até 7 s sem cortar a legenda."},
       {"cueId": "PIO.04.09", "nominalSeconds": 5, "maxSeconds": 8, "note": "Mesmo critério se o idioma precisar de mais tempo."}
     ],
-    "maxWithStretchSeconds": 407,
+    "maxWithStretchSeconds": 423,
     "rule": "Nunca acelerar a leitura para preservar um número exato de segundos."
   },
   "states": [
@@ -59,13 +59,13 @@
       "pieces": ["hydrogen", "pulsars", "solarSystem", "pioneerScale", "people"]
     },
     {
-      "id": "PIO.Outbound", "order": 7, "nominalSeconds": 39, "globalStartSeconds": 282, "globalEndSeconds": 321,
+      "id": "PIO.Outbound", "order": 7, "nominalSeconds": 55, "globalStartSeconds": 282, "globalEndSeconds": 337,
       "summary": "Acompanha distância e redução de potência; prioriza a transmissão.",
       "requiredExit": "Economia confirmada, sem desligamento fatal por erro.",
       "hold": {"id": "PIO.Outbound.Power", "seconds": 3, "promptKey": "PIO.UI.power"}
     },
     {
-      "id": "PIO.Listening", "order": 8, "nominalSeconds": 40, "globalStartSeconds": 321, "globalEndSeconds": 361,
+      "id": "PIO.Listening", "order": 8, "nominalSeconds": 40, "globalStartSeconds": 337, "globalEndSeconds": 377,
       "summary": "Sintoniza três contatos e presencia uma quarta tentativa sem resposta.",
       "requiredExit": "Três contatos e a janela final de silêncio concluídos.",
       "contacts": [
@@ -77,7 +77,7 @@
       "silenceSeconds": 2.5
     },
     {
-      "id": "PIO.Farewell", "order": 9, "nominalSeconds": 40, "globalStartSeconds": 361, "globalEndSeconds": 401,
+      "id": "PIO.Farewell", "order": 9, "nominalSeconds": 40, "globalStartSeconds": 377, "globalEndSeconds": 417,
       "summary": "Entende que perder a comunicação não interrompe a trajetória.",
       "requiredExit": "Memorial e tela de conclusão (Voltar ao arquivo / Repetir).",
       "lastSecondsOffer": 2
@@ -130,11 +130,11 @@
     {"id": "PIO.05.06", "state": "PIO.Plaque", "textKey": "PIO.05.06", "timing": {"kind": "trigger", "triggerId": "PIO.Plaque.People", "afterEvent": "peça pessoas encaixada", "minimumReadSeconds": 3.6}},
     {"id": "PIO.05.07", "state": "PIO.Plaque", "textKey": "PIO.05.07", "timing": {"kind": "window", "startSeconds": 27.7, "endSeconds": 33}, "gate": {"id": "PIO.Plaque.Gate", "condition": "5/5 peças"}},
 
-    {"id": "PIO.06.01", "state": "PIO.Outbound", "textKey": "PIO.06.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 8}},
-    {"id": "PIO.06.02", "state": "PIO.Outbound", "textKey": "PIO.06.02", "timing": {"kind": "window", "startSeconds": 8, "endSeconds": 16}},
-    {"id": "PIO.06.03", "state": "PIO.Outbound", "textKey": "PIO.06.03", "timing": {"kind": "window", "startSeconds": 17, "endSeconds": 24}},
-    {"id": "PIO.06.04", "state": "PIO.Outbound", "textKey": "PIO.06.04", "timing": {"kind": "window", "startSeconds": 25, "endSeconds": 33}},
-    {"id": "PIO.06.05", "state": "PIO.Outbound", "textKey": "PIO.06.05", "timing": {"kind": "window", "startSeconds": 33, "endSeconds": 39}},
+    {"id": "PIO.06.01", "state": "PIO.Outbound", "textKey": "PIO.06.01", "timing": {"kind": "window", "startSeconds": 1, "endSeconds": 9.5}},
+    {"id": "PIO.06.02", "state": "PIO.Outbound", "textKey": "PIO.06.02", "timing": {"kind": "window", "startSeconds": 16, "endSeconds": 24}},
+    {"id": "PIO.06.03", "state": "PIO.Outbound", "textKey": "PIO.06.03", "timing": {"kind": "window", "startSeconds": 25, "endSeconds": 33}},
+    {"id": "PIO.06.04", "state": "PIO.Outbound", "textKey": "PIO.06.04", "timing": {"kind": "window", "startSeconds": 41.5, "endSeconds": 49}},
+    {"id": "PIO.06.05", "state": "PIO.Outbound", "textKey": "PIO.06.05", "timing": {"kind": "window", "startSeconds": 49.5, "endSeconds": 55}},
 
     {"id": "PIO.07.01", "state": "PIO.Listening", "textKey": "PIO.07.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 5.8}},
     {"id": "PIO.07.02", "state": "PIO.Listening", "textKey": "PIO.07.02", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact1", "afterEvent": "contato 1 concluído", "minimumReadSeconds": 4.8}},

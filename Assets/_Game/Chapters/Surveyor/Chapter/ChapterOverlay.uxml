@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"><Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss"/><Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss"/><Style src="/Assets/_Game/Shared/Localization/SubtitleLayer.uss"/>
+ <ui:VisualElement class="sa-root" style="position:absolute;left:0;right:0;top:0;bottom:0;" picking-mode="Ignore"><ui:VisualElement name="chapter-subtitles" style="position:absolute;left:20px;right:20px;bottom:25px;justify-content:flex-end;flex-direction:column;" picking-mode="Ignore"/></ui:VisualElement>
+</ui:UXML>

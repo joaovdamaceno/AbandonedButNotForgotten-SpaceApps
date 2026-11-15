@@ -125,7 +125,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 Steel = Lit(context, "PIO_TowerSteel", new Color(0.22f, 0.2f, 0.2f), 0.3f, 0.3f, folder: LaunchFolder),
                 Flame = Additive(context, "PIO_Flame", new Color(1f, 0.58f, 0.24f), flameTexture),
                 Smoke = SmokeMaterial(context, smokeTexture),
-                Earth = Unlit(context, "PIO_EarthDiagram", new Color(0.30f, 0.52f, 0.86f), null, LaunchFolder),
+                Earth = Unlit(context, "PIO_EarthDiagram", Color.white, EarthTexture(context), LaunchFolder),
                 Moon = Unlit(context, "PIO_MoonDiagram", new Color(1.12f, 1.12f, 1.1f),
                     PioneerStageBuilder.TextureAsset(context, "PIO_MoonSurface.png", () => PioneerStageArt.MoonSurface(1024, 512, 1969), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp, folder: LaunchFolder),
                     LaunchFolder),
@@ -383,6 +383,7 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var earth = context.Child(diagram, "Earth");
             DiagramVisual(context, earth, a.Sphere, a.Earth, EarthLocal, 3.2f);
+            earth.transform.localRotation = Quaternion.Euler(0f, 150f, 0f); // mostra as Américas e o Atlântico, não a Ásia
             var moonPosition = EarthLocal + new Vector3(Mathf.Cos(MoonAngleDegrees * Mathf.Deg2Rad), Mathf.Sin(MoonAngleDegrees * Mathf.Deg2Rad), 0f) * MoonOrbitRadius;
             DiagramVisual(context, context.Child(diagram, "Moon"), a.Sphere, a.Moon, moonPosition, 1.1f);
 
@@ -473,7 +474,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var shots = new[]
             {
                 new ShotDefinition("PIO01.A", 7f, "PIO.Launch.Reveal",
-                    new[] { Key(0f, new Vector3(0f, 0f, -0.9f), 34f), Key(7f, Vector3.zero, 34f) },
+                    new[] { Key(0f, new Vector3(0f, 0f, -1.6f), 32f), Key(7f, Vector3.zero, 32f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, "PIO.Launch.Title") }),
                 new ShotDefinition("PIO01.B", 10f, "PIO.Launch.Pad",
@@ -485,7 +486,7 @@ namespace Abandoned.SpaceApps.EditorTools
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, "PIO.Launch.Ellipse") }),
                 new ShotDefinition("PIO01.D", 14f, "PIO.Launch",
-                    new[] { Key(0f, Vector3.zero, 40f), Key(14f, new Vector3(0f, 0f, 0.8f), 40f) },
+                    new[] { Key(0f, new Vector3(-0.8f, 0.3f, -1f), 34f), Key(14f, new Vector3(0.6f, -0.2f, 1.2f), 34f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, "PIO.Launch.Callouts"), new ShotEvent(6.5f, PioneerLaunchActivity.EventRtgHold) }),
             };

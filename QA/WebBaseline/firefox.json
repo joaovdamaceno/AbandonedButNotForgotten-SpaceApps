@@ -1,0 +1,105 @@
+{
+  "browser": "firefox",
+  "version": "159.0",
+  "viewport": "960x600",
+  "network": "local unthrottled, empty browser context",
+  "readyMs": 2119,
+  "sample": {
+    "device": "Firefox 159.0",
+    "graphics": "ANGLE (NVIDIA, NVIDIA GeForce GTX 980 Direct3D11 vs_5_0 ps_5_0), or similar",
+    "unity": "6000.6.7f1",
+    "width": 960,
+    "height": 600,
+    "frames": 256,
+    "meanFps": 137.04495239257812,
+    "p95FrameMs": 11,
+    "allocatedBytes": 79337166,
+    "reservedBytes": 108920832
+  },
+  "canvasAt4K": {
+    "width": 1280,
+    "height": 720
+  },
+  "audioBeforeClick": [
+    "running"
+  ],
+  "audioAfterClick": [
+    "running"
+  ],
+  "sourcesBeforeClick": [],
+  "sourcesAfterClick": [
+    {
+      "time": 12135,
+      "duration": 1.0216875
+    },
+    {
+      "time": 12135,
+      "duration": 1.0216875
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "[JavaScript Warning: \"WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.\" {file: \"http://127.0.0.1:8867/Build/WebBaseline.loader.js\" line: 1}]",
+    "[JavaScript Warning: \"The WebAssembly exception handling 'try' instruction is deprecated and should no longer be used. Please recompile to use the 'try_table' instruction instead.\"]",
+    "Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior.",
+    "Shader 'Hidden/Universal Render Pipeline/Edge Adaptive Spatial Upsampling' is not supported or has been stripped from the build (in 'Blit FSR Upscaling'). PostProcessing render passes will not execute.\n",
+    "[JavaScript Warning: \"WebGL warning: drawElementsInstanced: Tex image TEXTURE_2D level 0 is incurring lazy initialization.\"]",
+    "[JavaScript Warning: \"WebGL warning: drawElementsInstanced: Depth texture comparison requests (e.g. `LINEAR`) Filtering, but behavior is implementation-defined, and so on some systems will sometimes behave as `NEAREST`. (warns once)\"]"
+  ],
+  "headers": {
+    "WebBaseline.framework.js.br": {
+      "server": "SimpleHTTP/0.6 Python/3.12.14",
+      "date": "Sun, 15 Nov 2026 06:20:43 GMT",
+      "content-type": "application/javascript",
+      "content-length": "67570",
+      "last-modified": "Sun, 15 Nov 2026 05:54:07 GMT",
+      "content-encoding": "br",
+      "cache-control": "no-store"
+    },
+    "WebBaseline.data.br": {
+      "server": "SimpleHTTP/0.6 Python/3.12.14",
+      "date": "Sun, 15 Nov 2026 06:20:44 GMT",
+      "content-type": "application/octet-stream",
+      "content-length": "7733369",
+      "last-modified": "Sun, 15 Nov 2026 06:09:56 GMT",
+      "content-encoding": "br",
+      "cache-control": "no-store"
+    },
+    "WebBaseline.wasm.br": {
+      "server": "SimpleHTTP/0.6 Python/3.12.14",
+      "date": "Sun, 15 Nov 2026 06:20:44 GMT",
+      "content-type": "application/wasm",
+      "content-length": "6879556",
+      "last-modified": "Sun, 15 Nov 2026 05:56:43 GMT",
+      "content-encoding": "br",
+      "cache-control": "no-store"
+    }
+  },
+  "downloadResources": [
+    {
+      "name": "WebBaseline.loader.js",
+      "encoded": 27914,
+      "transferred": 28214
+    },
+    {
+      "name": "favicon.ico",
+      "encoded": 335,
+      "transferred": 635
+    },
+    {
+      "name": "WebBaseline.framework.js.br",
+      "encoded": 67570,
+      "transferred": 67870
+    },
+    {
+      "name": "WebBaseline.data.br",
+      "encoded": 7733369,
+      "transferred": 7733669
+    },
+    {
+      "name": "WebBaseline.wasm.br",
+      "encoded": 6879556,
+      "transferred": 6879856
+    }
+  ]
+}

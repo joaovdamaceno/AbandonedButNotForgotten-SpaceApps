@@ -67,7 +67,6 @@ namespace Abandoned.SpaceApps.EditorTools
             var cinema = BuildCinemaSequence(context);
             var counter = context.Component<PioneerBeltCounter>(context.Child(root, "BeltCounter"));
             var counterSo = new SerializedObject(counter);
-            counterSo.FindProperty("panel").objectReferenceValue = panel.GetComponent<BeltPanelView>();
             counterSo.FindProperty("sequence").objectReferenceValue = cinema;
             counterSo.FindProperty("nikeViewport").vector2Value = NikeViewport;
             counterSo.ApplyModifiedPropertiesWithoutUndo();
@@ -141,37 +140,27 @@ namespace Abandoned.SpaceApps.EditorTools
         }
 
         /// <summary>
-        /// Posição (no eixo Z do rig, em metros) para a sonda manter o MESMO tamanho no quadro quando o campo de visão muda
-        /// (dolly zoom): d · tan(fov/2) é constante. O rig fica a <paramref name="baseMeters"/> da sonda com 30°.
-        /// </summary>
-        public static float DollyZ(float baseMeters, float fovDegrees) =>
-            baseMeters - baseMeters * Mathf.Tan(15f * Mathf.Deg2Rad) / Mathf.Tan(fovDegrees * 0.5f * Mathf.Deg2Rad);
-
-        /// <summary>
-        /// Roteiro v2, cena 2 (só cinema, 50 s, o tempo do roteiro): 0–8 a sonda cruza a órbita de Marte (data 15 JUL 1972); 8–19 teleobjetiva
-        /// de 10° com a parede de pedras compactada atrás da sonda; 19–30 dolly zoom (10° a 30° com a câmera se aproximando, a sonda do
-        /// mesmo tamanho) enquanto o contador de dias acelera até 2 DEZ 1972 e a parede se abre; 30–40 corte para o espaço vazio e a pedra
+        /// Roteiro v2, cena 2 (só cinema, 50 s, o tempo do roteiro): 0–8 a sonda cruza a órbita de Marte (data 15 JUL 1972); 8–19 visão larga
+        /// do cinturão: pedras pequenas e muito afastadas; 19–30 zoom na sonda (a pedra mais próxima fica longe) enquanto o contador de
+        /// dias acelera até 2 DEZ 1972; 30–40 corte para o espaço vazio e a pedra
         /// solitária (307 Nike); 40–50 a sonda sai para o escuro limpo (o contador chega a 15 FEV 1973). O contador e o rótulo vêm de
         /// <see cref="PioneerBeltCounter"/>, pelo relógio desta sequência. O evento PIO.Belt.Reality troca a música tensa pela calma (MUS_PIO_MARAVILHA) na revelação.
         /// </summary>
         public static SequenceDefinition CreateCinemaSequence()
         {
-            var baseMeters = BeltFieldCamera.magnitude;
-            var dolly = new[] { (0f, 10f), (2.2f, 12.5f), (4.4f, 16f), (6.6f, 20f), (8.8f, 25f), (11f, 30f) };
-            var dollyKeys = new ShotKeyframe[dolly.Length];
-            for (var i = 0; i < dolly.Length; i++)
-                dollyKeys[i] = Key(dolly[i].Item1, new Vector3(0f, 0f, DollyZ(baseMeters, dolly[i].Item2)), dolly[i].Item2);
-
             var shots = new[]
             {
                 new ShotDefinition("PIO02.Mars", 8f, "PIO.Belt.Mars",
                     new[] { Key(0f, new Vector3(0f, 0f, -10f), 30f), Key(8f, new Vector3(0f, 0f, 10f), 30f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                // 8–19 s: a visão larga do cinturão, de longe: pedras pequenas e muito afastadas; a câmera se aproxima devagar.
                 new ShotDefinition("PIO02.Fear", 11f, "PIO.Belt.Field",
-                    new[] { Key(0f, new Vector3(0f, 0f, DollyZ(baseMeters, 10f)), 10f), Key(11f, new Vector3(0f, 0f, DollyZ(baseMeters, 10f) + 6f), 10f) },
+                    new[] { Key(0f, Vector3.zero, 40f), Key(11f, new Vector3(0f, 0f, 120f), 38f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
-                new ShotDefinition("PIO02.Days", 11f, "PIO.Belt.Field", dollyKeys,
-                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                // 19–30 s: zoom na sonda, a 70 m no fim: o espaço vazio em volta mostra como é difícil acertar uma pedra.
+                new ShotDefinition("PIO02.Days", 11f, "PIO.Belt.Field",
+                    new[] { Key(0f, new Vector3(0f, 0f, 120f), 38f), Key(11f, new Vector3(0f, 0f, BeltFieldCameraMeters - 70f), 26f) },
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
                 new ShotDefinition("PIO02.Nike", 10f, "PIO.Belt.Nike",
                     new[] { Key(0f, Vector3.zero, 30f), Key(10f, new Vector3(0f, 0f, 3f), 30f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,

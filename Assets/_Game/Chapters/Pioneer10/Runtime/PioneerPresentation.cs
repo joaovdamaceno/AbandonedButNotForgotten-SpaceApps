@@ -34,6 +34,7 @@ namespace Abandoned.SpaceApps
         [Tooltip("Roteiro v2, cena 2: Marte ao fundo, na abertura do cinturão.")] public bool showMars;
         [Tooltip("Roteiro v2, cena 5: as luas galileanas (Ganimedes, Calisto e Europa).")] public bool showMoons;
         [Tooltip("Roteiro v2, cena 5: a trajetória da sonda curvando em volta de Júpiter.")] public bool showTrajectory;
+        [Tooltip("Roteiro v2, cena 6: a placa dourada grande, com os desenhos gravados, para os zooms em cada parte.")] public bool showPlaqueHero;
         [Tooltip("Socket da sonda que fica voltado para o alvo ao entrar no anchor (ex.: placa para a câmera). Vazio = mantém a rotação.")]
         public string spinAlignSocket;
         [Tooltip("Alvo do alinhamento: um alvo de enquadramento (PIO.Jupiter) ou vazio = a câmera deste anchor.")]
@@ -100,6 +101,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("Terra de comparação (roteiro v2, cena 3); ligada e desligada por PioneerJupiterReveal.")] Transform earth;
         [SerializeField, Tooltip("Luas galileanas (roteiro v2, cena 5); só aparecem nos anchors que as pedem.")] Transform moons;
         [SerializeField, Tooltip("Linha da trajetória em volta de Júpiter (roteiro v2, cena 5); só aparece nos anchors que a pedem.")] Transform trajectory;
+        [SerializeField, Tooltip("A placa dourada em destaque (roteiro v2, cena 6); só aparece nos anchors que a pedem.")] Transform plaqueHero;
         [SerializeField, Tooltip("Direção de mundo do marcador (direção geral de Aldebaran no palco, não posição calculada).")] Vector3 aldebaranDirection = new Vector3(0.2f, 0.08f, -1f);
         [SerializeField, Min(10f)] float aldebaranDistanceMeters = 1100f;
         [SerializeField, Tooltip("Esfera de céu centrada na câmera: sem paralaxe e sem milhares de objetos.")] Transform sky;
@@ -133,6 +135,7 @@ namespace Abandoned.SpaceApps
         public Transform Earth => earth;
         public Transform Moons => moons;
         public Transform Trajectory => trajectory;
+        public Transform PlaqueHero => plaqueHero;
         public bool ReducedMotion => reducedMotion;
         public float SpinDegreesPerSecond => spinDegreesPerSecond;
 
@@ -287,6 +290,8 @@ namespace Abandoned.SpaceApps
                 moons.gameObject.SetActive(anchor.showMoons && anchor.region == PioneerStageRegion.DeepSpace);
             if (trajectory != null)
                 trajectory.gameObject.SetActive(anchor.showTrajectory && anchor.region == PioneerStageRegion.DeepSpace);
+            if (plaqueHero != null)
+                plaqueHero.gameObject.SetActive(anchor.showPlaqueHero && anchor.region == PioneerStageRegion.DeepSpace);
 
             ApplyLightGroup(anchor.lightGroupId);
             AlignSpin(anchor);

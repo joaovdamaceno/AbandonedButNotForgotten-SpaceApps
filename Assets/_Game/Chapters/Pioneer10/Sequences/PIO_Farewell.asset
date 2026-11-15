@@ -88,7 +88,7 @@ MonoBehaviour:
       eventId: PIO.Farewell.Guide
   - shotId: PIO08.Receding
     durationSeconds: 10
-    rigId: PIO.Outbound
+    rigId: PIO.Farewell.Away
     lookAtTargetId: 
     easing: 1
     minGroundClearanceMeters: 0
@@ -99,15 +99,15 @@ MonoBehaviour:
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 40
     - timeSeconds: 10
-      positionMeters: {x: -2.5, y: -0.6, z: -25}
+      positionMeters: {x: 0, y: 0, z: -14}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 38
+      fieldOfViewDegrees: 40
     events:
     - timeSeconds: 0.05
       eventId: PIO.Farewell.GuideEnd
   - shotId: PIO08.Memorial
     durationSeconds: 10
-    rigId: PIO.Outbound
+    rigId: PIO.Farewell.Away
     lookAtTargetId: 
     easing: 0
     minGroundClearanceMeters: 0
@@ -116,11 +116,11 @@ MonoBehaviour:
     - timeSeconds: 0
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 38
+      fieldOfViewDegrees: 40
     - timeSeconds: 10
-      positionMeters: {x: -3, y: -0.8, z: -32}
+      positionMeters: {x: 0, y: 0, z: -18}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 36
+      fieldOfViewDegrees: 40
     events:
     - timeSeconds: 0.05
       eventId: PIO.Farewell.Memorial

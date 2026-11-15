@@ -11,7 +11,7 @@ namespace Abandoned.SpaceApps.EditorTools
     /// <summary>
     /// PIO-010 · Builder do caminho de saída (CORE-006, raiz <c>[R5] Pioneer Outbound</c> na cena da Pioneer):
     /// <c>UI/OutboundAtlas.prefab</c> (UIDocument + <see cref="OutboundAtlasView"/>), <see cref="OutboundAtlas"/> ligada ao palco e
-    /// a sequência <c>Sequences/PIO_Outbound.asset</c> (39 s).
+    /// a sequência <c>Sequences/PIO_Outbound.asset</c> (55 s).
     /// </summary>
     public sealed class PioneerOutboundBuilder : SceneBuilderModule
     {
@@ -71,8 +71,8 @@ namespace Abandoned.SpaceApps.EditorTools
             }
 
             errors.AddRange(sequence.Validate().Select(e => $"{OutboundBuilderId}: {e}"));
-            if (Mathf.Abs(sequence.TotalDurationSeconds - 39f) > 0.01f)
-                errors.Add($"{OutboundBuilderId}: PIO.Outbound dura {sequence.TotalDurationSeconds} s; o roteiro pede 39 s.");
+            if (Mathf.Abs(sequence.TotalDurationSeconds - 55f) > 0.01f)
+                errors.Add($"{OutboundBuilderId}: PIO.Outbound dura {sequence.TotalDurationSeconds} s; o roteiro v2 retemporizado pede 55 s.");
 
             var stage = context.Scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<PioneerPresentation>(true)).First();
             foreach (var shot in sequence.Shots)
@@ -103,7 +103,7 @@ namespace Abandoned.SpaceApps.EditorTools
         static ShotKeyframe Key(float t, Vector3 p, float fov) => new ShotKeyframe(t, p, Vector3.zero, fov);
 
         /// <summary>
-        /// 0–12 cartão 1976, 12–24 cartão 1983, 24–39 energia e gráfico de 1998. O marco de 24 s (início do terceiro plano)
+        /// 0–14 cartão 1976, 14–28 cartão 1983, 28–55 energia e gráfico de 1998. O marco de 24 s (início do terceiro plano)
         /// segura a sequência até o hold de 3 s; o gráfico (25 s) só entra depois dele, com as legendas PIO.06.04 e PIO.06.05.
         /// A câmera 3D fica atrás do diagrama 2D: varia o suficiente para não repetir plano, sem simular um sobrevoo.
         /// </summary>
@@ -112,27 +112,27 @@ namespace Abandoned.SpaceApps.EditorTools
             const string rig = OutboundAtlas.StateId;
             var shots = new[]
             {
-                new ShotDefinition("PIO06.Saturn", 12f, rig,
-                    new[] { Key(0f, Vector3.zero, 40f), Key(12f, new Vector3(0f, 0f, -0.6f), 38f) },
+                new ShotDefinition("PIO06.Saturn", 14f, rig,
+                    new[] { Key(0f, Vector3.zero, 40f), Key(14f, new Vector3(0f, 0f, -0.6f), 38f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, OutboundAtlas.EventCard1976) }),
-                new ShotDefinition("PIO06.Neptune", 12f, rig,
-                    new[] { Key(0f, new Vector3(0.8f, 0.3f, -0.6f), 44f), Key(12f, new Vector3(1.4f, 0.5f, -1.2f), 46f) },
+                new ShotDefinition("PIO06.Neptune", 14f, rig,
+                    new[] { Key(0f, new Vector3(0.8f, 0.3f, -0.6f), 44f), Key(14f, new Vector3(1.4f, 0.5f, -1.2f), 46f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, OutboundAtlas.EventCard1983) }),
-                new ShotDefinition("PIO06.Power", 15f, rig,
-                    new[] { Key(0f, new Vector3(-1.2f, -0.4f, 0.6f), 50f), Key(15f, new Vector3(-1.6f, -0.6f, 1.2f), 52f) },
+                new ShotDefinition("PIO06.Power", 27f, rig,
+                    new[] { Key(0f, new Vector3(-1.2f, -0.4f, 0.6f), 50f), Key(27f, new Vector3(-1.6f, -0.6f, 1.2f), 52f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, OutboundAtlas.EventPower), new ShotEvent(1f, OutboundAtlas.EventChart) }),
             };
 
             var cues = new[]
             {
-                new SubtitleCue("PIO.06.01", "PIO.06.01", 0f, 8f),
-                new SubtitleCue("PIO.06.02", "PIO.06.02", 8f, 16f),
-                new SubtitleCue("PIO.06.03", "PIO.06.03", 17f, 24f),
-                new SubtitleCue("PIO.06.04", "PIO.06.04", 25f, 33f),
-                new SubtitleCue("PIO.06.05", "PIO.06.05", 33f, 39f),
+                new SubtitleCue("PIO.06.01", "PIO.06.01", 1f, 9.5f),
+                new SubtitleCue("PIO.06.02", "PIO.06.02", 16f, 24f),
+                new SubtitleCue("PIO.06.03", "PIO.06.03", 25f, 33f),
+                new SubtitleCue("PIO.06.04", "PIO.06.04", 41.5f, 49f),
+                new SubtitleCue("PIO.06.05", "PIO.06.05", 49.5f, 55f),
             };
 
             return SequenceDefinition.Create("PIO_Outbound", shots, cues);

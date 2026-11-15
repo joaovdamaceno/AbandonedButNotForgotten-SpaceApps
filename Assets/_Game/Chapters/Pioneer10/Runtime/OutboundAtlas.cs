@@ -45,7 +45,7 @@ namespace Abandoned.SpaceApps
     }
 
     /// <summary>
-    /// PIO-010 · Estado PIO.Outbound (39 s): o caminho continua. Toca <c>PIO_Outbound</c> (diagrama orbital 2D com cartões de
+    /// PIO-010 · Estado PIO.Outbound (55 s): o caminho continua. Toca <c>PIO_Outbound</c> (diagrama orbital 2D com cartões de
     /// 1976 e 13 JUN 1983, síntese da economia de energia e gráfico de distâncias de 1998) e conduz o hold de 3 s que
     /// prioriza a comunicação. A sequência espera o hold (marco <see cref="EventPower"/>), sem concluir sozinha.
     /// <para>
@@ -371,8 +371,8 @@ namespace Abandoned.SpaceApps
             else
             {
                 errors.AddRange(sequence.Validate().ConvertAll(e => $"{owner}: {e}"));
-                if (Mathf.Abs(sequence.TotalDurationSeconds - 39f) > 0.01f)
-                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro pede 39 s.");
+                if (Mathf.Abs(sequence.TotalDurationSeconds - 55f) > 0.01f)
+                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro v2 retemporizado pede 55 s.");
 
                 var events = new System.Collections.Generic.HashSet<string>();
                 foreach (var shot in sequence.Shots)
