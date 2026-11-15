@@ -36,7 +36,7 @@ MonoBehaviour:
     nominalSeconds: 39
   - id: PIO.Listening
     order: 8
-    nominalSeconds: 52
+    nominalSeconds: 40
   - id: PIO.Farewell
     order: 9
     nominalSeconds: 38
@@ -476,7 +476,7 @@ MonoBehaviour:
     textKey: PIO.07.01
     timing: 0
     startSeconds: 0
-    endSeconds: 7
+    endSeconds: 5.8
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -488,7 +488,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Listening.Contact1
-    minimumReadSeconds: 5
+    minimumReadSeconds: 4.8
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.07.03
@@ -498,7 +498,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Listening.Contact2
-    minimumReadSeconds: 5
+    minimumReadSeconds: 4.5
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.07.04
@@ -508,15 +508,15 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Listening.Contact3
-    minimumReadSeconds: 7
+    minimumReadSeconds: 6.8
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.07.05
     state: PIO.Listening
     textKey: PIO.07.05
     timing: 0
-    startSeconds: 39
-    endSeconds: 45
+    startSeconds: 24.5
+    endSeconds: 29.5
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -525,8 +525,8 @@ MonoBehaviour:
     state: PIO.Listening
     textKey: PIO.07.06
     timing: 0
-    startSeconds: 48
-    endSeconds: 52
+    startSeconds: 32
+    endSeconds: 36
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
