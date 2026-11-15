@@ -49,7 +49,7 @@ MonoBehaviour:
       fieldOfViewDegrees: 10
     events: []
   - shotId: PIO02.Days
-    durationSeconds: 15
+    durationSeconds: 11
     rigId: PIO.Belt.Field
     lookAtTargetId: 
     easing: 0
@@ -60,23 +60,23 @@ MonoBehaviour:
       positionMeters: {x: 0, y: 0, z: -169.20209}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 10
-    - timeSeconds: 3
+    - timeSeconds: 2.2
       positionMeters: {x: 0, y: 0, z: -118.66747}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 12.5
-    - timeSeconds: 6
+    - timeSeconds: 4.4
       positionMeters: {x: 0, y: 0, z: -74.36535}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 16
-    - timeSeconds: 9
+    - timeSeconds: 6.6
       positionMeters: {x: 0, y: 0, z: -42.624302}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 20
-    - timeSeconds: 12
+    - timeSeconds: 8.8
       positionMeters: {x: 0, y: 0, z: -17.114897}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 25
-    - timeSeconds: 15
+    - timeSeconds: 11
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 30
@@ -144,24 +144,24 @@ MonoBehaviour:
     priority: 0
   - cueId: PIO.02.04
     textKey: PIO.02.04
-    startSeconds: 34.5
-    endSeconds: 41.5
+    startSeconds: 30.5
+    endSeconds: 37.5
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.02.05
     textKey: PIO.02.05
-    startSeconds: 42
-    endSeconds: 46
+    startSeconds: 38
+    endSeconds: 42
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.02.06
     textKey: PIO.02.06
-    startSeconds: 46.5
-    endSeconds: 53.5
+    startSeconds: 42.5
+    endSeconds: 49.5
     triggerId: 
     minimumReadSeconds: 0
     position: 0
