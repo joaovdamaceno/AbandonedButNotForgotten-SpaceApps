@@ -1,0 +1,49 @@
+{
+  "browser": "chromium",
+  "version": "159.0.8154.6",
+  "viewport": {
+    "width": 960,
+    "height": 600
+  },
+  "readyMs": 16365.399999976158,
+  "stages": [
+    "SURVEYOR_STEP Launch active=0.00\n",
+    "SURVEYOR_STEP Cruise active=28.01\n",
+    "SURVEYOR_STEP Descent active=62.61\n",
+    "SURVEYOR_STEP FirstImage active=102.64\n",
+    "SURVEYOR_STEP Observe active=116.19\n",
+    "SURVEYOR_STEP Sample active=152.31\n",
+    "SURVEYOR_STEP Eclipse active=207.27\n",
+    "SURVEYOR_STEP LunarNight active=235.61\n",
+    "SURVEYOR_STEP TimePassage active=252.61\n",
+    "SURVEYOR_STEP ImaginedVisit active=265.62\n",
+    "SURVEYOR_STEP HistoricalReceipt active=297.64\n",
+    "SURVEYOR_STEP End active=309.64\n"
+  ],
+  "completed": [
+    "SURVEYOR_COMPLETE active=315.64\n"
+  ],
+  "metrics": {
+    "totalWASMHeapSize": 187760640,
+    "usedWASMHeapSize": 172629280,
+    "totalJSHeapSize": 39600000,
+    "usedJSHeapSize": 39600000,
+    "pageLoadTime": 16536,
+    "pageLoadTimeToFrame1": 16617,
+    "fps": 56.772203376442675,
+    "movingAverageFps": 56.772203376442675,
+    "assetLoadTime": 15947,
+    "webAssemblyStartupTime": 14988.5,
+    "codeDownloadTime": 145,
+    "gameStartupTime": 911,
+    "numJankedFrames": 27
+  },
+  "returnDiagnosticAvailable": false,
+  "canvasAt4K": {
+    "width": 1280,
+    "height": 720
+  },
+  "errors": [],
+  "network": "10Mbps 20ms cold",
+  "automation": "Real key events. Headless GPU browser. No state skipping. Not novice timing or integrated-GPU certification."
+}

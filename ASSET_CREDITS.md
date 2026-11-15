@@ -98,3 +98,9 @@ Para cada importação registrar: nome, autor/instituição, URL específica, da
 
 - **SurveyorScan.shader e layout de recepção:** implementação original em 14/11/2026, em `Assets/_Game/Chapters/Surveyor/Shaders/` e `UI/Television*`. Nenhuma imagem, gravação, música ou extensão externa nova. Fontes Outfit/IBM Plex Mono e tokens UI-001 sob os créditos/OFL existentes; modelo da equipe e cenário SUR-002 são referenciados sem alterações.
 - **Referências de instrumento:** JPL TR 32-1177 Part I, https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf, pp. 7 e 37 impressas; Smithsonian, https://airandspace.si.edu/collection-objects/camera-television-surveyor/nasm_A19761264000. Usadas para modos, espelho e cronologia, não como texturas ou fotografias redistribuídas. A imagem do jogo é renderizada do cenário e identificada como reconstrução.
+
+
+### SUR-015 — trilha temporária original
+
+- **Departure, Science, Return**: composição/síntese procedural produzida nesta implementação, sem samples, gravações comerciais ou melodia de terceiros. Fonte e receita em `SourceAssets/Surveyor3/Score/score.py` e `score.json`; WAVs em `Assets/_Game/Chapters/Surveyor/Chapter/Audio/`. Uso interno no projeto; a equipe deve aplicar sua licença de distribuição ao código e à composição originais. Não se atribui execução humana ou autoria de terceiros.
+- Reutiliza as fontes Outfit / IBM Plex Mono e as fotografias NASA AS12-48-7110 e AS12-48-7134 já creditadas acima. Nenhum novo recurso externo visual foi importado pela integração. Download de faixas alternativas não teve sucesso; elas não estão no projeto.
