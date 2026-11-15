@@ -1,0 +1,85 @@
+/* Roteiro v2 · HUD dos planos de cinema da Pioneer 10. Usa tokens/componentes da UI-001; só o específico fica aqui. */
+
+.pio-hud {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Estática: ruído que cobre o quadro (a vista troca o deslocamento a cada quadro) com opacidade pela radiação. */
+.pio-hud__static {
+    position: absolute;
+    left: -64px;
+    top: -64px;
+    right: -64px;
+    bottom: -64px;
+    opacity: 0;
+    display: none;
+}
+
+.pio-hud__radiation,
+.pio-hud__speed,
+.pio-hud__distances {
+    position: absolute;
+    display: none;
+    padding: var(--sa-space-3) var(--sa-space-4);
+}
+
+.pio-hud__radiation {
+    left: 3%;
+    top: 6%;
+    width: 24%;
+}
+
+.pio-hud__speed {
+    right: 3%;
+    top: 6%;
+}
+
+.pio-hud__distances {
+    left: 50%;
+    bottom: 22%;
+    width: 36%;
+    translate: -50% 0;
+}
+
+.pio-hud__title,
+.pio-hud__caption {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+}
+
+.pio-hud__value {
+    font-size: var(--sa-text-title);
+    color: var(--sa-color-on-plate);
+    -unity-font-style: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.pio-hud__track {
+    height: 10px;
+    margin-top: var(--sa-space-2);
+    margin-bottom: var(--sa-space-3);
+    background-color: rgba(245, 241, 232, 0.16);
+    border-radius: 5px;
+}
+
+.pio-hud__fill {
+    height: 100%;
+    width: 0;
+    border-radius: 5px;
+    background-color: rgb(255, 186, 74);
+}
+
+.pio-hud__fill--moon {
+    background-color: rgb(173, 190, 214);
+}
+
+.pio-hud__fill--clouds {
+    background-color: rgb(255, 214, 120);
+}
