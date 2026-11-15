@@ -15,12 +15,42 @@ namespace Abandoned.SpaceApps
         public const string SpeedKey = "PIO.UI.speed_label";
         public const string MoonDistanceKey = "PIO.UI.dist_moon";
         public const string CloudsDistanceKey = "PIO.UI.dist_clouds";
+        // Cena 7 · Os anos (as três primeiras chaves já existem no painel do atlas).
+        public const string PastSaturnKey = "PIO.UI.past_saturn";
+        public const string PastNeptuneKey = "PIO.UI.past_neptune";
+        public const string NotEdgeKey = "PIO.UI.not_edge";
+        public const string Cross1998Key = "PIO.UI.cross1998";
+        public const string InstrumentsKey = "PIO.UI.instruments";
+        public const string Card1983Key = "PIO.Card.y1983";
+        public const string PastUranusKey = "PIO.UI.past_uranus";
+        public const string EndTrackingKey = "PIO.UI.end_tracking";
+        public const string EnergyKey = "PIO.UI.years_energy";
+        public const string LaunchMarkKey = "PIO.UI.years_launch";
+        public const string JupiterMarkKey = "PIO.UI.years_jupiter";
+        public const string InstrumentCameraKey = "PIO.UI.inst_camera";
+        public const string InstrumentRadiationKey = "PIO.UI.inst_radiation";
+        public const string InstrumentPlasmaKey = "PIO.UI.inst_plasma";
+        public const string InstrumentMeteoroidKey = "PIO.UI.inst_meteoroid";
+        public const string InstrumentMagnetometerKey = "PIO.UI.inst_magnetometer";
+
+        /// <summary>O que a cena 7 desenha: o ano e seu marco, os instrumentos, o medidor de energia e a posição na linha do tempo.</summary>
+        public struct YearsState
+        {
+            public string Big, Event, Note, InstrumentsTitle, EnergyTitle, LaunchMark, JupiterMark;
+            public string[] InstrumentNames;
+            public bool[] InstrumentOn;
+            public float YearFraction, EnergyFill;
+        }
 
         [SerializeField] UIDocument document;
         [SerializeField, Tooltip("Ruído tileável da estática de radiação.")] Texture2D staticTexture;
 
         VisualElement root, staticLayer, radiation, radiationFill, speed, distances, moonFill, cloudsFill;
         Label radiationTitle, speedLabel, moonLabel, cloudsLabel;
+        VisualElement years, energyFill, timelineTicks, timelineMarker;
+        Label yearBig, yearEvent, yearNote, instrumentsTitle, energyTitle, energyLaunch, energyJupiter;
+        readonly VisualElement[] instrumentRows = new VisualElement[5];
+        readonly Label[] instrumentLabels = new Label[5];
 
         public bool IsBound => root != null;
         public VisualElement Root => root;
@@ -48,6 +78,24 @@ namespace Abandoned.SpaceApps
             cloudsFill = tree.Q("distance-clouds-fill");
             moonLabel = tree.Q<Label>("distance-moon-label");
             cloudsLabel = tree.Q<Label>("distance-clouds-label");
+            years = tree.Q("years");
+            yearBig = tree.Q<Label>("year-big");
+            yearEvent = tree.Q<Label>("year-event");
+            yearNote = tree.Q<Label>("year-note");
+            instrumentsTitle = tree.Q<Label>("instruments-title");
+            energyTitle = tree.Q<Label>("energy-title");
+            energyLaunch = tree.Q<Label>("energy-launch");
+            energyJupiter = tree.Q<Label>("energy-jupiter");
+            energyFill = tree.Q("energy-fill");
+            timelineTicks = tree.Q("timeline-ticks");
+            timelineMarker = tree.Q("timeline-marker");
+            for (var i = 0; i < instrumentRows.Length; i++)
+            {
+                instrumentRows[i] = tree.Q("inst-" + i);
+                instrumentLabels[i] = tree.Q<Label>("inst-label-" + i);
+            }
+
+            BuildTimeline();
             if (staticLayer != null && staticTexture != null)
             {
                 staticLayer.style.backgroundImage = new StyleBackground(staticTexture);
@@ -108,6 +156,69 @@ namespace Abandoned.SpaceApps
                 cloudsFill.style.width = Length.Percent(Mathf.Clamp01(cloudsFillFraction) * 100f);
         }
 
+        /// <summary>Cena 7: o ano em destaque com o marco, os ícones dos instrumentos, o medidor de energia dos RTG e a linha do tempo.</summary>
+        public void SetYears(bool visible, in YearsState state)
+        {
+            EnsureBound();
+            Show(years, visible);
+            if (!visible || years == null)
+                return;
+
+            SetText(yearBig, state.Big);
+            SetText(yearEvent, state.Event);
+            SetText(yearNote, state.Note);
+            Show(yearEvent, !string.IsNullOrEmpty(state.Event));
+            Show(yearNote, !string.IsNullOrEmpty(state.Note));
+            SetText(instrumentsTitle, state.InstrumentsTitle);
+            SetText(energyTitle, state.EnergyTitle);
+            SetText(energyLaunch, state.LaunchMark);
+            SetText(energyJupiter, state.JupiterMark);
+            for (var i = 0; i < instrumentRows.Length; i++)
+            {
+                if (state.InstrumentNames != null && i < state.InstrumentNames.Length)
+                    SetText(instrumentLabels[i], state.InstrumentNames[i]);
+                var on = state.InstrumentOn == null || i >= state.InstrumentOn.Length || state.InstrumentOn[i];
+                if (instrumentRows[i] != null)
+                    instrumentRows[i].EnableInClassList("pio-hud__inst--off", !on);
+            }
+
+            if (energyFill != null)
+                energyFill.style.height = Length.Percent(Mathf.Clamp01(state.EnergyFill) * 100f);
+            if (timelineMarker != null)
+                timelineMarker.style.left = Length.Percent(Mathf.Clamp01(state.YearFraction) * 100f);
+        }
+
+        /// <summary>Cria uma vez os traços da linha do tempo (1973–1998), mais altos e com o número nos anos de marco.</summary>
+        void BuildTimeline()
+        {
+            if (timelineTicks == null || timelineTicks.childCount > 0)
+                return;
+
+            for (var year = PioneerYearsHud.YearMin; year <= PioneerYearsHud.YearMax; year++)
+            {
+                var isEvent = System.Array.IndexOf(PioneerYearsHud.EventYears, year) >= 0;
+                var left = (year - PioneerYearsHud.YearMin) / (float)(PioneerYearsHud.YearMax - PioneerYearsHud.YearMin) * 100f;
+                var tick = new VisualElement { pickingMode = PickingMode.Ignore };
+                tick.AddToClassList("pio-hud__tick");
+                if (isEvent)
+                    tick.AddToClassList("pio-hud__tick--event");
+                tick.style.left = Length.Percent(left);
+                timelineTicks.Add(tick);
+                if (!isEvent)
+                    continue;
+                var label = new Label(year.ToString(System.Globalization.CultureInfo.InvariantCulture)) { pickingMode = PickingMode.Ignore };
+                label.AddToClassList("pio-hud__ticklabel");
+                label.style.left = Length.Percent(left);
+                timelineTicks.Add(label);
+            }
+        }
+
+        static void SetText(Label label, string value)
+        {
+            if (label != null && label.text != (value ?? string.Empty))
+                label.text = value ?? string.Empty;
+        }
+
         /// <summary>Esconde tudo (fora dos planos de cinema que usam o HUD).</summary>
         public void HideAll()
         {
@@ -117,6 +228,7 @@ namespace Abandoned.SpaceApps
             Show(staticLayer, false);
             Show(speed, false);
             Show(distances, false);
+            Show(years, false);
         }
 
         void EnsureBound()

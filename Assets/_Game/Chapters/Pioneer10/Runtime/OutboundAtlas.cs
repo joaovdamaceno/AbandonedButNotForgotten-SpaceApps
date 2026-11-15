@@ -102,6 +102,13 @@ namespace Abandoned.SpaceApps
         /// </summary>
         public bool CinemaMode { get; set; }
 
+        /// <summary>
+        /// Roteiro v2 (cena 7 como "Os anos"): o painel do atlas fica escondido e o HUD de cinema (<see cref="PioneerYearsHud"/>) desenha o
+        /// ano, a linha do tempo, os instrumentos e o medidor de energia sobre a sonda em 3D. A lógica (fases, hold, conclusão) segue igual.
+        /// Ligado pelo controlador do capítulo; o padrão (falso) mostra o atlas.
+        /// </summary>
+        public bool YearsMode { get; set; }
+
         public bool IsAwaitingHold => awaitingHold;
         public bool HoldDone => holdDone;
         public float HoldProgress => holdProgress;
@@ -408,7 +415,7 @@ namespace Abandoned.SpaceApps
         void PushView()
         {
             if (panel != null)
-                panel.Render(ViewState(), resolveText);
+                panel.Render(YearsMode ? new OutboundViewState { Phase = OutboundPhase.Idle } : ViewState(), resolveText);
         }
 
         /// <summary>Prévia de Editor: mostra uma situação com valores fixos, sem tocar a sequência.</summary>
