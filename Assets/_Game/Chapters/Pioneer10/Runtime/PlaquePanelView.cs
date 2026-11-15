@@ -248,6 +248,8 @@ namespace Abandoned.SpaceApps
                 SetText(plaqueLabel, PlaqueKey, text, ref lastPlaque, state.Placed);
             }
 
+            plaqueLabel.style.display = state.Cinema ? DisplayStyle.None : DisplayStyle.Flex;
+            snapLabel.style.display = state.Cinema ? DisplayStyle.None : DisplayStyle.Flex;
             SetText(snapLabel, SnapKey, text, ref lastSnap);
             retryBox.style.display = state.RetryVisible ? DisplayStyle.Flex : DisplayStyle.None;
             if (state.RetryVisible)
