@@ -28,6 +28,7 @@ namespace Abandoned.SpaceApps.Tests
         [TearDown]
         public void TearDown()
         {
+            PioneerJupiterReveal.ShowEarthComparison = false;
             presentation?.UnregisterFromCameraDirector();
             EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
         }
@@ -52,8 +53,18 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void TheEarthDoesNotAppearByDefaultAndJupiterStillGrows()
+        {
+            reveal.Apply(PioneerJupiterReveal.EarthArriveSeconds + 0.5f);
+            Assert.That(presentation.Earth.gameObject.activeSelf, Is.False, "a Terra que aparecia do nada no canto foi retirada");
+            Assert.That(PioneerJupiterReveal.EarthLabelVisibleAt(PioneerJupiterReveal.EarthLabelStartSeconds + 1f), Is.False);
+            Assert.That(PioneerJupiterReveal.JupiterScaleAt(PioneerJupiterReveal.GrowSeconds), Is.EqualTo(1f));
+        }
+
+        [Test]
         public void TheDriverScalesJupiterAndPutsTheEarthInOnlyDuringTheOpenShotThenRestoresEverything()
         {
+            PioneerJupiterReveal.ShowEarthComparison = true;
             var jupiter = presentation.Jupiter;
             var full = jupiter.localScale.x;
             reveal.Initialize(null);
@@ -128,6 +139,7 @@ namespace Abandoned.SpaceApps.Tests
         [Test]
         public void TheEarthLabelAppearsOnlyWhileTheEarthIsOnScreenAndFollowsIt()
         {
+            PioneerJupiterReveal.ShowEarthComparison = true;
             Assert.That(PioneerJupiterReveal.EarthLabelVisibleAt(PioneerJupiterReveal.EarthLabelStartSeconds - 0.1f), Is.False);
             Assert.That(PioneerJupiterReveal.EarthLabelVisibleAt(PioneerJupiterReveal.EarthLabelStartSeconds), Is.True);
             Assert.That(PioneerJupiterReveal.EarthLabelVisibleAt(PioneerJupiterReveal.EarthLabelEndSeconds - 0.1f), Is.True);

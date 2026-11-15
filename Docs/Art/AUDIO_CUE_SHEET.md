@@ -153,10 +153,10 @@ Substitui os quatro cues `MUS_PIO_PARTIDA/CUR/DISTANCIA/ESCUTA` por sete, um por
 
 | Cue | Faixa (trecho) | Cenas e tempo do roteiro | O que a música faz | Clima da faixa (página) |
 | --- | --- | --- | --- | --- |
-| `MUS_PIO_LANCAMENTO` | Chronicle (0–80 s) | 1 · 0:00–0:55 | Entra do silêncio na noite de lançamento e sobe devagar até a travessia da Lua e as baterias nucleares | começa em tons ambient escuros, sobe para a orquestra e chega a uma melodia de duduk |
+| `MUS_PIO_LANCAMENTO` | A Kind Of Hope (0–80 s) | 1 · 0:00–0:55 | Entra do silêncio na noite de lançamento e sobe devagar até a travessia da Lua e as baterias nucleares | começa em tons ambient escuros, sobe para a orquestra e chega a uma melodia de duduk |
 | `MUS_PIO_CINTURAO` | Descent (0–60 s) | 2 · 0:55–1:33 | O medo: "ninguém sabia se dava para atravessar"; para no corte do dia 140 | escura, atmosférica, sinistra e misteriosa |
 | `MUS_PIO_MARAVILHA` | The Distant Sun (0–120 s) | 2 · 1:33–1:48, 3 · 1:48–2:15 e 4 · 2:15–3:00 | O corte limpo para a calma: os asteroides longe uns dos outros, Júpiter e a foto montada linha por linha (discreta, é a mais baixa de todas) | calma, olhar para as estrelas, cordas e violoncelo solo |
-| `MUS_PIO_JUPITER` | Sanctum (0–90 s) | 5 · 3:00–4:05 (`PIO.Closest`) | A radiação, 1 s de silêncio, o mergulho sobre as nuvens e o empurrão gravitacional | orquestral cinematográfica e edificante, flautas, percussão e cordas |
+| `MUS_PIO_JUPITER` | The Things That Keep Us Here (0–90 s) | 5 · 3:00–4:05 (`PIO.Closest`) | A radiação, 1 s de silêncio, o mergulho sobre as nuvens e o empurrão gravitacional | orquestral cinematográfica e edificante, flautas, percussão e cordas |
 | `MUS_PIO_ANOS` | Extrapolation (0–110 s) | 6 · 4:05–4:25 e 7 · 4:25–5:20 | A placa dourada e os anos que passam, instrumento por instrumento | piano sombrio com cordas, levemente edificante e melancólica |
 | `MUS_PIO_RADIO` | Signal to Noise (0–80 s) | 8 · 5:20–6:00 | A antena à noite; termina antes dos 2 a 3 s de silêncio total | neoclássica cinematográfica, misteriosa, melancólica e esperançosa |
 | `MUS_PIO_FINAL` | Filaments (245–340 s) | 9 · 6:00–6:40 | Rumo a Aldebaran e as seis primeiras vezes; o clímax cai por volta de 15 a 55 s do trecho | piano quente e sombrio, cordas emotivas e um final dramático por volta de 4:10 |

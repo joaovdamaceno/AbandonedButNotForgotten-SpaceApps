@@ -155,6 +155,10 @@ namespace Abandoned.SpaceApps.EditorTools
         static PioneerAudioCue Effect(string id, float maxSeconds, bool confirmed, bool loop = false, PioneerAudioKind kind = PioneerAudioKind.Effect) =>
             new PioneerAudioCue { cueId = id, kind = kind, loop = loop, maxSeconds = maxSeconds, idConfirmedInCueSheet = confirmed, licenseStatus = "pending" };
 
+        /// <summary>Efeito sintetizado por esta equipe (Tools/generate_pioneer10_sfx.py): obra original, com arquivo e crédito.</summary>
+        static PioneerAudioCue OwnEffect(string id, float maxSeconds, string creditId) =>
+            new PioneerAudioCue { cueId = id, kind = PioneerAudioKind.Effect, maxSeconds = maxSeconds, idConfirmedInCueSheet = false, licenseStatus = "acquired", creditId = creditId };
+
         static PioneerAudioEvent Fx(string eventId, string cueId, bool proposed, string note) =>
             new PioneerAudioEvent { eventId = eventId, action = PioneerAudioAction.Effect, cueId = cueId, proposedEvent = proposed, note = note };
 
@@ -163,11 +167,11 @@ namespace Abandoned.SpaceApps.EditorTools
             const float fade = 1.75f; // dentro do 1,5–2 s da folha de cues
             var states = new[]
             {
-                new PioneerStateAudio { stateId = "PIO.Launch", musicCueId = "MUS_PIO_LANCAMENTO", fadeSeconds = fade, note = "Chronicle: começa quase em silêncio e sobe; no espaço só música." },
+                new PioneerStateAudio { stateId = "PIO.Launch", musicCueId = "MUS_PIO_LANCAMENTO", fadeSeconds = fade, note = "A Kind Of Hope: começa quase em silêncio e sobe; no espaço só música." },
                 new PioneerStateAudio { stateId = "PIO.Belt", musicCueId = "MUS_PIO_CINTURAO", fadeSeconds = fade, note = "Descent: o medo do cinturão (escura e misteriosa). A revelação calma (1:33) é MUS_PIO_MARAVILHA, a pedir por evento." },
                 new PioneerStateAudio { stateId = "PIO.JupiterApproach", musicCueId = "MUS_PIO_MARAVILHA", fadeSeconds = fade, note = "The Distant Sun: calma e discreta; Júpiter cresce de um ponto." },
                 new PioneerStateAudio { stateId = "PIO.Imaging", musicCueId = "MUS_PIO_MARAVILHA", fadeSeconds = fade, note = "Mesmo cue: segue sem reiniciar para a foto montada linha por linha." },
-                new PioneerStateAudio { stateId = "PIO.Closest", musicCueId = "MUS_PIO_JUPITER", fadeSeconds = fade, note = "Roteiro v2, cena 5. Sanctum: orquestral e edificante, para a radiação, o mergulho e o empurrão gravitacional." },
+                new PioneerStateAudio { stateId = "PIO.Closest", musicCueId = "MUS_PIO_JUPITER", fadeSeconds = fade, note = "Roteiro v2, cena 5. The Things That Keep Us Here: orquestral e edificante, para a radiação, o mergulho e o empurrão gravitacional." },
                 new PioneerStateAudio { stateId = "PIO.Plaque", musicCueId = "MUS_PIO_ANOS", fadeSeconds = fade, note = "Extrapolation: piano sombrio com um fio de esperança." },
                 new PioneerStateAudio { stateId = "PIO.Outbound", musicCueId = "MUS_PIO_ANOS", fadeSeconds = fade, note = "Mesmo cue da placa: segue sem reiniciar." },
                 new PioneerStateAudio { stateId = "PIO.Listening", musicCueId = "MUS_PIO_RADIO", fadeSeconds = fade, note = "Signal to Noise: misteriosa, melancólica e esperançosa; o silêncio real de 2,5 s é pedido ao áudio." },
@@ -183,7 +187,8 @@ namespace Abandoned.SpaceApps.EditorTools
                 Music("MUS_PIO_ANOS", "LEG", "M-SB-PIO-05"),
                 Music("MUS_PIO_RADIO", "LEG", "M-SB-PIO-06"),
                 Music("MUS_PIO_FINAL", "LEG", "M-SB-PIO-07"),
-                Effect("SFX_PIO_LAUNCH", 6f, false),
+                OwnEffect("SFX_PIO_LAUNCH", 7f, "S-PIO-SFX-01"),
+                OwnEffect("SFX_PIO_POWERDOWN", 2f, "S-PIO-SFX-02"),
                 Effect("SFX_SCAN", 40f, true, loop: true),
                 Effect("SFX_PIO_RADIATION_NOISE", 2f, false),
                 Effect("SFX_CMD_SENT", 3f, true),
@@ -197,6 +202,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 Fx("PIO.Launch.Ignition", "SFX_PIO_LAUNCH", false, "SFX de lançamento na Terra; no espaço só música."),
                 new PioneerAudioEvent { eventId = "PIO.Belt.Reality", action = PioneerAudioAction.Music, cueId = "MUS_PIO_MARAVILHA", seconds = 0.8f, proposedEvent = true, note = "Corte da tensão (Descent) para a calma (The Distant Sun) na revelação do cinturão, ~1:33 do roteiro. Crossfade curto de 0,8 s." },
                 new PioneerAudioEvent { eventId = "PIO.Closest.Dive", action = PioneerAudioAction.Silence, seconds = 1f, proposedEvent = true, note = "Silêncio de 1 s antes do mergulho (roteiro, cena 5); cai na lacuna entre legendas." },
+                Fx("PIO.Outbound.PowerDown", "SFX_PIO_POWERDOWN", true, "Equipamento secundário desligado para poupar energia (cena 7): varredura descendente curta, no instante em que a comunicação é priorizada."),
                 Fx("PIO.Belt.Recorded", "SFX_PIO_DETECTOR_TICK", true, "Tique de detector por registro. Hoje é o evento C# BeltInvestigation.Recorded; PIO-014 o liga a este ID."),
                 Fx("PIO.Imaging.Sweep", "SFX_SCAN", false, "Varredura em loop modulado, limitada a 40 s."),
                 Fx("PIO.Imaging.Gate6", "SFX_PIO_RADIATION_NOISE", false, "Ruído de radiação curto e de baixa amplitude, só no quadro do instrumento."),

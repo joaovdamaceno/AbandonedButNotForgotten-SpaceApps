@@ -27,7 +27,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string StageRootName = "[R5] Pioneer Stage";
         public const string InstanceName = "SpaceStage";
         /// <summary>Textura de Júpiter da NASA (JPL/Caltech, de imagens da Voyager), original preservado em ArtSource.</summary>
-        public const string JupiterSourcePath = "ArtSource/Pioneer10/PIO-003/original/Jupiter.jpg";
+        public const string JupiterSourcePath = "ArtSource/Pioneer10/PIO-jupiter-2k/2k_jupiter.jpg"; // CC BY 4.0, Solar System Scope (antes: NASA/JPL 720×360)
         public const string JupiterTexturePath = StageFolder + "/Textures/PIO_Jupiter_NASA.jpg";
         public const string ModelInstanceName = "PioneerActors";
 
@@ -106,7 +106,7 @@ namespace Abandoned.SpaceApps.EditorTools
             a.Aldebaran = Unlit(context, "PIO_AldebaranMarker", new Color(1f, 0.74f, 0.52f), null);
             var glow = TextureAsset(context, "PIO_StarGlow.png", () => PioneerStageArt.GlowTexture(128), 128, false, TextureWrapMode.Clamp, TextureWrapMode.Clamp, FilterMode.Bilinear, StageFolder, true);
             a.AldebaranHalo = AdditiveUnlit(context, "PIO_AldebaranHalo", new Color(1f, 0.55f, 0.32f, 0.85f), glow);
-            a.BeltRock = Lit(context, "PIO_BeltRock", new Color(0.30f, 0.29f, 0.28f), 0f, 0.08f);
+            a.BeltRock = Lit(context, "PIO_BeltRock", new Color(0.78f, 0.74f, 0.68f), 0f, 0.15f);
             var marsTexture = TextureAsset(context, "PIO_MarsSurface.png", () => PioneerStageArt.MarsSurface(1024, 512, 1976), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
             a.Mars = Lit(context, "PIO_Mars", Color.white, 0f, 0.04f, marsTexture);
             var earthMap = EarthTexture(context);
@@ -184,7 +184,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var importer = (TextureImporter)AssetImporter.GetAtPath(JupiterTexturePath);
             if (importer.textureType != TextureImporterType.Default || !importer.sRGBTexture || !importer.mipmapEnabled
                 || importer.wrapModeU != TextureWrapMode.Repeat || importer.wrapModeV != TextureWrapMode.Clamp
-                || importer.maxTextureSize != 1024 || importer.filterMode != FilterMode.Trilinear)
+                || importer.maxTextureSize != 2048 || importer.filterMode != FilterMode.Trilinear)
             {
                 importer.textureType = TextureImporterType.Default;
                 importer.sRGBTexture = true;
@@ -192,7 +192,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 importer.wrapModeU = TextureWrapMode.Repeat;
                 importer.wrapModeV = TextureWrapMode.Clamp;
                 importer.filterMode = FilterMode.Trilinear;
-                importer.maxTextureSize = 1024;
+                importer.maxTextureSize = 2048;
                 importer.textureCompression = TextureImporterCompression.Compressed;
                 importer.SaveAndReimport();
             }
@@ -522,18 +522,20 @@ namespace Abandoned.SpaceApps.EditorTools
         public static readonly Vector2 EarthCompareViewport = new Vector2(0.2f, 0.7f);
         public static readonly Vector2 EarthCompareEnterViewport = new Vector2(-0.12f, 0.7f);
         public const float ApproachOpenFov = 36f;
-        public const int BeltRockCount = 70;
+        public const int BeltRockCount = 110;
         public const int BeltFieldSeed = 1972;
         /// <summary>Anchor da teleobjetiva/dolly zoom: a câmera chega a ~82 m da sonda; o campo de pedras fica atrás dela.</summary>
         public static readonly Vector3 BeltFieldCamera = new Vector3(-20f, 20f, 77f).normalized * BeltFieldCameraMeters;
         // O cinturão de verdade: pedras pequenas e bem separadas, com muito espaço vazio (a chance de acertar uma é mínima).
         public const float BeltClearRadiusMeters = 90f;
         public const float BeltOuterRadiusMeters = 520f;
-        public const float BeltRockMinMeters = 2.5f;
-        public const float BeltRockMaxMeters = 8f;
+        public const float BeltRockMinMeters = 2f;
+        public const float BeltRockMaxMeters = 30f;
         public const float BeltRockSeparationMeters = 60f;
         public const float BeltCameraClearanceMeters = 80f;
         public const float BeltFieldCameraMeters = 650f;
+        public const float BeltPovFov = 70f;
+        public const string BeltPovAnchorId = "PIO.Belt.Pov";
         public static List<Vector3> BeltRockCenters() =>
             PioneerStageArt.SparseRockCenters(BeltRockCount, BeltFieldSeed, BeltClearRadiusMeters, BeltOuterRadiusMeters, BeltRockSeparationMeters,
                 BeltFieldCamera.normalized, BeltFieldCameraMeters, BeltCameraClearanceMeters);
@@ -653,7 +655,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public static Vector3 TrajectoryIncoming => new Vector3(JupiterDirection.x, 0f, JupiterDirection.z).normalized;
         public static Vector3 TrajectorySide => Vector3.Cross(Vector3.up, TrajectoryIncoming).normalized;
         /// <summary>Plano alto da curva (cena 5d): 620 m acima do plano da trajetória, um pouco antes de Júpiter, olhando quase de cima.</summary>
-        public static Vector3 BendCamera => JupiterPosition + Vector3.up * 620f - TrajectoryIncoming * 230f + TrajectorySide * 40f;
+        public static Vector3 BendCamera => JupiterPosition + Vector3.up * 700f - TrajectoryIncoming * 230f + TrajectorySide * 40f;
         public static Vector3 BendLookAt => JupiterPosition + TrajectoryIncoming * 40f + TrajectorySide * 70f;
 
         public static Vector3[] TrajectoryPoints()
@@ -713,16 +715,16 @@ namespace Abandoned.SpaceApps.EditorTools
 
         static List<PioneerLightGroup> LightGroups() => new List<PioneerLightGroup>
         {
-            Group("PIO.Light.ColdRim", new Vector3(-0.95f, -0.1f, 0.25f), new Color(0.72f, 0.83f, 1f), 1.7f, new Vector3(-0.3f, -0.2f, -1f), new Color(0.3f, 0.38f, 0.55f), 0.04f),
-            Group("PIO.Light.Cruise", new Vector3(-0.55f, -0.25f, -0.8f), new Color(0.84f, 0.9f, 1f), 1.25f, new Vector3(0.6f, 0.3f, 0.75f), new Color(0.45f, 0.55f, 0.75f), 0.12f),
-            Group("PIO.Light.JupiterAxis", JupiterKeyDirection, new Color(1f, 0.95f, 0.88f), 1.3f, new Vector3(0.7f, 0.25f, 0.65f), new Color(0.4f, 0.48f, 0.65f), 0.08f),
+            Group("PIO.Light.ColdRim", new Vector3(-0.95f, -0.1f, 0.25f), new Color(0.72f, 0.83f, 1f), 1.7f, new Vector3(-0.3f, -0.2f, -1f), new Color(0.39f, 0.41f, 0.43f), 0.04f),
+            Group("PIO.Light.Cruise", new Vector3(-0.55f, -0.25f, -0.8f), new Color(0.84f, 0.9f, 1f), 1.25f, new Vector3(0.6f, 0.3f, 0.75f), new Color(0.56f, 0.58f, 0.61f), 0.12f),
+            Group("PIO.Light.JupiterAxis", JupiterKeyDirection, new Color(1f, 0.95f, 0.88f), 1.3f, new Vector3(0.7f, 0.25f, 0.65f), new Color(0.49f, 0.51f, 0.53f), 0.08f),
             // Cena 6: luz de frente, um pouco de cima e da direita, para a placa dourada brilhar sem estourar.
-            Group("PIO.Light.PlaqueHero", new Vector3(0.25f, -0.3f, 0.92f), new Color(1f, 0.9f, 0.76f), 1.5f, new Vector3(-0.4f, 0.2f, 0.9f), new Color(0.45f, 0.5f, 0.65f), 0.2f),
-            Group("PIO.Light.Plaque", new Vector3(0.36f, -0.86f, 0.38f), new Color(1f, 0.88f, 0.72f), 1.1f, new Vector3(0.3f, -0.6f, 0.7f), new Color(0.45f, 0.5f, 0.65f), 0.15f),
-            Group("PIO.Light.FarSun", new Vector3(-0.1f, -0.15f, -1f), new Color(0.86f, 0.92f, 1f), 0.75f, new Vector3(0.4f, 0.3f, 1f), new Color(0.35f, 0.4f, 0.55f), 0.05f),
+            Group("PIO.Light.PlaqueHero", new Vector3(0.25f, -0.3f, 0.92f), new Color(1f, 0.9f, 0.76f), 1.5f, new Vector3(-0.4f, 0.2f, 0.9f), new Color(0.52f, 0.53f, 0.55f), 0.2f),
+            Group("PIO.Light.Plaque", new Vector3(0.36f, -0.86f, 0.38f), new Color(1f, 0.88f, 0.72f), 1.1f, new Vector3(0.3f, -0.6f, 0.7f), new Color(0.52f, 0.53f, 0.55f), 0.15f),
+            Group("PIO.Light.FarSun", new Vector3(-0.1f, -0.15f, -1f), new Color(0.86f, 0.92f, 1f), 0.75f, new Vector3(0.4f, 0.3f, 1f), new Color(0.42f, 0.43f, 0.45f), 0.05f),
             // Fase 5: na Terra (plataforma de lançamento e antena da Deep Space Network) a luz é quente; no espaço, fria.
-            Group("PIO.Light.EarthWarm", new Vector3(0.3f, -0.6f, 0.7f), new Color(1f, 0.74f, 0.46f), 0.9f, new Vector3(-0.4f, -0.3f, -0.8f), new Color(0.42f, 0.3f, 0.26f), 0.1f),
-            Group("PIO.Light.FarewellRim", new Vector3(-0.75f, -0.2f, -0.6f), new Color(0.85f, 0.9f, 1f), 0.55f, new Vector3(0.5f, 0.4f, 0.7f), new Color(0.3f, 0.35f, 0.5f), 0.03f),
+            Group("PIO.Light.EarthWarm", new Vector3(0.3f, -0.6f, 0.7f), new Color(1f, 0.74f, 0.46f), 0.9f, new Vector3(-0.4f, -0.3f, -0.8f), new Color(0.34f, 0.32f, 0.32f), 0.1f),
+            Group("PIO.Light.FarewellRim", new Vector3(-0.75f, -0.2f, -0.6f), new Color(0.85f, 0.9f, 1f), 0.55f, new Vector3(0.5f, 0.4f, 0.7f), new Color(0.37f, 0.38f, 0.4f), 0.03f),
         };
 
         static PioneerLightGroup Group(string id, Vector3 keyDirection, Color keyColor, float keyIntensity, Vector3 fillDirection, Color fillColor, float fillIntensity) =>
@@ -797,6 +799,9 @@ namespace Abandoned.SpaceApps.EditorTools
                 new AnchorSpec { Id = "PIO.Belt.Field", State = "PIO.Belt", Function = "Cena 2 · teleobjetiva e dolly zoom: a sonda pequena na frente de uma parede de pedras que se abre (campo de pedras ligado)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f, BeltField = true,
                     Position = BeltFieldCamera, LookAt = Vector3.zero },
+                new AnchorSpec { Id = "PIO.Belt.Pov", State = "PIO.Belt", Function = "Cena 2 · ponto de vista da sonda dentro do cinturão: a câmera fica na sonda (modelo escondido) e as pedras, dispersas e de tamanhos variados, passam ao longe",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = BeltPovFov, BeltField = true, HideProbe = true,
+                    Position = Vector3.zero, LookAt = -BeltFieldCamera.normalized * 100f },
                 new AnchorSpec { Id = "PIO.Belt.Nike", State = "PIO.Belt", Function = "Cena 2 · a revelação: espaço vazio e uma única pedra distante (307 Nike), a milhões de km",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f, BeltNike = true,
                     Position = BeltNikeCamera, LookAt = BeltNikeLookAt },
@@ -1013,7 +1018,7 @@ namespace Abandoned.SpaceApps.EditorTools
         {
             RenderSettings.skybox = null;
             RenderSettings.ambientMode = AmbientMode.Flat;
-            RenderSettings.ambientLight = new Color(0.018f, 0.021f, 0.03f);
+            RenderSettings.ambientLight = new Color(0.010f, 0.010f, 0.011f); // neutro e escuro, sem tom azul
             RenderSettings.fog = false;
             RenderSettings.defaultReflectionMode = DefaultReflectionMode.Custom;
             RenderSettings.customReflectionTexture = null;

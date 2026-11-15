@@ -175,14 +175,16 @@ namespace Abandoned.SpaceApps
         /// <summary>Anchor da câmera dentro da sonda: ela gira com a sonda e Júpiter cruza a mira uma vez por volta.</summary>
         public const string PovAnchorId = "PIO.Imaging.Pov";
         /// <summary>Duração de uma volta no jogo. A sonda real girava a ~4,8 rpm (12,5 s por volta, nominal); aqui a volta é mais rápida só para o jogo andar.</summary>
-        public const float SpinPeriodSeconds = 9f;
+        public const float SpinPeriodSeconds = 6f;
         /// <summary>Fotos a registrar; cada foto traz um quadro vermelho e um azul, tirados juntos (os dois canais do instrumento são simultâneos).</summary>
         public const int SpinShotCount = 5;
         /// <summary>Meia largura da janela, em graus de giro: Júpiter (raio de ~14° visto da sonda) preenche a mira.</summary>
-        public const float SpinWindowHalfDegrees = 15f;
+        public const float SpinWindowHalfDegrees = 19f;
         /// <summary>Quanto a ajuda alarga a janela depois de 12 s sem foto (sem punição).</summary>
         public const float SpinAssistedScale = 2.5f;
-        public const float CombineSeconds = 9f;
+        /// <summary>Sem foto por tanto tempo, a janela alarga (teste de jogo: o minigame estava difícil e longo).</summary>
+        public const float SpinAssistSeconds = 6f;
+        public const float CombineSeconds = 5f;
         public const float FlashSeconds = 0.5f;
         public const float OutsideFeedbackSeconds = 0.5f;
         /// <summary>Onde a primeira volta começa (fração da volta): Júpiter entra em quadro poucos instantes depois.</summary>
@@ -649,8 +651,8 @@ namespace Abandoned.SpaceApps
                 if (phase == ImagingPhase.Sweep)
                 {
                     idleSeconds += step;
-                    if (!assisted && idleSeconds >= HelpAssistSeconds)
-                        assisted = true; // sem foto por 12 s, a janela alarga e fica assim até o fim (sem punição)
+                    if (!assisted && idleSeconds >= SpinAssistSeconds)
+                        assisted = true; // sem foto por 6 s, a janela alarga e fica assim até o fim (sem punição)
                 }
 
                 if (spinClock >= SpinPeriodSeconds - 1e-6f)
@@ -979,7 +981,12 @@ namespace Abandoned.SpaceApps
                 if (panel != null)
                     panel.Render(new ImagingViewState { Phase = ImagingPhase.Idle }, resolveText);
                 if (running && presentation != null)
+                {
                     presentation.SetAnchorYaw(PovAnchorId, PovYawDegrees);
+                    // Pausada num marco (esperando fotos), a sequência não reavalia a câmera: o giro congelava depois de uma foto falhada.
+                    if (director != null && director.IsPlaying && director.IsPaused)
+                        director.RefreshCamera();
+                }
                 if (spinPanel != null)
                     spinPanel.Render(SpinState(), resolveText);
                 return;

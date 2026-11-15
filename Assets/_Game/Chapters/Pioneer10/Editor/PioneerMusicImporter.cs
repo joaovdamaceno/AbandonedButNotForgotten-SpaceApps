@@ -21,6 +21,15 @@ namespace Abandoned.SpaceApps.EditorTools
         /// <summary>Cues do mapa antigo (sem clipe): saem do catálogo se ainda estiverem pendentes.</summary>
         static readonly string[] ObsoleteCues = { "MUS_PIO_PARTIDA", "MUS_PIO_CUR", "MUS_PIO_DISTANCIA", "MUS_PIO_ESCUTA" };
 
+        public const string SfxFolder = "Assets/_Game/Chapters/Pioneer10/Audio/Sfx";
+
+        /// <summary>Efeitos sintetizados (Tools/generate_pioneer10_sfx.py): cue, arquivo e volume.</summary>
+        static readonly (string cue, string file, float volume)[] Sfx =
+        {
+            ("SFX_PIO_LAUNCH", "Launch_Rocket.ogg", 0.9f),
+            ("SFX_PIO_POWERDOWN", "Instrument_PowerDown.ogg", 0.8f),
+        };
+
         [System.Serializable] sealed class Registry { public Track[] tracks; }
 
         [System.Serializable]
@@ -81,7 +90,27 @@ namespace Abandoned.SpaceApps.EditorTools
                 catalog = AssetDatabase.LoadAssetAtPath<AudioCatalog>(AudioDirectorSetup.CatalogPath);
             }
 
-            var wanted = registry.tracks.Select(t => t.cue).ToHashSet();
+            foreach (var sfx in Sfx)
+            {
+                var sfxPath = SfxFolder + "/" + sfx.file;
+                if (!File.Exists(sfxPath))
+                {
+                    errors.Add("arquivo ausente: " + sfxPath);
+                    continue;
+                }
+
+                AssetDatabase.ImportAsset(sfxPath, ImportAssetOptions.ForceUpdate);
+                var sfxImporter = (AudioImporter)AssetImporter.GetAtPath(sfxPath);
+                var sfxSettings = sfxImporter.defaultSampleSettings;
+                sfxSettings.loadType = AudioClipLoadType.DecompressOnLoad;   // efeito curto: decodifica uma vez
+                sfxSettings.compressionFormat = AudioCompressionFormat.Vorbis;
+                sfxSettings.quality = 0.5f;
+                sfxSettings.preloadAudioData = true;
+                sfxImporter.defaultSampleSettings = sfxSettings;
+                sfxImporter.SaveAndReimport();
+            }
+
+            var wanted = registry.tracks.Select(t => t.cue).Concat(Sfx.Select(x => x.cue)).ToHashSet();
             var cues = new List<AudioCueDefinition>();
             foreach (var cue in catalog.Cues)
             {
@@ -102,6 +131,18 @@ namespace Abandoned.SpaceApps.EditorTools
                 }
 
                 cues.Add(new AudioCueDefinition(track.cue, AudioBus.Music, loop: true, volume: track.volume, clips: clip));
+            }
+
+            foreach (var sfx in Sfx)
+            {
+                var sfxClip = AssetDatabase.LoadAssetAtPath<AudioClip>(SfxFolder + "/" + sfx.file);
+                if (sfxClip == null)
+                {
+                    errors.Add("clipe não importou: " + sfx.file);
+                    continue;
+                }
+
+                cues.Add(new AudioCueDefinition(sfx.cue, AudioBus.Sfx, loop: false, volume: sfx.volume, clips: sfxClip));
             }
 
             catalog.Set(cues);

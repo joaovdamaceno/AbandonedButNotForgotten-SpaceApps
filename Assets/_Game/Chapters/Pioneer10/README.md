@@ -440,7 +440,7 @@ Sete faixas de **Scott Buckley (CC BY 4.0)** ligadas ao `AudioDirector` (AUD-002
 | `Editor/PioneerMusicImporter.cs` | Configura a importação (Vorbis, streaming, sem pré-carga) e liga os clipes aos cues do catálogo; menu **Abandoned Space Apps → PIO → Importar música da Pioneer** |
 | `Tests/PioneerMusicTests.cs` | 5 testes EditMode |
 
-**Cue por estado:** `Launch → MUS_PIO_LANCAMENTO` (Chronicle), `Belt → MUS_PIO_CINTURAO` (Descent), `JupiterApproach` e `Imaging → MUS_PIO_MARAVILHA` (The Distant Sun), `Closest → MUS_PIO_JUPITER` (Sanctum), `Plaque` e `Outbound → MUS_PIO_ANOS` (Extrapolation), `Listening → MUS_PIO_RADIO` (Signal to Noise), `Farewell → MUS_PIO_FINAL` (Filaments, trecho do clímax). Os quatro cues antigos (`PARTIDA/CUR/DISTANCIA/ESCUTA`) saíram. **Falta** um evento no roteiro do Belt para o corte "tensão → maravilha" de 1:33 (`AudioDirector.SetCue("MUS_PIO_MARAVILHA")`); se os estados mudarem, só a tabela de estados do `PioneerCueMap` (em `PioneerDataBuilder`) muda.
+**Cue por estado:** `Launch → MUS_PIO_LANCAMENTO` (A Kind Of Hope), `Belt → MUS_PIO_CINTURAO` (Descent), `JupiterApproach` e `Imaging → MUS_PIO_MARAVILHA` (The Distant Sun), `Closest → MUS_PIO_JUPITER` (The Things That Keep Us Here), `Plaque` e `Outbound → MUS_PIO_ANOS` (Extrapolation), `Listening → MUS_PIO_RADIO` (Signal to Noise), `Farewell → MUS_PIO_FINAL` (Filaments, trecho do clímax). Os quatro cues antigos (`PARTIDA/CUR/DISTANCIA/ESCUTA`) saíram. **Falta** um evento no roteiro do Belt para o corte "tensão → maravilha" de 1:33 (`AudioDirector.SetCue("MUS_PIO_MARAVILHA")`); se os estados mudarem, só a tabela de estados do `PioneerCueMap` (em `PioneerDataBuilder`) muda.
 
 **Atribuição obrigatória (CC BY 4.0):** `ASSET_CREDITS.md` (linhas `M-SB-PIO-01…07`) e `credits.line.pioneer_music` em `DossierTexts.json` (PT e EN). A tela de créditos do dossiê precisa **exibir** essa linha.
 
@@ -483,3 +483,24 @@ Sete faixas de **Scott Buckley (CC BY 4.0)** ligadas ao `AudioDirector` (AUD-002
 - **Aldebaran:** `AldebaranCoreMeters` 7 m e `AldebaranHaloMeters` 52 m.
 - **Captura de quadros:** `PioneerMinigameCapture` (`QA/PIO-036`).
 - **Limitações.** Ruído e faixas desenhados; volta de 9 s é de jogabilidade (a real, ~12,5 s); textos `derived`; sem movimento reduzido; sem Play Mode nem teste humano. Evidência e fontes em `QA/PIO-036/README.md`.
+
+## Ajustes do teste de jogo (15/11/2026)
+
+Lote pedido depois de a pessoa jogar a cena de teste (`Playtest/Pioneer10_Playtest.unity`). Evidência em `QA/PIO-AJUSTES/` (capturas do Play Mode).
+
+| Pedido | O que mudou |
+| --- | --- |
+| Primeira música fora de tom | `MUS_PIO_LANCAMENTO` agora é **A Kind Of Hope** (Scott Buckley, CC BY 4.0), calma e introdutória, no lugar de Chronicle. |
+| Música "asiática" em Ganimedes e Europa | `MUS_PIO_JUPITER` agora é **The Things That Keep Us Here** (piano e cordas), no lugar de Sanctum. As duas vêm da pasta de músicas do projeto anterior (mesma página do autor); `Tools/convert_pioneer10_music.py` lê de lá (`PIONEER_MUSIC_DIR`). |
+| Efeito do foguete e de equipamento desligado | `SFX_PIO_LAUNCH` (7 s) e `SFX_PIO_POWERDOWN` (1,1 s), **sintetizados** com `Tools/generate_pioneer10_sfx.py`. O desligar toca no instante em que a comunicação é priorizada (`PioneerChapterController` liga `OutboundAtlas.PowerConfirmed` ao evento `PIO.Outbound.PowerDown`). |
+| Minigame da foto parava de girar | Causa: com a sequência **pausada** num marco (esperando as fotos), o `SequenceDirector` não reavalia a câmera, então o giro do anchor congelava. Correção: `SequenceDirector.RefreshCamera()` (aditivo) chamado por `PioneerImaging.PushView` quando pausada. Verificado em Play Mode: duas capturas 2,4 s depois, com a sequência parada em "Foto 1/5", mostram o céu e o marcador em movimento. |
+| Minigame longo e difícil | Volta de 9 s para **6 s**; janela de ±15° para **±19°** (ainda do tamanho do disco de Júpiter); a ajuda alarga a janela (×2,5) depois de **6 s** sem foto (antes 12 s); a junção das cinco fotos de 9 s para **5 s**. |
+| Sensação de movimento durante as fotos e a revelação | Os três planos do ponto de vista (`PIO04.Learn/Sweep/Reveal`) ganham deriva suave (inclinação, rolagem, avanço de poucos metros e respiração do FOV). Não há referência próxima no espaço, então o efeito é de balanço, não de paralaxe. |
+| Júpiter melhor, espaço mais preto | Textura 2048×1024 do **Solar System Scope (CC BY 4.0)** no lugar da de 720×360 da Voyager (`ArtSource/Pioneer10/PIO-jupiter-2k/`). Céu: fundo e faixa difusa bem mais escuros e neutros, ambiente neutro, preenchimentos das luzes sem tom azul. |
+| Terra "do nada no canto" | `PioneerJupiterReveal.ShowEarthComparison` desligado por padrão (Júpiter continua a crescer e a legenda cita o tamanho). |
+| Estilingue em tempo acelerado | Novo `PioneerSlingshot`: no plano `PIO09.Bend` a sonda (ampliada 22×, senão não se vê a 700 m) percorre a trajetória dourada em volta de Júpiter, devagar na chegada e rápida na saída (`Progress(u)=u^1,8`); a câmera a acompanha. |
+| Cruzar Netuno no mapa | Novo `SystemMapElement` (Painter2D) no `CinemaHudView`. Na cena 7 mostra as órbitas de Júpiter a Netuno, a sonda a ~2,6 UA/ano (bate com Saturno em 1976, Urano em 1979 e Netuno em 13 JUN 1983) e a órbita cruzada pulsa em âmbar. Esquemático e dito no próprio mapa. |
+| Cinturão no mapa e câmera da sonda | Na cena 2, de 8 a 19 s, o mapa interno mostra a faixa do cinturão (pontos de tamanhos variados), a linha do caminho da sonda (forte até a posição atual, fraca à frente) e o marcador; de 19 a 30 s a câmera vira ponto de vista da sonda (`PIO.Belt.Pov`, FOV 70) avançando 50 m entre as pedras. As pedras ficaram **mais claras**, **110** em vez de 70 e com tamanhos de **2 a 30 m** (distribuição que favorece as pequenas). |
+| Legenda sobre o minigame do rádio | `ListeningPanel.uss`: o quadro sobe (`bottom: 18%`), acima da faixa da legenda. |
+
+**Limitações.** Nenhuma faixa foi ouvida por pessoa (as duas trocadas também não); os efeitos sonoros são sintéticos e simples. A trajetória do estilingue é de composição, não cálculo orbital. O mapa não é à escala. A deriva da câmera do minigame congela com a sequência parada num marco (o giro do jogo continua). Os pulos do `PioneerPlaytestHost` só vão para a frente.

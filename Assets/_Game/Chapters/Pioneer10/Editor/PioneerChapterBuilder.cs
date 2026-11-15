@@ -85,6 +85,18 @@ namespace Abandoned.SpaceApps.EditorTools
             reveal3So.FindProperty("earthViewportTo").vector2Value = PioneerStageBuilder.EarthCompareViewport;
             reveal3So.ApplyModifiedPropertiesWithoutUndo();
             so.FindProperty("jupiterReveal").objectReferenceValue = reveal3;
+            var slingshot = context.Component<PioneerSlingshot>(context.Child(root, "Slingshot"));
+            var slingshotSo = new SerializedObject(slingshot);
+            slingshotSo.FindProperty("presentation").objectReferenceValue = presentation;
+            slingshotSo.FindProperty("sequence").objectReferenceValue = closest;
+            slingshotSo.FindProperty("probe").objectReferenceValue = presentation.ProbeSpin != null ? presentation.ProbeSpin.parent : null;
+            var points = PioneerStageBuilder.TrajectoryPoints();
+            var pathProperty = slingshotSo.FindProperty("path");
+            pathProperty.arraySize = points.Length;
+            for (var i = 0; i < points.Length; i++)
+                pathProperty.GetArrayElementAtIndex(i).vector3Value = points[i];
+            slingshotSo.ApplyModifiedPropertiesWithoutUndo();
+            so.FindProperty("slingshot").objectReferenceValue = slingshot;
             var closestHud = context.Component<PioneerClosestHud>(context.Child(root, "ClosestHud"));
             var closestHudSo = new SerializedObject(closestHud);
             closestHudSo.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();
@@ -245,9 +257,10 @@ namespace Abandoned.SpaceApps.EditorTools
                     new[] { Key(0f, new Vector3(-70f, 6f, -30f), 60f), Key(14f, new Vector3(70f, -4f, 40f), 72f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, "PIO.Closest.Dive") }),
+                // 5d: o estilingue em tempo acelerado; a câmera acompanha a sonda ampliada (PioneerSlingshot) pela trajetória em volta de Júpiter.
                 new ShotDefinition("PIO09.Bend", 14f, "PIO.Closest.Bend",
-                    new[] { Key(0f, Vector3.zero, 50f), Key(14f, new Vector3(0f, 0f, -70f), 50f) },
-                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                    new[] { Key(0f, Vector3.zero, 52f), Key(14f, new Vector3(0f, 0f, -70f), 58f) },
+                    lookAtTargetId: PioneerPresentation.ProbeTargetId, easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
                 new ShotDefinition("PIO09.Leaving", 10f, "PIO.Outbound",
                     new[] { Key(0f, Vector3.zero, 40f), Key(10f, new Vector3(0f, 0f, -8f), 38f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),

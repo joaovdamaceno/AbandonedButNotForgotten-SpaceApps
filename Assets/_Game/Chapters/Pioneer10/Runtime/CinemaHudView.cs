@@ -47,6 +47,7 @@ namespace Abandoned.SpaceApps
 
         VisualElement root, staticLayer, radiation, radiationFill, speed, distances, moonFill, cloudsFill;
         Label radiationTitle, speedLabel, moonLabel, cloudsLabel;
+        SystemMapElement systemMap;
         VisualElement years, energyFill, timelineTicks, timelineMarker, firsts, barTop, barBottom;
         VisualElement beltCounter, beltLine, beltNotePlate, earthLine;
         Label beltDay, beltDate, beltLabel, beltNote, earthLabel;
@@ -83,6 +84,13 @@ namespace Abandoned.SpaceApps
             moonLabel = tree.Q<Label>("distance-moon-label");
             cloudsLabel = tree.Q<Label>("distance-clouds-label");
             years = tree.Q("years");
+            systemMap = tree.Q<SystemMapElement>("system-map");
+            if (systemMap == null)
+            {
+                systemMap = new SystemMapElement();
+                root.Add(systemMap);
+            }
+
             barTop = tree.Q("bar-top");
             beltCounter = tree.Q("belt-counter");
             beltDay = tree.Q<Label>("belt-day");
@@ -171,6 +179,27 @@ namespace Abandoned.SpaceApps
                 moonFill.style.width = Length.Percent(Mathf.Clamp01(moonFillFraction) * 100f);
             if (cloudsFill != null)
                 cloudsFill.style.width = Length.Percent(Mathf.Clamp01(cloudsFillFraction) * 100f);
+        }
+
+        /// <summary>
+        /// Mapa esquemático do Sistema Solar (cena 2: o cinturão e o caminho da sonda; cena 7: a sonda cruzando as órbitas até Netuno).
+        /// <paramref name="frame"/> é o retângulo do mapa em frações do quadro (x, y, largura, altura; origem em cima à esquerda).
+        /// </summary>
+        public void SetSystemMap(bool visible, in SystemMapElement.State state, Rect frame)
+        {
+            EnsureBound();
+            if (systemMap == null)
+                return;
+
+            Show(systemMap, visible);
+            if (!visible)
+                return;
+
+            systemMap.style.left = Length.Percent(frame.x * 100f);
+            systemMap.style.top = Length.Percent(frame.y * 100f);
+            systemMap.style.width = Length.Percent(frame.width * 100f);
+            systemMap.style.height = Length.Percent(frame.height * 100f);
+            systemMap.SetState(state);
         }
 
         /// <summary>Cena 7: o ano em destaque com o marco, os ícones dos instrumentos, o medidor de energia dos RTG e a linha do tempo.</summary>
@@ -370,6 +399,7 @@ namespace Abandoned.SpaceApps
             Show(distances, false);
             Show(years, false);
             Show(firsts, false);
+            Show(systemMap, false);
             SetBeltCounter(false, string.Empty, string.Empty, false, string.Empty, Vector2.zero, string.Empty);
             SetEarthLabel(false, string.Empty, Vector2.zero);
         }

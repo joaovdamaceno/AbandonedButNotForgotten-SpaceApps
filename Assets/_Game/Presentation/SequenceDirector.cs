@@ -200,6 +200,16 @@ namespace Abandoned.SpaceApps
             CompleteIfDone();
         }
 
+        /// <summary>
+        /// Reaplica a câmera e os atores no instante atual sem avançar o relógio. Serve a quem mexe num rig enquanto a sequência está
+        /// pausada num marco (o giro do jogo da foto da Pioneer): sem isto a câmera só segue o rig quando o tempo anda.
+        /// </summary>
+        public void RefreshCamera()
+        {
+            if (playing)
+                ApplyAt(clock.TimeSeconds);
+        }
+
         public void Pause() => clock.Pause();
 
         public void Resume() => clock.Resume();

@@ -13,13 +13,6 @@ MonoBehaviour:
   m_Name: AudioCatalog
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.AudioCatalog
   cues:
-  - id: SFX_PIO_LAUNCH
-    bus: 2
-    clips: []
-    loop: 0
-    volume: 1
-    pitchVariation: 0
-    maxSeconds: 0
   - id: SFX_SCAN
     bus: 2
     clips: []
@@ -93,7 +86,7 @@ MonoBehaviour:
   - id: MUS_PIO_LANCAMENTO
     bus: 1
     clips:
-    - {fileID: 8300000, guid: b0ec6b11128bd9c4eb460b48d875b062, type: 3}
+    - {fileID: 8300000, guid: 4b970eab895557e4694f7e07d570f1e0, type: 3}
     loop: 1
     volume: 0.9
     pitchVariation: 0
@@ -117,9 +110,9 @@ MonoBehaviour:
   - id: MUS_PIO_JUPITER
     bus: 1
     clips:
-    - {fileID: 8300000, guid: 862522cdd0b2df844a0aba3752bc0f7b, type: 3}
+    - {fileID: 8300000, guid: efb28ecf690208047baa72aeeac8038d, type: 3}
     loop: 1
-    volume: 1
+    volume: 0.95
     pitchVariation: 0
     maxSeconds: 0
   - id: MUS_PIO_ANOS
@@ -144,5 +137,21 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 4b5b9e2005fbaa84f891d7177039a15a, type: 3}
     loop: 1
     volume: 0.95
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_PIO_LAUNCH
+    bus: 2
+    clips:
+    - {fileID: 8300000, guid: 73eeeaa78a579eb4e81c91d4cecd418c, type: 3}
+    loop: 0
+    volume: 0.9
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_PIO_POWERDOWN
+    bus: 2
+    clips:
+    - {fileID: 8300000, guid: 50b9da7caca96db408363447ebaf9d60, type: 3}
+    loop: 0
+    volume: 0.8
     pitchVariation: 0
     maxSeconds: 0

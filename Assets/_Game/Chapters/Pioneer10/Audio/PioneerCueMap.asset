@@ -17,7 +17,7 @@ MonoBehaviour:
   - stateId: PIO.Launch
     musicCueId: MUS_PIO_LANCAMENTO
     fadeSeconds: 1.75
-    note: "Chronicle: come\xE7a quase em sil\xEAncio e sobe; no espa\xE7o s\xF3 m\xFAsica."
+    note: "A Kind Of Hope: come\xE7a quase em sil\xEAncio e sobe; no espa\xE7o s\xF3 m\xFAsica."
   - stateId: PIO.Belt
     musicCueId: MUS_PIO_CINTURAO
     fadeSeconds: 1.75
@@ -33,7 +33,7 @@ MonoBehaviour:
   - stateId: PIO.Closest
     musicCueId: MUS_PIO_JUPITER
     fadeSeconds: 1.75
-    note: "Roteiro v2, cena 5. Sanctum: orquestral e edificante, para a radia\xE7\xE3o, o mergulho e o empurr\xE3o gravitacional."
+    note: "Roteiro v2, cena 5. The Things That Keep Us Here: orquestral e edificante, para a radia\xE7\xE3o, o mergulho e o empurr\xE3o gravitacional."
   - stateId: PIO.Plaque
     musicCueId: MUS_PIO_ANOS
     fadeSeconds: 1.75
@@ -72,6 +72,13 @@ MonoBehaviour:
     seconds: 1
     proposedEvent: 1
     note: "Sil\xEAncio de 1 s antes do mergulho (roteiro, cena 5); cai na lacuna entre legendas."
+  - eventId: PIO.Outbound.PowerDown
+    action: 0
+    cueId: SFX_PIO_POWERDOWN
+    level: 1
+    seconds: 0
+    proposedEvent: 1
+    note: "Equipamento secund\xE1rio desligado para poupar energia (cena 7): varredura descendente curta, no instante em que a comunica\xE7\xE3o \xE9 priorizada."
   - eventId: PIO.Belt.Recorded
     action: 0
     cueId: SFX_PIO_DETECTOR_TICK
@@ -211,10 +218,20 @@ MonoBehaviour:
     family: 
     interfaceSound: 1
     loop: 0
-    maxSeconds: 6
+    maxSeconds: 7
     idConfirmedInCueSheet: 0
-    licenseStatus: pending
-    creditId: 
+    licenseStatus: acquired
+    creditId: S-PIO-SFX-01
+    clip: {fileID: 0}
+  - cueId: SFX_PIO_POWERDOWN
+    kind: 1
+    family: 
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 2
+    idConfirmedInCueSheet: 0
+    licenseStatus: acquired
+    creditId: S-PIO-SFX-02
     clip: {fileID: 0}
   - cueId: SFX_SCAN
     kind: 1

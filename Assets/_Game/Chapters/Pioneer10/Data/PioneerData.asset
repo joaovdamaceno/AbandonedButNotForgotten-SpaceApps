@@ -1298,6 +1298,48 @@ MonoBehaviour:
     enText: Neptune
     ptStatus: derived
     enStatus: derived
+  - key: PIO.UI.map_title_belt
+    group: hud
+    ptText: "O cintur\xE3o de asteroides"
+    enText: The asteroid belt
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_title_out
+    group: hud
+    ptText: "A sonda cruzando as \xF3rbitas"
+    enText: The probe crossing the orbits
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_earth
+    group: hud
+    ptText: Terra
+    enText: Earth
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_mars
+    group: hud
+    ptText: Marte
+    enText: Mars
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_belt
+    group: hud
+    ptText: "Cintur\xE3o"
+    enText: Belt
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_probe
+    group: hud
+    ptText: Pioneer 10
+    enText: Pioneer 10
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_note
+    group: hud
+    ptText: "Esquema sem escala: s\xF3 as \xF3rbitas, vistas de cima."
+    enText: 'Schematic, not to scale: orbits only, seen from above.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.scheme
     group: instrument
     ptText: "Esquema \xB7 sem escala"

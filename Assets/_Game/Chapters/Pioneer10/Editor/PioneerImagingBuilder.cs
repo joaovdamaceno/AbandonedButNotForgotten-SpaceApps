@@ -122,6 +122,25 @@ namespace Abandoned.SpaceApps.EditorTools
         static ShotKeyframe Key(float t, Vector3 p, float fov) => new ShotKeyframe(t, p, Vector3.zero, fov);
 
         /// <summary>
+        /// Deriva suave da câmera de ponto de vista (teste de jogo: a sonda parecia parada durante as fotos e a revelação). A cada ~6 s a
+        /// câmera inclina e rola poucos graus para o outro lado e avança alguns metros; o giro do jogo (anchor) soma por cima.
+        /// </summary>
+        static ShotKeyframe[] Drift(float durationSeconds, float travelMeters, float swayDegrees)
+        {
+            var count = Mathf.Max(2, Mathf.CeilToInt(durationSeconds / 6f));
+            var keys = new ShotKeyframe[count + 1];
+            for (var i = 0; i <= count; i++)
+            {
+                var sign = i % 2 == 0 ? 1f : -1f;
+                var position = new Vector3(sign * travelMeters * 0.35f, -sign * travelMeters * 0.2f, travelMeters * i / count);
+                var euler = new Vector3(sign * swayDegrees * 0.5f, sign * swayDegrees * 0.6f, -sign * swayDegrees);
+                keys[i] = new ShotKeyframe(durationSeconds * i / count, position, euler, ImagingPovFov * (1f + 0.012f * sign));
+            }
+
+            return keys;
+        }
+
+        /// <summary>
         /// 0–10 aprender, 10–38 as passagens (os marcos de 21, 27, 31,5 e 37 s), 38–64 revelação. Os marcos seguram a
         /// sequência até a faixa 4, a interrupção (faixa 6), a recuperação e 8/8; no ritmo nominal (uma faixa por
         /// passagem) nenhuma espera acontece e as legendas PIO.04.03–05 caem exatamente nas lacunas do roteiro.
@@ -131,12 +150,12 @@ namespace Abandoned.SpaceApps.EditorTools
             var shots = new[]
             {
                 new ShotDefinition("PIO04.Learn", 10f, PioneerImaging.PovAnchorId,
-                    new[] { Key(0f, Vector3.zero, ImagingPovFov), Key(10f, Vector3.zero, ImagingPovFov) },
-                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
+                    Drift(10f, 3f, 1.6f),
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerImaging.EventLearn) }),
                 new ShotDefinition("PIO04.Sweep", 28f, PioneerImaging.PovAnchorId,
-                    new[] { Key(0f, Vector3.zero, ImagingPovFov), Key(28f, Vector3.zero, ImagingPovFov) },
-                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
+                    Drift(28f, 8f, 1.6f),
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[]
                     {
                         new ShotEvent(0f, PioneerImaging.EventSweep),
@@ -146,8 +165,8 @@ namespace Abandoned.SpaceApps.EditorTools
                         new ShotEvent(27f, PioneerImaging.EventGateComplete),
                     }),
                 new ShotDefinition("PIO04.Reveal", 26f, PioneerImaging.PovAnchorId,
-                    new[] { Key(0f, Vector3.zero, ImagingPovFov), Key(26f, Vector3.zero, ImagingPovFov) },
-                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
+                    Drift(26f, 8f, 2.4f),
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerImaging.EventReveal) }),
             };
 

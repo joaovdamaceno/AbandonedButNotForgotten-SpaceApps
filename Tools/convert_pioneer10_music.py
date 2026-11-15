@@ -28,21 +28,22 @@ VORBIS_QUALITY = 0.0       # libvorbis -q:a 0 (~64 kbps estéreo)
 LOUDNESS_LUFS = -20.0      # alvo de loudnorm de uma passada; o nível relativo entre faixas é do volume do cue
 FADE_IN = 1.0
 FADE_OUT = 3.0
+LOCAL_MUSIC = Path("C:/Users/Usuario/OneDrive/Documentos/Carlos/dev/AbandonedButNotForgotten/AbandonedButNotForgotten/Assets/_Game/Audio/ScottBuckley")
 
 # id do cue, arquivo de saída, título, página da faixa, URL do MP3, início e duração do trecho (s), intenção no roteiro.
 TRACKS = [
-    dict(cue="MUS_PIO_LANCAMENTO", file="Chronicle_0-80.ogg", title="Chronicle", page="https://www.scottbuckley.com.au/library/chronicle/",
-         url="http://www.scottbuckley.com.au/library/wp-content/uploads/2018/04/chronicle.mp3", start=0.0, duration=80.0, volume=0.9,
-         use="Cena 1: noite de lançamento e as baterias nucleares (começa quase em silêncio e sobe)"),
+    dict(cue="MUS_PIO_LANCAMENTO", file="AKindOfHope_0-80.ogg", title="A Kind Of Hope", page="https://www.scottbuckley.com.au/library/a-kind-of-hope/",
+         local="a-kind-of-hope.mp3", start=0.0, duration=80.0, volume=0.9,
+         use="Cena 1: abertura tranquila e introdutória, começa quase em silêncio (substitui Chronicle, que a pessoa que testou achou fora de tom)"),
     dict(cue="MUS_PIO_CINTURAO", file="Descent_0-60.ogg", title="Descent", page="https://www.scottbuckley.com.au/library/descent/",
          url="http://www.scottbuckley.com.au/library/wp-content/uploads/2018/04/descent.mp3", start=0.0, duration=60.0, volume=0.85,
          use="Cena 2: o medo do cinturão de asteroides (escura, misteriosa), até o corte limpo para a calma"),
     dict(cue="MUS_PIO_MARAVILHA", file="TheDistantSun_0-120.ogg", title="The Distant Sun", page="https://www.scottbuckley.com.au/library/the-distant-sun/",
          url="https://www.scottbuckley.com.au/library/wp-content/uploads/2019/07/sb_monomyth_1_thedistantsun.mp3", start=0.0, duration=120.0, volume=0.9,
          use="Cenas 2 (revelação), 3 e 4: espanto calmo diante de Júpiter e a foto montada linha por linha (discreta, não disputa com as legendas)"),
-    dict(cue="MUS_PIO_JUPITER", file="Sanctum_0-90.ogg", title="Sanctum", page="https://scottbuckley.com.au/library/sanctum",
-         url="http://www.scottbuckley.com.au/wp-content/audio/sb_sanctum.mp3", start=0.0, duration=90.0, volume=1.0,
-         use="Cena 5: a radiação, o mergulho sobre as nuvens e o empurrão gravitacional (orquestral e edificante)"),
+    dict(cue="MUS_PIO_JUPITER", file="ThingsThatKeepUsHere_0-90.ogg", title="The Things That Keep Us Here", page="https://www.scottbuckley.com.au/library/the-things-that-keep-us-here/",
+         local="the-things-that-keep-us-here.mp3", start=0.0, duration=90.0, volume=0.95,
+         use="Cena 5: Ganimedes, Europa, o mergulho e o empurrão gravitacional (piano e cordas, sem cor regional; substitui Sanctum, que soou asiática no teste)"),
     dict(cue="MUS_PIO_ANOS", file="Extrapolation_0-110.ogg", title="Extrapolation", page="https://www.scottbuckley.com.au/library/extrapolation/",
          url="http://www.scottbuckley.com.au/library/wp-content/uploads/2014/07/sb_extrapolation.mp3", start=0.0, duration=110.0, volume=0.85,
          use="Cenas 6 e 7: a placa dourada e os anos (piano sombrio com um fio de esperança)"),
@@ -74,11 +75,15 @@ def convert(ffmpeg):
     result = []
     with tempfile.TemporaryDirectory() as tmp:
         for t in TRACKS:
-            src = Path(tmp) / (t["cue"] + ".mp3")
-            # O servidor da fonte recusa o urllib (406); o curl é aceito.
-            subprocess.run(["curl", "-sSL", "--fail", "--max-time", "300", "-o", str(src), t["url"]], check=True)
+            if "local" in t:
+                # Faixa já baixada da mesma página do autor em outro projeto da equipe (PIONEER_MUSIC_DIR ou LOCAL_MUSIC).
+                src = Path(os.environ.get("PIONEER_MUSIC_DIR", LOCAL_MUSIC)) / t["local"]
+            else:
+                src = Path(tmp) / (t["cue"] + ".mp3")
+                # O servidor da fonte recusa o urllib (406); o curl é aceito.
+                subprocess.run(["curl", "-sSL", "--fail", "--max-time", "300", "-o", str(src), t["url"]], check=True)
             digest = sha256(src)
-            if t["cue"] in known and known[t["cue"]].get("originalSha256") not in (None, digest):
+            if t["cue"] in known and known[t["cue"]].get("originalSha256") not in (None, digest) and known[t["cue"]].get("file") == t["file"]:
                 raise SystemExit(f"{t['cue']}: o MP3 da fonte mudou (SHA-256 {digest}); reveja a faixa antes de converter")
             dst = OUT_DIR / t["file"]
             filters = f"loudnorm=I={LOUDNESS_LUFS}:TP=-2:LRA=11,afade=t=in:st=0:d={FADE_IN},afade=t=out:st={t['duration'] - FADE_OUT}:d={FADE_OUT}"

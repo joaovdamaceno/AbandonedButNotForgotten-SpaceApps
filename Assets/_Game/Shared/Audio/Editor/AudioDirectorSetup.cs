@@ -29,6 +29,7 @@ namespace Abandoned.SpaceApps.EditorTools
             new AudioCueDefinition("MUS_PIO_RADIO", AudioBus.Music, loop: true),
             new AudioCueDefinition("MUS_PIO_FINAL", AudioBus.Music, loop: true),
             new AudioCueDefinition("SFX_PIO_LAUNCH", AudioBus.Sfx),
+            new AudioCueDefinition("SFX_PIO_POWERDOWN", AudioBus.Sfx),
             new AudioCueDefinition("SFX_SCAN", AudioBus.Sfx, loop: true, maxSeconds: 40f),
             new AudioCueDefinition("SFX_PIO_RADIATION_NOISE", AudioBus.Sfx),
             new AudioCueDefinition("SFX_CMD_SENT", AudioBus.Ui),

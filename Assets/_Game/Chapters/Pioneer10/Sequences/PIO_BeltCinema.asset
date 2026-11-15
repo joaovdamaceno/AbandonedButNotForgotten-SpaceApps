@@ -50,20 +50,28 @@ MonoBehaviour:
     events: []
   - shotId: PIO02.Days
     durationSeconds: 11
-    rigId: PIO.Belt.Field
+    rigId: PIO.Belt.Pov
     lookAtTargetId: 
     easing: 1
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 120}
+      positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 38
+      fieldOfViewDegrees: 70
+    - timeSeconds: 3.7
+      positionMeters: {x: 1.5, y: -0.8, z: 17}
+      eulerAnglesDegrees: {x: -0.8, y: 1.2, z: -1.4}
+      fieldOfViewDegrees: 69
+    - timeSeconds: 7.4
+      positionMeters: {x: -1.5, y: 0.8, z: 34}
+      eulerAnglesDegrees: {x: 0.8, y: -1.2, z: 1.4}
+      fieldOfViewDegrees: 70
     - timeSeconds: 11
-      positionMeters: {x: 0, y: 0, z: 580}
+      positionMeters: {x: 0, y: 0, z: 50}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 26
+      fieldOfViewDegrees: 68
     events: []
   - shotId: PIO02.Nike
     durationSeconds: 10
