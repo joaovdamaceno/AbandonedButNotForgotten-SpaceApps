@@ -74,7 +74,7 @@ namespace Abandoned.SpaceApps.Opportunity
             }
             else if (IsDriving)
             {
-                var mouse = chapter.journey.ChoosingMemory||chapter.journey.Transmitting?Vector2.zero:GameInput.MouseDelta;
+                var mouse = GameInput.MouseDelta;
                 yaw += mouse.x * .09f * GameSettings.Sensitivity;
                 pitch = Mathf.Clamp(pitch - mouse.y * .07f * GameSettings.Sensitivity * (GameSettings.Invert ? -1 : 1), 4, 58);
                 var focus = rover.transform.position + Vector3.up * 1.0f + rover.transform.forward*.6f;

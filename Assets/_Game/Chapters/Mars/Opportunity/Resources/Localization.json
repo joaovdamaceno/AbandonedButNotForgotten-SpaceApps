@@ -153,27 +153,12 @@
   {
    "key": "objective.sample",
    "pt": "Examine a rocha McKittrick",
-   "en": "Examine McKittrick"
+   "en": "Examine The McKittrick rock"
   },
   {
    "key": "objective.panorama",
    "pt": "Registre uma imagem do vale: o que a Opportunity viu aqui?",
    "en": "Record an image of the valley: what did Opportunity see here?"
-  },
-  {
-   "key": "objective.send",
-   "pt": "Envie uma imagem à Terra: é o que vai ficar",
-   "en": "Send an image to Earth: it is what will remain"
-  },
-  {
-   "key": "objective.choose",
-   "pt": "Escolha uma imagem para enviar",
-   "en": "Choose an image to send"
-  },
-  {
-   "key": "objective.sending",
-   "pt": "Transmitindo para a Terra",
-   "en": "Transmitting to Earth"
   },
   {
    "key": "controls.drive",
@@ -187,13 +172,8 @@
   },
   {
    "key": "controls.photo",
-   "pt": "SEGURE E  abrir a Pancam   ·   depois SEGURE E  fotografar",
-   "en": "HOLD E  open Pancam   ·   then HOLD E  photograph"
-  },
-  {
-   "key": "controls.send",
-   "pt": "SEGURE E  transmitir agora     ou continue fotografando",
-   "en": "HOLD E  transmit now     or keep photographing"
+   "pt": "SEGURE E  abrir a câmera panorâmica   ·   depois SEGURE E  fotografar",
+   "en": "HOLD E  open Panoramic camera   ·   then HOLD E  photograph"
   },
   {
    "key": "controls.skip",
@@ -219,31 +199,6 @@
    "key": "photo.fragment",
    "pt": "Panorama registrado. A poeira está se aproximando.",
    "en": "Panorama recorded. Dust is approaching."
-  },
-  {
-   "key": "photo.choose",
-   "pt": "O que você quer que permaneça?",
-   "en": "What would you like to leave behind?"
-  },
-  {
-   "key": "photo.memory",
-   "pt": "ÚLTIMA TRANSMISSÃO   /   PANCAM",
-   "en": "FINAL TRANSMISSION   /   PANCAM"
-  },
-  {
-   "key": "photo.send",
-   "pt": "Enviar para a Terra",
-   "en": "Send to Earth"
-  },
-  {
-   "key": "photo.continue",
-   "pt": "Continuar explorando",
-   "en": "Keep exploring"
-  },
-  {
-   "key": "photo.sending",
-   "pt": "Enviando imagem",
-   "en": "Sending image"
   },
   {
    "key": "rat.deploy.title",
@@ -417,8 +372,8 @@
   },
   {
    "key": "journal.body",
-   "pt": "Da órbita ao solo: o TES da Mars Global Surveyor identificou hematita em Meridiani Planum. Hematita pode se formar por processos diferentes; era necessário investigar o contexto. As esferas ricas em hematita, camadas sedimentares, cavidades e minerais como a jarosita reuniram evidências de água antiga.\n\nA RAT escovava ou esmerilhava: podia produzir uma cavidade circular de cerca de 45 mm de diâmetro e até 5 mm de profundidade. A composição era investigada por outros instrumentos.\n\nOpportunity saiu do módulo em 31 de janeiro de 2004, sete dias após o pouso. Em 2005, examinou os restos de seu escudo térmico e o meteorito Heat Shield Rock próximo. Percorreu 45,16 km e deteve o recorde de distância fora da Terra; a Perseverance o superou em 11 de outubro de 2026.\n\nA Pancam fotografava o Sol para estimar a opacidade atmosférica (tau). A tempestade de 2018 bloqueou a luz necessária aos painéis. Último contato: 10 de junho de 2018. Fim oficial: 13 de fevereiro de 2019.\n\nA navegação e os exames foram condensados. As regiões são composições artísticas, a cavidade foi ampliada para leitura e os resultados qualitativos resumem várias observações. A fotografia escolhida para o último envio pertence à sua partida.",
-   "en": "From orbit to ground: Mars Global Surveyor’s TES identified hematite in Meridiani Planum. Hematite can form through different processes; its geological context had to be investigated. Hematite-rich spheres, sedimentary layers, cavities and minerals such as jarosite together provided evidence of ancient water.\n\nThe RAT could brush or grind, producing a circular cavity about 45 mm across and up to 5 mm deep. Other instruments investigated composition.\n\nOpportunity left the lander on January 31, 2004, seven days after landing. In 2005 she examined the remains of her heat shield and the nearby Heat Shield Rock meteorite. She drove 45.16 km and held the off-world distance record; Perseverance surpassed it on October 11, 2026.\n\nPancam photographed the Sun to estimate atmospheric opacity (tau). The 2018 storm blocked the sunlight needed by the solar panels. Last contact: June 10, 2018. Official mission end: February 13, 2019.\n\nDriving and examinations are condensed. Regions are artistic compositions, the cavity is enlarged for readability and qualitative findings summarise multiple observations. The picture chosen for the final transmission comes from your playthrough."
+   "pt": "Da órbita ao solo: o TES da Mars Global Surveyor identificou hematita em Meridiani Planum. Hematita pode se formar por processos diferentes; era necessário investigar o contexto. As esferas ricas em hematita, camadas sedimentares, cavidades e minerais como a jarosita reuniram evidências de água antiga.\n\nA RAT escovava ou esmerilhava: podia produzir uma cavidade circular de cerca de 45 mm de diâmetro e até 5 mm de profundidade. A composição era investigada por outros instrumentos.\n\nOpportunity saiu do módulo em 31 de janeiro de 2004, sete dias após o pouso. Em 2005, examinou os restos de seu escudo térmico e o meteorito Heat Shield Rock próximo. Percorreu 45,16 km e deteve o recorde de distância fora da Terra; a Perseverance o superou em 11 de outubro de 2026.\n\nA câmera panorâmica fotografava o Sol para estimar a opacidade atmosférica (tau). A tempestade de 2018 bloqueou a luz necessária aos painéis. Último contato: 10 de junho de 2018. Fim oficial: 13 de fevereiro de 2019.\n\nA navegação e os exames foram condensados. As regiões são composições artísticas, a cavidade foi ampliada para leitura e os resultados qualitativos resumem várias observações.",
+   "en": "From orbit to ground: Mars Global Surveyor’s TES identified hematite in Meridiani Planum. Hematite can form through different processes; its geological context had to be investigated. Hematite-rich spheres, sedimentary layers, cavities and minerals such as jarosite together provided evidence of ancient water.\n\nThe RAT could brush or grind, producing a circular cavity about 45 mm across and up to 5 mm deep. Other instruments investigated composition.\n\nOpportunity left the lander on January 31, 2004, seven days after landing. In 2005 she examined the remains of her heat shield and the nearby Heat Shield Rock meteorite. She drove 45.16 km and held the off-world distance record; Perseverance surpassed it on October 11, 2026.\n\nThe Panoramic camera photographed the Sun to estimate atmospheric opacity (tau). The 2018 storm blocked the sunlight needed by the solar panels. Last contact: June 10, 2018. Official mission end: February 13, 2019.\n\nDriving and examinations are condensed. Regions are artistic compositions, the cavity is enlarged for readability and qualitative findings summarise multiple observations."
   },
   {
    "key": "credits.body",
@@ -709,11 +664,6 @@
    "key": "v4.years7",
    "pt": "Agora, registre essa paisagem. As imagens são parte do que uma missão pode deixar para quem nunca esteve lá.",
    "en": "Now, record this landscape. Images are part of what a mission can leave for people who have never been there."
-  },
-  {
-   "key": "v4.last1",
-   "pt": "A imagem escolhida segue para a Terra. A poeira continua engrossando sobre Perseverance Valley.",
-   "en": "The selected image is sent to Earth. Dust continues to thicken over Perseverance Valley."
   },
   {
    "key": "v4.last2",
@@ -1022,13 +972,13 @@
   },
   {
    "key": "v10.study.sunclear",
-   "pt": "PANCAM · REFERÊNCIA SOLAR",
-   "en": "PANCAM · SOLAR REFERENCE"
+   "pt": "CÂMERA PANORÂMICA · REFERÊNCIA SOLAR",
+   "en": "PANORAMIC CAMERA · SOLAR REFERENCE"
   },
   {
    "key": "v10.study.sundust",
-   "pt": "PANCAM · POEIRA NA ATMOSFERA",
-   "en": "PANCAM · ATMOSPHERIC DUST"
+   "pt": "CÂMERA PANORÂMICA · POEIRA NA ATMOSFERA",
+   "en": "PANORAMIC CAMERA · ATMOSPHERIC DUST"
   },
   {
    "key": "v10.berries.first",
@@ -1067,8 +1017,8 @@
   },
   {
    "key": "v10.result.sunclear",
-   "pt": "Referência registrada. A Pancam observa o Sol para estimar quanto de sua luz atravessa a atmosfera.",
-   "en": "Reference recorded. Pancam observes the Sun to estimate how much of its light passes through the atmosphere."
+   "pt": "Referência registrada. A câmera panorâmica observa o Sol para estimar quanto de sua luz atravessa a atmosfera.",
+   "en": "Reference recorded. The Panoramic camera observes the Sun to estimate how much of its light passes through the atmosphere."
   },
   {
    "key": "v10.result.sundust",
@@ -1152,8 +1102,8 @@
   },
   {
    "key": "v11.sun.saved",
-   "pt": "PANCAM · REFERÊNCIA REGISTRADA",
-   "en": "PANCAM · SAVED REFERENCE"
+   "pt": "CÂMERA PANORÂMICA · REFERÊNCIA REGISTRADA",
+   "en": "PANORAMIC CAMERA · SAVED REFERENCE"
   },
   {
    "key": "v11.image.game",
@@ -1357,13 +1307,13 @@
   },
   {
    "key": "v13.dossier.pancam.title",
-   "pt": "Pancam e painéis solares  /  Ler a luz",
-   "en": "Pancam & solar panels  /  Read the light"
+   "pt": "Câmera panorâmica e painéis solares  /  Ler a luz",
+   "en": "Panoramic camera & solar panels  /  Read the light"
   },
   {
    "key": "v13.dossier.pancam.body",
-   "pt": "A Pancam fotografava a paisagem e observava o Sol para estudar a poeira na atmosfera. A mesma luz alimentava os painéis solares: um céu opaco podia colocar a missão em risco.",
-   "en": "Pancam photographed the landscape and observed the Sun to study atmospheric dust. The same sunlight powered the solar panels: an opaque sky could threaten the mission."
+   "pt": "A câmera panorâmica fotografava a paisagem e observava o Sol para estudar a poeira na atmosfera. A mesma luz alimentava os painéis solares: um céu opaco podia colocar a missão em risco.",
+   "en": "The Panoramic camera photographed the landscape and observed the Sun to study atmospheric dust. The same sunlight powered the solar panels: an opaque sky could threaten the mission."
   },
   {
    "key": "v13.dossier.timeline.title",
@@ -1562,13 +1512,13 @@
   },
   {
    "key": "v13.photo.required",
-   "pt": "PANCAM  ·  REGISTRE UMA IMAGEM",
-   "en": "PANCAM  ·  RECORD ONE IMAGE"
+   "pt": "CÂMERA PANORÂMICA  ·  REGISTRE UMA IMAGEM",
+   "en": "PANORAMIC CAMERA  ·  RECORD ONE IMAGE"
   },
   {
    "key": "v13.photo.recorded",
-   "pt": "PANCAM  ·  IMAGEM REGISTRADA",
-   "en": "PANCAM  ·  IMAGE RECORDED"
+   "pt": "CÂMERA PANORÂMICA  ·  IMAGEM REGISTRADA",
+   "en": "PANORAMIC CAMERA  ·  IMAGE RECORDED"
   },
   {
    "key": "v13.interact.berries",
@@ -1594,11 +1544,6 @@
    "key": "v13.interact.sun",
    "pt": "Observar o Sol",
    "en": "Observe the Sun"
-  },
-  {
-   "key": "v13.interact.uplink",
-   "pt": "Enviar uma imagem",
-   "en": "Send an image"
   },
   {
    "key": "v13.interact.photo",
@@ -1737,8 +1682,8 @@
   },
   {
    "key": "v14.controls.e.d",
-   "pt": "Tudo com uma só ação: interagir, examinar a rocha, medir o Sol, transmitir. Para observar, segure.",
-   "en": "One action for everything: interact, analyse the rock, measure the Sun, transmit. To observe, hold it."
+   "pt": "Tudo com uma só ação: interagir, examinar a rocha, medir o Sol. Para observar, segure.",
+   "en": "One action for everything: interact, analyse the rock, measure the Sun. To observe, hold it."
   },
   {
    "key": "v14.controls.f",
@@ -1759,16 +1704,6 @@
    "key": "v14.controls.space.d",
    "pt": "Pular as sequências cinematográficas",
    "en": "Skip cinematic sequences"
-  },
-  {
-   "key": "v14.controls.r",
-   "pt": "R",
-   "en": "R"
-  },
-  {
-   "key": "v14.controls.r.d",
-   "pt": "Mostrar ou ocultar a rota até o uplink",
-   "en": "Show or hide the route to the uplink"
   },
   {
    "key": "v14.controls.h",
@@ -1849,11 +1784,6 @@
    "key": "v14.sun.reason",
    "pt": "Sua energia vem do Sol. Uma tempestade de poeira se aproxima, e é preciso medir quanta luz ainda chega.",
    "en": "Its power comes from the Sun. A dust storm is approaching, and we must measure how much light still arrives."
-  },
-  {
-   "key": "v14.send.reason",
-   "pt": "Se esta for a última chance, as imagens precisam chegar à Terra.",
-   "en": "If this is the last chance, the images must reach Earth."
   },
   {
    "key": "v15.hint.hold",
@@ -2084,6 +2014,11 @@
    "key": "v17.farewell.opportunity",
    "pt": "A Opportunity explorou por quase quinze anos e percorreu 45,16 km, um recorde na época.",
    "en": "Opportunity explored for almost fifteen years and drove 45.16 km, a record at the time."
+  },
+  {
+   "key": "mars.still.waiting",
+   "pt": "Ainda esperando em Marte",
+   "en": "Still waiting on Mars"
   }
  ]
 }

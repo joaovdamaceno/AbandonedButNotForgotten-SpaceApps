@@ -12,7 +12,7 @@ namespace Abandoned.SpaceApps.Opportunity
         public ParticleSystem wheelDust;
         public TrailRenderer[] tracks;
         public LayerMask groundMask = 1 << 8;
-        public float cruiseSpeed = 1.7f, fastSpeed = 2.65f, turnSpeed = 46;
+        public float cruiseSpeed = 2f, fastSpeed = 3.1f, turnSpeed = 46;
         public bool Controllable { get; set; }
         public bool CinematicControl { get; set; }
         public bool DeploymentSupport {get;set;}
@@ -64,7 +64,7 @@ namespace Abandoned.SpaceApps.Opportunity
             float dt = Time.deltaTime;
             var input = Controllable ? GameInput.Move : Vector2.zero;
             float limit = Mathf.Lerp(0, GameInput.Fast ? fastSpeed : cruiseSpeed, Mathf.InverseLerp(.03f, .3f, Power));
-            Speed = CinematicControl ? FilmSpeed : Mathf.MoveTowards(Speed, input.y * limit, dt * .9f);
+            Speed = CinematicControl ? FilmSpeed : Mathf.MoveTowards(Speed, input.y * limit, dt * 1.1f);
             float turn = input.x * turnSpeed * Mathf.Lerp(.45f, 1, Mathf.Abs(Speed) / fastSpeed) * Mathf.InverseLerp(.02f, .2f, Power);
             transform.Rotate(0, turn * dt, 0, Space.World);
             if (controller.enabled && !CinematicControl)

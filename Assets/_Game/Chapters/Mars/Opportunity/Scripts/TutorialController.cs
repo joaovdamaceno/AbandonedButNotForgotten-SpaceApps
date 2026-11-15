@@ -80,7 +80,7 @@ namespace Abandoned.SpaceApps.Opportunity
                 if (chapter.investigation.Active || chapter.science.Active) ChangeStep(4);
             }
             var study = chapter.investigation;
-            string current = chapter.Stage + ":" + chapter.journey.TraverseStep + ":" + chapter.journey.PanoramaCount + ":" + study.Study + ":" + study.Sample + ":" + study.Result + ":" + chapter.science.Phase + ":" + chapter.science.Observations + ":" + chapter.journey.Transmitting;
+            string current = chapter.Stage + ":" + chapter.journey.TraverseStep + ":" + chapter.journey.PanoramaCount + ":" + study.Study + ":" + study.Sample + ":" + study.Result + ":" + chapter.science.Phase + ":" + chapter.science.Observations;
             float distance = chapter.TargetDistance;
             bool progress = current != signature || distance < bestDistance - .75f || study.Active && study.Stable && study.Dwell > .1f || chapter.science.Active && chapter.science.Cutting;
             if (progress) { idle = 0; signature = current; bestDistance = distance; }

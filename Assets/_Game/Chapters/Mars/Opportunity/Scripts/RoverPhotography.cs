@@ -14,7 +14,6 @@ namespace Abandoned.SpaceApps.Opportunity
         public List<Texture2D> Frames { get; } = new List<Texture2D>();
         public int CaptureVersion { get; private set; }
         public int Station { get; private set; } = -1;
-        public Texture2D SelectedFrame => Frames.Count == 0 ? null : Frames[Mathf.Clamp(chapter.journey.SelectedMemory, 0, Frames.Count - 1)];
         int openedFrame=-1;
         /// <summary>Segundos segurando E para fotografar; o enquadramento já vem pronto.</summary>
         public const float HoldSeconds=1.2f;
