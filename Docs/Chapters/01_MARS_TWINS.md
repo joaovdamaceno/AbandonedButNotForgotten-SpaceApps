@@ -176,6 +176,8 @@ Não há narração em áudio: todas as falas aparecem como legenda.
 
 ### Pouso das duas sondas
 
+O pouso dura 24 s: a queda até o impacto dos airbags (7,5 s do filme) é mostrada em 13,5 s; os tempos abaixo são do filme.
+
 Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_Landing.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`. Letreiros da tela dividida: mesmo arquivo de textos.
 
 | Momento | Chave | Português | English |
@@ -184,6 +186,7 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 | tela dividida | `v15.split.spirit.place` | ↓ caindo na CRATERA GUSEV · 4 JAN 2004 | ↓ landing in GUSEV CRATER · 4 JAN 2004 |
 | tela dividida | `v15.split.opportunity` | OPPORTUNITY | OPPORTUNITY |
 | tela dividida | `v15.split.opportunity.place` | ↓ caindo em MERIDIANI PLANUM · 25 JAN 2004 | ↓ landing on MERIDIANI PLANUM · 25 JAN 2004 |
+| 0 s · fala | `v18.landing.descent` | Cada rover atravessou a atmosfera protegido por um escudo térmico. Quando o paraquedas abriu, o escudo caiu, e os airbags amorteceram o pouso. | Each rover crossed the atmosphere behind a heat shield. Once the parachute opened, the shield dropped away, and airbags cushioned the landing. |
 | 13,5 s · fala | `v15.landing.opp` | Depois de uma semana de preparação, a Opportunity põe as rodas em Meridiani Planum. | After a week of preparing, Opportunity lands its wheels on Meridiani Planum. |
 
 ### Saída do módulo
