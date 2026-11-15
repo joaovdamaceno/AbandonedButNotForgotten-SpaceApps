@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Passed" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 02:11:29Z" end-time="2026-11-15 02:11:31Z" duration="2,6668718">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="948" result="Passed" start-time="2026-11-15 02:11:29Z" end-time="2026-11-15 02:11:31Z" duration="2.666872" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2104" name="Abandoned.SpaceApps.Surveyor.Visit.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Visit.Tests.dll" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-15 02:11:29Z" end-time="2026-11-15 02:11:31Z" duration="2.223123" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30196" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2105" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-15 02:11:29Z" end-time="2026-11-15 02:11:31Z" duration="2.217986" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2106" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-15 02:11:29Z" end-time="2026-11-15 02:11:31Z" duration="2.214606" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="2107" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-15 02:11:29Z" end-time="2026-11-15 02:11:31Z" duration="2.209783" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="2108" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-15 02:11:29Z" end-time="2026-11-15 02:11:31Z" duration="2.205632" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="2109" name="VisitTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-15 02:11:29Z" end-time="2026-11-15 02:11:31Z" duration="2.199064" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="2093" name="VisitSceneTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitSceneTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitSceneTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 02:11:29Z" end-time="2026-11-15 02:11:31Z" duration="1.803133" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="2094" name="RealSceneShowsReconstructionThenCreditedPhotoAndReleasesItsTarget" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitSceneTests.RealSceneShowsReconstructionThenCreditedPhotoAndReleasesItsTarget" methodname="RealSceneShowsReconstructionThenCreditedPhotoAndReleasesItsTarget" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitSceneTests" runstate="Runnable" seed="1209046627" result="Passed" start-time="2026-11-15 02:11:16Z" end-time="2026-11-15 02:11:31Z" duration="15.293999" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="2095" name="VisitTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-15 02:11:31Z" end-time="2026-11-15 02:11:31Z" duration="0.382820" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="2103" name="CameraNeverLeavesItsAnchorAndTheEvidenceIsArchival" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests.CameraNeverLeavesItsAnchorAndTheEvidenceIsArchival" methodname="CameraNeverLeavesItsAnchorAndTheEvidenceIsArchival" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests" runstate="Runnable" seed="170498539" result="Passed" start-time="2026-11-15 02:11:31Z" end-time="2026-11-15 02:11:31Z" duration="0.227974" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="2102" name="CancelRestoresTheCameraAndDoesNotFinishTheChapter" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests.CancelRestoresTheCameraAndDoesNotFinishTheChapter" methodname="CancelRestoresTheCameraAndDoesNotFinishTheChapter" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests" runstate="Runnable" seed="1722267159" result="Passed" start-time="2026-11-15 02:11:31Z" end-time="2026-11-15 02:11:31Z" duration="0.011337" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="2097" name="FinalCuesPreserveTheirExactWindowsAndNeverOverlap" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests.FinalCuesPreserveTheirExactWindowsAndNeverOverlap" methodname="FinalCuesPreserveTheirExactWindowsAndNeverOverlap" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests" runstate="Runnable" seed="735332549" result="Passed" start-time="2026-11-15 02:11:31Z" end-time="2026-11-15 02:11:31Z" duration="0.009217" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="2098" name="HeldEAtTheEndCannotReturnUntilReleasedAndPressedAgain" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests.HeldEAtTheEndCannotReturnUntilReleasedAndPressedAgain" methodname="HeldEAtTheEndCannotReturnUntilReleasedAndPressedAgain" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests" runstate="Runnable" seed="1528699054" result="Passed" start-time="2026-11-15 02:11:31Z" end-time="2026-11-15 02:11:31Z" duration="0.075323" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="2099" name="NoReturnBeforeAllFiftySecondsAndASeparateClickWorks" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests.NoReturnBeforeAllFiftySecondsAndASeparateClickWorks" methodname="NoReturnBeforeAllFiftySecondsAndASeparateClickWorks" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests" runstate="Runnable" seed="659263767" result="Passed" start-time="2026-11-15 02:11:31Z" end-time="2026-11-15 02:11:31Z" duration="0.011012" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="2096" name="NoticePrecedesImageAndHistoryHasItsOwnStage" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests.NoticePrecedesImageAndHistoryHasItsOwnStage" methodname="NoticePrecedesImageAndHistoryHasItsOwnStage" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests" runstate="Runnable" seed="703194246" result="Passed" start-time="2026-11-15 02:11:31Z" end-time="2026-11-15 02:11:31Z" duration="0.011161" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="2100" name="PauseInThePhotographPreservesTheCueAndReadingTime" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests.PauseInThePhotographPreservesTheCueAndReadingTime" methodname="PauseInThePhotographPreservesTheCueAndReadingTime" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests" runstate="Runnable" seed="1674556695" result="Passed" start-time="2026-11-15 02:11:31Z" end-time="2026-11-15 02:11:31Z" duration="0.011077" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="2101" name="RestartDuringTheGloveClearsArchiveAndRestartsTheNotice" fullname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests.RestartDuringTheGloveClearsArchiveAndRestartsTheNotice" methodname="RestartDuringTheGloveClearsArchiveAndRestartsTheNotice" classname="Abandoned.SpaceApps.Chapters.Surveyor.VisitTests.VisitTests" runstate="Runnable" seed="2109631089" result="Passed" start-time="2026-11-15 02:11:31Z" end-time="2026-11-15 02:11:31Z" duration="0.015227" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Damaceno/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

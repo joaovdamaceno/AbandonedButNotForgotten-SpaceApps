@@ -1,0 +1,16 @@
+.visit-root { position:absolute;left:0;top:0;right:0;bottom:0;background-color:black;color:rgb(232,230,218);font-size:21px; }
+.visit-slot {position:absolute;left:20px;right:20px;top:46px;bottom:125px;align-items:center;justify-content:center;}
+.visit-frame {position:relative;background-color:black;flex-shrink:0;}
+.visit-picture {position:absolute;left:0;right:0;top:0;bottom:0;}
+.visit-date {position:absolute;left:20px;top:16px;font-size:18px;color:rgb(231,221,193);}
+.visit-credit {position:absolute;left:0;right:0;bottom:0;white-space:normal;-unity-text-align:middle-center;background-color:rgba(0,0,0,.82);font-size:15px;padding:10px;color:rgb(225,224,214);}
+.visit-subtitles {position:absolute;left:20px;right:20px;bottom:22px;flex-direction:column;}
+.visit-memorial {position:absolute;left:0;top:0;right:0;bottom:130px;align-items:center;justify-content:center;}
+.visit-title {font-size:58px;letter-spacing:5px;margin-bottom:12px;}
+.visit-memorial .sa-stamp {font-size:17px;color:rgb(176,173,160);}
+.visit-return {position:absolute;align-self:center;bottom:25px;padding:10px 28px;}
+.visit-cover {position:absolute;left:0;right:0;top:0;bottom:0;align-items:center;justify-content:center;background-color:rgba(0,0,0,.88);}
+.visit-card {width:580px;max-width:90%;padding:30px;background-color:rgb(12,20,27);}
+.visit-card Label {white-space:normal;margin-bottom:20px;}
+.visit-card-title {font-size:30px;}
+.visit-root Button {min-height:42px;background-color:rgb(25,42,48);color:rgb(235,230,214);border-width:1px;border-color:rgb(82,98,99);}
