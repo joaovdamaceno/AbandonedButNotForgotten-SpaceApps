@@ -148,18 +148,18 @@ namespace Abandoned.SpaceApps.Tests
         // ---------- Sequência, montagem e dados ----------
 
         [Test]
-        public void TheSequenceHasThreeShotsTheMarksAndSevenCuesFiveOfThemByTrigger()
+        public void TheSequenceHasThreeShotsTheMarksAndNineCuesFiveOfThemByTrigger()
         {
             var sequence = plaque.Sequence;
             Assert.That(sequence.Validate(), Is.Empty);
             Assert.That(director.Validate(sequence), Is.Empty);
-            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(33f).Within(1e-4f));
-            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 7.5f, 20f, 5.5f }));
-            Assert.That(sequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.05.01", "PIO.05.02", "PIO.05.03", "PIO.05.04", "PIO.05.05", "PIO.05.06", "PIO.05.07" }));
+            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(43f).Within(1e-4f));
+            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 17.5f, 20f, 5.5f }));
+            Assert.That(sequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.05.01", "PIO.05.01b", "PIO.05.01c", "PIO.05.02", "PIO.05.03", "PIO.05.04", "PIO.05.05", "PIO.05.06", "PIO.05.07" }));
             Assert.That(sequence.Cues.Where(c => c.IsTriggered).Select(c => c.TriggerId), Is.EqualTo(PioneerPlaqueActivity.TriggerIds));
-            Assert.That(sequence.Cues.Where(c => c.IsTriggered).All(c => c.MinimumReadSeconds >= 3.5f && c.MinimumReadSeconds <= 4f), Is.True, "frase de 3,5–4 s: o tempo de ler a 16 caracteres por segundo");
+            Assert.That(sequence.Cues.Where(c => c.IsTriggered).All(c => c.MinimumReadSeconds >= 3.5f && c.MinimumReadSeconds <= 4.7f), Is.True, "frase de 3,5–4,7 s: o tempo de ler a 16 caracteres por segundo (o texto em inglês da lista nova é mais longo)");
             var timed = sequence.Cues.Where(c => !c.IsTriggered).Select(c => (c.CueId, c.StartSeconds, c.EndSeconds)).ToArray();
-            Assert.That(timed, Is.EqualTo(new[] { ("PIO.05.01", 0f, 7.3f), ("PIO.05.07", 27.7f, 33f) }));
+            Assert.That(timed, Is.EqualTo(new[] { ("PIO.05.01", 0f, 5.9f), ("PIO.05.01b", 6f, 11.7f), ("PIO.05.01c", 11.8f, 17.2f), ("PIO.05.07", 37.7f, 43f) }));
         }
 
         [Test]
@@ -191,7 +191,7 @@ namespace Abandoned.SpaceApps.Tests
             var keys = PlaquePanelView.NameKeys.Concat(new[]
             {
                 PlaquePanelView.PlaqueKey, PlaquePanelView.SnapKey, PlaquePanelView.RetryKey,
-                "PIO.05.01", "PIO.05.02", "PIO.05.03", "PIO.05.04", "PIO.05.05", "PIO.05.06", "PIO.05.07",
+                "PIO.05.01", "PIO.05.01b", "PIO.05.01c", "PIO.05.02", "PIO.05.03", "PIO.05.04", "PIO.05.05", "PIO.05.06", "PIO.05.07",
             });
             foreach (var key in keys)
             {
@@ -410,7 +410,7 @@ namespace Abandoned.SpaceApps.Tests
             var waitingAt = director.TimeSeconds;
             Run(20f);
             Assert.That(director.TimeSeconds, Is.EqualTo(waitingAt).Within(1e-4f), "a revelação espera as cinco peças; nada passa por inatividade");
-            Assert.That(waitingAt, Is.EqualTo(27.4f).Within(0.1f));
+            Assert.That(waitingAt, Is.EqualTo(37.4f).Within(0.1f));
             Assert.That(reveals, Is.Zero);
 
             foreach (var piece in new[] { 1, 2, 3, 4 })

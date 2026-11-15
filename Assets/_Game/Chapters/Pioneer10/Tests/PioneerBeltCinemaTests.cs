@@ -100,26 +100,66 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void TheDollyZoomKeepsTheProbeTheSameSizeWhileTheFieldOfViewOpens()
+        public void TheBeltIsASparseFieldOfSmallRocksFarApartAndFarFromTheCameraPath()
+        {
+            var centers = PioneerStageBuilder.BeltRockCenters();
+            Assert.That(centers, Has.Count.EqualTo(PioneerStageBuilder.BeltRockCount));
+            Assert.That(centers.Select(c => c.magnitude).Min(), Is.GreaterThanOrEqualTo(PioneerStageBuilder.BeltClearRadiusMeters - 0.01f), "nenhuma pedra perto da sonda");
+            Assert.That(centers.Select(c => c.magnitude).Max(), Is.LessThanOrEqualTo(PioneerStageBuilder.BeltOuterRadiusMeters + 0.01f));
+            var closestPair = float.MaxValue;
+            for (var i = 0; i < centers.Count; i++)
+            {
+                for (var j = i + 1; j < centers.Count; j++)
+                    closestPair = Mathf.Min(closestPair, Vector3.Distance(centers[i], centers[j]));
+            }
+
+            Assert.That(closestPair, Is.GreaterThanOrEqualTo(PioneerStageBuilder.BeltRockSeparationMeters - 0.01f), "as pedras bem separadas, sem amontoar");
+            Assert.That(PioneerStageBuilder.BeltRockMaxMeters, Is.LessThanOrEqualTo(40f), "pedras de tamanhos variados, sem rochedos gigantes (a maioria é bem menor que o máximo)");
+            Assert.That(PioneerStageBuilder.BeltRockCenters(), Is.EqualTo(centers), "determinístico");
+            var axis = PioneerStageBuilder.BeltFieldCamera.normalized;
+            foreach (var center in centers)
+            {
+                var along = Mathf.Clamp(Vector3.Dot(center, axis), 0f, PioneerStageBuilder.BeltFieldCameraMeters);
+                Assert.That(Vector3.Distance(center, axis * along), Is.GreaterThanOrEqualTo(PioneerStageBuilder.BeltCameraClearanceMeters - 0.01f), "nenhuma pedra no caminho da câmera");
+            }
+        }
+
+        [Test]
+        public void TheDaysShotIsThePointOfViewInsideTheBeltAndEveryRockStaysClear()
         {
             presentation.RegisterWithCameraDirector();
             var sequence = controller.BeltCinemaSequence;
             Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(50f).Within(1e-4f));
             var days = sequence.Shots.Single(s => s.ShotId == "PIO02.Days");
-            var reference = -1f;
-            foreach (var t in new[] { 0f, 2.2f, 4.4f, 6.6f, 8.8f, 11f })
+            Assert.That(days.RigId, Is.EqualTo(PioneerStageBuilder.BeltPovAnchorId), "ponto de vista da sonda, não mais o zoom de fora");
+            var centers = PioneerStageBuilder.BeltRockCenters();
+            var closest = float.MaxValue;
+            var travelled = 0f;
+            for (var t = 0f; t <= 11f; t += 0.5f)
             {
                 var pose = presentation.CameraDirector.Evaluate(days, t, null);
-                var size = pose.Position.magnitude * Mathf.Tan(pose.FieldOfViewDegrees * 0.5f * Mathf.Deg2Rad); // metros cobertos no plano da sonda
-                if (reference < 0f)
-                    reference = size;
-                Assert.That(size, Is.EqualTo(reference).Within(reference * 0.02f), $"dolly zoom em {t} s: a sonda não muda de tamanho");
+                Assert.That(pose.Position.magnitude, Is.LessThan(PioneerStageBuilder.BeltClearRadiusMeters * 0.65f), $"a câmera avança pouco ({t} s)");
+                Assert.That(pose.FieldOfViewDegrees, Is.InRange(60f, 82f), $"campo largo de primeira pessoa ({t} s)");
+                closest = Mathf.Min(closest, centers.Select(c => Vector3.Distance(c, pose.Position)).Min());
+                travelled = Mathf.Max(travelled, pose.Position.magnitude);
             }
 
-            var first = presentation.CameraDirector.Evaluate(days, 0f, null);
-            var last = presentation.CameraDirector.Evaluate(days, 11f, null);
-            Assert.That((first.FieldOfViewDegrees, last.FieldOfViewDegrees), Is.EqualTo((10f, 30f)), "da teleobjetiva ao plano aberto");
-            Assert.That(first.Position.magnitude, Is.GreaterThan(last.Position.magnitude * 2.5f), "a câmera se aproxima enquanto o campo de visão abre");
+            Assert.That(travelled, Is.GreaterThan(30f), "a sonda avança de verdade pelo cinturão (as pedras passam)");
+            var half = presentation.CameraDirector.Evaluate(days, 5.5f, null).Position.magnitude;
+            var tenth = presentation.CameraDirector.Evaluate(days, 10f, null).Position.magnitude - presentation.CameraDirector.Evaluate(days, 9f, null).Position.magnitude;
+            var firstSecond = presentation.CameraDirector.Evaluate(days, 1f, null).Position.magnitude;
+            Assert.That(tenth, Is.GreaterThan(firstSecond * 5f), "a velocidade acelera junto com os dias contados (no fim, bem mais que no começo)");
+            Assert.That(half, Is.LessThan(travelled * 0.4f), "metade do tempo percorre menos de 40% do caminho: avanço exponencial como o contador");
+            Assert.That(closest, Is.GreaterThan(PioneerStageBuilder.BeltClearRadiusMeters * 0.4f), "nenhuma pedra encosta na câmera");
+        }
+
+        [Test]
+        public void TheNearestRockNoteAppearsOnlyInTheLastSecondsOfTheZoom()
+        {
+            // Teste de jogo: a nota saiu (a legenda já diz que a pedra mais próxima ficou longe).
+            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.NoteStartSeconds), Is.False);
+            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.DaysRampEndSeconds - 0.1f), Is.False);
+            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.DaysRampEndSeconds), Is.False, "a revelação do 307 Nike assume o quadro");
         }
 
         [Test]
@@ -201,7 +241,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(sequence.Validate(), Is.Empty);
             Assert.That(sequence.Shots.Select(s => s.ShotId), Is.EqualTo(new[] { "PIO02.Mars", "PIO02.Fear", "PIO02.Days", "PIO02.Nike", "PIO02.Exit" }));
             Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 8f, 11f, 11f, 10f, 10f }));
-            Assert.That(sequence.Cues.Select(c => c.TextKey), Is.EqualTo(new[] { "PIO.02.01", "PIO.02.02", "PIO.02.03", "PIO.02.04", "PIO.02.05", "PIO.02.06" }));
+            Assert.That(sequence.Cues.Select(c => c.TextKey), Is.EqualTo(new[] { "PIO.02.01", "PIO.02.02", "PIO.02.03", "PIO.02.07", "PIO.02.04", "PIO.02.05", "PIO.02.06" }));
             Assert.That(sequence.Shots.Single(s => s.ShotId == "PIO02.Nike").Events.Select(e => e.eventId), Does.Contain(BeltInvestigation.EventReality), "a música baixa na revelação");
             Assert.That(PioneerBeltCounter.NikeVisibleAt(30.2f) && PioneerBeltCounter.NikeVisibleAt(39.9f) && !PioneerBeltCounter.NikeVisibleAt(40.1f), Is.True,
                 "o rótulo acompanha o plano da revelação (30–40 s)");

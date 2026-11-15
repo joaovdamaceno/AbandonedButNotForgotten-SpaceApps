@@ -24,9 +24,6 @@
                     <ui:VisualElement name="btn-settings" focusable="true" class="sa-pausemenu__action">
                         <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="btn-fullscreen" focusable="true" class="sa-pausemenu__action">
-                        <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
-                    </ui:VisualElement>
                     <ui:VisualElement name="btn-restart" focusable="true" class="sa-pausemenu__action">
                         <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
                     </ui:VisualElement>

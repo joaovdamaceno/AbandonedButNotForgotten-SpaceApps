@@ -97,9 +97,9 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(sequence.Shots.Select(s => s.ShotId), Is.EqualTo(new[] { "PIO01.A", "PIO01.B", "PIO01.C", "PIO01.D" }));
             Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 7f, 10f, 9f, 14f }));
             Assert.That(sequence.Shots.All(s => presentation.TryGetAnchor(s.RigId, out _)), "todo plano parte de um anchor do palco");
-            Assert.That(sequence.Cues.Select(c => c.TextKey), Is.EqualTo(new[] { "PIO.01.01", "PIO.01.02", "PIO.01.03", "PIO.01.04", "PIO.01.05" }));
+            Assert.That(sequence.Cues.Select(c => c.TextKey), Is.EqualTo(new[] { "PIO.01.01", "PIO.01.02", "PIO.01.03", "PIO.01.04", "PIO.01.05", "PIO.01.06" }));
             Assert.That(sequence.Cues.Select(c => (c.StartSeconds, c.EndSeconds)),
-                Is.EqualTo(new[] { (0f, 7f), (8f, 16f), (18f, 25f), (26f, 32f), (33f, 40f) }), "janelas do roteiro");
+                Is.EqualTo(new[] { (0f, 7f), (8f, 16f), (18f, 22f), (26.3f, 32.8f), (33f, 40f), (22.3f, 26f) }), "janelas do roteiro");
 
             var atlas = sequence.ActorMarks.Where(m => m.actorId == PioneerLaunchActivity.AtlasActorId).ToList();
             Assert.That(atlas.Where(m => m.timeSeconds <= PioneerLaunchBuilder.IgnitionSeconds).All(m => m.positionMeters == Vector3.zero),

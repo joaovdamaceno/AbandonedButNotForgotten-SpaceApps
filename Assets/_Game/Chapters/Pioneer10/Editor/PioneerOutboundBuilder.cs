@@ -109,19 +109,19 @@ namespace Abandoned.SpaceApps.EditorTools
         /// </summary>
         public static SequenceDefinition CreateSequence()
         {
-            const string rig = OutboundAtlas.StateId;
+            const string rig = PioneerStageBuilder.SystemOutAnchorId; // o Sistema Solar 3D com a sonda cruzando as órbitas
             var shots = new[]
             {
                 new ShotDefinition("PIO06.Saturn", 14f, rig,
-                    new[] { Key(0f, Vector3.zero, 40f), Key(14f, new Vector3(0f, 0f, -0.6f), 38f) },
+                    new[] { Key(0f, new Vector3(0f, 0f, -40f), 40f), Key(14f, new Vector3(0f, 0f, 10f), 40f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, OutboundAtlas.EventCard1976) }),
                 new ShotDefinition("PIO06.Neptune", 14f, rig,
-                    new[] { Key(0f, new Vector3(0.8f, 0.3f, -0.6f), 44f), Key(14f, new Vector3(1.4f, 0.5f, -1.2f), 46f) },
+                    new[] { Key(0f, new Vector3(0f, 0f, 10f), 40f), Key(14f, new Vector3(6f, 3f, 40f), 40f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, OutboundAtlas.EventCard1983) }),
                 new ShotDefinition("PIO06.Power", 27f, rig,
-                    new[] { Key(0f, new Vector3(-1.2f, -0.4f, 0.6f), 50f), Key(27f, new Vector3(-1.6f, -0.6f, 1.2f), 52f) },
+                    new[] { Key(0f, new Vector3(6f, 3f, 40f), 40f), Key(27f, new Vector3(-10f, 6f, 60f), 40f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, OutboundAtlas.EventPower), new ShotEvent(1f, OutboundAtlas.EventChart) }),
             };
@@ -131,6 +131,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 new SubtitleCue("PIO.06.01", "PIO.06.01", 1f, 9.5f),
                 new SubtitleCue("PIO.06.02", "PIO.06.02", 16f, 24f),
                 new SubtitleCue("PIO.06.03", "PIO.06.03", 25f, 33f),
+                new SubtitleCue("PIO.06.06", "PIO.06.06", 33.4f, 40.9f),
                 new SubtitleCue("PIO.06.04", "PIO.06.04", 41.5f, 49f),
                 new SubtitleCue("PIO.06.05", "PIO.06.05", 49.5f, 55f),
             };

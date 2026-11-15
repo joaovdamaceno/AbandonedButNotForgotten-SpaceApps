@@ -1,0 +1,141 @@
+{
+    "unity": "6000.6.7f1",
+    "note": "Medição do Editor em Play Mode (não é o navegador): contagem de cenas e ouvintes são válidas; memória é só referência.",
+    "samples": [
+        {
+            "label": "dossier-start",
+            "state": "Dossier",
+            "sceneCount": 1,
+            "scenes": "Boot",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 30044160,
+            "totalAllocatedBytes": 481224276
+        },
+        {
+            "label": "pioneer10-playing",
+            "state": "Playing",
+            "sceneCount": 2,
+            "scenes": "Boot,Pioneer10",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 30806016,
+            "totalAllocatedBytes": 515227759
+        },
+        {
+            "label": "pioneer10-restart-1",
+            "state": "Playing",
+            "sceneCount": 2,
+            "scenes": "Boot,Pioneer10",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 34746368,
+            "totalAllocatedBytes": 513718635
+        },
+        {
+            "label": "pioneer10-restart-2",
+            "state": "Playing",
+            "sceneCount": 2,
+            "scenes": "Boot,Pioneer10",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 33955840,
+            "totalAllocatedBytes": 513991335
+        },
+        {
+            "label": "pioneer10-dossier",
+            "state": "Dossier",
+            "sceneCount": 1,
+            "scenes": "Boot",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 34373632,
+            "totalAllocatedBytes": 487602321
+        },
+        {
+            "label": "mars-playing",
+            "state": "Playing",
+            "sceneCount": 3,
+            "scenes": "Boot,Mars,Opportunity",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 36220928,
+            "totalAllocatedBytes": 786860175
+        },
+        {
+            "label": "mars-restart-1",
+            "state": "Playing",
+            "sceneCount": 3,
+            "scenes": "Boot,Mars,Opportunity",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 36147200,
+            "totalAllocatedBytes": 791592941
+        },
+        {
+            "label": "mars-restart-2",
+            "state": "Playing",
+            "sceneCount": 3,
+            "scenes": "Boot,Mars,Opportunity",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 37052416,
+            "totalAllocatedBytes": 792403406
+        },
+        {
+            "label": "mars-dossier",
+            "state": "Dossier",
+            "sceneCount": 1,
+            "scenes": "Boot",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 38502400,
+            "totalAllocatedBytes": 531434288
+        },
+        {
+            "label": "surveyor3-playing",
+            "state": "Playing",
+            "sceneCount": 2,
+            "scenes": "Boot,SurveyorChapter",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 39370752,
+            "totalAllocatedBytes": 589954574
+        },
+        {
+            "label": "surveyor3-restart-1",
+            "state": "Playing",
+            "sceneCount": 2,
+            "scenes": "Boot,SurveyorChapter",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 40620032,
+            "totalAllocatedBytes": 589669553
+        },
+        {
+            "label": "surveyor3-restart-2",
+            "state": "Playing",
+            "sceneCount": 2,
+            "scenes": "Boot,SurveyorChapter",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 43614208,
+            "totalAllocatedBytes": 589683074
+        },
+        {
+            "label": "surveyor3-dossier",
+            "state": "Dossier",
+            "sceneCount": 1,
+            "scenes": "Boot",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 44052480,
+            "totalAllocatedBytes": 546089252
+        }
+    ],
+    "chapterIds": [
+        "pioneer10",
+        "mars",
+        "surveyor3"
+    ]
+}

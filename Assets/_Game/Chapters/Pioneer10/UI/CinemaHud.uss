@@ -121,17 +121,25 @@
     padding: 0;
 }
 
-.pio-hud__instruments {
+/* Coluna da direita com os instrumentos em cima e o medidor de energia embaixo, no mesmo bloco. */
+.pio-hud__side {
     position: absolute;
-    left: 3%;
-    top: 24%;
-    padding: var(--sa-space-3) var(--sa-space-4);
+    right: 3%;
+    top: 19%;
+    width: 22%;
+    flex-direction: column;
+}
+
+.pio-hud__instruments {
+    position: relative;
+    margin-bottom: var(--sa-space-2);
+    padding: var(--sa-space-2) var(--sa-space-4);
 }
 
 .pio-hud__inst {
     flex-direction: row;
     align-items: center;
-    margin-top: var(--sa-space-2);
+    margin-top: 2px;
 }
 
 .pio-hud__inst--off {
@@ -187,17 +195,14 @@
 }
 
 .pio-hud__energy {
-    position: absolute;
-    right: 3%;
-    top: 24%;
-    width: 22%;
-    padding: var(--sa-space-3) var(--sa-space-4);
+    position: relative;
+    padding: var(--sa-space-2) var(--sa-space-4);
 }
 
 .pio-hud__gauge {
     position: relative;
-    height: 230px;
-    margin-top: var(--sa-space-3);
+    height: 150px;
+    margin-top: var(--sa-space-5);
 }
 
 .pio-hud__vtrack {
@@ -244,7 +249,7 @@
 }
 
 .pio-hud__marklabel--launch {
-    top: -6px;
+    top: -22px; /* acima da marca: com o medidor mais baixo, as duas marcas ficam perto e os rótulos não podem se sobrepor */
 }
 
 .pio-hud__marklabel--jupiter {
@@ -381,4 +386,66 @@
 
 .pio-hud__bar--bottom {
     bottom: 0;
+}
+
+/* ---------- Cena 2 · O cinturão ---------- */
+
+.pio-hud__bcounter {
+    position: absolute;
+    left: 3%;
+    top: 10%;
+    padding: var(--sa-space-3) var(--sa-space-4);
+    display: none;
+}
+
+.pio-hud__bday {
+    font-size: var(--sa-text-title);
+    color: var(--sa-color-on-plate);
+    -unity-font-style: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.pio-hud__bdate {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+}
+
+.pio-hud__bline {
+    position: absolute;
+    width: 2px;
+    height: 6%;
+    background-color: rgb(245, 241, 232);
+    display: none;
+}
+
+.pio-hud__blabel {
+    position: absolute;
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    background-color: rgba(16, 17, 19, 0.82);
+    padding: var(--sa-space-2) var(--sa-space-3);
+    border-radius: var(--sa-radius-md);
+    display: none;
+}
+
+.pio-hud__bnote {
+    position: absolute;
+    left: 50%;
+    bottom: 14%;
+    max-width: 60%;
+    padding: var(--sa-space-3) var(--sa-space-4);
+    translate: -50% 0;
+    display: none;
+}
+
+.pio-hud__bnotetext {
+    font-size: var(--sa-text-body);
+    color: var(--sa-color-on-plate);
+    white-space: normal;
+    -unity-text-align: upper-center;
+    margin: 0;
+    padding: 0;
 }

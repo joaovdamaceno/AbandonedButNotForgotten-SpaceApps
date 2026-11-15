@@ -175,11 +175,11 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void UnsupportedInitialLanguageFallsBackToPortuguese()
+        public void UnsupportedInitialLanguageFallsBackToEnglish()
         {
-            Assert.That(NewFlow(true, true, true, "de").LanguageCode, Is.EqualTo("pt"));
-            Assert.That(NewFlow(true, true, true, null).LanguageCode, Is.EqualTo("pt"));
-            Assert.That(NewFlow(true, true, true, "en").LanguageCode, Is.EqualTo("en"));
+            Assert.That(NewFlow(true, true, true, "de").LanguageCode, Is.EqualTo("en"));
+            Assert.That(NewFlow(true, true, true, null).LanguageCode, Is.EqualTo("en"));
+            Assert.That(NewFlow(true, true, true, "pt").LanguageCode, Is.EqualTo("pt"));
         }
 
         // ---------- Falhas ----------

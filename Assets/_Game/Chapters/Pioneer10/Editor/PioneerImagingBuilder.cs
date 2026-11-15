@@ -20,6 +20,8 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string PanelPrefabPath = ChapterFolder + "/UI/ImagingPanel.prefab";
         public const string PanelLayoutPath = ChapterFolder + "/UI/ImagingPanel.uxml";
         public const string SequencePath = ChapterFolder + "/Sequences/PIO_Imaging.asset";
+        public const string SpinPanelPrefabPath = ChapterFolder + "/UI/SpinShotPanel.prefab";
+        public const string SpinPanelLayoutPath = ChapterFolder + "/UI/SpinShotPanel.uxml";
         const string PanelSettingsPath = "Assets/_Game/UI/Design/SpaceAppsPanelSettings.asset"; // UI-001 (consumido, não editado)
 
         public override string Id => ImagingBuilderId;
@@ -34,10 +36,11 @@ namespace Abandoned.SpaceApps.EditorTools
             if (stage == null)
                 throw new System.InvalidOperationException("o palco da PIO-003 (pioneer10.stage) precisa existir antes da varredura IPP.");
 
+            var spinLayout = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(SpinPanelLayoutPath);
             var layout = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(PanelLayoutPath);
             var panelSettings = AssetDatabase.LoadAssetAtPath<PanelSettings>(PanelSettingsPath);
-            if (layout == null || panelSettings == null)
-                throw new System.InvalidOperationException("ImagingPanel.uxml ou SpaceAppsPanelSettings ausente.");
+            if (layout == null || spinLayout == null || panelSettings == null)
+                throw new System.InvalidOperationException("ImagingPanel.uxml, SpinShotPanel.uxml ou SpaceAppsPanelSettings ausente.");
 
             var prefab = context.Prefab(PanelPrefabPath, root =>
             {
@@ -50,14 +53,27 @@ namespace Abandoned.SpaceApps.EditorTools
                 Get<ResponsiveLayoutClass>(root); // UI_SPEC: todo UIDocument de tela cheia aplica sa-layout--narrow em 4:3
             });
 
+            var spinPrefab = context.Prefab(SpinPanelPrefabPath, spinRoot =>
+            {
+                var document = Get<UIDocument>(spinRoot);
+                document.panelSettings = panelSettings;
+                document.visualTreeAsset = spinLayout;
+                document.sortingOrder = 10;
+                var view = Get<SpinShotPanelView>(spinRoot);
+                Set(view, "document", document);
+                Get<ResponsiveLayoutClass>(spinRoot);
+            });
+
             var root = context.Root.transform;
             var panel = context.PrefabInstance(root, prefab, "ImagingPanel");
+            var spinPanel = context.PrefabInstance(root, spinPrefab, "SpinShotPanel");
             var sequence = BuildSequence(context);
             var imaging = context.Component<PioneerImaging>(context.Child(root, "PioneerImaging"));
             var so = new SerializedObject(imaging);
             so.FindProperty("sequence").objectReferenceValue = sequence;
             so.FindProperty("presentation").objectReferenceValue = stage;
             so.FindProperty("panel").objectReferenceValue = panel.GetComponent<ImagingPanelView>();
+            so.FindProperty("spinPanel").objectReferenceValue = spinPanel.GetComponent<SpinShotPanelView>();
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
@@ -106,6 +122,25 @@ namespace Abandoned.SpaceApps.EditorTools
         static ShotKeyframe Key(float t, Vector3 p, float fov) => new ShotKeyframe(t, p, Vector3.zero, fov);
 
         /// <summary>
+        /// Deriva suave da câmera de ponto de vista (teste de jogo: a sonda parecia parada durante as fotos e a revelação). A cada ~6 s a
+        /// câmera inclina e rola poucos graus para o outro lado e avança alguns metros; o giro do jogo (anchor) soma por cima.
+        /// </summary>
+        static ShotKeyframe[] Drift(float durationSeconds, float travelMeters, float swayDegrees)
+        {
+            var count = Mathf.Max(2, Mathf.CeilToInt(durationSeconds / 6f));
+            var keys = new ShotKeyframe[count + 1];
+            for (var i = 0; i <= count; i++)
+            {
+                var sign = i % 2 == 0 ? 1f : -1f;
+                var position = new Vector3(sign * travelMeters * 0.35f, -sign * travelMeters * 0.2f, travelMeters * i / count);
+                var euler = new Vector3(sign * swayDegrees * 0.5f, sign * swayDegrees * 0.6f, -sign * swayDegrees);
+                keys[i] = new ShotKeyframe(durationSeconds * i / count, position, euler, ImagingPovFov * (1f + 0.012f * sign));
+            }
+
+            return keys;
+        }
+
+        /// <summary>
         /// 0–10 aprender, 10–38 as passagens (os marcos de 21, 27, 31,5 e 37 s), 38–64 revelação. Os marcos seguram a
         /// sequência até a faixa 4, a interrupção (faixa 6), a recuperação e 8/8; no ritmo nominal (uma faixa por
         /// passagem) nenhuma espera acontece e as legendas PIO.04.03–05 caem exatamente nas lacunas do roteiro.
@@ -114,13 +149,13 @@ namespace Abandoned.SpaceApps.EditorTools
         {
             var shots = new[]
             {
-                new ShotDefinition("PIO04.Learn", 10f, PioneerImaging.StateId,
-                    new[] { Key(0f, Vector3.zero, 46f), Key(10f, new Vector3(0f, 0f, 0.2f), 46f) },
-                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
+                new ShotDefinition("PIO04.Learn", 10f, PioneerImaging.PovAnchorId,
+                    Drift(10f, 3f, 1.6f),
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerImaging.EventLearn) }),
-                new ShotDefinition("PIO04.Sweep", 28f, PioneerImaging.StateId,
-                    new[] { Key(0f, new Vector3(0f, 0f, 0.2f), 46f), Key(28f, new Vector3(0f, 0f, 0.4f), 46f) },
-                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
+                new ShotDefinition("PIO04.Sweep", 28f, PioneerImaging.PovAnchorId,
+                    Drift(28f, 8f, 1.6f),
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[]
                     {
                         new ShotEvent(0f, PioneerImaging.EventSweep),
@@ -129,16 +164,16 @@ namespace Abandoned.SpaceApps.EditorTools
                         new ShotEvent(21.5f, PioneerImaging.EventGateRecovery),
                         new ShotEvent(27f, PioneerImaging.EventGateComplete),
                     }),
-                new ShotDefinition("PIO04.Reveal", 26f, PioneerImaging.StateId,
-                    new[] { Key(0f, new Vector3(0f, 0f, 0.4f), 46f), Key(26f, new Vector3(0f, 0f, 0.4f), 46f) },
-                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
+                new ShotDefinition("PIO04.Reveal", 26f, PioneerImaging.PovAnchorId,
+                    Drift(26f, 8f, 2.4f),
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerImaging.EventReveal) }),
             };
 
             var cues = new[]
             {
-                new SubtitleCue("PIO.04.01", "PIO.04.01", 0f, 3.2f),
-                new SubtitleCue("PIO.04.02", "PIO.04.02", 3.4f, 9.8f),
+                new SubtitleCue("PIO.04.01", "PIO.04.01", 0f, 3.7f),
+                new SubtitleCue("PIO.04.02", "PIO.04.02", 3.8f, 9.8f),
                 new SubtitleCue("PIO.04.03", "PIO.04.03", 21f, 27f),
                 new SubtitleCue("PIO.04.04", "PIO.04.04", 27f, 31.5f),
                 new SubtitleCue("PIO.04.05", "PIO.04.05", 31.5f, 37f),

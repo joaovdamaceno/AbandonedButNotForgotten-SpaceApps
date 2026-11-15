@@ -11,6 +11,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         static readonly int PhaseId = Shader.PropertyToID("_Phase");
         static readonly int ExposureId = Shader.PropertyToID("_Exposure");
         public float Phase { get; private set; }
+        public float Occultation { get; private set; }
         public void Configure(Renderer renderer) => image = renderer;
         public void Place(Vector3 opticalPosition, Quaternion pointing)
         {
@@ -21,10 +22,12 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         public void Show(bool visible) { if (image != null) image.enabled = visible; }
         public void Evaluate(float timeSeconds)
         {
-            Phase = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(6, 13, timeSeconds));
+            Phase = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(3, 16, timeSeconds));
+            float separation = Mathf.Abs(Mathf.Lerp(.82f, -.82f, Phase));
+            Occultation = 1f - Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(.41f, .73f, separation));
             properties ??= new MaterialPropertyBlock();
             properties.SetFloat(PhaseId, Phase);
-            properties.SetFloat(ExposureId, Mathf.Lerp(.8f, 1, Mathf.InverseLerp(4, 9, timeSeconds)));
+            properties.SetFloat(ExposureId, Mathf.Lerp(.8f, 1.35f, Occultation));
             if (image != null) image.SetPropertyBlock(properties);
         }
     }

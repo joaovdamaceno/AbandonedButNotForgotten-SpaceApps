@@ -45,8 +45,8 @@ namespace Abandoned.SpaceApps.Tests
         {
             Assert.That(chapter.states.Select(s => s.id), Is.EqualTo(PioneerPresentation.StateIds), "mesmos IDs e ordem do palco da PIO-003");
             Assert.That(chapter.states.Select(s => s.order), Is.EqualTo(Enumerable.Range(1, 9)));
-            Assert.That(chapter.states.Select(s => s.nominalSeconds), Is.EqualTo(new[] { 40, 50, 30, 64, 65, 33, 55, 40, 40 }));
-            Assert.That(chapter.states.Sum(s => s.nominalSeconds), Is.EqualTo(417));
+            Assert.That(chapter.states.Select(s => s.nominalSeconds), Is.EqualTo(new[] { 40, 50, 30, 64, 65, 43, 55, 40, 40 }));
+            Assert.That(chapter.states.Sum(s => s.nominalSeconds), Is.EqualTo(427));
 
             var cursor = 0;
             foreach (var state in chapter.states)
@@ -56,7 +56,7 @@ namespace Abandoned.SpaceApps.Tests
                 Assert.That(cursor - state.globalStartSeconds, Is.EqualTo(state.nominalSeconds), state.id);
             }
 
-            Assert.That(cursor, Is.EqualTo(417));
+            Assert.That(cursor, Is.EqualTo(427));
         }
 
         [Test]

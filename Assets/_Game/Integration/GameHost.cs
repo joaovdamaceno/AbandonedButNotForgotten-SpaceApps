@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using Abandoned.SpaceApps.UI;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 namespace Abandoned.SpaceApps.Integration
 {
     /// <summary>
-    /// INT-001 (teste local): instala os serviços do aplicativo e liga a interface global a um capítulo carregado. Segue as instruções de
-    /// instalação dos READMEs de UI/Core: dossiê, HUD, guia, pausa, legendas e áudio; o <see cref="ChapterDirector"/> carrega a cena do capítulo em
-    /// modo aditivo e este componente liga os <c>bindings</c> de Marte quando ela abre. Não cria regras de jogo.
+    /// INT-001: instala os serviços do aplicativo e liga a interface global ao capítulo carregado. Segue as instruções de instalação dos
+    /// READMEs de UI/Core: dossiê, HUD, guia, pausa, legendas e áudio. O <see cref="ChapterDirector"/> carrega a cena do capítulo em modo
+    /// aditivo (<see cref="ChapterSceneLoader"/>, uma só cena de capítulo por vez) e este componente liga o capítulo que abriu: os
+    /// <c>bindings</c> de Marte, a <see cref="PioneerBindings"/> e a <see cref="SurveyorBindings"/>. Não cria regras de jogo.
     /// </summary>
     [DefaultExecutionOrder(-900)]
     public sealed class GameHost : MonoBehaviour
@@ -22,6 +25,7 @@ namespace Abandoned.SpaceApps.Integration
         [SerializeField] GameObject audioDirectorPrefab;
         [SerializeField] AudioCatalog audioCatalog;
         [SerializeField, Tooltip("Tabelas {texts:[{key,pt,en}]} de todos os capítulos (verbos, objetos, objetivos, legendas).")] TextAsset[] textTables;
+        [SerializeField, Tooltip("Câmera de fundo do dossiê. O AudioListener dela só fica ligado quando nenhum capítulo traz o seu (um único ouvinte por estado).")] Camera bootCamera;
 
         readonly List<string> problems = new List<string>();
         SessionClock clock;
@@ -39,8 +43,17 @@ namespace Abandoned.SpaceApps.Integration
         SubtitlePresenter subtitles;
         MarsChapterBindings mars;
         MarsLabelOverlay labels;
+        ShellServices shell;
+        ChapterSceneLoader loader;
+        AudioListener bootListener;
+        FocusPause focusPause;
+        IChapterBindings bindings;
+        readonly Dictionary<string, IChapterBindings> chapterBindings = new Dictionary<string, IChapterBindings>();
+        float listenerCheckAt;
 
         public ChapterDirector Director => director;
+        public ChapterCatalog Catalog => catalog;
+        public SettingsStore Settings => settings;
         public MissionHUD Hud => hud;
         public IReadOnlyList<string> Problems => problems;
 
@@ -52,7 +65,8 @@ namespace Abandoned.SpaceApps.Integration
             interactions.Initialize(router, clock);
             evidence = new EvidenceStore();
             director = gameObject.AddComponent<ChapterDirector>();
-            director.Initialize(clock, router, null, evidence);
+            loader = new ChapterSceneLoader { BeforeStart = PrepareChapterScene };
+            director.Initialize(clock, router, loader, evidence);
             settings = new SettingsStore();
             settings.Load();
 
@@ -68,7 +82,7 @@ namespace Abandoned.SpaceApps.Integration
                             problems.AddRange(localization.AddTable(cueTexts, table.name + " (falas)"));
                     }
             localization.ApplySettings(settings.Current);
-            settings.Changed += data => ApplyLanguage();
+            settings.Changed += OnSettingsChanged;
 
             if (audioDirectorPrefab != null)
             {
@@ -88,6 +102,18 @@ namespace Abandoned.SpaceApps.Integration
             if (subtitleLayerPrefab != null)
             {
                 subtitles = Instantiate(subtitleLayerPrefab, transform).GetComponentInChildren<SubtitlePresenter>(true);
+                // Acima do HUD (5), abaixo da pausa (8) e do dossiê (10): a legenda nunca cobre um menu.
+                var subtitleDocument = subtitles.GetComponentInParent<UIDocument>();
+                if (subtitleDocument != null)
+                    subtitleDocument.sortingOrder = 6f;
+                // Legenda de todos os capítulos que usam esta camada (Marte, Pioneer 10) no formato do Surveyor 3: faixa larga, fundo a 50%, texto creme.
+                var host = subtitleDocument != null ? subtitleDocument.rootVisualElement?.Q("subtitle-host") : null;
+                var style = Resources.Load<StyleSheet>("GameSubtitles");
+                if (host != null && style != null)
+                {
+                    host.styleSheets.Add(style);
+                    host.AddToClassList("game-subtitles");
+                }
                 subtitles.Initialize(localization, null);
             }
             else
@@ -107,33 +133,141 @@ namespace Abandoned.SpaceApps.Integration
 
             pause = Instantiate(pauseMenuPrefab, transform).GetComponentInChildren<PauseMenu>(true);
             pause.Initialize(director, router, settings, hud);
-            gameObject.AddComponent<FocusPause>().Initialize(pause.Controller, director, audioDirector);
+            focusPause = gameObject.AddComponent<FocusPause>();
+            focusPause.Initialize(pause.Controller, director, audioDirector);
 
             dossier = Instantiate(dossierPrefab, transform).GetComponentInChildren<DossierScreen>(true);
             dossier.Initialize(director, settings, router, catalog);
 
+            shell = new ShellServices
+            {
+                Director = director,
+                Clock = clock,
+                Router = router,
+                Interactions = interactions,
+                Evidence = evidence,
+                Settings = settings,
+                Localization = localization,
+                Hud = hud,
+                Subtitles = subtitles,
+                Audio = audioDirector,
+                SetPauseSuspended = SetPauseSuspended,
+            };
+            Register(new PioneerBindings(shell));
+            Register(new SurveyorBindings(shell));
+
+            if (bootCamera != null)
+                bootListener = bootCamera.GetComponent<AudioListener>();
+            // Logo depois de qualquer cena abrir (inclusive a Opportunity, que Marte carrega sozinho) e antes do próximo quadro de áudio.
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            director.StateChanged += OnStateChanged;
             director.ChapterStarted += OnChapterStarted;
             director.ChapterUnloading += OnChapterUnloading;
             director.LoadFailed += message => Debug.LogError("[GameHost] " + message);
             director.OpenDossier();
+            ArbitrateAudioListener();
         }
 
-        /// <summary>Capítulos que sempre aparecem em inglês, independentemente do idioma escolhido (os outros seguem as configurações).</summary>
-        static readonly string[] EnglishOnlyChapters = { "mars" };
+        void Register(IChapterBindings entry) => chapterBindings[entry.ChapterId] = entry;
+
+        /// <summary>Gancho do carregador: roda antes do primeiro Start da cena que abriu (o Surveyor precisa dos serviços antes dele).</summary>
+        void PrepareChapterScene(string sceneName, Scene scene)
+        {
+            var chapter = director.Current;
+            if (chapter != null && chapterBindings.TryGetValue(chapter.ChapterId, out var entry))
+                entry.Prepare(scene);
+        }
+
+        void OnSettingsChanged(SettingsData data)
+        {
+            ApplyLanguage();
+            bindings?.OnSettingsChanged(data);
+        }
+
+        /// <summary>O Boot suspende a própria pausa enquanto um capítulo traz outra (o P seria tratado duas vezes e se anularia).</summary>
+        void SetPauseSuspended(bool value)
+        {
+            if (pause != null)
+                pause.gameObject.SetActive(!value);
+            if (focusPause != null)
+                focusPause.enabled = !value;
+        }
+
+        void OnStateChanged(AppState state) => ArbitrateAudioListener();
+
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode) => ArbitrateAudioListener();
+
+        void OnDestroy() => SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        /// <summary>
+        /// Antes de descarregar o capítulo: o ouvinte do Boot volta e os do capítulo (que vão ser destruídos) desligam no mesmo instante,
+        /// para não haver um quadro sem ouvinte nem dois.
+        /// </summary>
+        void HandBackAudioListener()
+        {
+            if (bootListener == null)
+                return;
+
+            foreach (var listener in FindObjectsByType<AudioListener>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+            {
+                if (listener != bootListener)
+                    listener.enabled = false;
+            }
+
+            bootListener.enabled = true;
+        }
+
+        void Update()
+        {
+            // Marte troca de câmera no meio do capítulo (abertura para Opportunity): reavalia o único AudioListener algumas vezes por segundo.
+            if (Time.unscaledTime < listenerCheckAt)
+                return;
+
+            listenerCheckAt = Time.unscaledTime + 0.25f;
+            ArbitrateAudioListener();
+        }
+
+        /// <summary>
+        /// Um único AudioListener ativo por estado: o do Boot fica ligado no dossiê e nos capítulos que não trazem ouvinte (a abertura de
+        /// Marte) e desliga assim que um capítulo ativa o seu.
+        /// </summary>
+        void ArbitrateAudioListener()
+        {
+            if (bootListener == null)
+                return;
+
+            var chapterHasListener = false;
+            foreach (var listener in FindObjectsByType<AudioListener>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+            {
+                if (listener != bootListener && listener.enabled)
+                {
+                    chapterHasListener = true;
+                    break;
+                }
+            }
+
+            if (bootListener.enabled == chapterHasListener)
+                bootListener.enabled = !chapterHasListener;
+        }
+
         string runningChapter;
 
-        void ApplyLanguage()
-        {
-            if (runningChapter != null && System.Array.IndexOf(EnglishOnlyChapters, runningChapter) >= 0)
-                localization.SetLanguage(SettingsData.English);
-            else
-                localization.ApplySettings(settings.Current);
-        }
+        /// <summary>Os três capítulos seguem o idioma escolhido nas configurações (inglês na primeira abertura).</summary>
+        void ApplyLanguage() => localization.ApplySettings(settings.Current);
 
         void OnChapterStarted(string chapterId)
         {
             runningChapter = chapterId;
             ApplyLanguage();
+            if (chapterBindings.TryGetValue(chapterId, out var entry))
+            {
+                bindings = entry;
+                if (!entry.Bind())
+                    bindings = null;
+                ArbitrateAudioListener();
+                return;
+            }
+
             if (chapterId != "mars")
                 return;
 
@@ -155,7 +289,22 @@ namespace Abandoned.SpaceApps.Integration
             mars.Flow.StepStarted += OnMarsStep;
             mars.Flow.StepEnded += OnMarsStepEnded;
             guidance?.SetMovementProbe(() => mars != null ? mars.Rover.DrivenMeters : 0f);
-            labels = new MarsLabelOverlay(hud.BottomColumn, localization.Resolver, mars);
+            // Letreiros da abertura no sistema visual do jogo: título como carimbo da legenda e nomes do globo em placa (como as outras sondas).
+            var subtitleHost = subtitles.GetComponentInParent<UIDocument>()?.rootVisualElement?.Q("subtitle-host");
+            labels = new MarsLabelOverlay(hud.BottomColumn, localization.Resolver, mars, subtitleHost, key => { titleStamp = key; ApplyStamp(); });
+            ArbitrateAudioListener();
+        }
+
+        string stepStamp, titleStamp;
+
+        /// <summary>Carimbo da legenda: o letreiro de tela visível (título da cena) ou, sem ele, o carimbo da etapa.</summary>
+        void ApplyStamp()
+        {
+            var key = titleStamp ?? stepStamp;
+            if (string.IsNullOrEmpty(key))
+                subtitles.ClearStamp();
+            else
+                subtitles.SetStamp(key);
         }
 
         void OnMarsStep(MarsChapterFlow.StepBinding binding)
@@ -164,10 +313,8 @@ namespace Abandoned.SpaceApps.Integration
             if (binding.StepId == "M07" && guidance != null)
                 guidance.BeginTutorial("mars.tutorial", new GuidanceOptions { InteractCandidateId = "mars.tutorial.inspect", HelpAvailable = true, CorridorAvailable = false }, force: true);
 
-            if (string.IsNullOrEmpty(binding.StampKey))
-                subtitles.ClearStamp();
-            else
-                subtitles.SetStamp(binding.StampKey);
+            stepStamp = binding.StampKey;
+            ApplyStamp();
 
             if (binding.IsCinematic || string.IsNullOrEmpty(binding.ObjectiveKey))
             {
@@ -226,6 +373,14 @@ namespace Abandoned.SpaceApps.Integration
         {
             runningChapter = null;
             ApplyLanguage();
+            stepStamp = titleStamp = null;
+            HandBackAudioListener();
+            if (bindings != null)
+            {
+                bindings.Unbind();
+                bindings = null;
+            }
+
             if (mars == null)
                 return;
 

@@ -1,0 +1,17 @@
+{
+    "unity": "6000.6.7f1",
+    "note": "Medição do Editor em Play Mode (não é o navegador): contagem de cenas e ouvintes são válidas; memória é só referência.",
+    "samples": [
+        {
+            "label": "dossier-start",
+            "state": "Dossier",
+            "sceneCount": 1,
+            "scenes": "Boot",
+            "audioListeners": 1,
+            "evidence": 0,
+            "managedBytes": 28631040,
+            "totalAllocatedBytes": 480511505
+        }
+    ],
+    "chapterIds": []
+}

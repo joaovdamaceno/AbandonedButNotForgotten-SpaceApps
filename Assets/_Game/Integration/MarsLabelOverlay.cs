@@ -13,7 +13,7 @@ namespace Abandoned.SpaceApps.Integration
     {
         sealed class Entry
         {
-            public Label Label;
+            public VisualElement Label;
             public MarsLandingLabelAnchor Anchor;
             /// <summary>Ponto do globo ao qual o letreiro fica preso (Meridiani, Gusev); nulo para letreiros de tela.</summary>
             public Transform Marker;
@@ -26,14 +26,26 @@ namespace Abandoned.SpaceApps.Integration
         readonly Dictionary<int, List<MarsLandingLabel>> visibleByOwner = new Dictionary<int, List<MarsLandingLabel>>();
         MarsOriginDirector origin;
         readonly Camera camera;
+        readonly bool styled;
+        readonly Action<string> titleChanged;
+        string title;
 
-        public MarsLabelOverlay(VisualElement host, Func<string, string> textResolver, MarsChapterBindings bindings)
+        /// <param name="styledHost">Contêiner com as folhas de estilo do jogo (camada de legenda). Com ele, os nomes presos aos marcadores usam a
+        /// placa e a fonte de carimbo do sistema visual, e os letreiros de tela viram o carimbo da legenda (<paramref name="titleChanged"/>),
+        /// como nos outros capítulos. Sem ele, o desenho antigo vale como reserva.</param>
+        public MarsLabelOverlay(VisualElement host, Func<string, string> textResolver, MarsChapterBindings bindings,
+            VisualElement styledHost = null, Action<string> titleChanged = null)
         {
             text = textResolver;
             camera = bindings.SceneCamera;
+            styled = styledHost != null;
+            this.titleChanged = titleChanged;
             layer.style.position = Position.Absolute;
             layer.style.left = layer.style.top = layer.style.right = layer.style.bottom = 0f;
-            host.panel.visualTree.Add(layer);
+            if (styled)
+                styledHost.Add(layer);
+            else
+                host.panel.visualTree.Add(layer);
             origin = UnityEngine.Object.FindFirstObjectByType<MarsOriginDirector>(FindObjectsInactive.Include);
             Watch(0, origin != null, h => origin.LabelsChanged += h, h => origin.LabelsChanged -= h);
             Watch(1, bindings.Landing != null, h => bindings.Landing.LabelsChanged += h, h => bindings.Landing.LabelsChanged -= h);
@@ -87,17 +99,41 @@ namespace Abandoned.SpaceApps.Integration
             foreach (var entry in entries)
                 entry.Label.RemoveFromHierarchy();
             entries.Clear();
+            string newTitle = null;
             foreach (var pair in visibleByOwner)
             {
                 foreach (var label in pair.Value)
                 {
-                    var element = new Label(text(label.TextKey)) { pickingMode = PickingMode.Ignore };
-                    element.style.position = Position.Absolute;
-                    element.style.color = new Color(0.96f, 0.94f, 0.9f);
-                    element.style.fontSize = 26f;
-                    element.style.unityFontStyleAndWeight = FontStyle.Bold;
-                    element.style.whiteSpace = WhiteSpace.NoWrap;
                     var marker = origin != null ? origin.MarkerOf(label.TextKey) : null;
+                    if (styled && titleChanged != null && marker == null)
+                    {
+                        // Letreiro de tela: vira o carimbo da legenda (mesmo formato de data/lugar das outras sondas).
+                        newTitle ??= label.TextKey;
+                        continue;
+                    }
+
+                    VisualElement element;
+                    if (styled)
+                    {
+                        element = new VisualElement { pickingMode = PickingMode.Ignore };
+                        element.AddToClassList("sa-plate");
+                        var name = new Label(text(label.TextKey)) { pickingMode = PickingMode.Ignore };
+                        name.AddToClassList("sa-stamp");
+                        name.AddToClassList("sa-stamp--hud");
+                        name.style.whiteSpace = WhiteSpace.NoWrap;
+                        element.Add(name);
+                    }
+                    else
+                    {
+                        var plain = new Label(text(label.TextKey)) { pickingMode = PickingMode.Ignore };
+                        plain.style.color = new Color(0.96f, 0.94f, 0.9f);
+                        plain.style.fontSize = 26f;
+                        plain.style.unityFontStyleAndWeight = FontStyle.Bold;
+                        plain.style.whiteSpace = WhiteSpace.NoWrap;
+                        element = plain;
+                    }
+
+                    element.style.position = Position.Absolute;
                     var entry = new Entry { Label = element, Anchor = label.Anchor, Marker = marker != null ? marker.transform.parent : null };
                     Place(entry);
                     if (entry.Marker != null)
@@ -105,6 +141,12 @@ namespace Abandoned.SpaceApps.Integration
                     layer.Add(element);
                     entries.Add(entry);
                 }
+            }
+
+            if (newTitle != title)
+            {
+                title = newTitle;
+                titleChanged?.Invoke(title);
             }
         }
 

@@ -40,6 +40,8 @@
                 <ui:Label name="year-note" picking-mode="Ignore" class="pio-hud__note" />
             </ui:VisualElement>
 
+            <!-- Coluna da direita: os instrumentos e o medidor de energia dos RTG, juntos (teste de jogo: a energia tinha um quadro enorme só para ela). -->
+            <ui:VisualElement name="side-column" picking-mode="Ignore" class="pio-hud__side">
             <ui:VisualElement name="instruments" picking-mode="Ignore" class="sa-plate pio-hud__instruments">
                 <ui:Label name="instruments-title" picking-mode="Ignore" class="pio-hud__title" />
                 <ui:VisualElement name="inst-0" picking-mode="Ignore" class="pio-hud__inst">
@@ -76,12 +78,26 @@
                     <ui:Label name="energy-jupiter" picking-mode="Ignore" class="pio-hud__marklabel pio-hud__marklabel--jupiter" />
                 </ui:VisualElement>
             </ui:VisualElement>
+            </ui:VisualElement>
 
             <ui:VisualElement name="timeline" picking-mode="Ignore" class="pio-hud__timeline">
                 <ui:VisualElement name="timeline-line" picking-mode="Ignore" class="pio-hud__tline" />
                 <ui:VisualElement name="timeline-ticks" picking-mode="Ignore" class="pio-hud__ticks" />
                 <ui:VisualElement name="timeline-marker" picking-mode="Ignore" class="pio-hud__marker" />
             </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Cena 2 · O cinturão: contador de dias, data, rótulo da pedra solitária e a nota da distância. -->
+        <ui:VisualElement name="belt-counter" picking-mode="Ignore" class="sa-plate pio-hud__bcounter">
+            <ui:Label name="belt-day" picking-mode="Ignore" class="pio-hud__bday" />
+            <ui:Label name="belt-date" picking-mode="Ignore" class="pio-hud__bdate" />
+        </ui:VisualElement>
+        <ui:VisualElement name="belt-line" picking-mode="Ignore" class="pio-hud__bline" />
+        <ui:Label name="belt-label" picking-mode="Ignore" class="pio-hud__blabel" />
+        <ui:VisualElement name="earth-line" picking-mode="Ignore" class="pio-hud__bline" />
+        <ui:Label name="earth-label" picking-mode="Ignore" class="pio-hud__blabel" />
+        <ui:VisualElement name="belt-note-plate" picking-mode="Ignore" class="sa-plate pio-hud__bnote">
+            <ui:Label name="belt-note" picking-mode="Ignore" class="pio-hud__bnotetext" />
         </ui:VisualElement>
 
         <!-- Cena 9 · As seis primeiras vezes: estrelas criadas pela vista, uma por vez, ao redor da sonda. -->

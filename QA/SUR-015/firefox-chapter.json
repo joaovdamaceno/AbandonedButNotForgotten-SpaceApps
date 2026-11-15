@@ -1,0 +1,150 @@
+{
+  "browser": "firefox",
+  "version": "159.0",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "readyMs": 2131,
+  "stages": [
+    "SURVEYOR_STEP Launch active=0.00\n",
+    "SURVEYOR_STEP Cruise active=28.01\n",
+    "SURVEYOR_STEP Descent active=62.65\n",
+    "SURVEYOR_STEP FirstImage active=102.66\n",
+    "SURVEYOR_STEP Observe active=115.99\n",
+    "SURVEYOR_STEP Sample active=152.17\n",
+    "SURVEYOR_STEP Eclipse active=207.11\n",
+    "SURVEYOR_STEP LunarNight active=235.28\n",
+    "SURVEYOR_STEP TimePassage active=252.28\n",
+    "SURVEYOR_STEP ImaginedVisit active=265.28\n",
+    "SURVEYOR_STEP HistoricalReceipt active=297.29\n",
+    "SURVEYOR_STEP End active=309.29\n"
+  ],
+  "completed": [
+    "SURVEYOR_COMPLETE active=315.29\n"
+  ],
+  "metrics": {
+    "totalWASMHeapSize": 187760640,
+    "usedWASMHeapSize": 172366552,
+    "totalJSHeapSize": null,
+    "usedJSHeapSize": null,
+    "pageLoadTime": 2378,
+    "pageLoadTimeToFrame1": 2495,
+    "fps": 129.44410676655076,
+    "movingAverageFps": 129.44410676655076,
+    "assetLoadTime": 953,
+    "webAssemblyStartupTime": 718,
+    "codeDownloadTime": 288,
+    "gameStartupTime": 794,
+    "numJankedFrames": 69
+  },
+  "renderSamples": {
+    "archive": {
+      "frames": 240,
+      "drawMedian": 3.0,
+      "drawP95": 3,
+      "drawMax": 7,
+      "presentationMsMedian": 6.940000000000055
+    },
+    "launch": {
+      "frames": 240,
+      "drawMedian": 8.0,
+      "drawP95": 8,
+      "drawMax": 8,
+      "presentationMsMedian": 6.959999999999127
+    },
+    "pause": {
+      "frames": 240,
+      "drawMedian": 8.0,
+      "drawP95": 12,
+      "drawMax": 12,
+      "presentationMsMedian": 6.959999999999127
+    },
+    "first-image": {
+      "frames": 240,
+      "drawMedian": 60.0,
+      "drawP95": 60,
+      "drawMax": 60,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "observation-0": {
+      "frames": 240,
+      "drawMedian": 62.0,
+      "drawP95": 62,
+      "drawMax": 63,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "observation-1": {
+      "frames": 240,
+      "drawMedian": 99.0,
+      "drawP95": 100,
+      "drawMax": 101,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "observation-2": {
+      "frames": 240,
+      "drawMedian": 64.0,
+      "drawP95": 64,
+      "drawMax": 65,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "soil": {
+      "frames": 240,
+      "drawMedian": 54.0,
+      "drawP95": 54,
+      "drawMax": 98,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "eclipse": {
+      "frames": 240,
+      "drawMedian": 23.0,
+      "drawP95": 23,
+      "drawMax": 23,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "imagined-notice": {
+      "frames": 240,
+      "drawMedian": 59.0,
+      "drawP95": 59,
+      "drawMax": 59,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "glove": {
+      "frames": 240,
+      "drawMedian": 83.0,
+      "drawP95": 85,
+      "drawMax": 85,
+      "presentationMsMedian": 6.959999999962747
+    },
+    "archive-photo": {
+      "frames": 240,
+      "drawMedian": 10.0,
+      "drawP95": 10,
+      "drawMax": 10,
+      "presentationMsMedian": 6.949999999982538
+    },
+    "memorial": {
+      "frames": 240,
+      "drawMedian": 10.0,
+      "drawP95": 10,
+      "drawMax": 10,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "returned": {
+      "frames": 240,
+      "drawMedian": 5.0,
+      "drawP95": 5,
+      "drawMax": 5,
+      "presentationMsMedian": 6.940000000002328
+    }
+  },
+  "drawCallMethod": "WebGL draw entrypoints per presentation callback, including UI and TV. Not GPU profiler timings.",
+  "returnDiagnosticAvailable": true,
+  "canvasAt4K": {
+    "width": 1280,
+    "height": 720
+  },
+  "errors": [],
+  "network": "localhost unthrottled cold",
+  "automation": "Real key events. Headless GPU browser. No state skipping. Not novice timing or integrated-GPU certification."
+}

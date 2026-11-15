@@ -116,7 +116,7 @@ namespace Abandoned.SpaceApps.Opportunity
             var s=chapter.Stage;var j=chapter.journey;var p=j.photography;var fieldStudy=chapter.investigation;bool drive=s==ChapterStage.Exploration||s==ChapterStage.HeatShieldExploration||j.FinalAct;
             endActions.style.opacity=Mathf.Clamp01((chapter.Elapsed-2)/1.5f);endActions.pickingMode=s==ChapterStage.ChapterEnd&&chapter.Elapsed>2?PickingMode.Position:PickingMode.Ignore;foreach(var button in endActions.Children())button.SetEnabled(chapter.Elapsed>2);
             Show(end,s==ChapterStage.ChapterEnd);Show(flight,drive&&!fieldStudy.Active&&!p.Active);Show(field,fieldStudy.Active);if(fieldStudy.Active)UpdateField();Show(science,s==ChapterStage.RockAnalysis);Show(cinema,chapter.Cinematic);Show(photo,p.Active);
-            UpdateSplit();
+            UpdateSplit();ApplyPlateScale();
             // Antes da primeira observação: perto da rocha das esferas, um aviso no meio da tela.
             var act=chapter.interactions?chapter.interactions.Current:default;
             bool explore=act.Valid&&act.Available&&act.Id=="berries"&&!fieldStudy.Active&&!chapter.Paused;
@@ -148,6 +148,20 @@ namespace Abandoned.SpaceApps.Opportunity
             splitTopName.text=Localization.Get("v15.split.spirit");splitTopPlace.text=Localization.Get("v15.split.spirit.place");
             splitBottomName.text=Localization.Get("v15.split.opportunity");splitBottomPlace.text=Localization.Get("v15.split.opportunity.place");
             splitNote.text="";Show(splitNote,false);
+        }
+        // A cena usa outra escala de interface (1920×1080, meio a meio entre largura e altura); as placas de legenda são medidas na escala
+        // da abertura (1280×720 pela altura) para ficarem do mesmo tamanho em qualquer resolução.
+        void ApplyPlateScale()
+        {
+            float w=Mathf.Max(1,Screen.width),h=Mathf.Max(1,Screen.height);
+            float hud=Mathf.Pow(2,Mathf.Lerp(Mathf.Log(w/1920f,2),Mathf.Log(h/1080f,2),.5f)),plate=h/720f,k=plate/Mathf.Max(.01f,hud);
+            foreach(var e in new VisualElement[]{caption,notification,exploreHint})
+            {
+                var st=e.style;st.fontSize=24*k;st.paddingLeft=st.paddingRight=16*k;st.paddingTop=st.paddingBottom=8*k;
+                st.borderTopLeftRadius=st.borderTopRightRadius=st.borderBottomLeftRadius=st.borderBottomRightRadius=0;
+            }
+            // Legenda no formato do Surveyor 3: faixa a 13% das laterais e 6,5% da base, na largura toda.
+            var c=caption.style;c.left=Length.Percent(13);c.right=Length.Percent(13);c.bottom=Length.Percent(6.5f);c.translate=new Translate(0,0);c.maxWidth=StyleKeyword.None;c.width=StyleKeyword.Auto;
         }
         bool s_IsLanding()=>chapter.Stage==ChapterStage.Landing;
         string GoalFor(FieldStudy study)=>study==FieldStudy.Berries||study==FieldStudy.Meteorite?"v15.goal.1":study==FieldStudy.None?null:null;

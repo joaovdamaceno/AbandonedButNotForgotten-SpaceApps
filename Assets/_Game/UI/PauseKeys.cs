@@ -15,8 +15,6 @@ namespace Abandoned.SpaceApps.UI
         public const string ResumeHint = "pause.resume.hint";
         public const string Settings = "pause.settings";
         public const string Back = "pause.back";
-        public const string FullscreenEnter = "pause.fullscreen.enter";
-        public const string FullscreenExit = "pause.fullscreen.exit";
         public const string Restart = "pause.restart";
         public const string RestartConfirm = "pause.restart.confirm";
         public const string Dossier = "pause.dossier";
@@ -33,6 +31,7 @@ namespace Abandoned.SpaceApps.UI
         public const string LanguageEn = "prefs.language.en";
         public const string Sensitivity = "prefs.sensitivity";
         public const string ReducedMotion = "prefs.reducedMotion";
+        public const string Fullscreen = "prefs.fullscreen";
         public const string Quality = "prefs.quality";
         public const string QualityValue = "prefs.quality.value";
         public const string On = "prefs.on";
@@ -45,10 +44,10 @@ namespace Abandoned.SpaceApps.UI
         /// <summary>Todas as chaves, para o teste de conteúdo.</summary>
         public static readonly string[] All =
         {
-            Button, KeyHint, Title, SubtitleMenu, SubtitleFocus, Resume, ResumeHint, Settings, Back, FullscreenEnter,
-            FullscreenExit, Restart, RestartConfirm, Dossier, DossierConfirm, Navigation,
+            Button, KeyHint, Title, SubtitleMenu, SubtitleFocus, Resume, ResumeHint, Settings, Back,
+            Restart, RestartConfirm, Dossier, DossierConfirm, Navigation,
             SettingsTitle, VolumeMaster, VolumeMusic, VolumeSfx, VolumeUi, Language, LanguagePt, LanguageEn, Sensitivity,
-            ReducedMotion, Quality, QualityValue, On, Off, Previous, Next, Reset, Saved,
+            ReducedMotion, Fullscreen, Quality, QualityValue, On, Off, Previous, Next, Reset, Saved,
         };
     }
 }

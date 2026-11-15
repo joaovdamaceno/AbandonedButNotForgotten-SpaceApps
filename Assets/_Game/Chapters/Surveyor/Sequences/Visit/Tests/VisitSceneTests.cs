@@ -17,7 +17,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.VisitTests
             EditorSceneManager.OpenScene(SurveyorVisitBuilder.PreviewScene);yield return new EnterPlayMode();
             var host=Object.FindAnyObjectByType<SurveyorVisitPreview>();host.Initialize();host.Clock.enabled=false;host.Begin();
             var position=host.Sequence.CameraDirector.TargetCamera.transform.position;
-            Advance(host,2);Assert.That(host.Flow.ShowWorld,Is.False);Assert.That(host.Subtitles.CurrentText,Does.Contain("nunca chegou a transmitir"));
+            Advance(host,2);Assert.That(host.Flow.ShowWorld,Is.False);Assert.That(host.Subtitles.CurrentText,Does.Contain("never got to transmit"));
             Advance(host,6);yield return Capture(host,"intrepid-19-nov");
             Assert.That(host.Document.rootVisualElement.Q<Label>("date").text,Does.StartWith("19 NOV 1969"));
             Advance(host,4);yield return Capture(host,"intrepid-landed");

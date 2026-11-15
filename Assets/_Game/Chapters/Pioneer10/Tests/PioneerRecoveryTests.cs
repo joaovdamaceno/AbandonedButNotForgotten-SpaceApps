@@ -276,9 +276,8 @@ namespace Abandoned.SpaceApps.Tests
         {
             var cues = imaging.Sequence.Cues.ToDictionary(c => c.TextKey);
             Assert.That(cues["PIO.04.06"].StartSeconds, Is.EqualTo(38f), "a revelação começa em 38 s");
-            Assert.That(38f + HistoricalImageReveal.JupiterAtSeconds, Is.EqualTo(cues["PIO.04.07"].StartSeconds), "Júpiter com a legenda que fala de Io");
-            Assert.That(38f + HistoricalImageReveal.GanymedeAtSeconds, Is.EqualTo(cues["PIO.04.08"].StartSeconds), "Ganimedes com a legenda de Ganimedes");
-            Assert.That(38f + HistoricalImageReveal.GanymedeAtSeconds + HistoricalImageReveal.FadeSeconds, Is.LessThan(cues["PIO.04.09"].EndSeconds));
+            Assert.That(38f + HistoricalImageReveal.JupiterAtSeconds, Is.EqualTo(cues["PIO.04.07"].StartSeconds), "a foto real de Júpiter entra com a legenda 'Fotografia real, 1973'");
+            Assert.That(38f + HistoricalImageReveal.JupiterAtSeconds + HistoricalImageReveal.FadeSeconds, Is.LessThan(cues["PIO.04.09"].EndSeconds));
         }
 
         [Test]
@@ -288,11 +287,11 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(HistoricalImageReveal.Evaluate(HistoricalImageReveal.JupiterAtSeconds - 0.01f).Visible, Is.False);
             var mid = HistoricalImageReveal.Evaluate(HistoricalImageReveal.JupiterAtSeconds + 0.5f);
             Assert.That(mid.Jupiter, Is.EqualTo(0.5f).Within(0.01f), "crossfade de 1 s");
-            Assert.That(mid.IoLost, Is.True);
+            Assert.That(mid.IoLost, Is.False, "a foto perdida de Io saiu desta cena: é contada na cena 5, depois da radiação");
 
             var done = HistoricalImageReveal.Evaluate(HistoricalImageReveal.GanymedeAtSeconds + HistoricalImageReveal.FadeSeconds);
-            Assert.That((done.Jupiter, done.Ganymede, done.Frame), Is.EqualTo((1f, 1f, 1f)));
-            Assert.That(done.IoLost, Is.False, "Io é lembrada só enquanto Júpiter está à vista");
+            Assert.That((done.Jupiter, done.Ganymede, done.Frame), Is.EqualTo((1f, 0f, 1f)), "só a foto real de Júpiter; a de Ganimedes não aparece mais aqui");
+            Assert.That(done.IoLost, Is.False);
 
             var previous = HistoricalImageReveal.Evaluate(0f);
             var direction = 0;
@@ -371,11 +370,14 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(uxml, Does.Not.Contain("text=\""), "textos por chave: nenhuma frase literal no UXML");
             var css = File.ReadAllText("Assets/_Game/Chapters/Pioneer10/UI/HistoricalImageReveal.uss");
             var panelCss = File.ReadAllText("Assets/_Game/Chapters/Pioneer10/UI/ImagingPanel.uss");
-            foreach (var geometry in new[] { "left: 53%;", "top: 12%;", "width: 43%;", "height: 76%;" })
+            foreach (var geometry in new[] { "left: 53%;", "width: 43%;" })
             {
                 Assert.That(css, Does.Contain(geometry), geometry);
                 Assert.That(panelCss, Does.Contain(geometry), geometry);
             }
+
+            // Teste de jogo: o quadro da foto real ficava sob a legenda. Ele agora termina em 77% da altura (7% + 70%), acima da legenda.
+            Assert.That(css, Does.Contain("top: 7%;").And.Contain("height: 70%;"), "a foto real termina acima da legenda");
 
             Assert.That(css, Does.Not.Contain("animation"), "sem animação por USS");
             Assert.That(File.ReadAllText("Assets/_Game/Chapters/Pioneer10/UI/ImagingRecovery.uss"), Does.Not.Contain("animation"));

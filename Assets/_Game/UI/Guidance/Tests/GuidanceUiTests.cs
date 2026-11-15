@@ -53,6 +53,7 @@ namespace Abandoned.SpaceApps.Tests
 
             settings = new SettingsStore(new MemoryStorage());
             settings.Load();
+            settings.Apply(s => s.languageCode = SettingsData.Portuguese); // o padrão do jogo é inglês; estes testes conferem o texto em português
             guidance = host.AddComponent<UI.GuidanceController>();
             guidance.Initialize(router, service, null, null, settings);
 

@@ -15,40 +15,80 @@ MonoBehaviour:
   sequenceId: PIO_Plaque
   shots:
   - shotId: PIO05.Arrive
-    durationSeconds: 7.5
-    rigId: PIO.Plaque
+    durationSeconds: 17.5
+    rigId: PIO.Plaque.Board
     lookAtTargetId: 
     easing: 1
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0.3, y: 0, z: -0.5}
+      positionMeters: {x: -0.6, y: 0.5, z: -1.8}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 36
-    - timeSeconds: 7.5
+      fieldOfViewDegrees: 30
+    - timeSeconds: 3.8
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 36
+      fieldOfViewDegrees: 30
+    - timeSeconds: 12
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 17.5
+      positionMeters: {x: -0.78, y: 1.5899999, z: 6.684103}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
     events:
     - timeSeconds: 0
       eventId: PIO.Plaque.Arrive
   - shotId: PIO05.Fit
     durationSeconds: 20
-    rigId: PIO.Plaque
+    rigId: PIO.Plaque.Board
     lookAtTargetId: 
-    easing: 0
+    easing: 1
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 0}
+      positionMeters: {x: -0.78, y: 1.5899999, z: 6.684103}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 36
+      fieldOfViewDegrees: 30
+    - timeSeconds: 3.4
+      positionMeters: {x: -0.78, y: 1.5899999, z: 6.834103}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 4.2000003
+      positionMeters: {x: -0.53999996, y: 0.089999996, z: 4.892719}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 7.4
+      positionMeters: {x: -0.53999996, y: 0.089999996, z: 5.042719}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 8.2
+      positionMeters: {x: 0, y: -1.5, z: 6.146688}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 11.4
+      positionMeters: {x: 0, y: -1.5, z: 6.296688}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 12.2
+      positionMeters: {x: 0.65999997, y: 1.5899999, z: 6.684103}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 15.4
+      positionMeters: {x: 0.65999997, y: 1.5899999, z: 6.834103}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 16.199999
+      positionMeters: {x: 0.9, y: 0.089999996, z: 7.0423803}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
     - timeSeconds: 20
-      positionMeters: {x: 0, y: 0, z: 0.1}
+      positionMeters: {x: 0.9, y: 0.089999996, z: 7.1923804}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 36
+      fieldOfViewDegrees: 30
     events:
     - timeSeconds: 0
       eventId: PIO.Plaque.Activity
@@ -56,20 +96,20 @@ MonoBehaviour:
       eventId: PIO.Plaque.Gate
   - shotId: PIO05.Reveal
     durationSeconds: 5.5
-    rigId: PIO.Plaque
+    rigId: PIO.Plaque.Board
     lookAtTargetId: 
     easing: 1
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 0}
+      positionMeters: {x: 0.9, y: 0.089999996, z: 7.1923804}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 36
+      fieldOfViewDegrees: 30
     - timeSeconds: 5.5
-      positionMeters: {x: 0, y: 0, z: -1.2}
+      positionMeters: {x: 0, y: 0, z: -0.8}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 44
+      fieldOfViewDegrees: 30
     events:
     - timeSeconds: 0
       eventId: PIO.Plaque.Reveal
@@ -77,7 +117,23 @@ MonoBehaviour:
   - cueId: PIO.05.01
     textKey: PIO.05.01
     startSeconds: 0
-    endSeconds: 7.3
+    endSeconds: 5.9
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.05.01b
+    textKey: PIO.05.01b
+    startSeconds: 6
+    endSeconds: 11.7
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.05.01c
+    textKey: PIO.05.01c
+    startSeconds: 11.8
+    endSeconds: 17.2
     triggerId: 
     minimumReadSeconds: 0
     position: 0
@@ -95,7 +151,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.Pulsars
-    minimumReadSeconds: 3.7
+    minimumReadSeconds: 4.6
     position: 0
     priority: 0
   - cueId: PIO.05.04
@@ -103,7 +159,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.SolarSystem
-    minimumReadSeconds: 3.9
+    minimumReadSeconds: 4.5
     position: 0
     priority: 0
   - cueId: PIO.05.05
@@ -111,7 +167,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.PioneerScale
-    minimumReadSeconds: 3.6
+    minimumReadSeconds: 4.6
     position: 0
     priority: 0
   - cueId: PIO.05.06
@@ -124,8 +180,8 @@ MonoBehaviour:
     priority: 0
   - cueId: PIO.05.07
     textKey: PIO.05.07
-    startSeconds: 27.7
-    endSeconds: 33
+    startSeconds: 37.7
+    endSeconds: 43
     triggerId: 
     minimumReadSeconds: 0
     position: 0

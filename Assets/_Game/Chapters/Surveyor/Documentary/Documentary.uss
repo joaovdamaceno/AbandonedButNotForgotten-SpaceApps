@@ -1,0 +1,48 @@
+#documentary { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgb(4,6,7); color: rgb(232,227,210); }
+#documentary { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Regular.ttf"); }
+#date, #tool-state { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf"); }
+#title { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Medium.ttf"); }
+#picture { position: absolute; -unity-background-scale-mode: stretch-to-fill; }
+#film-top, #film-bottom { position: absolute; left: 0; right: 0; height: 5%; background-color: rgb(3,4,5); }
+#film-top { top: 0; } #film-bottom { bottom: 0; }
+.instrument #film-top, .instrument #film-bottom { display: none; }
+#mission-heading { position: absolute; left: 6%; top: 8%; max-width: 75%; border-left-width: 2px; border-left-color: rgb(177,160,116); padding-left: 16px; }
+#date { font-size: 14px; letter-spacing: 3px; color: rgb(194,186,163); }
+#title { font-size: 27px; letter-spacing: 2px; margin-top: 5px; -unity-font-style: normal; }
+#pause { position: absolute; right: 3%; top: 7%; width: 42px; height: 35px; background-color: rgba(8,12,14,.65); color: rgb(225,222,209); border-width: 1px; border-color: rgba(200,198,180,.25); border-radius: 2px; font-size: 18px; }
+#instrument-controls { position: absolute; right: 4%; top: 22%; max-width: 28%; padding: 14px 18px; background-color: rgba(7,13,15,.88); border-left-width: 2px; border-left-color: rgb(160,182,159); }
+#objective { font-size: 20px; white-space: normal; -unity-font-style: bold; }
+#hint { font-size: 18px; white-space: normal; margin-top: 8px; color: rgb(196,206,190); }
+#tool-state { font-size: 12px; margin-top: 10px; white-space: normal; color: rgb(161,179,161); }
+#action { background-color: rgba(195,202,182,.09); color: rgb(227,231,212); border-width: 1px; border-color: rgba(178,193,169,.35); border-radius: 2px; margin-top: 11px; padding: 8px 12px; white-space: normal; font-size: 15px; }
+#tool-cursor { position: absolute; width: 28px; height: 28px; border-width: 1px; border-color: rgb(212,223,195); border-radius: 15px; display: none; }
+#subtitle-host { position: absolute; left: 13%; right: 13%; bottom: 6.5%; align-items: center; }
+#archive-photo { position: absolute; left: 21%; right: 21%; top: 18%; bottom: 20%; -unity-background-scale-mode: scale-to-fit; background-color: rgb(4,6,7); display: none; }
+#photo-credit { position: absolute; left: 18%; right: 18%; bottom: 16%; -unity-text-align: middle-center; color: rgb(184,181,169); font-size: 12px; display: none; white-space: normal; }
+.sa-subtitle-layer--hosted { width: 100%; align-items: center; }
+.sa-subtitle { width: 100%; max-width: 100%; padding: 8px 16px; background-color: rgba(4,6,7,.50); }
+.sa-subtitle--hidden { display: none; }
+.sa-subtitle__text { width: 100%; font-size: 24px; white-space: normal; -unity-text-align: middle-center; color: rgb(238,235,220); }
+#credits { display: none; color: rgb(196,192,177); background-color: transparent; border-width: 0; font-size: 16px; margin-top: 10px; }
+.ended #mission-heading { left: 15%; right: 15%; top: 32%; max-width: 70%; align-items: center; border-left-width: 0; padding-left: 0; }
+.ended #title { font-size: 54px; letter-spacing: 8px; }
+.ended #date { font-size: 18px; letter-spacing: 4px; }
+.ended #instrument-controls { top: auto; bottom: 12%; left: 25%; right: 25%; max-width: 50%; background-color: transparent; border-left-width: 0; align-items: center; }
+.ended #pause { display: none; }
+.ended #credits { display: flex; }
+#credits-panel { display: none; position: absolute; left: 18%; right: 18%; top: 14%; bottom: 14%; padding: 28px; background-color: rgb(12,17,19); border-width: 1px; border-color: rgb(90,101,94); }
+#credits-title { font-size: 26px; margin-bottom: 18px; }
+#credits-body { font-size: 17px; white-space: normal; color: rgb(208,211,197); }
+#credits-close { margin-top: 16px; padding: 9px; color: rgb(228,228,210); background-color: rgb(35,44,42); }
+#glass { display: none; position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-width: 9px; border-radius: 22px; border-left-color: rgb(44,47,43); border-top-color: rgb(53,57,50); border-right-color: rgb(18,21,19); border-bottom-color: rgb(12,16,13); }
+.instrument #glass { display: flex; }
+.ended #glass { display: none; }
+#drag-guide { position: absolute; height: 2px; background-color: rgba(217,225,191,.65); display: none; }
+#drag-guide Label { position: absolute; right: -5px; top: -20px; font-size: 30px; color: rgb(233,232,196); }
+#work-progress { flex-direction: row; align-items: center; margin-top: 14px; }
+#work-rail { height: 5px; flex-grow: 1; background-color: rgb(47,58,51); margin-right: 9px; }
+#work-fill { height: 5px; width: 0; background-color: rgb(186,200,158); }
+#work-label { font-size: 15px; width: 42px; color: rgb(205,213,187); }
+.tool-contact #tool-cursor { background-color: rgba(241,218,155,.32); border-width: 3px; border-color: rgb(241,218,155); }
+.work-ready #work-fill { background-color: rgb(189,218,165); }
+.work-ready #action { background-color: rgb(67,85,61); border-color: rgb(196,214,168); }

@@ -98,10 +98,10 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void JupiterWearsTheNasaTextureCopiedByteForByteFromTheStoredOriginal()
+        public void JupiterWearsTheTextureCopiedByteForByteFromTheStoredOriginal()
         {
             var original = System.IO.File.ReadAllBytes(PioneerStageBuilder.JupiterSourcePath);
-            Assert.That(System.IO.File.ReadAllBytes(PioneerStageBuilder.JupiterTexturePath), Is.EqualTo(original), "a cópia em Assets é o arquivo da NASA, sem edição");
+            Assert.That(System.IO.File.ReadAllBytes(PioneerStageBuilder.JupiterTexturePath), Is.EqualTo(original), "a cópia em Assets é o arquivo original, sem edição");
             var texture = presentation.Jupiter.GetComponent<MeshRenderer>().sharedMaterial.GetTexture("_BaseMap");
             Assert.That(UnityEditor.AssetDatabase.GetAssetPath(texture), Is.EqualTo(PioneerStageBuilder.JupiterTexturePath));
         }

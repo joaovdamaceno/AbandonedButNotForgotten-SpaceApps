@@ -65,7 +65,7 @@
                 <ui:Button text="Som e texto" class="sa-button sa-button--link" />
                 <ui:Button text="Créditos e fontes" class="sa-button sa-button--link" />
             </ui:VisualElement>
-            <ui:Label text="Produção educativa independente · sem afiliação ou endosso da NASA" class="sa-stamp sa-dossier__disclaimer" />
+            <ui:Label text="Produção educativa independente" class="sa-stamp sa-dossier__disclaimer" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

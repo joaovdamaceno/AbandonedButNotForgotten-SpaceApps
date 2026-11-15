@@ -1,0 +1,199 @@
+/* Roteiro v2, cena 4 · jogo da foto em ponto de vista. Usa tokens e componentes da UI-001; só o que é específico fica aqui. */
+
+.pio-spin {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    --pio-red: #E0563F;
+    --pio-blue: #4E8FE0;
+}
+
+/* A mira é desenhada por código (Painter2D) sobre a tela inteira. */
+.pio-spin__reticle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* O clarão da foto: branco, some em meio segundo (a opacidade vem do estado). */
+.pio-spin__flash {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(255, 255, 255);
+    opacity: 0;
+}
+
+/* ---------- Quadros ---------- */
+
+.pio-spin__film {
+    position: absolute;
+    left: 3%;
+    top: 12%;
+    padding: var(--sa-space-3);
+    flex-direction: column;
+}
+
+.pio-spin__film-title {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    -unity-font-style: bold;
+    margin: 0 0 var(--sa-space-2) 0;
+    padding: 0;
+}
+
+.pio-spin__row { flex-direction: row; margin-bottom: var(--sa-space-2); }
+
+.pio-spin__thumb {
+    width: 84px;
+    height: 84px;
+    margin-right: var(--sa-space-2);
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-sm);
+    background-color: rgba(10, 12, 16, 0.55);
+    background-size: 100% 100%;
+    opacity: 0.45;
+}
+
+.pio-spin__thumb--filled { opacity: 1; }
+.pio-spin__thumb--use { border-color: var(--sa-color-focus); border-width: 4px; }
+.pio-spin__thumb--red { border-bottom-color: var(--pio-red); }
+.pio-spin__thumb--blue { border-bottom-color: var(--pio-blue); }
+
+/* O canal também aparece no glifo (quadrado = vermelho, círculo = azul), não só na cor. */
+.pio-spin__glyph {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+}
+
+.pio-spin__glyph--red { background-color: var(--pio-red); }
+.pio-spin__glyph--blue { background-color: var(--pio-blue); border-radius: 50%; }
+
+/* ---------- Barra da volta e prompt ---------- */
+
+.pio-spin__aim {
+    position: absolute;
+    left: 27%;
+    right: 27%;
+    bottom: 17%; /* acima da faixa da legenda: o aviso "Toque E" ficava atrás dela */
+    flex-direction: column;
+    align-items: center;
+}
+
+.pio-spin__shot {
+    font-size: var(--sa-text-title);
+    color: var(--sa-color-on-plate);
+    -unity-font-style: bold;
+    margin: 0 0 var(--sa-space-2) 0;
+    padding: var(--sa-space-1) var(--sa-space-4);
+    background-color: rgba(16, 17, 19, 0.82);
+    border-radius: var(--sa-radius-md);
+}
+
+.pio-spin__track {
+    width: 100%;
+    height: 36px;
+    margin-bottom: var(--sa-space-3);
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-sm);
+    background-color: rgba(16, 17, 19, 0.82);
+}
+
+.pio-spin__zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 45%;
+    width: 10%;
+    border-width: 3px;
+    border-color: var(--sa-color-on-plate);
+    background-color: rgba(233, 199, 112, 0.22);
+}
+
+.pio-spin__zone--active { border-color: var(--sa-color-focus); background-color: rgba(255, 209, 102, 0.45); }
+.pio-spin__zone--wide { border-width: 5px; }
+.pio-spin__zone--captured { border-color: var(--sa-color-confirm); background-color: rgba(143, 217, 154, 0.35); }
+
+.pio-spin__cursor {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    width: 8px;
+    margin-left: -4px;
+    background-color: var(--sa-color-on-plate);
+}
+
+.pio-spin__cursor--in { background-color: var(--sa-color-focus); }
+
+.pio-spin__prompt { margin: 0; }
+
+/* Toque fora da janela: só um contorno, sem punição nem piscar. */
+.pio-spin__prompt--outside { border-color: var(--sa-color-warn); }
+
+/* ---------- Junção ---------- */
+
+.pio-spin__combine {
+    position: absolute;
+    left: 50%;
+    top: 46%;
+    translate: -50% -50%;
+    padding: var(--sa-space-4);
+    flex-direction: column;
+    align-items: center;
+}
+
+.pio-spin__composite {
+    width: 320px;
+    height: 320px;
+    border-width: 3px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-md);
+    background-color: rgb(4, 5, 8);
+    background-size: 100% 100%;
+}
+
+.pio-spin__sum {
+    font-size: var(--sa-text-title);
+    color: var(--sa-color-on-plate);
+    -unity-font-style: bold;
+    margin: var(--sa-space-3) 0 var(--sa-space-2) 0;
+    padding: 0;
+}
+
+.pio-spin__noise { flex-direction: row; align-items: center; width: 320px; }
+
+.pio-spin__noise-label {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0 var(--sa-space-3) 0 0;
+    padding: 0;
+    width: 80px;
+}
+
+.pio-spin__noise-track {
+    flex-grow: 1;
+    height: 14px;
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-sm);
+    background-color: rgba(16, 17, 19, 0.82);
+}
+
+.pio-spin__noise-fill {
+    height: 100%;
+    width: 100%;
+    background-color: var(--sa-color-focus);
+}

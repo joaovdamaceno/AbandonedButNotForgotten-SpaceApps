@@ -50,12 +50,47 @@ namespace Abandoned.SpaceApps
 
         SequenceDirector director;
         Func<string, string> text;
+        bool[] lastOn;
+
+        /// <summary>Um instrumento acabou de ser desligado no HUD (o som de desligamento): no máximo um aviso por quadro.</summary>
+        public event Action InstrumentSwitchedOff;
 
         public void Initialize(SequenceDirector sequenceDirector, Func<string, string> textResolver)
         {
             director = sequenceDirector;
             text = textResolver;
             Hide();
+        }
+
+        /// <summary>Onde o mapa fica no quadro (entre o medidor de instrumentos e o de energia, abaixo do ano).</summary>
+        public static readonly Rect MapFrame = new Rect(0.30f, 0.21f, 0.40f, 0.52f);
+        /// <summary>A sonda se afasta do Sol a cerca de 2,6 UA por ano depois de Júpiter (5,2 UA no fim de 1973): bate com Saturno em 1976, Urano em 1979 e Netuno em 1983.</summary>
+        public const float AuPerYear = 2.6f;
+        public const float JupiterAu = 5.2f;
+
+        /// <summary>Distância da sonda ao Sol (UA) no ano dado; estilizada e coerente com os marcos reais do roteiro.</summary>
+        public static float ProbeAuAt(float year) => Mathf.Max(JupiterAu, JupiterAu + AuPerYear * (year - JupiterYear));
+
+        /// <summary>O mapa da cena 7: a sonda cruza as órbitas de Saturno (1976), Urano (1979) e Netuno (13 jun 1983), e a órbita cruzada pulsa.</summary>
+        public static SystemMapElement.State MapStateAt(float seconds, Func<string, string> resolve)
+        {
+            var year = YearAt(seconds);
+            var ev = EventAt(year);
+            return new SystemMapElement.State
+            {
+                Mode = SystemMapElement.MapMode.Outer,
+                ProbeAu = ProbeAuAt(year),
+                PathStartAu = JupiterAu,
+                PathEndAu = SystemMapElement.OuterMaxAu * 0.96f,
+                ShowPath = true,
+                PulseRing = ev switch { YearsEvent.Saturn => 1, YearsEvent.Uranus => 2, YearsEvent.Neptune => 3, _ => -1 },
+                Pulse01 = Mathf.Repeat(seconds, 1.4f) / 1.4f,
+                Labels = new[] { resolve("PIO.UI.orbit_jupiter"), resolve("PIO.UI.orbit_saturn"), resolve("PIO.UI.orbit_uranus"), resolve("PIO.UI.orbit_neptune") },
+                // Menos informação na cena dos anos (teste de jogo): sem título, nota "sem escala" nem rótulo da sonda; ficam só os nomes das órbitas.
+                Title = string.Empty,
+                Footnote = string.Empty,
+                ProbeLabel = string.Empty,
+            };
         }
 
         /// <summary>O ano (com fração) mostrado no instante <paramref name="seconds"/> da sequência.</summary>
@@ -170,14 +205,45 @@ namespace Abandoned.SpaceApps
         /// <summary>Desenha o HUD como no instante <paramref name="seconds"/> (sem ler a sequência).</summary>
         public void Apply(float seconds)
         {
-            if (hud != null)
-                hud.SetYears(true, StateAt(seconds, Resolve));
+            if (hud == null)
+                return;
+
+            var state = StateAt(seconds, Resolve);
+            hud.SetYears(true, state);
+            NotifyInstrumentChanges(state.InstrumentOn);
+
         }
 
         public void Hide()
         {
-            if (hud != null)
-                hud.SetYears(false, default);
+            if (hud == null)
+                return;
+
+            hud.SetYears(false, default);
+            lastOn = null; // a próxima exibição recomeça com todos ligados, sem avisos
+
+        }
+
+        void NotifyInstrumentChanges(bool[] on)
+        {
+            if (on == null)
+                return;
+            if (lastOn == null)
+            {
+                lastOn = (bool[])on.Clone();
+                return;
+            }
+
+            var switchedOff = false;
+            for (var i = 0; i < on.Length && i < lastOn.Length; i++)
+            {
+                if (lastOn[i] && !on[i])
+                    switchedOff = true;
+                lastOn[i] = on[i];
+            }
+
+            if (switchedOff)
+                InstrumentSwitchedOff?.Invoke();
         }
 
         string Resolve(string key)

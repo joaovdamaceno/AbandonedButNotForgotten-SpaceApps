@@ -139,7 +139,7 @@ namespace Abandoned.SpaceApps.Tests
             }
 
             Assert.That(rigs.Distinct().Count(), Is.GreaterThanOrEqualTo(4), "quatro enquadramentos diferentes: antena, placa, plano aberto e a Pioneer diminuindo");
-            Assert.That(rigs.Take(5), Is.EqualTo(new[] { "PIO.Listening", "PIO.Launch.Reveal", "PIO.Plaque", "PIO.Farewell", "PIO.Outbound" }));
+            Assert.That(rigs.Take(5), Is.EqualTo(new[] { "PIO.Listening", "PIO.Launch.Reveal", "PIO.Plaque", "PIO.Farewell", "PIO.Farewell.Away" }));
             Assert.That(sequence.Cues.Select(c => (c.CueId, c.StartSeconds, c.EndSeconds)), Is.EqualTo(new[]
             {
                 ("PIO.08.01", 0f, 8f), ("PIO.08.02", 9f, 17f), ("PIO.08.03", 18f, 26f), ("PIO.08.04", 27f, 35f),
