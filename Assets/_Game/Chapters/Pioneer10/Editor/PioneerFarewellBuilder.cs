@@ -127,11 +127,11 @@ namespace Abandoned.SpaceApps.EditorTools
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0.05f, PioneerFarewellActivity.EventGuide) }),
                 new ShotDefinition("PIO08.Receding", 10f, "PIO.Outbound",
-                    new[] { Key(0f, Vector3.zero, 40f), Key(10f, new Vector3(-2.5f, -0.6f, 13f), 38f) },
+                    new[] { Key(0f, Vector3.zero, 40f), Key(10f, new Vector3(-2.5f, -0.6f, -25f), 38f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0.05f, PioneerFarewellActivity.EventGuideEnd) }),
                 new ShotDefinition("PIO08.Memorial", 8f, "PIO.Outbound",
-                    new[] { Key(0f, Vector3.zero, 38f), Key(8f, new Vector3(-0.4f, -0.1f, 2f), 38f) },
+                    new[] { Key(0f, Vector3.zero, 38f), Key(8f, new Vector3(-3f, -0.8f, -32f), 36f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f, continueFromPreviousShot: true,
                     events: new[] { new ShotEvent(0.05f, PioneerFarewellActivity.EventMemorial), new ShotEvent(6f, PioneerFarewellActivity.EventChoices) }),
             };
