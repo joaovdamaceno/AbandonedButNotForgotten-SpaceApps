@@ -313,7 +313,7 @@ namespace Abandoned.SpaceApps.Tests
                 Assert.That(sequence, Is.Not.Null);
                 director.Play(sequence, false);
                 var seenText = new List<string>();
-                for (var t = 0f; t < 39f; t += 0.1f)
+                for (var t = 0f; t < sequence.TotalDurationSeconds; t += 0.1f)
                 {
                     director.Tick(0.1f);
                     var expected = sequence.Cues.FirstOrDefault(c => !c.IsTriggered && director.TimeSeconds >= c.StartSeconds + 0.05f && director.TimeSeconds < c.EndSeconds - 0.05f);

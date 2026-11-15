@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Abandoned.SpaceApps
 {
     /// <summary>
-    /// Roteiro v2, cena 7 · Os anos (só cinema). Lê o relógio da sequência <c>PIO_Outbound</c> (39 s) e desenha no
+    /// Roteiro v2, cena 7 · Os anos (só cinema). Lê o relógio da sequência <c>PIO_Outbound</c> (55 s) e desenha no
     /// <see cref="CinemaHudView"/>: o ano em destaque correndo de 1974 a 1998, com pausa nos marcos reais (distância orbital de Saturno
     /// em 1976, de Urano em 1979, de Netuno em 13 de junho de 1983, o fim do acompanhamento de rotina em 31 de março de 1997 e a
     /// Voyager 1 em 1998); a linha do tempo; os ícones dos instrumentos, que apagam em turnos; e o medidor de energia dos RTG, com as
@@ -34,8 +34,8 @@ namespace Abandoned.SpaceApps
         /// <summary>Instantes da sequência e o ano correspondente: o relógio fica parado nos marcos e anda entre eles.</summary>
         static readonly (float seconds, float year)[] Schedule =
         {
-            (0f, 1974f), (2.5f, SaturnYear), (4.5f, SaturnYear), (6f, UranusYear), (8f, UranusYear), (11f, NeptuneYear), (16f, NeptuneYear),
-            (24f, TrackingEndYear), (26f, TrackingEndYear), (27f, VoyagerYear), (39f, VoyagerYear),
+            (0f, 1974f), (3f, SaturnYear), (7f, SaturnYear), (9f, UranusYear), (13f, UranusYear), (16f, NeptuneYear), (24f, NeptuneYear),
+            (38f, TrackingEndYear), (40f, TrackingEndYear), (42f, VoyagerYear), (55f, VoyagerYear),
         };
 
         /// <summary>Anos com marco real, desenhados mais altos e com o número na linha do tempo.</summary>

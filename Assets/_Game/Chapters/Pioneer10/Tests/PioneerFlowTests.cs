@@ -205,7 +205,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(chapter.Validate(), Is.Empty);
             Assert.That(chapter.ChapterId, Is.EqualTo("pioneer10"), "igual ao slot do dossiê");
             Assert.That(chapter.SceneName, Is.EqualTo("Pioneer10"));
-            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(401f));
+            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(417f));
 
             var order = new List<string>();
             var cursor = chapter.InitialStepId;
@@ -243,7 +243,7 @@ namespace Abandoned.SpaceApps.Tests
                 total += sequence.TotalDurationSeconds;
             }
 
-            Assert.That(total, Is.EqualTo(401f).Within(0.01f), "soma nominal do capítulo");
+            Assert.That(total, Is.EqualTo(417f).Within(0.01f), "soma nominal do capítulo");
             Assert.That(controller.JupiterSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.03.01", "PIO.03.02", "PIO.03.03", "PIO.03.04" }));
             Assert.That(controller.ClosestSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.09.01", "PIO.09.02", "PIO.09.03", "PIO.09.04", "PIO.09.05", "PIO.09.06", "PIO.09.07" }));
         }
@@ -458,7 +458,7 @@ namespace Abandoned.SpaceApps.Tests
 
             // Cena 7: a priorização da comunicação corre sozinha.
             SetE(false);
-            Run(30f);
+            Run(36f); // a priorização abre em 28 s e leva 3 s
             Assert.That(router.DescribeLeases(), Does.Not.Contain("PIO.Outbound.Power"));
             Assert.That(outbound.HoldDone || completed.Contains("PIO.Outbound") || controller.CurrentState == "PIO.Listening", Is.True);
         }
