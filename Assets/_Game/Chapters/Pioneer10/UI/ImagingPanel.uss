@@ -24,6 +24,20 @@
     flex-direction: column;
 }
 
+/* ---------- Passo (roteiro v2) ---------- */
+
+.pio-img__step {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0 0 var(--sa-space-2) 0;
+    padding: 0;
+    -unity-font-style: bold;
+    display: none;
+}
+
+.pio-img--steps .pio-img__step { display: flex; }
+.pio-img--steps .pio-img__track { display: none; }
+
 /* ---------- Canais ---------- */
 
 .pio-img__channels { flex-direction: row; margin-bottom: var(--sa-space-3); }

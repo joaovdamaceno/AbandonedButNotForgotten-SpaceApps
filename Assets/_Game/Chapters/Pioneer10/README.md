@@ -359,3 +359,14 @@ O roteiro v2 tem só duas interações (a foto e a sintonia de rádio); o lança
 | `PIO.Outbound` | `OutboundAtlas.CinemaMode`: a priorização da comunicação corre sozinha em 3 s; o painel esconde o prompt de E |
 
 O padrão das atividades é a versão interativa (os testes de cada uma seguem iguais); o controlador liga `CinemaMode` ao inicializar. **Limitações:** as durações dos estados não mudaram (a retemporização para os tempos do roteiro fica para a fase 4); no cinturão a fantasia de 15 s agora é só a legenda "Imagine o medo..." sobre o plano 3D da sonda, sem a arena nem o selo; a placa e o cartão de energia ainda são os painéis 2D da atividade, não cinema 3D.
+
+## Roteiro v2, fase 3 (PIO-020): as duas interações, simplificadas
+
+| Interação | Como corre agora |
+| --- | --- |
+| **Foto** (`PIO.Imaging`) | `PioneerImaging.ThreeStepMode`: passo 1/3 segurar E gira a sonda e as quatro faixas vermelhas entram (2 s de E por faixa, 8 s por cor); passo 2/3, um toque de E troca para azul e segurar E gira de novo (quatro faixas azuis); passo 3/3, um toque de E junta as duas imagens (8/8, `AllStripsCaptured`). Sem janela de fase e sem passagem perdida; o E que já estava mantido ao mudar de passo não vale como toque (é preciso soltar). Sem E por 12 s a ajuda gira sozinha, sem punição. **Não há radiação nem recuperação nesta cena** (a radiação é da cena 5 e só aparece nas legendas) |
+| **Escuta** (`PIO.Listening`) | `PioneerListening.SingleRound`: só o primeiro contato (3 MAR 2002) pede o botão e o E; depois dele os controles somem (sem lease, sem candidato); o segundo, o terceiro e a quarta tentativa sem sinal chegam sozinhos nos marcos da sequência, com as mesmas legendas e eventos de estado |
+
+O painel da foto ganhou o rótulo "Passo n/3" e prompts por passo (`PIO.UI.step`, `spin`, `switch_blue`, `combine`, PT-BR e EN) e esconde o cursor de fase na versão nova; as quatro legendas 04.02–04.05 foram reescritas para a história de três passos. O padrão das duas atividades continua sendo a versão antiga (os testes de cada uma seguem iguais) e o controlador liga os modos novos.
+
+**Limitações.** As durações não mudaram (74 s e 52 s; o roteiro quer 45 s e 40 s, ver `Docs/Chapters/PioneerV2/FASES.md`). A atividade de recuperação (`ImagingRecovery`) continua no código e nos testes, mas o capítulo não a inicia. O painel mostra oito faixas de imagem (quatro por cor), não duas imagens inteiras que se sobrepõem: a "montagem" de Júpiter é a existente. Quadros do painel renderizados com as chaves no lugar do texto (a captura não resolve idioma); Play Mode com a UI e teste humano não foram exercitados.

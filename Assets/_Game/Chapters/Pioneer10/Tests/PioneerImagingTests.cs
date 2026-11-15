@@ -109,6 +109,60 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void TheThreeStepPhotoNeedsTwoHoldsAndTwoTapsAndNeverTheRadiationInterruption()
+        {
+            imaging.ThreeStepMode = true;
+            imaging.Begin();
+            RunUntil(() => imaging.Phase == ImagingPhase.Sweep);
+            Assert.That(imaging.Step, Is.EqualTo(ImagingStep.Red));
+            Assert.That(imaging.ViewState().StepNumber, Is.EqualTo(1));
+
+            // Passo 1/3: E mantido gira; quatro faixas vermelhas em 8 s.
+            Press(keyboard.eKey);
+            RunUntil(() => imaging.Step == ImagingStep.SwitchToBlue);
+            Assert.That(imaging.CapturedCount, Is.EqualTo(PioneerImaging.ChannelStripCount));
+            Assert.That(strips.All(s => s.channel == ImagingChannel.Red), Is.True);
+            Run(3f); // E continua mantido: o E antigo não troca o filtro sozinho
+            Assert.That(imaging.Step, Is.EqualTo(ImagingStep.SwitchToBlue), "é preciso soltar e tocar");
+            Release(keyboard.eKey);
+            Run(1f);
+            Assert.That(imaging.Step, Is.EqualTo(ImagingStep.SwitchToBlue), "esperar não troca por tempo");
+            Assert.That(imaging.ViewState().StepNumber, Is.EqualTo(2));
+
+            // Passo 2/3: um toque troca para azul; E mantido gira e entram as quatro faixas azuis.
+            Press(keyboard.eKey);
+            Release(keyboard.eKey);
+            Step(1f / 30f);
+            Assert.That(imaging.Step, Is.EqualTo(ImagingStep.Blue));
+            Press(keyboard.eKey);
+            RunUntil(() => imaging.Step == ImagingStep.Combine);
+            Release(keyboard.eKey);
+            Assert.That(imaging.CapturedCount, Is.EqualTo(PioneerImaging.StripCount));
+            Assert.That(strips.Skip(4).All(s => s.channel == ImagingChannel.Blue), Is.True);
+            Assert.That(assembled, Is.Zero, "as oito faixas não bastam: falta juntar");
+            Assert.That(imaging.ViewState().StepNumber, Is.EqualTo(3));
+
+            // Passo 3/3: um toque junta as duas imagens.
+            Press(keyboard.eKey);
+            Release(keyboard.eKey);
+            Step(1f / 30f);
+            Assert.That(imaging.Phase, Is.EqualTo(ImagingPhase.Assembled));
+            Assert.That((interruptions, recoveries, assembled), Is.EqualTo((0, 0, 1)), "sem radiação nesta cena; 8/8 dispara uma vez");
+        }
+
+        [Test]
+        public void TheThreeStepPhotoSpinsByItselfAfterTwelveIdleSecondsWithoutPunishment()
+        {
+            imaging.ThreeStepMode = true;
+            imaging.Begin();
+            RunUntil(() => imaging.Phase == ImagingPhase.Sweep);
+            Run(12f + 8.5f); // 12 s sem E; depois a ajuda gira sozinha pelas quatro faixas (8 s)
+            Assert.That(imaging.Step, Is.EqualTo(ImagingStep.SwitchToBlue));
+            Assert.That(imaging.CapturedCount, Is.EqualTo(PioneerImaging.ChannelStripCount));
+            Assert.That(imaging.MissedPasses, Is.Zero, "não há passagem perdida nesta versão");
+        }
+
+        [Test]
         public void LearningShowsTheCursorButRecordsNothing()
         {
             imaging.Begin();
