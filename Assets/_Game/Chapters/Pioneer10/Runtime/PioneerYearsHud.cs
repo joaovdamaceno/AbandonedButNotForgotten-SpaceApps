@@ -50,7 +50,6 @@ namespace Abandoned.SpaceApps
 
         SequenceDirector director;
         Func<string, string> text;
-        bool mapShown;
 
         public void Initialize(SequenceDirector sequenceDirector, Func<string, string> textResolver)
         {
@@ -205,8 +204,7 @@ namespace Abandoned.SpaceApps
                 return;
 
             hud.SetYears(true, StateAt(seconds, Resolve));
-            hud.SetSystemMap(true, MapStateAt(seconds, Resolve), MapFrame);
-            mapShown = true;
+
         }
 
         public void Hide()
@@ -215,9 +213,7 @@ namespace Abandoned.SpaceApps
                 return;
 
             hud.SetYears(false, default);
-            if (mapShown)
-                hud.SetSystemMap(false, default, MapFrame); // o mapa é compartilhado com o contador do cinturão
-            mapShown = false;
+
         }
 
         string Resolve(string key)

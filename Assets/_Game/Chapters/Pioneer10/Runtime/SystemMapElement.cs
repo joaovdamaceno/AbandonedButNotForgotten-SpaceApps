@@ -30,6 +30,11 @@ namespace Abandoned.SpaceApps
             /// <summary>Rótulos, na ordem das órbitas do modo (interno: Terra, Marte, cinturão, Júpiter; externo: Júpiter, Saturno, Urano, Netuno).</summary>
             public string[] Labels;
             public string Title, Footnote, ProbeLabel;
+            /// <summary>Modo 3D: só os rótulos, sobre o Sistema Solar do palco (sem fundo e sem desenho 2D).</summary>
+            public bool Overlay;
+            /// <summary>Posição de cada rótulo no quadro (0–1, origem em cima à esquerda), na ordem de <see cref="Labels"/>.</summary>
+            public Vector2[] LabelViewport;
+            public Vector2 ProbeViewport;
         }
 
         /// <summary>Distâncias médias ao Sol em UA: Terra, Marte, Júpiter, Saturno, Urano, Netuno.</summary>
@@ -62,7 +67,7 @@ namespace Abandoned.SpaceApps
             pickingMode = PickingMode.Ignore;
             style.display = DisplayStyle.None;
             style.position = Position.Absolute;
-            style.backgroundColor = new Color(0.03f, 0.04f, 0.06f, 0.95f);
+            style.backgroundColor = new Color(0f, 0f, 0f, 0f); // transparente: o mapa de verdade é o Sistema Solar 3D do palco
             style.borderTopLeftRadius = style.borderTopRightRadius = style.borderBottomLeftRadius = style.borderBottomRightRadius = 10;
 
             var random = new System.Random(7202);
@@ -83,6 +88,11 @@ namespace Abandoned.SpaceApps
             title.style.top = 10;
             footnote.style.left = 14;
             footnote.style.bottom = 8;
+            title.style.textShadow = new TextShadow { offset = new Vector2(1f, 1f), blurRadius = 3f, color = Color.black };
+            footnote.style.textShadow = title.style.textShadow;
+            probeLabel.style.textShadow = title.style.textShadow;
+            foreach (var label in labels)
+                label.style.textShadow = title.style.textShadow;
             probeLabel.style.color = Amber;
             generateVisualContent += Draw;
             RegisterCallback<GeometryChangedEvent>(_ => PlaceLabels());
@@ -135,6 +145,12 @@ namespace Abandoned.SpaceApps
 
         void PlaceLabels()
         {
+            if (state.Overlay)
+            {
+                PlaceOverlayLabels();
+                return;
+            }
+
             var center = Center(out var outer);
             var rings = state.Mode == MapMode.Inner ? InnerAu : OuterAu;
             for (var i = 0; i < labels.Length && i < rings.Length; i++)
@@ -150,8 +166,34 @@ namespace Abandoned.SpaceApps
             probeLabel.style.top = probe.y - 22f;
         }
 
+        void PlaceOverlayLabels()
+        {
+            var rect = contentRect;
+            for (var i = 0; i < labels.Length; i++)
+            {
+                if (state.LabelViewport == null || i >= state.LabelViewport.Length)
+                    continue;
+                var at = state.LabelViewport[i];
+                labels[i].style.left = at.x * rect.width + 10f;
+                labels[i].style.top = at.y * rect.height - 26f;
+            }
+
+            probeLabel.style.left = state.ProbeViewport.x * rect.width + 16f;
+            probeLabel.style.top = state.ProbeViewport.y * rect.height - 34f;
+            // Cena 7: o cartão do ano ocupa o alto do quadro; título e nota ficam logo abaixo dele. Cena 2: no alto.
+            var titleTop = state.Mode == MapMode.Outer ? rect.height * 0.235f : 10f;
+            title.style.left = rect.width * 0.5f - 160f;
+            title.style.top = titleTop;
+            footnote.style.left = rect.width * 0.5f - 200f;
+            footnote.style.bottom = StyleKeyword.Auto; // acima da faixa da legenda
+            footnote.style.top = titleTop + 36f;
+        }
+
         void Draw(MeshGenerationContext context)
         {
+            if (state.Overlay)
+                return;
+
             var painter = context.painter2D;
             var center = Center(out var outer);
             var rings = state.Mode == MapMode.Inner ? InnerAu : OuterAu;

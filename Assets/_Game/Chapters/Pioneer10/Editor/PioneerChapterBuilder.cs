@@ -89,7 +89,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var slingshotSo = new SerializedObject(slingshot);
             slingshotSo.FindProperty("presentation").objectReferenceValue = presentation;
             slingshotSo.FindProperty("sequence").objectReferenceValue = closest;
-            slingshotSo.FindProperty("probe").objectReferenceValue = presentation.ProbeSpin != null ? presentation.ProbeSpin.parent : null;
+            slingshotSo.FindProperty("jupiterCenter").vector3Value = PioneerStageBuilder.JupiterPosition;
             var points = PioneerStageBuilder.TrajectoryPoints();
             var pathProperty = slingshotSo.FindProperty("path");
             pathProperty.arraySize = points.Length;
@@ -97,6 +97,30 @@ namespace Abandoned.SpaceApps.EditorTools
                 pathProperty.GetArrayElementAtIndex(i).vector3Value = points[i];
             slingshotSo.ApplyModifiedPropertiesWithoutUndo();
             so.FindProperty("slingshot").objectReferenceValue = slingshot;
+            var tour = context.Component<PioneerSystemTour>(context.Child(root, "SystemTour"));
+            var tourSo = new SerializedObject(tour);
+            tourSo.FindProperty("presentation").objectReferenceValue = presentation;
+            tourSo.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();
+            tourSo.FindProperty("beltSequence").objectReferenceValue = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(PioneerBeltBuilder.CinemaSequencePath);
+            tourSo.FindProperty("outboundSequence").objectReferenceValue = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(PioneerOutboundBuilder.SequencePath);
+            tourSo.FindProperty("probe").objectReferenceValue = presentation.ProbeSpin != null ? presentation.ProbeSpin.parent : null;
+            tourSo.FindProperty("center").vector3Value = PioneerStageBuilder.SystemCenter;
+            var systemRoot = presentation.SolarSystem;
+            tourSo.FindProperty("beacon").objectReferenceValue = systemRoot != null ? systemRoot.Find("Beacon") : null;
+            tourSo.FindProperty("beltMarker").objectReferenceValue = systemRoot != null ? systemRoot.Find("BeltMarker") : null;
+            var orbitsProperty = tourSo.FindProperty("orbits");
+            var planetsProperty = tourSo.FindProperty("planets");
+            orbitsProperty.arraySize = PioneerStageBuilder.SystemPlanetNames.Length;
+            planetsProperty.arraySize = PioneerStageBuilder.SystemPlanetNames.Length;
+            for (var i = 0; i < PioneerStageBuilder.SystemPlanetNames.Length; i++)
+            {
+                var orbit = systemRoot != null ? systemRoot.Find("Orbit_" + PioneerStageBuilder.SystemPlanetNames[i]) : null;
+                orbitsProperty.GetArrayElementAtIndex(i).objectReferenceValue = orbit != null ? orbit.GetComponent<LineRenderer>() : null;
+                planetsProperty.GetArrayElementAtIndex(i).objectReferenceValue = systemRoot != null ? systemRoot.Find("Planet_" + PioneerStageBuilder.SystemPlanetNames[i]) : null;
+            }
+
+            tourSo.ApplyModifiedPropertiesWithoutUndo();
+            so.FindProperty("systemTour").objectReferenceValue = tour;
             var closestHud = context.Component<PioneerClosestHud>(context.Child(root, "ClosestHud"));
             var closestHudSo = new SerializedObject(closestHud);
             closestHudSo.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();
@@ -257,10 +281,11 @@ namespace Abandoned.SpaceApps.EditorTools
                     new[] { Key(0f, new Vector3(-70f, 6f, -30f), 60f), Key(14f, new Vector3(70f, -4f, 40f), 72f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, "PIO.Closest.Dive") }),
-                // 5d: o estilingue em tempo acelerado; a câmera acompanha a sonda ampliada (PioneerSlingshot) pela trajetória em volta de Júpiter.
+                // 5d: o estilingue em primeira pessoa e em tempo acelerado; PioneerSlingshot move a pose do anchor pela trajetória em volta de
+                // Júpiter (a câmera é a da sonda) e o campo de visão abre com a velocidade.
                 new ShotDefinition("PIO09.Bend", 14f, "PIO.Closest.Bend",
-                    new[] { Key(0f, Vector3.zero, 52f), Key(14f, new Vector3(0f, 0f, -70f), 58f) },
-                    lookAtTargetId: PioneerPresentation.ProbeTargetId, easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                    new[] { Key(0f, Vector3.zero, 58f), Key(14f, Vector3.zero, 84f) },
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
                 new ShotDefinition("PIO09.Leaving", 10f, "PIO.Outbound",
                     new[] { Key(0f, Vector3.zero, 40f), Key(10f, new Vector3(0f, 0f, -8f), 38f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),

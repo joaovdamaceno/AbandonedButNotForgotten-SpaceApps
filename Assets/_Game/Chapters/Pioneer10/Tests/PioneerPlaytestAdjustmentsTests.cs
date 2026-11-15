@@ -29,41 +29,55 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void TheSlingshotWalksTheWholeTrajectoryAndRestoresTheProbe()
+        public void TheSlingshotCameraRidesTheTrajectoryLookingAheadWithJupiterInView()
         {
-            var points = new[] { new Vector3(0f, 0f, 0f), new Vector3(100f, 0f, 0f), new Vector3(200f, 0f, 100f) };
-            var parent = new GameObject("Probe");
+            var points = new[] { new Vector3(0f, 0f, 0f), new Vector3(100f, 0f, 0f), new Vector3(200f, 0f, 100f), new Vector3(300f, 0f, 400f) };
+            var go = new GameObject("Slingshot");
             try
             {
-                parent.transform.localPosition = new Vector3(1f, 2f, 3f);
-                var slingshot = new GameObject("Slingshot").AddComponent<PioneerSlingshot>();
+                var slingshot = go.AddComponent<PioneerSlingshot>();
                 var so = new SerializedObject(slingshot);
-                so.FindProperty("probe").objectReferenceValue = parent.transform;
                 var path = so.FindProperty("path");
                 path.arraySize = points.Length;
                 for (var i = 0; i < points.Length; i++)
                     path.GetArrayElementAtIndex(i).vector3Value = points[i];
+                var jupiter = new Vector3(150f, 0f, 120f);
+                so.FindProperty("jupiterCenter").vector3Value = jupiter;
                 so.ApplyModifiedPropertiesWithoutUndo();
 
+                Assert.That(slingshot.PositionAtFraction(0f), Is.EqualTo(points[0]));
+                Assert.That(slingshot.PositionAtFraction(1f), Is.EqualTo(points[3]));
                 var start = slingshot.PositionAt(0f);
                 var end = slingshot.PositionAt(1f);
                 Assert.That(Vector3.Distance(points[0], start), Is.GreaterThan(1f), "começa depois do início da linha");
-                Assert.That(Vector3.Distance(points[2], end), Is.GreaterThan(0.1f), "termina antes do fim da linha");
-                Assert.That(slingshot.PositionAtFraction(0f), Is.EqualTo(points[0]));
-                Assert.That(slingshot.PositionAtFraction(1f), Is.EqualTo(points[2]));
+                Assert.That(Vector3.Distance(points[3], end), Is.GreaterThan(0.1f), "termina antes do fim da linha");
 
-                slingshot.Apply(0.5f);
-                Assert.That(slingshot.IsMoved, Is.True);
-                Assert.That(parent.transform.localScale.x, Is.EqualTo(PioneerSlingshot.ProbeScaleFactor).Within(1e-3f), "ampliada para dar para vê-la");
-                slingshot.Hide();
-                Assert.That(slingshot.IsMoved, Is.False);
-                Assert.That(parent.transform.localPosition, Is.EqualTo(new Vector3(1f, 2f, 3f)), "volta ao lugar");
-                Assert.That(parent.transform.localScale, Is.EqualTo(Vector3.one), "e ao tamanho normal");
-                Object.DestroyImmediate(slingshot.gameObject);
+                var previous = -1f;
+                var previousStep = 0f;
+                var travelled = 0f;
+                var last = start;
+                for (var u = 0.1f; u <= 1.0001f; u += 0.1f)
+                {
+                    var position = slingshot.PositionAt(u);
+                    var step = Vector3.Distance(position, last);
+                    Assert.That(step, Is.GreaterThan(previousStep - 1e-3f), "cada passo é maior que o anterior: o tempo acelera");
+                    previousStep = step;
+                    travelled += step;
+                    last = position;
+                    var forward = slingshot.ForwardAt(u);
+                    Assert.That(forward.magnitude, Is.EqualTo(1f).Within(1e-3f));
+                    Assert.That(Vector3.Dot(forward, (jupiter - position).normalized), Is.GreaterThan(0f), "Júpiter fica no hemisfério do olhar (u=" + u + ")");
+                    Assert.That(PioneerSlingshot.FractionAt(u), Is.GreaterThan(previous), "o avanço só cresce");
+                    previous = PioneerSlingshot.FractionAt(u);
+                }
+
+                Assert.That(travelled, Is.GreaterThan(100f), "percorre uma boa parte da linha");
+                Object.DestroyImmediate(go);
             }
             finally
             {
-                Object.DestroyImmediate(parent);
+                if (go != null)
+                    Object.DestroyImmediate(go);
             }
         }
 

@@ -8,13 +8,13 @@
     bottom: 0;
 }
 
-/* Mesmo quadro do painel da varredura (0,53 · 0,12 · 0,43 · 0,76), para cobrir a composição. */
+/* Quadro da foto real: mesma coluna do painel da varredura, mas termina em 77% da altura para NÃO encostar na legenda (teste de jogo). */
 .pio-rev__frame {
     position: absolute;
     left: 53%;
-    top: 12%;
+    top: 7%;
     width: 43%;
-    height: 76%;
+    height: 70%;
     padding: var(--sa-space-4);
     flex-direction: column;
     opacity: 0;

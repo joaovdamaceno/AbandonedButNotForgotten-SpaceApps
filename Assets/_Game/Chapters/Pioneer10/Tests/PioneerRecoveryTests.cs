@@ -371,11 +371,14 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(uxml, Does.Not.Contain("text=\""), "textos por chave: nenhuma frase literal no UXML");
             var css = File.ReadAllText("Assets/_Game/Chapters/Pioneer10/UI/HistoricalImageReveal.uss");
             var panelCss = File.ReadAllText("Assets/_Game/Chapters/Pioneer10/UI/ImagingPanel.uss");
-            foreach (var geometry in new[] { "left: 53%;", "top: 12%;", "width: 43%;", "height: 76%;" })
+            foreach (var geometry in new[] { "left: 53%;", "width: 43%;" })
             {
                 Assert.That(css, Does.Contain(geometry), geometry);
                 Assert.That(panelCss, Does.Contain(geometry), geometry);
             }
+
+            // Teste de jogo: o quadro da foto real ficava sob a legenda. Ele agora termina em 77% da altura (7% + 70%), acima da legenda.
+            Assert.That(css, Does.Contain("top: 7%;").And.Contain("height: 70%;"), "a foto real termina acima da legenda");
 
             Assert.That(css, Does.Not.Contain("animation"), "sem animação por USS");
             Assert.That(File.ReadAllText("Assets/_Game/Chapters/Pioneer10/UI/ImagingRecovery.uss"), Does.Not.Contain("animation"));

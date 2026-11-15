@@ -116,7 +116,7 @@ MonoBehaviour:
   - shotId: PIO09.Bend
     durationSeconds: 14
     rigId: PIO.Closest.Bend
-    lookAtTargetId: PIO.Probe
+    lookAtTargetId: 
     easing: 0
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
@@ -124,11 +124,11 @@ MonoBehaviour:
     - timeSeconds: 0
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 52
-    - timeSeconds: 14
-      positionMeters: {x: 0, y: 0, z: -70}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 58
+    - timeSeconds: 14
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 84
     events: []
   - shotId: PIO09.Leaving
     durationSeconds: 10

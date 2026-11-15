@@ -70,7 +70,6 @@ namespace Abandoned.SpaceApps
 
         SequenceDirector director;
         Func<string, string> text;
-        bool mapShown;
 
         public Vector2 NikeViewport => nikeViewport;
 
@@ -149,19 +148,12 @@ namespace Abandoned.SpaceApps
             var dayText = counter ? Resolve(BeltPanelView.DayKey).Replace("{count}", day.ToString(CultureInfo.InvariantCulture)) : string.Empty;
             var nike = NikeVisibleAt(t);
             var note = NoteVisibleAt(t);
-            var map = MapVisibleAt(t);
-            if (map || mapShown)
-                hud.SetSystemMap(map, map ? MapStateAt(t, Resolve) : default, MapFrame);
-            mapShown = map;
             hud.SetBeltCounter(counter || dateOnly, dayText, DateText(day, months), nike, nike ? Resolve(BeltPanelView.NearestKey) : string.Empty, nikeViewport,
                 note ? Resolve(NoteKey) : string.Empty);
         }
 
         public void Hide()
         {
-            if (hud != null && mapShown)
-                hud.SetSystemMap(false, default, MapFrame); // o mapa é compartilhado com o HUD dos anos: só apaga o que ele mesmo mostrou
-            mapShown = false;
             if (hud != null)
                 hud.SetBeltCounter(false, string.Empty, string.Empty, false, string.Empty, nikeViewport, string.Empty);
         }
