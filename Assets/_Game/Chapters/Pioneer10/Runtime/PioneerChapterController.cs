@@ -142,6 +142,8 @@ namespace Abandoned.SpaceApps
             launch.CinemaMode = true;
             plaque.CinemaMode = true;
             outbound.CinemaMode = true;
+            imaging.ThreeStepMode = true;   // cena 4: a foto em três passos (sem radiação nem recuperação)
+            listening.SingleRound = true;   // cena 8: uma única rodada de sintonia
             launch.Initialize(sequenceDirector, interactions, router, time);
             belt.Initialize(sequenceDirector, interactions, router, time, text);
             imaging.Initialize(sequenceDirector, interactions, router, time, text);

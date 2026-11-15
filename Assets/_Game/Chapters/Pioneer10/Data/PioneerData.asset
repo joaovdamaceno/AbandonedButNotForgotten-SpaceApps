@@ -676,20 +676,20 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.04.03
     group: narrative
-    ptText: "Primeiro a luz vermelha: a imagem come\xE7a a aparecer, uma linha de cada vez."
-    enText: Red light first, and the picture begins to appear, one line at a time.
+    ptText: 'A luz vermelha montou a primeira imagem, linha a linha. Agora o azul: a mesma volta paciente.'
+    enText: 'Red light built the first picture, one line at a time. Now blue: the same patient turning.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.04.04
     group: narrative
-    ptText: "Ent\xE3o a radia\xE7\xE3o de J\xFApiter disparou comandos indevidos no instrumento."
-    enText: "Then Jupiter\u2019s radiation triggered unwanted commands in the instrument."
+    ptText: Uma segunda imagem toma forma, de novo uma linha fina de cada vez.
+    enText: A second picture takes shape, again one thin line at a time.
     ptStatus: derived
     enStatus: derived
   - key: PIO.04.05
     group: narrative
-    ptText: "A equipe enviou sequ\xEAncias de recupera\xE7\xE3o, e a observa\xE7\xE3o continuou."
-    enText: The team sent recovery sequences, and the observing carried on.
+    ptText: Vermelho e azul vieram do instrumento. A terceira cor teria de ser calculada na Terra.
+    enText: Red and blue came from the instrument. The third colour would be worked out on Earth.
     ptStatus: derived
     enStatus: derived
   - key: PIO.04.06
@@ -932,6 +932,30 @@ MonoBehaviour:
     enText: "Hold E \xB7 record this pass {count}/8"
     ptStatus: approved
     enStatus: approved
+  - key: PIO.UI.step
+    group: hud
+    ptText: Passo {count}/3
+    enText: Step {count}/3
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.spin
+    group: hud
+    ptText: "Segure E \xB7 girar"
+    enText: "Hold E \xB7 spin"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.switch_blue
+    group: hud
+    ptText: "E \xB7 trocar para azul"
+    enText: "E \xB7 switch to blue"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.combine
+    group: hud
+    ptText: "E \xB7 juntar as duas imagens"
+    enText: "E \xB7 combine the two pictures"
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.red
     group: instrument
     ptText: Canal vermelho

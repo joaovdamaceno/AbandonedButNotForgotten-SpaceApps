@@ -7,6 +7,9 @@
     <ui:VisualElement name="imaging-root" picking-mode="Ignore" class="sa-root pio-img">
         <ui:VisualElement name="frame" picking-mode="Ignore" class="sa-instrument pio-img__frame">
 
+            <!-- Roteiro v2: "Passo n/3" (só na versão de três passos). -->
+            <ui:Label name="step-label" picking-mode="Ignore" class="pio-img__step" />
+
             <!-- Canais: quadrado = vermelho, círculo = azul (não depende só de cor). -->
             <ui:VisualElement picking-mode="Ignore" class="pio-img__channels">
                 <ui:VisualElement picking-mode="Ignore" class="pio-img__channel pio-img__channel--red">

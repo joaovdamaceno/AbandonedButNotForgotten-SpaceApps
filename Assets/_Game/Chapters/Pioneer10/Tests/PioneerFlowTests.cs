@@ -464,6 +464,27 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void OnlyTheFirstContactAsksForTheKnobAndTheLaterOnesArriveByThemselves()
+        {
+            var contacts = new List<int>();
+            var silences = 0;
+            BeginChapter();
+            OperateUntil(() => controller.CurrentState == "PIO.Listening");
+            listening.ContactMade += n => contacts.Add(n);
+            listening.NoSignalHeard += () => silences++;
+            OperateUntil(() => contacts.Count > 0);
+            SetE(false);
+            Run(1f);
+            Assert.That(contacts, Is.EqualTo(new[] { 1 }));
+            Assert.That(router.DescribeLeases(), Does.Not.Contain("PIO.Listening"), "a única rodada terminou: sem botão e sem lease");
+
+            Run(48f); // nenhuma tecla: o segundo e o terceiro contatos e a tentativa sem sinal chegam nos marcos
+            Assert.That(contacts, Is.EqualTo(new[] { 1, 2, 3 }));
+            Assert.That(silences, Is.EqualTo(1), "a quarta tentativa sem sinal chega uma vez");
+            Assert.That(completed, Does.Contain("PIO.Listening"), "o estado conclui sem outra entrada");
+        }
+
+        [Test]
         public void TheClosestApproachIsCinemaOnlyAndConcludesWhenItsSequenceEnds()
         {
             BeginChapter();

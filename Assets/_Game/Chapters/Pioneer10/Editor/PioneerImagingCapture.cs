@@ -54,6 +54,18 @@ namespace Abandoned.SpaceApps.EditorTools
             ("09_montada_8_de_8", State(ImagingPhase.Assembled, 8, 0.00f, ImagingHoldState.Done), true),
             ("10_rearme_E_ainda_pressionado", State(ImagingPhase.Learn, 0, 0.30f, ImagingHoldState.Rearm), true),
             ("11_pausado_soltou_E", State(ImagingPhase.Sweep, 3, 0.20f, ImagingHoldState.Paused), true),
+            // Roteiro v2 (cena 4): a foto em três passos.
+            ("12_passo1_vermelho_girando", Steps(ImagingStep.Red, 2, 0.5f, ImagingHoldState.Holding), true),
+            ("13_passo2_trocar_para_azul", Steps(ImagingStep.SwitchToBlue, 4, 0f, ImagingHoldState.Available), true),
+            ("14_passo2_azul_girando", Steps(ImagingStep.Blue, 6, 0.3f, ImagingHoldState.Holding), false),
+            ("15_passo3_juntar", Steps(ImagingStep.Combine, 8, 0f, ImagingHoldState.Available), true),
+        };
+
+        static ImagingViewState Steps(ImagingStep step, int captured, float spin, ImagingHoldState hold) => new ImagingViewState
+        {
+            Phase = ImagingPhase.Sweep, Captured = captured, Target = captured, Hold = hold, Holding = hold == ImagingHoldState.Holding,
+            StepsMode = true, Step = step, SpinProgress = spin,
+            StepNumber = step == ImagingStep.Red ? 1 : step == ImagingStep.Combine ? 3 : 2,
         };
 
         static ImagingViewState State(ImagingPhase phase, int captured, float progress, ImagingHoldState hold, bool inWindow = false,

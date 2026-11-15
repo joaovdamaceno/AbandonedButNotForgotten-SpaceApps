@@ -17,6 +17,23 @@ namespace Abandoned.SpaceApps
         Done = 5,
     }
 
+    /// <summary>
+    /// Roteiro v2 (cena 4): a foto em TRÊS passos. 1/3 luz vermelha (segurar E, girar); 2/3 trocar para azul (um toque de E) e
+    /// girar de novo; 3/3 juntar as duas imagens (um toque de E). Só existe com <see cref="PioneerImaging.ThreeStepMode"/>.
+    /// </summary>
+    public enum ImagingStep
+    {
+        None = 0,
+        /// <summary>Passo 1/3: E mantido gira a sonda e as quatro faixas vermelhas aparecem.</summary>
+        Red = 1,
+        /// <summary>Passo 2/3 (primeira parte): um toque de E troca o filtro para azul.</summary>
+        SwitchToBlue = 2,
+        /// <summary>Passo 2/3 (segunda parte): E mantido gira a sonda e as quatro faixas azuis aparecem.</summary>
+        Blue = 3,
+        /// <summary>Passo 3/3: um toque de E junta as duas imagens.</summary>
+        Combine = 4,
+    }
+
     /// <summary>Canal que a faixa mede: as quatro primeiras são vermelhas, as quatro últimas azuis.</summary>
     public enum ImagingChannel
     {
@@ -62,6 +79,13 @@ namespace Abandoned.SpaceApps
         /// <summary>Faixa alvo da passagem (0–7); 8 quando completo.</summary>
         public int Target;
         public ImagingHoldState Hold;
+        /// <summary>Versão de três passos (roteiro v2): o painel esconde o cursor de fase e mostra o passo.</summary>
+        public bool StepsMode;
+        public ImagingStep Step;
+        /// <summary>Passo 1, 2 ou 3 (0 fora da varredura).</summary>
+        public int StepNumber;
+        /// <summary>Progresso do giro dentro da faixa em curso (0–1), só na versão de três passos.</summary>
+        public float SpinProgress;
     }
 
     /// <summary>
@@ -98,6 +122,8 @@ namespace Abandoned.SpaceApps
         /// <summary>Faixa depois da qual a radiação interrompe o instrumento.</summary>
         public const int InterruptionStrip = 6;
         public const float PassSeconds = 3f;
+        /// <summary>Versão de três passos: segundos de E mantido para cada faixa (quatro faixas = 8 s por cor).</summary>
+        public const float SpinSecondsPerStrip = 2f;
         public const float WindowStart = 0.25f;
         public const float WindowEnd = 0.75f;
         public const float HelpPulseSeconds = 6f;
@@ -120,6 +146,9 @@ namespace Abandoned.SpaceApps
         bool running, candidateOpen, holding, tapPending, assisted, passCaptured, passMissed, completedRaised;
         bool interruptionRaised, recoveryDone, allRaised, revealRaised, skipped, pausedByRelease;
         string waitingGate;
+        ImagingStep step;
+        bool awaitRelease;
+        float spinSeconds;
         float passClock, idleSeconds, missedTimer;
         int captured, missedPasses;
 
@@ -137,6 +166,13 @@ namespace Abandoned.SpaceApps
         /// <summary>Instante da revelação no relógio da sequência (48 s); a PIO-008 apresenta as imagens históricas.</summary>
         public event Action RevealStarted;
 
+        /// <summary>
+        /// Roteiro v2 (cena 4): a foto em três passos (<see cref="ImagingStep"/>), sem janela de fase, sem interrupção por radiação
+        /// e sem recuperação. Ligado pelo controlador do capítulo; o padrão (falso) é a versão de oito passagens.
+        /// </summary>
+        public bool ThreeStepMode { get; set; }
+
+        public ImagingStep Step => step;
         public SequenceDefinition Sequence => sequence;
         public ImagingPhase Phase => phase;
         public bool IsRunning => running;
@@ -290,7 +326,12 @@ namespace Abandoned.SpaceApps
                 if (phase == ImagingPhase.Learn)
                     Advance(dt, pressed, false);
                 else if (phase == ImagingPhase.Sweep)
-                    Advance(dt, pressed, true);
+                {
+                    if (ThreeStepMode)
+                        TickSteps(dt);
+                    else
+                        Advance(dt, pressed, true);
+                }
             }
 
             PushView();
@@ -306,6 +347,40 @@ namespace Abandoned.SpaceApps
             passCaptured = false;
             passMissed = false;
             idleSeconds = 0f;
+            if (ThreeStepMode)
+            {
+                step = ImagingStep.Red;
+                spinSeconds = 0f;
+                awaitRelease = false;
+                // Sem radiação nesta cena (ela é da cena 5): os marcos de interrupção e de recuperação já estão satisfeitos.
+                interruptionRaised = true;
+                recoveryDone = true;
+            }
+        }
+
+        /// <summary>Versão de três passos: E mantido gira (2 s por faixa); os toques trocam o filtro e juntam as imagens.</summary>
+        void TickSteps(float dt)
+        {
+            if (step != ImagingStep.Red && step != ImagingStep.Blue)
+                return;
+
+            idleSeconds += dt;
+            if (!assisted && idleSeconds >= HelpAssistSeconds)
+                assisted = true; // sem E por 12 s, a ajuda gira sozinha (sem punição)
+            if (!(holding || tapPending || assisted))
+                return;
+
+            if (holding || tapPending)
+                idleSeconds = 0f;
+            spinSeconds += dt;
+            var guard = 0;
+            while (spinSeconds >= SpinSecondsPerStrip - 1e-6f && captured < StripCount && guard++ < 8)
+            {
+                spinSeconds -= SpinSecondsPerStrip;
+                Capture();
+                if (step != ImagingStep.Red && step != ImagingStep.Blue)
+                    break;
+            }
         }
 
         /// <summary>
@@ -352,8 +427,27 @@ namespace Abandoned.SpaceApps
             StripCaptured?.Invoke(captured, ChannelOf(index));
             if (captured == ChannelStripCount)
                 ReleaseGateIf(EventGateChannels);
+            if (ThreeStepMode)
+            {
+                if (captured == ChannelStripCount)
+                    EnterStep(ImagingStep.SwitchToBlue);
+                else if (captured >= StripCount)
+                    EnterStep(ImagingStep.Combine);
+                return;
+            }
+
             if (captured >= StripCount)
                 FinishSweep();
+        }
+
+        /// <summary>Muda de passo; o E que já estava mantido não vale como o toque do passo novo (é preciso soltar e tocar).</summary>
+        void EnterStep(ImagingStep next)
+        {
+            step = next;
+            spinSeconds = 0f;
+            idleSeconds = 0f;
+            assisted = false;
+            awaitRelease = next == ImagingStep.SwitchToBlue || next == ImagingStep.Combine ? holding || tapPending : false;
         }
 
         void EndPass(bool capture)
@@ -449,6 +543,13 @@ namespace Abandoned.SpaceApps
             holding = true;
             tapPending = true;
             pausedByRelease = false;
+            if (ThreeStepMode && phase == ImagingPhase.Sweep && !awaitRelease)
+            {
+                if (step == ImagingStep.SwitchToBlue)
+                    EnterStep(ImagingStep.Blue);
+                else if (step == ImagingStep.Combine)
+                    FinishSweep();
+            }
         }
 
         void OnHoldCanceled(string id)
@@ -457,6 +558,7 @@ namespace Abandoned.SpaceApps
                 return;
 
             holding = false; // soltar só pausa: as faixas registradas permanecem
+            awaitRelease = false;
             pausedByRelease = captured > 0;
         }
 
@@ -505,6 +607,9 @@ namespace Abandoned.SpaceApps
             running = assisted = passCaptured = passMissed = pausedByRelease = false;
             interruptionRaised = recoveryDone = allRaised = revealRaised = false;
             waitingGate = null;
+            step = ImagingStep.None;
+            awaitRelease = false;
+            spinSeconds = 0f;
             phase = ImagingPhase.Idle;
             passClock = idleSeconds = missedTimer = 0f;
             captured = missedPasses = 0;
@@ -533,6 +638,10 @@ namespace Abandoned.SpaceApps
                 Interrupted = phase == ImagingPhase.Interrupted,
                 Target = captured,
                 Hold = HoldState(),
+                StepsMode = ThreeStepMode,
+                Step = step,
+                StepNumber = step == ImagingStep.Red ? 1 : step == ImagingStep.SwitchToBlue || step == ImagingStep.Blue ? 2 : step == ImagingStep.Combine ? 3 : 0,
+                SpinProgress = Mathf.Clamp01(spinSeconds / SpinSecondsPerStrip),
             };
         }
 

@@ -158,6 +158,13 @@ namespace Abandoned.SpaceApps
         /// <summary>A quarta tentativa terminou sem sinal. UMA vez por execução.</summary>
         public event Action NoSignalHeard;
 
+        /// <summary>
+        /// Roteiro v2 (cena 8): UMA rodada de sintonia. Só o primeiro contato (3 MAR 2002) pede o botão; o segundo, o terceiro e a
+        /// quarta tentativa (sem sinal) chegam sozinhos nos marcos da sequência, com as mesmas legendas e eventos de estado, e os
+        /// controles somem depois do primeiro. Ligado pelo controlador; o padrão (falso) são as quatro rodadas.
+        /// </summary>
+        public bool SingleRound { get; set; }
+
         public SequenceDefinition Sequence => sequence;
         public ListeningPhase Phase => phase;
         public bool IsRunning => running;
@@ -284,8 +291,38 @@ namespace Abandoned.SpaceApps
 
         void OpenContact(int index) => Open(index);
 
+        /// <summary>Versão de uma rodada: o contato (ou a tentativa) chega sozinho, como cinema.</summary>
+        void AutoResolve(int step)
+        {
+            listen = ListenSeconds;
+            assisting = false;
+            if (step <= 2)
+            {
+                phase = (ListeningPhase)((int)ListeningPhase.Contact1 + step);
+                done[step] = true;
+                result = Results[step];
+                StateEvent?.Invoke(StateEvents[step]);
+                if (director != null)
+                    director.Trigger(StateEvents[step]); // abre a legenda do resultado (PIO.07.03–04)
+                ContactMade?.Invoke(step + 1);
+            }
+            else
+            {
+                phase = ListeningPhase.Attempt4;
+                attemptDone = true;
+                result = ListeningResult.NoSignal;
+                NoSignalHeard?.Invoke();
+            }
+        }
+
         void Open(int step)
         {
+            if (SingleRound && step >= 1 && step <= 3)
+            {
+                AutoResolve(step);
+                return;
+            }
+
             switch (step)
             {
                 case 0:
@@ -441,6 +478,9 @@ namespace Abandoned.SpaceApps
                 ContactMade?.Invoke(index + 1);
             }
 
+            if (SingleRound && phase == ListeningPhase.Contact1)
+                CloseInput(); // a única rodada terminou: sem botão, sem prompt, sem lease
+
             // O E mantido não pode concluir também a rodada seguinte: exige soltar.
             holding = false;
             if (interaction != null)
@@ -529,7 +569,7 @@ namespace Abandoned.SpaceApps
 
         public ListeningViewState ViewState()
         {
-            var zone = ZoneActive;
+            var zone = ZoneActive && !(SingleRound && phase != ListeningPhase.Teach && phase != ListeningPhase.Contact1);
             var start = zone ? ZoneStart : 0f;
             var end = zone ? ZoneEnd : 0f;
             var distance = !zone ? 1f : knob < start ? start - knob : knob > end ? knob - end : 0f;
@@ -549,7 +589,7 @@ namespace Abandoned.SpaceApps
                 Hold = HoldState(),
                 Assisting = assisting,
                 Result = result,
-                ControlsCollapsed = phase == ListeningPhase.Breathe || phase == ListeningPhase.Done,
+                ControlsCollapsed = phase == ListeningPhase.Breathe || phase == ListeningPhase.Done || (SingleRound && phase > ListeningPhase.Contact1),
                 Silent = silenceRemaining > 0f,
             };
         }
