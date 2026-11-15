@@ -21,7 +21,7 @@
     {
       "key": "PIO.01.03",
       "group": "narrative",
-      "pt": "Em menos de 11 horas, cruzou a órbita da Lua. Ao partir da Terra, era a máquina mais veloz já lançada.",
+      "pt": "Onze horas depois de deixar o chão, passou pela Lua.",
       "en": "Eleven hours after leaving the ground, it swept past the Moon."
     },
     {
@@ -33,8 +33,14 @@
     {
       "key": "PIO.01.05",
       "group": "narrative",
-      "pt": "Longe do Sol, a luz é fraca. Por isso levava RTGs: geradores que transformam o calor do plutônio em energia.",
-      "en": "Far from the Sun, sunlight is faint. So it carried RTGs: generators turning plutonium’s heat into electricity."
+      "pt": "Longe do Sol, a luz é fraca demais, então a Pioneer fazia a própria energia com geradores RTG.",
+      "en": "But far from the Sun, sunlight is too faint, so Pioneer made its own power with RTG generators."
+    },
+    {
+      "key": "PIO.01.06",
+      "group": "narrative",
+      "pt": "Nada feito por mãos humanas tinha viajado tão depressa.",
+      "en": "Nothing built by human hands had ever travelled so fast."
     },
     {
       "key": "PIO.02.01",
@@ -45,14 +51,14 @@
     {
       "key": "PIO.02.02",
       "group": "narrative",
-      "pt": "Ninguém sabia se dava para atravessar. Alguns temiam que uma colisão encerrasse a missão.",
-      "en": "Nobody knew if anything could pass. Some feared a single collision would end the mission."
+      "pt": "Ninguém sabia quantas pedras havia. Ninguém sabia se dava para atravessar.",
+      "en": "Nobody knew how many rocks lay in wait. Nobody knew whether anything could pass through at all."
     },
     {
       "key": "PIO.02.03",
       "group": "narrative",
-      "pt": "Imagine o medo: um caminho cheio de pedras, coladas umas nas outras...",
-      "en": "Imagine the fear: a path crowded with rocks, packed close together..."
+      "pt": "Alguns cientistas temiam que uma única colisão encerrasse a missão.",
+      "en": "Some scientists feared that a single collision would end the mission."
     },
     {
       "key": "PIO.02.04",
@@ -63,8 +69,8 @@
     {
       "key": "PIO.02.05",
       "group": "narrative",
-      "pt": "Os detectores acusaram só poeira fina.",
-      "en": "The detectors found only fine dust."
+      "pt": "Só poeira fina roçou a sonda.",
+      "en": "Only fine dust brushed against the probe."
     },
     {
       "key": "PIO.02.06",
@@ -105,13 +111,13 @@
     {
       "key": "PIO.04.01",
       "group": "narrative",
-      "pt": "A Pioneer não tinha uma câmera como a do celular.",
-      "en": "Pioneer had no camera like the one in your phone."
+      "pt": "Mas a Pioneer não tinha uma câmera como a do seu celular.",
+      "en": "Yet Pioneer had no camera like the one in your phone."
     },
     {
       "key": "PIO.04.02",
       "group": "narrative",
-      "pt": "A cada volta, ela via só uma linha fina de Júpiter, em apenas duas cores: vermelho e azul.",
+      "pt": "A cada volta, via só uma linha fina de Júpiter, em duas cores: vermelho e azul.",
       "en": "With each turn, it saw just one thin line of Jupiter, in only two colours: red and blue."
     },
     {
@@ -219,8 +225,8 @@
     {
       "key": "PIO.05.01",
       "group": "narrative",
-      "pt": "Depois de Júpiter, não haveria volta: rumo às estrelas, a Pioneer levava uma carta numa placa de alumínio dourado.",
-      "en": "No return journey: Pioneer was bound for the stars, carrying a letter on a gold-coloured plaque."
+      "pt": "Júpiter ficou para trás. Não haveria volta: a Pioneer seguia para as estrelas.",
+      "en": "Then Jupiter fell behind. There would be no return journey: Pioneer was bound for the stars."
     },
     {
       "key": "PIO.05.02",
@@ -261,8 +267,8 @@
     {
       "key": "PIO.06.01",
       "group": "narrative",
-      "pt": "Feita para durar 21 meses, a Pioneer continuou: passou a distância de Saturno em 1976 e a de Urano em 1979.",
-      "en": "Built to last twenty-one months, Pioneer carried on: it crossed the distance of Saturn’s orbit in 1976 and Uranus’s in 1979."
+      "pt": "A Pioneer foi feita para durar vinte e um meses. Simplesmente continuou.",
+      "en": "Pioneer had been built to last twenty-one months. It simply carried on."
     },
     {
       "key": "PIO.06.02",
@@ -273,8 +279,8 @@
     {
       "key": "PIO.06.03",
       "group": "narrative",
-      "pt": "Ano após ano, os geradores enfraqueciam. Os instrumentos passaram a revezar-se e foram sendo desligados.",
-      "en": "Year by year the generators weakened. The instruments took turns, and one by one were switched off."
+      "pt": "1989: a energia diminuía. Os instrumentos passaram a se revezar, e o computador de comandos foi desligado.",
+      "en": "1989: its power was fading. The instruments now took turns, and the command computer was switched off."
     },
     {
       "key": "PIO.06.04",
@@ -289,6 +295,12 @@
       "en": "Pioneer had shown the way. Now Earth had to listen from ever farther away."
     },
     {
+      "key": "PIO.06.06",
+      "group": "narrative",
+      "pt": "1993: para poupar energia, a câmera que fotografou Júpiter foi desligada, e depois o detector de radiação.",
+      "en": "1993: to save power, the camera that had photographed Jupiter was switched off, followed by the radiation detector."
+    },
+    {
       "key": "PIO.07.01",
       "group": "narrative",
       "pt": "O sinal estava mais fraco que um sussurro. As antenas da Terra ainda conseguiriam ouvi-lo?",
@@ -297,14 +309,14 @@
     {
       "key": "PIO.07.02",
       "group": "narrative",
-      "pt": "Março de 2002. Trinta anos depois do lançamento, a Pioneer ainda respondia.",
-      "en": "March 2002. Thirty years after launch, Pioneer was still answering."
+      "pt": "Conseguiu. Trinta anos depois, a Pioneer ainda respondia.",
+      "en": "It could. Thirty years on, Pioneer was still answering."
     },
     {
       "key": "PIO.07.03",
       "group": "narrative",
-      "pt": "Abril de 2002. Os últimos dados de seus instrumentos chegaram à Terra.",
-      "en": "April 2002. The last data from its instruments reached Earth."
+      "pt": "27 de abril de 2002: chegaram os últimos dados.",
+      "en": "27 April 2002: the last data arrived."
     },
     {
       "key": "PIO.07.04",
@@ -339,8 +351,8 @@
     {
       "key": "PIO.08.03",
       "group": "narrative",
-      "pt": "E o nome não foi por acaso: primeira aos planetas exteriores, primeira a cruzar o cinturão, primeira a sobrevoar Júpiter.",
-      "en": "And the name was no accident: first to the outer planets, first across the asteroid belt, first to fly past Jupiter."
+      "pt": "E o nome não foi por acaso. Veja o que ela fez primeiro.",
+      "en": "And the name was no accident. Look at what it did first."
     },
     {
       "key": "PIO.08.04",

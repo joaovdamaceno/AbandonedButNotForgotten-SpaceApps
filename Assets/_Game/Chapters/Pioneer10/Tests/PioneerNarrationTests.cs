@@ -103,8 +103,8 @@ namespace Abandoned.SpaceApps.Tests
         {
             Assert.That(data.Validate(), Is.Empty);
             Assert.That(data.States.Count, Is.EqualTo(9));
-            Assert.That(data.Cues.Count, Is.EqualTo(57));
-            Assert.That(data.Texts.Count, Is.EqualTo(167));
+            Assert.That(data.Cues.Count, Is.EqualTo(59));
+            Assert.That(data.Texts.Count, Is.EqualTo(169));
             Assert.That(data.States.Sum(s => s.nominalSeconds), Is.EqualTo(417));
             foreach (var cue in data.Cues)
             {
@@ -221,7 +221,7 @@ namespace Abandoned.SpaceApps.Tests
 
             Run(40f);
             Assert.That(narration.CurrentText, Is.Empty, "ao terminar a sequência não sobra legenda");
-            Assert.That(texts.Count(t => t.Length > 0), Is.EqualTo(5), "as cinco legendas de PIO.Launch, uma vez cada");
+            Assert.That(texts.Count(t => t.Length > 0), Is.EqualTo(6), "as seis legendas de PIO.Launch, uma vez cada");
         }
 
         [Test]

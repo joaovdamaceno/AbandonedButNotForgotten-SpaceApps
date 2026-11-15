@@ -107,7 +107,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 14f, 14f, 27f }), "0–12, 12–24, 24–39 s");
             Assert.That(sequence.Cues.Select(c => (c.TextKey, c.StartSeconds, c.EndSeconds)), Is.EqualTo(new[]
             {
-                ("PIO.06.01", 1f, 9.5f), ("PIO.06.02", 16f, 24f), ("PIO.06.03", 25f, 33f), ("PIO.06.04", 41.5f, 49f), ("PIO.06.05", 49.5f, 55f),
+                ("PIO.06.01", 1f, 9.5f), ("PIO.06.02", 16f, 24f), ("PIO.06.03", 25f, 33f), ("PIO.06.06", 33.4f, 40.9f), ("PIO.06.04", 41.5f, 49f), ("PIO.06.05", 49.5f, 55f),
             }), "janelas do roteiro");
             var bare = new GameObject("bare").AddComponent<OutboundAtlas>();
             Assert.That(bare.ValidateSetup(), Is.Not.Empty, "sem referências a montagem reclama");

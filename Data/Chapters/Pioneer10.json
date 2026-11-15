@@ -86,12 +86,13 @@
   "cues": [
     {"id": "PIO.01.01", "state": "PIO.Launch", "textKey": "PIO.01.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 7}},
     {"id": "PIO.01.02", "state": "PIO.Launch", "textKey": "PIO.01.02", "timing": {"kind": "window", "startSeconds": 8, "endSeconds": 16}},
-    {"id": "PIO.01.03", "state": "PIO.Launch", "textKey": "PIO.01.03", "timing": {"kind": "window", "startSeconds": 18, "endSeconds": 25}},
-    {"id": "PIO.01.04", "state": "PIO.Launch", "textKey": "PIO.01.04", "timing": {"kind": "window", "startSeconds": 26, "endSeconds": 32.8}},
+    {"id": "PIO.01.03", "state": "PIO.Launch", "textKey": "PIO.01.03", "timing": {"kind": "window", "startSeconds": 18, "endSeconds": 22}},
+    {"id": "PIO.01.04", "state": "PIO.Launch", "textKey": "PIO.01.04", "timing": {"kind": "window", "startSeconds": 26.3, "endSeconds": 32.8}},
     {"id": "PIO.01.05", "state": "PIO.Launch", "textKey": "PIO.01.05", "timing": {"kind": "window", "startSeconds": 33, "endSeconds": 40}},
+    {"id": "PIO.01.06", "state": "PIO.Launch", "textKey": "PIO.01.06", "timing": {"kind": "window", "startSeconds": 22.3, "endSeconds": 26}},
 
     {"id": "PIO.02.01", "state": "PIO.Belt", "textKey": "PIO.02.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 6}},
-    {"id": "PIO.02.02", "state": "PIO.Belt", "textKey": "PIO.02.02", "timing": {"kind": "window", "startSeconds": 6.5, "endSeconds": 12.5}},
+    {"id": "PIO.02.02", "state": "PIO.Belt", "textKey": "PIO.02.02", "timing": {"kind": "window", "startSeconds": 6.5, "endSeconds": 12.6}},
     {"id": "PIO.02.03", "state": "PIO.Belt", "textKey": "PIO.02.03", "timing": {"kind": "window", "startSeconds": 13, "endSeconds": 19}},
     {"id": "PIO.02.04", "state": "PIO.Belt", "textKey": "PIO.02.04", "timing": {"kind": "window", "startSeconds": 30.5, "endSeconds": 39.4}},
     {"id": "PIO.02.05", "state": "PIO.Belt", "textKey": "PIO.02.05", "timing": {"kind": "window", "startSeconds": 39.6, "endSeconds": 42.3}},
@@ -103,8 +104,8 @@
     {"id": "PIO.03.03", "state": "PIO.JupiterApproach", "textKey": "PIO.03.03", "timing": {"kind": "window", "startSeconds": 17, "endSeconds": 23}},
     {"id": "PIO.03.04", "state": "PIO.JupiterApproach", "textKey": "PIO.03.04", "timing": {"kind": "window", "startSeconds": 24, "endSeconds": 29}},
 
-    {"id": "PIO.04.01", "state": "PIO.Imaging", "textKey": "PIO.04.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 3.2}},
-    {"id": "PIO.04.02", "state": "PIO.Imaging", "textKey": "PIO.04.02", "timing": {"kind": "window", "startSeconds": 3.4, "endSeconds": 9.8}},
+    {"id": "PIO.04.01", "state": "PIO.Imaging", "textKey": "PIO.04.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 3.7}},
+    {"id": "PIO.04.02", "state": "PIO.Imaging", "textKey": "PIO.04.02", "timing": {"kind": "window", "startSeconds": 3.8, "endSeconds": 9.8}},
     {"id": "PIO.04.03", "state": "PIO.Imaging", "textKey": "PIO.04.03", "timing": {"kind": "trigger", "triggerId": "PIO.Imaging.Gate4", "afterEvent": "faixa 4 concluída", "minimumReadSeconds": 6}},
     {"id": "PIO.04.04", "state": "PIO.Imaging", "textKey": "PIO.04.04", "timing": {"kind": "trigger", "triggerId": "PIO.Imaging.Gate6", "afterEvent": "faixa 6 concluída (interrupção por radiação)", "minimumReadSeconds": 4.5}},
     {"id": "PIO.04.05", "state": "PIO.Imaging", "textKey": "PIO.04.05", "timing": {"kind": "trigger", "triggerId": "PIO.Imaging.GateRecovery", "afterEvent": "sequência de recuperação confirmada", "minimumReadSeconds": 5.5}},
@@ -136,6 +137,7 @@
     {"id": "PIO.06.03", "state": "PIO.Outbound", "textKey": "PIO.06.03", "timing": {"kind": "window", "startSeconds": 25, "endSeconds": 33}},
     {"id": "PIO.06.04", "state": "PIO.Outbound", "textKey": "PIO.06.04", "timing": {"kind": "window", "startSeconds": 41.5, "endSeconds": 49}},
     {"id": "PIO.06.05", "state": "PIO.Outbound", "textKey": "PIO.06.05", "timing": {"kind": "window", "startSeconds": 49.5, "endSeconds": 55}},
+    {"id": "PIO.06.06", "state": "PIO.Outbound", "textKey": "PIO.06.06", "timing": {"kind": "window", "startSeconds": 33.4, "endSeconds": 40.9}},
 
     {"id": "PIO.07.01", "state": "PIO.Listening", "textKey": "PIO.07.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 5.8}},
     {"id": "PIO.07.02", "state": "PIO.Listening", "textKey": "PIO.07.02", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact1", "afterEvent": "contato 1 concluído", "minimumReadSeconds": 4.8}},

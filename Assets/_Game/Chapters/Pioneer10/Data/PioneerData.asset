@@ -66,7 +66,7 @@ MonoBehaviour:
     textKey: PIO.01.03
     timing: 0
     startSeconds: 18
-    endSeconds: 25
+    endSeconds: 22
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -75,7 +75,7 @@ MonoBehaviour:
     state: PIO.Launch
     textKey: PIO.01.04
     timing: 0
-    startSeconds: 26
+    startSeconds: 26.3
     endSeconds: 32.8
     triggerId: 
     minimumReadSeconds: 0
@@ -87,6 +87,16 @@ MonoBehaviour:
     timing: 0
     startSeconds: 33
     endSeconds: 40
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.01.06
+    state: PIO.Launch
+    textKey: PIO.01.06
+    timing: 0
+    startSeconds: 22.3
+    endSeconds: 26
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -106,7 +116,7 @@ MonoBehaviour:
     textKey: PIO.02.02
     timing: 0
     startSeconds: 6.5
-    endSeconds: 12.5
+    endSeconds: 12.6
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -206,7 +216,7 @@ MonoBehaviour:
     textKey: PIO.04.01
     timing: 0
     startSeconds: 0
-    endSeconds: 3.2
+    endSeconds: 3.7
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -215,7 +225,7 @@ MonoBehaviour:
     state: PIO.Imaging
     textKey: PIO.04.02
     timing: 0
-    startSeconds: 3.4
+    startSeconds: 3.8
     endSeconds: 9.8
     triggerId: 
     minimumReadSeconds: 0
@@ -511,6 +521,16 @@ MonoBehaviour:
     minimumReadSeconds: 0
     gateId: 
     readingStretchMaxSeconds: 0
+  - id: PIO.06.06
+    state: PIO.Outbound
+    textKey: PIO.06.06
+    timing: 0
+    startSeconds: 33.4
+    endSeconds: 40.9
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
   - id: PIO.07.01
     state: PIO.Listening
     textKey: PIO.07.01
@@ -626,7 +646,7 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.01.03
     group: narrative
-    ptText: "Em menos de 11 horas, cruzou a \xF3rbita da Lua. Ao partir da Terra, era a m\xE1quina mais veloz j\xE1 lan\xE7ada."
+    ptText: "Onze horas depois de deixar o ch\xE3o, passou pela Lua."
     enText: Eleven hours after leaving the ground, it swept past the Moon.
     ptStatus: derived
     enStatus: derived
@@ -638,8 +658,14 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.01.05
     group: narrative
-    ptText: "Longe do Sol, a luz \xE9 fraca. Por isso levava RTGs: geradores que transformam o calor do plut\xF4nio em energia."
-    enText: "Far from the Sun, sunlight is faint. So it carried RTGs: generators turning plutonium\u2019s heat into electricity."
+    ptText: "Longe do Sol, a luz \xE9 fraca demais, ent\xE3o a Pioneer fazia a pr\xF3pria energia com geradores RTG."
+    enText: But far from the Sun, sunlight is too faint, so Pioneer made its own power with RTG generators.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.01.06
+    group: narrative
+    ptText: "Nada feito por m\xE3os humanas tinha viajado t\xE3o depressa."
+    enText: Nothing built by human hands had ever travelled so fast.
     ptStatus: derived
     enStatus: derived
   - key: PIO.02.01
@@ -650,14 +676,14 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.02.02
     group: narrative
-    ptText: "Ningu\xE9m sabia se dava para atravessar. Alguns temiam que uma colis\xE3o encerrasse a miss\xE3o."
-    enText: Nobody knew if anything could pass. Some feared a single collision would end the mission.
+    ptText: "Ningu\xE9m sabia quantas pedras havia. Ningu\xE9m sabia se dava para atravessar."
+    enText: Nobody knew how many rocks lay in wait. Nobody knew whether anything could pass through at all.
     ptStatus: derived
     enStatus: derived
   - key: PIO.02.03
     group: narrative
-    ptText: 'Imagine o medo: um caminho cheio de pedras, coladas umas nas outras...'
-    enText: 'Imagine the fear: a path crowded with rocks, packed close together...'
+    ptText: "Alguns cientistas temiam que uma \xFAnica colis\xE3o encerrasse a miss\xE3o."
+    enText: Some scientists feared that a single collision would end the mission.
     ptStatus: derived
     enStatus: derived
   - key: PIO.02.04
@@ -668,8 +694,8 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.02.05
     group: narrative
-    ptText: "Os detectores acusaram s\xF3 poeira fina."
-    enText: The detectors found only fine dust.
+    ptText: "S\xF3 poeira fina ro\xE7ou a sonda."
+    enText: Only fine dust brushed against the probe.
     ptStatus: derived
     enStatus: derived
   - key: PIO.02.06
@@ -710,13 +736,13 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.04.01
     group: narrative
-    ptText: "A Pioneer n\xE3o tinha uma c\xE2mera como a do celular."
-    enText: Pioneer had no camera like the one in your phone.
+    ptText: "Mas a Pioneer n\xE3o tinha uma c\xE2mera como a do seu celular."
+    enText: Yet Pioneer had no camera like the one in your phone.
     ptStatus: derived
     enStatus: derived
   - key: PIO.04.02
     group: narrative
-    ptText: "A cada volta, ela via s\xF3 uma linha fina de J\xFApiter, em apenas duas cores: vermelho e azul."
+    ptText: "A cada volta, via s\xF3 uma linha fina de J\xFApiter, em duas cores: vermelho e azul."
     enText: 'With each turn, it saw just one thin line of Jupiter, in only two colours: red and blue.'
     ptStatus: derived
     enStatus: derived
@@ -824,8 +850,8 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.05.01
     group: narrative
-    ptText: "Depois de J\xFApiter, n\xE3o haveria volta: rumo \xE0s estrelas, a Pioneer levava uma carta numa placa de alum\xEDnio dourado."
-    enText: 'No return journey: Pioneer was bound for the stars, carrying a letter on a gold-coloured plaque.'
+    ptText: "J\xFApiter ficou para tr\xE1s. N\xE3o haveria volta: a Pioneer seguia para as estrelas."
+    enText: 'Then Jupiter fell behind. There would be no return journey: Pioneer was bound for the stars.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.05.02
@@ -866,8 +892,8 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.06.01
     group: narrative
-    ptText: "Feita para durar 21 meses, a Pioneer continuou: passou a dist\xE2ncia de Saturno em 1976 e a de Urano em 1979."
-    enText: "Built to last twenty-one months, Pioneer carried on: it crossed the distance of Saturn\u2019s orbit in 1976 and Uranus\u2019s in 1979."
+    ptText: A Pioneer foi feita para durar vinte e um meses. Simplesmente continuou.
+    enText: Pioneer had been built to last twenty-one months. It simply carried on.
     ptStatus: derived
     enStatus: derived
   - key: PIO.06.02
@@ -878,8 +904,8 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.06.03
     group: narrative
-    ptText: "Ano ap\xF3s ano, os geradores enfraqueciam. Os instrumentos passaram a revezar-se e foram sendo desligados."
-    enText: Year by year the generators weakened. The instruments took turns, and one by one were switched off.
+    ptText: "1989: a energia diminu\xEDa. Os instrumentos passaram a se revezar, e o computador de comandos foi desligado."
+    enText: '1989: its power was fading. The instruments now took turns, and the command computer was switched off.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.06.04
@@ -894,6 +920,12 @@ MonoBehaviour:
     enText: Pioneer had shown the way. Now Earth had to listen from ever farther away.
     ptStatus: derived
     enStatus: derived
+  - key: PIO.06.06
+    group: narrative
+    ptText: "1993: para poupar energia, a c\xE2mera que fotografou J\xFApiter foi desligada, e depois o detector de radia\xE7\xE3o."
+    enText: '1993: to save power, the camera that had photographed Jupiter was switched off, followed by the radiation detector.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.07.01
     group: narrative
     ptText: O sinal estava mais fraco que um sussurro. As antenas da Terra ainda conseguiriam ouvi-lo?
@@ -902,14 +934,14 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.07.02
     group: narrative
-    ptText: "Mar\xE7o de 2002. Trinta anos depois do lan\xE7amento, a Pioneer ainda respondia."
-    enText: March 2002. Thirty years after launch, Pioneer was still answering.
+    ptText: Conseguiu. Trinta anos depois, a Pioneer ainda respondia.
+    enText: It could. Thirty years on, Pioneer was still answering.
     ptStatus: derived
     enStatus: derived
   - key: PIO.07.03
     group: narrative
-    ptText: "Abril de 2002. Os \xFAltimos dados de seus instrumentos chegaram \xE0 Terra."
-    enText: April 2002. The last data from its instruments reached Earth.
+    ptText: "27 de abril de 2002: chegaram os \xFAltimos dados."
+    enText: '27 April 2002: the last data arrived.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.07.04
@@ -944,8 +976,8 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.08.03
     group: narrative
-    ptText: "E o nome n\xE3o foi por acaso: primeira aos planetas exteriores, primeira a cruzar o cintur\xE3o, primeira a sobrevoar J\xFApiter."
-    enText: 'And the name was no accident: first to the outer planets, first across the asteroid belt, first to fly past Jupiter.'
+    ptText: "E o nome n\xE3o foi por acaso. Veja o que ela fez primeiro."
+    enText: And the name was no accident. Look at what it did first.
     ptStatus: derived
     enStatus: derived
   - key: PIO.08.04

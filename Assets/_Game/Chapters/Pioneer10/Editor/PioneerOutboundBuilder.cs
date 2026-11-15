@@ -131,6 +131,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 new SubtitleCue("PIO.06.01", "PIO.06.01", 1f, 9.5f),
                 new SubtitleCue("PIO.06.02", "PIO.06.02", 16f, 24f),
                 new SubtitleCue("PIO.06.03", "PIO.06.03", 25f, 33f),
+                new SubtitleCue("PIO.06.06", "PIO.06.06", 33.4f, 40.9f),
                 new SubtitleCue("PIO.06.04", "PIO.06.04", 41.5f, 49f),
                 new SubtitleCue("PIO.06.05", "PIO.06.05", 49.5f, 55f),
             };
