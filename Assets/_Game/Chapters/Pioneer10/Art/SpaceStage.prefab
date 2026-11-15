@@ -225,6 +225,7 @@ MonoBehaviour:
   aldebaranMarker: {fileID: 1043999019839922527}
   beltField: {fileID: 7315527243401767347}
   beltNike: {fileID: 293088581012597187}
+  mars: {fileID: 4753674823198511537}
   aldebaranDirection: {x: 0.2, y: 0.08, z: -1}
   aldebaranDistanceMeters: 1100
   sky: {fileID: 7815699858454342876}
@@ -292,6 +293,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -312,6 +314,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -332,6 +335,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -352,6 +356,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -372,6 +377,28 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+  - anchorId: PIO.Belt.Mars
+    stateId: PIO.Belt
+    function: "Cena 2 \xB7 abertura: a sonda cruza a \xF3rbita de Marte; o planeta ao fundo, \xE0 direita (Marte ligado)"
+    pose: {fileID: 8404235741350736657}
+    fieldOfViewDegrees: 30
+    region: 0
+    lightGroupId: PIO.Light.Cruise
+    showJupiter: 0
+    showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 1
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -392,6 +419,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 1
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -412,6 +440,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 1
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -432,6 +461,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -452,6 +482,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -472,6 +503,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: Photopolarimeter
     spinAlignTowards: PIO.Jupiter
     spinScale: 0
@@ -492,6 +524,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: Photopolarimeter
     spinAlignTowards: PIO.Jupiter
     spinScale: 1
@@ -512,6 +545,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -532,6 +566,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: Plaque
     spinAlignTowards: 
     spinScale: 0
@@ -552,6 +587,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -572,6 +608,7 @@ MonoBehaviour:
     showAldebaranMarker: 0
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -592,6 +629,7 @@ MonoBehaviour:
     showAldebaranMarker: 1
     showBeltField: 0
     showBeltNike: 0
+    showMars: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -1088,6 +1126,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 384336331662269869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2493576098542547889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8404235741350736657}
+  m_Layer: 0
+  m_Name: "PIO.Belt.Mars \xB7 Cena 2 \xB7 abertura: a sonda cruza a \xF3rbita de"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8404235741350736657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2493576098542547889}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.008325911, y: 0.9828817, z: -0.045914628, w: -0.17823048}
+  m_LocalPosition: {x: 30, y: 8, z: 80}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3159713053257617231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,6 +1453,96 @@ Transform:
   m_Children: []
   m_Father: {fileID: 384336331662269869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4715872221146234827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4753674823198511537}
+  - component: {fileID: 2230153693109325573}
+  - component: {fileID: 5954902122773898898}
+  m_Layer: 0
+  m_Name: Mars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4753674823198511537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715872221146234827}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.018151179, y: 0.97941285, z: -0.10294044, w: -0.17269693}
+  m_LocalPosition: {x: -400.8143, y: -118.76788, z: -676.7886}
+  m_LocalScale: {x: 85, y: 85, z: 85}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2319320945191257728}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2230153693109325573
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715872221146234827}
+  m_Mesh: {fileID: 4300000, guid: 69f8fa45f02f2b541886adbea86568a7, type: 2}
+--- !u!23 &5954902122773898898
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715872221146234827}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5dbf59a774e293241841bd38f4ec26dc, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5077752300449829783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,6 +2119,7 @@ Transform:
   - {fileID: 3840515966632898432}
   - {fileID: 4388716470386182402}
   - {fileID: 4582302373605989138}
+  - {fileID: 8404235741350736657}
   m_Father: {fileID: 7110141134317143998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6724439147850653092
@@ -2183,6 +2343,7 @@ Transform:
   - {fileID: 7203569051149293541}
   - {fileID: 7315527243401767347}
   - {fileID: 293088581012597187}
+  - {fileID: 4753674823198511537}
   m_Father: {fileID: 4913624567188064843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7011923122317685900

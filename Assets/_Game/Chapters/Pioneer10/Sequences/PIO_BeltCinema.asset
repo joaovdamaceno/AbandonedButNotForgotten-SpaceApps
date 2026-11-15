@@ -16,18 +16,18 @@ MonoBehaviour:
   shots:
   - shotId: PIO02.Mars
     durationSeconds: 8
-    rigId: PIO.Belt
+    rigId: PIO.Belt.Mars
     lookAtTargetId: 
     easing: 0
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: -8}
+      positionMeters: {x: 0, y: 0, z: -10}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 30
     - timeSeconds: 8
-      positionMeters: {x: 0, y: 0, z: 0}
+      positionMeters: {x: 0, y: 0, z: 10}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 30
     events: []

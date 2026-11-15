@@ -31,6 +31,7 @@ namespace Abandoned.SpaceApps
         public bool showAldebaranMarker;
         [Tooltip("Roteiro v2, cena 2: o campo de pedras do cinturão (parede compacta na teleobjetiva).")] public bool showBeltField;
         [Tooltip("Roteiro v2, cena 2: a pedra solitária (307 Nike) num céu vazio.")] public bool showBeltNike;
+        [Tooltip("Roteiro v2, cena 2: Marte ao fundo, na abertura do cinturão.")] public bool showMars;
         [Tooltip("Socket da sonda que fica voltado para o alvo ao entrar no anchor (ex.: placa para a câmera). Vazio = mantém a rotação.")]
         public string spinAlignSocket;
         [Tooltip("Alvo do alinhamento: um alvo de enquadramento (PIO.Jupiter) ou vazio = a câmera deste anchor.")]
@@ -93,6 +94,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("Ponto avermelhado distante; acompanha a câmera, como uma estrela no infinito.")] Transform aldebaranMarker;
         [SerializeField, Tooltip("Campo de pedras do cinturão (roteiro v2, cena 2); só aparece nos anchors que o pedem.")] Transform beltField;
         [SerializeField, Tooltip("Pedra solitária (307 Nike); só aparece nos anchors que a pedem.")] Transform beltNike;
+        [SerializeField, Tooltip("Marte (roteiro v2, cena 2); só aparece nos anchors que o pedem.")] Transform mars;
         [SerializeField, Tooltip("Direção de mundo do marcador (direção geral de Aldebaran no palco, não posição calculada).")] Vector3 aldebaranDirection = new Vector3(0.2f, 0.08f, -1f);
         [SerializeField, Min(10f)] float aldebaranDistanceMeters = 1100f;
         [SerializeField, Tooltip("Esfera de céu centrada na câmera: sem paralaxe e sem milhares de objetos.")] Transform sky;
@@ -122,6 +124,7 @@ namespace Abandoned.SpaceApps
         public Transform AldebaranMarker => aldebaranMarker;
         public Transform BeltField => beltField;
         public Transform BeltNike => beltNike;
+        public Transform Mars => mars;
         public bool ReducedMotion => reducedMotion;
         public float SpinDegreesPerSecond => spinDegreesPerSecond;
 
@@ -270,6 +273,8 @@ namespace Abandoned.SpaceApps
                 beltField.gameObject.SetActive(anchor.showBeltField && anchor.region == PioneerStageRegion.DeepSpace);
             if (beltNike != null)
                 beltNike.gameObject.SetActive(anchor.showBeltNike && anchor.region == PioneerStageRegion.DeepSpace);
+            if (mars != null)
+                mars.gameObject.SetActive(anchor.showMars && anchor.region == PioneerStageRegion.DeepSpace);
 
             ApplyLightGroup(anchor.lightGroupId);
             AlignSpin(anchor);

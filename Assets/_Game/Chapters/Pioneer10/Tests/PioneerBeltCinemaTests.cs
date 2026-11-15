@@ -123,6 +123,78 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void MarsShowsOnlyInItsAnchorAndSitsRightOfTheProbeLitByTheCruiseLight()
+        {
+            presentation.ShowAnchor("PIO.Belt");
+            Assert.That(presentation.Mars.gameObject.activeSelf, Is.False);
+            presentation.ShowAnchor("PIO.Belt.Mars");
+            Assert.That(presentation.Mars.gameObject.activeSelf, Is.True);
+            Assert.That(presentation.BeltField.gameObject.activeSelf || presentation.BeltNike.gameObject.activeSelf, Is.False);
+            presentation.ShowAnchor("PIO.Belt.Field");
+            Assert.That(presentation.Mars.gameObject.activeSelf, Is.False);
+
+            presentation.RegisterWithCameraDirector();
+            Assert.That(presentation.TryGetAnchor("PIO.Belt.Mars", out var anchor), Is.True);
+            var camera = new GameObject("test camera").AddComponent<Camera>();
+            try
+            {
+                camera.transform.SetPositionAndRotation(anchor.pose.position, anchor.pose.rotation);
+                camera.fieldOfView = anchor.fieldOfViewDegrees;
+                camera.aspect = 16f / 9f;
+                var mars = camera.WorldToViewportPoint(presentation.Mars.position);
+                var probe = camera.WorldToViewportPoint(Vector3.zero);
+                Assert.That(mars.z, Is.GreaterThan(0f));
+                Assert.That(mars.x, Is.InRange(0.62f, 0.95f), "Marte à direita do centro");
+                Assert.That(mars.y, Is.InRange(0.25f, 0.6f));
+                Assert.That(probe.x, Is.InRange(0.4f, 0.6f), "a sonda segue no centro");
+
+                var toMars = (presentation.Mars.position - camera.transform.position);
+                var angularRadius = Mathf.Asin(PioneerStageBuilder.MarsRadiusMeters / toMars.magnitude) * Mathf.Rad2Deg;
+                Assert.That(angularRadius, Is.InRange(3f, 10f), "grande, mas sem encher o quadro");
+                Assert.That(Vector3.Angle(toMars, -camera.transform.position), Is.GreaterThan(angularRadius + 2f), "Marte não cobre a sonda");
+
+                var towardLight = -new Vector3(-0.55f, -0.25f, -0.8f).normalized; // PIO.Light.Cruise: a luz viaja nesta direção
+                var normalToCamera = (camera.transform.position - presentation.Mars.position).normalized;
+                Assert.That(Vector3.Dot(normalToCamera, towardLight), Is.GreaterThan(0.6f), "a face voltada para a câmera está iluminada");
+            }
+            finally
+            {
+                Object.DestroyImmediate(camera.gameObject);
+            }
+
+            Assert.That(controller.BeltCinemaSequence.Shots.First().RigId, Is.EqualTo("PIO.Belt.Mars"), "o primeiro plano do cinturão abre em Marte");
+        }
+
+        [Test]
+        public void TheMoonAndMarsSurfacesAreDeterministicNeutralGreyAndOchre()
+        {
+            var moon = PioneerStageArt.MoonSurface(128, 64, 1969);
+            var moonAgain = PioneerStageArt.MoonSurface(128, 64, 1969);
+            var mars = PioneerStageArt.MarsSurface(128, 64, 1976);
+            var marsAgain = PioneerStageArt.MarsSurface(128, 64, 1976);
+            try
+            {
+                Assert.That(moon.GetPixels32(), Is.EqualTo(moonAgain.GetPixels32()), "mesma semente, mesma Lua");
+                Assert.That(mars.GetPixels32(), Is.EqualTo(marsAgain.GetPixels32()), "mesma semente, mesmo Marte");
+                Color Average(Texture2D t) => t.GetPixels().Aggregate(Color.black, (sum, c) => sum + c) / (t.width * t.height);
+                var moonAverage = Average(moon);
+                var marsAverage = Average(mars);
+                Assert.That(moonAverage.r, Is.InRange(0.3f, 0.62f), $"a Lua não é nem preta nem branca ({moonAverage})");
+                Assert.That(Mathf.Abs(moonAverage.r - moonAverage.b), Is.LessThan(0.05f), "cinza neutro");
+                Assert.That(marsAverage.r, Is.GreaterThan(marsAverage.g + 0.1f), $"média de Marte {marsAverage}");
+                Assert.That(marsAverage.g, Is.GreaterThan(marsAverage.b + 0.05f), "ocre-alaranjado: vermelho > verde > azul");
+                Assert.That(moon.GetPixels32().Select(p => (int)p.r).Distinct().Count(), Is.GreaterThan(30), "há relevo, não um cinza chapado");
+            }
+            finally
+            {
+                Object.DestroyImmediate(moon);
+                Object.DestroyImmediate(moonAgain);
+                Object.DestroyImmediate(mars);
+                Object.DestroyImmediate(marsAgain);
+            }
+        }
+
+        [Test]
         public void TheCinemaSequenceHasTheFiveShotsTheSixCaptionsAndTheRealityEvent()
         {
             var sequence = controller.BeltCinemaSequence;

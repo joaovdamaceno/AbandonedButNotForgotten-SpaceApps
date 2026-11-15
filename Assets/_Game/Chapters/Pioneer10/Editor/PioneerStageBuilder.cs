@@ -77,7 +77,7 @@ namespace Abandoned.SpaceApps.EditorTools
         sealed class StageAssets
         {
             public Mesh Sphere, SkySphere, LowSphere, StarMesh, BeltRocks, BeltNike;
-            public Material Jupiter, Sky, Stars, Ground, Aldebaran, BeltRock;
+            public Material Jupiter, Sky, Stars, Ground, Aldebaran, BeltRock, Mars;
         }
 
         static StageAssets BuildAssets(SceneBuildContext context)
@@ -102,6 +102,8 @@ namespace Abandoned.SpaceApps.EditorTools
             a.Stars = Unlit(context, "PIO_BrightStars", Color.white, palette);
             a.Aldebaran = Unlit(context, "PIO_AldebaranMarker", new Color(1f, 0.6f, 0.42f), null);
             a.BeltRock = Lit(context, "PIO_BeltRock", new Color(0.30f, 0.29f, 0.28f), 0f, 0.08f);
+            var marsTexture = TextureAsset(context, "PIO_MarsSurface.png", () => PioneerStageArt.MarsSurface(1024, 512, 1976), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
+            a.Mars = Lit(context, "PIO_Mars", Color.white, 0f, 0.04f, marsTexture);
             return a;
         }
 
@@ -280,6 +282,13 @@ namespace Abandoned.SpaceApps.EditorTools
             beltNike.transform.localPosition = NikePosition;
             beltNike.SetActive(false);
 
+            // Cena 2: Marte, só no anchor PIO.Belt.Mars (fica atrás da sonda, à direita, iluminado pela mesma luz de cruzeiro).
+            var mars = Visual(Ensure(deepSpace.transform, "Mars"), a.Sphere, a.Mars);
+            mars.transform.localPosition = MarsPosition;
+            mars.transform.localRotation = Quaternion.Euler(12f, 200f, 0f);
+            mars.transform.localScale = Vector3.one * MarsRadiusMeters;
+            mars.SetActive(false);
+
             var aldebaran = Visual(Ensure(root.transform, "AldebaranMarker"), a.LowSphere, a.Aldebaran);
             aldebaran.transform.localScale = Vector3.one * 5f;
 
@@ -297,6 +306,7 @@ namespace Abandoned.SpaceApps.EditorTools
             so.FindProperty("jupiter").objectReferenceValue = jupiter.transform;
             so.FindProperty("beltField").objectReferenceValue = beltField.transform;
             so.FindProperty("beltNike").objectReferenceValue = beltNike.transform;
+            so.FindProperty("mars").objectReferenceValue = mars.transform;
             so.FindProperty("aldebaranMarker").objectReferenceValue = aldebaran.transform;
             so.FindProperty("aldebaranDirection").vector3Value = AldebaranDirection;
             so.FindProperty("aldebaranDistanceMeters").floatValue = 1100f;
@@ -317,6 +327,11 @@ namespace Abandoned.SpaceApps.EditorTools
 
         // ---------- Cinturão (roteiro v2, cena 2) ----------
 
+        /// <summary>Cena 2, abertura: Marte atrás da sonda, à direita do quadro (a câmera fica no lado iluminado de PIO.Light.Cruise).</summary>
+        public static readonly Vector3 BeltMarsCamera = new Vector3(30f, 8f, 80f);
+        /// <summary>A 880 m da câmera, 9° à direita e 3° abaixo do centro do quadro (a sonda), no anchor PIO.Belt.Mars.</summary>
+        public static readonly Vector3 MarsPosition = BeltMarsCamera + (OffsetLook(BeltMarsCamera, Vector3.zero, 9f, 3f) - BeltMarsCamera).normalized * 880f;
+        public const float MarsRadiusMeters = 85f;
         public const int BeltRockCount = 1400;
         public const int BeltFieldSeed = 1972;
         /// <summary>Anchor da teleobjetiva/dolly zoom: a câmera chega a ~82 m da sonda; o campo de pedras fica atrás dela.</summary>
@@ -478,7 +493,7 @@ namespace Abandoned.SpaceApps.EditorTools
             public Vector3 Position, LookAt;
             public float Fov = 40f, SpinScale = 1f;
             public PioneerStageRegion Region;
-            public bool Jupiter, Aldebaran, BeltField, BeltNike;
+            public bool Jupiter, Aldebaran, BeltField, BeltNike, Mars;
             public Rect UiFrame;
         }
 
@@ -524,6 +539,9 @@ namespace Abandoned.SpaceApps.EditorTools
                 new AnchorSpec { Id = "PIO.Belt", State = "PIO.Belt", Function = "Plano longo quase vazio: a sonda pequena no cinturão real",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f,
                     Position = new Vector3(-56f, 16f, 54f), LookAt = new Vector3(0f, 0f, 0f) },
+                new AnchorSpec { Id = "PIO.Belt.Mars", State = "PIO.Belt", Function = "Cena 2 · abertura: a sonda cruza a órbita de Marte; o planeta ao fundo, à direita (Marte ligado)",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f, Mars = true,
+                    Position = BeltMarsCamera, LookAt = Vector3.zero },
                 new AnchorSpec { Id = "PIO.Belt.Field", State = "PIO.Belt", Function = "Cena 2 · teleobjetiva e dolly zoom: a sonda pequena na frente de uma parede de pedras que se abre (campo de pedras ligado)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f, BeltField = true,
                     Position = BeltFieldCamera, LookAt = Vector3.zero },
@@ -586,6 +604,7 @@ namespace Abandoned.SpaceApps.EditorTools
                     showAldebaranMarker = spec.Aldebaran,
                     showBeltField = spec.BeltField,
                     showBeltNike = spec.BeltNike,
+                    showMars = spec.Mars,
                     spinAlignSocket = spec.AlignSocket,
                     spinAlignTowards = spec.AlignTowards,
                     spinScale = spec.SpinScale,
@@ -638,6 +657,7 @@ namespace Abandoned.SpaceApps.EditorTools
             p.FindPropertyRelative("showAldebaranMarker").boolValue = a.showAldebaranMarker;
             p.FindPropertyRelative("showBeltField").boolValue = a.showBeltField;
             p.FindPropertyRelative("showBeltNike").boolValue = a.showBeltNike;
+            p.FindPropertyRelative("showMars").boolValue = a.showMars;
             p.FindPropertyRelative("spinAlignSocket").stringValue = a.spinAlignSocket ?? "";
             p.FindPropertyRelative("spinAlignTowards").stringValue = a.spinAlignTowards ?? "";
             p.FindPropertyRelative("spinScale").floatValue = a.spinScale;
