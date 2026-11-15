@@ -35,6 +35,7 @@
 .cinematic-story { font-size:28px; white-space:normal; }
 .caption { position:absolute; bottom:9%; left:10%; right:10%; -unity-text-align:middle-center; font-size:21px; white-space:normal; }
 .skip { position:absolute; right:4%; bottom:2.4%; font-size:14px; color:rgba(232,226,213,.48); }
+.remembrance { position:absolute; width:33%; height:32%; right:7%; top:24%; border-width:1px; border-color:rgba(218,210,190,.45); background-color:rgb(17,21,23); }
 .science-id { position:absolute; top:5%; left:5%; }
 .science-instruction { position:absolute; bottom:11%; left:5%; max-width:900px; }
 .science-body { font-size:21px; white-space:normal; max-width:840px; color:rgb(220,217,197); }
@@ -54,8 +55,8 @@
 .photo-flash { background-color:rgb(228,231,216); }
 .fade { background-color:rgb(8,12,16); }
 .toast { position:absolute; top:13%; align-self:center; font-size:23px; -unity-text-align:middle-center; padding:10px 25px; background-color:rgba(15,24,27,.66); max-width:1000px; white-space:normal; opacity:0; }
-.modal-backdrop { position:absolute; left:0; right:0; top:0; bottom:0; background-color:rgba(7,15,20,.92); justify-content:center; align-items:center; }
-.modal-card,.settings-card,.credits-card,.journal-card { padding:35px 45px; width:780px; max-height:90%; }
+.modal-backdrop,.memory-screen { position:absolute; left:0; right:0; top:0; bottom:0; background-color:rgba(7,15,20,.92); justify-content:center; align-items:center; }
+.modal-card,.settings-card,.credits-card,.journal-card,.memory-card { padding:35px 45px; width:780px; max-height:90%; }
 .modal-card { width:550px; }
 .settings-card { width:820px; height:910px; }
 .credits-card,.journal-card { width:1050px; height:900px; }
@@ -67,6 +68,13 @@
 .settings-card .unity-toggle__input { background-color:rgba(0,0,0,0); }
 .credits-body,.journal-body { white-space:normal; font-size:22px; color:rgb(218,216,199); margin-bottom:25px; }
 .journal-image { height:270px; margin-top:30px; margin-bottom:10px; }
+.memory-card { width:1100px; align-items:center; }
+.memory-title { font-size:60px; margin-bottom:20px; }
+.chosen-image { width:820px; height:450px; background-color:rgb(7,13,17); }
+.memory-choices { justify-content:center; margin:15px 0; }
+.memory-thumb { width:128px; height:80px; background-color:rgb(18,27,31); border-width:1px; border-color:rgba(210,210,190,.22); border-radius:0; padding:3px; margin:3px; }
+.memory-thumb Image { width:100%; height:100%; }
+.memory-thumb.selected { border-color:rgb(179,222,201); border-width:2px; }
 .end-screen { position:absolute; left:0; right:0; top:0; bottom:0; align-items:center; justify-content:center; background-color:rgba(6,13,20,.4); }
 .end-title { font-size:120px; }
 .end-subtitle { white-space:normal; -unity-text-align:middle-center; font-size:24px; margin-bottom:35px; }
@@ -76,6 +84,7 @@
 .large-text .cinematic-story { font-size:34px; }
 
 
+.remembrance { position:absolute; left:0; right:0; top:7%; bottom:7%; width:auto; height:auto; border-width:0; background-color:rgb(8,12,16); }
 
 /* readable story subtitles and authored settings controls. */
 .cinematic-words { top:12%; bottom:auto; left:7%; max-width:1050px; }
@@ -95,8 +104,7 @@
 .film-veil { position:absolute; left:0; right:0; top:0; bottom:0; background-color:rgb(0,0,0); opacity:0; }
 .cinematic-words.memorial-title { top:37%; left:0; right:0; max-width:none; align-items:center; }
 .memorial-title .cinematic-heading { color:rgb(232,226,213); -unity-text-align:middle-center; }
-.memorial-title .cinematic-story { font-size:26px; letter-spacing:4px; margin-top:16px; color:rgb(155,157,156); -unity-text-align:middle-center; }
-.large-text .memorial-title .cinematic-story { font-size:32px; }
+.memorial-title .cinematic-story { font-size:20px; letter-spacing:5px; margin-top:12px; color:rgb(155,157,156); }
 .end-title { font-size:76px; letter-spacing:10px; margin-bottom:20px; }
 
 /* the memorial title persists into quiet chapter controls. */

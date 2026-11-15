@@ -54,7 +54,7 @@ namespace Abandoned.SpaceApps.Opportunity
             float burst=chapter.weather?chapter.weather.Gust:0;
             Level(gust,wind*burst*.20f,envelope);Level(grains,wind*wind*(.018f+burst*.075f),envelope);
             gust.panStereo=(Mathf.PerlinNoise(Time.time*.11f,4)-.5f)*.6f;grains.panStereo=(Mathf.PerlinNoise(8,Time.time*.29f)-.5f)*.75f;
-            Level(uplink,0,envelope);
+            Level(uplink,chapter.journey.Transmitting?.16f:0,envelope);
             float tilt=Quaternion.Angle(previousBody,chapter.rover.visual.localRotation);previousBody=chapter.rover.visual.localRotation;
             if(machinery&&Mathf.Abs(chapter.rover.Speed)>.3f&&tilt>.12f&&Time.time-lastRattle>.65f)
             {lastRattle=Time.time;chassis.pitch=.91f+Mathf.PerlinNoise(Time.time,2)*.2f;chassis.PlayOneShot(suspension,GameSettings.Effects*.22f);}

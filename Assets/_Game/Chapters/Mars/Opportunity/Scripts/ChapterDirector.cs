@@ -149,6 +149,7 @@ namespace Abandoned.SpaceApps.Opportunity
             {
                 if(investigation.Active){investigation.Close();}
                 else if(journey.photography.Active){journey.photography.Close();rover.Controllable=true;}
+                else if(journey.ChoosingMemory)journey.CancelTransmission();
                 else if(Stage!=ChapterStage.ChapterEnd)Pause(!Paused);
             }
             if(Paused)return;
@@ -159,7 +160,8 @@ namespace Abandoned.SpaceApps.Opportunity
             interactHold=GameInput.ActionHeld?interactHold+Time.deltaTime:0;
             if(interactions&&interactHold>=InteractHoldSeconds){interactHold=float.NegativeInfinity;interactions.TryExecute();}
             if(CanSkip&&GameInput.Press(Key.Space)){CompleteCinematic();return;}
-            if((Stage==ChapterStage.Exploration||journey.FinalAct)&&!investigation.Active&&!investigation.NeedSun&&GameInput.Press(Key.F))journey.photography.Toggle();
+            if((Stage==ChapterStage.Exploration||journey.FinalAct)&&!investigation.Active&&!investigation.NeedSun&&!journey.Transmitting&&!journey.ChoosingMemory&&GameInput.Press(Key.F))journey.photography.Toggle();
+            if(journey.FinalAct&&!journey.photography.Active&&!journey.Transmitting&&!journey.ChoosingMemory&&GameInput.Press(Key.R))journey.ToggleUplinkRoute();
             switch(Stage)
             {
                 case ChapterStage.Intro:if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
@@ -181,8 +183,8 @@ namespace Abandoned.SpaceApps.Opportunity
                 case ChapterStage.FinalExploration:environment.SetStorm(.02f);if(journey.PanoramaCount>0)Progress.Advance();break;
                 case ChapterStage.DustStorm:
                     environment.SetStorm(Mathf.Lerp(.20f,.84f,Mathf.SmoothStep(0,1,Mathf.Clamp01(Elapsed/38))));rover.Power=Mathf.Max(.5f,Energy);
-                    // Sem tela de transmissão: ao fechar a comparação do Sol sob poeira, a energia cai e o contato se perde.
-                    if(investigation.DustSunMeasured&&!investigation.Active){Progress.CompleteSolarComparison();Progress.Advance();}break;
+                    // Transmission keeps the player's heading; only the instrument/camera reacts.
+                    if(journey.TransmissionComplete)Progress.Advance();break;
                 case ChapterStage.CommunicationLost:rover.Power=film.Power;if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.Farewell:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.Transition:
@@ -197,7 +199,7 @@ namespace Abandoned.SpaceApps.Opportunity
         public void Pause(bool pause){Paused=pause;Time.timeScale=pause?0:1;cameras.Paused=pause;sound.Pause(pause);hud.ShowPause(pause);SetCursor();}
         public void SetCursor()
         {
-            bool control=!Paused&&(rover.Controllable||investigation.Active||journey.photography.Active||Stage==ChapterStage.RockAnalysis);
+            bool control=!Paused&&!journey.ChoosingMemory&&!journey.Transmitting&&(rover.Controllable||investigation.Active||journey.photography.Active||Stage==ChapterStage.RockAnalysis);
             Cursor.lockState=control?CursorLockMode.Locked:CursorLockMode.None;Cursor.visible=Paused||(!control&&!Cinematic);
         }
         public void Preview(ChapterStage stage)
