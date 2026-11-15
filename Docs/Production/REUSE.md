@@ -57,6 +57,10 @@ Novo código de observação, dados, painel, composição e testes nesta base (`
 
 Reutiliza SUR-002 (cenário e modelo fornecido pela equipe), SUR-007 (TV640×480 e shader Scan), CORE-004/005 (câmera, sequência, progresso/evidências) e UI-004/006 (legendas, localização, pausa/preferências/foco). Origens e licenças dessas entregas permanecem nos respectivos registros. Código de montagem, sequências e textos locais adaptados do roteiro atual; nenhum asset externo novo. Fontes e simplificações em[SURVEYOR_NIGHT.md](SURVEYOR_NIGHT.md).
 
+## SUR-014 — textos PT/EN e vínculo dos 31 cues
+
+Os textos de `Assets/_Game/Chapters/Surveyor/Localization/surveyor.pt-BR.json` e `surveyor.en.json` são a transcrição literal das tabelas "Legendas finais PT/EN" e "Textos de UI PT/EN" de `Docs/Chapters/03_SURVEYOR_3.md` (autoria do próprio projeto; sem narração de IA e sem material externo novo). As chaves de UI ganham o prefixo `sur.` para não colidir com o dossiê. Os pares `SUR-Sxx.p1/.p2` são metades de frases aprovadas, para fonte ampliada. O formato por idioma segue `Data/Localization/Pioneer10.*.json`; `SurveyorSubtitles.cs` e seus testes são código novo. Nenhum código do projeto anterior foi copiado.
+
 ## SUR-013 — visita imaginada e fotografia histórica
 
 Reutiliza cenário/modelo da equipe SUR-002, alvo de render SUR-007, contratos CORE-004/005 e legendas/localização/pausa UI-004/006, sem alterar suas fontes. Builder e testes adaptam o padrão de prévia SUR-012. Atores parciais, silhueta do Intrepid e grãos são geometria nova desta tarefa. Fotografia NASA AS12-48-7134 baixada em 14/11/2026, com crédito e procedência em ASSET_CREDITS.md; a sequência não a apresenta como foto do jogador. Não há código, filmes ou música da edição antiga. Detalhes: [SURVEYOR_VISIT.md](SURVEYOR_VISIT.md).
