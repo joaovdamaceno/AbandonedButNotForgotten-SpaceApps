@@ -16,58 +16,58 @@ MonoBehaviour:
   shots:
   - shotId: PIO06.Saturn
     durationSeconds: 14
-    rigId: PIO.Outbound
+    rigId: PIO.System.Out
     lookAtTargetId: 
     easing: 0
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 0}
+      positionMeters: {x: 0, y: 0, z: -40}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 40
     - timeSeconds: 14
-      positionMeters: {x: 0, y: 0, z: -0.6}
+      positionMeters: {x: 0, y: 0, z: 10}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 38
+      fieldOfViewDegrees: 40
     events:
     - timeSeconds: 0
       eventId: PIO.Outbound.Card1976
   - shotId: PIO06.Neptune
     durationSeconds: 14
-    rigId: PIO.Outbound
+    rigId: PIO.System.Out
     lookAtTargetId: 
     easing: 1
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0.8, y: 0.3, z: -0.6}
+      positionMeters: {x: 0, y: 0, z: 10}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 44
+      fieldOfViewDegrees: 40
     - timeSeconds: 14
-      positionMeters: {x: 1.4, y: 0.5, z: -1.2}
+      positionMeters: {x: 6, y: 3, z: 40}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      fieldOfViewDegrees: 40
     events:
     - timeSeconds: 0
       eventId: PIO.Outbound.Card1983
   - shotId: PIO06.Power
     durationSeconds: 27
-    rigId: PIO.Outbound
+    rigId: PIO.System.Out
     lookAtTargetId: 
     easing: 0
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: -1.2, y: -0.4, z: 0.6}
+      positionMeters: {x: 6, y: 3, z: 40}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 50
+      fieldOfViewDegrees: 40
     - timeSeconds: 27
-      positionMeters: {x: -1.6, y: -0.6, z: 1.2}
+      positionMeters: {x: -10, y: 6, z: 60}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 52
+      fieldOfViewDegrees: 40
     events:
     - timeSeconds: 0
       eventId: PIO.Outbound.Power
@@ -94,6 +94,14 @@ MonoBehaviour:
     textKey: PIO.06.03
     startSeconds: 25
     endSeconds: 33
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.06.06
+    textKey: PIO.06.06
+    startSeconds: 33.4
+    endSeconds: 40.9
     triggerId: 
     minimumReadSeconds: 0
     position: 0

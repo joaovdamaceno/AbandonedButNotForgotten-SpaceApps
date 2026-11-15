@@ -101,7 +101,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 10f, 28f, 26f }));
             Assert.That(sequence.Cues.Select(c => (c.TextKey, c.StartSeconds, c.EndSeconds)), Is.EqualTo(new[]
             {
-                ("PIO.04.01", 0f, 3.2f), ("PIO.04.02", 3.4f, 9.8f), ("PIO.04.03", 21f, 27f), ("PIO.04.04", 27f, 31.5f),
+                ("PIO.04.01", 0f, 3.7f), ("PIO.04.02", 3.8f, 9.8f), ("PIO.04.03", 21f, 27f), ("PIO.04.04", 27f, 31.5f),
                 ("PIO.04.05", 31.5f, 37f), ("PIO.04.06", 38f, 45f), ("PIO.04.07", 45f, 53f), ("PIO.04.08", 53f, 59f), ("PIO.04.09", 59f, 64f),
             }));
             Assert.That(presentation.TryGetUiFrame(PioneerImaging.StateId, out var frame), Is.True);

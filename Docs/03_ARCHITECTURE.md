@@ -56,7 +56,9 @@ A mesma função calcula disponibilidade visual e execução. Nunca mostrar E di
 
 `HoldAction` tem duração e apresentação configuráveis; o instrumento responde imediatamente com som/animação/progresso. Falta de habilidade não bloqueia: alinhamento automático e alvo grande; nunca concluir uma descoberta apenas porque o cronômetro avançou. A confirmação histórica de corte dos motores da Surveyor é uma exceção explícita de segurança: se a pessoa não agir, a equipe executa o corte, conforme o roteiro, sem premiar destreza nem inventar uma evidência. Essa exceção não autoriza completar minigames científicos automaticamente. Mouse, teclado e botões clicáveis equivalentes quando houver arrastar/encaixar/sintonia.
 
-Surveyor tem um `CommandDelayQueue` exclusivo: confirmação imediata, execução depois de 1,3 s **de ida**, como aproximação acessível do trânsito Terra–Lua, um comando pendente por ação, cancelar/limpar em mudança de estado. O atraso não altera mouse, pausa, feedback, legendas nem áudio de UI. O pouso tem sequência histórica predeterminada e janela acessível de confirmação: o jogador não reescreve a história nem precisa reagir contra um atraso impossível.
+SUR-018 substitui a fila como mecânica obrigatória da Surveyor por operação direta assistida; os controladores antigos permanecem nos previews. Pouso é cinema predeterminado, sem confirmação do jogador. O tempo representativo de rádio pertence à explicação documental, sem atrasar mouse, pausa ou UI.
+
+**Extensão de entrada SUR-018, aprovada no plano pelo proprietário:** `InputRouter.PrimaryDown`, `PrimaryUp`, `PrimaryHeld` e `PointerPosition`. O comando primário do mouse é entregue somente em Gameplay; Panel/Paused/Cinematic não recebem contato. Troca de contexto e perda de foco soltam o comando e exigem soltura/nova pressão. `PointerPosition` responde também em menus, sem acionar ferramenta. E mantém seu contrato anterior. O consumidor filtra o retângulo do instrumento e elementos de UI antes de iniciar contato; E e mouse representam um único contato lógico, nunca duas operações.
 
 ## Câmeras, planos e UI
 

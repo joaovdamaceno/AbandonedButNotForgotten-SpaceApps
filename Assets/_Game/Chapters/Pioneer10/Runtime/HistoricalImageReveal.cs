@@ -115,14 +115,15 @@ namespace Abandoned.SpaceApps
         /// <summary>Estado da revelação aos <paramref name="seconds"/> depois de 48 s.</summary>
         public static RevealViewState Evaluate(float seconds)
         {
+            // Teste de jogo: a foto de Ganimedes e o aviso "foto de Io perdida" saíram desta cena (apareciam junto de Júpiter e confundiam a
+            // ordem dos fatos). Aqui só a montagem real de Júpiter; as luas e a foto perdida de Io ficam na cena 5, depois da radiação.
             var jupiter = Smooth((seconds - JupiterAtSeconds) / FadeSeconds);
-            var ganymede = Smooth((seconds - GanymedeAtSeconds) / FadeSeconds);
             return new RevealViewState
             {
-                Frame = Mathf.Max(jupiter, ganymede),
+                Frame = jupiter,
                 Jupiter = jupiter,
-                Ganymede = ganymede,
-                IoLost = jupiter > 0f && ganymede < 1f,
+                Ganymede = 0f,
+                IoLost = false,
                 Visible = jupiter > 0f,
             };
         }

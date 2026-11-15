@@ -15,41 +15,41 @@ MonoBehaviour:
   cancelFadeSeconds: 0.5
   states:
   - stateId: PIO.Launch
-    musicCueId: MUS_PIO_PARTIDA
+    musicCueId: MUS_PIO_LANCAMENTO
     fadeSeconds: 1.75
-    note: "VIA: pulso e crescimento; no espa\xE7o s\xF3 m\xFAsica."
+    note: "A Kind Of Hope: come\xE7a quase em sil\xEAncio e sobe; no espa\xE7o s\xF3 m\xFAsica."
   - stateId: PIO.Belt
-    musicCueId: MUS_PIO_CUR
+    musicCueId: MUS_PIO_CINTURAO
     fadeSeconds: 1.75
-    note: "CUR, varia\xE7\xE3o l\xFAdica na fantasia."
+    note: "Descent: o medo do cintur\xE3o (escura e misteriosa). A revela\xE7\xE3o calma (1:33) \xE9 MUS_PIO_MARAVILHA, a pedir por evento."
   - stateId: PIO.JupiterApproach
-    musicCueId: MUS_PIO_CUR
+    musicCueId: MUS_PIO_MARAVILHA
     fadeSeconds: 1.75
-    note: CUR cresce com a escala; mesmo cue do estado anterior, sem reiniciar.
+    note: "The Distant Sun: calma e discreta; J\xFApiter cresce de um ponto."
   - stateId: PIO.Imaging
-    musicCueId: MUS_PIO_CUR
+    musicCueId: MUS_PIO_MARAVILHA
     fadeSeconds: 1.75
-    note: 
+    note: 'Mesmo cue: segue sem reiniciar para a foto montada linha por linha.'
   - stateId: PIO.Closest
-    musicCueId: MUS_PIO_CUR
+    musicCueId: MUS_PIO_JUPITER
     fadeSeconds: 1.75
-    note: "Roteiro v2, cena 5: a m\xFAsica continua (sem reiniciar); o sil\xEAncio de 1 s antes da passagem \xE9 decis\xE3o de \xE1udio futura (AUD-002)."
+    note: "Roteiro v2, cena 5. The Things That Keep Us Here: orquestral e edificante, para a radia\xE7\xE3o, o mergulho e o empurr\xE3o gravitacional."
   - stateId: PIO.Plaque
-    musicCueId: MUS_PIO_DISTANCIA
+    musicCueId: MUS_PIO_ANOS
     fadeSeconds: 1.75
-    note: "Delicada; o pulso sai em 38\u201347 s."
+    note: "Extrapolation: piano sombrio com um fio de esperan\xE7a."
   - stateId: PIO.Outbound
-    musicCueId: MUS_PIO_DISTANCIA
+    musicCueId: MUS_PIO_ANOS
     fadeSeconds: 1.75
-    note: 
+    note: 'Mesmo cue da placa: segue sem reiniciar.'
   - stateId: PIO.Listening
-    musicCueId: MUS_PIO_ESCUTA
+    musicCueId: MUS_PIO_RADIO
     fadeSeconds: 1.75
-    note: "LEG: piano e cordas com sil\xEAncio estruturado."
+    note: "Signal to Noise: misteriosa, melanc\xF3lica e esperan\xE7osa; o sil\xEAncio real de 2,5 s \xE9 pedido ao \xE1udio."
   - stateId: PIO.Farewell
-    musicCueId: MUS_PIO_ESCUTA
+    musicCueId: MUS_PIO_FINAL
     fadeSeconds: 1.75
-    note: O tema resolve; nenhum efeito externo.
+    note: "Filaments (trecho do cl\xEDmax): o tema resolve; nenhum efeito externo."
   events:
   - eventId: PIO.Launch.Ignition
     action: 0
@@ -59,12 +59,26 @@ MonoBehaviour:
     proposedEvent: 0
     note: "SFX de lan\xE7amento na Terra; no espa\xE7o s\xF3 m\xFAsica."
   - eventId: PIO.Belt.Reality
-    action: 1
+    action: 3
+    cueId: MUS_PIO_MARAVILHA
+    level: 1
+    seconds: 0.8
+    proposedEvent: 1
+    note: "Corte da tens\xE3o (Descent) para a calma (The Distant Sun) na revela\xE7\xE3o do cintur\xE3o, ~1:33 do roteiro. Crossfade curto de 0,8 s."
+  - eventId: PIO.Closest.Dive
+    action: 2
     cueId: 
-    level: 0.15
-    seconds: 1.5
-    proposedEvent: 0
-    note: "A m\xFAsica quase silencia na virada (1,5 s). O n\xEDvel 0,15 \xE9 escolha desta tarefa para \"quase silencia\"; volta a 1 ao trocar de estado."
+    level: 1
+    seconds: 1
+    proposedEvent: 1
+    note: "Sil\xEAncio de 1 s antes do mergulho (roteiro, cena 5); cai na lacuna entre legendas."
+  - eventId: PIO.Outbound.PowerDown
+    action: 0
+    cueId: SFX_PIO_POWERDOWN
+    level: 1
+    seconds: 0
+    proposedEvent: 1
+    note: "Equipamento secund\xE1rio desligado para poupar energia (cena 7): varredura descendente curta, no instante em que a comunica\xE7\xE3o \xE9 priorizada."
   - eventId: PIO.Belt.Recorded
     action: 0
     cueId: SFX_PIO_DETECTOR_TICK
@@ -129,55 +143,95 @@ MonoBehaviour:
     proposedEvent: 1
     note: "Tentativa 4 sem resposta: sil\xEAncio real de 2,5 s, sem hiss em loop."
   cues:
-  - cueId: MUS_PIO_PARTIDA
+  - cueId: MUS_PIO_LANCAMENTO
     kind: 0
     family: VIA
     interfaceSound: 1
     loop: 0
     maxSeconds: 0
     idConfirmedInCueSheet: 1
-    licenseStatus: candidate
-    creditId: 
+    licenseStatus: acquired
+    creditId: M-SB-PIO-01
     clip: {fileID: 0}
-  - cueId: MUS_PIO_CUR
+  - cueId: MUS_PIO_CINTURAO
+    kind: 0
+    family: VIA
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 0
+    idConfirmedInCueSheet: 1
+    licenseStatus: acquired
+    creditId: M-SB-PIO-02
+    clip: {fileID: 0}
+  - cueId: MUS_PIO_MARAVILHA
     kind: 0
     family: CUR
     interfaceSound: 1
     loop: 0
     maxSeconds: 0
     idConfirmedInCueSheet: 1
-    licenseStatus: candidate
-    creditId: 
+    licenseStatus: acquired
+    creditId: M-SB-PIO-03
     clip: {fileID: 0}
-  - cueId: MUS_PIO_DISTANCIA
+  - cueId: MUS_PIO_JUPITER
     kind: 0
-    family: VIA/LEG
+    family: VIA
     interfaceSound: 1
     loop: 0
     maxSeconds: 0
     idConfirmedInCueSheet: 1
-    licenseStatus: candidate
-    creditId: 
+    licenseStatus: acquired
+    creditId: M-SB-PIO-04
     clip: {fileID: 0}
-  - cueId: MUS_PIO_ESCUTA
+  - cueId: MUS_PIO_ANOS
     kind: 0
     family: LEG
     interfaceSound: 1
     loop: 0
     maxSeconds: 0
     idConfirmedInCueSheet: 1
-    licenseStatus: candidate
-    creditId: 
+    licenseStatus: acquired
+    creditId: M-SB-PIO-05
+    clip: {fileID: 0}
+  - cueId: MUS_PIO_RADIO
+    kind: 0
+    family: LEG
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 0
+    idConfirmedInCueSheet: 1
+    licenseStatus: acquired
+    creditId: M-SB-PIO-06
+    clip: {fileID: 0}
+  - cueId: MUS_PIO_FINAL
+    kind: 0
+    family: LEG
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 0
+    idConfirmedInCueSheet: 1
+    licenseStatus: acquired
+    creditId: M-SB-PIO-07
     clip: {fileID: 0}
   - cueId: SFX_PIO_LAUNCH
     kind: 1
     family: 
     interfaceSound: 1
     loop: 0
-    maxSeconds: 6
+    maxSeconds: 7
     idConfirmedInCueSheet: 0
-    licenseStatus: pending
-    creditId: 
+    licenseStatus: acquired
+    creditId: S-PIO-SFX-01
+    clip: {fileID: 0}
+  - cueId: SFX_PIO_POWERDOWN
+    kind: 1
+    family: 
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 2
+    idConfirmedInCueSheet: 0
+    licenseStatus: acquired
+    creditId: S-PIO-SFX-02
     clip: {fileID: 0}
   - cueId: SFX_SCAN
     kind: 1

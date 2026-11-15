@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 18:49:09Z" end-time="2026-11-15 18:49:43Z" duration="34,1031435">
+  <test-suite type="TestSuite" id="1013" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 18:49:09Z" end-time="2026-11-15 18:49:43Z" duration="34.103144" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1006" name="Abandoned.SpaceApps.Integration.Tests.dll" fullname="C:/www/projetos/AbandonedButNotForgotten-SpaceApps/Library/ScriptAssemblies/Abandoned.SpaceApps.Integration.Tests.dll" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 18:49:09Z" end-time="2026-11-15 18:49:43Z" duration="34.082759" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9452" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1007" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 18:49:09Z" end-time="2026-11-15 18:49:43Z" duration="34.079044" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1008" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 18:49:09Z" end-time="2026-11-15 18:49:43Z" duration="34.077784" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1009" name="Tests" fullname="Abandoned.SpaceApps.Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 18:49:09Z" end-time="2026-11-15 18:49:43Z" duration="34.076234" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="BootPlayTests" fullname="Abandoned.SpaceApps.Tests.BootPlayTests" classname="Abandoned.SpaceApps.Tests.BootPlayTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 18:49:09Z" end-time="2026-11-15 18:49:43Z" duration="34.072592" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1002" name="DossierStartsWithOnlyBootAndOneListener" fullname="Abandoned.SpaceApps.Tests.BootPlayTests.DossierStartsWithOnlyBootAndOneListener" methodname="DossierStartsWithOnlyBootAndOneListener" classname="Abandoned.SpaceApps.Tests.BootPlayTests" runstate="Runnable" seed="1346498774" result="Passed" start-time="2026-11-15 18:49:09Z" end-time="2026-11-15 18:49:11Z" duration="1.529869" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1003" name="EachChapterOpensRestartsAndReturnsWithoutLeavingAWorldBehind" fullname="Abandoned.SpaceApps.Tests.BootPlayTests.EachChapterOpensRestartsAndReturnsWithoutLeavingAWorldBehind" methodname="EachChapterOpensRestartsAndReturnsWithoutLeavingAWorldBehind" classname="Abandoned.SpaceApps.Tests.BootPlayTests" runstate="Runnable" seed="767387514" result="Passed" start-time="2026-11-15 18:49:11Z" end-time="2026-11-15 18:49:35Z" duration="23.767937" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('pioneer10') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[ChapterDirector] Begin('mars') ignorado no estado Loading.
+[Opportunity] Stage: Landing
+[Opportunity] Stage: Landing
+[Opportunity] Stage: Landing
+[ChapterDirector] Begin('surveyor3') ignorado no estado Loading.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Loading.
+SURVEYOR_DOC_STEP Prologue active=0.00
+SURVEYOR_DOC_STEP Prologue active=0.00
+SURVEYOR_DOC_STEP Prologue active=0.00
+]]></output>
+              </test-case>
+              <test-case id="1004" name="PioneerAdvancesThroughStatesAndSwitchesLanguageInTheMiddle" fullname="Abandoned.SpaceApps.Tests.BootPlayTests.PioneerAdvancesThroughStatesAndSwitchesLanguageInTheMiddle" methodname="PioneerAdvancesThroughStatesAndSwitchesLanguageInTheMiddle" classname="Abandoned.SpaceApps.Tests.BootPlayTests" runstate="Runnable" seed="656957424" result="Passed" start-time="2026-11-15 18:49:35Z" end-time="2026-11-15 18:49:39Z" duration="4.508977" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1005" name="SurveyorDoesNotReplaceTheBootAndBringsItsOwnListener" fullname="Abandoned.SpaceApps.Tests.BootPlayTests.SurveyorDoesNotReplaceTheBootAndBringsItsOwnListener" methodname="SurveyorDoesNotReplaceTheBootAndBringsItsOwnListener" classname="Abandoned.SpaceApps.Tests.BootPlayTests" runstate="Runnable" seed="1139909361" result="Passed" start-time="2026-11-15 18:49:39Z" end-time="2026-11-15 18:49:43Z" duration="4.225998" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[SURVEYOR_DOC_STEP Prologue active=0.00
+SURVEYOR_DOC_STEP Arrival active=1.60
+SURVEYOR_DOC_STEP Activation active=2.42
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/kauaviado/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

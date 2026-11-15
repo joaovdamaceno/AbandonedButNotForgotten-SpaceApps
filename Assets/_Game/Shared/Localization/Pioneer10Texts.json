@@ -16,25 +16,31 @@
       "key": "PIO.01.02",
       "group": "narrative",
       "pt": "Março de 1972. Uma pequena sonda, do tamanho de um carro, partiu rumo aos planetas exteriores.",
-      "en": "March 1972. A small probe, no bigger than a car, set out for the outer planets."
+      "en": "March 1972. No machine of ours had ever travelled beyond Mars. This small probe, no bigger than a car, was about to try."
     },
     {
       "key": "PIO.01.03",
       "group": "narrative",
-      "pt": "Em menos de 11 horas, cruzou a órbita da Lua. Ao partir da Terra, era a máquina mais veloz já lançada.",
-      "en": "Within eleven hours it crossed the Moon’s orbit. Leaving Earth, it was the fastest machine ever launched."
+      "pt": "Onze horas depois de deixar o chão, passou pela Lua.",
+      "en": "Eleven hours after leaving the ground, it swept past the Moon."
     },
     {
       "key": "PIO.01.04",
       "group": "narrative",
       "pt": "Ela gira devagar, como um pião. Esse giro ajuda a manter a sonda estável na longa viagem.",
-      "en": "It spins slowly, like a top. That steady turning keeps the probe stable on its long journey."
+      "en": "It spins slowly, like a top, and that steady turning keeps it upright and pointed home towards Earth."
     },
     {
       "key": "PIO.01.05",
       "group": "narrative",
-      "pt": "Longe do Sol, a luz é fraca. Por isso levava RTGs: geradores que transformam o calor do plutônio em energia.",
-      "en": "Far from the Sun, sunlight is faint. So it carried RTGs: generators turning plutonium’s heat into electricity."
+      "pt": "Longe do Sol, a luz é fraca demais, então a Pioneer fazia a própria energia com geradores RTG.",
+      "en": "But far from the Sun, sunlight is too faint, so Pioneer made its own power with RTG generators."
+    },
+    {
+      "key": "PIO.01.06",
+      "group": "narrative",
+      "pt": "Nada feito por mãos humanas tinha viajado tão depressa.",
+      "en": "Nothing built by human hands had ever travelled so fast."
     },
     {
       "key": "PIO.02.01",
@@ -45,26 +51,26 @@
     {
       "key": "PIO.02.02",
       "group": "narrative",
-      "pt": "Ninguém sabia se dava para atravessar. Alguns temiam que uma colisão encerrasse a missão.",
-      "en": "Nobody knew if anything could pass. Some feared a single collision would end the mission."
+      "pt": "Ninguém sabia quantas pedras havia. Ninguém sabia se dava para atravessar.",
+      "en": "Nobody knew how many rocks lay in wait. Nobody knew whether anything could pass through at all."
     },
     {
       "key": "PIO.02.03",
       "group": "narrative",
-      "pt": "Imagine o medo: um caminho cheio de pedras, coladas umas nas outras...",
-      "en": "Imagine the fear: a path crowded with rocks, packed close together..."
+      "pt": "Alguns cientistas temiam que uma única colisão encerrasse a missão.",
+      "en": "Some scientists feared that a single collision would end the mission."
     },
     {
       "key": "PIO.02.04",
       "group": "narrative",
       "pt": "Na vida real, as pedras ficam muito longe umas das outras. A rota passava a milhões de km da mais próxima.",
-      "en": "In real life, the rocks lie vast distances apart. The route passed millions of kilometres from the nearest."
+      "en": "And then, a surprise: the rocks lay vast distances apart, and the route passed millions of kilometres from the nearest known asteroid."
     },
     {
       "key": "PIO.02.05",
       "group": "narrative",
-      "pt": "Os detectores acusaram só poeira fina.",
-      "en": "The detectors found only fine dust."
+      "pt": "Só poeira fina roçou a sonda.",
+      "en": "Only fine dust brushed against the probe."
     },
     {
       "key": "PIO.02.06",
@@ -73,10 +79,16 @@
       "en": "After seven months, Pioneer emerged on the far side, unharmed. The belt could be crossed."
     },
     {
+      "key": "PIO.02.07",
+      "group": "narrative",
+      "pt": "Então os dias foram contados: uma semana, um mês, e depois meses passando cada vez mais depressa.",
+      "en": "So the days were counted. A week. A month. Then months, slipping by faster and faster."
+    },
+    {
       "key": "PIO.03.01",
       "group": "narrative",
       "pt": "Novembro de 1973. Júpiter, o maior dos planetas, já estava à vista.",
-      "en": "By November 1973, Jupiter, largest of the planets, was in sight."
+      "en": "Which left the greatest prize of all. By November 1973, Jupiter, largest of the planets, was in sight."
     },
     {
       "key": "PIO.03.02",
@@ -99,26 +111,26 @@
     {
       "key": "PIO.04.01",
       "group": "narrative",
-      "pt": "A Pioneer não tinha uma câmera como a do celular.",
-      "en": "Pioneer had no camera like the one in your phone."
+      "pt": "Mas a Pioneer não tinha uma câmera como a do seu celular.",
+      "en": "Yet Pioneer had no camera like the one in your phone."
     },
     {
       "key": "PIO.04.02",
       "group": "narrative",
-      "pt": "A cada volta, ela via só uma linha fina de Júpiter, em apenas duas cores: vermelho e azul.",
+      "pt": "A cada volta, via só uma linha fina de Júpiter, em duas cores: vermelho e azul.",
       "en": "With each turn, it saw just one thin line of Jupiter, in only two colours: red and blue."
     },
     {
       "key": "PIO.04.03",
       "group": "narrative",
-      "pt": "A luz vermelha montou a primeira imagem, linha a linha. Agora o azul: a mesma volta paciente.",
-      "en": "Red light built the first picture, one line at a time. Now blue: the same patient turning."
+      "pt": "Vermelho e azul eram medidos juntos, mas uma foto sozinha vinha cheia de ruído.",
+      "en": "Red and blue were measured together, but a single photo came out full of noise."
     },
     {
       "key": "PIO.04.04",
       "group": "narrative",
-      "pt": "Uma segunda imagem toma forma, de novo uma linha fina de cada vez.",
-      "en": "A second picture takes shape, again one thin line at a time."
+      "pt": "Somando várias fotos, o ruído some e a imagem aparece.",
+      "en": "Adding photos together, the noise fades and the picture appears."
     },
     {
       "key": "PIO.04.05",
@@ -135,14 +147,14 @@
     {
       "key": "PIO.04.07",
       "group": "narrative",
-      "pt": "Algumas imagens se perderam, inclusive a de Io. Mas muito chegou até nós.",
-      "en": "Some pictures were lost, Io’s among them. But so much reached us."
+      "pt": "Fotografia real, 1973: Júpiter como a Pioneer 10 o registrou.",
+      "en": "Real photograph, 1973: Jupiter as Pioneer 10 recorded it."
     },
     {
       "key": "PIO.04.08",
       "group": "narrative",
-      "pt": "Esta é Ganimedes, vista pela Pioneer 10 em 1973: fotos de perto da maior lua do Sistema Solar.",
-      "en": "This is Ganymede, seen by Pioneer 10 in 1973: close-ups of the Solar System’s largest moon."
+      "pt": "Foi a primeira nave a fazer fotos de perto de Júpiter.",
+      "en": "It was the first spacecraft to take close-up pictures of Jupiter."
     },
     {
       "key": "PIO.04.09",
@@ -153,32 +165,32 @@
     {
       "key": "PIO.09.01",
       "group": "narrative",
-      "pt": "Mais perto, passou pelas grandes luas de Júpiter e fotografou Ganimedes de perto.",
-      "en": "Closer it came, passing Jupiter’s great moons and photographing Ganymede up close."
+      "pt": "Cada vez mais perto, passou pelas grandes luas e fez as primeiras fotos de perto de Ganimedes, a maior lua do Sistema Solar.",
+      "en": "Closer it came, passing Jupiter's great moons and taking the first close-up pictures of Ganymede, the largest moon in the Solar System."
     },
     {
       "key": "PIO.09.02",
       "group": "narrative",
       "pt": "Júpiter é cercado por radiação milhares de vezes mais forte que a da Terra.",
-      "en": "Jupiter is wrapped in radiation thousands of times stronger than Earth’s."
+      "en": "For Jupiter is wrapped in radiation thousands of times stronger than anything near Earth."
     },
     {
       "key": "PIO.09.03",
       "group": "narrative",
       "pt": "Absorveu mais de mil vezes a dose fatal a uma pessoa. Surgiram comandos indevidos; havia reservas.",
-      "en": "It absorbed over a thousand times a fatal human dose. Unwanted commands arose; backups were ready."
+      "en": "Pioneer absorbed more than a thousand times the dose that would be fatal to a person."
     },
     {
       "key": "PIO.09.04",
       "group": "narrative",
       "pt": "4 de dezembro de 1973: a Pioneer 10 foi a primeira a sobrevoar Júpiter.",
-      "en": "4 December 1973: Pioneer 10 became the first to fly past Jupiter."
+      "en": "Closest approach. Pioneer 10 became the first probe ever to visit Jupiter."
     },
     {
       "key": "PIO.09.05",
       "group": "narrative",
       "pt": "A cerca de 130.000 km das nuvens: três vezes mais perto que a Lua da Terra.",
-      "en": "About 130,000 km above the clouds: three times closer than the Moon to us."
+      "en": "It passed about 130,000 kilometres above the clouds: three times closer than the Moon is to us."
     },
     {
       "key": "PIO.09.06",
@@ -193,10 +205,28 @@
       "en": "It found Jupiter’s radiation fiercer than expected, which shaped Voyager’s design."
     },
     {
+      "key": "PIO.09.08",
+      "group": "narrative",
+      "pt": "Fotografou também Calisto e Europa, mas só em baixa resolução.",
+      "en": "It also photographed Callisto and Europa, though only in low resolution."
+    },
+    {
+      "key": "PIO.09.09",
+      "group": "narrative",
+      "pt": "Júpiter corre ao redor do Sol e a Pioneer pegou carona nessa velocidade.",
+      "en": "Jupiter is itself racing around the Sun, and the probe borrowed a little of that speed, rather like hitching a lift."
+    },
+    {
+      "key": "PIO.09.10",
+      "group": "narrative",
+      "pt": "Uma imagem de Io foi feita, mas a radiação a destruiu.",
+      "en": "An image of Io was taken too, but it was lost to the radiation."
+    },
+    {
       "key": "PIO.05.01",
       "group": "narrative",
-      "pt": "Depois de Júpiter, não haveria volta: rumo às estrelas, a Pioneer levava uma carta numa placa de alumínio dourado.",
-      "en": "No return journey: Pioneer was bound for the stars, carrying a letter on a gold-coloured plaque."
+      "pt": "Júpiter ficou para trás. Não haveria volta: a Pioneer seguia para as estrelas.",
+      "en": "Then Jupiter fell behind. There would be no return journey: Pioneer was bound for the stars."
     },
     {
       "key": "PIO.05.02",
@@ -208,19 +238,19 @@
       "key": "PIO.05.03",
       "group": "narrative",
       "pt": "Pulsares: estrelas que piscam e mostram onde fica o Sol.",
-      "en": "Then pulsars, blinking stars that show where the Sun lies."
+      "en": "Then a map of blinking stars, called pulsars, to show where the Sun lies."
     },
     {
       "key": "PIO.05.04",
       "group": "narrative",
       "pt": "O Sistema Solar: a sonda saindo do terceiro planeta, a Terra.",
-      "en": "The Solar System: Pioneer leaving the third planet, Earth."
+      "en": "The Solar System follows, with Pioneer leaving the third planet: Earth."
     },
     {
       "key": "PIO.05.05",
       "group": "narrative",
       "pt": "Ao lado, o contorno da própria Pioneer, para dar escala.",
-      "en": "Beside it, Pioneer’s own outline, to show our size."
+      "en": "Beside it, the outline of Pioneer itself, so that our size can be judged."
     },
     {
       "key": "PIO.05.06",
@@ -237,8 +267,8 @@
     {
       "key": "PIO.06.01",
       "group": "narrative",
-      "pt": "Feita para durar 21 meses, a Pioneer continuou: passou a distância de Saturno em 1976 e a de Urano em 1979.",
-      "en": "Built to last twenty-one months, Pioneer carried on: it crossed the distance of Saturn’s orbit in 1976 and Uranus’s in 1979."
+      "pt": "A Pioneer foi feita para durar vinte e um meses. Simplesmente continuou.",
+      "en": "Pioneer had been built to last twenty-one months. It simply carried on."
     },
     {
       "key": "PIO.06.02",
@@ -249,14 +279,14 @@
     {
       "key": "PIO.06.03",
       "group": "narrative",
-      "pt": "Ano após ano, os geradores enfraqueciam. Os instrumentos passaram a revezar-se e foram sendo desligados.",
-      "en": "Year by year the generators weakened. The instruments took turns, and one by one were switched off."
+      "pt": "1989: a energia diminuía. Os instrumentos passaram a se revezar, e o computador de comandos foi desligado.",
+      "en": "1989: its power was fading. The instruments now took turns, and the command computer was switched off."
     },
     {
       "key": "PIO.06.04",
       "group": "narrative",
       "pt": "Em 1998, a Voyager 1 a ultrapassou e se tornou a máquina humana mais distante, em outra direção.",
-      "en": "In 1998, Voyager 1 overtook it to become the most distant human-made object, travelling in another direction."
+      "en": "In 1998, Voyager 1 overtook it to become the most distant human-made object. Pioneer had shown the way."
     },
     {
       "key": "PIO.06.05",
@@ -265,46 +295,52 @@
       "en": "Pioneer had shown the way. Now Earth had to listen from ever farther away."
     },
     {
+      "key": "PIO.06.06",
+      "group": "narrative",
+      "pt": "Para poupar energia, a câmera que fotografou Júpiter foi desligada, e depois o detector de radiação.",
+      "en": "To save power, the camera that had photographed Jupiter was switched off, followed by the radiation detector."
+    },
+    {
       "key": "PIO.07.01",
       "group": "narrative",
       "pt": "O sinal estava mais fraco que um sussurro. As antenas da Terra ainda conseguiriam ouvi-lo?",
-      "en": "Its signal was now fainter than a whisper. Could Earth’s antennas still hear it?"
+      "en": "Its signal was now fainter than a whisper. Could Earth still hear it?"
     },
     {
       "key": "PIO.07.02",
       "group": "narrative",
-      "pt": "Março de 2002. Trinta anos depois do lançamento, a Pioneer ainda respondia.",
-      "en": "March 2002. Thirty years after launch, Pioneer was still answering."
+      "pt": "Conseguiu. Trinta anos depois, a Pioneer ainda respondia.",
+      "en": "It could. Thirty years on, Pioneer was still answering."
     },
     {
       "key": "PIO.07.03",
       "group": "narrative",
-      "pt": "Abril de 2002. Os últimos dados de seus instrumentos chegaram à Terra.",
-      "en": "April 2002. The last data from its instruments reached Earth."
+      "pt": "27 de abril de 2002: chegaram os últimos dados.",
+      "en": "27 April 2002: the last data arrived."
     },
     {
       "key": "PIO.07.04",
       "group": "narrative",
       "pt": "Janeiro de 2003. Um último sinal fraco, de 12 bilhões de quilômetros, levou mais de 11 horas para chegar.",
-      "en": "January 2003. A last faint signal, from twelve billion kilometres away, took over eleven hours to reach us."
+      "en": "23 January 2003: a final signal, from twelve billion kilometres away, taking over eleven hours to reach us."
     },
     {
       "key": "PIO.07.05",
       "group": "narrative",
       "pt": "Fevereiro de 2003. A Terra escutou outra vez e nenhum sinal foi detectado.",
-      "en": "February 2003. Earth listened once more, and no signal was detected."
+      "en": "7 February 2003: Earth listened once more, and heard nothing."
     },
     {
       "key": "PIO.07.06",
       "group": "narrative",
       "pt": "Sem energia suficiente para nos alcançar, a Pioneer 10 ficou em silêncio. Mas não parou.",
-      "en": "Without enough power to reach us, Pioneer 10 fell silent. But it did not stop."
+      "en": "Its power had finally run out, and Pioneer 10 fell silent. But it did not stop."
     },
     {
       "key": "PIO.08.01",
       "group": "narrative",
       "pt": "Ela segue em direção à estrela vermelha Aldebaran: uma viagem de milhões de anos.",
-      "en": "It travels on, towards the red star Aldebaran: a journey measured in millions of years."
+      "en": "It travels on, towards the red star Aldebaran: a journey of some two million years."
     },
     {
       "key": "PIO.08.02",
@@ -315,14 +351,14 @@
     {
       "key": "PIO.08.03",
       "group": "narrative",
-      "pt": "E o nome não foi por acaso: primeira aos planetas exteriores, primeira a cruzar o cinturão, primeira a sobrevoar Júpiter.",
-      "en": "And the name was no accident: first to the outer planets, first across the asteroid belt, first to fly past Jupiter."
+      "pt": "E o nome não foi por acaso. Veja o que ela fez primeiro.",
+      "en": "And the name was no accident. Look at what it did first."
     },
     {
       "key": "PIO.08.04",
       "group": "narrative",
       "pt": "Pioneer quer dizer pioneira. Toda grande viagem começa com quem vai primeiro, e a Pioneer 10 foi primeiro, por todos nós.",
-      "en": "Pioneer: one who goes first. Every great journey begins with someone who goes first. Pioneer 10 went first, for us all."
+      "en": "Pioneer: one who goes first. Every great journey begins with someone willing to go first. Pioneer 10 went first, for all of us."
     },
     {
       "key": "PIO.UI.start",
@@ -511,6 +547,60 @@
       "en": "First beyond the planets' orbits · 1983"
     },
     {
+      "key": "PIO.UI.belt_far",
+      "group": "hud",
+      "pt": "O asteroide conhecido mais próximo ficou a milhões de quilômetros da sonda.",
+      "en": "The nearest known asteroid was millions of kilometres from the probe."
+    },
+    {
+      "key": "PIO.UI.earth_label",
+      "group": "hud",
+      "pt": "Terra",
+      "en": "Earth"
+    },
+    {
+      "key": "PIO.UI.shoot",
+      "group": "hud",
+      "pt": "Toque E · barra na zona dourada",
+      "en": "Tap E · bar in the gold zone"
+    },
+    {
+      "key": "PIO.UI.shot_count",
+      "group": "hud",
+      "pt": "Foto {count}/5",
+      "en": "Photo {count}/5"
+    },
+    {
+      "key": "PIO.UI.frames",
+      "group": "hud",
+      "pt": "Quadros",
+      "en": "Frames"
+    },
+    {
+      "key": "PIO.UI.sum",
+      "group": "hud",
+      "pt": "{count} fotos somadas",
+      "en": "{count} photos added"
+    },
+    {
+      "key": "PIO.UI.noise",
+      "group": "hud",
+      "pt": "Ruído",
+      "en": "Noise"
+    },
+    {
+      "key": "PIO.UI.tune_auto",
+      "group": "hud",
+      "pt": "← → · sintonize a antena",
+      "en": "← → · tune the antenna"
+    },
+    {
+      "key": "PIO.UI.receiving",
+      "group": "hud",
+      "pt": "Escutando…",
+      "en": "Listening…"
+    },
+    {
       "key": "PIO.UI.spin",
       "group": "hud",
       "pt": "Segure E · girar",
@@ -629,6 +719,66 @@
       "group": "instrument",
       "pt": "Netuno",
       "en": "Neptune"
+    },
+    {
+      "key": "PIO.UI.map_title_belt",
+      "group": "hud",
+      "pt": "O cinturão de asteroides",
+      "en": "The asteroid belt"
+    },
+    {
+      "key": "PIO.UI.map_title_out",
+      "group": "hud",
+      "pt": "A sonda cruzando as órbitas",
+      "en": "The probe crossing the orbits"
+    },
+    {
+      "key": "PIO.UI.map_earth",
+      "group": "hud",
+      "pt": "Terra",
+      "en": "Earth"
+    },
+    {
+      "key": "PIO.UI.map_mars",
+      "group": "hud",
+      "pt": "Marte",
+      "en": "Mars"
+    },
+    {
+      "key": "PIO.UI.map_belt",
+      "group": "hud",
+      "pt": "Cinturão",
+      "en": "Belt"
+    },
+    {
+      "key": "PIO.UI.map_probe",
+      "group": "hud",
+      "pt": "Pioneer 10",
+      "en": "Pioneer 10"
+    },
+    {
+      "key": "PIO.UI.map_note",
+      "group": "hud",
+      "pt": "Esquema sem escala: só as órbitas, vistas de cima.",
+      "en": "Schematic, not to scale: orbits only, seen from above."
+    },
+    {
+      "key": "PIO.UI.map_mercury",
+      "group": "hud",
+      "pt": "Mercúrio",
+      "en": "Mercury"
+    },
+    {
+      "key": "PIO.UI.map_venus",
+      "group": "hud",
+      "pt": "Vênus",
+      "en": "Venus"
+    },
+    {
+      "key": "PIO.UI.dsn_credit",
+      "group": "hud",
+      "pt": "Antena de 70 m da Deep Space Network · modelo 3D oficial da NASA (crédito: NASA/Brian E. Kumanchik, Christian A. Lopez)",
+      "en": "Deep Space Network 70 m antenna · official NASA 3D model (credit: NASA/Brian E. Kumanchik, Christian A. Lopez)"
     },
     {
       "key": "PIO.UI.scheme",
@@ -777,14 +927,14 @@
     {
       "key": "PIO.UI.nearer",
       "group": "instrument",
-      "pt": "Mais perto do sinal",
-      "en": "Closer to the signal"
+      "pt": "Intensidade do sinal: aumentando",
+      "en": "Signal strength: rising"
     },
     {
       "key": "PIO.UI.farther",
       "group": "instrument",
-      "pt": "Mais longe do sinal",
-      "en": "Farther from the signal"
+      "pt": "Intensidade do sinal: diminuindo",
+      "en": "Signal strength: falling"
     },
     {
       "key": "PIO.UI.received",

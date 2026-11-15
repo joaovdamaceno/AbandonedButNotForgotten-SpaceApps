@@ -145,7 +145,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.LaunchTests
             document.panelSettings=AssetDatabase.LoadAssetAtPath<PanelSettings>(SurveyorLaunchBuilder.Folder+"/LaunchPanelSettings.asset");
             document.visualTreeAsset=AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(SurveyorLaunchBuilder.UiFolder+"/LaunchTelemetry.uxml");
             var view=root.AddComponent<LaunchTelemetryView>();
-            var settings=new SettingsData();
+            var settings=new SettingsData{languageCode="pt"}; // o padrão do jogo é inglês; o teste confere a troca PT → EN
             view.Configure(document,AssetDatabase.LoadAssetAtPath<TextAsset>(SurveyorLaunchBuilder.UiFolder+"/LaunchTexts.json"),flow,settings);
             Assert.That(view.Root.Q<Label>("subtitle").text,Does.Contain("Antes de enviar"));
             Advance(9);Assert.That(view.Root.Q("subtitle-plate").style.display.value,Is.EqualTo(DisplayStyle.None));

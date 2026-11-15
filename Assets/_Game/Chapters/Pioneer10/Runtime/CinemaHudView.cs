@@ -47,7 +47,11 @@ namespace Abandoned.SpaceApps
 
         VisualElement root, staticLayer, radiation, radiationFill, speed, distances, moonFill, cloudsFill;
         Label radiationTitle, speedLabel, moonLabel, cloudsLabel;
+        SystemMapElement systemMap;
+        Label modelCredit;
         VisualElement years, energyFill, timelineTicks, timelineMarker, firsts, barTop, barBottom;
+        VisualElement beltCounter, beltLine, beltNotePlate, earthLine;
+        Label beltDay, beltDate, beltLabel, beltNote, earthLabel;
         readonly VisualElement[] firstStars = new VisualElement[PioneerFirstsHud.StarCount];
         readonly Label[] firstLabels = new Label[PioneerFirstsHud.StarCount];
         Label yearBig, yearEvent, yearNote, instrumentsTitle, energyTitle, energyLaunch, energyJupiter;
@@ -81,7 +85,23 @@ namespace Abandoned.SpaceApps
             moonLabel = tree.Q<Label>("distance-moon-label");
             cloudsLabel = tree.Q<Label>("distance-clouds-label");
             years = tree.Q("years");
+            systemMap = tree.Q<SystemMapElement>("system-map");
+            if (systemMap == null)
+            {
+                systemMap = new SystemMapElement();
+                root.Add(systemMap);
+            }
+
             barTop = tree.Q("bar-top");
+            beltCounter = tree.Q("belt-counter");
+            beltDay = tree.Q<Label>("belt-day");
+            beltDate = tree.Q<Label>("belt-date");
+            beltLine = tree.Q("belt-line");
+            beltLabel = tree.Q<Label>("belt-label");
+            earthLine = tree.Q("earth-line");
+            earthLabel = tree.Q<Label>("earth-label");
+            beltNotePlate = tree.Q("belt-note-plate");
+            beltNote = tree.Q<Label>("belt-note");
             barBottom = tree.Q("bar-bottom");
             yearBig = tree.Q<Label>("year-big");
             yearEvent = tree.Q<Label>("year-event");
@@ -160,6 +180,52 @@ namespace Abandoned.SpaceApps
                 moonFill.style.width = Length.Percent(Mathf.Clamp01(moonFillFraction) * 100f);
             if (cloudsFill != null)
                 cloudsFill.style.width = Length.Percent(Mathf.Clamp01(cloudsFillFraction) * 100f);
+        }
+
+        /// <summary>Linha de crédito/descrição de um modelo 3D oficial (por exemplo a antena da DSN), embaixo à esquerda acima da legenda.</summary>
+        public void SetModelCredit(bool visible, string text)
+        {
+            EnsureBound();
+            if (root == null)
+                return;
+
+            if (modelCredit == null)
+            {
+                modelCredit = new Label { name = "model-credit", pickingMode = PickingMode.Ignore };
+                modelCredit.style.position = Position.Absolute;
+                modelCredit.style.left = Length.Percent(3f);
+                modelCredit.style.bottom = Length.Percent(19f);
+                modelCredit.style.maxWidth = Length.Percent(34f);
+                modelCredit.style.fontSize = 14;
+                modelCredit.style.whiteSpace = WhiteSpace.Normal;
+                modelCredit.style.color = new Color(0.92f, 0.95f, 1f, 0.9f);
+                modelCredit.style.textShadow = new TextShadow { offset = new Vector2(1f, 1f), blurRadius = 3f, color = Color.black };
+                root.Add(modelCredit);
+            }
+
+            modelCredit.text = text ?? string.Empty;
+            Show(modelCredit, visible && !string.IsNullOrEmpty(text));
+        }
+
+        /// <summary>
+        /// Mapa esquemático do Sistema Solar (cena 2: o cinturão e o caminho da sonda; cena 7: a sonda cruzando as órbitas até Netuno).
+        /// <paramref name="frame"/> é o retângulo do mapa em frações do quadro (x, y, largura, altura; origem em cima à esquerda).
+        /// </summary>
+        public void SetSystemMap(bool visible, in SystemMapElement.State state, Rect frame)
+        {
+            EnsureBound();
+            if (systemMap == null)
+                return;
+
+            Show(systemMap, visible);
+            if (!visible)
+                return;
+
+            systemMap.style.left = Length.Percent(frame.x * 100f);
+            systemMap.style.top = Length.Percent(frame.y * 100f);
+            systemMap.style.width = Length.Percent(frame.width * 100f);
+            systemMap.style.height = Length.Percent(frame.height * 100f);
+            systemMap.SetState(state);
         }
 
         /// <summary>Cena 7: o ano em destaque com o marco, os ícones dos instrumentos, o medidor de energia dos RTG e a linha do tempo.</summary>
@@ -294,6 +360,60 @@ namespace Abandoned.SpaceApps
                 barBottom.style.height = height;
         }
 
+        /// <summary>
+        /// Cena 2: o cartão com o dia e a data (<paramref name="day"/> vazio = só a data), o rótulo da pedra solitária com uma linha fina que sai do
+        /// ponto <paramref name="nikeViewport"/> (0–1, origem em cima à esquerda) e a nota da distância (<paramref name="note"/> vazia = sem nota).
+        /// </summary>
+        public void SetBeltCounter(bool visible, string day, string date, bool nikeVisible, string nikeText, Vector2 nikeViewport, string note)
+        {
+            EnsureBound();
+            if (beltCounter == null)
+                return;
+
+            Show(beltCounter, visible);
+            if (visible)
+            {
+                Show(beltDay, !string.IsNullOrEmpty(day));
+                SetText(beltDay, day);
+                SetText(beltDate, date);
+            }
+
+            Show(beltLine, nikeVisible);
+            Show(beltLabel, nikeVisible);
+            if (nikeVisible)
+            {
+                SetText(beltLabel, nikeText);
+                beltLine.style.left = Length.Percent(nikeViewport.x * 100f);
+                beltLine.style.top = Length.Percent(nikeViewport.y * 100f + 1.5f);
+                beltLabel.style.left = Length.Percent(nikeViewport.x * 100f - 9f);
+                beltLabel.style.top = Length.Percent(nikeViewport.y * 100f + 7.5f);
+            }
+
+            var hasNote = !string.IsNullOrEmpty(note);
+            Show(beltNotePlate, hasNote);
+            if (hasNote)
+                SetText(beltNote, note);
+        }
+
+        /// <summary>
+        /// Cena 3: o rótulo "Terra" com uma linha fina que sai da Terra de comparação, no ponto <paramref name="viewport"/> (0–1, origem em
+        /// cima à esquerda), para a comparação de tamanho com Júpiter não aparecer do nada.
+        /// </summary>
+        public void SetEarthLabel(bool visible, string text, Vector2 viewport)
+        {
+            EnsureBound();
+            Show(earthLine, visible);
+            Show(earthLabel, visible);
+            if (!visible || earthLine == null || earthLabel == null)
+                return;
+
+            SetText(earthLabel, text);
+            earthLine.style.left = Length.Percent(viewport.x * 100f);
+            earthLine.style.top = Length.Percent(viewport.y * 100f + 4f);
+            earthLabel.style.left = Length.Percent(viewport.x * 100f - 3.5f);
+            earthLabel.style.top = Length.Percent(viewport.y * 100f + 10f);
+        }
+
         /// <summary>Esconde tudo (fora dos planos de cinema que usam o HUD).</summary>
         public void HideAll()
         {
@@ -305,6 +425,10 @@ namespace Abandoned.SpaceApps
             Show(distances, false);
             Show(years, false);
             Show(firsts, false);
+            Show(systemMap, false);
+            Show(modelCredit, false);
+            SetBeltCounter(false, string.Empty, string.Empty, false, string.Empty, Vector2.zero, string.Empty);
+            SetEarthLabel(false, string.Empty, Vector2.zero);
         }
 
         void EnsureBound()

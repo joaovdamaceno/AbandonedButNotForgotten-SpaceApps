@@ -10,7 +10,7 @@ Três capítulos independentes de 5–7 minutos **cada**, cronometrados depois d
 
 **Pioneer:** capítulos de viagem e instrumentos; asteroides exagerados aparecem só em uma visualização de imaginação explicitamente identificada. Imagens reais e varredura por rotação, placa simbólica, sinais progressivamente fracos. A sonda não desvia de um arcade histórico real nem recebe luz de Aldebaran como se estivesse ao lado dela.
 
-**Surveyor:** ponto de vista da sonda, telemetria até pousar, TV depois; comandos têm fila de 1,3 s de ida com confirmação imediata, não atraso no mouse/HUD/pausa. A visita de 1969 é um epílogo imaginado identificado: a câmera real já estava inativa. Amostra de ciência do solo sem sugerir água lunar.
+**Surveyor (SUR-019):** câmera híbrida, viagem/pouso em cinema externo, ciência pela câmera e pá estacionária, corte curto com mouse ou assistência ao segurar E e deformação por contato. Não é rover. Visita de 1969 com corpos completos e marcha apoiada, distinta da fotografia histórica; a câmera real já estava inativa. TV sem rótulo de efeito, legendas concretas e montagem mais curta. Esta revisão pode terminar abaixo do antigo mínimo de cinco minutos; não preencher tempo com espera. Sem voz de IA ou sugestão de água lunar. Ver roteiro revisado.
 
 ## Apresentação
 

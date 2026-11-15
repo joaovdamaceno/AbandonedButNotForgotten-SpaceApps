@@ -8,14 +8,14 @@
     bottom: 0;
 }
 
-/* Quadro do anchor PIO.Listening (0,56 · 0,07 · 0,40 · 0,33), embaixo à direita; .sa-instrument fixa top, por isso top: auto. */
+/* Quadro do anchor PIO.Listening, embaixo à direita mas ACIMA da faixa da legenda (bottom 18%, teste de jogo: a legenda cobria o minigame); .sa-instrument fixa top, por isso top: auto. */
 .pio-lis__frame {
     position: absolute;
-    left: 56%;
+    left: 54%;
     top: auto;
-    bottom: 7%;
-    width: 40%;
-    height: 33%;
+    bottom: 18%;
+    width: 42%;
+    height: 44%;
     padding: var(--sa-space-3);
     flex-direction: column;
     justify-content: space-between;
@@ -51,7 +51,7 @@
 
 /* Onda: barras fixas (a forma muda só com o estado, nunca por tempo). */
 .pio-lis__wave {
-    height: 34px;
+    height: 92px;
     flex-direction: row;
     align-items: center;
     border-width: 2px;
@@ -61,7 +61,11 @@
     padding: 2px 4px;
 }
 
-.pio-lis__bar { flex-grow: 1; flex-basis: 0; margin: 0 1px; background-color: var(--sa-color-on-plate); min-width: 2px; }
+/* As barras antigas saíram: a onda é desenhada por código (osciloscópio). */
+.pio-lis__bar { display: none; }
+
+/* Versão sem E: o prompt não mostra a tecla. */
+.pio-lis__hold--auto .sa-keycap { display: none; }
 
 .pio-lis__tuner { flex-direction: row; align-items: center; height: 28px; }
 

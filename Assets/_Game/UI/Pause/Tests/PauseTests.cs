@@ -219,7 +219,7 @@ namespace Abandoned.SpaceApps.Tests
             var hostElement = new VisualElement();
             using (var panel = new UI.SettingsPanel(hostElement, store, texts))
             {
-                Assert.That(panel.Focusables.Count, Is.EqualTo(9), "4 volumes, idioma, sensibilidade, movimento, qualidade, restaurar");
+                Assert.That(panel.Focusables.Count, Is.EqualTo(10), "4 volumes, idioma, sensibilidade, movimento, qualidade, tela cheia, restaurar");
                 Assert.That(panel.TryAdjust(panel.Focusables[1], 1), Is.True); // música
                 Assert.That(panel.TryAdjust(panel.Focusables[4], 1), Is.True); // idioma
                 Assert.That(panel.TryAdjust(panel.Focusables[5], 1), Is.True); // sensibilidade
@@ -243,11 +243,11 @@ namespace Abandoned.SpaceApps.Tests
             store.Load();
             store.Apply(s => { s.musicVolume = 0.1f; s.languageCode = "en"; s.reducedMotion = true; });
             using (var panel = new UI.SettingsPanel(new VisualElement(), store, LoadTexts()))
-                Assert.That(panel.TryActivate(panel.Focusables[8]), Is.True);
+                Assert.That(panel.TryActivate(panel.Focusables[9]), Is.True);
 
             var data = store.Current;
             Assert.That(data.musicVolume, Is.EqualTo(0.8f).Within(0.0001f));
-            Assert.That(data.languageCode, Is.EqualTo("pt"));
+            Assert.That(data.languageCode, Is.EqualTo("en"));
             Assert.That(data.reducedMotion, Is.False);
         }
 
@@ -275,7 +275,7 @@ namespace Abandoned.SpaceApps.Tests
             foreach (var name in new[]
             {
                 "pause-root", "pause-corner", "pause-button", "pause-button-label", "pause-button-key", "pause-overlay",
-                "pause-title", "pause-subtitle", "view-main", "btn-resume", "btn-settings", "btn-fullscreen", "btn-restart",
+                "pause-title", "pause-subtitle", "view-main", "btn-resume", "btn-settings", "btn-restart",
                 "btn-dossier", "pause-hint", "view-settings", "settings-title", "btn-back", "pause-navigation",
             })
                 Assert.That(tree.Q<VisualElement>(name) != null, Is.True, name);

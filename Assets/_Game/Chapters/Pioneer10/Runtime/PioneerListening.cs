@@ -68,6 +68,10 @@ namespace Abandoned.SpaceApps
         public bool ControlsCollapsed;
         /// <summary>Silêncio real em curso (2,5 s): nada se anima nem toca.</summary>
         public bool Silent;
+        /// <summary>Versão sem E: a escuta é automática dentro da zona e só as setas sintonizam.</summary>
+        public bool AutoListen;
+        /// <summary>0–1: intensidade do sinal recebido agora (proximidade da zona × força da rodada).</summary>
+        public float Strength;
     }
 
     /// <summary>
@@ -126,6 +130,19 @@ namespace Abandoned.SpaceApps
         /// <summary>Força do sinal: a terceira rodada é mais fraca (volume e sinal visual menores), com a zona ainda legível.</summary>
         public static readonly float[] Signals = { 1f, 0.85f, 0.45f };
 
+        // ---------- Versão automática (AutoListenMode): rodadas com a zona cada vez mais estreita e o sinal cada vez mais fraco ----------
+        /// <summary>Largura da zona em cada rodada: a barra amarela encolhe, como um sinal que se perde.</summary>
+        public static readonly float[] AutoZoneWidths = { 0.30f, 0.20f, 0.12f };
+        public static readonly float[] AutoZoneStarts = { 0.52f, 0.30f, 0.55f };
+        /// <summary>Onde o botão começa em cada rodada: a no máximo 15% da borda da zona.</summary>
+        public static readonly float[] AutoStartKnobs = { 0.40f, 0.63f, 0.42f };
+        /// <summary>Intensidade (amplitude) do sinal em cada rodada: cada contato é mais fraco que o anterior.</summary>
+        public static readonly float[] AutoSignals = { 0.80f, 0.50f, 0.28f };
+        /// <summary>Depois de uma rodada, o resultado fica na tela por este tempo antes de a próxima abrir.</summary>
+        public const float NextRoundDelaySeconds = 2.5f;
+        /// <summary>Sem mexer a seta e fora da zona por este tempo, a antena se aproxima sozinha da zona (ajuda, sem punição).</summary>
+        public const float AutoAssistSeconds = 15f;
+
         public static readonly ListeningResult[] Results = { ListeningResult.Signal, ListeningResult.Data, ListeningResult.Carrier };
         public static readonly string[] StateEvents = { StateEventContact1, StateEventContact2, StateEventContact3 };
 
@@ -148,6 +165,8 @@ namespace Abandoned.SpaceApps
         int waitingFor = -1; // marco aguardando a rodada anterior (2, 3, 4 ou 5 = respirar); -1 = nenhum
         float knob, listen, silenceRemaining;
         ListeningResult result;
+        int highestOpened = -1, nextRoundStep = -1;
+        float nextRoundTimer, autoIdle;
 
         /// <summary>Estado concluído (sequência terminou ou foi pulada). Dispara uma vez por <see cref="Begin"/>.</summary>
         public event Action Completed;
@@ -164,6 +183,18 @@ namespace Abandoned.SpaceApps
         /// controles somem depois do primeiro. Ligado pelo controlador; o padrão (falso) são as quatro rodadas.
         /// </summary>
         public bool SingleRound { get; set; }
+
+        /// <summary>
+        /// Roteiro v2 (cena 8, versão final): as quatro rodadas sem tecla E. A primeira abre assim que a cena começa; só as setas sintonizam
+        /// e a escuta é automática dentro da zona. Cada contato tem a zona mais estreita e o sinal mais fraco; a próxima rodada abre
+        /// sozinha 2,5 s depois de a anterior terminar. Tem precedência sobre <see cref="SingleRound"/>.
+        /// </summary>
+        public bool AutoListenMode { get; set; }
+
+        public static float ZoneStartOf(int step, bool auto) => auto ? AutoZoneStarts[step] : ZoneStarts[step];
+        public static float ZoneWidthOf(int step, bool auto) => auto ? AutoZoneWidths[step] : ZoneWidth;
+        public static float StartKnobOf(int step, bool auto) => auto ? AutoStartKnobs[step] : StartKnobs[step];
+        public static float SignalOf(int step, bool auto) => auto ? AutoSignals[step] : Signals[step];
 
         public SequenceDefinition Sequence => sequence;
         public ListeningPhase Phase => phase;
@@ -214,6 +245,9 @@ namespace Abandoned.SpaceApps
             running = true;
             phase = ListeningPhase.Teach; // o primeiro quadro já mostra o cartão e o indicador de proximidade
             knob = StartKnobs[0];
+            highestOpened = -1;
+            nextRoundStep = -1;
+            autoIdle = 0f;
             director.EventRaised += OnEventRaised;
             director.Finished += OnFinished;
             if (presentation != null)
@@ -232,6 +266,9 @@ namespace Abandoned.SpaceApps
                 interaction.HoldCanceled += OnHoldCanceled;
                 OfferCandidate();
             }
+
+            if (AutoListenMode)
+                Open(0); // a primeira rodada já está aberta: dá para sintonizar assim que a cena aparece
 
             PushView();
         }
@@ -317,7 +354,15 @@ namespace Abandoned.SpaceApps
 
         void Open(int step)
         {
-            if (SingleRound && step >= 1 && step <= 3)
+            if (AutoListenMode)
+            {
+                if (step <= highestOpened)
+                    return; // a rodada já abriu (o marco da sequência chegou depois do jogador)
+                highestOpened = step;
+                nextRoundStep = -1;
+            }
+
+            if (SingleRound && !AutoListenMode && step >= 1 && step <= 3)
             {
                 AutoResolve(step);
                 return;
@@ -330,10 +375,11 @@ namespace Abandoned.SpaceApps
                 case 2:
                     phase = (ListeningPhase)((int)ListeningPhase.Contact1 + step);
                     // Mantém o que a pessoa já ajustou no ensino, desde que esteja a no máximo 15% da zona.
-                    var start = ZoneStarts[step];
-                    var gap = knob < start ? start - knob : knob > start + ZoneWidth ? knob - start - ZoneWidth : 0f;
+                    var start = ZoneStartOf(step, AutoListenMode);
+                    var width = ZoneWidthOf(step, AutoListenMode);
+                    var gap = knob < start ? start - knob : knob > start + width ? knob - start - width : 0f;
                     if (step > 0 || gap > 0.15f)
-                        knob = StartKnobs[step];
+                        knob = StartKnobOf(step, AutoListenMode);
                     listen = 0f;
                     assisting = false;
                     result = ListeningResult.None;
@@ -414,6 +460,19 @@ namespace Abandoned.SpaceApps
                 MoveKnob(dt);
                 if (silenceRemaining > 0f)
                     silenceRemaining = Mathf.Max(0f, silenceRemaining - dt);
+                if (AutoListenMode && nextRoundStep >= 0)
+                {
+                    nextRoundTimer -= dt;
+                    if (nextRoundTimer <= 0f)
+                    {
+                        var step = nextRoundStep;
+                        nextRoundStep = -1;
+                        if (waitingFor == step)
+                            ReleaseWait();
+                        else
+                            Open(step);
+                    }
+                }
             }
 
             PushView();
@@ -421,8 +480,10 @@ namespace Abandoned.SpaceApps
 
         bool ZoneActive => phase >= ListeningPhase.Teach && phase <= ListeningPhase.Contact3;
         int ContactIndex => phase == ListeningPhase.Teach ? 0 : (int)phase - (int)ListeningPhase.Contact1;
-        float ZoneStart => ZoneStarts[ContactIndex];
-        float ZoneEnd => ZoneStarts[ContactIndex] + ZoneWidth;
+        float ZoneStart => ZoneStartOf(ContactIndex, AutoListenMode);
+        float ZoneEnd => ZoneStartOf(ContactIndex, AutoListenMode) + ZoneWidthOf(ContactIndex, AutoListenMode);
+        /// <summary>A escuta anda sozinha (versão automática) ou com E mantido.</summary>
+        bool Hearing => AutoListenMode || holding;
         bool CanListen => phase >= ListeningPhase.Contact1 && phase <= ListeningPhase.Attempt4 && !ThisStepDone();
         bool InZone => ZoneActive && knob >= ZoneStart && knob <= ZoneEnd;
 
@@ -437,6 +498,21 @@ namespace Abandoned.SpaceApps
             knob = Mathf.Clamp01(knob + delta);
 
             assisting = false;
+            if (AutoListenMode && CanListen && ZoneActive && !InZone)
+            {
+                // Sem E para a varredura assistida: depois de 15 s parado e fora da zona, a antena se aproxima devagar (sem punição).
+                autoIdle = Mathf.Abs(delta) > 1e-4f ? 0f : autoIdle + dt;
+                if (autoIdle >= AutoAssistSeconds)
+                {
+                    assisting = true;
+                    var aim = knob < ZoneStart ? ZoneStart + 0.02f : ZoneEnd - 0.02f;
+                    knob = Mathf.MoveTowards(knob, aim, AssistSpeedPerSecond * dt);
+                    assisting = !InZone;
+                }
+            }
+            else if (AutoListenMode)
+                autoIdle = 0f;
+
             if (CanListen && holding && ZoneActive)
             {
                 if (!InZone)
@@ -449,7 +525,7 @@ namespace Abandoned.SpaceApps
                 }
             }
 
-            if (CanListen && holding && (InZone || phase == ListeningPhase.Attempt4))
+            if (CanListen && Hearing && (InZone || phase == ListeningPhase.Attempt4))
             {
                 listen = Mathf.Min(ListenSeconds, listen + dt);
                 if (listen >= ListenSeconds)
@@ -459,6 +535,7 @@ namespace Abandoned.SpaceApps
 
         void FinishStep()
         {
+            var finishedStep = phase == ListeningPhase.Attempt4 ? 3 : ContactIndex;
             assisting = false;
             listen = ListenSeconds;
             if (phase == ListeningPhase.Attempt4)
@@ -481,9 +558,16 @@ namespace Abandoned.SpaceApps
             if (SingleRound && phase == ListeningPhase.Contact1)
                 CloseInput(); // a única rodada terminou: sem botão, sem prompt, sem lease
 
+            if (AutoListenMode)
+            {
+                // A próxima rodada abre sozinha depois de o resultado ficar um instante na tela.
+                nextRoundStep = finishedStep + 1;
+                nextRoundTimer = NextRoundDelaySeconds;
+            }
+
             // O E mantido não pode concluir também a rodada seguinte: exige soltar.
             holding = false;
-            if (interaction != null)
+            if (interaction != null && !AutoListenMode)
             {
                 interaction.CancelHold();
                 interaction.RequireRelease();
@@ -498,6 +582,8 @@ namespace Abandoned.SpaceApps
 
         void OfferCandidate()
         {
+            if (AutoListenMode)
+                return; // sem E: nenhum candidato de interação, só as setas
             var available = CanListen;
             interaction.SetCandidate(new InteractionCandidate
             {
@@ -562,6 +648,8 @@ namespace Abandoned.SpaceApps
             waitingFor = -1;
             pausePending = false;
             listen = silenceRemaining = 0f;
+            highestOpened = nextRoundStep = -1;
+            nextRoundTimer = autoIdle = 0f;
             result = ListeningResult.None;
             phase = ListeningPhase.Idle;
             PushView();
@@ -584,13 +672,15 @@ namespace Abandoned.SpaceApps
                 Proximity = zone ? 1f - Mathf.Clamp01(distance / 0.6f) : 0f,
                 Direction = !zone || distance <= 0f ? 0 : knob < start ? 1 : -1,
                 InZone = zone && distance <= 0f,
-                Signal = contact >= 0 ? Signals[contact] : 0f,
+                Signal = contact >= 0 ? SignalOf(contact, AutoListenMode) : 0f,
                 Listen = Mathf.Clamp01(listen / ListenSeconds),
                 Hold = HoldState(),
                 Assisting = assisting,
                 Result = result,
                 ControlsCollapsed = phase == ListeningPhase.Breathe || phase == ListeningPhase.Done || (SingleRound && phase > ListeningPhase.Contact1),
                 Silent = silenceRemaining > 0f,
+                AutoListen = AutoListenMode,
+                Strength = zone && contact >= 0 ? (1f - Mathf.Clamp01(distance / 0.6f)) * SignalOf(contact, AutoListenMode) : 0f,
             };
         }
 
@@ -598,6 +688,8 @@ namespace Abandoned.SpaceApps
         {
             if (ThisStepDone())
                 return ListeningHoldState.Done;
+            if (AutoListenMode)
+                return ListeningHoldState.Available;
             if (holding)
                 return ListeningHoldState.Holding;
             if (running && interaction != null && interaction.AwaitingRelease)

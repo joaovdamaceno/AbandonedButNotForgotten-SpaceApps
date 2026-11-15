@@ -139,25 +139,51 @@ namespace Abandoned.SpaceApps.EditorTools
 
         static ShotKeyframe Key(float t, Vector3 p, float fov) => new ShotKeyframe(t, p, Vector3.zero, fov);
 
+        /// <summary>Deslocamento do zoom da peça no rig do plano geral, com uma deriva lenta para a frente (<paramref name="drift"/> m).</summary>
+        static Vector3 PieceView(int piece, float drift = 0f) => PioneerStageBuilder.PlaquePieceOffset(piece) + new Vector3(0f, 0f, drift);
+
         /// <summary>
-        /// 0–7,5 chegada à placa presa à sonda, 7,5–27,5 as cinco peças (marco em 27,4 s: a revelação espera 5/5), 27,5–33 placa inteira
-        /// e a escala humana devolvida ao refletor. As legendas das peças (PIO.05.02–06) abrem por gatilho e ficam o tempo de ler
-        /// a 16 caracteres por segundo no pior idioma (de 3,6 a 4 s). 33 s é o mínimo que a regra de leitura permite (o roteiro pede 20 s).
+        /// Cutscene pura (sem encaixe, sem barra de E): a câmera mostra a placa dourada inteira e dá um zoom moderado em cada peça,
+        /// seguindo as legendas. 0–7,5 chegada (placa inteira, depois a primeira peça); 7,5–27,5 as cinco peças (cada uma é
+        /// enquadrada até 0,2 s depois do gatilho da sua legenda e a câmera segue para a próxima nos 0,8 s finais da legenda;
+        /// marco em 27,4 s); 27,5–33 recuo até a placa inteira. As legendas das peças (PIO.05.02–06) abrem por gatilho e ficam o
+        /// tempo de ler a 16 caracteres por segundo no pior idioma (de 3,6 a 4 s). 33 s é o mínimo que a regra de leitura permite.
         /// </summary>
         public static SequenceDefinition CreateSequence()
         {
+            const string rig = "PIO.Plaque.Board";
+            const float fov = PioneerStageBuilder.PlaqueHeroFov;
+            var fit = new List<ShotKeyframe> { Key(0f, PieceView(0), fov) };
+            for (var piece = 0; piece < 5; piece++)
+            {
+                var leave = piece * PioneerPlaqueActivity.CinemaPieceIntervalSeconds + 3.4f;
+                if (piece < 4)
+                {
+                    fit.Add(Key(leave, PieceView(piece, 0.15f), fov));
+                    fit.Add(Key(leave + 0.8f, PieceView(piece + 1), fov));
+                }
+                else
+                {
+                    fit.Add(Key(20f, PieceView(piece, 0.15f), fov));
+                }
+            }
+
             var shots = new[]
             {
-                new ShotDefinition("PIO05.Arrive", 7.5f, PioneerPlaqueActivity.StateId,
-                    new[] { Key(0f, new Vector3(0.3f, 0f, -0.5f), 36f), Key(7.5f, Vector3.zero, 36f) },
+                new ShotDefinition("PIO05.Arrive", 7.5f, rig,
+                    new[]
+                    {
+                        Key(0f, new Vector3(-0.6f, 0.5f, -1.8f), fov),
+                        Key(3.8f, Vector3.zero, fov),
+                        Key(7.5f, PieceView(0), fov),
+                    },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerPlaqueActivity.EventArrive) }),
-                new ShotDefinition("PIO05.Fit", 20f, PioneerPlaqueActivity.StateId,
-                    new[] { Key(0f, Vector3.zero, 36f), Key(20f, new Vector3(0f, 0f, 0.1f), 36f) },
-                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
+                new ShotDefinition("PIO05.Fit", 20f, rig, fit,
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerPlaqueActivity.EventActivity), new ShotEvent(19.9f, PioneerPlaqueActivity.EventGate) }),
-                new ShotDefinition("PIO05.Reveal", 5.5f, PioneerPlaqueActivity.StateId,
-                    new[] { Key(0f, Vector3.zero, 36f), Key(5.5f, new Vector3(0f, 0f, -1.2f), 44f) },
+                new ShotDefinition("PIO05.Reveal", 5.5f, rig,
+                    new[] { Key(0f, PieceView(4, 0.15f), fov), Key(5.5f, new Vector3(0f, 0f, -0.8f), fov) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerPlaqueActivity.EventReveal) }),
             };
@@ -166,9 +192,9 @@ namespace Abandoned.SpaceApps.EditorTools
             {
                 new SubtitleCue("PIO.05.01", "PIO.05.01", 0f, 7.3f),
                 SubtitleCue.Triggered("PIO.05.02", "PIO.05.02", PioneerPlaqueActivity.TriggerIds[0], 4.0f),
-                SubtitleCue.Triggered("PIO.05.03", "PIO.05.03", PioneerPlaqueActivity.TriggerIds[1], 3.7f),
-                SubtitleCue.Triggered("PIO.05.04", "PIO.05.04", PioneerPlaqueActivity.TriggerIds[2], 3.9f),
-                SubtitleCue.Triggered("PIO.05.05", "PIO.05.05", PioneerPlaqueActivity.TriggerIds[3], 3.6f),
+                SubtitleCue.Triggered("PIO.05.03", "PIO.05.03", PioneerPlaqueActivity.TriggerIds[1], 4.6f),
+                SubtitleCue.Triggered("PIO.05.04", "PIO.05.04", PioneerPlaqueActivity.TriggerIds[2], 4.5f),
+                SubtitleCue.Triggered("PIO.05.05", "PIO.05.05", PioneerPlaqueActivity.TriggerIds[3], 4.6f),
                 SubtitleCue.Triggered("PIO.05.06", "PIO.05.06", PioneerPlaqueActivity.TriggerIds[4], 3.6f),
                 new SubtitleCue("PIO.05.07", "PIO.05.07", 27.7f, 33f),
             };

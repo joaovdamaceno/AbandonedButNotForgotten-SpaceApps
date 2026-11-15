@@ -28,6 +28,7 @@ namespace Abandoned.SpaceApps.Tests
         [TearDown]
         public void TearDown()
         {
+            PioneerJupiterReveal.ShowEarthComparison = false;
             presentation?.UnregisterFromCameraDirector();
             EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
         }
@@ -52,8 +53,18 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void TheEarthDoesNotAppearByDefaultAndJupiterStillGrows()
+        {
+            reveal.Apply(PioneerJupiterReveal.EarthArriveSeconds + 0.5f);
+            Assert.That(presentation.Earth.gameObject.activeSelf, Is.False, "a Terra que aparecia do nada no canto foi retirada");
+            Assert.That(PioneerJupiterReveal.EarthLabelVisibleAt(PioneerJupiterReveal.EarthLabelStartSeconds + 1f), Is.False);
+            Assert.That(PioneerJupiterReveal.JupiterScaleAt(PioneerJupiterReveal.GrowSeconds), Is.EqualTo(1f));
+        }
+
+        [Test]
         public void TheDriverScalesJupiterAndPutsTheEarthInOnlyDuringTheOpenShotThenRestoresEverything()
         {
+            PioneerJupiterReveal.ShowEarthComparison = true;
             var jupiter = presentation.Jupiter;
             var full = jupiter.localScale.x;
             reveal.Initialize(null);
@@ -123,6 +134,31 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That((grow.Keyframes.First().fieldOfViewDegrees, grow.Keyframes.Last().fieldOfViewDegrees), Is.EqualTo((70f, PioneerStageBuilder.ApproachOpenFov)));
             Assert.That(grow.DurationSeconds, Is.EqualTo(PioneerJupiterReveal.GrowSeconds).Within(1e-4f), "o crescimento dura o plano inteiro");
             Assert.That(controller.ValidateSetup(), Is.Empty);
+        }
+
+        [Test]
+        public void TheEarthLabelAppearsOnlyWhileTheEarthIsOnScreenAndFollowsIt()
+        {
+            PioneerJupiterReveal.ShowEarthComparison = true;
+            Assert.That(PioneerJupiterReveal.EarthLabelVisibleAt(PioneerJupiterReveal.EarthLabelStartSeconds - 0.1f), Is.False);
+            Assert.That(PioneerJupiterReveal.EarthLabelVisibleAt(PioneerJupiterReveal.EarthLabelStartSeconds), Is.True);
+            Assert.That(PioneerJupiterReveal.EarthLabelVisibleAt(PioneerJupiterReveal.EarthLabelEndSeconds - 0.1f), Is.True);
+            Assert.That(PioneerJupiterReveal.EarthLabelVisibleAt(PioneerJupiterReveal.EarthLabelEndSeconds), Is.False);
+            Assert.That(PioneerJupiterReveal.EarthLabelStartSeconds, Is.GreaterThan(PioneerJupiterReveal.EarthEnterSeconds), "o rótulo não vem antes da Terra");
+            Assert.That(PioneerJupiterReveal.EarthLabelEndSeconds, Is.LessThanOrEqualTo(PioneerJupiterReveal.EarthLeaveSeconds), "e não fica depois dela");
+
+            var rest = reveal.EarthViewportAt(PioneerJupiterReveal.EarthArriveSeconds);
+            Assert.That(rest.x, Is.EqualTo(PioneerStageBuilder.EarthCompareViewport.x).Within(1e-3f), "ao parar, o rótulo fica sobre a Terra");
+            Assert.That(rest.y, Is.EqualTo(PioneerStageBuilder.EarthCompareViewport.y).Within(1e-3f));
+            Assert.That(reveal.EarthViewportAt(PioneerJupiterReveal.EarthLabelStartSeconds).x, Is.LessThan(rest.x), "a Terra ainda está chegando pela esquerda");
+        }
+
+        [Test]
+        public void TheEarthLabelTextExistsInBothLanguages()
+        {
+            var data = UnityEditor.AssetDatabase.LoadAssetAtPath<PioneerData>(PioneerDataBuilder.DataAssetPath);
+            Assert.That(data.GetText(PioneerJupiterReveal.EarthLabelKey, PioneerData.Portuguese), Is.EqualTo("Terra"));
+            Assert.That(data.GetText(PioneerJupiterReveal.EarthLabelKey, PioneerData.English), Is.EqualTo("Earth"));
         }
     }
 }

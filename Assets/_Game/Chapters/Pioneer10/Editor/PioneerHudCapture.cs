@@ -34,6 +34,10 @@ namespace Abandoned.SpaceApps.EditorTools
             ("estrelas_t22", 22f),
             ("estrelas_t29", 29f),
             ("barras_com_estrelas_t29", 29f),
+            ("cinturao_dias_t23", 23f),
+            ("cinturao_nota_t28", 28f),
+            ("cinturao_nike_t35", 35f),
+            ("terra_rotulo_t18", 18f),
         };
         // Quadros com este prefixo desenham o HUD da cena 7 (PioneerYearsHud); os demais, o da cena 5 (PioneerClosestHud).
         const string YearsPrefix = "anos_";
@@ -95,6 +99,24 @@ namespace Abandoned.SpaceApps.EditorTools
                 {
                     view.Bind();
                     var t = current.seconds;
+                    if (current.name.StartsWith("terra_", StringComparison.Ordinal))
+                    {
+                        view.SetEarthLabel(PioneerJupiterReveal.EarthLabelVisibleAt(t), Text(PioneerJupiterReveal.EarthLabelKey),
+                            Vector2.Lerp(PioneerStageBuilder.EarthCompareEnterViewport, PioneerStageBuilder.EarthCompareViewport, PioneerJupiterReveal.EarthBlendAt(t)));
+                        return;
+                    }
+
+                    if (current.name.StartsWith("cinturao_", StringComparison.Ordinal))
+                    {
+                        var day = PioneerBeltCounter.DayAt(t);
+                        var nike = PioneerBeltCounter.NikeVisibleAt(t);
+                        var dayText = PioneerBeltCounter.DayCounterVisibleAt(t) ? Text(BeltPanelView.DayKey).Replace("{count}", day.ToString()) : string.Empty;
+                        view.SetBeltCounter(PioneerBeltCounter.DayCounterVisibleAt(t) || PioneerBeltCounter.DateOnlyVisibleAt(t), dayText,
+                            PioneerBeltCounter.DateText(day, Text(BeltPanelView.MonthsKey)), nike, nike ? Text(BeltPanelView.NearestKey) : string.Empty,
+                            PioneerStageBuilder.NikeViewport, PioneerBeltCounter.NoteVisibleAt(t) ? Text(PioneerBeltCounter.NoteKey) : string.Empty);
+                        return;
+                    }
+
                     if (current.name.StartsWith("barras_", StringComparison.Ordinal))
                     {
                         view.SetLetterbox(1f, PioneerLetterbox.BarFraction);

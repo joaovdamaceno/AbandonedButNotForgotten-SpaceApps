@@ -606,6 +606,167 @@ namespace Abandoned.SpaceApps.EditorTools
             mesh.RecalculateBounds();
         }
 
+        /// <summary>Quadrado unitário voltado para -Z (a câmera que olha para +Z o vê de frente), para halos e brilhos.</summary>
+        public static void GlowQuad(Mesh mesh)
+        {
+            Fill(mesh, "PIO_GlowQuad",
+                new List<Vector3> { new Vector3(-0.5f, -0.5f, 0f), new Vector3(0.5f, -0.5f, 0f), new Vector3(-0.5f, 0.5f, 0f), new Vector3(0.5f, 0.5f, 0f) },
+                new List<Vector3> { Vector3.back, Vector3.back, Vector3.back, Vector3.back },
+                new List<Vector2> { new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0f, 1f), new Vector2(1f, 1f) },
+                new List<int> { 0, 2, 1, 1, 2, 3 });
+        }
+
+        /// <summary>Brilho radial (branco, alfa em queda suave do centro à borda) para halos aditivos de estrelas.</summary>
+        public static Texture2D GlowTexture(int size)
+        {
+            var pixels = new Color32[size * size];
+            for (var y = 0; y < size; y++)
+            {
+                for (var x = 0; x < size; x++)
+                {
+                    var dx = (x + 0.5f) / size * 2f - 1f;
+                    var dy = (y + 0.5f) / size * 2f - 1f;
+                    var r = Mathf.Sqrt(dx * dx + dy * dy);
+                    var falloff = Mathf.Clamp01(1f - r);
+                    var alpha = Mathf.Pow(falloff, 2.6f) + 0.55f * Mathf.Pow(falloff, 9f); // halo largo e um miolo mais intenso
+                    pixels[y * size + x] = new Color32(255, 255, 255, (byte)Mathf.RoundToInt(Mathf.Clamp01(alpha) * 255f));
+                }
+            }
+
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false) { name = "PIO_StarGlow" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
+        /// <summary>
+        /// Centros das pedras do cinturão: poucas, em volume ao redor da sonda (na origem), todas a pelo menos <paramref name="minRadius"/> dela, a no
+        /// mínimo <paramref name="minSeparation"/> umas das outras e longe do caminho da câmera (o segmento da origem até
+        /// <paramref name="cameraAxis"/> × <paramref name="cameraDistance"/>, com folga de <paramref name="cameraClearance"/>). Determinístico.
+        /// </summary>
+        public static List<Vector3> SparseRockCenters(int count, int seed, float minRadius, float maxRadius, float minSeparation, Vector3 cameraAxis, float cameraDistance, float cameraClearance)
+        {
+            var random = new System.Random(seed);
+            var centers = new List<Vector3>();
+            var axis = cameraAxis.normalized;
+            var guard = 0;
+            while (centers.Count < count && guard++ < 200000)
+            {
+                var z = (float)(random.NextDouble() * 2.0 - 1.0);
+                var phi = (float)(random.NextDouble() * Math.PI * 2.0);
+                var r0 = Mathf.Sqrt(1f - z * z);
+                var direction = new Vector3(r0 * Mathf.Cos(phi), z, r0 * Mathf.Sin(phi));
+                var cubic = Mathf.Lerp(minRadius * minRadius * minRadius, maxRadius * maxRadius * maxRadius, (float)random.NextDouble());
+                var point = direction * Mathf.Pow(cubic, 1f / 3f); // volume uniforme: sem amontoar perto da sonda
+                var along = Mathf.Clamp(Vector3.Dot(point, axis), 0f, cameraDistance);
+                if (Vector3.Distance(point, axis * along) < cameraClearance)
+                    continue;
+                var apart = true;
+                foreach (var other in centers)
+                {
+                    if (Vector3.Distance(point, other) < minSeparation)
+                    {
+                        apart = false;
+                        break;
+                    }
+                }
+
+                if (apart)
+                    centers.Add(point);
+            }
+
+            return centers;
+        }
+
+        /// <summary>O cinturão como ele é: pedras pequenas e bem separadas (uma malha só), com muito espaço vazio entre elas.</summary>
+        /// <summary>
+        /// Tamanho de uma pedra: distribuição logarítmica enviesada para as pequenas, com poucas grandes (o cinturão de verdade tem
+        /// muito mais pedras pequenas que grandes). <paramref name="random"/> é um número uniforme de 0 a 1.
+        /// </summary>
+        public static float RockSize(float minSize, float maxSize, float random) =>
+            minSize * Mathf.Pow(maxSize / minSize, Mathf.Pow(Mathf.Clamp01(random), 1.45f));
+
+        public static void SparseRockField(Mesh mesh, IReadOnlyList<Vector3> centers, int seed, float minSize, float maxSize)
+        {
+            var random = new System.Random(seed + 17);
+            var vertices = new List<Vector3>();
+            var normals = new List<Vector3>();
+            var triangles = new List<int>();
+            for (var i = 0; i < centers.Count; i++)
+                AppendRock(vertices, normals, triangles, centers[i], RockSize(minSize, maxSize, (float)random.NextDouble()), seed * 7919 + i);
+
+            mesh.Clear();
+            mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+            mesh.SetVertices(vertices);
+            mesh.SetNormals(normals);
+            mesh.SetTriangles(triangles, 0);
+            mesh.RecalculateBounds();
+        }
+
+        /// <summary>
+        /// A placa dourada inteira numa textura (quadro de 300 × 450 da <see cref="PioneerPlaqueArt"/>, 2:3): alumínio anodizado dourado com a
+        /// moldura e as cinco peças gravadas em bronze escuro, cada uma num quadrado centrado no seu contorno. Determinística. As figuras
+        /// humanas são as silhuetas lisas da peça "Pessoas" (sem detalhes anatômicos).
+        /// </summary>
+        public static Texture2D PlaqueBoard(int width, int height)
+        {
+            var gold = new Color32(227, 181, 95, 255);
+            var goldEdge = new Color32(206, 160, 78, 255);
+            var ink = new Color32(76, 50, 14, 255);
+            var shapes = new List<PioneerPlaqueArt.Shape>[PioneerPlaqueArt.SlotRects.Length];
+            for (var i = 0; i < shapes.Length; i++)
+                shapes[i] = PioneerPlaqueArt.ShapesOf(i);
+
+            var pixels = new Color32[width * height];
+            const int samples = 2;
+            for (var py = 0; py < height; py++)
+            {
+                for (var px = 0; px < width; px++)
+                {
+                    var covered = 0;
+                    var frame = 0;
+                    for (var sy = 0; sy < samples; sy++)
+                    {
+                        for (var sx = 0; sx < samples; sx++)
+                        {
+                            var bx = (px + (sx + 0.5f) / samples) / width * PioneerPlaqueArt.BoardWidth;
+                            var byFromTop = (1f - (py + (sy + 0.5f) / samples) / height) * PioneerPlaqueArt.BoardHeight;
+                            var edge = Mathf.Min(Mathf.Min(bx, PioneerPlaqueArt.BoardWidth - bx), Mathf.Min(byFromTop, PioneerPlaqueArt.BoardHeight - byFromTop));
+                            if (edge > 3.2f && edge < 5.2f)
+                                frame++; // moldura fina
+                            for (var i = 0; i < shapes.Length; i++)
+                            {
+                                var rect = PioneerPlaqueArt.SlotRects[i];
+                                var side = Mathf.Min(rect.width, rect.height);
+                                var ox = rect.x + (rect.width - side) * 0.5f;
+                                var oy = rect.y + (rect.height - side) * 0.5f;
+                                var lx = (bx - ox) / side * 100f;
+                                var ly = (byFromTop - oy) / side * 100f;
+                                if (lx < 0f || lx > 100f || ly < 0f || ly > 100f)
+                                    continue;
+                                var hit = false;
+                                for (var k = 0; k < shapes[i].Count && !hit; k++)
+                                    hit = shapes[i][k].Inside(lx, ly);
+                                if (hit)
+                                    covered++;
+                                break;
+                            }
+                        }
+                    }
+
+                    var total = samples * samples;
+                    var inked = Mathf.Clamp01((covered + frame) / (float)total);
+                    var baseColor = Color32.Lerp(gold, goldEdge, 0.5f * Mathf.Abs(((px * 31 + py * 17) % 7) / 7f - 0.5f)); // grão sutil do anodizado
+                    pixels[py * width + px] = Color32.Lerp(baseColor, ink, inked);
+                }
+            }
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false) { name = "PIO_PlaqueBoard" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
         public static void BrightStars(Mesh mesh, int count, int seed, float minDegrees, float maxDegrees)
         {
             var vertices = new List<Vector3>();
@@ -626,11 +787,20 @@ namespace Abandoned.SpaceApps.EditorTools
                 var column = Mathf.Min(PaletteColumns - 1, (int)(random.NextDouble() * PaletteColumns));
                 var row = magnitude > 0.45f ? 1 : 0;
                 var uv = new Vector2((column + 0.5f) / PaletteColumns, (row + 0.5f) / PaletteRows);
+                // disco de 8 lados (e não um quadrado): as estrelas ficam redondas mesmo a poucos pixels
                 var start = vertices.Count;
-                vertices.AddRange(new[] { dir - t1 - t2, dir + t1 - t2, dir - t1 + t2, dir + t1 + t2 });
-                normals.AddRange(new[] { -dir, -dir, -dir, -dir });
-                uvs.AddRange(new[] { uv, uv, uv, uv });
-                triangles.AddRange(new[] { start, start + 1, start + 2, start + 1, start + 3, start + 2 });
+                vertices.Add(dir);
+                normals.Add(-dir);
+                uvs.Add(uv);
+                const int sides = 8;
+                for (var k = 0; k < sides; k++)
+                {
+                    var angle = k / (float)sides * Mathf.PI * 2f;
+                    vertices.Add(dir + (t1 * Mathf.Cos(angle) + t2 * Mathf.Sin(angle)) * 1.15f);
+                    normals.Add(-dir);
+                    uvs.Add(uv);
+                    triangles.AddRange(new[] { start, start + 1 + k, start + 1 + (k + 1) % sides });
+                }
             }
 
             Fill(mesh, "PIO_BrightStars", vertices, normals, uvs, triangles);
@@ -666,7 +836,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public static Texture2D Starfield(int width, int height, int starCount, int seed)
         {
             var pixels = new Color[width * height];
-            var background = new Color(0.010f, 0.012f, 0.020f);
+            var background = new Color(0.0015f, 0.0015f, 0.002f); // quase preto e neutro (teste de jogo: o espaço estava azulado)
             var bandNormal = new Vector3(0.35f, 0.82f, 0.45f).normalized;
             for (var y = 0; y < height; y++)
             {
@@ -677,8 +847,11 @@ namespace Abandoned.SpaceApps.EditorTools
                     var dir = new Vector3(Mathf.Cos(theta) * Mathf.Cos(phi), Mathf.Sin(theta), Mathf.Cos(theta) * Mathf.Sin(phi));
                     var band = Mathf.Exp(-Mathf.Pow(Vector3.Dot(dir, bandNormal) / 0.16f, 2f));
                     var cloud = Fbm(dir * 3.2f, seed, 4);
-                    var glow = band * (0.35f + 0.65f * cloud) * 0.030f;
-                    pixels[y * width + x] = background + new Color(glow * 0.92f, glow * 0.95f, glow * 1.08f);
+                    var dust = Mathf.Clamp01(Fbm(dir * 6.5f + new Vector3(11f, 3f, 7f), seed + 5, 4) * 1.9f - 0.45f); // faixas escuras de poeira
+                    var core = Mathf.Clamp01(Fbm(dir * 1.7f, seed + 9, 3));
+                    var glow = band * (0.30f + 0.70f * cloud) * (1f - 0.7f * dust) * 0.016f;
+                    var warm = Color.Lerp(new Color(0.96f, 0.97f, 1.0f), new Color(1.08f, 0.98f, 0.9f), core); // núcleo levemente mais quente, bordas neutras
+                    pixels[y * width + x] = background + new Color(glow * warm.r, glow * warm.g, glow * warm.b);
                 }
             }
 
@@ -687,14 +860,25 @@ namespace Abandoned.SpaceApps.EditorTools
             {
                 var z = (float)(random.NextDouble() * 2.0 - 1.0);
                 var phi = (float)(random.NextDouble() * Math.PI * 2.0);
+                if (i % 100 < 45) // quase metade das estrelas se aglomera perto da faixa da Via Láctea
+                {
+                    var r0 = Mathf.Sqrt(1f - z * z);
+                    var d0 = new Vector3(r0 * Mathf.Cos(phi), z, r0 * Mathf.Sin(phi));
+                    d0 = (d0 - bandNormal * (Vector3.Dot(d0, bandNormal) * 0.82f)).normalized;
+                    z = d0.y;
+                    phi = Mathf.Atan2(d0.z, d0.x);
+                    if (phi < 0f)
+                        phi += Mathf.PI * 2f;
+                }
+
                 var theta = Mathf.Asin(z);
                 var u = phi / (Mathf.PI * 2f) * width;
                 var v = (theta / Mathf.PI + 0.5f) * height;
                 var magnitude = (float)Math.Pow(random.NextDouble(), 4.0);
-                var brightness = 0.05f + 0.30f * magnitude; // só estrelas fracas: as brilhantes são a malha nítida (BrightStars)
+                var brightness = 0.06f + 0.34f * magnitude; // só estrelas fracas: as brilhantes são a malha nítida (BrightStars)
                 var temperature = (float)random.NextDouble();
                 var tint = temperature < 0.15f ? new Color(1f, 0.78f, 0.62f) : temperature > 0.85f ? new Color(0.72f, 0.82f, 1f) : new Color(1f, 0.97f, 0.92f);
-                var sigmaY = 0.45f + magnitude * 0.15f;
+                var sigmaY = 0.34f + magnitude * 0.12f; // estrelas mais nítidas (menos borradas) com o céu esticado a 40°
                 var sigmaX = Mathf.Min(sigmaY / Mathf.Max(Mathf.Cos(theta), 0.02f), 48f);
                 Splat(pixels, width, height, u, v, sigmaX, sigmaY, tint * brightness);
             }

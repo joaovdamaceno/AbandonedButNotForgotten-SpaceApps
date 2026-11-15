@@ -103,8 +103,8 @@ namespace Abandoned.SpaceApps.Tests
         {
             Assert.That(data.Validate(), Is.Empty);
             Assert.That(data.States.Count, Is.EqualTo(9));
-            Assert.That(data.Cues.Count, Is.EqualTo(53));
-            Assert.That(data.Texts.Count, Is.EqualTo(147));
+            Assert.That(data.Cues.Count, Is.EqualTo(59));
+            Assert.That(data.Texts.Count, Is.EqualTo(172));
             Assert.That(data.States.Sum(s => s.nominalSeconds), Is.EqualTo(417));
             foreach (var cue in data.Cues)
             {
@@ -141,11 +141,11 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(map.Validate(), Is.Empty);
             Assert.That(PioneerPresentation.StateIds.Select(id => { map.TryGetState(id, out var s); return s.musicCueId; }), Is.EqualTo(new[]
             {
-                "MUS_PIO_PARTIDA", "MUS_PIO_CUR", "MUS_PIO_CUR", "MUS_PIO_CUR", "MUS_PIO_CUR", "MUS_PIO_DISTANCIA", "MUS_PIO_DISTANCIA", "MUS_PIO_ESCUTA", "MUS_PIO_ESCUTA",
-            }), "Partida, Curiosidade, Distância e Escuta nos estados da folha de cues");
+                "MUS_PIO_LANCAMENTO", "MUS_PIO_CINTURAO", "MUS_PIO_MARAVILHA", "MUS_PIO_MARAVILHA", "MUS_PIO_JUPITER", "MUS_PIO_ANOS", "MUS_PIO_ANOS", "MUS_PIO_RADIO", "MUS_PIO_FINAL",
+            }), "um cue por clima do roteiro (seção 6 da folha de cues)");
             Assert.That(map.States.All(s => s.fadeSeconds >= 1.5f && s.fadeSeconds <= 2f), "crossfade de 1,5 a 2 s");
             Assert.That(map.Cues.All(c => c.clip == null), "o mapa não traz áudio: nenhuma faixa entra sem licença e crédito");
-            Assert.That(map.Cues.Where(c => c.kind == PioneerAudioKind.Music).All(c => c.licenseStatus == "candidate"), "faixas são candidatas, não adquiridas");
+            Assert.That(map.Cues.Where(c => c.kind == PioneerAudioKind.Music).All(c => c.licenseStatus == "acquired" && c.creditId.StartsWith("M-SB-PIO-")), "faixas adquiridas (CC BY 4.0), com crédito registrado");
 
             var sheet = File.ReadAllText("Docs/Art/AUDIO_CUE_SHEET.md");
             foreach (var cue in map.Cues.Where(c => c.idConfirmedInCueSheet))
@@ -221,7 +221,7 @@ namespace Abandoned.SpaceApps.Tests
 
             Run(40f);
             Assert.That(narration.CurrentText, Is.Empty, "ao terminar a sequência não sobra legenda");
-            Assert.That(texts.Count(t => t.Length > 0), Is.EqualTo(5), "as cinco legendas de PIO.Launch, uma vez cada");
+            Assert.That(texts.Count(t => t.Length > 0), Is.EqualTo(6), "as seis legendas de PIO.Launch, uma vez cada");
         }
 
         [Test]
@@ -273,10 +273,19 @@ namespace Abandoned.SpaceApps.Tests
 
             Assert.That(audio.Log.Where(l => l.StartsWith("music:")), Is.EqualTo(new[]
             {
-                "music:MUS_PIO_PARTIDA:1.75", "music:MUS_PIO_CUR:1.75", "music:MUS_PIO_DISTANCIA:1.75", "music:MUS_PIO_ESCUTA:1.75",
-            }), "CUR segue de PIO.Belt a PIO.Imaging e DISTANCIA de PIO.Plaque a PIO.Outbound sem reiniciar");
-            Assert.That(audio.Log.Where(l => l.StartsWith("level:")), Is.EqualTo(new[] { "level:0.15:1.50", "level:1.00:1.75" }), "quase silêncio na virada e volta no estado seguinte");
+                "music:MUS_PIO_LANCAMENTO:1.75", "music:MUS_PIO_CINTURAO:1.75", "music:MUS_PIO_MARAVILHA:0.80", "music:MUS_PIO_JUPITER:1.75", "music:MUS_PIO_ANOS:1.75", "music:MUS_PIO_RADIO:1.75", "music:MUS_PIO_FINAL:1.75",
+            }), "a revelação do cinturão corta para MARAVILHA em 0,8 s; MARAVILHA segue de JupiterApproach a Imaging e ANOS de Plaque a Outbound sem reiniciar");
+            Assert.That(audio.Log.Where(l => l.StartsWith("level:")), Is.Empty, "a virada troca de faixa em vez de baixar o nível");
             Assert.That(narration.EnterState("PIO.Inexistente"), Is.False);
+        }
+
+        [Test]
+        public void TheDiveEventRequestsOneSecondOfSilenceAndTheRealityEventSwitchesTheMusic()
+        {
+            Assert.That(narration.EnterState("PIO.Closest"), Is.True);
+            narration.RaiseEvent("PIO.Closest.Dive");
+            Assert.That(audio.Log.Where(l => l.StartsWith("silence:")), Is.EqualTo(new[] { "silence:1.0" }));
+            Assert.That(data.GetText("PIO.09.08", "pt-BR"), Is.Not.Empty, "legenda de ligação do mergulho");
         }
 
         [Test]
@@ -334,7 +343,7 @@ namespace Abandoned.SpaceApps.Tests
 
             audio.Log.Clear();
             Assert.That(narration.EnterState("PIO.Launch"), Is.True, "reiniciar o capítulo começa limpo");
-            Assert.That(audio.Log, Is.EqualTo(new[] { "music:MUS_PIO_PARTIDA:1.75" }));
+            Assert.That(audio.Log, Is.EqualTo(new[] { "music:MUS_PIO_LANCAMENTO:1.75" }));
         }
 
         [Test]
@@ -351,7 +360,7 @@ namespace Abandoned.SpaceApps.Tests
 
             audio.Available = true;
             narration.Resync();
-            Assert.That(audio.Log, Is.EqualTo(new[] { "music:MUS_PIO_CUR:1.75", "level:0.15:1.75", "paused:False" }), "depois do clique, o estado atual é refeito");
+            Assert.That(audio.Log, Is.EqualTo(new[] { "music:MUS_PIO_MARAVILHA:1.75", "paused:False" }), "depois do clique, o estado atual é refeito");
         }
 
         [Test]

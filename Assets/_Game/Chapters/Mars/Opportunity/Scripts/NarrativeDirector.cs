@@ -5,7 +5,7 @@ namespace Abandoned.SpaceApps.Opportunity
     {
         public ChapterDirector chapter;
         public FilmSequence[] sequences;
-        public Transform mast;
+        public Transform mast=>chapter.rover.Rig.Mast;
         public Transform assemblyBay,memorial;public ReflectionProbe assemblyProbe;
         public AbrasionSurface montageSurface;
         public ParticleSystem montageDust;
@@ -160,7 +160,6 @@ namespace Abandoned.SpaceApps.Opportunity
                 float withdrawn=u<.28f?1-u/.28f:u>.62f?(u-.62f)/.38f:0;
                 var surface=beat.secondaryWork?montageSurface:chapter.science.surface;var specimen=surface.GetComponent<Collider>();
                 if(beat.secondaryWork){float cut=Mathf.SmoothStep(0,1,Mathf.InverseLerp(.28f,.62f,u));if(cut<filmCut){surface.ResetSurface();filmCut=0;}if(cut>filmCut){surface.Brush(new Vector2(.4f,.5f),(cut-filmCut)*6,.52f);if(cut>=1)surface.CommitCollision();}filmCut=cut;}
-                rover.GetComponentInChildren<InstrumentArm>().specimen=specimen;
                 Vector3 target=surface.WorldPoint(new Vector2(.4f,.5f))+surface.transform.up*.035f;
                 rover.tool.position=InstrumentTrajectory.Position(target,rover.tool.parent.TransformPoint(toolRest),specimen.bounds,withdrawn);
                 rover.tool.rotation=InstrumentTrajectory.Rotation(surface.transform.rotation,rover.tool.parent.rotation*toolRotation,withdrawn);

@@ -34,12 +34,16 @@ namespace Abandoned.SpaceApps
         [Tooltip("Roteiro v2, cena 2: Marte ao fundo, na abertura do cinturão.")] public bool showMars;
         [Tooltip("Roteiro v2, cena 5: as luas galileanas (Ganimedes, Calisto e Europa).")] public bool showMoons;
         [Tooltip("Roteiro v2, cena 5: a trajetória da sonda curvando em volta de Júpiter.")] public bool showTrajectory;
+        [Tooltip("Cenas 2 e 7: o Sistema Solar esquemático em 3D (sol, planetas, cinturão, órbitas e o caminho da sonda).")] public bool showSolarSystem;
+        [Tooltip("Roteiro v2, cena 6: a placa dourada grande, com os desenhos gravados, para os zooms em cada parte.")] public bool showPlaqueHero;
         [Tooltip("Socket da sonda que fica voltado para o alvo ao entrar no anchor (ex.: placa para a câmera). Vazio = mantém a rotação.")]
         public string spinAlignSocket;
         [Tooltip("Alvo do alinhamento: um alvo de enquadramento (PIO.Jupiter) ou vazio = a câmera deste anchor.")]
         public string spinAlignTowards;
         [Range(0f, 1f), Tooltip("Fração da rotação visual de cruzeiro neste anchor (1 = cruzeiro).")]
         public float spinScale = 1f;
+        [Tooltip("Roteiro v2, cena 4: a câmera está DENTRO da sonda (ponto de vista do fotopolarímetro), então o modelo da sonda some.")]
+        public bool hideProbe;
         [Tooltip("Área reservada ao quadro de UI (viewport normalizado). Largura zero = nenhum quadro.")]
         public Rect uiFrameViewport;
 
@@ -100,6 +104,8 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("Terra de comparação (roteiro v2, cena 3); ligada e desligada por PioneerJupiterReveal.")] Transform earth;
         [SerializeField, Tooltip("Luas galileanas (roteiro v2, cena 5); só aparecem nos anchors que as pedem.")] Transform moons;
         [SerializeField, Tooltip("Linha da trajetória em volta de Júpiter (roteiro v2, cena 5); só aparece nos anchors que a pedem.")] Transform trajectory;
+        [SerializeField, Tooltip("Sistema Solar esquemático em 3D das cenas 2 e 7; só aparece nos anchors que o pedem.")] Transform solarSystem;
+        [SerializeField, Tooltip("A placa dourada em destaque (roteiro v2, cena 6); só aparece nos anchors que a pedem.")] Transform plaqueHero;
         [SerializeField, Tooltip("Direção de mundo do marcador (direção geral de Aldebaran no palco, não posição calculada).")] Vector3 aldebaranDirection = new Vector3(0.2f, 0.08f, -1f);
         [SerializeField, Min(10f)] float aldebaranDistanceMeters = 1100f;
         [SerializeField, Tooltip("Esfera de céu centrada na câmera: sem paralaxe e sem milhares de objetos.")] Transform sky;
@@ -133,6 +139,8 @@ namespace Abandoned.SpaceApps
         public Transform Earth => earth;
         public Transform Moons => moons;
         public Transform Trajectory => trajectory;
+        public Transform SolarSystem => solarSystem;
+        public Transform PlaqueHero => plaqueHero;
         public bool ReducedMotion => reducedMotion;
         public float SpinDegreesPerSecond => spinDegreesPerSecond;
 
@@ -287,6 +295,13 @@ namespace Abandoned.SpaceApps
                 moons.gameObject.SetActive(anchor.showMoons && anchor.region == PioneerStageRegion.DeepSpace);
             if (trajectory != null)
                 trajectory.gameObject.SetActive(anchor.showTrajectory && anchor.region == PioneerStageRegion.DeepSpace);
+            if (solarSystem != null)
+                solarSystem.gameObject.SetActive(anchor.showSolarSystem && anchor.region == PioneerStageRegion.DeepSpace);
+            if (plaqueHero != null)
+                plaqueHero.gameObject.SetActive(anchor.showPlaqueHero && anchor.region == PioneerStageRegion.DeepSpace);
+
+            if (probeSpin != null && probeSpin.gameObject.activeSelf == anchor.hideProbe)
+                probeSpin.gameObject.SetActive(!anchor.hideProbe);
 
             ApplyLightGroup(anchor.lightGroupId);
             AlignSpin(anchor);
@@ -295,6 +310,27 @@ namespace Abandoned.SpaceApps
                 cameraDirector.Apply(PoseOf(anchor));
 
             SyncToCamera();
+            return true;
+        }
+
+        readonly Dictionary<string, Quaternion> baseRotations = new Dictionary<string, Quaternion>();
+
+        /// <summary>
+        /// Gira o rig do anchor em torno do eixo vertical, a partir da rotação com que ele foi montado (0 = como montado). É o giro da câmera
+        /// de ponto de vista do fotopolarímetro: a câmera do plano lê o anchor como rig, então acompanha.
+        /// </summary>
+        public bool SetAnchorYaw(string anchorId, float degrees)
+        {
+            if (!TryGetAnchor(anchorId, out var anchor) || anchor.pose == null)
+                return false;
+
+            if (!baseRotations.TryGetValue(anchorId, out var baseRotation))
+            {
+                baseRotation = anchor.pose.rotation;
+                baseRotations[anchorId] = baseRotation;
+            }
+
+            anchor.pose.rotation = Quaternion.AngleAxis(degrees, Vector3.up) * baseRotation;
             return true;
         }
 

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ef80ed68ebd604a906808df0bd4eb7, type: 3}
+  m_Name: ReturnedCameraCard
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.ReturnedCameraCard
+  photograph: {fileID: 2800000, guid: 3d06a1e0b145fec4ca5eac8b8d800f52, type: 3}
+  texts: {fileID: 4900000, guid: cbe38ba2d6653a846966c64a5937a434, type: 3}
+  nasaUrl: https://ntrs.nasa.gov/citations/19710024418
+  testArticleUrl: https://airandspace.si.edu/collection-objects/camera-television-surveyor/nasm_A19761264000

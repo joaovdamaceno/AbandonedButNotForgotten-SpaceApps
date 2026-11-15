@@ -35,7 +35,7 @@ namespace Abandoned.SpaceApps.EditorTools
         {var old=AssetDatabase.LoadAssetAtPath<T>(dest);if(old!=null)return old;var clone=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<T>(source));clone.name=Path.GetFileNameWithoutExtension(dest);AssetDatabase.CreateAsset(clone,dest);return clone;}
         public static void BuildFromCommandLine()
         {try{Prepare();Build(new[]{Scene},"Builds/WebBaseline");EditorApplication.Exit(0);}catch(Exception e){Debug.LogException(e);EditorApplication.Exit(1);}}
-        public static void Build(string[] scenes,string output)
+        public static void Build(string[] scenes,string output,string reportFolder="QA/WebBaseline")
         {
             if(EditorUserBuildSettings.activeBuildTarget!=BuildTarget.WebGL)throw new InvalidOperationException("Start Unity with -buildTarget WebGL and finish its import before building.");
             var oldPipeline=GraphicsSettings.defaultRenderPipeline;var oldQuality=QualitySettings.renderPipeline;var oldTemplate=PlayerSettings.WebGL.template;
@@ -47,7 +47,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 PlayerSettings.WebGL.template="PROJECT:SpaceApps";PlayerSettings.WebGL.compressionFormat=WebGLCompressionFormat.Brotli;PlayerSettings.WebGL.decompressionFallback=false;
                 PlayerSettings.SetScriptingBackend(NamedBuildTarget.WebGL,ScriptingImplementation.IL2CPP);
                 var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=scenes,locationPathName=output,target=BuildTarget.WebGL,options=BuildOptions.None});
-                Directory.CreateDirectory("QA/WebBaseline");File.WriteAllText("QA/WebBaseline/build-result.txt",$"{report.summary.result}\nUnity {Application.unityVersion}\nErrors {report.summary.totalErrors}\nWarnings {report.summary.totalWarnings}\nElapsed {report.summary.totalTime}\nBuildReport bytes (not compressed download) {report.summary.totalSize}\n");
+                Directory.CreateDirectory(reportFolder);File.WriteAllText(reportFolder+"/build-result.txt",$"{report.summary.result}\nUnity {Application.unityVersion}\nErrors {report.summary.totalErrors}\nWarnings {report.summary.totalWarnings}\nElapsed {report.summary.totalTime}\nBuildReport bytes (not compressed download) {report.summary.totalSize}\n");
                 if(report.summary.result!=BuildResult.Succeeded)throw new InvalidOperationException("Web build failed; see report/log.");
                 Debug.Log("WEB RELEASE "+output);
             }

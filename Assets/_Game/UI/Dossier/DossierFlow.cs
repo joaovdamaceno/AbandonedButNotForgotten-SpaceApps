@@ -108,7 +108,7 @@ namespace Abandoned.SpaceApps.UI
                 folders.Add(info.SlotId, info.Available);
             }
 
-            LanguageCode = IsSupportedLanguage(languageCode) ? languageCode : Portuguese;
+            LanguageCode = IsSupportedLanguage(languageCode) ? languageCode : English;
         }
 
         public DossierPhase Phase { get; private set; } = DossierPhase.Hidden;

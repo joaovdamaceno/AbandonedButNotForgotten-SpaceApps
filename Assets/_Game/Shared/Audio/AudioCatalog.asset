@@ -13,41 +13,6 @@ MonoBehaviour:
   m_Name: AudioCatalog
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.AudioCatalog
   cues:
-  - id: MUS_PIO_PARTIDA
-    bus: 1
-    clips: []
-    loop: 1
-    volume: 1
-    pitchVariation: 0
-    maxSeconds: 0
-  - id: MUS_PIO_CUR
-    bus: 1
-    clips: []
-    loop: 1
-    volume: 1
-    pitchVariation: 0
-    maxSeconds: 0
-  - id: MUS_PIO_DISTANCIA
-    bus: 1
-    clips: []
-    loop: 1
-    volume: 1
-    pitchVariation: 0
-    maxSeconds: 0
-  - id: MUS_PIO_ESCUTA
-    bus: 1
-    clips: []
-    loop: 1
-    volume: 1
-    pitchVariation: 0
-    maxSeconds: 0
-  - id: SFX_PIO_LAUNCH
-    bus: 2
-    clips: []
-    loop: 0
-    volume: 1
-    pitchVariation: 0
-    maxSeconds: 0
   - id: SFX_SCAN
     bus: 2
     clips: []
@@ -116,5 +81,77 @@ MonoBehaviour:
     clips: []
     loop: 0
     volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_LANCAMENTO
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 4b970eab895557e4694f7e07d570f1e0, type: 3}
+    loop: 1
+    volume: 0.9
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_CINTURAO
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 4efb4f771f5798e419eaa5870698e67e, type: 3}
+    loop: 1
+    volume: 0.85
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_MARAVILHA
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 776d8961a3eb21543b17204922c2a866, type: 3}
+    loop: 1
+    volume: 0.9
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_JUPITER
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: efb28ecf690208047baa72aeeac8038d, type: 3}
+    loop: 1
+    volume: 0.95
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_ANOS
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: cdbc2cf926b5dac4982caff5422de8af, type: 3}
+    loop: 1
+    volume: 0.85
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_RADIO
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 7df4d1380d4e8f74e8a1ac3a845640ff, type: 3}
+    loop: 1
+    volume: 0.85
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_FINAL
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 4b5b9e2005fbaa84f891d7177039a15a, type: 3}
+    loop: 1
+    volume: 0.95
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_PIO_LAUNCH
+    bus: 2
+    clips:
+    - {fileID: 8300000, guid: 73eeeaa78a579eb4e81c91d4cecd418c, type: 3}
+    loop: 0
+    volume: 0.9
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_PIO_POWERDOWN
+    bus: 2
+    clips:
+    - {fileID: 8300000, guid: 50b9da7caca96db408363447ebaf9d60, type: 3}
+    loop: 0
+    volume: 0.8
     pitchVariation: 0
     maxSeconds: 0

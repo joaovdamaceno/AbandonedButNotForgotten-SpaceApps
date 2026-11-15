@@ -16,39 +16,59 @@ MonoBehaviour:
   shots:
   - shotId: PIO04.Learn
     durationSeconds: 10
-    rigId: PIO.Imaging
+    rigId: PIO.Imaging.Pov
     lookAtTargetId: 
-    easing: 0
+    easing: 1
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 0}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      positionMeters: {x: 1.05, y: -0.6, z: 0}
+      eulerAnglesDegrees: {x: 0.8, y: 0.96000004, z: -1.6}
+      fieldOfViewDegrees: 40.48
+    - timeSeconds: 5
+      positionMeters: {x: -1.05, y: 0.6, z: 1.5}
+      eulerAnglesDegrees: {x: -0.8, y: -0.96000004, z: 1.6}
+      fieldOfViewDegrees: 39.52
     - timeSeconds: 10
-      positionMeters: {x: 0, y: 0, z: 0.2}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      positionMeters: {x: 1.05, y: -0.6, z: 3}
+      eulerAnglesDegrees: {x: 0.8, y: 0.96000004, z: -1.6}
+      fieldOfViewDegrees: 40.48
     events:
     - timeSeconds: 0
       eventId: PIO.Imaging.Learn
   - shotId: PIO04.Sweep
     durationSeconds: 28
-    rigId: PIO.Imaging
+    rigId: PIO.Imaging.Pov
     lookAtTargetId: 
-    easing: 0
+    easing: 1
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 0.2}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      positionMeters: {x: 2.8, y: -1.6, z: 0}
+      eulerAnglesDegrees: {x: 0.8, y: 0.96000004, z: -1.6}
+      fieldOfViewDegrees: 40.48
+    - timeSeconds: 5.6
+      positionMeters: {x: -2.8, y: 1.6, z: 1.6}
+      eulerAnglesDegrees: {x: -0.8, y: -0.96000004, z: 1.6}
+      fieldOfViewDegrees: 39.52
+    - timeSeconds: 11.2
+      positionMeters: {x: 2.8, y: -1.6, z: 3.2}
+      eulerAnglesDegrees: {x: 0.8, y: 0.96000004, z: -1.6}
+      fieldOfViewDegrees: 40.48
+    - timeSeconds: 16.8
+      positionMeters: {x: -2.8, y: 1.6, z: 4.8}
+      eulerAnglesDegrees: {x: -0.8, y: -0.96000004, z: 1.6}
+      fieldOfViewDegrees: 39.52
+    - timeSeconds: 22.4
+      positionMeters: {x: 2.8, y: -1.6, z: 6.4}
+      eulerAnglesDegrees: {x: 0.8, y: 0.96000004, z: -1.6}
+      fieldOfViewDegrees: 40.48
     - timeSeconds: 28
-      positionMeters: {x: 0, y: 0, z: 0.4}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      positionMeters: {x: -2.8, y: 1.6, z: 8}
+      eulerAnglesDegrees: {x: -0.8, y: -0.96000004, z: 1.6}
+      fieldOfViewDegrees: 39.52
     events:
     - timeSeconds: 0
       eventId: PIO.Imaging.Sweep
@@ -62,20 +82,36 @@ MonoBehaviour:
       eventId: PIO.Imaging.Gate8
   - shotId: PIO04.Reveal
     durationSeconds: 26
-    rigId: PIO.Imaging
+    rigId: PIO.Imaging.Pov
     lookAtTargetId: 
-    easing: 0
+    easing: 1
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 0.4}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      positionMeters: {x: 2.8, y: -1.6, z: 0}
+      eulerAnglesDegrees: {x: 1.2, y: 1.44, z: -2.4}
+      fieldOfViewDegrees: 40.48
+    - timeSeconds: 5.2
+      positionMeters: {x: -2.8, y: 1.6, z: 1.6}
+      eulerAnglesDegrees: {x: -1.2, y: -1.44, z: 2.4}
+      fieldOfViewDegrees: 39.52
+    - timeSeconds: 10.4
+      positionMeters: {x: 2.8, y: -1.6, z: 3.2}
+      eulerAnglesDegrees: {x: 1.2, y: 1.44, z: -2.4}
+      fieldOfViewDegrees: 40.48
+    - timeSeconds: 15.6
+      positionMeters: {x: -2.8, y: 1.6, z: 4.8}
+      eulerAnglesDegrees: {x: -1.2, y: -1.44, z: 2.4}
+      fieldOfViewDegrees: 39.52
+    - timeSeconds: 20.8
+      positionMeters: {x: 2.8, y: -1.6, z: 6.4}
+      eulerAnglesDegrees: {x: 1.2, y: 1.44, z: -2.4}
+      fieldOfViewDegrees: 40.48
     - timeSeconds: 26
-      positionMeters: {x: 0, y: 0, z: 0.4}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      positionMeters: {x: -2.8, y: 1.6, z: 8}
+      eulerAnglesDegrees: {x: -1.2, y: -1.44, z: 2.4}
+      fieldOfViewDegrees: 39.52
     events:
     - timeSeconds: 0
       eventId: PIO.Imaging.Reveal
@@ -83,14 +119,14 @@ MonoBehaviour:
   - cueId: PIO.04.01
     textKey: PIO.04.01
     startSeconds: 0
-    endSeconds: 3.2
+    endSeconds: 3.7
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.04.02
     textKey: PIO.04.02
-    startSeconds: 3.4
+    startSeconds: 3.8
     endSeconds: 9.8
     triggerId: 
     minimumReadSeconds: 0

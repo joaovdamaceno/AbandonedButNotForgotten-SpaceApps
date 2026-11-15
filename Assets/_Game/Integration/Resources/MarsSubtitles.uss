@@ -1,5 +1,0 @@
-/* Legendas de Marte no mesmo formato das do Surveyor 3 (Chapters/Surveyor/Documentary/Documentary.uss):
-   faixa a 13% das laterais e 6,5% da base, placa na largura toda, fundo escuro a 50% e texto creme de 28 px. */
-.mars-subtitles .sa-subtitle-layer { left: 13%; right: 13%; bottom: 6.5%; }
-.mars-subtitles .sa-subtitle { width: 100%; max-width: 100%; padding: 8px 16px; background-color: rgba(4, 6, 7, 0.5); }
-.mars-subtitles .sa-subtitle__text { width: 100%; font-size: 28px; white-space: normal; -unity-text-align: middle-center; color: rgb(238, 235, 220); }

@@ -59,3 +59,8 @@ Base: `5f316f5` (develop em 14/11/2026), branch `sur-009-abrir-trincheira`. Unit
 ## Fontes
 
 Roteiro `Docs/Chapters/03_SURVEYOR_3.md` (ato 4, 02:31–03:13; SUR-S14/S15), relatório JPL TR 32-1177 Part I (<https://www.nasa.gov/wp-content/uploads/static/history/alsj/a12/Surveyor-III-MIssionRpt1967028267.pdf>) e <https://science.nasa.gov/mission/surveyor-3/>. A forma do sulco, o braço de dois elos e as medidas de arrasto são reconstrução própria; não são medidas da missão nem CAD. Nenhuma foto histórica da pá/trincheira (R-SUR-02) foi localizada ou importada. Não foi publicado nada no itch.io.
+
+
+## Atualização de integração — SUR-015 (15/11/2026)
+
+A pendência de montagem acima descreve a entrega original de SUR-009. A issue #67 foi concluída após conferir o merge da PR #159. A integração atual está em `SurveyorChapter.unity`: a mesma pá escava e executa os testes seguintes; os componentes recebem o Core compartilhado antes de iniciar. A aproximação de câmera e a ocultação óptica do elo proximal pertencem à integração/SUR-010. A jornada completa e o retorno ao arquivo estão documentados em `QA/SUR-015` e `Docs/Production/SURVEYOR_CHAPTER.md`. As evidências anteriores e sua autoria foram preservadas. GPU integrada e avaliação humana continuam pendentes.
