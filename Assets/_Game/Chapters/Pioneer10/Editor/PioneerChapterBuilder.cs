@@ -9,7 +9,7 @@ namespace Abandoned.SpaceApps.EditorTools
     /// <summary>
     /// PIO-014 · Builder da rota completa (CORE-006, raiz <c>[R5] Pioneer Chapter</c> na cena da Pioneer): gera
     /// <c>Data/PioneerChapter.asset</c> (o <see cref="ChapterDefinition"/> dos oito estados), a sequência
-    /// <c>Sequences/PIO_JupiterApproach.asset</c> (27 s, que nenhuma outra tarefa montava) e liga o
+    /// <c>Sequences/PIO_JupiterApproach.asset</c> (30 s, que nenhuma outra tarefa montava) e liga o
     /// <see cref="PioneerChapterController"/> a todas as atividades já presentes na cena.
     /// <para>
     /// O Id começa com <c>pioneer10.z</c> de propósito: os módulos rodam em ordem alfabética e este precisa vir
@@ -25,7 +25,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string ClosestSequencePath = ChapterFolder + "/Sequences/PIO_Closest.asset";
         public const string DataAssetPath = ChapterFolder + "/Data/PioneerData.asset";
         public const string CueMapAssetPath = ChapterFolder + "/Audio/PioneerCueMap.asset";
-        public const float TargetDurationSeconds = 373f;
+        public const float TargetDurationSeconds = 376f;
 
         public override string Id => ChapterBuilderId;
         public override string Owner => "R5 · PIO-014";
@@ -122,8 +122,8 @@ namespace Abandoned.SpaceApps.EditorTools
 
             errors.AddRange(controller.ValidateSetup().Select(e => $"{ChapterBuilderId}: {e}"));
             var jupiter = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(JupiterSequencePath);
-            if (jupiter == null || Mathf.Abs(jupiter.TotalDurationSeconds - 27f) > 0.01f)
-                errors.Add($"{ChapterBuilderId}: PIO.JupiterApproach deve durar 27 s ({JupiterSequencePath}).");
+            if (jupiter == null || Mathf.Abs(jupiter.TotalDurationSeconds - 30f) > 0.01f)
+                errors.Add($"{ChapterBuilderId}: PIO.JupiterApproach deve durar 30 s ({JupiterSequencePath}).");
             var closest = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(ClosestSequencePath);
             if (closest == null || Mathf.Abs(closest.TotalDurationSeconds - 40f) > 0.01f)
                 errors.Add($"{ChapterBuilderId}: PIO.Closest deve durar 40 s ({ClosestSequencePath}).");
@@ -167,13 +167,13 @@ namespace Abandoned.SpaceApps.EditorTools
             return asset;
         }
 
-        // ---------- PIO.JupiterApproach (27 s) ----------
+        // ---------- PIO.JupiterApproach (30 s) ----------
 
         static ShotKeyframe Key(float t, Vector3 p, float fov) => new ShotKeyframe(t, p, Vector3.zero, fov);
 
         /// <summary>
-        /// 0–9 Júpiter cresce de ponto a disco (a ABERTURA do campo de visão, não um zoom por distâncias literais), 9–19 plano
-        /// aberto com o planeta em ~2/3 do quadro e a sonda embaixo, 19–27 corte ao fotopolarímetro (a câmera pára antes da
+        /// 0–9 Júpiter cresce de ponto a disco (a ABERTURA do campo de visão, não um zoom por distâncias literais), 9–22 plano
+        /// aberto com o planeta em ~2/3 do quadro e a sonda embaixo (a Terra entra em 9,5 s e a legenda da comparação cai nela), 22–30 corte ao fotopolarímetro (a câmera pára antes da
         /// primeira instrução da PIO.Imaging). Legendas PIO.03.01–03 por janela. Estado SÓ de cinema: conclui quando a sequência
         /// termina. O enquadramento usa os anchors da PIO-003 e NÃO foi conferido no 3D.
         /// </summary>
@@ -184,8 +184,8 @@ namespace Abandoned.SpaceApps.EditorTools
                 new ShotDefinition("PIO03.Grow", 9f, "PIO.JupiterApproach",
                     new[] { Key(0f, Vector3.zero, 70f), Key(9f, Vector3.zero, PioneerStageBuilder.ApproachOpenFov) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
-                new ShotDefinition("PIO03.Open", 10f, "PIO.JupiterApproach",
-                    new[] { Key(0f, Vector3.zero, PioneerStageBuilder.ApproachOpenFov), Key(10f, Vector3.zero, PioneerStageBuilder.ApproachOpenFov) },
+                new ShotDefinition("PIO03.Open", 13f, "PIO.JupiterApproach",
+                    new[] { Key(0f, Vector3.zero, PioneerStageBuilder.ApproachOpenFov), Key(13f, Vector3.zero, PioneerStageBuilder.ApproachOpenFov) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f, continueFromPreviousShot: true),
                 new ShotDefinition("PIO03.Instrument", 8f, "PIO.JupiterApproach.Instrument",
                     new[] { Key(0f, Vector3.zero, 38f), Key(8f, new Vector3(0f, 0f, 0.05f), 38f) },
@@ -195,9 +195,9 @@ namespace Abandoned.SpaceApps.EditorTools
             var cues = new[]
             {
                 new SubtitleCue("PIO.03.01", "PIO.03.01", 0f, 6f),
-                new SubtitleCue("PIO.03.02", "PIO.03.02", 7f, 13f),
-                new SubtitleCue("PIO.03.03", "PIO.03.03", 14f, 20f),
-                new SubtitleCue("PIO.03.04", "PIO.03.04", 21f, 26f),
+                new SubtitleCue("PIO.03.02", "PIO.03.02", 9f, 15f),
+                new SubtitleCue("PIO.03.03", "PIO.03.03", 17f, 23f),
+                new SubtitleCue("PIO.03.04", "PIO.03.04", 24f, 29f),
             };
 
             return SequenceDefinition.Create("PIO_JupiterApproach", shots, cues);

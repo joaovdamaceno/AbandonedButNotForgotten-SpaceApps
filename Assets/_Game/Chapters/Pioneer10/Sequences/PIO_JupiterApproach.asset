@@ -32,7 +32,7 @@ MonoBehaviour:
       fieldOfViewDegrees: 36
     events: []
   - shotId: PIO03.Open
-    durationSeconds: 10
+    durationSeconds: 13
     rigId: PIO.JupiterApproach
     lookAtTargetId: 
     easing: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 36
-    - timeSeconds: 10
+    - timeSeconds: 13
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 36
@@ -76,24 +76,24 @@ MonoBehaviour:
     priority: 0
   - cueId: PIO.03.02
     textKey: PIO.03.02
-    startSeconds: 7
-    endSeconds: 13
+    startSeconds: 9
+    endSeconds: 15
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.03.03
     textKey: PIO.03.03
-    startSeconds: 14
-    endSeconds: 20
+    startSeconds: 17
+    endSeconds: 23
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.03.04
     textKey: PIO.03.04
-    startSeconds: 21
-    endSeconds: 26
+    startSeconds: 24
+    endSeconds: 29
     triggerId: 
     minimumReadSeconds: 0
     position: 0

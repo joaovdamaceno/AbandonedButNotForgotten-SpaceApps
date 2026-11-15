@@ -18,7 +18,7 @@ namespace Abandoned.SpaceApps
         public const float EarthEnterSeconds = 9.5f;
         public const float EarthArriveSeconds = 14f;
         /// <summary>Fim do plano aberto (PIO03.Open); no corte seguinte a Terra sai.</summary>
-        public const float EarthLeaveSeconds = 19f;
+        public const float EarthLeaveSeconds = 22f;
         /// <summary>Razão real dos diâmetros equatoriais de Júpiter e da Terra (142.984 km / 12.756 km).</summary>
         public const float JupiterToEarthDiameter = 11.2f;
 
