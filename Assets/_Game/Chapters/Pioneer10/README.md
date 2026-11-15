@@ -475,3 +475,11 @@ Sete faixas de **Scott Buckley (CC BY 4.0)** ligadas ao `AudioDirector` (AUD-002
 - **Planos livres da abertura** (`PioneerStageBuilder`, anchors `PIO.Launch.Reveal` e `PIO.Launch`; `PioneerLaunchBuilder.CreateSequence`): a câmera fica a ~11 m e ~12,5 m da sonda, com campo de visão de 32° e 34° e um movimento lento. O modelo tem poucos polígonos e não aguenta planos colados.
 - **Rótulo da Terra** (`PioneerJupiterReveal`, `CinemaHudView.SetEarthLabel`, texto `PIO.UI.earth_label`): de 13,5 a 21,5 s, "Terra" com uma linha fina acompanha a Terra de comparação no HUD de cinema; a Terra ganhou emissão de base.
 - **Limitações.** Brilho dos RTGs ainda com esferas aditivas simples; sem Play Mode nem teste humano. Evidência em `QA/PIO-034/README.md`.
+
+## Os dois jogos refeitos (PIO-036)
+
+- **Foto em ponto de vista** (`PioneerImaging.SpinShotMode`, painel `SpinShotPanelView`, imagens de `ImagingFrameSynth`): anchor `PIO.Imaging.Pov` com a câmera dentro da sonda (`hideProbe`), girada por `PioneerPresentation.SetAnchorYaw`; volta de 9 s, janela de ±15° (o disco de Júpiter visto da sonda), cinco fotos com um quadro vermelho e um azul cada (os canais são simultâneos), junção automática de 9 s, ajuda depois de 12 s sem foto. O modo antigo (oito passagens, três passos) continua no código.
+- **Sintonia sem E** (`PioneerListening.AutoListenMode`, `ListeningPanelView`): primeira rodada aberta com a cena, escuta automática na zona, zonas de 30%, 20% e 12% e sinais de 0,80, 0,50 e 0,28, próxima rodada 2,5 s depois do resultado, ajuda depois de 15 s parado; onda desenhada com Painter2D; câmera baixa que olha para cima (sem chão).
+- **Aldebaran:** `AldebaranCoreMeters` 7 m e `AldebaranHaloMeters` 52 m.
+- **Captura de quadros:** `PioneerMinigameCapture` (`QA/PIO-036`).
+- **Limitações.** Ruído e faixas desenhados; volta de 9 s é de jogabilidade (a real, ~12,5 s); textos `derived`; sem movimento reduzido; sem Play Mode nem teste humano. Evidência e fontes em `QA/PIO-036/README.md`.

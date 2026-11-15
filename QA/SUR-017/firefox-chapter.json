@@ -1,0 +1,157 @@
+{
+  "browser": "firefox",
+  "version": "159.0",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "readyMs": 2949,
+  "stages": [
+    "SURVEYOR_STEP Launch active=0.00\n",
+    "SURVEYOR_STEP Cruise active=28.00\n",
+    "SURVEYOR_STEP Descent active=62.40\n",
+    "SURVEYOR_STEP FirstImage active=102.41\n",
+    "SURVEYOR_STEP Observe active=115.75\n",
+    "SURVEYOR_STEP Sample active=151.78\n",
+    "SURVEYOR_STEP Eclipse active=206.69\n",
+    "SURVEYOR_STEP LunarNight active=234.96\n",
+    "SURVEYOR_STEP TimePassage active=251.96\n",
+    "SURVEYOR_STEP ImaginedVisit active=264.96\n",
+    "SURVEYOR_STEP HistoricalReceipt active=296.97\n",
+    "SURVEYOR_STEP End active=308.97\n"
+  ],
+  "completed": [
+    "SURVEYOR_COMPLETE active=314.97\n"
+  ],
+  "metrics": {
+    "totalWASMHeapSize": 186580992,
+    "usedWASMHeapSize": 171848696,
+    "totalJSHeapSize": null,
+    "usedJSHeapSize": null,
+    "pageLoadTime": 3200,
+    "pageLoadTimeToFrame1": 3347,
+    "fps": 123.1747721620059,
+    "movingAverageFps": 123.1747721620059,
+    "assetLoadTime": 1414,
+    "webAssemblyStartupTime": 1058,
+    "codeDownloadTime": 457,
+    "gameStartupTime": 982,
+    "numJankedFrames": 52
+  },
+  "renderSamples": {
+    "archive": {
+      "frames": 240,
+      "drawMedian": 3.0,
+      "drawP95": 5,
+      "drawMax": 5,
+      "presentationMsMedian": 6.940000000000509
+    },
+    "details": {
+      "frames": 240,
+      "drawMedian": 3.0,
+      "drawP95": 9,
+      "drawMax": 10,
+      "presentationMsMedian": 6.940000000000509
+    },
+    "launch": {
+      "frames": 240,
+      "drawMedian": 8.0,
+      "drawP95": 8,
+      "drawMax": 8,
+      "presentationMsMedian": 6.959999999999127
+    },
+    "pause": {
+      "frames": 240,
+      "drawMedian": 8.0,
+      "drawP95": 11,
+      "drawMax": 11,
+      "presentationMsMedian": 6.959999999999127
+    },
+    "first-image": {
+      "frames": 240,
+      "drawMedian": 59.0,
+      "drawP95": 59,
+      "drawMax": 59,
+      "presentationMsMedian": 6.960000000006403
+    },
+    "observation-0": {
+      "frames": 240,
+      "drawMedian": 59.0,
+      "drawP95": 59,
+      "drawMax": 60,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "observation-1": {
+      "frames": 240,
+      "drawMedian": 98.0,
+      "drawP95": 98,
+      "drawMax": 99,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "observation-2": {
+      "frames": 240,
+      "drawMedian": 62.0,
+      "drawP95": 62,
+      "drawMax": 63,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "soil": {
+      "frames": 240,
+      "drawMedian": 54.0,
+      "drawP95": 54,
+      "drawMax": 98,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "eclipse": {
+      "frames": 240,
+      "drawMedian": 22.0,
+      "drawP95": 22,
+      "drawMax": 22,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "imagined-notice": {
+      "frames": 240,
+      "drawMedian": 59.0,
+      "drawP95": 59,
+      "drawMax": 59,
+      "presentationMsMedian": 6.959999999962747
+    },
+    "glove": {
+      "frames": 240,
+      "drawMedian": 84.0,
+      "drawP95": 84,
+      "drawMax": 84,
+      "presentationMsMedian": 6.959999999962747
+    },
+    "archive-photo": {
+      "frames": 240,
+      "drawMedian": 9.0,
+      "drawP95": 9,
+      "drawMax": 9,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "memorial": {
+      "frames": 240,
+      "drawMedian": 10.0,
+      "drawP95": 10,
+      "drawMax": 10,
+      "presentationMsMedian": 6.940000000002328
+    },
+    "returned": {
+      "frames": 240,
+      "drawMedian": 5.0,
+      "drawP95": 5,
+      "drawMax": 5,
+      "presentationMsMedian": 6.940000000002328
+    }
+  },
+  "drawCallMethod": "WebGL draw entrypoints per presentation callback, including UI and TV. Not GPU profiler timings.",
+  "returnDiagnosticAvailable": true,
+  "canvasAt4K": {
+    "width": 1280,
+    "height": 720
+  },
+  "errors": [],
+  "network": "localhost unthrottled cold",
+  "automation": "Real key events. Headless GPU browser. No state skipping. Not novice timing or integrated-GPU certification."
+}

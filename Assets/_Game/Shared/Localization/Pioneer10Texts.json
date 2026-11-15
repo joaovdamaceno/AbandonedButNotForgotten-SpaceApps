@@ -117,14 +117,14 @@
     {
       "key": "PIO.04.03",
       "group": "narrative",
-      "pt": "A luz vermelha montou a primeira imagem, linha a linha. Agora o azul: a mesma volta paciente.",
-      "en": "Red light built the first picture, one line at a time. Now blue: the same patient turning."
+      "pt": "Vermelho e azul eram medidos juntos, mas uma foto sozinha vinha cheia de ruído.",
+      "en": "Red and blue were measured together, but a single photo came out full of noise."
     },
     {
       "key": "PIO.04.04",
       "group": "narrative",
-      "pt": "Uma segunda imagem toma forma, de novo uma linha fina de cada vez.",
-      "en": "A second picture takes shape, again one thin line at a time."
+      "pt": "Somando várias fotos, o ruído some e a imagem aparece.",
+      "en": "Adding photos together, the noise fades and the picture appears."
     },
     {
       "key": "PIO.04.05",
@@ -541,6 +541,48 @@
       "en": "Earth"
     },
     {
+      "key": "PIO.UI.shoot",
+      "group": "hud",
+      "pt": "Toque E · Júpiter na mira",
+      "en": "Tap E · Jupiter in the reticle"
+    },
+    {
+      "key": "PIO.UI.shot_count",
+      "group": "hud",
+      "pt": "Foto {count}/5",
+      "en": "Photo {count}/5"
+    },
+    {
+      "key": "PIO.UI.frames",
+      "group": "hud",
+      "pt": "Quadros",
+      "en": "Frames"
+    },
+    {
+      "key": "PIO.UI.sum",
+      "group": "hud",
+      "pt": "{count} fotos somadas",
+      "en": "{count} photos added"
+    },
+    {
+      "key": "PIO.UI.noise",
+      "group": "hud",
+      "pt": "Ruído",
+      "en": "Noise"
+    },
+    {
+      "key": "PIO.UI.tune_auto",
+      "group": "hud",
+      "pt": "← → · sintonize a antena",
+      "en": "← → · tune the antenna"
+    },
+    {
+      "key": "PIO.UI.receiving",
+      "group": "hud",
+      "pt": "Escutando…",
+      "en": "Listening…"
+    },
+    {
       "key": "PIO.UI.spin",
       "group": "hud",
       "pt": "Segure E · girar",
@@ -807,14 +849,14 @@
     {
       "key": "PIO.UI.nearer",
       "group": "instrument",
-      "pt": "Mais perto do sinal",
-      "en": "Closer to the signal"
+      "pt": "Intensidade do sinal: aumentando",
+      "en": "Signal strength: rising"
     },
     {
       "key": "PIO.UI.farther",
       "group": "instrument",
-      "pt": "Mais longe do sinal",
-      "en": "Farther from the signal"
+      "pt": "Intensidade do sinal: diminuindo",
+      "en": "Signal strength: falling"
     },
     {
       "key": "PIO.UI.received",

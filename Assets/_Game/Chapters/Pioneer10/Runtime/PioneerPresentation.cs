@@ -41,6 +41,8 @@ namespace Abandoned.SpaceApps
         public string spinAlignTowards;
         [Range(0f, 1f), Tooltip("Fração da rotação visual de cruzeiro neste anchor (1 = cruzeiro).")]
         public float spinScale = 1f;
+        [Tooltip("Roteiro v2, cena 4: a câmera está DENTRO da sonda (ponto de vista do fotopolarímetro), então o modelo da sonda some.")]
+        public bool hideProbe;
         [Tooltip("Área reservada ao quadro de UI (viewport normalizado). Largura zero = nenhum quadro.")]
         public Rect uiFrameViewport;
 
@@ -293,6 +295,9 @@ namespace Abandoned.SpaceApps
             if (plaqueHero != null)
                 plaqueHero.gameObject.SetActive(anchor.showPlaqueHero && anchor.region == PioneerStageRegion.DeepSpace);
 
+            if (probeSpin != null && probeSpin.gameObject.activeSelf == anchor.hideProbe)
+                probeSpin.gameObject.SetActive(!anchor.hideProbe);
+
             ApplyLightGroup(anchor.lightGroupId);
             AlignSpin(anchor);
 
@@ -300,6 +305,27 @@ namespace Abandoned.SpaceApps
                 cameraDirector.Apply(PoseOf(anchor));
 
             SyncToCamera();
+            return true;
+        }
+
+        readonly Dictionary<string, Quaternion> baseRotations = new Dictionary<string, Quaternion>();
+
+        /// <summary>
+        /// Gira o rig do anchor em torno do eixo vertical, a partir da rotação com que ele foi montado (0 = como montado). É o giro da câmera
+        /// de ponto de vista do fotopolarímetro: a câmera do plano lê o anchor como rig, então acompanha.
+        /// </summary>
+        public bool SetAnchorYaw(string anchorId, float degrees)
+        {
+            if (!TryGetAnchor(anchorId, out var anchor) || anchor.pose == null)
+                return false;
+
+            if (!baseRotations.TryGetValue(anchorId, out var baseRotation))
+            {
+                baseRotation = anchor.pose.rotation;
+                baseRotations[anchorId] = baseRotation;
+            }
+
+            anchor.pose.rotation = Quaternion.AngleAxis(degrees, Vector3.up) * baseRotation;
             return true;
         }
 

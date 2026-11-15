@@ -712,14 +712,14 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.04.03
     group: narrative
-    ptText: 'A luz vermelha montou a primeira imagem, linha a linha. Agora o azul: a mesma volta paciente.'
-    enText: 'Red light built the first picture, one line at a time. Now blue: the same patient turning.'
+    ptText: "Vermelho e azul eram medidos juntos, mas uma foto sozinha vinha cheia de ru\xEDdo."
+    enText: Red and blue were measured together, but a single photo came out full of noise.
     ptStatus: derived
     enStatus: derived
   - key: PIO.04.04
     group: narrative
-    ptText: Uma segunda imagem toma forma, de novo uma linha fina de cada vez.
-    enText: A second picture takes shape, again one thin line at a time.
+    ptText: "Somando v\xE1rias fotos, o ru\xEDdo some e a imagem aparece."
+    enText: Adding photos together, the noise fades and the picture appears.
     ptStatus: derived
     enStatus: derived
   - key: PIO.04.05
@@ -1136,6 +1136,48 @@ MonoBehaviour:
     enText: Earth
     ptStatus: derived
     enStatus: derived
+  - key: PIO.UI.shoot
+    group: hud
+    ptText: "Toque E \xB7 J\xFApiter na mira"
+    enText: "Tap E \xB7 Jupiter in the reticle"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.shot_count
+    group: hud
+    ptText: Foto {count}/5
+    enText: Photo {count}/5
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.frames
+    group: hud
+    ptText: Quadros
+    enText: Frames
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.sum
+    group: hud
+    ptText: '{count} fotos somadas'
+    enText: '{count} photos added'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.noise
+    group: hud
+    ptText: "Ru\xEDdo"
+    enText: Noise
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.tune_auto
+    group: hud
+    ptText: "\u2190 \u2192 \xB7 sintonize a antena"
+    enText: "\u2190 \u2192 \xB7 tune the antenna"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.receiving
+    group: hud
+    ptText: "Escutando\u2026"
+    enText: "Listening\u2026"
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.spin
     group: hud
     ptText: "Segure E \xB7 girar"
@@ -1402,16 +1444,16 @@ MonoBehaviour:
     enStatus: approved
   - key: PIO.UI.nearer
     group: instrument
-    ptText: Mais perto do sinal
-    enText: Closer to the signal
-    ptStatus: approved
-    enStatus: approved
+    ptText: 'Intensidade do sinal: aumentando'
+    enText: 'Signal strength: rising'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.farther
     group: instrument
-    ptText: Mais longe do sinal
-    enText: Farther from the signal
-    ptStatus: approved
-    enStatus: approved
+    ptText: 'Intensidade do sinal: diminuindo'
+    enText: 'Signal strength: falling'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.received
     group: instrument
     ptText: Sinal recebido
