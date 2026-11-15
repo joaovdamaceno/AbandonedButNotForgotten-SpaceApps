@@ -67,3 +67,8 @@ Código de saída 0 = conforme. Mudar qualquer valor exige alterar `Assets/_Game
 `main` guarda o planejamento/entrega; `develop` recebe os PRs. Use branch por tarefa e não edite a mesma cena junto de outra pessoa. As 84 issues possuem função, prioridade, estimativa, prompt, arquivos sob responsabilidade, critérios, testes e bloqueadores nativos. Os nomes das sete pessoas serão atribuídos depois. Na verificação de 14/11/2026, as 84 issues estavam abertas: 7 Prontas, 69 Bloqueadas e 8 no Backlog. Nenhuma implementação foi marcada como concluída.
 
 O sincronizador local pode atualizar labels e colunas. O workflow do repositório atualiza integração/readiness das issues; acesso adicional ao Project no Actions depende de segredo configurado pelo titular e não foi criado automaticamente. Consulte o procedimento de claim e revisão em [KANBAN.md](Docs/Production/KANBAN.md).
+
+
+### Capítulo Surveyor 3 integrado
+
+Abra `Assets/_Game/Chapters/Surveyor/Scenes/SurveyorArchive.unity` e pressione Play; a pasta Surveyor inicia o capítulo completo. A cena `SurveyorChapter.unity` permite inspeção isolada. Controles, montagem, build Web próprio e limites de validação: [SURVEYOR_CHAPTER](Docs/Production/SURVEYOR_CHAPTER.md). Este arquivo de teste não substitui a integração global dos outros capítulos.

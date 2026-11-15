@@ -15,6 +15,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         IDisposable lease;bool bound,running,offered;float stageTime,saved,holdStart,cueTime,entryTime;Vector3 lastTip;SubtitleCue cue;
         [SerializeField] Renderer[] opticalOccluders=Array.Empty<Renderer>();
         UnityEngine.Rendering.ShadowCastingMode[] originalShadows;
+        Quaternion cameraFrom,cameraTo;float cameraTime,cameraFov;
         public void SetOpticalOccluders(Renderer[] renderers)=>opticalOccluders=renderers??Array.Empty<Renderer>();
         public event Action Changed;public event Action<SubtitleCue> CueEntered,CueExited;
         public SoilPhase Phase{get;private set;}
@@ -48,8 +49,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             for(int i=0;i<opticalOccluders.Length;i++)if(opticalOccluders[i]!=null){originalShadows[i]=opticalOccluders[i].shadowCastingMode;opticalOccluders[i].shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;}
             pressMark.gameObject.SetActive(false);impactMark.gameObject.SetActive(false);montageMarks.gameObject.SetActive(false);
             // Keep the optical centre, point at the same excavated area. Capture before the scoop begins moving.
-            if(camera!=null){camera.transform.rotation=Quaternion.LookRotation(scoop.TrenchCenter.position-camera.transform.position,Vector3.up);camera.fieldOfView=25.3f;}
-            Before=Capture();Changed?.Invoke();
+            cameraTime=0;if(camera!=null){cameraFrom=camera.transform.rotation;cameraTo=Quaternion.LookRotation(scoop.TrenchCenter.position-camera.transform.position,Vector3.up);cameraFov=camera.fieldOfView;}
+            if(CaptureOverride!=null)Before=Capture();Changed?.Invoke();
         }
         Texture2D Capture()
         {
@@ -109,6 +110,11 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         {
             if(!running||owner.IsPaused||activeDeltaSeconds<=0)return;
             float dt=Mathf.Min(activeDeltaSeconds,SessionClock.MaxFrameDeltaSeconds,Mathf.Max(0,clock.ActiveSeconds-entryTime));stageTime+=dt;
+            if(camera!=null&&cameraTime<2)
+            {
+                cameraTime=Mathf.Min(2,cameraTime+dt);float blend=Mathf.SmoothStep(0,1,cameraTime/2);camera.transform.rotation=Quaternion.Slerp(cameraFrom,cameraTo,blend);camera.fieldOfView=Mathf.Lerp(cameraFov,25.3f,blend);
+                if(cameraTime>=2&&Before==null)Before=Capture();
+            }
             if(cue!=null){cueTime-=dt;if(cueTime<=0)ClearCue();}
             if(Phase==SoilPhase.PressRetreat||Phase==SoilPhase.ImpactRetreat)
             {

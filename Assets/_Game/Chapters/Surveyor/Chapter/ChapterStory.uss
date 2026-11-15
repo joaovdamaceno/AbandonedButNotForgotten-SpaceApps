@@ -1,0 +1,6 @@
+.story-root {position:absolute;left:0;right:0;top:0;bottom:0;background-color:black;color:rgb(234,230,214);align-items:center;justify-content:center;}
+.story-frame {position:absolute;top:35px;flex-shrink:0;background-color:black;}.story-picture {position:absolute;left:0;right:0;top:0;bottom:0;}
+.story-date {position:absolute;left:20px;top:15px;font-size:18px;}.story-credit {position:absolute;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.85);font-size:15px;padding:10px;white-space:normal;-unity-text-align:middle-center;}
+.story-title {font-size:58px;letter-spacing:5px;margin-bottom:120px;}.story-location {position:absolute;top:47%;font-size:17px;}.story-total {position:absolute;right:35px;top:40px;font-size:17px;}.story-send {position:absolute;right:30px;bottom:145px;}.story-return {position:absolute;bottom:25px;}
+.story-root Button {min-height:42px;padding:10px 25px;background-color:rgb(23,43,49);color:rgb(231,227,212);}
+.story-root .sa-stamp {color:rgb(205,201,184);}
