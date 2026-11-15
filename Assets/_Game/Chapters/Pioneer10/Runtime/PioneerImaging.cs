@@ -175,16 +175,18 @@ namespace Abandoned.SpaceApps
         /// <summary>Anchor da câmera dentro da sonda: ela gira com a sonda e Júpiter cruza a mira uma vez por volta.</summary>
         public const string PovAnchorId = "PIO.Imaging.Pov";
         /// <summary>Duração de uma volta no jogo. A sonda real girava a ~4,8 rpm (12,5 s por volta, nominal); aqui a volta é mais rápida só para o jogo andar.</summary>
-        public const float SpinPeriodSeconds = 6f;
+        public const float SpinPeriodSeconds = 3.2f;
+        /// <summary>A câmera fica parada em Júpiter durante o jogo; só a barra anda (o giro da sonda foi retirado a pedido da pessoa que testou).</summary>
+        public const bool CameraStaysStill = true;
         /// <summary>Fotos a registrar; cada foto traz um quadro vermelho e um azul, tirados juntos (os dois canais do instrumento são simultâneos).</summary>
         public const int SpinShotCount = 5;
         /// <summary>Meia largura da janela, em graus de giro: Júpiter (raio de ~14° visto da sonda) preenche a mira.</summary>
-        public const float SpinWindowHalfDegrees = 19f;
+        public const float SpinWindowHalfDegrees = 42f;
         /// <summary>Quanto a ajuda alarga a janela depois de 12 s sem foto (sem punição).</summary>
         public const float SpinAssistedScale = 2.5f;
         /// <summary>Sem foto por tanto tempo, a janela alarga (teste de jogo: o minigame estava difícil e longo).</summary>
-        public const float SpinAssistSeconds = 6f;
-        public const float CombineSeconds = 5f;
+        public const float SpinAssistSeconds = 5f;
+        public const float CombineSeconds = 3.5f;
         public const float FlashSeconds = 0.5f;
         public const float OutsideFeedbackSeconds = 0.5f;
         /// <summary>Onde a primeira volta começa (fração da volta): Júpiter entra em quadro poucos instantes depois.</summary>
@@ -610,7 +612,8 @@ namespace Abandoned.SpaceApps
         {
             get
             {
-                if (!SpinShotMode || !running)
+                // Teste de jogo: a sonda NÃO gira mais antes de cada foto; a câmera fica parada em Júpiter e só a barra do painel anda.
+                if (!SpinShotMode || !running || CameraStaysStill)
                     return 0f;
                 if (combining)
                 {

@@ -192,9 +192,9 @@ namespace Abandoned.SpaceApps.EditorTools
             {
                 new SubtitleCue("PIO.05.01", "PIO.05.01", 0f, 7.3f),
                 SubtitleCue.Triggered("PIO.05.02", "PIO.05.02", PioneerPlaqueActivity.TriggerIds[0], 4.0f),
-                SubtitleCue.Triggered("PIO.05.03", "PIO.05.03", PioneerPlaqueActivity.TriggerIds[1], 3.7f),
-                SubtitleCue.Triggered("PIO.05.04", "PIO.05.04", PioneerPlaqueActivity.TriggerIds[2], 3.9f),
-                SubtitleCue.Triggered("PIO.05.05", "PIO.05.05", PioneerPlaqueActivity.TriggerIds[3], 3.6f),
+                SubtitleCue.Triggered("PIO.05.03", "PIO.05.03", PioneerPlaqueActivity.TriggerIds[1], 4.6f),
+                SubtitleCue.Triggered("PIO.05.04", "PIO.05.04", PioneerPlaqueActivity.TriggerIds[2], 4.5f),
+                SubtitleCue.Triggered("PIO.05.05", "PIO.05.05", PioneerPlaqueActivity.TriggerIds[3], 4.6f),
                 SubtitleCue.Triggered("PIO.05.06", "PIO.05.06", PioneerPlaqueActivity.TriggerIds[4], 3.6f),
                 new SubtitleCue("PIO.05.07", "PIO.05.07", 27.7f, 33f),
             };

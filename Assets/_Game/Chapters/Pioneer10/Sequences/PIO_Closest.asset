@@ -96,20 +96,20 @@ MonoBehaviour:
     events: []
   - shotId: PIO09.Pass
     durationSeconds: 14
-    rigId: PIO.Closest
+    rigId: PIO.Closest.Bend
     lookAtTargetId: 
-    easing: 1
+    easing: 0
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: -70, y: 6, z: -30}
+      positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 60
+      fieldOfViewDegrees: 58
     - timeSeconds: 14
-      positionMeters: {x: 70, y: -4, z: 40}
+      positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 72
+      fieldOfViewDegrees: 70
     events:
     - timeSeconds: 0
       eventId: PIO.Closest.Dive
@@ -124,11 +124,11 @@ MonoBehaviour:
     - timeSeconds: 0
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 58
+      fieldOfViewDegrees: 70
     - timeSeconds: 14
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 84
+      fieldOfViewDegrees: 86
     events: []
   - shotId: PIO09.Leaving
     durationSeconds: 10
@@ -151,47 +151,47 @@ MonoBehaviour:
   - cueId: PIO.09.01
     textKey: PIO.09.01
     startSeconds: 1
-    endSeconds: 8
+    endSeconds: 9.6
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.09.08
     textKey: PIO.09.08
-    startSeconds: 8.4
-    endSeconds: 12.4
+    startSeconds: 9.7
+    endSeconds: 14.3
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.09.02
     textKey: PIO.09.02
-    startSeconds: 12.5
-    endSeconds: 19.5
+    startSeconds: 14.4
+    endSeconds: 20
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.09.03
     textKey: PIO.09.03
-    startSeconds: 20
-    endSeconds: 27
+    startSeconds: 20.1
+    endSeconds: 26.6
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.09.04
     textKey: PIO.09.04
-    startSeconds: 28
-    endSeconds: 35
+    startSeconds: 31
+    endSeconds: 36.2
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.09.05
     textKey: PIO.09.05
-    startSeconds: 35.5
-    endSeconds: 42
+    startSeconds: 36.5
+    endSeconds: 42.5
     triggerId: 
     minimumReadSeconds: 0
     position: 0
@@ -199,23 +199,31 @@ MonoBehaviour:
   - cueId: PIO.09.06
     textKey: PIO.09.06
     startSeconds: 43
-    endSeconds: 51
+    endSeconds: 50
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.09.09
     textKey: PIO.09.09
-    startSeconds: 51.2
-    endSeconds: 56
+    startSeconds: 50.1
+    endSeconds: 57.6
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.09.10
+    textKey: PIO.09.10
+    startSeconds: 26.8
+    endSeconds: 30.8
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.09.07
     textKey: PIO.09.07
-    startSeconds: 56
-    endSeconds: 64
+    startSeconds: 57.7
+    endSeconds: 64.95
     triggerId: 
     minimumReadSeconds: 0
     position: 0

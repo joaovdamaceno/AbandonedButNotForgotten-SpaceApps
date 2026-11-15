@@ -11,7 +11,9 @@ namespace Abandoned.SpaceApps
     /// </summary>
     public sealed class PioneerSlingshot : MonoBehaviour
     {
-        public const string ShotId = "PIO09.Bend";
+        /// <summary>O voo é contínuo: começa no plano da passagem rente às nuvens e segue direto para o estilingue (sem corte de volta para longe).</summary>
+        public const string FirstShotId = "PIO09.Pass";
+        public const string LastShotId = "PIO09.Bend";
         public const string AnchorId = "PIO.Closest.Bend";
         /// <summary>O trecho mostrado, em fração do comprimento da linha: começa antes da curva e termina bem depois dela.</summary>
         public const float StartFraction = 0.28f;
@@ -171,7 +173,7 @@ namespace Abandoned.SpaceApps
             var time = 0f;
             foreach (var shot in sequence.Shots)
             {
-                if (shot.ShotId == ShotId)
+                if (shot.ShotId == FirstShotId)
                     return time;
                 time += shot.DurationSeconds;
             }
@@ -179,12 +181,19 @@ namespace Abandoned.SpaceApps
             return -1f;
         }
 
+        /// <summary>Soma dos planos do primeiro ao último (consecutivos na sequência).</summary>
         float ShotDuration()
         {
+            var total = 0f;
+            var inside = false;
             foreach (var shot in sequence.Shots)
             {
-                if (shot.ShotId == ShotId)
-                    return shot.DurationSeconds;
+                if (shot.ShotId == FirstShotId)
+                    inside = true;
+                if (inside)
+                    total += shot.DurationSeconds;
+                if (shot.ShotId == LastShotId)
+                    return total;
             }
 
             return 0f;

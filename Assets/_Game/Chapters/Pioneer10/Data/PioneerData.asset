@@ -76,7 +76,7 @@ MonoBehaviour:
     textKey: PIO.01.04
     timing: 0
     startSeconds: 26
-    endSeconds: 32
+    endSeconds: 32.8
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -126,7 +126,7 @@ MonoBehaviour:
     textKey: PIO.02.04
     timing: 0
     startSeconds: 30.5
-    endSeconds: 37.5
+    endSeconds: 39.4
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -135,8 +135,8 @@ MonoBehaviour:
     state: PIO.Belt
     textKey: PIO.02.05
     timing: 0
-    startSeconds: 38
-    endSeconds: 42
+    startSeconds: 39.6
+    endSeconds: 42.3
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -166,7 +166,7 @@ MonoBehaviour:
     textKey: PIO.03.01
     timing: 0
     startSeconds: 0
-    endSeconds: 6
+    endSeconds: 6.45
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -296,7 +296,7 @@ MonoBehaviour:
     textKey: PIO.09.01
     timing: 0
     startSeconds: 1
-    endSeconds: 8
+    endSeconds: 9.6
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -305,8 +305,8 @@ MonoBehaviour:
     state: PIO.Closest
     textKey: PIO.09.02
     timing: 0
-    startSeconds: 12.5
-    endSeconds: 19.5
+    startSeconds: 14.4
+    endSeconds: 20
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -315,8 +315,8 @@ MonoBehaviour:
     state: PIO.Closest
     textKey: PIO.09.03
     timing: 0
-    startSeconds: 20
-    endSeconds: 27
+    startSeconds: 20.1
+    endSeconds: 26.6
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -325,8 +325,8 @@ MonoBehaviour:
     state: PIO.Closest
     textKey: PIO.09.04
     timing: 0
-    startSeconds: 28
-    endSeconds: 35
+    startSeconds: 31
+    endSeconds: 36.2
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -335,8 +335,8 @@ MonoBehaviour:
     state: PIO.Closest
     textKey: PIO.09.05
     timing: 0
-    startSeconds: 35.5
-    endSeconds: 42
+    startSeconds: 36.5
+    endSeconds: 42.5
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -346,7 +346,7 @@ MonoBehaviour:
     textKey: PIO.09.06
     timing: 0
     startSeconds: 43
-    endSeconds: 51
+    endSeconds: 50
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -355,8 +355,8 @@ MonoBehaviour:
     state: PIO.Closest
     textKey: PIO.09.07
     timing: 0
-    startSeconds: 56
-    endSeconds: 64
+    startSeconds: 57.7
+    endSeconds: 64.95
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -365,8 +365,8 @@ MonoBehaviour:
     state: PIO.Closest
     textKey: PIO.09.08
     timing: 0
-    startSeconds: 8.4
-    endSeconds: 12.4
+    startSeconds: 9.7
+    endSeconds: 14.3
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -375,8 +375,18 @@ MonoBehaviour:
     state: PIO.Closest
     textKey: PIO.09.09
     timing: 0
-    startSeconds: 51.2
-    endSeconds: 56
+    startSeconds: 50.1
+    endSeconds: 57.6
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.10
+    state: PIO.Closest
+    textKey: PIO.09.10
+    timing: 0
+    startSeconds: 26.8
+    endSeconds: 30.8
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -408,7 +418,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.Pulsars
-    minimumReadSeconds: 3.7
+    minimumReadSeconds: 4.6
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.05.04
@@ -418,7 +428,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.SolarSystem
-    minimumReadSeconds: 3.9
+    minimumReadSeconds: 4.5
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.05.05
@@ -428,7 +438,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.PioneerScale
-    minimumReadSeconds: 3.6
+    minimumReadSeconds: 4.6
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.05.06
@@ -611,19 +621,19 @@ MonoBehaviour:
   - key: PIO.01.02
     group: narrative
     ptText: "Mar\xE7o de 1972. Uma pequena sonda, do tamanho de um carro, partiu rumo aos planetas exteriores."
-    enText: March 1972. A small probe, no bigger than a car, set out for the outer planets.
+    enText: March 1972. No machine of ours had ever travelled beyond Mars. This small probe, no bigger than a car, was about to try.
     ptStatus: derived
     enStatus: derived
   - key: PIO.01.03
     group: narrative
     ptText: "Em menos de 11 horas, cruzou a \xF3rbita da Lua. Ao partir da Terra, era a m\xE1quina mais veloz j\xE1 lan\xE7ada."
-    enText: "Within eleven hours it crossed the Moon\u2019s orbit. Leaving Earth, it was the fastest machine ever launched."
+    enText: Eleven hours after leaving the ground, it swept past the Moon.
     ptStatus: derived
     enStatus: derived
   - key: PIO.01.04
     group: narrative
     ptText: "Ela gira devagar, como um pi\xE3o. Esse giro ajuda a manter a sonda est\xE1vel na longa viagem."
-    enText: It spins slowly, like a top. That steady turning keeps the probe stable on its long journey.
+    enText: It spins slowly, like a top, and that steady turning keeps it upright and pointed home towards Earth.
     ptStatus: derived
     enStatus: derived
   - key: PIO.01.05
@@ -653,7 +663,7 @@ MonoBehaviour:
   - key: PIO.02.04
     group: narrative
     ptText: "Na vida real, as pedras ficam muito longe umas das outras. A rota passava a milh\xF5es de km da mais pr\xF3xima."
-    enText: In real life, the rocks lie vast distances apart. The route passed millions of kilometres from the nearest.
+    enText: 'And then, a surprise: the rocks lay vast distances apart, and the route passed millions of kilometres from the nearest known asteroid.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.02.05
@@ -671,13 +681,13 @@ MonoBehaviour:
   - key: PIO.02.07
     group: narrative
     ptText: "Ent\xE3o os dias foram contados: uma semana, um m\xEAs, e depois meses passando cada vez mais depressa."
-    enText: 'So the days were counted: a week, a month, then months slipping by faster and faster.'
+    enText: So the days were counted. A week. A month. Then months, slipping by faster and faster.
     ptStatus: derived
     enStatus: derived
   - key: PIO.03.01
     group: narrative
     ptText: "Novembro de 1973. J\xFApiter, o maior dos planetas, j\xE1 estava \xE0 vista."
-    enText: By November 1973, Jupiter, largest of the planets, was in sight.
+    enText: Which left the greatest prize of all. By November 1973, Jupiter, largest of the planets, was in sight.
     ptStatus: derived
     enStatus: derived
   - key: PIO.03.02
@@ -736,14 +746,14 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.04.07
     group: narrative
-    ptText: "Algumas imagens se perderam, inclusive a de Io. Mas muito chegou at\xE9 n\xF3s."
-    enText: "Some pictures were lost, Io\u2019s among them. But so much reached us."
+    ptText: "Fotografia real, 1973: J\xFApiter como a Pioneer 10 o registrou."
+    enText: 'Real photograph, 1973: Jupiter as Pioneer 10 recorded it.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.04.08
     group: narrative
-    ptText: "Esta \xE9 Ganimedes, vista pela Pioneer 10 em 1973: fotos de perto da maior lua do Sistema Solar."
-    enText: "This is Ganymede, seen by Pioneer 10 in 1973: close-ups of the Solar System\u2019s largest moon."
+    ptText: "Foi a primeira nave a fazer fotos de perto de J\xFApiter."
+    enText: It was the first spacecraft to take close-up pictures of Jupiter.
     ptStatus: derived
     enStatus: derived
   - key: PIO.04.09
@@ -754,32 +764,32 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.09.01
     group: narrative
-    ptText: "Mais perto, passou pelas grandes luas de J\xFApiter e fotografou Ganimedes de perto."
-    enText: "Closer it came, passing Jupiter\u2019s great moons and photographing Ganymede up close."
+    ptText: Cada vez mais perto, passou pelas grandes luas e fez as primeiras fotos de perto de Ganimedes, a maior lua do Sistema Solar.
+    enText: Closer it came, passing Jupiter's great moons and taking the first close-up pictures of Ganymede, the largest moon in the Solar System.
     ptStatus: derived
     enStatus: derived
   - key: PIO.09.02
     group: narrative
     ptText: "J\xFApiter \xE9 cercado por radia\xE7\xE3o milhares de vezes mais forte que a da Terra."
-    enText: "Jupiter is wrapped in radiation thousands of times stronger than Earth\u2019s."
+    enText: For Jupiter is wrapped in radiation thousands of times stronger than anything near Earth.
     ptStatus: derived
     enStatus: derived
   - key: PIO.09.03
     group: narrative
     ptText: Absorveu mais de mil vezes a dose fatal a uma pessoa. Surgiram comandos indevidos; havia reservas.
-    enText: It absorbed over a thousand times a fatal human dose. Unwanted commands arose; backups were ready.
+    enText: Pioneer absorbed more than a thousand times the dose that would be fatal to a person.
     ptStatus: derived
     enStatus: derived
   - key: PIO.09.04
     group: narrative
     ptText: "4 de dezembro de 1973: a Pioneer 10 foi a primeira a sobrevoar J\xFApiter."
-    enText: '4 December 1973: Pioneer 10 became the first to fly past Jupiter.'
+    enText: Closest approach. Pioneer 10 became the first probe ever to visit Jupiter.
     ptStatus: derived
     enStatus: derived
   - key: PIO.09.05
     group: narrative
     ptText: "A cerca de 130.000 km das nuvens: tr\xEAs vezes mais perto que a Lua da Terra."
-    enText: 'About 130,000 km above the clouds: three times closer than the Moon to us.'
+    enText: 'It passed about 130,000 kilometres above the clouds: three times closer than the Moon is to us.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.09.06
@@ -796,14 +806,20 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.09.08
     group: narrative
-    ptText: "Mas a foto de Io se perderia: a causa estava logo \xE0 frente."
-    enText: "But Io\u2019s picture would be lost: the cause lay just ahead."
+    ptText: "Fotografou tamb\xE9m Calisto e Europa, mas s\xF3 em baixa resolu\xE7\xE3o."
+    enText: It also photographed Callisto and Europa, though only in low resolution.
     ptStatus: derived
     enStatus: derived
   - key: PIO.09.09
     group: narrative
     ptText: "J\xFApiter corre ao redor do Sol e a Pioneer pegou carona nessa velocidade."
-    enText: Jupiter races around the Sun, and Pioneer borrowed a little speed.
+    enText: Jupiter is itself racing around the Sun, and the probe borrowed a little of that speed, rather like hitching a lift.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.10
+    group: narrative
+    ptText: "Uma imagem de Io foi feita, mas a radia\xE7\xE3o a destruiu."
+    enText: An image of Io was taken too, but it was lost to the radiation.
     ptStatus: derived
     enStatus: derived
   - key: PIO.05.01
@@ -821,19 +837,19 @@ MonoBehaviour:
   - key: PIO.05.03
     group: narrative
     ptText: 'Pulsares: estrelas que piscam e mostram onde fica o Sol.'
-    enText: Then pulsars, blinking stars that show where the Sun lies.
+    enText: Then a map of blinking stars, called pulsars, to show where the Sun lies.
     ptStatus: derived
     enStatus: derived
   - key: PIO.05.04
     group: narrative
     ptText: 'O Sistema Solar: a sonda saindo do terceiro planeta, a Terra.'
-    enText: 'The Solar System: Pioneer leaving the third planet, Earth.'
+    enText: 'The Solar System follows, with Pioneer leaving the third planet: Earth.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.05.05
     group: narrative
     ptText: "Ao lado, o contorno da pr\xF3pria Pioneer, para dar escala."
-    enText: "Beside it, Pioneer\u2019s own outline, to show our size."
+    enText: Beside it, the outline of Pioneer itself, so that our size can be judged.
     ptStatus: derived
     enStatus: derived
   - key: PIO.05.06
@@ -869,7 +885,7 @@ MonoBehaviour:
   - key: PIO.06.04
     group: narrative
     ptText: "Em 1998, a Voyager 1 a ultrapassou e se tornou a m\xE1quina humana mais distante, em outra dire\xE7\xE3o."
-    enText: In 1998, Voyager 1 overtook it to become the most distant human-made object, travelling in another direction.
+    enText: In 1998, Voyager 1 overtook it to become the most distant human-made object. Pioneer had shown the way.
     ptStatus: derived
     enStatus: derived
   - key: PIO.06.05
@@ -881,7 +897,7 @@ MonoBehaviour:
   - key: PIO.07.01
     group: narrative
     ptText: O sinal estava mais fraco que um sussurro. As antenas da Terra ainda conseguiriam ouvi-lo?
-    enText: "Its signal was now fainter than a whisper. Could Earth\u2019s antennas still hear it?"
+    enText: Its signal was now fainter than a whisper. Could Earth still hear it?
     ptStatus: derived
     enStatus: derived
   - key: PIO.07.02
@@ -899,25 +915,25 @@ MonoBehaviour:
   - key: PIO.07.04
     group: narrative
     ptText: "Janeiro de 2003. Um \xFAltimo sinal fraco, de 12 bilh\xF5es de quil\xF4metros, levou mais de 11 horas para chegar."
-    enText: January 2003. A last faint signal, from twelve billion kilometres away, took over eleven hours to reach us.
+    enText: '23 January 2003: a final signal, from twelve billion kilometres away, taking over eleven hours to reach us.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.07.05
     group: narrative
     ptText: Fevereiro de 2003. A Terra escutou outra vez e nenhum sinal foi detectado.
-    enText: February 2003. Earth listened once more, and no signal was detected.
+    enText: '7 February 2003: Earth listened once more, and heard nothing.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.07.06
     group: narrative
     ptText: "Sem energia suficiente para nos alcan\xE7ar, a Pioneer 10 ficou em sil\xEAncio. Mas n\xE3o parou."
-    enText: Without enough power to reach us, Pioneer 10 fell silent. But it did not stop.
+    enText: Its power had finally run out, and Pioneer 10 fell silent. But it did not stop.
     ptStatus: derived
     enStatus: derived
   - key: PIO.08.01
     group: narrative
     ptText: "Ela segue em dire\xE7\xE3o \xE0 estrela vermelha Aldebaran: uma viagem de milh\xF5es de anos."
-    enText: 'It travels on, towards the red star Aldebaran: a journey measured in millions of years.'
+    enText: 'It travels on, towards the red star Aldebaran: a journey of some two million years.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.08.02
@@ -935,7 +951,7 @@ MonoBehaviour:
   - key: PIO.08.04
     group: narrative
     ptText: "Pioneer quer dizer pioneira. Toda grande viagem come\xE7a com quem vai primeiro, e a Pioneer 10 foi primeiro, por todos n\xF3s."
-    enText: 'Pioneer: one who goes first. Every great journey begins with someone who goes first. Pioneer 10 went first, for us all.'
+    enText: 'Pioneer: one who goes first. Every great journey begins with someone willing to go first. Pioneer 10 went first, for all of us.'
     ptStatus: derived
     enStatus: derived
   - key: PIO.UI.start
@@ -1138,8 +1154,8 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.UI.shoot
     group: hud
-    ptText: "Toque E \xB7 J\xFApiter na mira"
-    enText: "Tap E \xB7 Jupiter in the reticle"
+    ptText: "Toque E \xB7 barra na zona dourada"
+    enText: "Tap E \xB7 bar in the gold zone"
     ptStatus: derived
     enStatus: derived
   - key: PIO.UI.shot_count

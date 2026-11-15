@@ -121,6 +121,12 @@ namespace Abandoned.SpaceApps.EditorTools
 
             tourSo.ApplyModifiedPropertiesWithoutUndo();
             so.FindProperty("systemTour").objectReferenceValue = tour;
+            var drift = context.Component<PioneerFarewellDrift>(context.Child(root, "FarewellDrift"));
+            var driftSo = new SerializedObject(drift);
+            driftSo.FindProperty("presentation").objectReferenceValue = presentation;
+            driftSo.FindProperty("probe").objectReferenceValue = presentation.ProbeSpin != null ? presentation.ProbeSpin.parent : null;
+            driftSo.ApplyModifiedPropertiesWithoutUndo();
+            so.FindProperty("farewellDrift").objectReferenceValue = drift;
             var closestHud = context.Component<PioneerClosestHud>(context.Child(root, "ClosestHud"));
             var closestHudSo = new SerializedObject(closestHud);
             closestHudSo.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();
@@ -237,7 +243,7 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var cues = new[]
             {
-                new SubtitleCue("PIO.03.01", "PIO.03.01", 0f, 6f),
+                new SubtitleCue("PIO.03.01", "PIO.03.01", 0f, 6.45f),
                 new SubtitleCue("PIO.03.02", "PIO.03.02", 9f, 15f),
                 new SubtitleCue("PIO.03.03", "PIO.03.03", 17f, 23f),
                 new SubtitleCue("PIO.03.04", "PIO.03.04", 24f, 29f),
@@ -277,14 +283,16 @@ namespace Abandoned.SpaceApps.EditorTools
                     },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
                 // O silêncio de 1 s da música antes do mergulho cai na lacuna de 27–28 s entre as legendas; depois a trilha volta.
-                new ShotDefinition("PIO09.Pass", 14f, "PIO.Closest",
-                    new[] { Key(0f, new Vector3(-70f, 6f, -30f), 60f), Key(14f, new Vector3(70f, -4f, 40f), 72f) },
-                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
+                // 27–55 s: UM voo contínuo em primeira pessoa (PioneerSlingshot move a pose do anchor): a sonda chega rente às nuvens e segue
+                // direto para o estilingue, sem voltar para longe entre os dois planos.
+                new ShotDefinition("PIO09.Pass", 14f, "PIO.Closest.Bend",
+                    new[] { Key(0f, Vector3.zero, 58f), Key(14f, Vector3.zero, 70f) },
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, "PIO.Closest.Dive") }),
                 // 5d: o estilingue em primeira pessoa e em tempo acelerado; PioneerSlingshot move a pose do anchor pela trajetória em volta de
                 // Júpiter (a câmera é a da sonda) e o campo de visão abre com a velocidade.
                 new ShotDefinition("PIO09.Bend", 14f, "PIO.Closest.Bend",
-                    new[] { Key(0f, Vector3.zero, 58f), Key(14f, Vector3.zero, 84f) },
+                    new[] { Key(0f, Vector3.zero, 70f), Key(14f, Vector3.zero, 86f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
                 new ShotDefinition("PIO09.Leaving", 10f, "PIO.Outbound",
                     new[] { Key(0f, Vector3.zero, 40f), Key(10f, new Vector3(0f, 0f, -8f), 38f) },
@@ -293,15 +301,16 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var cues = new[]
             {
-                new SubtitleCue("PIO.09.01", "PIO.09.01", 1f, 8f),
-                new SubtitleCue("PIO.09.08", "PIO.09.08", 8.4f, 12.4f),
-                new SubtitleCue("PIO.09.02", "PIO.09.02", 12.5f, 19.5f),
-                new SubtitleCue("PIO.09.03", "PIO.09.03", 20f, 27f),
-                new SubtitleCue("PIO.09.04", "PIO.09.04", 28f, 35f),
-                new SubtitleCue("PIO.09.05", "PIO.09.05", 35.5f, 42f),
-                new SubtitleCue("PIO.09.06", "PIO.09.06", 43f, 51f),
-                new SubtitleCue("PIO.09.09", "PIO.09.09", 51.2f, 56f),
-                new SubtitleCue("PIO.09.07", "PIO.09.07", 56f, 64f),
+                new SubtitleCue("PIO.09.01", "PIO.09.01", 1f, 9.6f),
+                new SubtitleCue("PIO.09.08", "PIO.09.08", 9.7f, 14.3f),
+                new SubtitleCue("PIO.09.02", "PIO.09.02", 14.4f, 20f),
+                new SubtitleCue("PIO.09.03", "PIO.09.03", 20.1f, 26.6f),
+                new SubtitleCue("PIO.09.04", "PIO.09.04", 31f, 36.2f),
+                new SubtitleCue("PIO.09.05", "PIO.09.05", 36.5f, 42.5f),
+                new SubtitleCue("PIO.09.06", "PIO.09.06", 43f, 50f),
+                new SubtitleCue("PIO.09.09", "PIO.09.09", 50.1f, 57.6f),
+                new SubtitleCue("PIO.09.10", "PIO.09.10", 26.8f, 30.8f),
+                new SubtitleCue("PIO.09.07", "PIO.09.07", 57.7f, 64.95f),
             };
 
             return SequenceDefinition.Create("PIO_Closest", shots, cues);

@@ -176,5 +176,57 @@ namespace Abandoned.SpaceApps.Tests
                 Assert.That(catalog.Cues.Any(c => c.Id == id && !c.IsPending), Is.True, id + ": cue com clipe no catálogo");
             Assert.That(System.IO.File.ReadAllText("ASSET_CREDITS.md"), Does.Contain("S-PIO-SFX-01").And.Contain("S-PIO-SFX-02"));
         }
+
+        [Test]
+        public void TheFarewellDriftNeverStopsAndStartsSlowly()
+        {
+            Assert.That(PioneerFarewellDrift.DistanceAt(PioneerFarewellDrift.StartSeconds), Is.EqualTo(0f), "parada até o plano em que a sonda se afasta");
+            var previous = 0f;
+            for (var t = PioneerFarewellDrift.StartSeconds; t < 2000f; t += 7f)
+            {
+                var distance = PioneerFarewellDrift.DistanceAt(t);
+                Assert.That(distance, Is.GreaterThanOrEqualTo(previous), "só avança");
+                previous = distance;
+            }
+
+            Assert.That(PioneerFarewellDrift.DistanceAt(2000f), Is.GreaterThan(PioneerFarewellDrift.DistanceAt(1000f) + 500f), "sem fim: continua andando depois de muito tempo");
+            var speed = PioneerFarewellDrift.DistanceAt(300f) - PioneerFarewellDrift.DistanceAt(299f);
+            Assert.That(speed, Is.EqualTo(PioneerFarewellDrift.MetersPerSecond).Within(1e-3f), "velocidade constante e lenta");
+            Assert.That(PioneerFarewellDrift.MetersPerSecond, Is.LessThan(2f), "lenta");
+        }
+
+        [Test]
+        public void TheInstrumentsSwitchOffOneByOneSoTheShutdownSoundHasSomethingToPlayOn()
+        {
+            var on = new bool[PioneerYearsHud.InstrumentCount];
+            for (var i = 0; i < on.Length; i++)
+                on[i] = true;
+            var switchOffs = 0;
+            for (var seconds = 0f; seconds <= 55f; seconds += 0.25f)
+            {
+                var now = PioneerYearsHud.StateAt(seconds, Resolve).InstrumentOn;
+                var any = false;
+                for (var i = 0; i < now.Length; i++)
+                {
+                    if (on[i] && !now[i])
+                        any = true;
+                    on[i] = now[i];
+                }
+
+                if (any)
+                    switchOffs++;
+            }
+
+            Assert.That(switchOffs, Is.GreaterThanOrEqualTo(3), "pelo menos três momentos de desligamento ao longo da cena dos anos");
+        }
+
+        [Test]
+        public void ThePhotoGameKeepsTheCameraStillAndOnlyTheBarMoves()
+        {
+            Assert.That(PioneerImaging.CameraStaysStill, Is.True);
+            Assert.That(PioneerImaging.SpinPeriodSeconds, Is.LessThan(4f), "a barra cruza rápido");
+            Assert.That(PioneerImaging.SpinWindowHalfDegrees * 2f / 360f * PioneerImaging.SpinPeriodSeconds, Is.GreaterThan(0.6f), "janela de pelo menos 0,6 s");
+            Assert.That(PioneerImaging.SpinWindowHalfDegrees * 2f / 360f, Is.InRange(0.18f, 0.4f), "a zona dourada ocupa uma boa parte da barra");
+        }
     }
 }

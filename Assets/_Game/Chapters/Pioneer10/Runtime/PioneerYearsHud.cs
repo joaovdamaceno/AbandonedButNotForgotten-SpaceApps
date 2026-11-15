@@ -50,6 +50,10 @@ namespace Abandoned.SpaceApps
 
         SequenceDirector director;
         Func<string, string> text;
+        bool[] lastOn;
+
+        /// <summary>Um instrumento acabou de ser desligado no HUD (o som de desligamento): no máximo um aviso por quadro.</summary>
+        public event Action InstrumentSwitchedOff;
 
         public void Initialize(SequenceDirector sequenceDirector, Func<string, string> textResolver)
         {
@@ -203,7 +207,9 @@ namespace Abandoned.SpaceApps
             if (hud == null)
                 return;
 
-            hud.SetYears(true, StateAt(seconds, Resolve));
+            var state = StateAt(seconds, Resolve);
+            hud.SetYears(true, state);
+            NotifyInstrumentChanges(state.InstrumentOn);
 
         }
 
@@ -213,7 +219,30 @@ namespace Abandoned.SpaceApps
                 return;
 
             hud.SetYears(false, default);
+            lastOn = null; // a próxima exibição recomeça com todos ligados, sem avisos
 
+        }
+
+        void NotifyInstrumentChanges(bool[] on)
+        {
+            if (on == null)
+                return;
+            if (lastOn == null)
+            {
+                lastOn = (bool[])on.Clone();
+                return;
+            }
+
+            var switchedOff = false;
+            for (var i = 0; i < on.Length && i < lastOn.Length; i++)
+            {
+                if (lastOn[i] && !on[i])
+                    switchedOff = true;
+                lastOn[i] = on[i];
+            }
+
+            if (switchedOff)
+                InstrumentSwitchedOff?.Invoke();
         }
 
         string Resolve(string key)

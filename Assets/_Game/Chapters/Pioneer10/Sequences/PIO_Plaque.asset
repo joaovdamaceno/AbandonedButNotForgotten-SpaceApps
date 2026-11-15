@@ -131,7 +131,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.Pulsars
-    minimumReadSeconds: 3.7
+    minimumReadSeconds: 4.6
     position: 0
     priority: 0
   - cueId: PIO.05.04
@@ -139,7 +139,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.SolarSystem
-    minimumReadSeconds: 3.9
+    minimumReadSeconds: 4.5
     position: 0
     priority: 0
   - cueId: PIO.05.05
@@ -147,7 +147,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.PioneerScale
-    minimumReadSeconds: 3.6
+    minimumReadSeconds: 4.6
     position: 0
     priority: 0
   - cueId: PIO.05.06

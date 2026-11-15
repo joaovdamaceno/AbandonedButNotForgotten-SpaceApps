@@ -157,7 +157,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 7.5f, 20f, 5.5f }));
             Assert.That(sequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.05.01", "PIO.05.02", "PIO.05.03", "PIO.05.04", "PIO.05.05", "PIO.05.06", "PIO.05.07" }));
             Assert.That(sequence.Cues.Where(c => c.IsTriggered).Select(c => c.TriggerId), Is.EqualTo(PioneerPlaqueActivity.TriggerIds));
-            Assert.That(sequence.Cues.Where(c => c.IsTriggered).All(c => c.MinimumReadSeconds >= 3.5f && c.MinimumReadSeconds <= 4f), Is.True, "frase de 3,5–4 s: o tempo de ler a 16 caracteres por segundo");
+            Assert.That(sequence.Cues.Where(c => c.IsTriggered).All(c => c.MinimumReadSeconds >= 3.5f && c.MinimumReadSeconds <= 4.7f), Is.True, "frase de 3,5–4,7 s: o tempo de ler a 16 caracteres por segundo (o texto em inglês da lista nova é mais longo)");
             var timed = sequence.Cues.Where(c => !c.IsTriggered).Select(c => (c.CueId, c.StartSeconds, c.EndSeconds)).ToArray();
             Assert.That(timed, Is.EqualTo(new[] { ("PIO.05.01", 0f, 7.3f), ("PIO.05.07", 27.7f, 33f) }));
         }
