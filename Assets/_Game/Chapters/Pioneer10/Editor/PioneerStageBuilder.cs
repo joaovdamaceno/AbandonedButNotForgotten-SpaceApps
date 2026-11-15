@@ -87,14 +87,14 @@ namespace Abandoned.SpaceApps.EditorTools
                 Sphere = MeshAsset(context, "PIO_Sphere", m => PioneerStageArt.Sphere(m, "PIO_Sphere", 64, 32, false)),
                 SkySphere = MeshAsset(context, "PIO_SkySphere", m => PioneerStageArt.Sphere(m, "PIO_SkySphere", 48, 24, true)),
                 LowSphere = MeshAsset(context, "PIO_LowSphere", m => PioneerStageArt.Sphere(m, "PIO_LowSphere", 12, 6, false)),
-                StarMesh = MeshAsset(context, "PIO_BrightStars", m => PioneerStageArt.BrightStars(m, 520, 2003, 0.09f, 0.2f)),
-                BeltRocks = MeshAsset(context, "PIO_BeltRocks", m => PioneerStageArt.RockField(m, BeltRockCount, BeltFieldSeed, BeltFieldAxis, 40f, 1000f, BeltTeleCameraMeters, 9.5f, 0.008f, 0.04f)),
+                StarMesh = MeshAsset(context, "PIO_BrightStars", m => PioneerStageArt.BrightStars(m, 3000, 2003, 0.05f, 0.2f)),
+                BeltRocks = MeshAsset(context, "PIO_BeltRocks", m => PioneerStageArt.SparseRockField(m, BeltRockCenters(), BeltFieldSeed, BeltRockMinMeters, BeltRockMaxMeters)),
                 BeltNike = MeshAsset(context, "PIO_BeltNike", FillNike),
                 GlowQuad = MeshAsset(context, "PIO_GlowQuad", PioneerStageArt.GlowQuad),
                 Trajectory = MeshAsset(context, "PIO_JupiterTrajectory", m => PioneerStageArt.Ribbon(m, TrajectoryPoints(), TrajectoryWidthMeters)),
             };
 
-            var sky = TextureAsset(context, "PIO_Starfield.png", () => PioneerStageArt.Starfield(2048, 1024, 9000, 1972), 2048, false, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
+            var sky = TextureAsset(context, "PIO_Starfield.png", () => PioneerStageArt.Starfield(2048, 1024, 2500, 1972), 2048, false, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
             var palette = TextureAsset(context, "PIO_StarPalette.png", PioneerStageArt.StarPalette, 32, false, TextureWrapMode.Clamp, TextureWrapMode.Clamp, FilterMode.Point);
             var jupiter = JupiterTexture(context);
 
@@ -470,13 +470,21 @@ namespace Abandoned.SpaceApps.EditorTools
         public static readonly Vector2 EarthCompareViewport = new Vector2(0.2f, 0.7f);
         public static readonly Vector2 EarthCompareEnterViewport = new Vector2(-0.12f, 0.7f);
         public const float ApproachOpenFov = 36f;
-        public const int BeltRockCount = 1400;
+        public const int BeltRockCount = 70;
         public const int BeltFieldSeed = 1972;
         /// <summary>Anchor da teleobjetiva/dolly zoom: a câmera chega a ~82 m da sonda; o campo de pedras fica atrás dela.</summary>
-        public static readonly Vector3 BeltFieldCamera = new Vector3(-20f, 20f, 77f);
-        public static readonly Vector3 BeltFieldAxis = (Vector3.zero - BeltFieldCamera).normalized;
-        /// <summary>Distância da câmera à sonda no começo do dolly zoom (teleobjetiva de 10°, mesmo tamanho da sonda que o plano aberto de 30° a BeltFieldCamera).</summary>
-        public static readonly float BeltTeleCameraMeters = BeltFieldCamera.magnitude * Mathf.Tan(15f * Mathf.Deg2Rad) / Mathf.Tan(5f * Mathf.Deg2Rad);
+        public static readonly Vector3 BeltFieldCamera = new Vector3(-20f, 20f, 77f).normalized * BeltFieldCameraMeters;
+        // O cinturão de verdade: pedras pequenas e bem separadas, com muito espaço vazio (a chance de acertar uma é mínima).
+        public const float BeltClearRadiusMeters = 90f;
+        public const float BeltOuterRadiusMeters = 520f;
+        public const float BeltRockMinMeters = 2.5f;
+        public const float BeltRockMaxMeters = 8f;
+        public const float BeltRockSeparationMeters = 60f;
+        public const float BeltCameraClearanceMeters = 80f;
+        public const float BeltFieldCameraMeters = 650f;
+        public static List<Vector3> BeltRockCenters() =>
+            PioneerStageArt.SparseRockCenters(BeltRockCount, BeltFieldSeed, BeltClearRadiusMeters, BeltOuterRadiusMeters, BeltRockSeparationMeters,
+                BeltFieldCamera.normalized, BeltFieldCameraMeters, BeltCameraClearanceMeters);
         /// <summary>Anchor da revelação: o céu vazio, a sonda à esquerda embaixo e uma pedra distante (307 Nike) à direita em cima.</summary>
         public static readonly Vector3 BeltNikeCamera = new Vector3(46f, 6f, -60f);
         public const float NikeDistanceMeters = 380f;

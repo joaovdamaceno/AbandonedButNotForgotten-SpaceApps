@@ -639,6 +639,63 @@ namespace Abandoned.SpaceApps.EditorTools
             return texture;
         }
 
+        /// <summary>
+        /// Centros das pedras do cinturão: poucas, em volume ao redor da sonda (na origem), todas a pelo menos <paramref name="minRadius"/> dela, a no
+        /// mínimo <paramref name="minSeparation"/> umas das outras e longe do caminho da câmera (o segmento da origem até
+        /// <paramref name="cameraAxis"/> × <paramref name="cameraDistance"/>, com folga de <paramref name="cameraClearance"/>). Determinístico.
+        /// </summary>
+        public static List<Vector3> SparseRockCenters(int count, int seed, float minRadius, float maxRadius, float minSeparation, Vector3 cameraAxis, float cameraDistance, float cameraClearance)
+        {
+            var random = new System.Random(seed);
+            var centers = new List<Vector3>();
+            var axis = cameraAxis.normalized;
+            var guard = 0;
+            while (centers.Count < count && guard++ < 200000)
+            {
+                var z = (float)(random.NextDouble() * 2.0 - 1.0);
+                var phi = (float)(random.NextDouble() * Math.PI * 2.0);
+                var r0 = Mathf.Sqrt(1f - z * z);
+                var direction = new Vector3(r0 * Mathf.Cos(phi), z, r0 * Mathf.Sin(phi));
+                var cubic = Mathf.Lerp(minRadius * minRadius * minRadius, maxRadius * maxRadius * maxRadius, (float)random.NextDouble());
+                var point = direction * Mathf.Pow(cubic, 1f / 3f); // volume uniforme: sem amontoar perto da sonda
+                var along = Mathf.Clamp(Vector3.Dot(point, axis), 0f, cameraDistance);
+                if (Vector3.Distance(point, axis * along) < cameraClearance)
+                    continue;
+                var apart = true;
+                foreach (var other in centers)
+                {
+                    if (Vector3.Distance(point, other) < minSeparation)
+                    {
+                        apart = false;
+                        break;
+                    }
+                }
+
+                if (apart)
+                    centers.Add(point);
+            }
+
+            return centers;
+        }
+
+        /// <summary>O cinturão como ele é: pedras pequenas e bem separadas (uma malha só), com muito espaço vazio entre elas.</summary>
+        public static void SparseRockField(Mesh mesh, IReadOnlyList<Vector3> centers, int seed, float minSize, float maxSize)
+        {
+            var random = new System.Random(seed + 17);
+            var vertices = new List<Vector3>();
+            var normals = new List<Vector3>();
+            var triangles = new List<int>();
+            for (var i = 0; i < centers.Count; i++)
+                AppendRock(vertices, normals, triangles, centers[i], Mathf.Lerp(minSize, maxSize, (float)random.NextDouble()), seed * 7919 + i);
+
+            mesh.Clear();
+            mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+            mesh.SetVertices(vertices);
+            mesh.SetNormals(normals);
+            mesh.SetTriangles(triangles, 0);
+            mesh.RecalculateBounds();
+        }
+
         public static void BrightStars(Mesh mesh, int count, int seed, float minDegrees, float maxDegrees)
         {
             var vertices = new List<Vector3>();
@@ -659,12 +716,12 @@ namespace Abandoned.SpaceApps.EditorTools
                 var column = Mathf.Min(PaletteColumns - 1, (int)(random.NextDouble() * PaletteColumns));
                 var row = magnitude > 0.45f ? 1 : 0;
                 var uv = new Vector2((column + 0.5f) / PaletteColumns, (row + 0.5f) / PaletteRows);
-                // disco de 10 lados (e não um quadrado): as estrelas ficam redondas mesmo a poucos pixels
+                // disco de 8 lados (e não um quadrado): as estrelas ficam redondas mesmo a poucos pixels
                 var start = vertices.Count;
                 vertices.Add(dir);
                 normals.Add(-dir);
                 uvs.Add(uv);
-                const int sides = 10;
+                const int sides = 8;
                 for (var k = 0; k < sides; k++)
                 {
                     var angle = k / (float)sides * Mathf.PI * 2f;

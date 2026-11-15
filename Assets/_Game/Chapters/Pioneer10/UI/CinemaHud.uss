@@ -382,3 +382,65 @@
 .pio-hud__bar--bottom {
     bottom: 0;
 }
+
+/* ---------- Cena 2 · O cinturão ---------- */
+
+.pio-hud__bcounter {
+    position: absolute;
+    left: 3%;
+    top: 10%;
+    padding: var(--sa-space-3) var(--sa-space-4);
+    display: none;
+}
+
+.pio-hud__bday {
+    font-size: var(--sa-text-title);
+    color: var(--sa-color-on-plate);
+    -unity-font-style: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.pio-hud__bdate {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+}
+
+.pio-hud__bline {
+    position: absolute;
+    width: 2px;
+    height: 6%;
+    background-color: rgb(245, 241, 232);
+    display: none;
+}
+
+.pio-hud__blabel {
+    position: absolute;
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    background-color: rgba(16, 17, 19, 0.82);
+    padding: var(--sa-space-2) var(--sa-space-3);
+    border-radius: var(--sa-radius-md);
+    display: none;
+}
+
+.pio-hud__bnote {
+    position: absolute;
+    left: 50%;
+    bottom: 14%;
+    max-width: 60%;
+    padding: var(--sa-space-3) var(--sa-space-4);
+    translate: -50% 0;
+    display: none;
+}
+
+.pio-hud__bnotetext {
+    font-size: var(--sa-text-body);
+    color: var(--sa-color-on-plate);
+    white-space: normal;
+    -unity-text-align: upper-center;
+    margin: 0;
+    padding: 0;
+}

@@ -1076,6 +1076,12 @@ MonoBehaviour:
     enText: "First beyond the planets' orbits \xB7 1983"
     ptStatus: derived
     enStatus: derived
+  - key: PIO.UI.belt_far
+    group: hud
+    ptText: "O asteroide conhecido mais pr\xF3ximo ficou a milh\xF5es de quil\xF4metros da sonda."
+    enText: The nearest known asteroid was millions of kilometres from the probe.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.spin
     group: hud
     ptText: "Segure E \xB7 girar"
