@@ -117,6 +117,44 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(Mathf.Abs(Mathf.DeltaAngle(angle, 125f)), Is.GreaterThan(60f));
         }
 
+        static float DistanceToPolyline(Vector3 point, IReadOnlyList<Vector3> line)
+        {
+            var best = float.MaxValue;
+            for (var i = 0; i < line.Count - 1; i++)
+            {
+                var ab = line[i + 1] - line[i];
+                var t = Mathf.Clamp01(Vector3.Dot(point - line[i], ab) / ab.sqrMagnitude);
+                best = Mathf.Min(best, Vector3.Distance(point, line[i] + ab * t));
+            }
+
+            return best;
+        }
+
+        [Test]
+        public void TheTraceBallStaysOnTheDrawnLineAllTheWayAndTheLineHasNoCorner()
+        {
+            var line = Enumerable.Range(0, PioneerLaunchBuilder.TrajectoryLinePoints)
+                .Select(i => PioneerLaunchBuilder.ExtendedTrajectoryPoint(i / (PioneerLaunchBuilder.TrajectoryLinePoints - 1f) * PioneerLaunchBuilder.TrajectoryExtent)).ToList();
+            var marks = PioneerLaunchBuilder.CreateSequence().ActorMarks.Where(m => m.actorId == PioneerLaunchActivity.TraceActorId).OrderBy(m => m.timeSeconds).ToList();
+            Assert.That(marks.Count, Is.EqualTo(PioneerLaunchBuilder.TraceMarkCount));
+            var worst = 0f;
+            for (var i = 0; i < marks.Count - 1; i++)
+            {
+                for (var step = 0; step <= 10; step++)
+                {
+                    var position = Vector3.Lerp(marks[i].positionMeters, marks[i + 1].positionMeters, step / 10f); // como o SequenceDirector interpola
+                    worst = Mathf.Max(worst, DistanceToPolyline(position, line));
+                }
+            }
+
+            Assert.That(worst, Is.LessThan(0.15f), "a bolinha anda sobre a linha (largura 0,36 m), sem cortar caminho");
+
+            const float eps = 0.02f;
+            var before = (PioneerLaunchBuilder.TrajectoryPoint(1f) - PioneerLaunchBuilder.TrajectoryPoint(1f - eps)).normalized;
+            var after = (PioneerLaunchBuilder.ExtendedTrajectoryPoint(1f + eps) - PioneerLaunchBuilder.TrajectoryPoint(1f)).normalized;
+            Assert.That(Vector3.Angle(before, after), Is.LessThan(3f), "a reta depois do último ponto continua na direção da curva (sem canto)");
+        }
+
         [Test]
         public void AnEHeldBeforeTheCardDoesNotCountAndTheSequenceWaitsForTheHold()
         {

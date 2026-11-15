@@ -24,6 +24,6 @@ Ferramenta: `Tools/convert_pioneer10.py` (determinística; sem Blender, pois o G
 3. Separação em 6 peças pelo que o roteiro anima: `Bus` (corpo estático), `Dish`, `Feed`, `RtgBoomA`, `RtgBoomB`, `MagnetometerBoom` (regras em `classify`).
 4. Eixos: glTF (mão direita) → Unity (mão esquerda), Z invertido e ordem dos vértices invertida; modelo recentrado no eixo de spin, com z = 0 no vértice do refletor; refletor abre para +Z.
 5. 11 materiais → **1**: as texturas foram empacotadas num atlas 2048² (`PioneerAtlas.png`); três mapas de 1024 (refletor, demais peças e RTGs) ficaram inteiros, dois (`Pioneer_tex_01` e `Pioneer_tex_02`) foram reduzidos de 1024 para 512, as três texturas de 256 ficaram como estavam e a cor prateada chapada virou uma janela de 256.
-6. Materiais convertidos para URP/Lit (metalicidade 0 e rugosidade 0,5, como no original; dupla face, como no original).
+6. Materiais convertidos para URP/Lit (dupla face, como no original). Metalicidade 0 e rugosidade 0,5 no original; desde 15/11/2026 o material do jogo usa metalicidade 0,15 e brilho 0,6 (mais reflexo nas bordas), e o atlas passa a ter filtro trilinear, anisotropia 8 e compressão WebGL de qualidade máxima. O modelo completo fica até a sonda ocupar 3% da altura da tela (antes, 12%).
 
 A saída está em `Data/Assets/Pioneer10.json` (manifesto) e `Data/Assets/Pioneer10.geometry.json` (geometria). O prefab é gerado por `Editor/PioneerProbeBuilder.cs`.
