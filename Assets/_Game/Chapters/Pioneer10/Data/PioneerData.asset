@@ -30,7 +30,7 @@ MonoBehaviour:
     nominalSeconds: 65
   - id: PIO.Plaque
     order: 6
-    nominalSeconds: 33
+    nominalSeconds: 43
   - id: PIO.Outbound
     order: 7
     nominalSeconds: 55
@@ -406,7 +406,27 @@ MonoBehaviour:
     textKey: PIO.05.01
     timing: 0
     startSeconds: 0
-    endSeconds: 7.3
+    endSeconds: 5.9
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.01b
+    state: PIO.Plaque
+    textKey: PIO.05.01b
+    timing: 0
+    startSeconds: 6
+    endSeconds: 11.7
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.01c
+    state: PIO.Plaque
+    textKey: PIO.05.01c
+    timing: 0
+    startSeconds: 11.8
+    endSeconds: 17.2
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -465,8 +485,8 @@ MonoBehaviour:
     state: PIO.Plaque
     textKey: PIO.05.07
     timing: 0
-    startSeconds: 27.7
-    endSeconds: 33
+    startSeconds: 37.7
+    endSeconds: 43
     triggerId: 
     minimumReadSeconds: 0
     gateId: PIO.Plaque.Gate
@@ -852,6 +872,18 @@ MonoBehaviour:
     group: narrative
     ptText: "J\xFApiter ficou para tr\xE1s. N\xE3o haveria volta: a Pioneer seguia para as estrelas."
     enText: 'Then Jupiter fell behind. There would be no return journey: Pioneer was bound for the stars.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.01b
+    group: narrative
+    ptText: 'E levava uma mensagem para quem a encontrasse: uma placa dourada, escrita sem palavras.'
+    enText: 'And it carried a message for whoever might find it: a golden plaque, written without words.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.01c
+    group: narrative
+    ptText: "S\xF3 imagens e s\xEDmbolos, para dizer quem somos e de onde viemos."
+    enText: Only pictures and symbols, to tell any finder who we are and where we came from.
     ptStatus: derived
     enStatus: derived
   - key: PIO.05.02

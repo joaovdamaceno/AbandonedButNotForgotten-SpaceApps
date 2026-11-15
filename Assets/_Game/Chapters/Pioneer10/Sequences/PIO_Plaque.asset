@@ -15,7 +15,7 @@ MonoBehaviour:
   sequenceId: PIO_Plaque
   shots:
   - shotId: PIO05.Arrive
-    durationSeconds: 7.5
+    durationSeconds: 17.5
     rigId: PIO.Plaque.Board
     lookAtTargetId: 
     easing: 1
@@ -30,7 +30,11 @@ MonoBehaviour:
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 30
-    - timeSeconds: 7.5
+    - timeSeconds: 12
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 17.5
       positionMeters: {x: -0.78, y: 1.5899999, z: 6.684103}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 30
@@ -113,7 +117,23 @@ MonoBehaviour:
   - cueId: PIO.05.01
     textKey: PIO.05.01
     startSeconds: 0
-    endSeconds: 7.3
+    endSeconds: 5.9
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.05.01b
+    textKey: PIO.05.01b
+    startSeconds: 6
+    endSeconds: 11.7
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.05.01c
+    textKey: PIO.05.01c
+    startSeconds: 11.8
+    endSeconds: 17.2
     triggerId: 
     minimumReadSeconds: 0
     position: 0
@@ -160,8 +180,8 @@ MonoBehaviour:
     priority: 0
   - cueId: PIO.05.07
     textKey: PIO.05.07
-    startSeconds: 27.7
-    endSeconds: 33
+    startSeconds: 37.7
+    endSeconds: 43
     triggerId: 
     minimumReadSeconds: 0
     position: 0
