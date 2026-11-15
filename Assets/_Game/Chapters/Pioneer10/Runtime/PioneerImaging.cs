@@ -89,7 +89,7 @@ namespace Abandoned.SpaceApps
     }
 
     /// <summary>
-    /// PIO-006 · Estado PIO.Imaging (74 s): varredura IPP em oito faixas e dois canais. A rotação da sonda varre o planeta;
+    /// PIO-006 · Estado PIO.Imaging (64 s): varredura IPP em oito faixas e dois canais. A rotação da sonda varre o planeta;
     /// cada passagem do cursor de fase pela janela larga registra UMA faixa (um conjunto de linhas, síntese de muitos
     /// registros e não oito linhas históricas) se E estiver mantido. Um hold contínuo é aceito, inclusive iniciado antes
     /// da janela, e não há penalidade nem exigência de ritmo: perder uma passagem só oferece outra volta e jamais
@@ -663,7 +663,7 @@ namespace Abandoned.SpaceApps
         }
 
         /// <summary>
-        /// Erros de montagem (lista vazia = conforme): referências, sequência de 74 s com os marcos e as 9 legendas,
+        /// Erros de montagem (lista vazia = conforme): referências, sequência de 64 s com os marcos e as 9 legendas,
         /// anchor com quadro de UI e painel ligado ao UXML. Usado pelo builder e pelo Inspector.
         /// </summary>
         public System.Collections.Generic.List<string> ValidateSetup()
@@ -675,8 +675,8 @@ namespace Abandoned.SpaceApps
             else
             {
                 errors.AddRange(sequence.Validate().ConvertAll(e => $"{owner}: {e}"));
-                if (Mathf.Abs(sequence.TotalDurationSeconds - 74f) > 0.01f)
-                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro pede 74 s.");
+                if (Mathf.Abs(sequence.TotalDurationSeconds - 64f) > 0.01f)
+                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro v2 retemporizado pede 64 s.");
 
                 var events = new System.Collections.Generic.HashSet<string>();
                 foreach (var shot in sequence.Shots)

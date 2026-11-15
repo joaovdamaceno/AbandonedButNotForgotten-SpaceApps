@@ -24,7 +24,7 @@ MonoBehaviour:
     nominalSeconds: 27
   - id: PIO.Imaging
     order: 4
-    nominalSeconds: 74
+    nominalSeconds: 64
   - id: PIO.Closest
     order: 5
     nominalSeconds: 40
@@ -196,7 +196,7 @@ MonoBehaviour:
     textKey: PIO.04.01
     timing: 0
     startSeconds: 0
-    endSeconds: 8
+    endSeconds: 3.2
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -205,8 +205,8 @@ MonoBehaviour:
     state: PIO.Imaging
     textKey: PIO.04.02
     timing: 0
-    startSeconds: 8
-    endSeconds: 16
+    startSeconds: 3.4
+    endSeconds: 9.8
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -228,7 +228,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Imaging.Gate6
-    minimumReadSeconds: 6
+    minimumReadSeconds: 4.5
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.04.05
@@ -238,15 +238,15 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Imaging.GateRecovery
-    minimumReadSeconds: 6
+    minimumReadSeconds: 5.5
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.04.06
     state: PIO.Imaging
     textKey: PIO.04.06
     timing: 0
-    startSeconds: 48
-    endSeconds: 55
+    startSeconds: 38
+    endSeconds: 45
     triggerId: 
     minimumReadSeconds: 0
     gateId: PIO.Imaging.Gate8
@@ -255,8 +255,8 @@ MonoBehaviour:
     state: PIO.Imaging
     textKey: PIO.04.07
     timing: 0
-    startSeconds: 55
-    endSeconds: 63
+    startSeconds: 45
+    endSeconds: 53
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -265,8 +265,8 @@ MonoBehaviour:
     state: PIO.Imaging
     textKey: PIO.04.08
     timing: 0
-    startSeconds: 63
-    endSeconds: 69
+    startSeconds: 53
+    endSeconds: 59
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -275,8 +275,8 @@ MonoBehaviour:
     state: PIO.Imaging
     textKey: PIO.04.09
     timing: 0
-    startSeconds: 69
-    endSeconds: 74
+    startSeconds: 59
+    endSeconds: 64
     triggerId: 
     minimumReadSeconds: 0
     gateId: 

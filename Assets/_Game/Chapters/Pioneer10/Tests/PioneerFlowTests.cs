@@ -205,7 +205,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(chapter.Validate(), Is.Empty);
             Assert.That(chapter.ChapterId, Is.EqualTo("pioneer10"), "igual ao slot do dossiê");
             Assert.That(chapter.SceneName, Is.EqualTo("Pioneer10"));
-            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(393f));
+            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(383f));
 
             var order = new List<string>();
             var cursor = chapter.InitialStepId;
@@ -243,7 +243,7 @@ namespace Abandoned.SpaceApps.Tests
                 total += sequence.TotalDurationSeconds;
             }
 
-            Assert.That(total, Is.EqualTo(393f).Within(0.01f), "soma nominal do capítulo");
+            Assert.That(total, Is.EqualTo(383f).Within(0.01f), "soma nominal do capítulo");
             Assert.That(controller.JupiterSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.03.01", "PIO.03.02", "PIO.03.03", "PIO.03.04" }));
             Assert.That(controller.ClosestSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.09.01", "PIO.09.02", "PIO.09.03", "PIO.09.04", "PIO.09.05", "PIO.09.06", "PIO.09.07" }));
         }
