@@ -388,3 +388,9 @@ O estado `PIO.Belt` toca a sequência própria `PIO_BeltCinema` (54 s; `PIO_Belt
 - A duração nominal do estado cai para 54 s e a do capítulo para 411 s (teto de leitura 417 s).
 
 **Limitações.** O campo é de baixa resolução, sem textura. A teleobjetiva é de 10° porque o contrato de planos aceita no mínimo 10° (o roteiro pedia uma lente mais fechada; mudar o contrato exige acordo com a R1). O contador e o rótulo foram verificados por testes de lógica e de layout, não por quadros de UI nem no Play Mode. A Lua e Marte (cena 1) ainda não estão no primeiro plano. Evidência em `QA/PIO-021/README.md`.
+
+## Roteiro v2, fase 4, parte 2 (PIO-022): Marte e a Lua em 3D
+
+- **Marte** (`PioneerPresentation.Mars`, anchor `PIO.Belt.Mars`, `showMars`): no plano de abertura do cinturão (`PIO02.Mars`, 8 s) uma esfera de 85 m de raio a 880 m da câmera, 9° à direita e 3° abaixo do centro do quadro, iluminada pela luz `PIO.Light.Cruise`; a sonda segue no centro e não é coberta. Só aparece nesse anchor.
+- **Superfícies procedurais** (`PioneerStageArt.MoonSurface` e `MarsSurface`, 1024×512, determinísticas pela semente, sem asset externo): a Lua tem terras claras, mares escuros e crateras com borda clara; Marte é ocre-alaranjado com regiões escuras e calotas polares claras. Texturas em `Art/Stage/Textures/PIO_MarsSurface.png` e `Art/Launch/Textures/PIO_MoonSurface.png`; a Lua substitui o disco cinza do gráfico Terra–Lua (`PIO01.C`).
+- **Limitações.** As superfícies são estilizadas, não mapas reais. O contador "11 horas depois" e um sobrevoo da Lua em 3D (cena 1) não foram feitos: exigem alongar o lançamento e mexem nos marcos de tempo dos testes dele, então ficam para a retemporização. Evidência em `QA/PIO-022/README.md`.

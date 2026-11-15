@@ -164,8 +164,8 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var shots = new[]
             {
-                new ShotDefinition("PIO02.Mars", 8f, "PIO.Belt",
-                    new[] { Key(0f, new Vector3(0f, 0f, -8f), 30f), Key(8f, Vector3.zero, 30f) },
+                new ShotDefinition("PIO02.Mars", 8f, "PIO.Belt.Mars",
+                    new[] { Key(0f, new Vector3(0f, 0f, -10f), 30f), Key(8f, new Vector3(0f, 0f, 10f), 30f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
                 new ShotDefinition("PIO02.Fear", 11f, "PIO.Belt.Field",
                     new[] { Key(0f, new Vector3(0f, 0f, DollyZ(baseMeters, 10f)), 10f), Key(11f, new Vector3(0f, 0f, DollyZ(baseMeters, 10f) + 6f), 10f) },

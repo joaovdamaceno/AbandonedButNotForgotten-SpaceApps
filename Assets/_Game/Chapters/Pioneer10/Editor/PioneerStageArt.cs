@@ -306,6 +306,142 @@ namespace Abandoned.SpaceApps.EditorTools
             mesh.RecalculateBounds();
         }
 
+        // ---------- Superfícies de planeta (roteiro v2: a Lua e Marte; geradas por código, sem asset externo) ----------
+
+        /// <summary>smoothstep de shader: 0 abaixo de <paramref name="edge0"/>, 1 acima de <paramref name="edge1"/>.</summary>
+        static float Smooth(float edge0, float edge1, float x)
+        {
+            var t = Mathf.Clamp01((x - edge0) / (edge1 - edge0));
+            return t * t * (3f - 2f * t);
+        }
+
+        static float Hash(int x, int y, int seed)
+        {
+            unchecked
+            {
+                var h = (uint)(x * 374761393 + y * 668265263 + seed * 1274126177);
+                h = (h ^ (h >> 13)) * 1274126177u;
+                return ((h ^ (h >> 16)) & 0xFFFFFF) / (float)0x1000000;
+            }
+        }
+
+        /// <summary>Ruído de valor 0–1, periódico em <paramref name="period"/> células no eixo X (para a textura fechar a volta no planeta).</summary>
+        static float ValueNoise(float x, float y, int period, int seed)
+        {
+            var x0 = Mathf.FloorToInt(x);
+            var y0 = Mathf.FloorToInt(y);
+            var fx = x - x0;
+            var fy = y - y0;
+            fx = fx * fx * (3f - 2f * fx);
+            fy = fy * fy * (3f - 2f * fy);
+            float Cell(int cx, int cy) => Hash(((cx % period) + period) % period, cy, seed);
+            var a = Mathf.Lerp(Cell(x0, y0), Cell(x0 + 1, y0), fx);
+            var b = Mathf.Lerp(Cell(x0, y0 + 1), Cell(x0 + 1, y0 + 1), fx);
+            return Mathf.Lerp(a, b, fy);
+        }
+
+        /// <summary>Ruído fractal 0–1 fechando a volta no eixo X; <paramref name="baseCells"/> células na largura da imagem.</summary>
+        static float Fractal(float u, float v, int baseCells, int octaves, int seed)
+        {
+            var sum = 0f;
+            var amplitude = 0.5f;
+            var total = 0f;
+            var cells = baseCells;
+            for (var o = 0; o < octaves; o++)
+            {
+                sum += amplitude * ValueNoise(u * cells, v * cells * 0.5f, cells, seed + o * 31);
+                total += amplitude;
+                amplitude *= 0.5f;
+                cells *= 2;
+            }
+
+            return sum / total;
+        }
+
+        /// <summary>
+        /// Lua (equiretangular): terras claras, mares escuros de baixa frequência e crateras com borda clara. Cinza neutro (a Lua não
+        /// tem cor); o brilho médio fica perto de 0,5 para que a luz do palco a revele.
+        /// </summary>
+        public static Texture2D MoonSurface(int width, int height, int seed)
+        {
+            var pixels = new Color32[width * height];
+            var random = new System.Random(seed);
+            var craters = new List<Vector3>(); // u, v, raio (em v)
+            for (var i = 0; i < 260; i++)
+            {
+                var size = Mathf.Lerp(0.008f, 0.07f, Mathf.Pow((float)random.NextDouble(), 2.6f));
+                craters.Add(new Vector3((float)random.NextDouble(), 0.1f + (float)random.NextDouble() * 0.8f, size));
+            }
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var u = x / (float)width;
+                    var v = y / (float)height;
+                    var terrain = Fractal(u, v, 6, 5, seed);
+                    var mare = Smooth(0.52f, 0.62f, Fractal(u, v, 3, 3, seed + 977));
+                    var shade = Mathf.Lerp(0.58f, 0.34f, mare) + (terrain - 0.5f) * 0.28f;
+                    foreach (var crater in craters)
+                    {
+                        var du = Mathf.Abs(u - crater.x);
+                        du = Mathf.Min(du, 1f - du) * 2f; // a imagem é 2:1: u vale o dobro de v em ângulo
+                        var d = Mathf.Sqrt(du * du + (v - crater.y) * (v - crater.y)) / crater.z;
+                        if (d > 1.25f)
+                            continue;
+                        if (d < 0.92f)
+                            shade -= (1f - d) * 0.16f; // fundo mais escuro
+                        else
+                            shade += (1f - Mathf.Abs(d - 1.05f) / 0.2f) * 0.14f; // borda clara
+                    }
+
+                    var value = (byte)Mathf.RoundToInt(Mathf.Clamp01(shade) * 255f);
+                    pixels[y * width + x] = new Color32(value, value, (byte)Mathf.Max(0, value - 3), 255);
+                }
+            }
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false) { name = "PIO_MoonSurface" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
+        /// <summary>
+        /// Marte (equiretangular): deserto ocre-alaranjado, regiões escuras de baixa frequência (como Syrtis Major), crateras
+        /// suaves e calotas polares claras. Cores tiradas do aspecto geral do planeta, não de um mapa real.
+        /// </summary>
+        public static Texture2D MarsSurface(int width, int height, int seed)
+        {
+            var pixels = new Color32[width * height];
+            var desert = new Color(0.74f, 0.42f, 0.24f);
+            var dark = new Color(0.34f, 0.2f, 0.15f);
+            var light = new Color(0.86f, 0.62f, 0.42f);
+            var ice = new Color(0.93f, 0.92f, 0.9f);
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var u = x / (float)width;
+                    var v = y / (float)height;
+                    var region = Smooth(0.5f, 0.64f, Fractal(u, v, 3, 4, seed));
+                    var detail = Fractal(u, v, 12, 4, seed + 515);
+                    var color = Color.Lerp(desert, dark, region * 0.85f);
+                    color = Color.Lerp(color, light, Smooth(0.55f, 0.8f, detail) * (1f - region) * 0.7f);
+                    color *= 0.88f + detail * 0.24f;
+                    var latitude = Mathf.Abs(v - 0.5f) * 2f; // 0 no equador, 1 nos polos
+                    var cap = Smooth(0.86f, 0.93f, latitude + (Fractal(u, v, 8, 3, seed + 31) - 0.5f) * 0.12f);
+                    color = Color.Lerp(color, ice, cap);
+                    color.a = 1f; // as multiplicações acima também escalam o alfa
+                    pixels[y * width + x] = color;
+                }
+            }
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false) { name = "PIO_MarsSurface" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
         public static void BrightStars(Mesh mesh, int count, int seed, float minDegrees, float maxDegrees)
         {
             var vertices = new List<Vector3>();
