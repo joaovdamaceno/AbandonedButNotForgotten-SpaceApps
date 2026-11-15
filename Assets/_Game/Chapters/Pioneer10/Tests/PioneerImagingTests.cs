@@ -97,12 +97,12 @@ namespace Abandoned.SpaceApps.Tests
             var sequence = imaging.Sequence;
             Assert.That(sequence.Validate(), Is.Empty);
             Assert.That(director.Validate(sequence), Is.Empty);
-            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(74f).Within(1e-4f));
-            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 16f, 32f, 26f }));
+            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(64f).Within(1e-4f));
+            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 10f, 28f, 26f }));
             Assert.That(sequence.Cues.Select(c => (c.TextKey, c.StartSeconds, c.EndSeconds)), Is.EqualTo(new[]
             {
-                ("PIO.04.01", 0f, 8f), ("PIO.04.02", 8f, 16f), ("PIO.04.03", 28f, 34f), ("PIO.04.04", 34f, 40f),
-                ("PIO.04.05", 40f, 46f), ("PIO.04.06", 48f, 55f), ("PIO.04.07", 55f, 63f), ("PIO.04.08", 63f, 69f), ("PIO.04.09", 69f, 74f),
+                ("PIO.04.01", 0f, 3.2f), ("PIO.04.02", 3.4f, 9.8f), ("PIO.04.03", 21f, 27f), ("PIO.04.04", 27f, 31.5f),
+                ("PIO.04.05", 31.5f, 37f), ("PIO.04.06", 38f, 45f), ("PIO.04.07", 45f, 53f), ("PIO.04.08", 53f, 59f), ("PIO.04.09", 59f, 64f),
             }));
             Assert.That(presentation.TryGetUiFrame(PioneerImaging.StateId, out var frame), Is.True);
             Assert.That(frame.xMin, Is.GreaterThan(0.5f), "quadro de UI à direita");
@@ -167,7 +167,7 @@ namespace Abandoned.SpaceApps.Tests
         {
             imaging.Begin();
             Press(keyboard.eKey); // hold iniciado durante o aprendizado
-            Run(10f);
+            Run(8f); // o aprendizado dura 10 s
             Assert.That(imaging.Phase, Is.EqualTo(ImagingPhase.Learn));
             Assert.That(imaging.CapturedCount, Is.Zero);
             Assert.That(imaging.MissedPasses, Is.Zero, "a demonstração não conta passagens");
@@ -326,7 +326,7 @@ namespace Abandoned.SpaceApps.Tests
         {
             imaging.Begin();
             RunUntil(() => imaging.IsGateWaiting && imaging.WaitingGate == PioneerImaging.EventGateChannels);
-            Assert.That(director.TimeSeconds, Is.EqualTo(28f).Within(0.1f), "sem E, a sequência espera a faixa 4 em 28 s");
+            Assert.That(director.TimeSeconds, Is.EqualTo(21f).Within(0.1f), "sem E, a sequência espera a faixa 4 em 21 s");
             Press(keyboard.eKey);
             RunUntil(() => imaging.CapturedCount >= 4);
             RunUntil(() => !imaging.IsGateWaiting || imaging.WaitingGate != PioneerImaging.EventGateChannels);
