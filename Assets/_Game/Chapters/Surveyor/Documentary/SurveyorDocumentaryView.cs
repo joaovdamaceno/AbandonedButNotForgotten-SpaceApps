@@ -65,6 +65,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             action.style.display = string.IsNullOrEmpty(actionText) ? DisplayStyle.None : DisplayStyle.Flex;
             root.Q("mission-heading").style.display = string.IsNullOrEmpty(titleText) && string.IsNullOrEmpty(dateText) ? DisplayStyle.None : DisplayStyle.Flex;
         }
+        public void SetDate(string value) { if (date.text != value) date.text = value; }
         public void SetHistory(bool visible, string caption)
         { photo.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None; credit.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None; credit.text = caption; }
         public void SetPhoto(Texture2D image, bool visible, string caption)

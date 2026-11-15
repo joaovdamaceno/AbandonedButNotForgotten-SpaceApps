@@ -30,7 +30,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         IDisposable scienceInput, scienceCamera;
         string step; float stepStart, scienceStart, pressSeconds, photoRead;
         string feedbackState, feedbackText;
-        float lastContactTime, scienceCueEnd; int contactIndex, assistDirection = 1; bool initialized, contactBegan, primaryArmed, pendingPhoto, pointerAllowed, keyboardSteering, cutReady;
+        float lastContactTime, scienceCueEnd; int contactIndex; bool initialized, contactBegan, primaryArmed, pendingPhoto, pointerAllowed, cutReady;
         int sciencePhase;
         Vector3 cameraDirection, cursorLocal = new Vector3(-.22f, 0f, 0f);
         Texture2D playerPhoto;
@@ -53,6 +53,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             var problems = localization.AddTable(texts.text, texts.name); if (problems.Count > 0) throw new ArgumentException(string.Join("\n", problems));
             cameras.Initialize(outputCamera); cameras.GroundProbe = Ground;
             cameras.RegisterRig("sur.craft", film.Spacecraft); cameras.RegisterLookTarget("sur.touchdown", transform.Find("TouchdownTarget"));
+            cameras.RegisterLookTarget("sur.landing", transform.Find("LandingFrame"));
+            cameras.RegisterLookTarget("sur.reunion", transform.Find("ReunionFrame"));
             cameras.RegisterLookTarget("sur.trench", workPatch); cameras.RegisterLookTarget("sur.optical", opticalMount); cameras.RegisterLookTarget("sur.eclipse", film.Eclipse); sequence.Initialize(cameras, input, clock); sequence.enabled = false;
             view.Initialize(outputCamera); view.ActionRequested += PrimaryAction; view.PauseRequested += PauseGame;
             subtitles = GetComponent<SubtitlePresenter>(); subtitles.Initialize(localization, sequence, view.SubtitleHost);
@@ -86,19 +88,14 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         void PointerUp() { pointerAllowed = false; Release(); }
         void PointerDown()
         {
-            pointerAllowed = step == "Science" && !owner.IsPaused && view.TryPointer(input.PointerPosition, out _);
-            if (pointerAllowed)
-            {
-                if (sciencePhase == 1 && CanFinishCut) { PrimaryAction(); pointerAllowed = true; }
-                keyboardSteering = false; primaryArmed = true;
-            }
+            pointerAllowed = step == "Science" && sciencePhase <= 1 && !owner.IsPaused && view.TryPointer(input.PointerPosition, out _);
+            if (pointerAllowed) primaryArmed = true;
         }
         void Interact()
         {
             if (owner.IsPaused) return;
-            if (step == "Science") { keyboardSteering = true; if (sciencePhase <= 2) primaryArmed = true; }
+            if (step == "Science" && sciencePhase == 2) primaryArmed = true;
             if (owner.State == AppState.Completion) { owner.ReturnToDossier(); return; }
-            if (step == "Science" && (sciencePhase >= 3 || sciencePhase == 1 && CanFinishCut)) PrimaryAction();
         }
         void Center() { cameraDirection = (workPatch.position - opticalMount.position).normalized; cursorLocal = new Vector3(-.22f, 0f, 0f); }
         void Enter(string id)
@@ -110,7 +107,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             film.Evaluate(id, 0f);
             if (id == "Science")
             {
-                sciencePhase = 0; pressSeconds = 0f; photoRead = 0f; scienceStart = clock.ActiveSeconds; keyboardSteering = false; cutReady = false; assistDirection = 1; Center();
+                sciencePhase = 0; pressSeconds = 0f; photoRead = 0f; scienceStart = clock.ActiveSeconds; cutReady = false; Center();
                 scienceInput = input.Acquire(InputContext.Gameplay, "Surveyor direct instrument"); scienceCamera = cameras.AcquireControl("Surveyor optical instrument"); view.SetInstrument(true);
                 ShowScience("sur.doc.science.question"); music.SetCue("sur.doc.science", 2f);
             }
@@ -157,17 +154,19 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 if (step == "Findings") view.SetPhoto(playerPhoto, elapsed > 8f, localization.Get("sur.doc.your.photo"));
                 if (step == "Legacy") view.SetPhoto(null, elapsed < 8f, localization.Get("sur.doc.archive.credit"));
                 if (step == "Night" && elapsed > 25f) music.SetMusicLevel(.12f, 2f);
+                if (step == "Night") view.SetDate(localization.Get(elapsed < 18f ? "sur.doc.date.eclipse" : elapsed < 30f ? "sur.doc.date.dayslater" : "sur.doc.date.lastcontact"));
                 if (step == "Arrival") DescentAudio(elapsed);
             }
         }
         void DescentAudio(float elapsed)
         {
-            descentMotor.volume = preferences.masterVolume * preferences.sfxVolume * .075f * (elapsed < 25f ? 1f : Mathf.Clamp01((29f - elapsed) / 4f));
-            if (elapsed < 29f && !descentMotor.isPlaying) descentMotor.Play();
-            if (elapsed >= 29f) descentMotor.Stop();
-            float threshold = contactIndex == 0 ? 23f : contactIndex == 1 ? 26f : 28.5f;
+            float cut = SurveyorLandingMotion.FinalContactSeconds + .1f;
+            descentMotor.volume = preferences.masterVolume * preferences.sfxVolume * .06f * Mathf.Clamp01((cut - elapsed) / 2f);
+            if (elapsed < cut && !descentMotor.isPlaying) descentMotor.Play();
+            if (elapsed >= cut) descentMotor.Stop();
+            float threshold = SurveyorLandingMotion.ContactTime(Mathf.Min(contactIndex, 2));
             if (contactIndex < 3 && elapsed >= threshold && elapsed - lastContactTime > .2f)
-            { contactSound.volume = preferences.masterVolume * preferences.sfxVolume * .17f; contactSound.PlayOneShot(contacts[contactIndex++]); lastContactTime = elapsed; }
+            { contactSound.volume = preferences.masterVolume * preferences.sfxVolume * (contactIndex == 0 ? .15f : contactIndex == 1 ? .11f : .08f); contactSound.PlayOneShot(contacts[contactIndex++]); lastContactTime = elapsed; }
         }
         void Science(float dt, float elapsed)
         {
@@ -175,31 +174,21 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             if (sciencePhase == 0)
             {
                 scoop.Deploy(Mathf.Clamp01(elapsed / SurveyorDocumentaryTiming.Deploy));
-                if (elapsed >= SurveyorDocumentaryTiming.Deploy) { sciencePhase = 1; primaryArmed |= !input.PrimaryHeld && !input.InteractHeld; RefreshText(); }
+                if (elapsed >= SurveyorDocumentaryTiming.Deploy) { sciencePhase = 1; primaryArmed |= !input.PrimaryHeld; RefreshText(); }
             }
             var data = preferences;
             cameras.Apply(new CameraPose(opticalMount.position, Quaternion.LookRotation(cameraDirection), 35f));
             if (sciencePhase == 1 || sciencePhase == 2)
             {
                 bool pointer = view.TryPointer(input.PointerPosition, out var uv);
-                if (input.InteractHeld)
-                {
-                    if (input.Move.sqrMagnitude > .01f) cursorLocal += new Vector3(input.Move.x, 0f, input.Move.y) * dt * .25f;
-                    else if (sciencePhase == 1)
-                    {
-                        // Accessible guided stroke: actual arm/contact/soil still drive all progress.
-                        if (scoop.InGroundContact && (assistDirection > 0 && scoop.TipLocal.x > .25f || assistDirection < 0 && scoop.TipLocal.x < -.26f)) assistDirection *= -1;
-                        cursorLocal = new Vector3(assistDirection > 0 ? .27f : -.28f, 0f, 0f);
-                    }
-                }
-                else if (pointer && !keyboardSteering)
+                if (sciencePhase == 1 && pointer)
                 {
                     var ray = outputCamera.ViewportPointToRay(new Vector3(uv.x, uv.y, 0)); var plane = new Plane(workPatch.up, workPatch.position);
                     if (plane.Raycast(ray, out float length)) cursorLocal = workPatch.InverseTransformPoint(ray.GetPoint(length));
                 }
                 cursorLocal.x = Mathf.Clamp(cursorLocal.x, -.28f, .27f); cursorLocal.z = Mathf.Clamp(cursorLocal.z, -.13f, .13f);
                 scoop.SetAim(cursorLocal);
-                bool held = input.InteractHeld || input.PrimaryHeld && pointer && pointerAllowed;
+                bool held = sciencePhase == 1 ? input.PrimaryHeld && pointer && pointerAllowed : input.InteractHeld;
                 if (!held) { contactBegan = false; primaryArmed = true; }
                 else if (primaryArmed) contactBegan = true;
                 if (sciencePhase == 2) scoop.SetAim(new Vector3(.16f, 0f, -.11f));
@@ -208,11 +197,14 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 if (sciencePhase == 2 && contactBegan && held && scoop.InGroundContact)
                 {
                     pressSeconds += dt;
-                    if (pressSeconds >= SurveyorDocumentaryTiming.Pressure) { sciencePhase = 3; ClearContact(); ScienceConfirmation(); ShowScience("sur.doc.science.edge"); Debug.Log("SURVEYOR_DOC_SCIENCE 3"); RefreshText(); }
+                    if (pressSeconds >= SurveyorDocumentaryTiming.Pressure)
+                    { sciencePhase = 3; ClearContact(); ScienceConfirmation(); scoop.Retract(); pendingPhoto = true; ShowScience("sur.doc.science.edge"); Debug.Log("SURVEYOR_DOC_SCIENCE 3"); RefreshText(); }
                 }
                 view.Cursor(workPatch.TransformPoint(sciencePhase == 2 && scoop.InGroundContact ? scoop.ContactPointLocal : scoop.AimLocal), true, scoop.Load);
                 view.SetActionEnabled(sciencePhase != 1 || CanFinishCut);
                 if (sciencePhase == 1 && CanFinishCut && !cutReady) { cutReady = true; ScienceConfirmation(); RefreshText(); Debug.Log("SURVEYOR_DOC_CUT_READY"); }
+                if (sciencePhase == 1 && CanFinishCut && !input.PrimaryHeld)
+                { sciencePhase = 2; ClearContact(); primaryArmed = true; ShowScience("sur.doc.science.press"); Debug.Log("SURVEYOR_DOC_PRESS_READY"); RefreshText(); }
             }
             else if (sciencePhase >= 3)
             {
@@ -224,7 +216,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 }
             }
             string feedback = sciencePhase == 0 ? "lowering" : sciencePhase == 1 ? CanFinishCut ? "cut.ready" : scoop.InGroundContact ? "cutting" : contactBegan ? "lowering" : "lifted"
-                : sciencePhase == 2 ? scoop.InGroundContact ? "pressing" : "positioning" : sciencePhase == 3 ? "press.ready" : "received";
+                : sciencePhase == 2 ? scoop.InGroundContact ? "pressing" : "positioning" : sciencePhase == 3 ? "recording" : "received";
             if (feedbackState != feedback) { feedbackState = feedback; feedbackText = localization.Get("sur.doc.feedback." + feedback); }
             view.SetFeedback(sciencePhase < 2 ? CutProgress : sciencePhase == 2 ? pressSeconds / SurveyorDocumentaryTiming.Pressure : 1f, scoop.InGroundContact, true, feedbackText);
             view.Guide(workPatch.TransformPoint(new Vector3(-.23f, .005f, 0f)), workPatch.TransformPoint(new Vector3(.23f, .005f, 0f)), sciencePhase == 1 && !CanFinishCut);
@@ -235,11 +227,6 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         {
             if (owner.IsPaused) return;
             if (owner.State == AppState.Completion) { owner.ReturnToDossier(); return; }
-            if (step != "Science") return;
-            if (sciencePhase == 1 && CanFinishCut)
-            { sciencePhase = 2; ClearContact(); primaryArmed = true; ShowScience("sur.doc.science.press"); RefreshText(); }
-            else if (sciencePhase == 3 && !pendingPhoto)
-            { pendingPhoto = true; scoop.Retract(); }
         }
         void LateUpdate()
         {
@@ -261,7 +248,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             {
                 objective = localization.Get(sciencePhase == 1 && CanFinishCut ? "sur.doc.goal.cut.ready" : "sur.doc.goal." + sciencePhase);
                 hint = localization.Get(sciencePhase == 1 && CanFinishCut ? "sur.doc.hint.cut.ready" : "sur.doc.hint." + sciencePhase);
-                status = localization.Get("sur.doc.machine"); button = sciencePhase == 1 && CanFinishCut ? localization.Get("sur.doc.finish.cut") : sciencePhase == 3 ? localization.Get("sur.doc.take.photo") : "";
+                status = localization.Get("sur.doc.machine");
             }
             else if (step == "End") button = localization.Get("sur.doc.return");
             view.SetText(localization.Get(date), localization.Get(title), objective, hint, status, button);

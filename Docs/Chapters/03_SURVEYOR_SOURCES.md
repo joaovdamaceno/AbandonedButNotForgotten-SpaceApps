@@ -64,3 +64,9 @@ Revisado em 14/11/2026 para o planejamento do novo projeto. Referências abaixo 
 Direção revista pelo proprietário em SUR-018: viagem e pouso são cinema, sem minigames de confirmação/correção; a ciência passa a operação direta assistida da pá, com deformação pelo contato. Noite e último contato precedem o salto de 31 meses. A recuperação é encenada externamente, com corpos completos, e segue para fotografia histórica identificada. Permanecem as restrições a números sem método e à sugestão de água por coesão. A observação é local, não garantia universal de segurança.
 
 O arquivo de roteiro é conteúdo proposto. Fatos conferidos não certificam uma build; nenhum teste de gameplay, duração humana, assets importados ou permissão individual foi realizado nesta entrega de planejamento.
+
+## SUR-020 — revisão de 15/11/2026
+
+S3-01 e S3-06 foram consultadas novamente. A síntese NASA confirma dois ressaltos de cerca de 10 m e 3 m; a distinção entre retrofoguete e três verniers segue S3-03/04. A montagem passa a mostrar descarte do primeiro, jatos dos motores menores, os dois ressaltos e corte final. Os arcos usam gravidade lunar aproximada de 1,62 m/s², mas a cronologia de 34 s e o empuxo visual são escolhas editoriais. Não simulam a telemetria nem o empuxo real que continuou durante os ressaltos.
+
+O eclipse de 24/04/1967 mostra passagem do Sol atrás da Terra e arco refratado desigual, com ênfase no norte, conforme S3-05, figuras 3-97/98, e a referência NASA contemporânea já registrada. A compressão de horas em segundos é explícita na documentação; a recuperação da iluminação antecede a mudança de dias para a noite lunar. Não se sugere que o eclipse encerrou a missão.

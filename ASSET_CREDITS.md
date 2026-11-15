@@ -114,3 +114,8 @@ Regolito 1024 e malha de luva em `Assets/_Game/Chapters/Surveyor/Materials/Polis
 ### SUR-017 — câmera recuperada no arquivo
 
 `Art/ReturnedCameraArchive/ReturnedCameraCover.asset` e `Data/ReturnedCameraCard.asset` referenciam a imagem NASA AS12-48-7134 já creditada na SUR-013, sem nova cópia ou download. Os textos são próprios e as fontes/identidades estão no README da pasta. Nenhuma imagem Smithsonian é redistribuída; A19761264000 é explicitamente artigo de teste.
+
+
+### SUR-020 — propulsão e contatos
+
+`Documentary/SurveyorExhaust.shader`, `Art/ExhaustCone.asset` e `Art/VacuumExhaust.mat`: geração procedural própria do projeto, sem textura, gravação ou modelo externo novo. Grãos reutilizam `Art/ScoopGenerated/ScoopGrain.asset`; modelos, traje, fontes, fotos e áudios mantêm os créditos existentes. O pouso usa referências NASA S3-01/03/04; o eclipse, S3-05/06. Não são dados de telemetria ou simulação de engenharia.

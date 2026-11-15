@@ -23,18 +23,21 @@ Shader "Abandoned/Surveyor/EarthOccultation"
                 float2 p=i.uv*2-1;
                 float r=length(p), aa=max(fwidth(r),.002);
                 float earth=1-smoothstep(.57-aa,.57+aa,r);
-                float2 sunCenter=lerp(float2(.82,.11),float2(.10,.09),_Phase);
+                float2 sunCenter=lerp(float2(.82,.11),float2(-.82,.09),_Phase);
                 float s=length(p-sunCenter);
                 float solarDisk=1-smoothstep(.159-aa,.159+aa,s);
                 float a=atan2(p.y,p.x);
                 // SP-184 figs 3-97/98: irregular beads, stronger northern arc and an eastern gap.
-                float beads=.58+.22*sin(a*17+.8)+.13*sin(a*31-1.4);
-                float arc=.35+.65*pow(saturate(.5+.5*sin(a)),3);
+                float beads=.62+.20*sin(a*17+.8)+.10*sin(a*31-1.4);
+                float north=.35+.65*pow(saturate(.5+.5*sin(a)),3);
+                float towardSun=.35+.65*saturate(dot(normalize(p+float2(.0001,0)),normalize(sunCenter)));
+                float arc=north*towardSun;
                 float gap=smoothstep(.22,.85,abs(atan2(sin(a+.6),cos(a+.6))));
-                float rim=exp(-pow((r-.575)/max(.009,aa),2))*beads*arc*gap*_Phase;
-                float halo=exp(-pow((r-.58)/.029,2))*.035*_Phase*arc*gap;
-                half3 color=half3(.62,.48,.31)*solarDisk*(1-earth);
-                color+=half3(.38,.027,.008)*(rim+halo);
+                float hidden=1-smoothstep(.41,.73,length(sunCenter));
+                float rim=exp(-pow((r-.575)/max(.008,aa),2))*beads*arc*gap*hidden;
+                float halo=exp(-pow((r-.58)/.035,2))*.075*hidden*arc*gap;
+                half3 color=half3(1,.91,.73)*solarDisk*(1-earth);
+                color+=lerp(half3(.46,.025,.007),half3(.85,.19,.027),towardSun)*(rim+halo);
                 return half4(saturate(color*_Exposure),1);
             }
             ENDHLSL

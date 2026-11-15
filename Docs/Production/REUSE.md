@@ -109,3 +109,8 @@ Reutiliza o modal existente do dossiê e a fotografia NASA AS12-48-7134 de SUR-0
 ## SUR-019 — revisão da operação e encenação
 
 Reutiliza malhas NASA/equipe e traje próprio SUR-018. Substitui a condução da marcha pelos clipes por pose neutra + apoio mundial/IK, sem asset externo. TV, contato, contraste da escavação e assistência reescritos dentro do capítulo. Não reutiliza código da edição antiga da Opportunity. Fontes históricas mantidas; validação em QA/SUR-019.
+
+
+## SUR-020 — operação e continuidade física
+
+Reutiliza a malha Apollo A7L própria da SUR-018, o modelo Surveyor da equipe, o retroestágio e todos os áudios/fontes já creditados. Corrige alvos anatômicos e alcance dos braços, posições de recuperação e transferência da câmera. Acrescenta malha procedural de jato e shader aditivo próprios; grãos de contato reutilizam a malha de solo. Reescreve o pouso com arcos lunares e refina o shader de eclipse existente. Sem assets externos novos, download de plugins ou código da campanha antiga. Evidências: QA/SUR-020.

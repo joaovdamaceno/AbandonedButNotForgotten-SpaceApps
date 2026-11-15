@@ -68,19 +68,19 @@ MonoBehaviour:
   - shotId: sur.doc.reunion.return
     durationSeconds: 12
     rigId: world
-    lookAtTargetId: sur.touchdown
+    lookAtTargetId: sur.reunion
     easing: 1
     minGroundClearanceMeters: 0.18
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 4, y: 2.9731636, z: 5}
+      positionMeters: {x: 4.2, y: 2.982569, z: 3.5}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 45
+      fieldOfViewDegrees: 43
     - timeSeconds: 12
-      positionMeters: {x: 4.5, y: 3.2765245, z: 6}
+      positionMeters: {x: 4.7, y: 3.2191606, z: 3.9}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 45
+      fieldOfViewDegrees: 43
     events: []
   cues:
   - cueId: sur.doc.reunion.1

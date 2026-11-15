@@ -17,6 +17,60 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests
     public sealed class SurveyorChapterTests : InputTestFixture
     {
         [Test]
+        public void FinalPoseKeepsBothArmsClearOfTheTorso()
+        {
+            var instance=Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath));
+            try
+            {
+                var cast=instance.GetComponentInChildren<SurveyorApolloCast>(true);cast.Evaluate(44f,true);
+                for(int actor=0;actor<2;actor++)
+                {
+                    var position=cast.Astronauts[actor].transform.position;
+                    var inverse=Quaternion.Inverse(Quaternion.LookRotation(cast.FacingDirection(actor)));
+                    for(int arm=0;arm<2;arm++)
+                    {
+                        var elbow=inverse*(cast.ElbowPosition(actor,arm)-position);
+                        var hand=inverse*(cast.HandPosition(actor,arm)-position);
+                        Assert.That(Mathf.Abs(elbow.x)>.27f||elbow.z>.21f,Is.True,"Elbow embedded in torso: actor="+actor+" arm="+arm+" "+elbow);
+                        Assert.That(Mathf.Abs(hand.x)>.27f||hand.z>.24f,Is.True,"Hand embedded in torso: actor="+actor+" arm="+arm+" "+hand);
+                    }
+                }
+            }
+            finally{Object.DestroyImmediate(instance);}
+        }
+        [Test]
+        public void LandingArcsUseLunarGravityAndCorrectReboundHeights()
+        {
+            float mid=SurveyorLandingMotion.FirstContactSeconds+SurveyorLandingMotion.FirstFlightSeconds*.5f;
+            Assert.That(SurveyorLandingMotion.Height(mid),Is.EqualTo(10f).Within(.001f));
+            float dt=.05f;
+            float acceleration=(SurveyorLandingMotion.Height(mid+dt)-2f*SurveyorLandingMotion.Height(mid)+SurveyorLandingMotion.Height(mid-dt))/(dt*dt);
+            Assert.That(acceleration,Is.EqualTo(-SurveyorLandingMotion.LunarGravity).Within(.02f));
+            Assert.That(SurveyorLandingMotion.Height(SurveyorLandingMotion.SecondContactSeconds+SurveyorLandingMotion.SecondFlightSeconds*.5f),Is.EqualTo(3f).Within(.001f));
+            Assert.That(SurveyorLandingMotion.Height(33f),Is.EqualTo(0f).Within(.001f));
+        }
+        [Test]
+        public void ExhaustUsesMetersAndEclipseRecoversBeforeLunarNight()
+        {
+            var instance=Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath));
+            try
+            {
+                var film=instance.GetComponent<SurveyorDocumentaryFilm>();film.Evaluate("Arrival",8f);
+                var jet=instance.transform.Find("Surveyor/RetroStage/Retro exhaust");
+                Assert.That(jet.gameObject.activeInHierarchy,Is.True);
+                Assert.That(jet.lossyScale.y,Is.EqualTo(1.4f).Within(.01f),"Imported centimetre scale must not magnify the exhaust.");
+                var effects=instance.GetComponent<SurveyorLandingEffects>();Assert.That(effects.VerniersVisible,Is.True);
+                film.Evaluate("Arrival",33f);Assert.That(effects.VerniersVisible,Is.False);
+                var sun=instance.GetComponentInChildren<Light>();
+                film.Evaluate("Night",10f);float eclipsed=sun.intensity;
+                film.Evaluate("Night",17f);Assert.That(sun.intensity,Is.GreaterThan(eclipsed*5f));
+                var eclipse=instance.GetComponentInChildren<SurveyorEclipseImage>(true);
+                Assert.That(eclipse.Occultation,Is.Zero);
+                float recovered=sun.intensity;film.Evaluate("Night",32f);Assert.That(sun.intensity,Is.LessThan(recovered*.1f));
+            }
+            finally{Object.DestroyImmediate(instance);}
+        }
+        [Test]
         public void AstronautFacesTravelAndItsStanceFootStaysPlanted()
         {
             var instance = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath));
@@ -100,20 +154,26 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests
             Assert.That(h.Owner.CurrentStepId, Is.EqualTo("Science")); yield return Capture("04-instrument");
             Set(mouse.position, new Vector2(-2000, -2000));
             float distantGround = h.Scoop.Soil.Height(0f, .40f), scienceStart = h.Clock.ActiveSeconds;
-            Keys(keyboard, Key.E); Advance(h, 12f); Keys(keyboard);
-            Assert.That(h.CanFinishCut, Is.True, "A novice must be able to complete a short cut with E alone. Travel="+h.Scoop.Soil.TravelMeters+" depth="+h.Scoop.Soil.DeepestMeters);
-            Assert.That(h.CutProgress, Is.EqualTo(1f));
-            Assert.That(h.View.GetComponentInChildren<UIDocument>().rootVisualElement.Q("effect"), Is.Null);
-            Assert.That(h.Scoop.Soil.Height(0f,.40f), Is.EqualTo(distantGround).Within(.001f));
+            Keys(keyboard,Key.E); Advance(h,3f); Keys(keyboard);
+            Assert.That(h.Scoop.Soil.RemovedCubicMeters,Is.Zero,"E must not operate the drag-only first stage.");
+            MoveMouseToTool(h,mouse,new Vector3(-.22f,0f,0f),false); MoveMouseToTool(h,mouse,new Vector3(-.22f,0f,0f),true);Advance(h,.8f);
+            for(int i=1;i<=32;i++){MoveMouseToTool(h,mouse,new Vector3(Mathf.Lerp(-.22f,.27f,i/32f),0f,0f),true);Advance(h,.2f);}
+            for(int i=1;i<=28;i++){MoveMouseToTool(h,mouse,new Vector3(Mathf.Lerp(.27f,-.18f,i/28f),0f,0f),true);Advance(h,.2f);}
+            Assert.That(h.CanFinishCut,Is.True,"Actual mouse strokes must prepare the trench. Travel="+h.Scoop.Soil.TravelMeters+" depth="+h.Scoop.Soil.DeepestMeters);
+            Assert.That(h.View.GetComponentInChildren<UIDocument>().rootVisualElement.Q("effect"),Is.Null);
+            Assert.That(h.Scoop.Soil.Height(0f,.40f),Is.EqualTo(distantGround).Within(.001f));
             yield return Capture("05-excavated");
-            float depth = h.Scoop.Soil.DeepestMeters; h.PauseGame(); Advance(h, 5); Assert.That(h.Scoop.Soil.DeepestMeters, Is.EqualTo(depth)); h.Resume();
-            Keys(keyboard, Key.E); Advance(h, 8f); Keys(keyboard);
-            Assert.That(h.SciencePhase, Is.EqualTo(3), "One fresh hold must move from ready cut into the pressure test.");
-            Keys(keyboard, Key.E); Advance(h,.05f); Keys(keyboard); Advance(h,3.1f); yield return null; yield return null;
+            MoveMouseToTool(h,mouse,new Vector3(-.18f,0f,0f),false);Advance(h,.1f);
+            Assert.That(h.SciencePhase,Is.EqualTo(2),"Releasing the completed drag must advance without an extra E confirmation.");
+            MoveMouseToTool(h,mouse,new Vector3(.16f,0f,-.11f),true);Advance(h,2f);
+            Assert.That(h.SciencePhase,Is.EqualTo(2),"Mouse must not operate the E-only pressure stage.");
+            MoveMouseToTool(h,mouse,new Vector3(.16f,0f,-.11f),false);
+            float depth=h.Scoop.Soil.DeepestMeters;h.PauseGame();Advance(h,5);Assert.That(h.Scoop.Soil.DeepestMeters,Is.EqualTo(depth));h.Resume();
+            Keys(keyboard,Key.E);Advance(h,8f);Keys(keyboard);yield return null;yield return null;
             Assert.That(h.Owner.Evidence.PlayerPhotoCount, Is.EqualTo(1));
             Advance(h,SurveyorDocumentaryTiming.ResultRead+.1f);
             Assert.That(h.Owner.CurrentStepId, Is.EqualTo("Findings"));
-            File.WriteAllText("QA/SUR-019/science-seconds.txt", (h.Clock.ActiveSeconds-scienceStart).ToString(System.Globalization.CultureInfo.InvariantCulture));
+            File.WriteAllText("QA/SUR-020/science-seconds.txt", (h.Clock.ActiveSeconds-scienceStart).ToString(System.Globalization.CultureInfo.InvariantCulture));
             Advance(h,10f); yield return Capture("06-findings");
             Advance(h,SurveyorDocumentaryTiming.Findings-10f+8f); yield return Capture("07-night");
             Advance(h,SurveyorDocumentaryTiming.Night-8f+5f); Assert.That(h.Owner.CurrentStepId, Is.EqualTo("Reunion")); yield return Capture("08-astronauts-walking");
@@ -125,7 +185,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests
             Assert.That(h.Localization.Problems, Is.Empty); Assert.That(h.Localization.MissingRequests, Is.Empty);
             Assert.That(h.Owner.LastRunActiveSeconds, Is.InRange(SurveyorDocumentaryTiming.CinematicSeconds+15f,SurveyorDocumentaryTiming.CinematicSeconds+60f));
             yield return Capture("12-memorial");
-            File.WriteAllText("QA/SUR-019/technical-journey.txt", "Automated assisted controls, not novice timing.\nActive seconds "+h.Owner.LastRunActiveSeconds+"\n"+string.Join(" -> ",stages));
+            File.WriteAllText("QA/SUR-020/technical-journey.txt", "Automated assisted controls, not novice timing.\nActive seconds "+h.Owner.LastRunActiveSeconds+"\n"+string.Join(" -> ",stages));
             Keys(keyboard,Key.E); Keys(keyboard);
             for (int i=0;i<300&&archive.Owner.State!=AppState.Dossier;i++)yield return null;
             Assert.That(archive.Owner.State,Is.EqualTo(AppState.Dossier)); Assert.That(archive.Owner.Evidence.Records,Is.Empty);
@@ -163,9 +223,47 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests
                 yield return null; yield return null; h.View.Render(t, 1f); yield return null;
                 var rt = h.View.Raw; var previous = RenderTexture.active; RenderTexture.active = rt; var image = new Texture2D(rt.width,rt.height,TextureFormat.RGB24,false);
                 image.ReadPixels(new Rect(0,0,rt.width,rt.height),0,0);image.Apply();RenderTexture.active=previous;
-                Directory.CreateDirectory("QA/SUR-019/motion");File.WriteAllBytes("QA/SUR-019/motion/"+t.ToString("F1",System.Globalization.CultureInfo.InvariantCulture)+".png",image.EncodeToPNG());Object.Destroy(image);
+                Directory.CreateDirectory("QA/SUR-020/motion");File.WriteAllBytes("QA/SUR-020/motion/"+t.ToString("F1",System.Globalization.CultureInfo.InvariantCulture)+".png",image.EncodeToPNG());Object.Destroy(image);
+            }
+            film.Evaluate("Reunion",44f);
+            var center=(cast.Astronauts[0].transform.position+cast.Astronauts[1].transform.position)*.5f+Vector3.up;
+            for(int i=0;i<6;i++)
+            {
+                var offset=Quaternion.AngleAxis(i*60f,Vector3.up)*new Vector3(0f,1.2f,-5.5f);
+                cameras.Apply(new CameraPose(center+offset,Quaternion.LookRotation(center-(center+offset)),43f));
+                yield return null;yield return null;h.View.Render(44,1);yield return null;
+                SaveRaw(h.View.Raw,"QA/SUR-020/framing/"+i+".png");
+            }
+            foreach(var stage in new[]{"Arrival","Night"})
+            {
+                var samples=stage=="Arrival"?new[]{8f,12f,18.05f,21.5f,25.05f,27f,29f,33f}:new[]{5f,8f,10f,14f,16.5f,24f};
+                foreach(float t in samples)
+                {
+                    h.Sequence.Play(AssetDatabase.LoadAssetAtPath<SequenceDefinition>(SurveyorDocumentaryBuilder.Folder+"/Sequences/"+stage+".asset"));
+                    film.Evaluate(stage,t);h.Sequence.Tick(t);
+                    yield return null;yield return null;h.View.Render(t,1);yield return null;
+                    SaveRaw(h.View.Raw,"QA/SUR-020/film/"+stage+"-"+t.ToString("F2",System.Globalization.CultureInfo.InvariantCulture)+".png");h.Sequence.Cancel();
+                }
             }
             yield return new ExitPlayMode();
+        }
+        static void SaveRaw(RenderTexture rt,string path)
+        {
+            var previous=RenderTexture.active;RenderTexture.active=rt;var image=new Texture2D(rt.width,rt.height,TextureFormat.RGB24,false);
+            image.ReadPixels(new Rect(0,0,rt.width,rt.height),0,0);image.Apply();RenderTexture.active=previous;
+            Directory.CreateDirectory(Path.GetDirectoryName(path));File.WriteAllBytes(path,image.EncodeToPNG());Object.Destroy(image);
+        }
+        static void MoveMouseToTool(SurveyorDocumentaryHost h,Mouse mouse,Vector3 local,bool held)
+        {
+            var camera=h.GetComponentInChildren<Camera>();
+            var uv=camera.WorldToViewportPoint(h.Scoop.Soil.transform.parent.TransformPoint(local));
+            var screen=h.View.Screen;var rect=screen.worldBound;
+            var panelPoint=new Vector2(rect.x+uv.x*rect.width,rect.y+(1f-uv.y)*rect.height);
+            var zero=RuntimePanelUtils.ScreenToPanel(screen.panel,Vector2.zero);
+            var edge=RuntimePanelUtils.ScreenToPanel(screen.panel,new Vector2(Screen.width,Screen.height));
+            var position=new Vector2((panelPoint.x-zero.x)/(edge.x-zero.x)*Screen.width,Screen.height-(panelPoint.y-zero.y)/(edge.y-zero.y)*Screen.height);
+            var state=new MouseState{position=position};if(held)state=state.WithButton(UnityEngine.InputSystem.LowLevel.MouseButton.Left);
+            InputSystem.QueueStateEvent(mouse,state);InputSystem.Update();
         }
         static void Button(SurveyorDocumentaryHost host, string name)
         {
@@ -182,7 +280,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests
             { float dt = Mathf.Min(.05f, seconds); host.Clock.Tick(dt); host.Tick(host.Clock.ActiveDeltaSeconds); seconds -= dt; }
             host.Clock.Tick(0);
         }
-        public static IEnumerator Capture(string name, string folder = "QA/SUR-019")
+        public static IEnumerator Capture(string name, string folder = "QA/SUR-020")
         {
             var documents = Object.FindObjectsByType<UIDocument>(FindObjectsInactive.Include); var originals = new Dictionary<PanelSettings, RenderTexture>(); var clear = new Dictionary<PanelSettings,bool>(); var target = new RenderTexture(1280, 720, 0); target.Create();
             foreach (var doc in documents)
