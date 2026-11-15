@@ -47,7 +47,7 @@ namespace Abandoned.SpaceApps
 
         VisualElement root, staticLayer, radiation, radiationFill, speed, distances, moonFill, cloudsFill;
         Label radiationTitle, speedLabel, moonLabel, cloudsLabel;
-        VisualElement years, energyFill, timelineTicks, timelineMarker, firsts;
+        VisualElement years, energyFill, timelineTicks, timelineMarker, firsts, barTop, barBottom;
         readonly VisualElement[] firstStars = new VisualElement[PioneerFirstsHud.StarCount];
         readonly Label[] firstLabels = new Label[PioneerFirstsHud.StarCount];
         Label yearBig, yearEvent, yearNote, instrumentsTitle, energyTitle, energyLaunch, energyJupiter;
@@ -81,6 +81,8 @@ namespace Abandoned.SpaceApps
             moonLabel = tree.Q<Label>("distance-moon-label");
             cloudsLabel = tree.Q<Label>("distance-clouds-label");
             years = tree.Q("years");
+            barTop = tree.Q("bar-top");
+            barBottom = tree.Q("bar-bottom");
             yearBig = tree.Q<Label>("year-big");
             yearEvent = tree.Q<Label>("year-event");
             yearNote = tree.Q<Label>("year-note");
@@ -270,6 +272,26 @@ namespace Abandoned.SpaceApps
         {
             if (label != null && label.text != (value ?? string.Empty))
                 label.text = value ?? string.Empty;
+        }
+
+        /// <summary>
+        /// Fase 5: as barras de cinema. <paramref name="progress"/> (0 recolhidas, 1 fechadas) multiplica <paramref name="barFraction"/>, a altura
+        /// de cada barra como fração do quadro. Não é apagada por <see cref="HideAll"/>: as barras têm dono próprio (<see cref="PioneerLetterbox"/>).
+        /// </summary>
+        public void SetLetterbox(float progress, float barFraction)
+        {
+            EnsureBound();
+            var visible = progress > 0.001f;
+            Show(barTop, visible);
+            Show(barBottom, visible);
+            if (!visible)
+                return;
+
+            var height = Length.Percent(Mathf.Clamp01(progress) * barFraction * 100f);
+            if (barTop != null)
+                barTop.style.height = height;
+            if (barBottom != null)
+                barBottom.style.height = height;
         }
 
         /// <summary>Esconde tudo (fora dos planos de cinema que usam o HUD).</summary>

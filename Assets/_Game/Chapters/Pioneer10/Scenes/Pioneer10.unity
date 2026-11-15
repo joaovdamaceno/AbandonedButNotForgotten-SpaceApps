@@ -268,6 +268,7 @@ MonoBehaviour:
   closestHud: {fileID: 934654340}
   yearsHud: {fileID: 1051676437}
   firstsHud: {fileID: 545480176}
+  letterbox: {fileID: 782166887}
   recovery: {fileID: 1846412636}
   reveal: {fileID: 1013705932}
   plaque: {fileID: 1192973470}
@@ -1385,6 +1386,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6881816178000647773, guid: 9d21a55838731ed4abfc8c3e49584c6c, type: 3}
   m_PrefabInstance: {fileID: 692793160}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &782166885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 782166886}
+  - component: {fileID: 782166887}
+  m_Layer: 0
+  m_Name: Letterbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &782166886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782166885}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 976992987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &782166887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782166885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bc6f22348d20b43bdab9101eb6cced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerLetterbox
+  hud: {fileID: 487529351}
 --- !u!1 &784307681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,6 +1795,7 @@ Transform:
   - {fileID: 934654339}
   - {fileID: 1051676436}
   - {fileID: 545480175}
+  - {fileID: 782166886}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1013705930

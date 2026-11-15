@@ -334,7 +334,7 @@ MonoBehaviour:
     fillIntensity: 0.04
   - groupId: PIO.Light.Cruise
     keyEulerDegrees: {x: 14.44067, y: 214.50853, z: 0.00000044081375}
-    keyColor: {r: 1, g: 0.96, b: 0.9, a: 1}
+    keyColor: {r: 0.84, g: 0.9, b: 1, a: 1}
     keyIntensity: 1.25
     fillEulerDegrees: {x: 342.65393, y: 38.65981, z: -0.00000044722606}
     fillColor: {r: 0.45, g: 0.55, b: 0.75, a: 1}
@@ -355,18 +355,18 @@ MonoBehaviour:
     fillIntensity: 0.15
   - groupId: PIO.Light.FarSun
     keyEulerDegrees: {x: 8.489048, y: 185.71059, z: 0.000000053951947}
-    keyColor: {r: 0.95, g: 0.95, b: 1, a: 1}
+    keyColor: {r: 0.86, g: 0.92, b: 1, a: 1}
     keyIntensity: 0.75
     fillEulerDegrees: {x: 344.43518, y: 21.801414, z: -0.0000004431378}
     fillColor: {r: 0.35, g: 0.4, b: 0.55, a: 1}
     fillIntensity: 0.05
-  - groupId: PIO.Light.Night
+  - groupId: PIO.Light.EarthWarm
     keyEulerDegrees: {x: 38.232414, y: 23.198593, z: 0}
-    keyColor: {r: 0.55, g: 0.65, b: 0.9, a: 1}
-    keyIntensity: 0.35
+    keyColor: {r: 1, g: 0.74, b: 0.46, a: 1}
+    keyIntensity: 0.9
     fillEulerDegrees: {x: 18.541979, y: 206.56505, z: 0}
-    fillColor: {r: 0.25, g: 0.3, b: 0.45, a: 1}
-    fillIntensity: 0.08
+    fillColor: {r: 0.42, g: 0.3, b: 0.26, a: 1}
+    fillIntensity: 0.1
   - groupId: PIO.Light.FarewellRim
     keyEulerDegrees: {x: 11.762706, y: 231.34018, z: -0.00000043604362}
     keyColor: {r: 0.85, g: 0.9, b: 1, a: 1}
@@ -404,7 +404,7 @@ MonoBehaviour:
     pose: {fileID: 428128763831314845}
     fieldOfViewDegrees: 50
     region: 1
-    lightGroupId: PIO.Light.Night
+    lightGroupId: PIO.Light.EarthWarm
     showJupiter: 0
     showAldebaranMarker: 0
     showBeltField: 0
@@ -818,7 +818,7 @@ MonoBehaviour:
     pose: {fileID: 1241571127381635050}
     fieldOfViewDegrees: 55
     region: 2
-    lightGroupId: PIO.Light.Night
+    lightGroupId: PIO.Light.EarthWarm
     showJupiter: 0
     showAldebaranMarker: 0
     showBeltField: 0
@@ -2843,7 +2843,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 1, g: 0.96, b: 0.9, a: 1}
+  m_Color: {r: 0.84, g: 0.9, b: 1, a: 1}
   m_Intensity: 1.25
   m_Range: 10
   m_SpotAngle: 30

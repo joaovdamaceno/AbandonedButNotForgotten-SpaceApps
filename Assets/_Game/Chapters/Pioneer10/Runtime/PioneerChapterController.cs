@@ -69,6 +69,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("Cena 5: medidor de radiação, estática, velocidade e comparação de distâncias.")] PioneerClosestHud closestHud;
         [SerializeField, Tooltip("Cena 7: ano, linha do tempo, instrumentos e medidor de energia dos RTG.")] PioneerYearsHud yearsHud;
         [SerializeField, Tooltip("Cena 9: as seis estrelas das primeiras vezes.")] PioneerFirstsHud firstsHud;
+        [SerializeField, Tooltip("Fase 5: barras de cinema nos estados que são só cinema.")] PioneerLetterbox letterbox;
         [SerializeField] ImagingRecovery recovery;
         [SerializeField] HistoricalImageReveal reveal;
         [SerializeField] PioneerPlaqueActivity plaque;
@@ -159,6 +160,7 @@ namespace Abandoned.SpaceApps
             closestHud.Initialize(sequenceDirector, text);
             yearsHud.Initialize(sequenceDirector, text);
             firstsHud.Initialize(sequenceDirector, text);
+            letterbox.Initialize(sequenceDirector, () => currentState, time);
             imaging.Initialize(sequenceDirector, interactions, router, time, text);
             recovery.Initialize(interactions, time, text);
             reveal.Initialize(time, text);
@@ -423,6 +425,7 @@ namespace Abandoned.SpaceApps
             Require(closestHud, nameof(closestHud));
             Require(yearsHud, nameof(yearsHud));
             Require(firstsHud, nameof(firstsHud));
+            Require(letterbox, nameof(letterbox));
             Require(imaging, nameof(imaging));
             Require(recovery, nameof(recovery));
             Require(reveal, nameof(reveal));

@@ -5,6 +5,9 @@
     <!-- Roteiro v2 · HUD dos planos de cinema (sem interação): medidor de radiação, estática, velocidade e comparação de distâncias.
          Sem frases literais: os rótulos recebem chaves PIO.UI.* resolvidas pelo capítulo. -->
     <ui:VisualElement name="hud-root" picking-mode="Ignore" class="sa-root pio-hud">
+        <!-- Fase 5 · barras de cinema (letterbox): abaixo de todo o resto do HUD. -->
+        <ui:VisualElement name="bar-top" picking-mode="Ignore" class="pio-hud__bar pio-hud__bar--top" />
+        <ui:VisualElement name="bar-bottom" picking-mode="Ignore" class="pio-hud__bar pio-hud__bar--bottom" />
         <ui:VisualElement name="static" picking-mode="Ignore" class="pio-hud__static" />
 
         <ui:VisualElement name="radiation" picking-mode="Ignore" class="sa-plate pio-hud__radiation">

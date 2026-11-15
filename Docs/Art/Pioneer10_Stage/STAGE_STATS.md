@@ -11,17 +11,24 @@ sem batching: não são números do profiler nem da build Web. Metas do roteiro:
 | `PIO.Launch.Ellipse` | PIO.Launch | DeepSpace | 42° | 10 | 13750 | 10 | 2 | 0 | 501.32 m |
 | `PIO.Launch` | PIO.Launch | DeepSpace | 40° | 10 | 13750 | 10 | 2 | 0 | 4.84 m |
 | `PIO.Belt` | PIO.Belt | DeepSpace | 30° | 10 | 13750 | 10 | 2 | 0 | 74.51 m |
+| `PIO.Belt.Mars` | PIO.Belt | DeepSpace | 30° | 11 | 17718 | 11 | 2 | 0 | 83.52 m |
+| `PIO.Belt.Field` | PIO.Belt | DeepSpace | 30° | 11 | 41750 | 11 | 2 | 0 | 79.87 m |
+| `PIO.Belt.Nike` | PIO.Belt | DeepSpace | 30° | 11 | 13770 | 11 | 2 | 0 | 71.83 m |
 | `PIO.Belt.Sensor` | PIO.Belt | DeepSpace | 40° | 10 | 13750 | 10 | 2 | 0 | 4.75 m |
 | `PIO.JupiterApproach` | PIO.JupiterApproach | DeepSpace | 40° | 11 | 17718 | 11 | 2 | 0 | 6.33 m |
 | `PIO.JupiterApproach.Instrument` | PIO.JupiterApproach | DeepSpace | 38° | 10 | 13750 | 10 | 2 | 0 | 0.97 m |
 | `PIO.Imaging` | PIO.Imaging | DeepSpace | 46° | 7 | 15722 | 7 | 2 | 0 | 1.38 m |
 | `PIO.Closest` | PIO.Closest | DeepSpace | 55° | 3 | 7216 | 3 | 2 | 0 | 204.66 m |
+| `PIO.Closest.Ganymede` | PIO.Closest | DeepSpace | 30° | 5 | 15152 | 5 | 2 | 0 | 514.18 m |
+| `PIO.Closest.Callisto` | PIO.Closest | DeepSpace | 30° | 4 | 11184 | 4 | 2 | 0 | 555.49 m |
+| `PIO.Closest.Europa` | PIO.Closest | DeepSpace | 30° | 3 | 7216 | 3 | 2 | 0 | 604.78 m |
+| `PIO.Closest.Bend` | PIO.Closest | DeepSpace | 50° | 4 | 7514 | 4 | 2 | 0 | 657.39 m |
 | `PIO.Plaque` | PIO.Plaque | DeepSpace | 36° | 9 | 16654 | 9 | 2 | 0 | 0.76 m |
 | `PIO.Outbound` | PIO.Outbound | DeepSpace | 40° | 10 | 13750 | 10 | 2 | 0 | 15.91 m |
 | `PIO.Listening` | PIO.Listening | GroundStation | 55° | 16 | 36560 | 16 | 2 | 0 | — |
 | `PIO.Farewell` | PIO.Farewell | DeepSpace | 45° | 11 | 13870 | 11 | 2 | 0 | 7.98 m |
 
-Maior coordenada de anchor: 536 m (limite 1000 m).
+Maior coordenada de anchor: 655 m (limite 1000 m).
 Rotação visual de cruzeiro: 24°/s (valor de direção, não telemetria).
 
 ## Continuidade entre planos consecutivos
@@ -30,12 +37,19 @@ Rotação visual de cruzeiro: 24°/s (valor de direção, não telemetria).
 - PIO.Launch.Pad → PIO.Launch.Ellipse: Δângulo 51°, Δposição 523.5 m, ΔFOV 8°, região muda
 - PIO.Launch.Ellipse → PIO.Launch: Δângulo 52°, Δposição 497.1 m, ΔFOV 2°, região igual
 - PIO.Launch → PIO.Belt: Δângulo 149°, Δposição 86.7 m, ΔFOV 10°, região igual
-- PIO.Belt → PIO.Belt.Sensor: Δângulo 78°, Δposição 80.2 m, ΔFOV 10°, região igual
+- PIO.Belt → PIO.Belt.Mars: Δângulo 66°, Δposição 90.2 m, ΔFOV 0°, região igual
+- PIO.Belt.Mars → PIO.Belt.Field: Δângulo 36°, Δposição 51.5 m, ΔFOV 0°, região igual
+- PIO.Belt.Field → PIO.Belt.Nike: Δângulo 162°, Δposição 152.7 m, ΔFOV 0°, região igual
+- PIO.Belt.Nike → PIO.Belt.Sensor: Δângulo 81°, Δposição 74.2 m, ΔFOV 10°, região igual
 - PIO.Belt.Sensor → PIO.JupiterApproach: Δângulo 105°, Δposição 13.6 m, ΔFOV 0°, região igual
 - PIO.JupiterApproach → PIO.JupiterApproach.Instrument: Δângulo 101°, Δposição 12.9 m, ΔFOV 2°, região igual
 - PIO.JupiterApproach.Instrument → PIO.Imaging: Δângulo 74°, Δposição 4.4 m, ΔFOV 8°, região igual
 - PIO.Imaging → PIO.Closest: Δângulo 34°, Δposição 211.1 m, ΔFOV 9°, região igual
-- PIO.Closest → PIO.Plaque: Δângulo 39°, Δposição 210.3 m, ΔFOV 19°, região igual
+- PIO.Closest → PIO.Closest.Ganymede: Δângulo 55°, Δposição 672.8 m, ΔFOV 25°, região igual
+- PIO.Closest.Ganymede → PIO.Closest.Callisto: Δângulo 0°, Δposição 80.6 m, ΔFOV 0°, região igual
+- PIO.Closest.Callisto → PIO.Closest.Europa: Δângulo 0°, Δposição 80.6 m, ΔFOV 0°, região igual
+- PIO.Closest.Europa → PIO.Closest.Bend: Δângulo 68°, Δposição 903.5 m, ΔFOV 20°, região igual
+- PIO.Closest.Bend → PIO.Plaque: Δângulo 57°, Δposição 663.5 m, ΔFOV 14°, região igual
 - PIO.Plaque → PIO.Outbound: Δângulo 174°, Δposição 19.1 m, ΔFOV 4°, região igual
 - PIO.Outbound → PIO.Listening: Δângulo 151°, Δposição 742.5 m, ΔFOV 15°, região muda
 - PIO.Listening → PIO.Farewell: Δângulo 156°, Δposição 735.5 m, ΔFOV 10°, região muda
