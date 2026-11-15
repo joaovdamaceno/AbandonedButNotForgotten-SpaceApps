@@ -98,6 +98,15 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void JupiterWearsTheNasaTextureCopiedByteForByteFromTheStoredOriginal()
+        {
+            var original = System.IO.File.ReadAllBytes(PioneerStageBuilder.JupiterSourcePath);
+            Assert.That(System.IO.File.ReadAllBytes(PioneerStageBuilder.JupiterTexturePath), Is.EqualTo(original), "a cópia em Assets é o arquivo da NASA, sem edição");
+            var texture = presentation.Jupiter.GetComponent<MeshRenderer>().sharedMaterial.GetTexture("_BaseMap");
+            Assert.That(UnityEditor.AssetDatabase.GetAssetPath(texture), Is.EqualTo(PioneerStageBuilder.JupiterTexturePath));
+        }
+
+        [Test]
         public void TheInstrumentCloseUpKeepsTheInstrumentTowardJupiterForTheWholeShot()
         {
             // Sem SpinScale 0 a sonda girava 24°/s durante os 8 s do plano PIO03.Instrument e o fotopolarímetro saía do quadro

@@ -26,6 +26,9 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string PrefabPath = ArtFolder + "/SpaceStage.prefab";
         public const string StageRootName = "[R5] Pioneer Stage";
         public const string InstanceName = "SpaceStage";
+        /// <summary>Textura de Júpiter da NASA (JPL/Caltech, de imagens da Voyager), original preservado em ArtSource.</summary>
+        public const string JupiterSourcePath = "ArtSource/Pioneer10/PIO-003/original/Jupiter.jpg";
+        public const string JupiterTexturePath = StageFolder + "/Textures/PIO_Jupiter_NASA.jpg";
         public const string ModelInstanceName = "PioneerActors";
 
         // Layout do palco, em metros. Nada além de ~1 km da origem: precisão de float folgada, sem jitter.
@@ -89,7 +92,7 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var sky = TextureAsset(context, "PIO_Starfield.png", () => PioneerStageArt.Starfield(2048, 1024, 3400, 1972), 2048, false, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
             var palette = TextureAsset(context, "PIO_StarPalette.png", PioneerStageArt.StarPalette, 32, false, TextureWrapMode.Clamp, TextureWrapMode.Clamp, FilterMode.Point);
-            var jupiter = TextureAsset(context, "PIO_JupiterProvisional.png", () => PioneerStageArt.JupiterBands(1024, 512, 1973), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
+            var jupiter = JupiterTexture(context);
 
             a.Jupiter = Lit(context, "PIO_Jupiter", Color.white, 0f, 0.05f, jupiter);
             a.Ground = Lit(context, "PIO_GroundNight", new Color(0.032f, 0.033f, 0.038f), 0f, 0.08f);
@@ -97,6 +100,42 @@ namespace Abandoned.SpaceApps.EditorTools
             a.Stars = Unlit(context, "PIO_BrightStars", Color.white, palette);
             a.Aldebaran = Unlit(context, "PIO_AldebaranMarker", new Color(1f, 0.6f, 0.42f), null);
             return a;
+        }
+
+        /// <summary>
+        /// Copia o mapa de Júpiter da NASA (720×360, equiretangular) para o projeto, byte a byte, e o importa: sRGB, mipmaps,
+        /// repetição em U (volta ao redor do planeta) e fixo em V (polos). Substitui a textura gerada por código (G-PIO-02).
+        /// </summary>
+        static Texture2D JupiterTexture(SceneBuildContext context)
+        {
+            if (!File.Exists(JupiterSourcePath))
+                throw new InvalidOperationException("Textura de Júpiter ausente: " + JupiterSourcePath);
+
+            SceneBuildContext.EnsureFolder(Path.GetDirectoryName(JupiterTexturePath)?.Replace('\\', '/'));
+            var source = File.ReadAllBytes(JupiterSourcePath);
+            if (!File.Exists(JupiterTexturePath) || !File.ReadAllBytes(JupiterTexturePath).SequenceEqual(source))
+            {
+                File.WriteAllBytes(JupiterTexturePath, source);
+                AssetDatabase.ImportAsset(JupiterTexturePath, ImportAssetOptions.ForceUpdate);
+            }
+
+            var importer = (TextureImporter)AssetImporter.GetAtPath(JupiterTexturePath);
+            if (importer.textureType != TextureImporterType.Default || !importer.sRGBTexture || !importer.mipmapEnabled
+                || importer.wrapModeU != TextureWrapMode.Repeat || importer.wrapModeV != TextureWrapMode.Clamp
+                || importer.maxTextureSize != 1024 || importer.filterMode != FilterMode.Trilinear)
+            {
+                importer.textureType = TextureImporterType.Default;
+                importer.sRGBTexture = true;
+                importer.mipmapEnabled = true;
+                importer.wrapModeU = TextureWrapMode.Repeat;
+                importer.wrapModeV = TextureWrapMode.Clamp;
+                importer.filterMode = FilterMode.Trilinear;
+                importer.maxTextureSize = 1024;
+                importer.textureCompression = TextureImporterCompression.Compressed;
+                importer.SaveAndReimport();
+            }
+
+            return context.Asset<Texture2D>(JupiterTexturePath, () => throw new InvalidOperationException("textura não importada: " + JupiterTexturePath));
         }
 
         internal static Mesh MeshAsset(SceneBuildContext context, string name, Action<Mesh> fill, string folder = StageFolder)

@@ -461,7 +461,7 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void TheDocumentHasNoLiteralSentencesAndTheSilhouetteIsNotDerivedFromAnUnsourcedImage()
+        public void TheDocumentHasNoLiteralSentencesAndTheAntennaIsTheDocumentedNasaModel()
         {
             var uxml = File.ReadAllText("Assets/_Game/Chapters/Pioneer10/UI/ListeningPanel.uxml");
             var literals = Regex.Matches(uxml, "text=\"([^\"]*)\"").Cast<Match>().Select(m => m.Groups[1].Value).ToList();
@@ -469,8 +469,21 @@ namespace Abandoned.SpaceApps.Tests
             var css = File.ReadAllText("Assets/_Game/Chapters/Pioneer10/UI/ListeningPanel.uss");
             Assert.That(css, Does.Not.Contain("animation"), "sem animação por USS: nada pisca");
             Assert.That(css, Does.Contain("bottom: 7%;").And.Contain("height: 33%;"), "quadro embaixo à direita, como o UiFrame do anchor");
-            Assert.That(Directory.GetFiles("Assets/_Game/Chapters/Pioneer10/Art/Dsn", "*.*", SearchOption.AllDirectories).Where(f => !f.EndsWith(".meta"))
-                .Any(f => f.EndsWith(".png") || f.EndsWith(".jpg") || f.EndsWith(".glb")), Is.False, "nenhuma foto nem modelo de terceiros foi importado para a silhueta");
+            // A antena é o modelo NASA convertido (PIO-011): só o atlas derivado entra em Assets; o GLB original fica em ArtSource,
+            // fora do pacote, e o manifesto da conversão prova a origem pelo SHA-256 do arquivo guardado.
+            var imported = Directory.GetFiles("Assets/_Game/Chapters/Pioneer10/Art/Dsn", "*.*", SearchOption.AllDirectories).Where(f => !f.EndsWith(".meta")).Select(Path.GetFileName).ToList();
+            Assert.That(imported.Any(f => f.EndsWith(".glb") || f.EndsWith(".jpg")), Is.False, "o original não entra em Assets");
+            Assert.That(imported.Where(f => f.EndsWith(".png")), Is.EqualTo(new[] { "DsnAtlas.png" }), "só o atlas derivado");
+            var manifest = File.ReadAllText("Data/Assets/Dsn70.json");
+            const string original = "ArtSource/Pioneer10/PIO-011/original/Deep Space Network 70-meter.glb";
+            Assert.That(File.Exists(original), Is.True, "o original da NASA está preservado");
+            using (var sha = System.Security.Cryptography.SHA256.Create())
+            {
+                var hash = string.Concat(sha.ComputeHash(File.ReadAllBytes(original)).Select(b => b.ToString("x2")));
+                Assert.That(manifest, Does.Contain(hash), "o manifesto registra o SHA-256 do original");
+            }
+
+            Assert.That(manifest, Does.Contain("Kumanchik").And.Contain("science.nasa.gov/3d-resources/deep-space-network-70-meter"), "crédito e página de origem");
         }
     }
 }
