@@ -33,6 +33,7 @@ namespace Abandoned.SpaceApps.EditorTools
             ("anos_voyager_t30", 30f),
             ("estrelas_t22", 22f),
             ("estrelas_t29", 29f),
+            ("barras_com_estrelas_t29", 29f),
         };
         // Quadros com este prefixo desenham o HUD da cena 7 (PioneerYearsHud); os demais, o da cena 5 (PioneerClosestHud).
         const string YearsPrefix = "anos_";
@@ -94,7 +95,12 @@ namespace Abandoned.SpaceApps.EditorTools
                 {
                     view.Bind();
                     var t = current.seconds;
-                    if (current.name.StartsWith("estrelas_", StringComparison.Ordinal))
+                    if (current.name.StartsWith("barras_", StringComparison.Ordinal))
+                    {
+                        view.SetLetterbox(1f, PioneerLetterbox.BarFraction);
+                    }
+
+                    if (current.name.StartsWith("estrelas_", StringComparison.Ordinal) || current.name.StartsWith("barras_com_estrelas", StringComparison.Ordinal))
                     {
                         var labels = new string[PioneerFirstsHud.StarCount];
                         var progress = new float[PioneerFirstsHud.StarCount];

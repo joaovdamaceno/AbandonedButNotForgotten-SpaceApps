@@ -363,3 +363,22 @@
 .pio-hud__firstlabel--left {
     right: 22px;
 }
+
+/* ---------- Fase 5 · barras de cinema ---------- */
+
+.pio-hud__bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0;
+    background-color: rgb(0, 0, 0);
+    display: none;
+}
+
+.pio-hud__bar--top {
+    top: 0;
+}
+
+.pio-hud__bar--bottom {
+    bottom: 0;
+}

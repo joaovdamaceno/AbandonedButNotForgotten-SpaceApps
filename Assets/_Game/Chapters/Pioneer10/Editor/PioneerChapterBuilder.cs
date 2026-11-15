@@ -96,6 +96,11 @@ namespace Abandoned.SpaceApps.EditorTools
             firstsHudSo.FindProperty("sequence").objectReferenceValue = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(PioneerFarewellBuilder.SequencePath);
             firstsHudSo.ApplyModifiedPropertiesWithoutUndo();
             so.FindProperty("firstsHud").objectReferenceValue = firstsHud;
+            var letterbox = context.Component<PioneerLetterbox>(context.Child(root, "Letterbox"));
+            var letterboxSo = new SerializedObject(letterbox);
+            letterboxSo.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();
+            letterboxSo.ApplyModifiedPropertiesWithoutUndo();
+            so.FindProperty("letterbox").objectReferenceValue = letterbox;
             so.FindProperty("imaging").objectReferenceValue = Only<PioneerImaging>();
             so.FindProperty("recovery").objectReferenceValue = Only<ImagingRecovery>();
             so.FindProperty("reveal").objectReferenceValue = Only<HistoricalImageReveal>();
