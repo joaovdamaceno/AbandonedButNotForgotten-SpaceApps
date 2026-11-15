@@ -151,13 +151,15 @@ namespace Abandoned.SpaceApps.Tests
             foreach (var part in new[] { "Bus", "Dish", "Feed", "RtgBoomA", "RtgBoomB", "MagnetometerBoom" })
                 Assert.That(Find(spin, part).IsChildOf(spin), part);
 
-            // O palco da PIO-003 usa estes mesmos nomes: trocar a silhueta pelo modelo não muda as atividades.
+            // O palco usa o modelo definitivo: os sockets do palco SÃO os do modelo (os das hastes acompanham a articulação).
             var stage = AssetDatabase.LoadAssetAtPath<GameObject>(PioneerStageBuilder.PrefabPath);
-            var stageSockets = stage.GetComponentsInChildren<Transform>(true).Where(t => t.parent != null && t.parent.name == "Sockets").Select(t => t.name).ToList();
-            Assert.That(stageSockets, Is.Not.Empty);
+            var presentation = stage.GetComponent<PioneerPresentation>();
+            Assert.That(stage.GetComponentsInChildren<Transform>(true).Any(t => t.name == "ProvisionalSilhouette"), Is.False, "a silhueta provisória saiu do palco");
+            Assert.That(stage.GetComponentsInChildren<PioneerProbeRig>(true), Has.Length.EqualTo(1), "o palco instancia o modelo da sonda");
             foreach (var name in PioneerProbeRig.RequiredSockets)
             {
-                Assert.That(stageSockets, Does.Contain(name), "o palco tem o socket " + name);
+                Assert.That(presentation.TryGetSocket(name, out var stageSocket), Is.True, "o palco tem o socket " + name);
+                Assert.That(stageSocket.GetComponentInParent<PioneerProbeRig>(true), Is.Not.Null, "o socket " + name + " é o do modelo");
                 Assert.That(rig.TryGetSocket(name, out _), Is.True, "o rig tem o socket " + name);
             }
         }
