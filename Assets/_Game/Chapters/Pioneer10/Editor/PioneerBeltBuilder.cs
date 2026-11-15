@@ -152,7 +152,7 @@ namespace Abandoned.SpaceApps.EditorTools
         /// de 10° com a parede de pedras compactada atrás da sonda; 19–30 dolly zoom (10° a 30° com a câmera se aproximando, a sonda do
         /// mesmo tamanho) enquanto o contador de dias acelera até 2 DEZ 1972 e a parede se abre; 30–40 corte para o espaço vazio e a pedra
         /// solitária (307 Nike); 40–50 a sonda sai para o escuro limpo (o contador chega a 15 FEV 1973). O contador e o rótulo vêm de
-        /// <see cref="PioneerBeltCounter"/>, pelo relógio desta sequência. O evento PIO.Belt.Reality baixa a música na revelação.
+        /// <see cref="PioneerBeltCounter"/>, pelo relógio desta sequência. O evento PIO.Belt.Reality troca a música tensa pela calma (MUS_PIO_MARAVILHA) na revelação.
         /// </summary>
         public static SequenceDefinition CreateCinemaSequence()
         {
@@ -186,6 +186,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 new SubtitleCue("PIO.02.01", "PIO.02.01", 0f, 6f),
                 new SubtitleCue("PIO.02.02", "PIO.02.02", 6.5f, 12.5f),
                 new SubtitleCue("PIO.02.03", "PIO.02.03", 13f, 19f),
+                new SubtitleCue("PIO.02.07", "PIO.02.07", 20.5f, 29.5f),
                 new SubtitleCue("PIO.02.04", "PIO.02.04", 30.5f, 37.5f),
                 new SubtitleCue("PIO.02.05", "PIO.02.05", 38f, 42f),
                 new SubtitleCue("PIO.02.06", "PIO.02.06", 42.5f, 49.5f),

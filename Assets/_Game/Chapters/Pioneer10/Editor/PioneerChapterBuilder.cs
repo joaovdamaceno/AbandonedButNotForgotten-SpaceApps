@@ -233,9 +233,11 @@ namespace Abandoned.SpaceApps.EditorTools
                         Key(11f, new Vector3(0.014f, 0.006f, 0.03f), 36f), Key(15f, new Vector3(0f, 0f, 0.05f), 35f),
                     },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                // O silêncio de 1 s da música antes do mergulho cai na lacuna de 27–28 s entre as legendas; depois a trilha volta.
                 new ShotDefinition("PIO09.Pass", 14f, "PIO.Closest",
                     new[] { Key(0f, new Vector3(-70f, 6f, -30f), 60f), Key(14f, new Vector3(70f, -4f, 40f), 72f) },
-                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
+                    events: new[] { new ShotEvent(0f, "PIO.Closest.Dive") }),
                 new ShotDefinition("PIO09.Bend", 14f, "PIO.Closest.Bend",
                     new[] { Key(0f, Vector3.zero, 50f), Key(14f, new Vector3(0f, 0f, -70f), 50f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
@@ -247,11 +249,13 @@ namespace Abandoned.SpaceApps.EditorTools
             var cues = new[]
             {
                 new SubtitleCue("PIO.09.01", "PIO.09.01", 1f, 8f),
+                new SubtitleCue("PIO.09.08", "PIO.09.08", 8.4f, 12.4f),
                 new SubtitleCue("PIO.09.02", "PIO.09.02", 12.5f, 19.5f),
                 new SubtitleCue("PIO.09.03", "PIO.09.03", 20f, 27f),
                 new SubtitleCue("PIO.09.04", "PIO.09.04", 28f, 35f),
                 new SubtitleCue("PIO.09.05", "PIO.09.05", 35.5f, 42f),
                 new SubtitleCue("PIO.09.06", "PIO.09.06", 43f, 51f),
+                new SubtitleCue("PIO.09.09", "PIO.09.09", 51.2f, 56f),
                 new SubtitleCue("PIO.09.07", "PIO.09.07", 56f, 64f),
             };
 

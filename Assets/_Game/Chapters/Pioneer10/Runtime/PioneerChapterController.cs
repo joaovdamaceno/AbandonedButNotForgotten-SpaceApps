@@ -174,6 +174,10 @@ namespace Abandoned.SpaceApps
             Bind(plaque, nameof(plaque), h => plaque.Completed += h, h => plaque.Completed -= h, "PIO.Plaque");
             Bind(outbound, nameof(outbound), h => outbound.Completed += h, h => outbound.Completed -= h, "PIO.Outbound");
             Bind(listening, nameof(listening), h => listening.Completed += h, h => listening.Completed -= h, "PIO.Listening");
+            // Eventos de áudio da sintonia (contatos, silêncio da 4ª tentativa) viram efeitos pela narração.
+            Action<string> onListeningEvent = narration.RaiseEvent;
+            listening.StateEvent += onListeningEvent;
+            unsubscribers.Add(() => listening.StateEvent -= onListeningEvent);
             Bind(farewell, nameof(farewell), h => farewell.Completed += h, h => farewell.Completed -= h, "PIO.Farewell");
 
             Action onReturn = OnReturnRequested;

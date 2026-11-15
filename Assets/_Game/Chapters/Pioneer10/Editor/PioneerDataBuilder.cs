@@ -195,7 +195,8 @@ namespace Abandoned.SpaceApps.EditorTools
             var events = new[]
             {
                 Fx("PIO.Launch.Ignition", "SFX_PIO_LAUNCH", false, "SFX de lançamento na Terra; no espaço só música."),
-                new PioneerAudioEvent { eventId = "PIO.Belt.Reality", action = PioneerAudioAction.MusicLevel, level = 0.15f, seconds = 1.5f, note = "A música quase silencia na virada (1,5 s). O nível 0,15 é escolha desta tarefa para \"quase silencia\"; volta a 1 ao trocar de estado." },
+                new PioneerAudioEvent { eventId = "PIO.Belt.Reality", action = PioneerAudioAction.Music, cueId = "MUS_PIO_MARAVILHA", seconds = 0.8f, proposedEvent = true, note = "Corte da tensão (Descent) para a calma (The Distant Sun) na revelação do cinturão, ~1:33 do roteiro. Crossfade curto de 0,8 s." },
+                new PioneerAudioEvent { eventId = "PIO.Closest.Dive", action = PioneerAudioAction.Silence, seconds = 1f, proposedEvent = true, note = "Silêncio de 1 s antes do mergulho (roteiro, cena 5); cai na lacuna entre legendas." },
                 Fx("PIO.Belt.Recorded", "SFX_PIO_DETECTOR_TICK", true, "Tique de detector por registro. Hoje é o evento C# BeltInvestigation.Recorded; PIO-014 o liga a este ID."),
                 Fx("PIO.Imaging.Sweep", "SFX_SCAN", false, "Varredura em loop modulado, limitada a 40 s."),
                 Fx("PIO.Imaging.Gate6", "SFX_PIO_RADIATION_NOISE", false, "Ruído de radiação curto e de baixa amplitude, só no quadro do instrumento."),

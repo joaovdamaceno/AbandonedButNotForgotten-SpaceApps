@@ -16,6 +16,8 @@ namespace Abandoned.SpaceApps
         Effect = 0,
         MusicLevel = 1,
         Silence = 2,
+        /// <summary>Troca a música por <c>cueId</c> (crossfade de <c>seconds</c>), por exemplo o corte da tensão para a calma na revelação do cinturão.</summary>
+        Music = 3,
     }
 
     /// <summary>Cue cadastrado. O ID segue a folha de cues (Docs/Art/AUDIO_CUE_SHEET.md); o clipe só entra com licença e crédito.</summary>
@@ -187,6 +189,13 @@ namespace Abandoned.SpaceApps
                 ContractValidation.RequireId(errors, owner, "eventId", audioEvent.eventId);
                 if (audioEvent.action == PioneerAudioAction.Effect && !known.Contains(audioEvent.cueId ?? string.Empty))
                     ContractValidation.Report(errors, owner, $"evento '{audioEvent.eventId}': efeito '{audioEvent.cueId}' não cadastrado.");
+                if (audioEvent.action == PioneerAudioAction.Music)
+                {
+                    if (!TryGetCue(audioEvent.cueId ?? string.Empty, out var musicCue) || musicCue.kind != PioneerAudioKind.Music)
+                        ContractValidation.Report(errors, owner, $"evento '{audioEvent.eventId}': '{audioEvent.cueId}' não é música cadastrada.");
+                    if (audioEvent.seconds < 0.8f || audioEvent.seconds > MaxFadeSeconds)
+                        ContractValidation.Report(errors, owner, $"evento '{audioEvent.eventId}': crossfade de {audioEvent.seconds} s fora de 0,8–{MaxFadeSeconds} s (limites do AudioDirector).");
+                }
                 if (audioEvent.action == PioneerAudioAction.Silence && audioEvent.seconds <= 0f)
                     ContractValidation.Report(errors, owner, $"evento '{audioEvent.eventId}': silêncio sem duração.");
             }

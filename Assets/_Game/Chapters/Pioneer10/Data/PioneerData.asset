@@ -151,6 +151,16 @@ MonoBehaviour:
     minimumReadSeconds: 0
     gateId: 
     readingStretchMaxSeconds: 0
+  - id: PIO.02.07
+    state: PIO.Belt
+    textKey: PIO.02.07
+    timing: 0
+    startSeconds: 20.5
+    endSeconds: 29.5
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
   - id: PIO.03.01
     state: PIO.JupiterApproach
     textKey: PIO.03.01
@@ -347,6 +357,26 @@ MonoBehaviour:
     timing: 0
     startSeconds: 56
     endSeconds: 64
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.08
+    state: PIO.Closest
+    textKey: PIO.09.08
+    timing: 0
+    startSeconds: 8.4
+    endSeconds: 12.4
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.09
+    state: PIO.Closest
+    textKey: PIO.09.09
+    timing: 0
+    startSeconds: 51.2
+    endSeconds: 56
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -638,6 +668,12 @@ MonoBehaviour:
     enText: After seven months, Pioneer emerged on the far side, unharmed. The belt could be crossed.
     ptStatus: derived
     enStatus: derived
+  - key: PIO.02.07
+    group: narrative
+    ptText: "Ent\xE3o os dias foram contados: uma semana, um m\xEAs, e depois meses passando cada vez mais depressa."
+    enText: 'So the days were counted: a week, a month, then months slipping by faster and faster.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.03.01
     group: narrative
     ptText: "Novembro de 1973. J\xFApiter, o maior dos planetas, j\xE1 estava \xE0 vista."
@@ -756,6 +792,18 @@ MonoBehaviour:
     group: narrative
     ptText: "Viu que a radia\xE7\xE3o de J\xFApiter era mais forte que o esperado, e isso mudou a Voyager."
     enText: "It found Jupiter\u2019s radiation fiercer than expected, which shaped Voyager\u2019s design."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.08
+    group: narrative
+    ptText: "Mas a foto de Io se perderia: a causa estava logo \xE0 frente."
+    enText: "But Io\u2019s picture would be lost: the cause lay just ahead."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.09
+    group: narrative
+    ptText: "J\xFApiter corre ao redor do Sol e a Pioneer pegou carona nessa velocidade."
+    enText: Jupiter races around the Sun, and Pioneer borrowed a little speed.
     ptStatus: derived
     enStatus: derived
   - key: PIO.05.01

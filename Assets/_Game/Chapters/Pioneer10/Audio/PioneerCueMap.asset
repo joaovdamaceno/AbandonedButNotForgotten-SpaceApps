@@ -59,12 +59,19 @@ MonoBehaviour:
     proposedEvent: 0
     note: "SFX de lan\xE7amento na Terra; no espa\xE7o s\xF3 m\xFAsica."
   - eventId: PIO.Belt.Reality
-    action: 1
+    action: 3
+    cueId: MUS_PIO_MARAVILHA
+    level: 1
+    seconds: 0.8
+    proposedEvent: 1
+    note: "Corte da tens\xE3o (Descent) para a calma (The Distant Sun) na revela\xE7\xE3o do cintur\xE3o, ~1:33 do roteiro. Crossfade curto de 0,8 s."
+  - eventId: PIO.Closest.Dive
+    action: 2
     cueId: 
-    level: 0.15
-    seconds: 1.5
-    proposedEvent: 0
-    note: "A m\xFAsica quase silencia na virada (1,5 s). O n\xEDvel 0,15 \xE9 escolha desta tarefa para \"quase silencia\"; volta a 1 ao trocar de estado."
+    level: 1
+    seconds: 1
+    proposedEvent: 1
+    note: "Sil\xEAncio de 1 s antes do mergulho (roteiro, cena 5); cai na lacuna entre legendas."
   - eventId: PIO.Belt.Recorded
     action: 0
     cueId: SFX_PIO_DETECTOR_TICK

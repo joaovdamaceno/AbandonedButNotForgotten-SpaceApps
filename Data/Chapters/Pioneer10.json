@@ -96,6 +96,7 @@
     {"id": "PIO.02.04", "state": "PIO.Belt", "textKey": "PIO.02.04", "timing": {"kind": "window", "startSeconds": 30.5, "endSeconds": 37.5}},
     {"id": "PIO.02.05", "state": "PIO.Belt", "textKey": "PIO.02.05", "timing": {"kind": "window", "startSeconds": 38, "endSeconds": 42}},
     {"id": "PIO.02.06", "state": "PIO.Belt", "textKey": "PIO.02.06", "timing": {"kind": "window", "startSeconds": 42.5, "endSeconds": 49.5}},
+    {"id": "PIO.02.07", "state": "PIO.Belt", "textKey": "PIO.02.07", "timing": {"kind": "window", "startSeconds": 20.5, "endSeconds": 29.5}},
 
     {"id": "PIO.03.01", "state": "PIO.JupiterApproach", "textKey": "PIO.03.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 6}},
     {"id": "PIO.03.02", "state": "PIO.JupiterApproach", "textKey": "PIO.03.02", "timing": {"kind": "window", "startSeconds": 9, "endSeconds": 15}},
@@ -118,6 +119,8 @@
     {"id": "PIO.09.05", "state": "PIO.Closest", "textKey": "PIO.09.05", "timing": {"kind": "window", "startSeconds": 35.5, "endSeconds": 42}},
     {"id": "PIO.09.06", "state": "PIO.Closest", "textKey": "PIO.09.06", "timing": {"kind": "window", "startSeconds": 43, "endSeconds": 51}},
     {"id": "PIO.09.07", "state": "PIO.Closest", "textKey": "PIO.09.07", "timing": {"kind": "window", "startSeconds": 56, "endSeconds": 64}},
+    {"id": "PIO.09.08", "state": "PIO.Closest", "textKey": "PIO.09.08", "timing": {"kind": "window", "startSeconds": 8.4, "endSeconds": 12.4}},
+    {"id": "PIO.09.09", "state": "PIO.Closest", "textKey": "PIO.09.09", "timing": {"kind": "window", "startSeconds": 51.2, "endSeconds": 56}},
 
     {"id": "PIO.05.01", "state": "PIO.Plaque", "textKey": "PIO.05.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 7.3}},
     {"id": "PIO.05.02", "state": "PIO.Plaque", "textKey": "PIO.05.02", "timing": {"kind": "trigger", "triggerId": "PIO.Plaque.Hydrogen", "afterEvent": "peça hidrogênio encaixada", "minimumReadSeconds": 4}},

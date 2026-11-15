@@ -165,6 +165,6 @@ Substitui os quatro cues `MUS_PIO_PARTIDA/CUR/DISTANCIA/ESCUTA` por sete, um por
 
 **Pontos de atenção:**
 - Os trechos são curtos (60 a 120 s) e **repetem** (loop com emenda) se a cena durar mais, o que é provável no minigame e na sintonia, onde o ritmo é da pessoa; a emenda tem fade de 3 s. Se isso incomodar, trocar por um trecho mais longo ou por uma faixa com loop próprio.
-- O **silêncio de 1 s** antes do mergulho (cena 5c) e o de **2 a 3 s** no fim da cena 8 são `AudioDirector.Silence(s)`; a música cai em 0,15 s e volta em 1 s.
+- **Ligados no jogo:** o evento `PIO.Belt.Reality` troca `CINTURAO` por `MARAVILHA` (ação `Music`, crossfade de 0,8 s) na revelação do cinturão (~1:33); `PIO.Closest.Dive` (`ShotEvent` a 14 s do plano `PIO09.Radiation`, na lacuna entre legendas) pede `Silence(1 s)`; `PIO.Listening.Attempt4` pede o silêncio de 2,5 s, encaminhado pelo `PioneerChapterController` (`listening.StateEvent` → `narration.RaiseEvent`). Todos dependem de o controlador receber o `PioneerAudioAdapter`.
 - **Orçamento Web:** 4,35 MB só da Pioneer, de 10 MB para todo o áudio do jogo. Reduzir (menos trechos ou bitrate menor) se Marte e a Surveyor precisarem de espaço.
 - A **atribuição é obrigatória** nos créditos do jogo: já existe a linha `credits.line.pioneer_music` no dossiê (PT e EN).
