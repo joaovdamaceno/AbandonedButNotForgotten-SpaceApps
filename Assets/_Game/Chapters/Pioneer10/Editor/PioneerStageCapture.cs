@@ -70,6 +70,14 @@ namespace Abandoned.SpaceApps.EditorTools
             if (presentation == null)
                 throw new InvalidOperationException("PioneerPresentation não encontrada em " + PioneerStageBuilder.SceneAssetPath);
 
+            // O que o PioneerChapterController.Initialize faz na rota real: as silhuetas da antena DSN (PIO-011) e do Atlas
+            // (PIO-004) só vão para os sockets das regiões quando o capítulo inicia; sem isto elas aparecem na origem, na
+            // frente da sonda, e poluem os planos do espaço. A cena é reaberta no fim, então nada disto é salvo.
+            foreach (var listening in Object.FindObjectsByType<PioneerListening>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                listening.AttachToStage();
+            foreach (var launch in Object.FindObjectsByType<PioneerLaunchActivity>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                launch.AttachToStage();
+
             Directory.CreateDirectory(OutputFolder);
             var camera = presentation.CameraDirector.TargetCamera;
             var target = new RenderTexture(Width, Height, 24, RenderTextureFormat.ARGB32) { name = "PIO-003 capture", antiAliasing = 1 };
