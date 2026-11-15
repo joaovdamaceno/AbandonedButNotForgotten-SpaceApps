@@ -401,3 +401,21 @@ O estado `PIO.Belt` toca a sequência própria `PIO_BeltCinema` (54 s; `PIO_Belt
 - A Terra de comparação (`PioneerPresentation.Earth`, 1/11,2 do diâmetro de Júpiter, razão real dos diâmetros equatoriais, textura procedural `PioneerStageArt.EarthSurface`) entra por fora do quadro à esquerda em 9,5 s, anda até o ponto previsto em 14 s e sai no corte para o fotopolarímetro (19 s). A posição vem de `PioneerStageBuilder.ViewportPoint` (um ponto do quadro, não coordenadas à mão).
 - O campo de visão do plano aberto passa de 44° a 36° (`ApproachOpenFov`) para Júpiter ocupar 70% ou mais da altura do quadro, como o roteiro pede.
 - **Limitações.** A Terra é estilizada. O crescimento é do próprio planeta, não uma viagem por distâncias reais. Faltam a Grande Mancha Vermelha cruzando, o brilho no limbo e o terminador marcado; a duração segue 27 s (o roteiro pede 30 s). Evidência em `QA/PIO-023/README.md`.
+
+## Música (roteiro novo)
+
+Sete faixas de **Scott Buckley (CC BY 4.0)** ligadas ao `AudioDirector` (AUD-002), uma por clima das nove cenas do roteiro. A tabela completa (cena, tempo, trecho, intenção, clima da faixa) está na **seção 6 de `Docs/Art/AUDIO_CUE_SHEET.md`**.
+
+| Arquivo | Papel |
+| --- | --- |
+| `Audio/Music/*.ogg` | Trechos (60 a 120 s) recortados, normalizados (-20 LUFS), com fade de 1 s na entrada e 3 s na saída, Ogg Vorbis ~64 kbps: **4,35 MB** no total |
+| `Tools/convert_pioneer10_music.py` | Baixa os MP3 das páginas da fonte, confere o SHA-256, recorta e codifica (precisa de ffmpeg com libvorbis). `--check` confere os `.ogg` e o registro sem ffmpeg. Os MP3 originais (5 a 15 MB) **não** ficam no repositório |
+| `Data/Assets/PioneerMusic.json` | Procedência: URL, SHA-256 do original e do `.ogg`, trecho, volume, licença e linha de crédito |
+| `Editor/PioneerMusicImporter.cs` | Configura a importação (Vorbis, streaming, sem pré-carga) e liga os clipes aos cues do catálogo; menu **Abandoned Space Apps → PIO → Importar música da Pioneer** |
+| `Tests/PioneerMusicTests.cs` | 5 testes EditMode |
+
+**Cue por estado:** `Launch → MUS_PIO_LANCAMENTO` (Chronicle), `Belt → MUS_PIO_CINTURAO` (Descent), `JupiterApproach` e `Imaging → MUS_PIO_MARAVILHA` (The Distant Sun), `Closest → MUS_PIO_JUPITER` (Sanctum), `Plaque` e `Outbound → MUS_PIO_ANOS` (Extrapolation), `Listening → MUS_PIO_RADIO` (Signal to Noise), `Farewell → MUS_PIO_FINAL` (Filaments, trecho do clímax). Os quatro cues antigos (`PARTIDA/CUR/DISTANCIA/ESCUTA`) saíram. **Falta** um evento no roteiro do Belt para o corte "tensão → maravilha" de 1:33 (`AudioDirector.SetCue("MUS_PIO_MARAVILHA")`); se os estados mudarem, só a tabela de estados do `PioneerCueMap` (em `PioneerDataBuilder`) muda.
+
+**Atribuição obrigatória (CC BY 4.0):** `ASSET_CREDITS.md` (linhas `M-SB-PIO-01…07`) e `credits.line.pioneer_music` em `DossierTexts.json` (PT e EN). A tela de créditos do dossiê precisa **exibir** essa linha.
+
+**Limitações.** **Nenhuma faixa foi ouvida por pessoa**: a escolha foi feita pela descrição da página de cada faixa e pelo envelope de volume medido; falta ouvir cada uma na cena. Os trechos são curtos e **repetem com emenda** se a cena durar mais (o minigame e a sintonia têm ritmo próprio); a emenda tem fade de 3 s. As faixas foram feitas para ouvir inteiras, então um corte no meio de uma frase musical é possível. O orçamento Web (4,35 MB de 10 MB para todo o áudio do jogo) não foi medido no navegador. Os efeitos sonoros (SFX) continuam **sem arquivo**.

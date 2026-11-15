@@ -149,8 +149,8 @@ namespace Abandoned.SpaceApps.EditorTools
 
         // ---------- Mapa de cues (folha de cues, AUD-001) ----------
 
-        static PioneerAudioCue Music(string id, string family) =>
-            new PioneerAudioCue { cueId = id, kind = PioneerAudioKind.Music, family = family, idConfirmedInCueSheet = true, licenseStatus = "candidate" };
+        static PioneerAudioCue Music(string id, string family, string creditId) =>
+            new PioneerAudioCue { cueId = id, kind = PioneerAudioKind.Music, family = family, idConfirmedInCueSheet = true, licenseStatus = "acquired", creditId = creditId };
 
         static PioneerAudioCue Effect(string id, float maxSeconds, bool confirmed, bool loop = false, PioneerAudioKind kind = PioneerAudioKind.Effect) =>
             new PioneerAudioCue { cueId = id, kind = kind, loop = loop, maxSeconds = maxSeconds, idConfirmedInCueSheet = confirmed, licenseStatus = "pending" };
@@ -163,23 +163,26 @@ namespace Abandoned.SpaceApps.EditorTools
             const float fade = 1.75f; // dentro do 1,5–2 s da folha de cues
             var states = new[]
             {
-                new PioneerStateAudio { stateId = "PIO.Launch", musicCueId = "MUS_PIO_PARTIDA", fadeSeconds = fade, note = "VIA: pulso e crescimento; no espaço só música." },
-                new PioneerStateAudio { stateId = "PIO.Belt", musicCueId = "MUS_PIO_CUR", fadeSeconds = fade, note = "CUR, variação lúdica na fantasia." },
-                new PioneerStateAudio { stateId = "PIO.JupiterApproach", musicCueId = "MUS_PIO_CUR", fadeSeconds = fade, note = "CUR cresce com a escala; mesmo cue do estado anterior, sem reiniciar." },
-                new PioneerStateAudio { stateId = "PIO.Imaging", musicCueId = "MUS_PIO_CUR", fadeSeconds = fade },
-                new PioneerStateAudio { stateId = "PIO.Closest", musicCueId = "MUS_PIO_CUR", fadeSeconds = fade, note = "Roteiro v2, cena 5: a música continua (sem reiniciar); o silêncio de 1 s antes da passagem é decisão de áudio futura (AUD-002)." },
-                new PioneerStateAudio { stateId = "PIO.Plaque", musicCueId = "MUS_PIO_DISTANCIA", fadeSeconds = fade, note = "Delicada; o pulso sai em 38–47 s." },
-                new PioneerStateAudio { stateId = "PIO.Outbound", musicCueId = "MUS_PIO_DISTANCIA", fadeSeconds = fade },
-                new PioneerStateAudio { stateId = "PIO.Listening", musicCueId = "MUS_PIO_ESCUTA", fadeSeconds = fade, note = "LEG: piano e cordas com silêncio estruturado." },
-                new PioneerStateAudio { stateId = "PIO.Farewell", musicCueId = "MUS_PIO_ESCUTA", fadeSeconds = fade, note = "O tema resolve; nenhum efeito externo." },
+                new PioneerStateAudio { stateId = "PIO.Launch", musicCueId = "MUS_PIO_LANCAMENTO", fadeSeconds = fade, note = "Chronicle: começa quase em silêncio e sobe; no espaço só música." },
+                new PioneerStateAudio { stateId = "PIO.Belt", musicCueId = "MUS_PIO_CINTURAO", fadeSeconds = fade, note = "Descent: o medo do cinturão (escura e misteriosa). A revelação calma (1:33) é MUS_PIO_MARAVILHA, a pedir por evento." },
+                new PioneerStateAudio { stateId = "PIO.JupiterApproach", musicCueId = "MUS_PIO_MARAVILHA", fadeSeconds = fade, note = "The Distant Sun: calma e discreta; Júpiter cresce de um ponto." },
+                new PioneerStateAudio { stateId = "PIO.Imaging", musicCueId = "MUS_PIO_MARAVILHA", fadeSeconds = fade, note = "Mesmo cue: segue sem reiniciar para a foto montada linha por linha." },
+                new PioneerStateAudio { stateId = "PIO.Closest", musicCueId = "MUS_PIO_JUPITER", fadeSeconds = fade, note = "Roteiro v2, cena 5. Sanctum: orquestral e edificante, para a radiação, o mergulho e o empurrão gravitacional." },
+                new PioneerStateAudio { stateId = "PIO.Plaque", musicCueId = "MUS_PIO_ANOS", fadeSeconds = fade, note = "Extrapolation: piano sombrio com um fio de esperança." },
+                new PioneerStateAudio { stateId = "PIO.Outbound", musicCueId = "MUS_PIO_ANOS", fadeSeconds = fade, note = "Mesmo cue da placa: segue sem reiniciar." },
+                new PioneerStateAudio { stateId = "PIO.Listening", musicCueId = "MUS_PIO_RADIO", fadeSeconds = fade, note = "Signal to Noise: misteriosa, melancólica e esperançosa; o silêncio real de 2,5 s é pedido ao áudio." },
+                new PioneerStateAudio { stateId = "PIO.Farewell", musicCueId = "MUS_PIO_FINAL", fadeSeconds = fade, note = "Filaments (trecho do clímax): o tema resolve; nenhum efeito externo." },
             };
 
             var cues = new[]
             {
-                Music("MUS_PIO_PARTIDA", "VIA"),
-                Music("MUS_PIO_CUR", "CUR"),
-                Music("MUS_PIO_DISTANCIA", "VIA/LEG"),
-                Music("MUS_PIO_ESCUTA", "LEG"),
+                Music("MUS_PIO_LANCAMENTO", "VIA", "M-SB-PIO-01"),
+                Music("MUS_PIO_CINTURAO", "VIA", "M-SB-PIO-02"),
+                Music("MUS_PIO_MARAVILHA", "CUR", "M-SB-PIO-03"),
+                Music("MUS_PIO_JUPITER", "VIA", "M-SB-PIO-04"),
+                Music("MUS_PIO_ANOS", "LEG", "M-SB-PIO-05"),
+                Music("MUS_PIO_RADIO", "LEG", "M-SB-PIO-06"),
+                Music("MUS_PIO_FINAL", "LEG", "M-SB-PIO-07"),
                 Effect("SFX_PIO_LAUNCH", 6f, false),
                 Effect("SFX_SCAN", 40f, true, loop: true),
                 Effect("SFX_PIO_RADIATION_NOISE", 2f, false),
