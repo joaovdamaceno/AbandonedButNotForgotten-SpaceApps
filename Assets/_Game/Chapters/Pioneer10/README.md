@@ -436,3 +436,11 @@ O estado `PIO.Belt` toca a sequência própria `PIO_BeltCinema` (54 s; `PIO_Belt
 - **Terra da NASA** (`PioneerStageBuilder.EarthTexture`, mapa Blue Marble 2048×1024 de `ArtSource/Pioneer10/PIO-031/`): na Terra do gráfico Terra–Lua do lançamento (girada para mostrar as Américas) e na Terra de comparação com Júpiter; substitui a textura procedural.
 - **Tempo:** o teto de aprovação do capítulo nos dados passa de 420 s para 600 s, sem contar o tempo que a pessoa leva nas duas interações.
 - Evidência em `QA/PIO-031/README.md`.
+
+## O cinturão como ele é (PIO-032)
+
+- **Campo esparso** (`PioneerStageArt.SparseRockCenters` e `SparseRockField`, parâmetros em `PioneerStageBuilder`): 70 pedras pequenas (2,5 a 8 m), todas entre 90 e 520 m da sonda, a no mínimo 60 m umas das outras e longe do caminho da câmera (folga de 80 m); substitui a parede de 1.400 pedras vista de teleobjetiva.
+- **Planos** (`PioneerBeltBuilder.CreateCinemaSequence`, 50 s): 8–19 s visão larga do cinturão (650 m, aproximando-se devagar); 19–30 s zoom na sonda até 70 m (campo de visão de 38° a 26°) com o contador de dias. O dolly zoom e `DollyZ` saíram.
+- **Contador no HUD de cinema** (`PioneerBeltCounter` agora usa `CinemaHudView.SetBeltCounter`): o dia, a data, o rótulo do 307 Nike e a nota `PIO.UI.belt_far` ("o asteroide conhecido mais próximo ficou a milhões de quilômetros da sonda", de 25 a 30 s). O HUD é renderizado e conferido em imagem (`PioneerHudCapture`).
+- **Estrelas:** as fracas passam a ser geometria (3.000 discos de 8 lados), nítidas em qualquer zoom.
+- **Limitações.** Escala e distâncias são de composição; sem linha tracejada até a pedra; restam algumas estrelas fracas da textura que viram quadrados no zoom mais fechado. Evidência em `QA/PIO-032/README.md`.

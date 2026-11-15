@@ -68,7 +68,11 @@ namespace Abandoned.SpaceApps.EditorTools
             so.FindProperty("jupiterSequence").objectReferenceValue = jupiter;
             so.FindProperty("closestSequence").objectReferenceValue = closest;
             so.FindProperty("beltCinemaSequence").objectReferenceValue = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(PioneerBeltBuilder.CinemaSequencePath);
-            so.FindProperty("beltCounter").objectReferenceValue = Only<PioneerBeltCounter>();
+            var beltCounterComponent = Only<PioneerBeltCounter>();
+            so.FindProperty("beltCounter").objectReferenceValue = beltCounterComponent;
+            var beltCounterSo = new SerializedObject(beltCounterComponent);
+            beltCounterSo.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();
+            beltCounterSo.ApplyModifiedPropertiesWithoutUndo();
             var reveal3 = context.Component<PioneerJupiterReveal>(context.Child(root, "JupiterReveal"));
             var reveal3So = new SerializedObject(reveal3);
             reveal3So.FindProperty("presentation").objectReferenceValue = presentation;

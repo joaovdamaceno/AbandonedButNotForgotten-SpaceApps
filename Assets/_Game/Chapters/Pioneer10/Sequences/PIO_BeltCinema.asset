@@ -40,46 +40,30 @@ MonoBehaviour:
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: -169.20209}
+      positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 10
+      fieldOfViewDegrees: 40
     - timeSeconds: 11
-      positionMeters: {x: 0, y: 0, z: -163.20209}
+      positionMeters: {x: 0, y: 0, z: 120}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 10
+      fieldOfViewDegrees: 38
     events: []
   - shotId: PIO02.Days
     durationSeconds: 11
     rigId: PIO.Belt.Field
     lookAtTargetId: 
-    easing: 0
+    easing: 1
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: -169.20209}
+      positionMeters: {x: 0, y: 0, z: 120}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 10
-    - timeSeconds: 2.2
-      positionMeters: {x: 0, y: 0, z: -118.66747}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 12.5
-    - timeSeconds: 4.4
-      positionMeters: {x: 0, y: 0, z: -74.36535}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 16
-    - timeSeconds: 6.6
-      positionMeters: {x: 0, y: 0, z: -42.624302}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 20
-    - timeSeconds: 8.8
-      positionMeters: {x: 0, y: 0, z: -17.114897}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 25
+      fieldOfViewDegrees: 38
     - timeSeconds: 11
-      positionMeters: {x: 0, y: 0, z: 0}
+      positionMeters: {x: 0, y: 0, z: 580}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 30
+      fieldOfViewDegrees: 26
     events: []
   - shotId: PIO02.Nike
     durationSeconds: 10
