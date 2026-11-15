@@ -1626,14 +1626,14 @@ MonoBehaviour:
     enStatus: approved
   - key: PIO.UI.return
     group: hud
-    ptText: Voltar ao arquivo
-    enText: Return to the archive
+    ptText: Menu principal
+    enText: Main menu
     ptStatus: approved
     enStatus: approved
   - key: PIO.UI.replay
     group: hud
-    ptText: "Repetir cap\xEDtulo"
-    enText: Replay chapter
+    ptText: "Reiniciar cap\xEDtulo"
+    enText: Restart chapter
     ptStatus: approved
     enStatus: approved
   - key: PIO.UI.aldebaran

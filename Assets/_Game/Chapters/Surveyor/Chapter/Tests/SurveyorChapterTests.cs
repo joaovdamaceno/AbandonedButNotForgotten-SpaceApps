@@ -50,6 +50,112 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests
             Assert.That(SurveyorLandingMotion.Height(33f),Is.EqualTo(0f).Within(.001f));
         }
         [Test]
+        public void OldFixedTouchdownPlanIsSwappedForATrackingOne()
+        {
+            ShotKeyframe[] Frames(float seconds) => new[] { new ShotKeyframe(0f, Vector3.zero, Vector3.zero, 40f), new ShotKeyframe(seconds, Vector3.one, Vector3.zero, 40f) };
+            var old = SequenceDefinition.Create("sur.doc.Arrival", new[]
+            {
+                new ShotDefinition("sur.doc.descent.separation", 8f, "sur.craft", Frames(8f)),
+                new ShotDefinition("sur.doc.descent.contacts", 12.5f, "world", Frames(12.5f), "sur.landing"),
+            });
+            SequenceDefinition tracked = null;
+            try
+            {
+                tracked = SurveyorChaseShot.EnsureTracking(old);
+                Assert.That(tracked, Is.Not.SameAs(old));
+                Assert.That(tracked.Shots[0].RigId, Is.EqualTo("sur.craft"), "Shots that already follow the craft are untouched.");
+                Assert.That(tracked.Shots[1].RigId, Is.EqualTo(SurveyorChaseShot.RigId));
+                Assert.That(tracked.Shots[1].LookAtTargetId, Is.EqualTo(SurveyorChaseShot.AimId));
+                Assert.That(tracked.TotalDurationSeconds, Is.EqualTo(old.TotalDurationSeconds).Within(.001f), "Subtitle and audio timing keep the same clock.");
+                Assert.That(tracked.Validate(), Is.Empty);
+                Assert.That(SurveyorChaseShot.EnsureTracking(tracked), Is.SameAs(tracked), "An already tracking plan is not rebuilt.");
+            }
+            finally { Object.DestroyImmediate(old); if (tracked != null && tracked != old) Object.DestroyImmediate(tracked); }
+        }
+        [Test]
+        public void LandingSlidesDownTheSlopeBetweenTheSourcedTouchdowns()
+        {
+            float first = SurveyorLandingMotion.TravelRemaining(SurveyorLandingMotion.FirstContactSeconds);
+            float second = SurveyorLandingMotion.TravelRemaining(SurveyorLandingMotion.SecondContactSeconds);
+            float third = SurveyorLandingMotion.TravelRemaining(SurveyorLandingMotion.FinalContactSeconds);
+            Assert.That(first - second, Is.EqualTo(SurveyorLandingMotion.FirstHopTravelMeters).Within(.01f), "About 20 m between the first and second touchdown.");
+            Assert.That(second - third, Is.EqualTo(SurveyorLandingMotion.SecondHopTravelMeters).Within(.01f), "About 11 m between the second and third touchdown.");
+            Assert.That(SurveyorLandingMotion.TravelRemaining(SurveyorLandingMotion.FinalContactSeconds + SurveyorLandingMotion.StopSeconds + .01f), Is.EqualTo(0f).Within(.001f), "It ends at rest at the final site.");
+            Assert.That(SurveyorLandingMotion.HorizontalSpeed(0f), Is.EqualTo(SurveyorLandingMotion.DriftApproachMetersPerSecond).Within(.001f));
+            float previous = SurveyorLandingMotion.TravelRemaining(0f);
+            for (float t = .02f; t < 34f; t += .02f)
+            {
+                float remaining = SurveyorLandingMotion.TravelRemaining(t);
+                Assert.That(remaining, Is.LessThanOrEqualTo(previous + 1e-4f), "It never moves back uphill (t=" + t + ").");
+                float change = Mathf.Abs(SurveyorLandingMotion.HorizontalSpeed(t) - SurveyorLandingMotion.HorizontalSpeed(t - .02f)) / .02f;
+                Assert.That(change, Is.LessThan(10f), "Sideways speed must change smoothly (t=" + t + ").");
+                previous = remaining;
+            }
+        }
+        [Test]
+        public void ArrivalCraftTravelsOverTheTerrainAndTheChaseCameraFollowsIt()
+        {
+            var instance = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath));
+            try
+            {
+                var film = instance.GetComponent<SurveyorDocumentaryFilm>();
+                film.Evaluate("Arrival", 33f); var home = film.Spacecraft.position;
+                film.Evaluate("Arrival", SurveyorLandingMotion.FirstContactSeconds);
+                Assert.That(Vector3.ProjectOnPlane(film.Spacecraft.position - home, Vector3.up).magnitude, Is.EqualTo(SurveyorLandingMotion.TravelRemaining(SurveyorLandingMotion.FirstContactSeconds)).Within(.01f));
+                Assert.That(film.Spacecraft.position.x, Is.GreaterThan(home.x + 20f), "It first touches down uphill of its resting place.");
+                for (float t = SurveyorLandingMotion.FirstContactSeconds - 1f; t < SurveyorLandingMotion.FinalContactSeconds + 1f; t += .25f)
+                {
+                    film.Evaluate("Arrival", t);
+                    var craft = film.Spacecraft.position;
+                    Assert.That(Vector3.ProjectOnPlane(film.ChaseRig.position - craft, Vector3.up).magnitude, Is.LessThan(4f), "The camera body trails the craft closely (t=" + t + ").");
+                    Assert.That(Vector3.Distance(film.ChaseTarget.position, craft + Vector3.up * 1.1f), Is.LessThan(2.5f), "The craft stays in the aim point (t=" + t + ").");
+                    Assert.That(film.ChaseRig.position.y, Is.EqualTo(SurveyorLunarSurface.Height(film.ChaseRig.position.x, film.ChaseRig.position.z)).Within(.001f), "The rig stands on the ground.");
+                }
+                film.Evaluate("Arrival", 33f);
+                Assert.That(Vector3.Distance(film.Spacecraft.position, home), Is.LessThan(.001f), "It comes to rest exactly where the scene was built.");
+            }
+            finally { Object.DestroyImmediate(instance); }
+        }
+        [Test]
+        public void LandingContactsAbsorbTheImpactInsteadOfKickingTheCraft()
+        {
+            const float dt = .001f;
+            float Speed(float t) => (SurveyorLandingMotion.Height(t + dt) - SurveyorLandingMotion.Height(t - dt)) / (2f * dt);
+            for (int i = 0; i < 3; i++)
+            {
+                float contact = SurveyorLandingMotion.ContactTime(i);
+                // Speed changes continuously through the touch: no instant reversal.
+                Assert.That(Mathf.Abs(Speed(contact + 3f * dt) - Speed(contact - 3f * dt)), Is.LessThan(2f), "Contact " + i + " must not reverse speed instantly.");
+                Assert.That(Speed(contact - 3f * dt), Is.LessThan(0f), "The craft arrives moving downward at contact " + i + ".");
+                float lowest = 0f;
+                for (float t = contact; t < contact + .8f; t += .005f) lowest = Mathf.Min(lowest, SurveyorLandingMotion.Height(t));
+                Assert.That(lowest, Is.GreaterThan(-.12f), "Leg crush at contact " + i + " stays in centimetres.");
+                Assert.That(lowest, Is.LessThan(-.005f), "Contact " + i + " must visibly compress the legs.");
+            }
+            Assert.That(Speed(SurveyorLandingMotion.FirstContactSeconds + .1f), Is.LessThan(1f), "The first hop starts slowly instead of kicking off at full speed.");
+            float fastest = 0f;
+            for (float t = SurveyorLandingMotion.FirstContactSeconds + .05f; t < SurveyorLandingMotion.FirstContactSeconds + 1.4f; t += .02f)
+                fastest = Mathf.Max(fastest, Mathf.Abs((Speed(t + .01f) - Speed(t - .01f)) / .02f));
+            Assert.That(fastest, Is.LessThan(25f), "The first push builds speed gradually.");
+            Assert.That(SurveyorLandingMotion.Height(SurveyorLandingMotion.FinalContactSeconds + 1f), Is.EqualTo(0f).Within(.0001f), "The craft ends at rest on the surface.");
+            // After a touch the craft rocks to one peak and recovers; it must not ring like a spring.
+            for (int i = 0; i < 3; i++)
+            {
+                float contact = SurveyorLandingMotion.ContactTime(i), previous = 0f; int direction = 0, reversals = 0;
+                for (float t = contact; t < contact + (i == 2 ? .7f : 1.5f); t += .02f)
+                {
+                    float angle = Quaternion.Angle(Quaternion.identity, SurveyorLandingMotion.ContactTilt(t));
+                    Assert.That(angle, Is.LessThan(3.5f));
+                    if (Mathf.Abs(angle - previous) < .01f) continue;
+                    int sign = angle > previous ? 1 : -1;
+                    if (direction != 0 && sign != direction) reversals++;
+                    direction = sign; previous = angle;
+                }
+                Assert.That(reversals, Is.LessThanOrEqualTo(1), "Tilt after contact " + i + " rises to one peak and recovers.");
+            }
+            Assert.That(Quaternion.Angle(Quaternion.identity, SurveyorLandingMotion.ContactTilt(SurveyorLandingMotion.FinalContactSeconds + 4f)), Is.LessThan(.001f));
+        }
+        [Test]
         public void ExhaustUsesMetersAndEclipseRecoversBeforeLunarNight()
         {
             var instance=Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath));
@@ -100,6 +206,33 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests
                 cast.Evaluate(40f,true);cast.Evaluate(1f,true);
                 var arm = instance.transform.Find("ScoopRig");
                 Assert.That(arm.Find(SurveyorScoop.ScoopToolPath).gameObject.activeSelf,Is.True);
+            }
+            finally { Object.DestroyImmediate(instance); }
+        }
+        [Test]
+        public void CameraRisesClearOfItsMountAndTravelsSmoothlyToTheHand()
+        {
+            var instance = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath));
+            try
+            {
+                var cast = instance.GetComponentInChildren<SurveyorApolloCast>(true);
+                var camera = instance.transform.Find("Recovered camera assembly");
+                cast.Evaluate(SurveyorApolloCast.CameraPickupSeconds, true);
+                var mount = camera.position;
+                cast.Evaluate(SurveyorApolloCast.CameraPickupSeconds + SurveyorApolloCast.CameraLiftSeconds * .5f, true);
+                Assert.That(camera.position.y, Is.GreaterThan(mount.y + .05f), "The camera must come up off its mount before swinging away.");
+                float lateral = Vector3.ProjectOnPlane(camera.position - mount, Vector3.up).magnitude;
+                Assert.That(lateral, Is.LessThan(.12f), "Mid-lift it is still above its mount, not dragged through the frame.");
+                // No frame of the extraction may jump: it is one continuous path from the mount to the hand.
+                cast.Evaluate(SurveyorApolloCast.CameraPickupSeconds, true);
+                var last = camera.position; float worst = 0f, until = SurveyorApolloCast.CameraPickupSeconds + SurveyorApolloCast.CameraLiftSeconds * SurveyorApolloCast.CameraCarryStartFraction + SurveyorApolloCast.CameraCarrySeconds + .5f;
+                for (float t = SurveyorApolloCast.CameraPickupSeconds + 1f / 60f; t < until; t += 1f / 60f)
+                {
+                    cast.Evaluate(t, true); worst = Mathf.Max(worst, Vector3.Distance(camera.position, last)); last = camera.position;
+                }
+                Assert.That(worst, Is.LessThan(.03f), "Camera moved more than 3 cm in one 60 Hz frame.");
+                var attachment = System.Array.Find(instance.GetComponentsInChildren<Transform>(true), t => t.name == "Camera carry attachment");
+                Assert.That(Vector3.Distance(camera.position, attachment.position), Is.LessThan(.8f), "The camera ends in the astronaut's hand.");
             }
             finally { Object.DestroyImmediate(instance); }
         }

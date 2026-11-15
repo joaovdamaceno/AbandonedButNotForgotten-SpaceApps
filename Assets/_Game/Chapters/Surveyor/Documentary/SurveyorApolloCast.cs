@@ -6,6 +6,9 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
     public sealed class SurveyorApolloCast : MonoBehaviour
     {
         public const float CameraPickupSeconds = 27f, ScoopPickupSeconds = 35f, EndPoseSeconds = 44f;
+        /// <summary>The camera first rises clear of its mount, then swings to the carry pose while the lift fades out.</summary>
+        public const float CameraLiftSeconds = 1.1f, CameraCarrySeconds = 2.2f, CameraCarryStartFraction = .6f;
+        [SerializeField, Tooltip("How far the camera is lifted off its mount before it swings toward the carry pose.")] float cameraLiftMeters = .30f;
         [SerializeField] GameObject[] astronauts;
         [SerializeField] AnimationClip walk, inspect, stand;
         [SerializeField] Transform[] start, stop;
@@ -21,6 +24,9 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         float[][] armSide;
         Vector3 scoopScale;
         bool initialized;
+        // Hand target and carry blend of the camera, produced by the arm pass and read by the camera pass of the same Evaluate.
+        Vector3 cameraGripWorld;
+        float cameraCarryBlend;
         static readonly string[] Names = { "Thigh_L", "Shin_L", "Foot_L", "Thigh_R", "Shin_R", "Foot_R", "UpperArm_R", "ForeArm_R", "Hand_R", "UpperArm_L", "ForeArm_L", "Hand_L", "Pelvis", "Spine", "Head" };
         public GameObject[] Astronauts => astronauts;
         public Vector3 FacingDirection(int actor) => astronauts[actor].transform.TransformDirection(modelForward[actor]);
@@ -108,7 +114,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                     {
                         var grip = cameraHome.TransformPoint(cameraGripLocal);
                         var carry = position + Vector3.up * 1.07f + facing * .40f + right * side * .30f;
-                        target = Vector3.Lerp(rest, Vector3.Lerp(grip, carry, Mathf.SmoothStep(0f, 1f, (seconds - CameraPickupSeconds) / 3f)), settle);
+                        cameraGripWorld = CameraGripPath(seconds, grip, carry, out cameraCarryBlend);
+                        target = Vector3.Lerp(rest, cameraGripWorld, settle);
                     }
                     if (i == 1 && arm == 1 && seconds > 30f)
                     {
@@ -126,17 +133,36 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             recoveredCamera.gameObject.SetActive(cameraCarried); nativeArm.gameObject.SetActive(!scoopCarried); recoveredScoop.gameObject.SetActive(scoopCarried);
             if (cameraCarried)
             {
-                float transfer = Mathf.SmoothStep(0f, 1f, (seconds - CameraPickupSeconds) / .8f);
+                float since = seconds - CameraPickupSeconds, carry = cameraCarryBlend;
                 Vector3 facing = FacingDirection(0).normalized, right = Vector3.Cross(Vector3.up, facing);
                 var carryRotation = Quaternion.AngleAxis(8f * armSide[0][0], facing) * cameraHome.rotation;
-                var carryPosition = cameraHand.position - carryRotation * cameraGripLocal;
-                recoveredCamera.SetPositionAndRotation(Vector3.Lerp(cameraHome.position, carryPosition, transfer), Quaternion.Slerp(cameraHome.rotation, carryRotation, transfer));
+                // A small tug while it comes free of the mount, gone before the swing finishes.
+                float tug = 2.2f * Mathf.Sin(Mathf.Clamp01(since / CameraLiftSeconds) * Mathf.PI) * (1f - carry);
+                var rotation = Quaternion.AngleAxis(tug, right) * Quaternion.Slerp(cameraHome.rotation, carryRotation, carry);
+                // The grip follows the same path as the hand target; once the swing ends the hand attachment holds it exactly.
+                var analytic = cameraGripWorld - rotation * cameraGripLocal;
+                var attached = cameraHand.position - rotation * cameraGripLocal;
+                recoveredCamera.SetPositionAndRotation(Vector3.Lerp(analytic, attached, carry), rotation);
             }
             if (scoopCarried)
             {
                 var source = nativeArm.GetChild(0); float transfer = Mathf.SmoothStep(0f, 1f, (seconds - ScoopPickupSeconds) / .8f);
                 recoveredScoop.SetPositionAndRotation(Vector3.Lerp(source.position, scoopHand.position, transfer), Quaternion.Slerp(source.rotation, scoopHand.rotation, transfer)); recoveredScoop.localScale = scoopScale;
             }
+        }
+        /// <summary>Grip point of the camera: still at the mount, lifted clear of it, then eased toward the carry pose.</summary>
+        Vector3 CameraGripPath(float seconds, Vector3 grip, Vector3 carry, out float carryBlend)
+        {
+            float since = Mathf.Max(0f, seconds - CameraPickupSeconds);
+            carryBlend = Smoother((since - CameraLiftSeconds * CameraCarryStartFraction) / CameraCarrySeconds);
+            float lift = Smoother(since / CameraLiftSeconds) * (1f - carryBlend);
+            return Vector3.Lerp(grip, carry, carryBlend) + Vector3.up * (cameraLiftMeters * lift);
+        }
+        /// <summary>Quintic ease with zero speed and acceleration at both ends.</summary>
+        static float Smoother(float x)
+        {
+            x = Mathf.Clamp01(x);
+            return x * x * x * (x * (x * 6f - 15f) + 10f);
         }
         static void IK(Transform upper, Transform lower, Transform end, Vector3 target, Vector3 pole)
         {
