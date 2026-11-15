@@ -42,7 +42,9 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 host.ApplySettings(new SettingsData { languageCode=cycle==1?"en":"pt",reducedMotion=cycle==2 });
                 Check(host.Flow.BeginConfirmation(),"Order unavailable."); Publish();
                 float deadline=Time.realtimeSinceStartup+60;
-                while(host.Flow.SequenceTime<16 && host.Owner.CurrentStepId==SurveyorEclipse.StepId && Time.realtimeSinceStartup<deadline) yield return null;
+                // SequenceDirector retains its final time until the next Play. Wait for reception first.
+                while(host.Owner.CurrentStepId==SurveyorEclipse.StepId &&
+                    (host.Flow.Phase!=EclipsePhase.Viewing || host.Flow.SequenceTime<16) && Time.realtimeSinceStartup<deadline) yield return null;
                 Check(host.Flow.Phase==EclipsePhase.Viewing,"Eclipse did not begin.");
                 if(cycle==0)
                 {
