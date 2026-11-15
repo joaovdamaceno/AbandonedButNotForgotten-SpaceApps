@@ -2,7 +2,7 @@
 
 Base: `5f316f5` (develop em 14/11/2026), branch `sur-009-abrir-trincheira`. Unity **6000.6.9f1** (o projeto fixa 6000.6.7f1; é o único Editor instalado nesta máquina), URP 17.6, Windows/D3D11.
 
-**Estado: comportamento, prefabs e testes concluídos e verificados no Editor; evidência visual só do Editor. A série automática de capturas WebGL não foi concluída, e o capítulo ainda não está integrado.** Não declarar a issue fechada: ver "O que falta".
+**Estado: comportamento, prefabs e testes concluídos e verificados no Editor; evidência visual do Editor e, desde 15/11/2026, 44 capturas do build WebGL do preview. O capítulo ainda não está integrado.** Não declarar a issue fechada: ver "O que falta".
 
 ## O que foi entregue
 
@@ -18,7 +18,7 @@ Base: `5f316f5` (develop em 14/11/2026), branch `sur-009-abrir-trincheira`. Unit
 
 **Capturas do Editor.** [`Captures/Editor/`](Captures/Editor/): 44 PNGs 960×540, escavação e recolhimento a cada 10 %, com câmera baixa e câmera da TV; [`capture-report.txt`](Captures/Editor/capture-report.txt) lista profundidade (0,180 m no fim), folga da ponta (≥ 0,0005 m durante a escavação) e erro de alcance (0). Inspeção visual feita: cavidade com bordas elevadas, sem emenda visível com o terreno depois de igualar o material do remendo ao regolito.
 
-**WebGL.** Um build WebGL só da cena de preview concluiu com sucesso (17,5 MB, 0 erros, 3 avisos, ~21 min, IL2CPP). Rodou no navegador embutido com D3D11/ANGLE: a cena carregou, o console registrou `SUR-009 preview dig=0.30 cam=low depth=0.060 clearance=0.0005 reach=0.0000 ground=Chunk_2_2` e a trincheira e o braço aparecem. O aviso `Edge Adaptive Spatial Upsampling ... stripped` (FSR) vem do perfil de URP existente. **Não há série de capturas WebGL**: o painel do navegador era pequeno demais para screenshots úteis, e o segundo build (com captura automática dentro do jogo, `?auto=1`) foi interrompido para liberar o projeto. O build já gerado em `Builds/SUR-009-Web` (ignorado pelo git) não tem a captura automática.
+**WebGL.** Um build WebGL só da cena de preview concluiu com sucesso (17,5 MB, 0 erros, 3 avisos, ~21 min, IL2CPP). Rodou no navegador embutido com D3D11/ANGLE: a cena carregou, o console registrou `SUR-009 preview dig=0.30 cam=low depth=0.060 clearance=0.0005 reach=0.0000 ground=Chunk_2_2` e a trincheira e o braço aparecem. O aviso `Edge Adaptive Spatial Upsampling ... stripped` (FSR) vem do perfil de URP existente. **Capturas WebGL (15/11/2026).** [`Captures/Web/`](Captures/Web/): 44 PNGs 960×600 do canvas real do build WebGL do preview (escavação e recolhimento a cada 10 %, câmeras `low` e `tv`), cada um com um `.txt` de relatório. Build limpo em Unity 6000.6.9f1 ([`web-build.json`](web-build.json): sucesso, 17,6 MB, 0 erros, 0 avisos), servido por `tools/serve-web.ps1` e capturado com `?auto=1` no Chrome; o jogo grava as imagens pelo `PUT /save` do servidor local. Dos relatórios: a profundidade cresce de 0,000 a 0,180 m sem retrocesso nas duas câmeras; no recolhimento o balde sobe até 0,085 m na vertical, passa por 0,021 m acima do relevo no recuo lateral e termina em 0,580 m; a folga mínima de todas as 44 poses é 0,0005 m (nunca abaixo do terreno). Inspeção visual de `dig-100-low` e `retract-050-low`: cavidade com bordas elevadas e braço sem atravessar o solo. Limites: as poses são aplicadas pelo preview (não é partida jogada com E); cancelar/pausar continuam cobertos só pelos testes EditMode; não mede desempenho. Um build anterior misturava `wasm` de uma compilação e `data` de outra (a segunda foi interrompida) e falhava ao abrir com `Maximum call stack size exceeded`; foi apagado e refeito do zero.
 
 ## Correções feitas durante a validação
 
@@ -32,17 +32,17 @@ Base: `5f316f5` (develop em 14/11/2026), branch `sur-009-abrir-trincheira`. Unit
 
 | Critério | Situação |
 | --- | --- |
-| Antes/depois com cavidade e bordas consistentes | Evidência nas capturas do Editor; série WebGL pendente; revisão humana pendente |
+| Antes/depois com cavidade e bordas consistentes | Evidência nas capturas do Editor e do WebGL; revisão humana pendente |
 | Ferramenta não atravessa a superfície ao recolher | Testado (balde inteiro, 2 400 instantes + todos os 10 % de recolhimento); os elos do braço não são testados contra o terreno |
 | Sem avanço com E solto | Testado |
 | Foto de resultado na mesma área escavada | Só a base: `PhotoTarget` no centro do sulco e `FootprintWorldBounds`; a foto é da SUR-010 |
-| Capturar poses a cada 10 % | Feito no Editor (44 imagens); WebGL pendente |
+| Capturar poses a cada 10 % | Feito no Editor (44 imagens) e no WebGL (44 imagens) |
 | Cancelar e pausar em contato e a 90 % | Testado |
 | Inspecionar em ângulo baixo | Feito no Editor |
 
 ## O que falta antes de fechar a issue
 
-1. Série de capturas WebGL (rodar o build do menu `SUR-009 → Build WebGL do preview` e o preview com `?auto=1` servido por `tools/serve-web.ps1`, que grava as imagens em `Captures/Web/`), com o painel do navegador visível.
+1. ~~Série de capturas WebGL~~ — feita em 15/11/2026 (`Captures/Web/`, 44 imagens); falta a captura de partida jogada com E, que depende da integração do item 2.
 2. **Integração:** ligar `SurveyorScoop.Configure` na cena do capítulo (R1/SUR-015) com o chunk `NearGround_40m/Chunk_2_2` e `Team_ScoopLinkage`/`Team_ScoopTool`. Nada disso está na cena `Surveyor.unity`.
 3. **Decisão visual a aprovar:** o braço do `ScoopRig` é uma reconstrução leve de dois elos com cinemática inversa que esconde a pá nativa do modelo da equipe (SUR-002), porque a malha nativa é rígida e não alcança os pontos de escavação e recolhimento. A alternativa é manter a pá nativa como balde.
 4. A câmera da TV está atrás do braço: nas capturas `tv` os elos tapam parte da vista (composição de SUR-008, não da escavação).
