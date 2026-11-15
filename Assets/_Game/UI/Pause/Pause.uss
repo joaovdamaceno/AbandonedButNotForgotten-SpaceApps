@@ -1,0 +1,190 @@
+/*
+ * UI-006 · Menu de pausa e preferências (R2). Só estende UI-001 (tokens e componentes).
+ * Centralização por âncoras: o overlay ocupa o painel inteiro e centraliza o cartão em AMBOS os eixos
+ * (justify-content/align-items), então a posição não depende da proporção. A escala do PanelSettings fixa a altura
+ * lógica em 720 px; só a largura lógica varia (960 em 4:3, 1152 em 16:10, 1280 em 16:9). O cartão nunca passa de 92% do
+ * painel e a lista de preferências rola dentro dele. Nenhum estado depende só da cor: foco tem contorno espesso.
+ */
+
+.sa-pausemenu {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Botão de pausa: vive aqui só se o HUD não hospedar (MissionHUD.RightColumn). */
+.sa-pausemenu__corner {
+    position: absolute;
+    top: var(--sa-space-5);
+    right: var(--sa-safe-margin);
+}
+
+.sa-pausemenu__button {
+    min-height: var(--sa-hit-min);
+    border-width: 2px;
+}
+
+.sa-pausemenu__button:hover,
+.sa-pausemenu__button:focus {
+    border-color: var(--sa-color-focus);
+    border-width: 3px;
+}
+
+.sa-pausemenu__overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(8, 10, 14, 0.72);
+    display: none;
+}
+
+.sa-pausemenu__card {
+    width: 560px;
+    max-width: 92%;
+    max-height: 92%;
+    padding: var(--sa-space-5);
+    background-color: var(--sa-color-plate-strong);
+}
+
+.sa-layout--narrow .sa-pausemenu__card {
+    width: 520px;
+    padding: var(--sa-space-4);
+}
+
+.sa-pausemenu__title {
+    font-size: var(--sa-text-title);
+    color: var(--sa-color-on-plate);
+}
+
+.sa-pausemenu__subtitle {
+    font-size: var(--sa-text-body);
+    color: var(--sa-color-on-plate-muted);
+    margin: var(--sa-space-2) 0 var(--sa-space-4) 0;
+}
+
+.sa-pausemenu__view {
+    flex-shrink: 1;
+    display: flex;
+}
+
+.sa-pausemenu__action {
+    flex-direction: row;
+    align-items: center;
+    min-height: var(--sa-hit-min);
+    margin-bottom: var(--sa-space-2);
+    padding: var(--sa-space-2) var(--sa-space-4);
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-md);
+    background-color: var(--sa-color-plate);
+}
+
+.sa-pausemenu__action--primary {
+    border-left-width: 6px;
+    border-left-color: var(--sa-accent-hud);
+}
+
+.sa-pausemenu__action:hover,
+.sa-pausemenu__action:focus,
+.sa-pausemenu__focus {
+    border-color: var(--sa-color-focus);
+    border-width: 3px;
+}
+
+.sa-pausemenu__action-label {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+}
+
+.sa-pausemenu__hint {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-warn);
+    margin-top: var(--sa-space-2);
+}
+
+.sa-pausemenu__section {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin-bottom: var(--sa-space-2);
+}
+
+.sa-pausemenu__scroll {
+    flex-shrink: 1;
+    max-height: 420px;
+    margin-bottom: var(--sa-space-3);
+}
+
+.sa-pausemenu__navigation {
+    margin-top: var(--sa-space-3);
+    color: var(--sa-color-on-plate-muted);
+}
+
+/* ---------- Preferências ---------- */
+
+.sa-settings__row {
+    min-height: var(--sa-hit-min);
+    margin-bottom: var(--sa-space-2);
+    padding: var(--sa-space-2) var(--sa-space-3);
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-md);
+}
+
+.sa-settings__row:focus {
+    border-color: var(--sa-color-focus);
+    border-width: 3px;
+}
+
+.sa-settings__label {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+}
+
+.sa-settings__line {
+    flex-direction: row;
+    align-items: center;
+    margin-top: var(--sa-space-1);
+}
+
+.sa-settings__slider {
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.sa-settings__value {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate-muted);
+    min-width: 64px;
+    margin-left: var(--sa-space-3);
+    -unity-text-align: middle-right;
+}
+
+.sa-settings__choice {
+    min-height: var(--sa-hit-min);
+    min-width: 110px;
+    margin-right: var(--sa-space-2);
+    padding: 0 var(--sa-space-3);
+    border-width: 2px;
+    border-color: var(--sa-color-plate-edge);
+    border-radius: var(--sa-radius-md);
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    -unity-text-align: middle-center;
+}
+
+.sa-settings__choice:hover {
+    border-color: var(--sa-color-focus);
+}
+
+/* Selecionado: contorno + marca no texto (aplicada por código), nunca só cor. */
+.sa-settings__choice--on {
+    border-color: var(--sa-accent-hud);
+    border-width: 3px;
+    background-color: var(--sa-color-plate);
+}
