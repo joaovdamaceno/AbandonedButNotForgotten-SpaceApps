@@ -21,7 +21,7 @@ MonoBehaviour:
     nominalSeconds: 50
   - id: PIO.JupiterApproach
     order: 3
-    nominalSeconds: 27
+    nominalSeconds: 30
   - id: PIO.Imaging
     order: 4
     nominalSeconds: 64
@@ -165,8 +165,8 @@ MonoBehaviour:
     state: PIO.JupiterApproach
     textKey: PIO.03.02
     timing: 0
-    startSeconds: 7
-    endSeconds: 13
+    startSeconds: 9
+    endSeconds: 15
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -175,8 +175,8 @@ MonoBehaviour:
     state: PIO.JupiterApproach
     textKey: PIO.03.03
     timing: 0
-    startSeconds: 14
-    endSeconds: 20
+    startSeconds: 17
+    endSeconds: 23
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -185,8 +185,8 @@ MonoBehaviour:
     state: PIO.JupiterApproach
     textKey: PIO.03.04
     timing: 0
-    startSeconds: 21
-    endSeconds: 26
+    startSeconds: 24
+    endSeconds: 29
     triggerId: 
     minimumReadSeconds: 0
     gateId: 

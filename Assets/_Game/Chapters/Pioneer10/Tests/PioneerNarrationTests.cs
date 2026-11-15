@@ -105,7 +105,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(data.States.Count, Is.EqualTo(9));
             Assert.That(data.Cues.Count, Is.EqualTo(53));
             Assert.That(data.Texts.Count, Is.EqualTo(147));
-            Assert.That(data.States.Sum(s => s.nominalSeconds), Is.EqualTo(373));
+            Assert.That(data.States.Sum(s => s.nominalSeconds), Is.EqualTo(376));
             foreach (var cue in data.Cues)
             {
                 Assert.That(data.GetText(cue.textKey, "pt-BR"), Is.Not.Empty, cue.id);
