@@ -87,20 +87,27 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
                 sequenceDirector.Preview(sequences[index], local);
                 director.ApplyAt(t);
 
-                var height = director.OpportunityHeight;
-                var bottom = Render(main, 1280, Mathf.RoundToInt(720 * height));
-                Texture2D top = null;
+                var share = director.OpportunityWidth;
+                var right = Render(main, Mathf.RoundToInt(1280 * share), 720);
+                Texture2D left = null;
                 if (director.SpiritCamera.enabled)
-                    top = Render(director.SpiritCamera, 1280, Mathf.Max(8, Mathf.RoundToInt(720 * (1f - height))));
+                    left = Render(director.SpiritCamera, Mathf.Max(8, Mathf.RoundToInt(1280 * (1f - share))), 720);
 
-                var composed = new Texture2D(1280, bottom.height + (top != null ? top.height : 0), TextureFormat.RGB24, false);
-                composed.SetPixels(0, 0, 1280, bottom.height, bottom.GetPixels());
-                if (top != null)
-                    composed.SetPixels(0, bottom.height, 1280, top.height, top.GetPixels());
+                var composed = new Texture2D(right.width + (left != null ? left.width : 0), 720, TextureFormat.RGB24, false);
+                if (left != null)
+                    composed.SetPixels(0, 0, left.width, 720, left.GetPixels());
+                composed.SetPixels(left != null ? left.width : 0, 0, right.width, 720, right.GetPixels());
+                if (left != null)
+                {
+                    // Linha divisória como a UI a desenha (2 px).
+                    for (var y = 0; y < 720; y++)
+                        for (var dx = -1; dx <= 0; dx++)
+                            composed.SetPixel(left.width + dx, y, new Color(0.96f, 0.94f, 0.9f));
+                }
 
                 File.WriteAllBytes(Path.Combine(directory, $"t{t:00.0}.png"), composed.EncodeToPNG());
-                UnityEngine.Object.DestroyImmediate(bottom);
-                if (top != null) UnityEngine.Object.DestroyImmediate(top);
+                UnityEngine.Object.DestroyImmediate(right);
+                if (left != null) UnityEngine.Object.DestroyImmediate(left);
                 UnityEngine.Object.DestroyImmediate(composed);
             }
         }

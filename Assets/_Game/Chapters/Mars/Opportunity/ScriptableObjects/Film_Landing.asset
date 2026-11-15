@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e35f14f6948b2459a209433d3dd7cd, type: 3}
+  m_Name: Film_Landing
+  m_EditorClassIdentifier: Assembly-CSharp::Abandoned.SpaceApps.Opportunity.FilmSequence
+  stage: 1
+  duration: 18
+  beats:
+  - at: 0
+    duration: 7.5
+    from: {x: -13, y: 0.04, z: 8}
+    to: {x: -13, y: 0.04, z: 8}
+    yaw: 0
+    endYaw: 0
+    mastFrom: 0
+    mastTo: 0
+    stormFrom: 0
+    stormTo: 0
+    wear: 0
+    powerFrom: 1
+    powerTo: 1
+    valley: 0
+    photograph: 0
+    assembly: 0
+    travel: 0
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 0
+    spiritAt: {x: 0, y: 0, z: 0}
+    spiritYaw: 0
+    spiritTilt: 0
+    spiritSink: 0
+    action: 0
+    titleKey: 
+    bodyKey: v15.landing.twins
+    music: descent
+    movementEase: 0
+  - at: 7.5
+    duration: 6
+    from: {x: -13, y: 0.04, z: 8}
+    to: {x: -13, y: 0.04, z: 8}
+    yaw: 0
+    endYaw: 0
+    mastFrom: 0
+    mastTo: 0
+    stormFrom: 0
+    stormTo: 0
+    wear: 0
+    powerFrom: 1
+    powerTo: 1
+    valley: 0
+    photograph: 0
+    assembly: 0
+    travel: 0
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 0
+    spiritAt: {x: 0, y: 0, z: 0}
+    spiritYaw: 0
+    spiritTilt: 0
+    spiritSink: 0
+    action: 0
+    titleKey: 
+    bodyKey: 
+    music: arrival
+    movementEase: 0
+  - at: 13.5
+    duration: 4.5
+    from: {x: -13, y: 0.04, z: 8}
+    to: {x: -13, y: 0.04, z: 8}
+    yaw: 0
+    endYaw: 0
+    mastFrom: 0
+    mastTo: 0
+    stormFrom: 0
+    stormTo: 0
+    wear: 0
+    powerFrom: 1
+    powerTo: 1
+    valley: 0
+    photograph: 0
+    assembly: 0
+    travel: 0
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 0
+    spiritAt: {x: 0, y: 0, z: 0}
+    spiritYaw: 0
+    spiritTilt: 0
+    spiritSink: 0
+    action: 0
+    titleKey: 
+    bodyKey: v15.landing.opp
+    music: 
+    movementEase: 0

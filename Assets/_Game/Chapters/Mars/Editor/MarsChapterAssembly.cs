@@ -43,6 +43,9 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             catch (Exception e) { Debug.LogException(e); EditorApplication.Exit(1); }
         }
 
+        /// <summary>O palco sobre o terreno importado (ver MarsClassicStagesBuilder) vale quando existe; senão, o palco novo.</summary>
+        static GameObject PreferClassic(string classic, string fallback) => AssetDatabase.LoadAssetAtPath<GameObject>(Prefabs + classic) ?? Prefab(fallback);
+
         static GameObject Prefab(string name)
         {
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(Prefabs + name);
@@ -84,9 +87,9 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             SetRef(bso, "lighting", AssetDatabase.LoadAssetAtPath<MarsLightingBindings>(MarsPath + "/Art/MarsLightingBindings.asset"));
             SetRef(bso, "originStage", Prefab("MarsPreparationStage.prefab"));
             SetRef(bso, "landingAssembly", Prefab("MerLandingAssembly.prefab"));
-            SetRef(bso, "shieldField", Prefab("ShieldFieldEnvironment.prefab"));
-            SetRef(bso, "victoriaStage", Prefab("VictoriaStage.prefab"));
-            SetRef(bso, "valleyStage", Prefab("PerseveranceValleyStage.prefab"));
+            SetRef(bso, "shieldField", PreferClassic("ShieldFieldClassic.prefab", "ShieldFieldEnvironment.prefab"));
+            SetRef(bso, "victoriaStage", PreferClassic("VictoriaStageClassic.prefab", "VictoriaStage.prefab"));
+            SetRef(bso, "valleyStage", PreferClassic("PerseveranceValleyStageClassic.prefab", "PerseveranceValleyStage.prefab"));
             SetRef(bso, "spiritStage", Prefab("SpiritInterludeStage.prefab"));
             SetRef(bso, "memorialStage", Prefab("MarsMemorialStage.prefab"));
             SetRef(bso, "roverGameplay", Prefab("MarsRoverGameplay.prefab"));
@@ -98,6 +101,10 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             SetRef(bso, "stormControls", Prefab("Storm2007Controls.prefab"));
             SetRef(bso, "finalSurvey", Prefab("FinalSurveyInteractions.prefab"));
             SetRef(bso, "cameraAnchors", Prefab("MarsCameraAnchors.prefab"));
+            // Eagle real (MAR-012) quando o prefab existir; sem ele, a montagem cria o piso provisório identificado.
+            // O mapa importado (ver MarsClassicMapBuilder) vale quando existe; senão, o ambiente da MAR-012.
+            SetRef(bso, "eagleEnvironment", AssetDatabase.LoadAssetAtPath<GameObject>(Prefabs + "EagleEnvironmentClassic.prefab")
+                ?? AssetDatabase.LoadAssetAtPath<GameObject>(Prefabs + "EagleEnvironment.prefab"));
             bso.ApplyModifiedPropertiesWithoutUndo();
             asset.SetStepRegions(StepRegions());
             EditorUtility.SetDirty(asset);
@@ -138,7 +145,26 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             var memorial = Region(MarsChapterBindings.RegionMemorial, (asset.MemorialStage, "MarsMemorialStage"));
             var eagle = Region(MarsChapterBindings.RegionEagle, (asset.Blueberries, "BlueberriesInteraction"), (asset.RatActivity, "RatActivity"), (asset.CompositionActivity, "CompositionActivity"));
 
+            // O pouso do Opportunity acontece no terreno real da cratera Eagle (mesma origem e mesmo nível da planície): o chão procedural do
+            // palco é desligado e, ao fim de M06, o jogo continua sobre o mesmo mapa. Sem o prefab (MAR-012), o chão do palco continua valendo.
+            if (asset.EagleEnvironment != null)
+            {
+                Instance(context, landing.transform, asset.EagleEnvironment, "EagleEnvironment (pouso)");
+                foreach (var assembly in landing.GetComponentsInChildren<MerLandingAssembly>(true))
+                {
+                    var ground = assembly.Site == MerLandingSite.Meridiani ? assembly.transform.Find("Ground") : null;
+                    if (ground == null)
+                        continue;
+
+                    var groundRenderer = ground.GetComponent<MeshRenderer>();
+                    var groundCollider = ground.GetComponent<MeshCollider>();
+                    if (groundRenderer != null) groundRenderer.enabled = false;
+                    if (groundCollider != null) groundCollider.enabled = false;
+                }
+            }
+
             Transform eagleStart;
+            Transform mcKittrickStation = null;
             var placeholder = asset.EagleEnvironment == null;
             if (placeholder)
             {
@@ -151,7 +177,13 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             else
             {
                 var env = Instance(context, eagle.transform, asset.EagleEnvironment, "EagleEnvironment");
-                eagleStart = env.transform;
+                var anchorsEagle = env.GetComponentInChildren<EagleAnchors>(true);
+                if (anchorsEagle == null || anchorsEagle.RouteStart == null || anchorsEagle.Blueberries == null || anchorsEagle.McKittrick == null)
+                    throw new InvalidOperationException("EagleEnvironment sem EagleAnchors completas (rota, esferas, McKittrick).");
+
+                eagleStart = anchorsEagle.RouteStart;
+                mcKittrickStation = anchorsEagle.McKittrick.StationAnchor;
+                WireEagle(eagle.transform, anchorsEagle);
             }
 
             foreach (var region in new[] { origin, landing, shield, victoria, valley, spirit, memorial, eagle })
@@ -166,7 +198,10 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             var gimbal = visual.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.name == "HGA_Gimbal");
             if (gimbal == null)
                 throw new InvalidOperationException("O modelo do rover não tem HGA_Gimbal.");
-            rover.SetActive(false);
+            // A raiz do prefab fica ligada (tutorial e alvo de inspeção moram nela); quem liga e desliga o rover por região é o próprio objeto
+            // do controlador (MarsChapterBindings). Desligar a raiz deixava o rover invisível e parado em toda a partida.
+            rover.SetActive(true);
+            rover.GetComponentInChildren<MarsRoverController>(true).gameObject.SetActive(false);
 
             var anchorsObject = Instance(context, root, asset.CameraAnchors, "MarsCameraAnchors");
 
@@ -182,6 +217,20 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             SetRef(so, "conductor", anchorsObject.GetComponent<MarsSequenceConductor>());
             SetRef(so, "anchors", anchorsObject.GetComponent<MarsCameraAnchors>());
             SetRef(so, "rover", rover.GetComponentInChildren<MarsRoverController>(true));
+            // M10: chegar à McKittrick é uma meta de chegada do rover (o prefab da MAR-002 vem sem metas; sem ela a etapa não termina).
+            var roverSo = new SerializedObject(rover.GetComponentInChildren<MarsRoverController>(true));
+            var goals = roverSo.FindProperty("reachGoals");
+            goals.arraySize = mcKittrickStation != null ? 1 : 0;
+            if (mcKittrickStation != null)
+            {
+                var goal = goals.GetArrayElementAtIndex(0);
+                goal.FindPropertyRelative("stepId").stringValue = "M10";
+                goal.FindPropertyRelative("eventId").stringValue = MarsChapterFlow.Events.OutcropReached;
+                goal.FindPropertyRelative("target").objectReferenceValue = mcKittrickStation;
+                goal.FindPropertyRelative("radiusMeters").floatValue = 2.5f;
+            }
+
+            roverSo.ApplyModifiedPropertiesWithoutUndo();
             SetRef(so, "tutorial", rover.GetComponentInChildren<MarsTutorial>(true));
             SetRef(so, "antennaGimbal", gimbal);
             SetRef(so, "blueberries", eagle.GetComponentInChildren<BlueberriesActivity>(true));
@@ -223,6 +272,31 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
 
             so.ApplyModifiedPropertiesWithoutUndo();
             AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>
+        /// Liga as âncoras do Eagle real às atividades (MAR-012 → MAR-003/004/005): esferas (chegada e macrovisões) e a superfície da RAT,
+        /// que passa a ser filha do ponto de montagem da McKittrick (reparentar é determinístico e preserva ajustes locais).
+        /// </summary>
+        static void WireEagle(Transform eagle, EagleAnchors anchors)
+        {
+            var berries = eagle.GetComponentInChildren<BlueberriesActivity>(true);
+            var so = new SerializedObject(berries);
+            SetRef(so, "outcropAnchor", anchors.Blueberries.PromptAnchor);
+            SetRef(so, "soilView", anchors.Blueberries.PrimaryView);
+            SetRef(so, "rockView", anchors.Blueberries.SecondaryView);
+            so.ApplyModifiedPropertiesWithoutUndo();
+
+            var rat = eagle.GetComponentInChildren<MarsRatActivity>(true);
+            var mount = anchors.McKittrick.RatSurfaceMount;
+            if (mount == null)
+                throw new InvalidOperationException("McKittrick sem RatSurfaceMount.");
+            if (rat.transform.parent != mount)
+            {
+                rat.transform.SetParent(mount, false);
+                rat.transform.localPosition = Vector3.zero;
+                rat.transform.localRotation = Quaternion.identity;
+            }
         }
 
         /// <summary>Instância do prefab com este nome: reaproveitada se já existe (preserva pose, apoio e overrides); só a nova nasce na origem.</summary>

@@ -3,40 +3,44 @@ using UnityEngine;
 namespace Abandoned.SpaceApps
 {
     /// <summary>
-    /// Coreografia de M01–M03 (25 s) como função pura do tempo global: globo (rotação e destaques por legenda) e dois lançamentos em
-    /// sequência com uma única chama reutilizada. Latitude/longitude em graus (leste positivo); coordenadas dos locais de pouso
-    /// conforme NASA GISS Mars24 (Spirit 175,48°L 14,57°S; Opportunity 354,47°L 1,95°S).
+    /// M01–M03 (34,8 s) como função pura do tempo global: Marte visto do espaço (M01, 6,3 s), laboratório com os dois rovers (M02, 20,8 s) e o globo
+    /// que mostra Meridiani Planum e a Cratera Gusev (M03, 7,7 s). Inclui a Spirit e Gusev depois de Meridiani Planum.
+    /// Latitude/longitude em graus (leste positivo); locais de pouso conforme NASA GISS Mars24.
     /// </summary>
     public static class MarsOriginChoreography
     {
-        public const float LabSeconds = 8f;
-        public const float MapSeconds = 12f;
-        public const float LaunchSeconds = 5f;
-        public const float TotalSeconds = LabSeconds + MapSeconds + LaunchSeconds;
-        public const float MapStart = LabSeconds;
-        public const float LaunchStart = LabSeconds + MapSeconds;
+        public const float SpaceSeconds = 6.3f;
+        public const float LabSeconds = 20.8f;
+        public const float GlobeSeconds = 7.7f;
+        public const float TotalSeconds = SpaceSeconds + LabSeconds + GlobeSeconds;
+        public const float LabStart = SpaceSeconds;
+        public const float GlobeStart = SpaceSeconds + LabSeconds;
 
+        public const float PlanetRadiusMeters = 3f;
         public const float GlobeRadiusMeters = 2f;
-        public const float HematiteRadiusDegrees = 7f;
+        public const float PlanetSpinDegreesPerSecond = 5f;
         public static readonly Vector2 Gusev = new Vector2(-14.57f, 175.48f);
         public static readonly Vector2 Meridiani = new Vector2(-1.95f, 354.47f);
 
-        public const float RocketSpacingMeters = 50f;
-        public const float RocketATakeoff = 0.3f;
-        public const float RocketBTakeoff = 2.8f;
-        public const float RocketClimbSeconds = 2.2f;
-        public const float RocketClimbMeters = 120f;
+        // Globo (M03): começa de frente para Meridiani Planum, que é marcada; gira até a Cratera Gusev, que é marcada ao chegar. Os dois ficam marcados.
+        public const float IntroTurnStart = GlobeStart + 2f;
+        public const float IntroTurnSeconds = 4f;
+        public const float MeridianiMarkedAt = GlobeStart + 0.3f;
+        public const float GusevMarkedAt = IntroTurnStart + IntroTurnSeconds - 0.4f;
+        public const float PulsePeriodSeconds = 1.6f;
+
+        public const int RegionSpace = 0;
+        public const int RegionLab = 1;
+        public const int RegionGlobe = 2;
 
         public struct Pose
         {
+            public float PlanetSpinDegrees;
             public Quaternion GlobeRotation;
             public float GusevGlow;
             public float MeridianiGlow;
-            public float HematiteGlow;
-            public float RocketAHeight;
-            public float RocketBHeight;
-            public float Flame;
-            public bool FlameOnA;
+            /// <summary>Fase 0–1 do anel que se expande a partir de cada marcador.</summary>
+            public float Pulse;
         }
 
         /// <summary>Direção unitária (quadro do globo) de uma latitude/longitude.</summary>
@@ -52,37 +56,21 @@ namespace Abandoned.SpaceApps
 
         static float Smooth(float x) => MerLandingChoreography.Smooth(x);
 
+        public static int RegionAt(float t) => t < LabStart ? RegionSpace : t < GlobeStart ? RegionLab : RegionGlobe;
+
+
         public static Pose Sample(float t)
         {
             t = Mathf.Clamp(t, 0f, TotalSeconds);
-            var s = t - MapStart;
-            var pose = new Pose();
-            var gusev = FacingCamera(Gusev);
-            var meridiani = FacingCamera(Meridiani);
-            pose.GlobeRotation = Quaternion.Slerp(gusev, meridiani, Smooth((s - 2.6f) / 1.6f));
-
-            var inMap = t >= MapStart && t < LaunchStart;
-            pose.GusevGlow = inMap ? Smooth(s / 0.4f) * (1f - Smooth((s - 3.8f) / 0.4f)) : 0f;
-            pose.MeridianiGlow = inMap ? Smooth((s - 4f) / 0.4f) : 0f;
-            pose.HematiteGlow = inMap ? Smooth((s - 8f) / 0.8f) : 0f;
-
-            var u = t - LaunchStart;
-            pose.RocketAHeight = Climb(u - RocketATakeoff);
-            pose.RocketBHeight = Climb(u - RocketBTakeoff);
-            var aOn = u >= RocketATakeoff && u < RocketBTakeoff - 0.2f;
-            var bOn = u >= RocketBTakeoff;
-            pose.FlameOnA = !bOn;
-            pose.Flame = (aOn || bOn) && t >= LaunchStart ? Smooth((u - (bOn ? RocketBTakeoff : RocketATakeoff)) / 0.15f) * (aOn ? 1f - Smooth((u - (RocketBTakeoff - 0.8f)) / 0.3f) : 1f) : 0f;
-            return pose;
-        }
-
-        static float Climb(float seconds)
-        {
-            if (seconds <= 0f)
-                return 0f;
-
-            var k = Mathf.Clamp01(seconds / RocketClimbSeconds);
-            return RocketClimbMeters * k * k + 0.05f * Mathf.Max(0f, seconds - RocketClimbSeconds) * RocketClimbMeters;
+            return new Pose
+            {
+                PlanetSpinDegrees = PlanetSpinDegreesPerSecond * Mathf.Min(t, SpaceSeconds),
+                GlobeRotation = Quaternion.Slerp(FacingCamera(Meridiani), FacingCamera(Gusev), Smooth((t - IntroTurnStart) / IntroTurnSeconds)),
+                Pulse = Mathf.Repeat(t / PulsePeriodSeconds, 1f),
+                // Os dois locais ficam acesos depois de marcados, até o fim.
+                MeridianiGlow = Smooth((t - MeridianiMarkedAt) / 0.4f),
+                GusevGlow = Smooth((t - GusevMarkedAt) / 0.4f),
+            };
         }
     }
 }

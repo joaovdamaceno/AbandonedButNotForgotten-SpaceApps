@@ -16,7 +16,7 @@ namespace Abandoned.SpaceApps
         // Duração narrativa (MAR-014; roteiro 01_MARS_TWINS M04–M06).
         public const float SplitSeconds = 18f;
         public const float EagleSeconds = 4f;
-        public const float VerificationSeconds = 5f;
+        public const float VerificationSeconds = 9.5f;
         public const float TotalSeconds = SplitSeconds + EagleSeconds + VerificationSeconds;
 
         // Marcos (segundos desde o início de M04).
@@ -42,16 +42,23 @@ namespace Abandoned.SpaceApps
         public const float TPetalsEnd = 26f;
         public const float TUnfoldStart = 25.4f;
         public const float TUnfoldEnd = 27f;
+        public const float TEgressStart = TUnfoldEnd;
+        public const float TEgressDriveEnd = TotalSeconds - 0.8f;
+        /// <summary>Quanto o rover anda à frente do centro do módulo: desce a pétala (≈ 9 m) e para na planície, fora do módulo.</summary>
+        public const float EgressDistanceMeters = 11.5f;
 
         public const float TetherHangMeters = 20f;
         public const float FirstBounceApexMeters = 11f;
         public const float FallHeightMeters = 14f;
         public const float EagleDepthMeters = 2.9f;
+        /// <summary>Mapa importado: bacia rasa de 0,9 m com a planície em volta perto de 0,95 m.</summary>
+        public const float ClassicDepthMeters = 0.9f;
+        public const float ClassicPlainMeters = 0.95f;
         public const float EagleFloorRadiusMeters = 3f;
         public const float EagleRimRadiusMeters = 11f;
         public const float GravityMetersPerSecondSquared = 3.71f;
         const float TetherTopHeight = 2f;
-        const float ShieldRestHeight = 0.55f;
+        const float ShieldRestHeight = 0.55f * MerLandingLayout.HardwareScale;
 
         // Elipse de pouso explícita (stage-local, x/z): os dois impactos e a parada ficam dentro dela.
         public static readonly Vector2 EllipseCenter = new Vector2(-8f, -6f);
@@ -87,7 +94,7 @@ namespace Abandoned.SpaceApps
 
         // ---------- Terreno ----------
 
-        /// <summary>Altura do chão do palco (y = 0 é a planície). Meridiani tem a bacia de Eagle com o piso em y = −2,9 m no ponto de parada.</summary>
+        /// <summary>Altura do chão do palco (y = 0 é a planície). Meridiani tem a bacia de Eagle com o piso em y = −2,9 m no ponto de parada; MeridianiClassic, a bacia rasa do mapa importado (piso ≈ 0,05 m, planície 0,95 m).</summary>
         public static float Ground(MerLandingSite site, float x, float z)
         {
             var ripple = 0.03f * Mathf.Sin(0.7f * x + 0.3f) * Mathf.Cos(0.5f * z + 1.1f);
@@ -96,13 +103,13 @@ namespace Abandoned.SpaceApps
 
             var r = Mathf.Sqrt(x * x + z * z);
             var rim = Smooth((r - EagleFloorRadiusMeters) / (EagleRimRadiusMeters - EagleFloorRadiusMeters));
-            return -EagleDepthMeters * (1f - rim) + ripple;
+            return ripple + (site == MerLandingSite.MeridianiClassic ? ClassicPlainMeters - ClassicDepthMeters * (1f - rim) : -EagleDepthMeters * (1f - rim));
         }
 
         /// <summary>Altura de contato de uma esfera de raio ~1,6 m: o maior chão em cinco amostras (não deixa o módulo atravessar a borda).</summary>
         public static float ContactGround(MerLandingSite site, float x, float z)
         {
-            const float r = 1.6f;
+            var r = MerLandingLayout.CoreRadiusMeters;
             return Mathf.Max(
                 Ground(site, x, z),
                 Mathf.Max(Ground(site, x + r, z), Mathf.Max(Ground(site, x - r, z), Mathf.Max(Ground(site, x, z + r), Ground(site, x, z - r)))));
@@ -131,6 +138,7 @@ namespace Abandoned.SpaceApps
             pose.AirbagDeflation = Smooth((t - TDeflateStart) / (TDeflateEnd - TDeflateStart));
             pose.PetalOpen = Smooth((t - TPetalsStart) / (TPetalsEnd - TPetalsStart));
             pose.RoverUnfold = Smooth((t - TUnfoldStart) / (TUnfoldEnd - TUnfoldStart));
+            pose.RoverDrive = Smooth((t - TEgressStart) / (TEgressDriveEnd - TEgressStart));
 
             pose.HeatShield = HeatShield(t, site, capsulePosition, capsuleRotation);
             pose.Lander = Lander(t, site, capsulePosition, capsuleRotation, pose.AirbagDeflation);
@@ -197,7 +205,7 @@ namespace Abandoned.SpaceApps
         static Vector3 ShieldFlightPosition(MerLandingSite site, float tau)
         {
             var start = CapsulePosition(TShieldSeparation, site);
-            var velocity = (CapsulePosition(TShieldSeparation + 0.01f, site) - start) / 0.01f + new Vector3(10f, -3f, -6f);
+            var velocity = (CapsulePosition(TShieldSeparation + 0.01f, site) - start) / 0.01f + new Vector3(10f, -3f, -6f) * MerLandingLayout.HardwareScale;
             return start + velocity * tau + 0.5f * GravityMetersPerSecondSquared * tau * tau * Vector3.down;
         }
 
@@ -304,12 +312,21 @@ namespace Abandoned.SpaceApps
             };
         }
 
-        /// <summary>Pose do rover (raiz do prefab) no quadro do palco, dada a pose do módulo.</summary>
-        public static void RoverWorld(in MerLandingPose pose, out Vector3 position, out Quaternion rotation, out float scale)
+        /// <summary>
+        /// Pose do rover (raiz do prefab) no quadro do palco, dada a pose do módulo. Na saída (<see cref="MerLandingPose.RoverDrive"/>) ele anda para a
+        /// frente (+Z do módulo, a pétala-rampa) e segue o terreno: nunca fica abaixo do convés nem do chão.
+        /// </summary>
+        public static void RoverWorld(in MerLandingPose pose, out Vector3 position, out Quaternion rotation, out float scale, MerLandingSite site = MerLandingSite.Meridiani)
         {
-            position = pose.Lander.Position + pose.Lander.Rotation * MerLandingLayout.RoverLocalPosition;
+            var deck = pose.Lander.Position + pose.Lander.Rotation * MerLandingLayout.RoverLocalPosition;
+            position = deck;
             rotation = pose.Lander.Rotation;
             scale = Mathf.Lerp(MerLandingLayout.StowedRoverScale, 1f, pose.RoverUnfold);
+            if (pose.RoverDrive <= 0f)
+                return;
+
+            position += pose.Lander.Rotation * Vector3.forward * (pose.RoverDrive * EgressDistanceMeters);
+            position.y = Mathf.Max(deck.y, Ground(site, position.x, position.z) + 0.02f);
         }
 
         // ---------- Auxiliares ----------

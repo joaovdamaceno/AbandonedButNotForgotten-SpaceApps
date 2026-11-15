@@ -14,7 +14,7 @@ namespace Abandoned.SpaceApps
     public sealed class MerLandingAssembly : MonoBehaviour
     {
         const float DeflatedLobeHeightScale = 0.05f;
-        const float DeflatedRingRadiusMeters = 2.9f;
+        const float DeflatedRingRadiusMeters = 2.9f * MerLandingLayout.HardwareScale;
 
         [SerializeField] MerLandingSite site;
         [SerializeField] Transform capsule;
@@ -29,6 +29,7 @@ namespace Abandoned.SpaceApps
         [SerializeField] Transform core;
         [SerializeField] Transform[] petals = Array.Empty<Transform>();
         [SerializeField] Transform roverRoot;
+        [SerializeField, Tooltip("Onde o rover para ao sair do módulo; o jogo (M07) começa aqui.")] Transform egressAnchor;
         [SerializeField] Transform rockerLeft;
         [SerializeField] Transform rockerRight;
         [SerializeField] Transform bogieLeft;
@@ -52,6 +53,7 @@ namespace Abandoned.SpaceApps
         public Transform Parachute => parachute;
         public Transform Tether => tether;
         public Transform RoverRoot => roverRoot;
+        public Transform EgressAnchor => egressAnchor;
         public IReadOnlyList<Transform> Lobes => lobes;
         public IReadOnlyList<Transform> Petals => petals;
         public Transform Core => core;
@@ -199,6 +201,13 @@ namespace Abandoned.SpaceApps
             roverRoot.localPosition = MerLandingLayout.RoverLocalPosition;
             roverRoot.localRotation = Quaternion.identity;
             roverRoot.localScale = Vector3.one * Mathf.Lerp(MerLandingLayout.StowedRoverScale, 1f, unfold);
+            if (pose.RoverDrive > 0.0001f)
+            {
+                // Saída do módulo: o rover dirige pela pétala-rampa até o chão e segue o terreno (quadro do palco → mundo).
+                MerLandingChoreography.RoverWorld(pose, out var driven, out var drivenRotation, out _, site);
+                roverRoot.position = transform.TransformPoint(driven);
+                roverRoot.rotation = transform.rotation * drivenRotation;
+            }
 
             var fold = 1f - unfold;
             if (rockerLeft != null) rockerLeft.localRotation = Quaternion.Euler(rockerFoldDegrees * fold, 0f, 0f);
