@@ -56,3 +56,7 @@ Novo código de observação, dados, painel, composição e testes nesta base (`
 ## SUR-012 — noite e passagem do tempo
 
 Reutiliza SUR-002 (cenário e modelo fornecido pela equipe), SUR-007 (TV640×480 e shader Scan), CORE-004/005 (câmera, sequência, progresso/evidências) e UI-004/006 (legendas, localização, pausa/preferências/foco). Origens e licenças dessas entregas permanecem nos respectivos registros. Código de montagem, sequências e textos locais adaptados do roteiro atual; nenhum asset externo novo. Fontes e simplificações em[SURVEYOR_NIGHT.md](SURVEYOR_NIGHT.md).
+
+## SUR-013 — visita imaginada e fotografia histórica
+
+Reutiliza cenário/modelo da equipe SUR-002, alvo de render SUR-007, contratos CORE-004/005 e legendas/localização/pausa UI-004/006, sem alterar suas fontes. Builder e testes adaptam o padrão de prévia SUR-012. Atores parciais, silhueta do Intrepid e grãos são geometria nova desta tarefa. Fotografia NASA AS12-48-7134 baixada em 14/11/2026, com crédito e procedência em ASSET_CREDITS.md; a sequência não a apresenta como foto do jogador. Não há código, filmes ou música da edição antiga. Detalhes: [SURVEYOR_VISIT.md](SURVEYOR_VISIT.md).
