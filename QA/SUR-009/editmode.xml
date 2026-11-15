@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="27" result="Passed" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 00:21:19Z" end-time="2026-11-15 00:21:20Z" duration="0.6601107">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="849" result="Passed" start-time="2026-11-15 00:21:19Z" end-time="2026-11-15 00:21:20Z" duration="0.660111" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1914" name="Abandoned.SpaceApps.Surveyor.Scoop.Tests.dll" fullname="C:/www/AbandonedButNotForgotten-SpaceApps/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Scoop.Tests.dll" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-11-15 00:21:19Z" end-time="2026-11-15 00:21:20Z" duration="0.637475" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="17044" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1915" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-11-15 00:21:19Z" end-time="2026-11-15 00:21:20Z" duration="0.635352" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1916" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-11-15 00:21:19Z" end-time="2026-11-15 00:21:20Z" duration="0.634129" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1917" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-11-15 00:21:19Z" end-time="2026-11-15 00:21:20Z" duration="0.632901" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1918" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-11-15 00:21:19Z" end-time="2026-11-15 00:21:20Z" duration="0.628363" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1919" name="ScoopTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-11-15 00:21:19Z" end-time="2026-11-15 00:21:20Z" duration="0.627189" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1885" name="SurveyorScoopFlowTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-15 00:21:19Z" end-time="2026-11-15 00:21:20Z" duration="0.412417" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1894" name="CancelAtContactUsesTheSafePoseAndKeepsProgress" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.CancelAtContactUsesTheSafePoseAndKeepsProgress" methodname="CancelAtContactUsesTheSafePoseAndKeepsProgress" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="15611528" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.265104" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1895" name="CancelAtNinetyPercentUsesTheSafePoseAndKeepsProgress" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.CancelAtNinetyPercentUsesTheSafePoseAndKeepsProgress" methodname="CancelAtNinetyPercentUsesTheSafePoseAndKeepsProgress" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="698141385" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.010292" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1897" name="CompletedTrenchSurvivesLeavingTheStep" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.CompletedTrenchSurvivesLeavingTheStep" methodname="CompletedTrenchSurvivesLeavingTheStep" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="1778830455" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.009617" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1890" name="EHeldFromThePreviousActionDoesNotStartTheDig" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.EHeldFromThePreviousActionDoesNotStartTheDig" methodname="EHeldFromThePreviousActionDoesNotStartTheDig" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="1056053353" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.006254" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1891" name="EveryBiteChangesTheGrooveWithinOneAndAHalfSecondsAndGrainsStayFew" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.EveryBiteChangesTheGrooveWithinOneAndAHalfSecondsAndGrainsStayFew" methodname="EveryBiteChangesTheGrooveWithinOneAndAHalfSecondsAndGrainsStayFew" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="1979355568" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.008885" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1887" name="HoldingEForTwelveSecondsBuildsFourPassesInTheSameGroove" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.HoldingEForTwelveSecondsBuildsFourPassesInTheSameGroove" methodname="HoldingEForTwelveSecondsBuildsFourPassesInTheSameGroove" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="867271866" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.009223" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1886" name="InstallingHidesTheNativeScoopAndTheReplacedGroundUntilDispose" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.InstallingHidesTheNativeScoopAndTheReplacedGroundUntilDispose" methodname="InstallingHidesTheNativeScoopAndTheReplacedGroundUntilDispose" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="1171194803" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.003412" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1896" name="LeavingTheStepEarlyUsesTheSafePoseAndRestartRebuildsFromTheOriginalGround" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.LeavingTheStepEarlyUsesTheSafePoseAndRestartRebuildsFromTheOriginalGround" methodname="LeavingTheStepEarlyUsesTheSafePoseAndRestartRebuildsFromTheOriginalGround" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="903241007" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.005541" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1889" name="PausingFreezesTheDigAndResumingNeedsANewDeliberatePress" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.PausingFreezesTheDigAndResumingNeedsANewDeliberatePress" methodname="PausingFreezesTheDigAndResumingNeedsANewDeliberatePress" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="1851149974" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.007148" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1888" name="ReleasingEFreezesTheGrooveAndKeepsTheProgress" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.ReleasingEFreezesTheGrooveAndKeepsTheProgress" methodname="ReleasingEFreezesTheGrooveAndKeepsTheProgress" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="1886281731" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.007670" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1893" name="RetractionVisitsVerticalThenLateralThenRest" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.RetractionVisitsVerticalThenLateralThenRest" methodname="RetractionVisitsVerticalThenLateralThenRest" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="1610027968" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.010749" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1898" name="SubtitlesS14AndS15ArriveInOrderWithoutOverlapping" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.SubtitlesS14AndS15ArriveInOrderWithoutOverlapping" methodname="SubtitlesS14AndS15ArriveInOrderWithoutOverlapping" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="1056345412" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.007585" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1899" name="TheTrenchAnchorAndThePhotoTargetShareTheSameCenter" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.TheTrenchAnchorAndThePhotoTargetShareTheSameCenter" methodname="TheTrenchAnchorAndThePhotoTargetShareTheSameCenter" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="433138094" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.010690" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1892" name="ToolNeverGoesBelowTheDeformedGroundWhileDiggingAndRetracting" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests.ToolNeverGoesBelowTheDeformedGroundWhileDiggingAndRetracting" methodname="ToolNeverGoesBelowTheDeformedGroundWhileDiggingAndRetracting" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopFlowTests" runstate="Runnable" seed="843104098" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.008425" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="1900" name="SurveyorScoopMathTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.211465" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1910" name="ApproachGoesFromRestToAboveTheGrooveStartWithoutDescendingBelowIt" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.ApproachGoesFromRestToAboveTheGrooveStartWithoutDescendingBelowIt" methodname="ApproachGoesFromRestToAboveTheGrooveStartWithoutDescendingBelowIt" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="401022663" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.001096" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1909" name="CancelAtContactAndAtNinetyPercentUseTheSameSafeRetraction" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.CancelAtContactAndAtNinetyPercentUseTheSameSafeRetraction" methodname="CancelAtContactAndAtNinetyPercentUseTheSameSafeRetraction" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="1617453578" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.000557" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1902" name="EachPassDeepensTheSameGrooveAndRaisesItsEdges" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.EachPassDeepensTheSameGrooveAndRaisesItsEdges" methodname="EachPassDeepensTheSameGrooveAndRaisesItsEdges" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="839902615" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.000498" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1912" name="GrainsAreFewAndEveryBurstFitsTheBudget" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.GrainsAreFewAndEveryBurstFitsTheBudget" methodname="GrainsAreFewAndEveryBurstFitsTheBudget" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="1854477811" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.000244" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1903" name="ProgressChangesVisiblyAtLeastEveryOnePointTwoSeconds" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.ProgressChangesVisiblyAtLeastEveryOnePointTwoSeconds" methodname="ProgressChangesVisiblyAtLeastEveryOnePointTwoSeconds" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="460947651" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.027173" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1908" name="RetractionFromEveryTenPercentOfTheDigNeverEntersTheGround" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.RetractionFromEveryTenPercentOfTheDigNeverEntersTheGround" methodname="RetractionFromEveryTenPercentOfTheDigNeverEntersTheGround" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="1013582511" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.089463" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1907" name="RetractionRisesEightCentimetersBeforeMovingSidewaysAndOnlyThenReturnsToRest" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.RetractionRisesEightCentimetersBeforeMovingSidewaysAndOnlyThenReturnsToRest" methodname="RetractionRisesEightCentimetersBeforeMovingSidewaysAndOnlyThenReturnsToRest" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="392069683" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.003942" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1913" name="TheFootprintCoversTheWholeCavityAndItsBerms" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.TheFootprintCoversTheWholeCavityAndItsBerms" methodname="TheFootprintCoversTheWholeCavityAndItsBerms" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="1888266149" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.017288" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1905" name="ToolNeverEntersTheDeformedGroundDuringTheFourPasses" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.ToolNeverEntersTheDeformedGroundDuringTheFourPasses" methodname="ToolNeverEntersTheDeformedGroundDuringTheFourPasses" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="2133453030" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.056129" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1906" name="ToolStaysCloseToTheSurfaceWhileDraggingSoTheGrooveLooksCarvedByIt" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.ToolStaysCloseToTheSurfaceWhileDraggingSoTheGrooveLooksCarvedByIt" methodname="ToolStaysCloseToTheSurfaceWhileDraggingSoTheGrooveLooksCarvedByIt" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="1608638208" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.000755" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1901" name="TrenchNeverExceedsEighteenCentimetersAndReachesItAtTheCenter" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.TrenchNeverExceedsEighteenCentimetersAndReachesItAtTheCenter" methodname="TrenchNeverExceedsEighteenCentimetersAndReachesItAtTheCenter" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="520071131" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.001606" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1904" name="TwelveBitesStartOneSecondApart" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.TwelveBitesStartOneSecondApart" methodname="TwelveBitesStartOneSecondApart" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="127057649" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.000355" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1911" name="TwoBoneSolverReachesTheTargetKeepsLinkLengthsAndBendsTowardThePole" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests.TwoBoneSolverReachesTheTargetKeepsLinkLengthsAndBendsTowardThePole" methodname="TwoBoneSolverReachesTheTargetKeepsLinkLengthsAndBendsTowardThePole" classname="Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests.SurveyorScoopMathTests" runstate="Runnable" seed="989446885" result="Passed" start-time="2026-11-15 00:21:20Z" end-time="2026-11-15 00:21:20Z" duration="0.001025" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/kauawerle/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
