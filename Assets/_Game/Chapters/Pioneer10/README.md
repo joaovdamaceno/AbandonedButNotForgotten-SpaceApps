@@ -428,3 +428,19 @@ O estado `PIO.Belt` toca a sequência própria `PIO_BeltCinema` (54 s; `PIO_Belt
 - **Barras de cinema** (`PioneerLetterbox`, `CinemaHudView.SetLetterbox`, elementos `bar-top` e `bar-bottom` de `UI/CinemaHud.uxml`, desenhados abaixo de todo o resto do HUD): duas barras pretas de 7% da altura cada deslizam em 0,8 s nos sete estados que são só cinema (`PIO.Launch`, `Belt`, `JupiterApproach`, `Closest`, `Plaque`, `Outbound` e `Farewell`) e saem quando o estado acaba. Ficam recolhidas nas duas interações (`PIO.Imaging` e `PIO.Listening`) e no memorial da despedida (a partir de 30 s), que tem botões. As legendas (ordem 20) ficam acima das barras (ordem 12), então o texto cai sobre o preto. O avanço usa o tempo ativo do capítulo.
 - **Cor por grupo de luz** (`PioneerStageBuilder.LightGroups`): o novo `PIO.Light.EarthWarm` (luz principal âmbar, 0,9 de intensidade) substitui o frio `PIO.Light.Night` nos planos da Terra (plataforma de lançamento e antena da Deep Space Network); no espaço, `Cruise` e `FarSun` ficaram mais frios (branco-azulado) e `FarewellRim` e `ColdRim` já eram frios. Júpiter e a placa seguem quentes (iluminados pelo Sol).
 - **Limitações.** Deslize linear, sem easing; sem correção de cor por cena nem pós-processamento (perfil Web leve); as cenas 4 e 8 ficam sem barras inclusive nos trechos de cinema; os quadros do cinturão interativo em `Docs/Art/Pioneer10_Belt` mantêm a luz antiga. Evidência em `QA/PIO-027/README.md`.
+
+## Qualidade visual do lote de 15/11/2026 (PIO-031): céu, Aldebaran e a Terra da NASA
+
+- **Céu** (`PioneerStageArt.Starfield` e `BrightStars`): estrelas brilhantes redondas (discos de 10 lados); Via Láctea com poeira e núcleo mais quente; 9.000 estrelas fracas mais nítidas, quase metade agrupada perto da faixa; base mais escura.
+- **Aldebaran** (`AldebaranMarker` com `Core` e `Halo`): miolo liso de 14 m e halo aditivo de 110 m (`PioneerStageArt.GlowTexture`, `GlowQuad`; material aditivo `PIO_AldebaranHalo`). Novo anchor `PIO.Farewell.Away` (a Pioneer a 16 m, Aldebaran no alto à esquerda: `PioneerStageBuilder.FarewellAwayForward` resolve a direção de olhar) usado pelos planos de afastamento e do memorial; o plano aberto da despedida (`PIO.Farewell`) passou de 9,6 m para ~16 m.
+- **Terra da NASA** (`PioneerStageBuilder.EarthTexture`, mapa Blue Marble 2048×1024 de `ArtSource/Pioneer10/PIO-031/`): na Terra do gráfico Terra–Lua do lançamento (girada para mostrar as Américas) e na Terra de comparação com Júpiter; substitui a textura procedural.
+- **Tempo:** o teto de aprovação do capítulo nos dados passa de 420 s para 600 s, sem contar o tempo que a pessoa leva nas duas interações.
+- Evidência em `QA/PIO-031/README.md`.
+
+## O cinturão como ele é (PIO-032)
+
+- **Campo esparso** (`PioneerStageArt.SparseRockCenters` e `SparseRockField`, parâmetros em `PioneerStageBuilder`): 70 pedras pequenas (2,5 a 8 m), todas entre 90 e 520 m da sonda, a no mínimo 60 m umas das outras e longe do caminho da câmera (folga de 80 m); substitui a parede de 1.400 pedras vista de teleobjetiva.
+- **Planos** (`PioneerBeltBuilder.CreateCinemaSequence`, 50 s): 8–19 s visão larga do cinturão (650 m, aproximando-se devagar); 19–30 s zoom na sonda até 70 m (campo de visão de 38° a 26°) com o contador de dias. O dolly zoom e `DollyZ` saíram.
+- **Contador no HUD de cinema** (`PioneerBeltCounter` agora usa `CinemaHudView.SetBeltCounter`): o dia, a data, o rótulo do 307 Nike e a nota `PIO.UI.belt_far` ("o asteroide conhecido mais próximo ficou a milhões de quilômetros da sonda", de 25 a 30 s). O HUD é renderizado e conferido em imagem (`PioneerHudCapture`).
+- **Estrelas:** as fracas passam a ser geometria (3.000 discos de 8 lados), nítidas em qualquer zoom.
+- **Limitações.** Escala e distâncias são de composição; sem linha tracejada até a pedra; restam algumas estrelas fracas da textura que viram quadrados no zoom mais fechado. Evidência em `QA/PIO-032/README.md`.

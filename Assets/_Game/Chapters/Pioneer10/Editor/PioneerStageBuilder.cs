@@ -76,8 +76,8 @@ namespace Abandoned.SpaceApps.EditorTools
 
         sealed class StageAssets
         {
-            public Mesh Sphere, SkySphere, LowSphere, StarMesh, BeltRocks, BeltNike, Trajectory;
-            public Material Jupiter, Sky, Stars, Ground, Aldebaran, BeltRock, Mars, Earth, Ganymede, Callisto, Europa, TrajectoryLine;
+            public Mesh Sphere, SkySphere, LowSphere, StarMesh, BeltRocks, BeltNike, Trajectory, GlowQuad;
+            public Material Jupiter, Sky, Stars, Ground, Aldebaran, AldebaranHalo, BeltRock, Mars, Earth, Ganymede, Callisto, Europa, TrajectoryLine;
         }
 
         static StageAssets BuildAssets(SceneBuildContext context)
@@ -87,13 +87,14 @@ namespace Abandoned.SpaceApps.EditorTools
                 Sphere = MeshAsset(context, "PIO_Sphere", m => PioneerStageArt.Sphere(m, "PIO_Sphere", 64, 32, false)),
                 SkySphere = MeshAsset(context, "PIO_SkySphere", m => PioneerStageArt.Sphere(m, "PIO_SkySphere", 48, 24, true)),
                 LowSphere = MeshAsset(context, "PIO_LowSphere", m => PioneerStageArt.Sphere(m, "PIO_LowSphere", 12, 6, false)),
-                StarMesh = MeshAsset(context, "PIO_BrightStars", m => PioneerStageArt.BrightStars(m, 520, 2003, 0.09f, 0.2f)),
-                BeltRocks = MeshAsset(context, "PIO_BeltRocks", m => PioneerStageArt.RockField(m, BeltRockCount, BeltFieldSeed, BeltFieldAxis, 40f, 1000f, BeltTeleCameraMeters, 9.5f, 0.008f, 0.04f)),
+                StarMesh = MeshAsset(context, "PIO_BrightStars", m => PioneerStageArt.BrightStars(m, 3000, 2003, 0.05f, 0.2f)),
+                BeltRocks = MeshAsset(context, "PIO_BeltRocks", m => PioneerStageArt.SparseRockField(m, BeltRockCenters(), BeltFieldSeed, BeltRockMinMeters, BeltRockMaxMeters)),
                 BeltNike = MeshAsset(context, "PIO_BeltNike", FillNike),
+                GlowQuad = MeshAsset(context, "PIO_GlowQuad", PioneerStageArt.GlowQuad),
                 Trajectory = MeshAsset(context, "PIO_JupiterTrajectory", m => PioneerStageArt.Ribbon(m, TrajectoryPoints(), TrajectoryWidthMeters)),
             };
 
-            var sky = TextureAsset(context, "PIO_Starfield.png", () => PioneerStageArt.Starfield(2048, 1024, 3400, 1972), 2048, false, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
+            var sky = TextureAsset(context, "PIO_Starfield.png", () => PioneerStageArt.Starfield(2048, 1024, 2500, 1972), 2048, false, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
             var palette = TextureAsset(context, "PIO_StarPalette.png", PioneerStageArt.StarPalette, 32, false, TextureWrapMode.Clamp, TextureWrapMode.Clamp, FilterMode.Point);
             var jupiter = JupiterTexture(context);
 
@@ -101,12 +102,13 @@ namespace Abandoned.SpaceApps.EditorTools
             a.Ground = Lit(context, "PIO_GroundNight", new Color(0.032f, 0.033f, 0.038f), 0f, 0.08f);
             a.Sky = Unlit(context, "PIO_Sky", Color.white, sky);
             a.Stars = Unlit(context, "PIO_BrightStars", Color.white, palette);
-            a.Aldebaran = Unlit(context, "PIO_AldebaranMarker", new Color(1f, 0.6f, 0.42f), null);
+            a.Aldebaran = Unlit(context, "PIO_AldebaranMarker", new Color(1f, 0.74f, 0.52f), null);
+            var glow = TextureAsset(context, "PIO_StarGlow.png", () => PioneerStageArt.GlowTexture(128), 128, false, TextureWrapMode.Clamp, TextureWrapMode.Clamp, FilterMode.Bilinear, StageFolder, true);
+            a.AldebaranHalo = AdditiveUnlit(context, "PIO_AldebaranHalo", new Color(1f, 0.55f, 0.32f, 0.85f), glow);
             a.BeltRock = Lit(context, "PIO_BeltRock", new Color(0.30f, 0.29f, 0.28f), 0f, 0.08f);
             var marsTexture = TextureAsset(context, "PIO_MarsSurface.png", () => PioneerStageArt.MarsSurface(1024, 512, 1976), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
             a.Mars = Lit(context, "PIO_Mars", Color.white, 0f, 0.04f, marsTexture);
-            var earthTexture = TextureAsset(context, "PIO_EarthSurface.png", () => PioneerStageArt.EarthSurface(1024, 512, 1972), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
-            a.Earth = Lit(context, "PIO_EarthCompare", Color.white, 0f, 0.12f, earthTexture);
+            a.Earth = Lit(context, "PIO_EarthCompare", Color.white, 0f, 0.12f, EarthTexture(context));
             a.Ganymede = Lit(context, "PIO_Ganymede", Color.white, 0f, 0.05f, TextureAsset(context, "PIO_Ganymede.png", () => PioneerStageArt.GalileanMoonSurface(512, 256, 1610, 0), 512, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp));
             a.Callisto = Lit(context, "PIO_Callisto", Color.white, 0f, 0.05f, TextureAsset(context, "PIO_Callisto.png", () => PioneerStageArt.GalileanMoonSurface(512, 256, 1610, 1), 512, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp));
             a.Europa = Lit(context, "PIO_Europa", Color.white, 0f, 0.1f, TextureAsset(context, "PIO_Europa.png", () => PioneerStageArt.GalileanMoonSurface(512, 256, 1610, 2), 512, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp));
@@ -118,6 +120,45 @@ namespace Abandoned.SpaceApps.EditorTools
         /// Copia o mapa de Júpiter da NASA (720×360, equiretangular) para o projeto, byte a byte, e o importa: sRGB, mipmaps,
         /// repetição em U (volta ao redor do planeta) e fixo em V (polos). Substitui a textura gerada por código (G-PIO-02).
         /// </summary>
+        public const string EarthSourcePath = "ArtSource/Pioneer10/PIO-031/bluemarble-2048.png";
+        public const string EarthTexturePath = StageFolder + "/Textures/PIO_Earth_NASA.png";
+
+        /// <summary>
+        /// Mapa da Terra da NASA (Blue Marble, 2048×1024, equiretangular; NASA SVS 2915) copiado byte a byte para o projeto e importado: sRGB,
+        /// mipmaps, repetição em U e fixo em V. Usado na Terra do gráfico do lançamento e na Terra de comparação com Júpiter.
+        /// </summary>
+        internal static Texture2D EarthTexture(SceneBuildContext context)
+        {
+            if (!File.Exists(EarthSourcePath))
+                throw new InvalidOperationException("Mapa da Terra da NASA ausente: " + EarthSourcePath);
+
+            SceneBuildContext.EnsureFolder(Path.GetDirectoryName(EarthTexturePath)?.Replace('\\', '/'));
+            var source = File.ReadAllBytes(EarthSourcePath);
+            if (!File.Exists(EarthTexturePath) || !File.ReadAllBytes(EarthTexturePath).SequenceEqual(source))
+            {
+                File.WriteAllBytes(EarthTexturePath, source);
+                AssetDatabase.ImportAsset(EarthTexturePath, ImportAssetOptions.ForceUpdate);
+            }
+
+            var importer = (TextureImporter)AssetImporter.GetAtPath(EarthTexturePath);
+            if (importer.textureType != TextureImporterType.Default || !importer.sRGBTexture || !importer.mipmapEnabled
+                || importer.wrapModeU != TextureWrapMode.Repeat || importer.wrapModeV != TextureWrapMode.Clamp
+                || importer.maxTextureSize != 2048 || importer.filterMode != FilterMode.Trilinear)
+            {
+                importer.textureType = TextureImporterType.Default;
+                importer.sRGBTexture = true;
+                importer.mipmapEnabled = true;
+                importer.wrapModeU = TextureWrapMode.Repeat;
+                importer.wrapModeV = TextureWrapMode.Clamp;
+                importer.filterMode = FilterMode.Trilinear;
+                importer.maxTextureSize = 2048;
+                importer.textureCompression = TextureImporterCompression.Compressed;
+                importer.SaveAndReimport();
+            }
+
+            return context.Asset<Texture2D>(EarthTexturePath, () => throw new InvalidOperationException("textura não importada: " + EarthTexturePath));
+        }
+
         static Texture2D JupiterTexture(SceneBuildContext context)
         {
             if (!File.Exists(JupiterSourcePath))
@@ -209,6 +250,24 @@ namespace Abandoned.SpaceApps.EditorTools
             material.SetFloat("_Smoothness", smoothness);
             material.SetFloat("_EnvironmentReflections", 0f);
             material.EnableKeyword("_ENVIRONMENTREFLECTIONS_OFF");
+            EditorUtility.SetDirty(material);
+            return material;
+        }
+
+        internal static Material AdditiveUnlit(SceneBuildContext context, string name, Color color, Texture2D map, string folder = StageFolder)
+        {
+            var material = Unlit(context, name, color, map, folder);
+            material.SetFloat("_Surface", 1f);
+            material.SetFloat("_Blend", 2f);
+            material.SetFloat("_SrcBlend", (float)BlendMode.SrcAlpha);
+            material.SetFloat("_DstBlend", (float)BlendMode.One);
+            material.SetFloat("_SrcBlendAlpha", (float)BlendMode.One);
+            material.SetFloat("_DstBlendAlpha", (float)BlendMode.One);
+            material.SetFloat("_ZWrite", 0f);
+            material.SetFloat("_Cull", (float)CullMode.Off);
+            material.SetOverrideTag("RenderType", "Transparent");
+            material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            material.renderQueue = (int)RenderQueue.Transparent;
             EditorUtility.SetDirty(material);
             return material;
         }
@@ -317,8 +376,12 @@ namespace Abandoned.SpaceApps.EditorTools
             var trajectory = Visual(Ensure(deepSpace.transform, "JupiterTrajectory"), a.Trajectory, a.TrajectoryLine);
             trajectory.SetActive(false);
 
-            var aldebaran = Visual(Ensure(root.transform, "AldebaranMarker"), a.LowSphere, a.Aldebaran);
-            aldebaran.transform.localScale = Vector3.one * 5f;
+            // Aldebaran: um miolo laranja-claro e um halo largo e suave (aditivo) voltado para a câmera; bem mais visível que as outras estrelas.
+            var aldebaran = Ensure(root.transform, "AldebaranMarker");
+            var aldebaranCore = Visual(Ensure(aldebaran.transform, "Core"), a.Sphere, a.Aldebaran);
+            aldebaranCore.transform.localScale = Vector3.one * AldebaranCoreMeters;
+            var aldebaranHalo = Visual(Ensure(aldebaran.transform, "Halo"), a.GlowQuad, a.AldebaranHalo);
+            aldebaranHalo.transform.localScale = new Vector3(AldebaranHaloMeters, AldebaranHaloMeters, 1f);
 
             var groups = LightGroups();
             var anchors = BuildAnchors(Ensure(root.transform, "Anchors").transform, sockets);
@@ -355,6 +418,33 @@ namespace Abandoned.SpaceApps.EditorTools
         }
 
         public static readonly Vector3 AldebaranDirection = new Vector3(0.2f, 0.08f, -1f);
+        /// <summary>A 1.100 m da câmera: miolo de 14 m (~0,7°) e halo de 110 m (~5,7°): bem mais visível que o resto do céu.</summary>
+        public const float AldebaranCoreMeters = 14f;
+        public const float AldebaranHaloMeters = 110f;
+        public const float FarewellAwayDistanceMeters = 16f;
+        /// <summary>Onde Aldebaran cai no quadro do plano em que a Pioneer se afasta (0–1, origem em cima à esquerda): no alto, à esquerda.</summary>
+        public static readonly Vector2 AldebaranAwayViewport = new Vector2(0.14f, 0.18f);
+        public const float FarewellAwayFov = 40f;
+
+        /// <summary>Direção de olhar (a câmera aponta para a Pioneer, na origem) que põe Aldebaran em <see cref="AldebaranAwayViewport"/>.</summary>
+        public static Vector3 FarewellAwayForward()
+        {
+            var d = AldebaranDirection.normalized;
+            var halfV = Mathf.Tan(FarewellAwayFov * 0.5f * Mathf.Deg2Rad);
+            var halfH = halfV * (16f / 9f);
+            var vx = (AldebaranAwayViewport.x - 0.5f) * 2f * halfH;
+            var vy = (0.5f - AldebaranAwayViewport.y) * 2f * halfV;
+            var n = Mathf.Sqrt(1f + vx * vx + vy * vy);
+            var f = d;
+            for (var i = 0; i < 8; i++)
+            {
+                var right = Vector3.Cross(Vector3.up, f).normalized;
+                var up = Vector3.Cross(f, right);
+                f = (d * n - right * vx - up * vy).normalized;
+            }
+
+            return f;
+        }
 
         // ---------- Cinturão (roteiro v2, cena 2) ----------
 
@@ -380,13 +470,21 @@ namespace Abandoned.SpaceApps.EditorTools
         public static readonly Vector2 EarthCompareViewport = new Vector2(0.2f, 0.7f);
         public static readonly Vector2 EarthCompareEnterViewport = new Vector2(-0.12f, 0.7f);
         public const float ApproachOpenFov = 36f;
-        public const int BeltRockCount = 1400;
+        public const int BeltRockCount = 70;
         public const int BeltFieldSeed = 1972;
         /// <summary>Anchor da teleobjetiva/dolly zoom: a câmera chega a ~82 m da sonda; o campo de pedras fica atrás dela.</summary>
-        public static readonly Vector3 BeltFieldCamera = new Vector3(-20f, 20f, 77f);
-        public static readonly Vector3 BeltFieldAxis = (Vector3.zero - BeltFieldCamera).normalized;
-        /// <summary>Distância da câmera à sonda no começo do dolly zoom (teleobjetiva de 10°, mesmo tamanho da sonda que o plano aberto de 30° a BeltFieldCamera).</summary>
-        public static readonly float BeltTeleCameraMeters = BeltFieldCamera.magnitude * Mathf.Tan(15f * Mathf.Deg2Rad) / Mathf.Tan(5f * Mathf.Deg2Rad);
+        public static readonly Vector3 BeltFieldCamera = new Vector3(-20f, 20f, 77f).normalized * BeltFieldCameraMeters;
+        // O cinturão de verdade: pedras pequenas e bem separadas, com muito espaço vazio (a chance de acertar uma é mínima).
+        public const float BeltClearRadiusMeters = 90f;
+        public const float BeltOuterRadiusMeters = 520f;
+        public const float BeltRockMinMeters = 2.5f;
+        public const float BeltRockMaxMeters = 8f;
+        public const float BeltRockSeparationMeters = 60f;
+        public const float BeltCameraClearanceMeters = 80f;
+        public const float BeltFieldCameraMeters = 650f;
+        public static List<Vector3> BeltRockCenters() =>
+            PioneerStageArt.SparseRockCenters(BeltRockCount, BeltFieldSeed, BeltClearRadiusMeters, BeltOuterRadiusMeters, BeltRockSeparationMeters,
+                BeltFieldCamera.normalized, BeltFieldCameraMeters, BeltCameraClearanceMeters);
         /// <summary>Anchor da revelação: o céu vazio, a sonda à esquerda embaixo e uma pedra distante (307 Nike) à direita em cima.</summary>
         public static readonly Vector3 BeltNikeCamera = new Vector3(46f, 6f, -60f);
         public const float NikeDistanceMeters = 380f;
@@ -617,7 +715,9 @@ namespace Abandoned.SpaceApps.EditorTools
             // Máxima aproximação (cena 5): ~130 m do centro de Júpiter (raio 80 m), um pouco acima e ao lado do eixo de chegada.
             var closestCamera = JupiterPosition - JupiterDirection * 130f + Vector3.up * 22f + jupiterRight * 24f;
             var aldebaran = AldebaranDirection.normalized;
-            var farewellCamera = new Vector3(-5f, 3f, 8f);
+            var farewellCamera = new Vector3(-8f, 4f, 14f);
+            var awayForward = FarewellAwayForward();
+            var awayCamera = -awayForward * FarewellAwayDistanceMeters;
             var farewellLook = farewellCamera + (aldebaran * 0.55f + (-farewellCamera).normalized * 0.45f).normalized * 60f;
 
             return new List<AnchorSpec>
@@ -690,6 +790,9 @@ namespace Abandoned.SpaceApps.EditorTools
                 new AnchorSpec { Id = "PIO.Farewell", State = "PIO.Farewell", Function = "Pioneer diminui no campo de estrelas, na direção geral de Aldebaran (sem iluminá-la)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.FarewellRim", Fov = 45f, Aldebaran = true,
                     Position = farewellCamera, LookAt = farewellLook },
+                new AnchorSpec { Id = "PIO.Farewell.Away", State = "PIO.Farewell", Function = "A Pioneer se afasta, a 16 m (sem colar a câmera), com Aldebaran grande e brilhante no alto à esquerda",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.FarewellRim", Fov = FarewellAwayFov, Aldebaran = true,
+                    Position = awayCamera, LookAt = Vector3.zero },
             };
         }
 

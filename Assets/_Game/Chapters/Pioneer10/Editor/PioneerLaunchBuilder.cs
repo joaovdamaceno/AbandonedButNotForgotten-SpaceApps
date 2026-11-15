@@ -125,7 +125,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 Steel = Lit(context, "PIO_TowerSteel", new Color(0.22f, 0.2f, 0.2f), 0.3f, 0.3f, folder: LaunchFolder),
                 Flame = Additive(context, "PIO_Flame", new Color(1f, 0.58f, 0.24f), flameTexture),
                 Smoke = SmokeMaterial(context, smokeTexture),
-                Earth = Unlit(context, "PIO_EarthDiagram", new Color(0.30f, 0.52f, 0.86f), null, LaunchFolder),
+                Earth = Unlit(context, "PIO_EarthDiagram", Color.white, EarthTexture(context), LaunchFolder),
                 Moon = Unlit(context, "PIO_MoonDiagram", new Color(1.12f, 1.12f, 1.1f),
                     PioneerStageBuilder.TextureAsset(context, "PIO_MoonSurface.png", () => PioneerStageArt.MoonSurface(1024, 512, 1969), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp, folder: LaunchFolder),
                     LaunchFolder),
@@ -383,6 +383,7 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var earth = context.Child(diagram, "Earth");
             DiagramVisual(context, earth, a.Sphere, a.Earth, EarthLocal, 3.2f);
+            earth.transform.localRotation = Quaternion.Euler(0f, 150f, 0f); // mostra as Américas e o Atlântico, não a Ásia
             var moonPosition = EarthLocal + new Vector3(Mathf.Cos(MoonAngleDegrees * Mathf.Deg2Rad), Mathf.Sin(MoonAngleDegrees * Mathf.Deg2Rad), 0f) * MoonOrbitRadius;
             DiagramVisual(context, context.Child(diagram, "Moon"), a.Sphere, a.Moon, moonPosition, 1.1f);
 

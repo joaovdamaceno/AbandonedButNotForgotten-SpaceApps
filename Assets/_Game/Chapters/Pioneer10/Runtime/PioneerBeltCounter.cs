@@ -30,7 +30,7 @@ namespace Abandoned.SpaceApps
         /// <summary>Primeiro dia da travessia: 15 de julho de 1972.</summary>
         public static readonly DateTime StartDate = new DateTime(1972, 7, 15);
 
-        [SerializeField] BeltPanelView panel;
+        [SerializeField] CinemaHudView hud;
         [SerializeField, Tooltip("Sequência que este contador acompanha (PIO_BeltCinema).")] SequenceDefinition sequence;
         [SerializeField, Tooltip("Onde a pedra solitária aparece no quadro do anchor PIO.Belt.Nike (0–1, origem em cima à esquerda).")]
         Vector2 nikeViewport = new Vector2(0.685f, 0.37f);
@@ -78,6 +78,12 @@ namespace Abandoned.SpaceApps
             return date.Day.ToString(CultureInfo.InvariantCulture) + " " + month + " " + date.Year.ToString(CultureInfo.InvariantCulture);
         }
 
+        /// <summary>A nota "a pedra mais próxima ficava a milhões de quilômetros", nos últimos segundos do zoom na sonda.</summary>
+        public const string NoteKey = "PIO.UI.belt_far";
+        public const float NoteStartSeconds = 25f;
+
+        public static bool NoteVisibleAt(float seconds) => seconds >= NoteStartSeconds && seconds < DaysRampEndSeconds;
+
         public static bool DayCounterVisibleAt(float seconds) => seconds >= DaysStartSeconds;
 
         public static bool DateOnlyVisibleAt(float seconds) => seconds < DateOnlyEndSeconds;
@@ -92,7 +98,7 @@ namespace Abandoned.SpaceApps
         /// <summary>Atualiza o painel pelo relógio da sequência. Testes chamam direto.</summary>
         public void Tick()
         {
-            if (panel == null || director == null)
+            if (hud == null || director == null)
                 return;
 
             if (!director.IsPlaying || director.Current != sequence)
@@ -108,13 +114,15 @@ namespace Abandoned.SpaceApps
             var months = Resolve(BeltPanelView.MonthsKey);
             var dayText = counter ? Resolve(BeltPanelView.DayKey).Replace("{count}", day.ToString(CultureInfo.InvariantCulture)) : string.Empty;
             var nike = NikeVisibleAt(t);
-            panel.SetCounter(counter || dateOnly, dayText, DateText(day, months), nike, nike ? Resolve(BeltPanelView.NearestKey) : string.Empty, nikeViewport);
+            var note = NoteVisibleAt(t);
+            hud.SetBeltCounter(counter || dateOnly, dayText, DateText(day, months), nike, nike ? Resolve(BeltPanelView.NearestKey) : string.Empty, nikeViewport,
+                note ? Resolve(NoteKey) : string.Empty);
         }
 
         public void Hide()
         {
-            if (panel != null)
-                panel.SetCounter(false, string.Empty, string.Empty, false, string.Empty, nikeViewport);
+            if (hud != null)
+                hud.SetBeltCounter(false, string.Empty, string.Empty, false, string.Empty, nikeViewport, string.Empty);
         }
 
         string Resolve(string key)

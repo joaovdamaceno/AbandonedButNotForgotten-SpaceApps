@@ -990,7 +990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503637997}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.9659258, z: 0, w: 0.25881907}
   m_LocalPosition: {x: -26, y: -6, z: 0}
   m_LocalScale: {x: 3.2, y: 3.2, z: 3.2}
   m_ConstrainProportionsScale: 0
@@ -2805,7 +2805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037cc7454947d5540b1f88ae87a79219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerBeltCounter
-  panel: {fileID: 1330768912}
+  hud: {fileID: 487529351}
   sequence: {fileID: 11400000, guid: 60862166270a6b8438b3966d0cb40b73, type: 2}
   nikeViewport: {x: 0.6850797, y: 0.3695148}
 --- !u!1 &1595703805

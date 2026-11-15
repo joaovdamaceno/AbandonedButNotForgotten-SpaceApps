@@ -100,26 +100,67 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void TheDollyZoomKeepsTheProbeTheSameSizeWhileTheFieldOfViewOpens()
+        public void TheBeltIsASparseFieldOfSmallRocksFarApartAndFarFromTheCameraPath()
+        {
+            var centers = PioneerStageBuilder.BeltRockCenters();
+            Assert.That(centers, Has.Count.EqualTo(PioneerStageBuilder.BeltRockCount));
+            Assert.That(centers.Select(c => c.magnitude).Min(), Is.GreaterThanOrEqualTo(PioneerStageBuilder.BeltClearRadiusMeters - 0.01f), "nenhuma pedra perto da sonda");
+            Assert.That(centers.Select(c => c.magnitude).Max(), Is.LessThanOrEqualTo(PioneerStageBuilder.BeltOuterRadiusMeters + 0.01f));
+            var closestPair = float.MaxValue;
+            for (var i = 0; i < centers.Count; i++)
+            {
+                for (var j = i + 1; j < centers.Count; j++)
+                    closestPair = Mathf.Min(closestPair, Vector3.Distance(centers[i], centers[j]));
+            }
+
+            Assert.That(closestPair, Is.GreaterThanOrEqualTo(PioneerStageBuilder.BeltRockSeparationMeters - 0.01f), "as pedras bem separadas, sem amontoar");
+            Assert.That(PioneerStageBuilder.BeltRockMaxMeters, Is.LessThanOrEqualTo(10f), "pedras pequenas, não rochedos gigantes");
+            Assert.That(PioneerStageBuilder.BeltRockCenters(), Is.EqualTo(centers), "determinístico");
+            var axis = PioneerStageBuilder.BeltFieldCamera.normalized;
+            foreach (var center in centers)
+            {
+                var along = Mathf.Clamp(Vector3.Dot(center, axis), 0f, PioneerStageBuilder.BeltFieldCameraMeters);
+                Assert.That(Vector3.Distance(center, axis * along), Is.GreaterThanOrEqualTo(PioneerStageBuilder.BeltCameraClearanceMeters - 0.01f), "nenhuma pedra no caminho da câmera");
+            }
+        }
+
+        [Test]
+        public void TheDaysShotZoomsInOnTheProbeWhileEveryRockStaysFarAway()
         {
             presentation.RegisterWithCameraDirector();
             var sequence = controller.BeltCinemaSequence;
             Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(50f).Within(1e-4f));
             var days = sequence.Shots.Single(s => s.ShotId == "PIO02.Days");
-            var reference = -1f;
-            foreach (var t in new[] { 0f, 2.2f, 4.4f, 6.6f, 8.8f, 11f })
+            var centers = PioneerStageBuilder.BeltRockCenters();
+            var previousDistance = float.MaxValue;
+            var previousFov = float.MaxValue;
+            var previousSize = 0f;
+            for (var t = 0f; t <= 11f; t += 1f)
             {
                 var pose = presentation.CameraDirector.Evaluate(days, t, null);
-                var size = pose.Position.magnitude * Mathf.Tan(pose.FieldOfViewDegrees * 0.5f * Mathf.Deg2Rad); // metros cobertos no plano da sonda
-                if (reference < 0f)
-                    reference = size;
-                Assert.That(size, Is.EqualTo(reference).Within(reference * 0.02f), $"dolly zoom em {t} s: a sonda não muda de tamanho");
+                var distance = pose.Position.magnitude;
+                var apparent = 3f / (2f * distance * Mathf.Tan(pose.FieldOfViewDegrees * 0.5f * Mathf.Deg2Rad)); // tamanho da sonda (3 m) na altura do quadro
+                Assert.That(distance, Is.LessThan(previousDistance + 1e-3f), $"a câmera só se aproxima ({t} s)");
+                Assert.That(pose.FieldOfViewDegrees, Is.LessThanOrEqualTo(previousFov + 1e-3f), $"o zoom só fecha ({t} s)");
+                Assert.That(apparent, Is.GreaterThan(previousSize), $"a sonda só cresce no quadro ({t} s)");
+                Assert.That(centers.Select(c => Vector3.Distance(c, pose.Position)).Min(), Is.GreaterThan(60f), $"nenhuma pedra perto da câmera ({t} s)");
+                previousDistance = distance;
+                previousFov = pose.FieldOfViewDegrees;
+                previousSize = apparent;
             }
 
-            var first = presentation.CameraDirector.Evaluate(days, 0f, null);
             var last = presentation.CameraDirector.Evaluate(days, 11f, null);
-            Assert.That((first.FieldOfViewDegrees, last.FieldOfViewDegrees), Is.EqualTo((10f, 30f)), "da teleobjetiva ao plano aberto");
-            Assert.That(first.Position.magnitude, Is.GreaterThan(last.Position.magnitude * 2.5f), "a câmera se aproxima enquanto o campo de visão abre");
+            Assert.That(last.Position.magnitude, Is.EqualTo(70f).Within(1f), "termina a 70 m da sonda");
+            Assert.That(last.FieldOfViewDegrees, Is.EqualTo(26f).Within(0.1f));
+        }
+
+        [Test]
+        public void TheNearestRockNoteAppearsOnlyInTheLastSecondsOfTheZoom()
+        {
+            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.NoteStartSeconds - 0.1f), Is.False);
+            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.NoteStartSeconds), Is.True);
+            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.DaysRampEndSeconds - 0.1f), Is.True);
+            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.DaysRampEndSeconds), Is.False, "a revelação do 307 Nike assume o quadro");
         }
 
         [Test]
