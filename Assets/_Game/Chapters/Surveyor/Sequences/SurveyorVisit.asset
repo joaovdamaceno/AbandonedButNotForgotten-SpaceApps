@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: surveyor.seq.Visit
+  shots:
+  - shotId: surveyor.visit.notice
+    durationSeconds: 5
+    rigId: surveyor.visit.landing
+    lookAtTargetId:
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    - timeSeconds: 5
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    events: []
+  - shotId: surveyor.visit.landing
+    durationSeconds: 14
+    rigId: surveyor.visit.landing
+    lookAtTargetId:
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    - timeSeconds: 14
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    events: []
+  - shotId: surveyor.visit.meeting
+    durationSeconds: 13
+    rigId: surveyor.visit.human
+    lookAtTargetId:
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 1
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    - timeSeconds: 2
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    - timeSeconds: 13
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    events: []
+  - shotId: surveyor.visit.photograph
+    durationSeconds: 12
+    rigId: surveyor.visit.human
+    lookAtTargetId:
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    - timeSeconds: 12
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    events:
+    - timeSeconds: 0
+      eventId: surveyor.visit.archive
+  - shotId: surveyor.visit.remember
+    durationSeconds: 6
+    rigId: surveyor.visit.human
+    lookAtTargetId:
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    - timeSeconds: 6
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    events:
+    - timeSeconds: 0
+      eventId: surveyor.visit.memorial
+  cues:
+  - cueId: SUR-S26
+    textKey: SUR-S26
+    startSeconds: 0
+    endSeconds: 5
+    triggerId:
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: SUR-S27
+    textKey: SUR-S27
+    startSeconds: 6
+    endSeconds: 12
+    triggerId:
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: SUR-S28
+    textKey: SUR-S28
+    startSeconds: 20
+    endSeconds: 26
+    triggerId:
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: SUR-S29
+    textKey: SUR-S29
+    startSeconds: 32
+    endSeconds: 38
+    triggerId:
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: SUR-S30
+    textKey: SUR-S30
+    startSeconds: 38
+    endSeconds: 43
+    triggerId:
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: SUR-S31
+    textKey: SUR-S31
+    startSeconds: 44
+    endSeconds: 50
+    triggerId:
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []
