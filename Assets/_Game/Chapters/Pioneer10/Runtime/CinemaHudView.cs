@@ -48,6 +48,7 @@ namespace Abandoned.SpaceApps
         VisualElement root, staticLayer, radiation, radiationFill, speed, distances, moonFill, cloudsFill;
         Label radiationTitle, speedLabel, moonLabel, cloudsLabel;
         SystemMapElement systemMap;
+        Label modelCredit;
         VisualElement years, energyFill, timelineTicks, timelineMarker, firsts, barTop, barBottom;
         VisualElement beltCounter, beltLine, beltNotePlate, earthLine;
         Label beltDay, beltDate, beltLabel, beltNote, earthLabel;
@@ -179,6 +180,31 @@ namespace Abandoned.SpaceApps
                 moonFill.style.width = Length.Percent(Mathf.Clamp01(moonFillFraction) * 100f);
             if (cloudsFill != null)
                 cloudsFill.style.width = Length.Percent(Mathf.Clamp01(cloudsFillFraction) * 100f);
+        }
+
+        /// <summary>Linha de crédito/descrição de um modelo 3D oficial (por exemplo a antena da DSN), embaixo à esquerda acima da legenda.</summary>
+        public void SetModelCredit(bool visible, string text)
+        {
+            EnsureBound();
+            if (root == null)
+                return;
+
+            if (modelCredit == null)
+            {
+                modelCredit = new Label { name = "model-credit", pickingMode = PickingMode.Ignore };
+                modelCredit.style.position = Position.Absolute;
+                modelCredit.style.left = Length.Percent(3f);
+                modelCredit.style.bottom = Length.Percent(19f);
+                modelCredit.style.maxWidth = Length.Percent(34f);
+                modelCredit.style.fontSize = 14;
+                modelCredit.style.whiteSpace = WhiteSpace.Normal;
+                modelCredit.style.color = new Color(0.92f, 0.95f, 1f, 0.9f);
+                modelCredit.style.textShadow = new TextShadow { offset = new Vector2(1f, 1f), blurRadius = 3f, color = Color.black };
+                root.Add(modelCredit);
+            }
+
+            modelCredit.text = text ?? string.Empty;
+            Show(modelCredit, visible && !string.IsNullOrEmpty(text));
         }
 
         /// <summary>
@@ -400,6 +426,7 @@ namespace Abandoned.SpaceApps
             Show(years, false);
             Show(firsts, false);
             Show(systemMap, false);
+            Show(modelCredit, false);
             SetBeltCounter(false, string.Empty, string.Empty, false, string.Empty, Vector2.zero, string.Empty);
             SetEarthLabel(false, string.Empty, Vector2.zero);
         }

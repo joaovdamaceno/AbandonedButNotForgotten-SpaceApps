@@ -108,6 +108,8 @@ namespace Abandoned.SpaceApps.EditorTools
             var systemRoot = presentation.SolarSystem;
             tourSo.FindProperty("beacon").objectReferenceValue = systemRoot != null ? systemRoot.Find("Beacon") : null;
             tourSo.FindProperty("beltMarker").objectReferenceValue = systemRoot != null ? systemRoot.Find("BeltMarker") : null;
+            var pathTransform = systemRoot != null ? systemRoot.Find("ProbePath") : null;
+            tourSo.FindProperty("probePath").objectReferenceValue = pathTransform != null ? pathTransform.GetComponent<LineRenderer>() : null;
             var orbitsProperty = tourSo.FindProperty("orbits");
             var planetsProperty = tourSo.FindProperty("planets");
             orbitsProperty.arraySize = PioneerStageBuilder.SystemPlanetNames.Length;
@@ -127,6 +129,12 @@ namespace Abandoned.SpaceApps.EditorTools
             driftSo.FindProperty("probe").objectReferenceValue = presentation.ProbeSpin != null ? presentation.ProbeSpin.parent : null;
             driftSo.ApplyModifiedPropertiesWithoutUndo();
             so.FindProperty("farewellDrift").objectReferenceValue = drift;
+            var antenna = context.Component<PioneerAntennaCredit>(context.Child(root, "AntennaCredit"));
+            var antennaSo = new SerializedObject(antenna);
+            antennaSo.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();
+            antennaSo.FindProperty("sequence").objectReferenceValue = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(PioneerListeningBuilder.SequencePath);
+            antennaSo.ApplyModifiedPropertiesWithoutUndo();
+            so.FindProperty("antennaCredit").objectReferenceValue = antenna;
             var closestHud = context.Component<PioneerClosestHud>(context.Child(root, "ClosestHud"));
             var closestHudSo = new SerializedObject(closestHud);
             closestHudSo.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();

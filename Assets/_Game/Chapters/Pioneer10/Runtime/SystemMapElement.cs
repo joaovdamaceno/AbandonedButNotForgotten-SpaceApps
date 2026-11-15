@@ -38,12 +38,14 @@ namespace Abandoned.SpaceApps
         }
 
         /// <summary>Distâncias médias ao Sol em UA: Terra, Marte, Júpiter, Saturno, Urano, Netuno.</summary>
-        public static readonly float[] InnerAu = { 1.0f, 1.52f, 3.0f, 5.2f };
+        public static readonly float[] InnerAu = { 0.39f, 0.72f, 1.0f, 1.52f, 3.0f, 5.2f };
         public static readonly float[] OuterAu = { 5.2f, 9.58f, 19.2f, 30.05f };
         /// <summary>Faixa do cinturão principal em UA.</summary>
         public const float BeltInnerAu = 2.1f;
         public const float BeltOuterAu = 3.3f;
         public const float InnerMaxAu = 6f;
+        /// <summary>Índice do cinturão entre as órbitas do modo interno (Mercúrio, Vênus, Terra, Marte, cinturão, Júpiter).</summary>
+        public const int BeltRing = 4;
         public const float OuterMaxAu = 72f;
         /// <summary>Ângulo (graus) da linha do caminho da sonda, saindo do Sol.</summary>
         public const float PathAngleDegrees = -38f;
@@ -57,7 +59,7 @@ namespace Abandoned.SpaceApps
         readonly float[] dotAngle = new float[BeltDots];
         readonly float[] dotRadius = new float[BeltDots];
         readonly float[] dotSize = new float[BeltDots];
-        readonly Label[] labels = new Label[4];
+        readonly Label[] labels = new Label[6];
         readonly Label title, footnote, probeLabel;
         State state;
 
@@ -206,7 +208,7 @@ namespace Abandoned.SpaceApps
 
             for (var i = 0; i < rings.Length; i++)
             {
-                if (state.Mode == MapMode.Inner && i == 2)
+                if (state.Mode == MapMode.Inner && i == BeltRing)
                 {
                     DrawBelt(painter, center, outer);
                     continue;
@@ -226,7 +228,7 @@ namespace Abandoned.SpaceApps
 
         void DrawBelt(Painter2D painter, Vector2 center, float outer)
         {
-            var pulse = state.PulseRing == 2 ? Mathf.Sin(Mathf.Clamp01(state.Pulse01) * Mathf.PI) : 0f;
+            var pulse = state.PulseRing == BeltRing ? Mathf.Sin(Mathf.Clamp01(state.Pulse01) * Mathf.PI) : 0f;
             painter.fillColor = Color.Lerp(Rock, Amber, pulse);
             for (var i = 0; i < BeltDots; i++)
             {

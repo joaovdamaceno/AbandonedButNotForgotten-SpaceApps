@@ -209,6 +209,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33179020}
   m_Mesh: {fileID: 4300000, guid: 89dcc04303fefba4ab03cd986d1ca37e, type: 2}
+--- !u!120 &34863252 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 921735913148766298, guid: bbab42c4f6b11fa4ea1254b9bb6f2429, type: 3}
+  m_PrefabInstance: {fileID: 219729564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &78254131
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +467,7 @@ MonoBehaviour:
   closestSequence: {fileID: 11400000, guid: 3cfb701df9691a542a8e3b8ee35b1907, type: 2}
   beltCinemaSequence: {fileID: 11400000, guid: 60862166270a6b8438b3966d0cb40b73, type: 2}
   beltCounter: {fileID: 1595566807}
+  antennaCredit: {fileID: 1847492330}
   farewellDrift: {fileID: 558788507}
   systemTour: {fileID: 1630519453}
   slingshot: {fileID: 78254133}
@@ -2199,6 +2205,7 @@ Transform:
   - {fileID: 78254132}
   - {fileID: 1630519452}
   - {fileID: 558788506}
+  - {fileID: 1847492329}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1013705930
@@ -2595,6 +2602,26 @@ MonoBehaviour:
   presentation: {fileID: 219729566}
   panel: {fileID: 803651566}
   reducedMotion: 0
+--- !u!120 &1216692830 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 5668307384077656625, guid: bbab42c4f6b11fa4ea1254b9bb6f2429, type: 3}
+  m_PrefabInstance: {fileID: 219729564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1216692831 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3543490832496477367, guid: bbab42c4f6b11fa4ea1254b9bb6f2429, type: 3}
+  m_PrefabInstance: {fileID: 219729564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!120 &1216692832 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 1554206369663593980, guid: bbab42c4f6b11fa4ea1254b9bb6f2429, type: 3}
+  m_PrefabInstance: {fileID: 219729564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1216692833 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2762761376747544055, guid: bbab42c4f6b11fa4ea1254b9bb6f2429, type: 3}
+  m_PrefabInstance: {fileID: 219729564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1292184510
 GameObject:
   m_ObjectHideFlags: 0
@@ -3555,6 +3582,8 @@ MonoBehaviour:
   beacon: {fileID: 219729581}
   center: {x: 350, y: 0, z: -350}
   orbits:
+  - {fileID: 1216692832}
+  - {fileID: 1216692830}
   - {fileID: 219729580}
   - {fileID: 219729579}
   - {fileID: 219729578}
@@ -3562,6 +3591,8 @@ MonoBehaviour:
   - {fileID: 219729576}
   - {fileID: 219729575}
   planets:
+  - {fileID: 1216692833}
+  - {fileID: 1216692831}
   - {fileID: 219729574}
   - {fileID: 219729573}
   - {fileID: 219729572}
@@ -3569,6 +3600,7 @@ MonoBehaviour:
   - {fileID: 219729570}
   - {fileID: 219729569}
   beltMarker: {fileID: 219729568}
+  probePath: {fileID: 34863252}
 --- !u!1001 &1670560441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3768,6 +3800,52 @@ MonoBehaviour:
   imaging: {fileID: 627316119}
   panel: {fileID: 479463838}
   style: {fileID: 7433441132597879392, guid: d5ea56d9f4c58934097ee3528f585a04, type: 3}
+--- !u!1 &1847492328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1847492329}
+  - component: {fileID: 1847492330}
+  m_Layer: 0
+  m_Name: AntennaCredit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1847492329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847492328}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 976992987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1847492330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847492328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69602b6d7dee96b41986614ed3e88f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerAntennaCredit
+  hud: {fileID: 487529351}
+  sequence: {fileID: 11400000, guid: 422cc12371a7d86478380a4b24f906ae, type: 2}
 --- !u!1001 &1978686193
 PrefabInstance:
   m_ObjectHideFlags: 0

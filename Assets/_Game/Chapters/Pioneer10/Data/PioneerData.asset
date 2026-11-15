@@ -1388,6 +1388,24 @@ MonoBehaviour:
     enText: 'Schematic, not to scale: orbits only, seen from above.'
     ptStatus: derived
     enStatus: derived
+  - key: PIO.UI.map_mercury
+    group: hud
+    ptText: "Merc\xFArio"
+    enText: Mercury
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_venus
+    group: hud
+    ptText: "V\xEAnus"
+    enText: Venus
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.dsn_credit
+    group: hud
+    ptText: "Antena de 70 m da Deep Space Network \xB7 modelo 3D oficial da NASA (cr\xE9dito: NASA/Brian E. Kumanchik, Christian A. Lopez)"
+    enText: "Deep Space Network 70 m antenna \xB7 official NASA 3D model (credit: NASA/Brian E. Kumanchik, Christian A. Lopez)"
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.scheme
     group: instrument
     ptText: "Esquema \xB7 sem escala"

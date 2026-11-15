@@ -86,9 +86,10 @@ namespace Abandoned.SpaceApps
                 PulseRing = ev switch { YearsEvent.Saturn => 1, YearsEvent.Uranus => 2, YearsEvent.Neptune => 3, _ => -1 },
                 Pulse01 = Mathf.Repeat(seconds, 1.4f) / 1.4f,
                 Labels = new[] { resolve("PIO.UI.orbit_jupiter"), resolve("PIO.UI.orbit_saturn"), resolve("PIO.UI.orbit_uranus"), resolve("PIO.UI.orbit_neptune") },
-                Title = resolve("PIO.UI.map_title_out"),
-                Footnote = resolve("PIO.UI.map_note"),
-                ProbeLabel = resolve("PIO.UI.map_probe"),
+                // Menos informação na cena dos anos (teste de jogo): sem título, nota "sem escala" nem rótulo da sonda; ficam só os nomes das órbitas.
+                Title = string.Empty,
+                Footnote = string.Empty,
+                ProbeLabel = string.Empty,
             };
         }
 

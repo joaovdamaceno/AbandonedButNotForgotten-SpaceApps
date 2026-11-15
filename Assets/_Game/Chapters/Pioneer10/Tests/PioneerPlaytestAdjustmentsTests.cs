@@ -106,8 +106,12 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(PioneerBeltCounter.MapVisibleAt(PioneerBeltCounter.MapEndSeconds - 0.1f), Is.True);
             Assert.That(PioneerBeltCounter.MapVisibleAt(PioneerBeltCounter.MapEndSeconds), Is.False, "o ponto de vista da sonda assume");
             var inBelt = PioneerBeltCounter.MapStateAt(PioneerBeltCounter.MapEndSeconds - 0.01f, Resolve);
-            Assert.That(inBelt.PulseRing, Is.EqualTo(2), "o cinturão pulsa");
-            Assert.That(inBelt.ProbeAu, Is.InRange(SystemMapElement.BeltInnerAu, SystemMapElement.BeltOuterAu), "chega dentro do cinturão");
+            Assert.That(inBelt.PulseRing, Is.EqualTo(SystemMapElement.BeltRing), "o cinturão pulsa");
+            Assert.That(inBelt.ProbeAu, Is.InRange(SystemMapElement.BeltInnerAu - 0.2f, SystemMapElement.BeltInnerAu), "para na borda do campo, sem atravessá-lo (a travessia é mostrada depois)");
+            Assert.That(inBelt.PathEndAu, Is.LessThanOrEqualTo(SystemMapElement.BeltInnerAu + 0.1f), "a linha à frente também acaba na borda");
+            Assert.That(inBelt.Labels, Has.Length.EqualTo(6), "Mercúrio, Vênus, Terra, Marte, cinturão e Júpiter");
+            Assert.That(neptune.Title, Is.Empty, "menos informação na cena dos anos");
+            Assert.That(neptune.Footnote, Is.Empty);
             Assert.That(PioneerBeltCounter.MapProbeAuAt(PioneerBeltCounter.MapStartSeconds), Is.EqualTo(PioneerBeltCounter.MapStartAu).Within(1e-3f));
         }
 

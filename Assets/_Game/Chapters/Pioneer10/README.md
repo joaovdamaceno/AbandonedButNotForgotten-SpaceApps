@@ -535,3 +535,13 @@ Lote pedido depois de a pessoa jogar a cena de teste (`Playtest/Pioneer10_Playte
 ### Legendas: revisão final com a lista em inglês (15/11/2026)
 
 A lista `CAPTIONS_PIONEER10_EN_UK.md` foi aplicada com cortes: cada legenda ficou uma ideia só e legível a 16 caracteres por segundo, porque a narração em voz virá depois e pode ser mais rica que a legenda. A tabela legenda a legenda (aplicada, mudada ou cortada, com o motivo) está em `Docs/Chapters/PioneerV2/CAPTIONS_STATUS.md`. Novos cues: `PIO.01.06` ("Nothing built by human hands had ever travelled so fast.") e `PIO.06.06` (1993: câmera e detector de radiação desligados). O registro de fontes continua mandando: sem "baterias nucleares" (vira "geradores RTG") e sem "três semanas" (a placa volta ao texto anterior). Além disso, no minigame de Júpiter a barra e o aviso "Toque E" só aparecem quando a foto está liberada (`SpinShotPanelView`, teste `TheInstructionsOnlyAppearWhenThePhotoIsReleased`).
+
+### Quarta rodada de ajustes (15/11/2026)
+
+| Pedido | O que mudou |
+| --- | --- |
+| Todos os planetas no Sistema Solar | O palco ganhou **Mercúrio e Vênus** (oito planetas, com órbitas); o mapa do cinturão rotula Mercúrio, Vênus, Terra, Marte, cinturão e Júpiter. |
+| Menos informação no final | Na cena dos anos o mapa não tem mais título, nota "sem escala" nem rótulo da sonda; ficam os nomes das órbitas de Júpiter a Netuno. |
+| Descrição da antena | Na cena da escuta aparece a linha "Deep Space Network 70 m antenna · official NASA 3D model (credit: NASA/Brian E. Kumanchik, Christian A. Lopez)" (`PioneerAntennaCredit`, `CinemaHudView.SetModelCredit`). O modelo é o "Deep Space Network 70-meter" do catálogo NASA 3D Resources (`ASSET_CREDITS.md`). |
+| Texto do asteroide mais próximo | A nota "o asteroide conhecido mais próximo ficou a milhões de km" saiu do cinturão (a legenda `PIO.02.04` já diz isso). O rótulo "307 Nike" continua. |
+| Sonda só até perto do campo | No mapa da cena 2 a sonda e a linha do caminho param na **borda do campo** (2,02 UA, campo a partir de 2,1 UA); a travessia só aparece depois, em primeira pessoa. |
