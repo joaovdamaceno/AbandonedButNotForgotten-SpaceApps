@@ -474,7 +474,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var shots = new[]
             {
                 new ShotDefinition("PIO01.A", 7f, "PIO.Launch.Reveal",
-                    new[] { Key(0f, new Vector3(0f, 0f, -0.9f), 34f), Key(7f, Vector3.zero, 34f) },
+                    new[] { Key(0f, new Vector3(0f, 0f, -1.6f), 32f), Key(7f, Vector3.zero, 32f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, "PIO.Launch.Title") }),
                 new ShotDefinition("PIO01.B", 10f, "PIO.Launch.Pad",
@@ -486,7 +486,7 @@ namespace Abandoned.SpaceApps.EditorTools
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, "PIO.Launch.Ellipse") }),
                 new ShotDefinition("PIO01.D", 14f, "PIO.Launch",
-                    new[] { Key(0f, Vector3.zero, 40f), Key(14f, new Vector3(0f, 0f, 0.8f), 40f) },
+                    new[] { Key(0f, new Vector3(-0.8f, 0.3f, -1f), 34f), Key(14f, new Vector3(0.6f, -0.2f, 1.2f), 34f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, "PIO.Launch.Callouts"), new ShotEvent(6.5f, PioneerLaunchActivity.EventRtgHold) }),
             };

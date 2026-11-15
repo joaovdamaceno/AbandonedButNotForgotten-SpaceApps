@@ -451,3 +451,9 @@ O estado `PIO.Belt` toca a sequência própria `PIO_BeltCinema` (54 s; `PIO_Belt
 - **Planos** (`PioneerPlaqueBuilder.CreateSequence`, 33 s, rig `PIO.Plaque.Board`): chegada (placa inteira e depois a primeira peça), cinco zooms moderados (cada peça enquadrada com ~60% da altura, `PlaquePieceOffset`), recuo até a placa inteira. A câmera troca de peça nos últimos 0,8 s de cada legenda.
 - **Sem painel em cinema:** `PioneerPlaqueActivity.PushView` renderiza o estado `Idle` quando `CinemaMode` está ligado (a lógica de encaixe continua testada).
 - **Limitações.** Gravuras simplificadas do projeto (não a reprodução da placa real); sem Play Mode nem teste humano. Evidência em `QA/PIO-033/README.md`.
+
+## Câmeras abertas e a Terra com nome (PIO-034)
+
+- **Planos livres da abertura** (`PioneerStageBuilder`, anchors `PIO.Launch.Reveal` e `PIO.Launch`; `PioneerLaunchBuilder.CreateSequence`): a câmera fica a ~11 m e ~12,5 m da sonda, com campo de visão de 32° e 34° e um movimento lento. O modelo tem poucos polígonos e não aguenta planos colados.
+- **Rótulo da Terra** (`PioneerJupiterReveal`, `CinemaHudView.SetEarthLabel`, texto `PIO.UI.earth_label`): de 13,5 a 21,5 s, "Terra" com uma linha fina acompanha a Terra de comparação no HUD de cinema; a Terra ganhou emissão de base.
+- **Limitações.** Brilho dos RTGs ainda com esferas aditivas simples; sem Play Mode nem teste humano. Evidência em `QA/PIO-034/README.md`.

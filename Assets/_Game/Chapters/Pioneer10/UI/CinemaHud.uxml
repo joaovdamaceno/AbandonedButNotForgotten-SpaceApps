@@ -91,6 +91,8 @@
         </ui:VisualElement>
         <ui:VisualElement name="belt-line" picking-mode="Ignore" class="pio-hud__bline" />
         <ui:Label name="belt-label" picking-mode="Ignore" class="pio-hud__blabel" />
+        <ui:VisualElement name="earth-line" picking-mode="Ignore" class="pio-hud__bline" />
+        <ui:Label name="earth-label" picking-mode="Ignore" class="pio-hud__blabel" />
         <ui:VisualElement name="belt-note-plate" picking-mode="Ignore" class="sa-plate pio-hud__bnote">
             <ui:Label name="belt-note" picking-mode="Ignore" class="pio-hud__bnotetext" />
         </ui:VisualElement>

@@ -109,7 +109,12 @@ namespace Abandoned.SpaceApps.EditorTools
             a.BeltRock = Lit(context, "PIO_BeltRock", new Color(0.30f, 0.29f, 0.28f), 0f, 0.08f);
             var marsTexture = TextureAsset(context, "PIO_MarsSurface.png", () => PioneerStageArt.MarsSurface(1024, 512, 1976), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
             a.Mars = Lit(context, "PIO_Mars", Color.white, 0f, 0.04f, marsTexture);
-            a.Earth = Lit(context, "PIO_EarthCompare", Color.white, 0f, 0.12f, EarthTexture(context));
+            var earthMap = EarthTexture(context);
+            a.Earth = Lit(context, "PIO_EarthCompare", Color.white, 0f, 0.12f, earthMap);
+            a.Earth.EnableKeyword("_EMISSION"); // um brilho de base: o lado sem luz do Sol continua legível ao lado de Júpiter
+            a.Earth.SetColor("_EmissionColor", new Color(0.3f, 0.3f, 0.3f));
+            a.Earth.SetTexture("_EmissionMap", earthMap);
+            a.Earth.globalIlluminationFlags = MaterialGlobalIlluminationFlags.None;
             a.PlaqueGold = Lit(context, "PIO_PlaqueHeroGold", new Color(0.82f, 0.64f, 0.34f), 0.55f, 0.5f);
             a.PlaqueFace = Lit(context, "PIO_PlaqueHeroFace", Color.white, 0.35f, 0.42f,
                 TextureAsset(context, "PIO_PlaqueBoard.png", () => PioneerStageArt.PlaqueBoard(768, 1152), 2048, true, TextureWrapMode.Clamp, TextureWrapMode.Clamp, FilterMode.Trilinear));
@@ -770,8 +775,8 @@ namespace Abandoned.SpaceApps.EditorTools
             return new List<AnchorSpec>
             {
                 new AnchorSpec { Id = "PIO.Launch.Reveal", State = "PIO.Launch", Function = "PIO01.A · contorno do refletor em contraluz fria",
-                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.ColdRim", Fov = 34f,
-                    Position = new Vector3(3.4f, 0.9f, 5.6f), LookAt = new Vector3(0f, 0.05f, 0.2f) },
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.ColdRim", Fov = 32f,
+                    Position = new Vector3(5.6f, 1.5f, 9.4f), LookAt = new Vector3(0f, 0.05f, 0.2f) }, // ~11 m: a câmera não cola na sonda (modelo de poucos polígonos)
                 new AnchorSpec { Id = "PIO.Launch.Pad", State = "PIO.Launch", Function = "PIO01.B · plano baixo lateral do Atlas-Centaur à noite (silhueta da PIO-004 no AtlasSocket)",
                     Region = PioneerStageRegion.LaunchSite, Light = "PIO.Light.EarthWarm", Fov = 50f,
                     Position = LaunchSiteCenter + new Vector3(27f, 1.4f, -25f), LookAt = LaunchSiteCenter + new Vector3(0f, 12f, 0f) },
@@ -779,8 +784,8 @@ namespace Abandoned.SpaceApps.EditorTools
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 42f,
                     Position = LaunchDiagramCenter + new Vector3(4f, 7f, -82f), LookAt = LaunchDiagramCenter + new Vector3(4f, 2f, 0f) },
                 new AnchorSpec { Id = "PIO.Launch", State = "PIO.Launch", Function = "PIO01.D · sonda livre: eixo de rotação, antena e RTGs (primeiro hold)",
-                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 40f,
-                    Position = new Vector3(6.2f, 2.7f, -4.9f), LookAt = new Vector3(0.4f, 0.2f, -0.2f) },
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 34f,
+                    Position = new Vector3(9.4f, 4f, -7.6f), LookAt = new Vector3(0.4f, 0.2f, -0.2f) }, // ~12,5 m: plano aberto, sem chegar perto do modelo
                 new AnchorSpec { Id = "PIO.Belt", State = "PIO.Belt", Function = "Plano longo quase vazio: a sonda pequena no cinturão real",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f,
                     Position = new Vector3(-56f, 16f, 54f), LookAt = new Vector3(0f, 0f, 0f) },

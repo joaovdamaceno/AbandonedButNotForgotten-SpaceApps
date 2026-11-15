@@ -23,13 +23,13 @@ MonoBehaviour:
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: -0.9}
+      positionMeters: {x: 0, y: 0, z: -1.6}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 34
+      fieldOfViewDegrees: 32
     - timeSeconds: 7
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 34
+      fieldOfViewDegrees: 32
     events:
     - timeSeconds: 0
       eventId: PIO.Launch.Title
@@ -84,13 +84,13 @@ MonoBehaviour:
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 0}
+      positionMeters: {x: -0.8, y: 0.3, z: -1}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 40
+      fieldOfViewDegrees: 34
     - timeSeconds: 14
-      positionMeters: {x: 0, y: 0, z: 0.8}
+      positionMeters: {x: 0.6, y: -0.2, z: 1.2}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 40
+      fieldOfViewDegrees: 34
     events:
     - timeSeconds: 0
       eventId: PIO.Launch.Callouts
