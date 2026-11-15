@@ -449,7 +449,7 @@ MonoBehaviour:
     minimumReadSeconds: 5
     afterCueId: 
     priority: 0
-    bindingStatus: proposed
+    bindingStatus: built
     pageKeys:
     - SUR-S26.p1
     - SUR-S26.p2
@@ -468,7 +468,7 @@ MonoBehaviour:
     minimumReadSeconds: 6
     afterCueId: 
     priority: 0
-    bindingStatus: proposed
+    bindingStatus: built
     pageKeys: []
     pageMinimumSeconds: []
   - cueId: SUR-S28
@@ -483,7 +483,7 @@ MonoBehaviour:
     minimumReadSeconds: 6
     afterCueId: 
     priority: 0
-    bindingStatus: proposed
+    bindingStatus: built
     pageKeys: []
     pageMinimumSeconds: []
   - cueId: SUR-S29
@@ -498,7 +498,7 @@ MonoBehaviour:
     minimumReadSeconds: 6
     afterCueId: 
     priority: 0
-    bindingStatus: proposed
+    bindingStatus: built
     pageKeys: []
     pageMinimumSeconds: []
   - cueId: SUR-S30
@@ -513,7 +513,7 @@ MonoBehaviour:
     minimumReadSeconds: 5
     afterCueId: 
     priority: 0
-    bindingStatus: proposed
+    bindingStatus: built
     pageKeys: []
     pageMinimumSeconds: []
   - cueId: SUR-S31
@@ -528,7 +528,7 @@ MonoBehaviour:
     minimumReadSeconds: 6
     afterCueId: 
     priority: 0
-    bindingStatus: proposed
+    bindingStatus: built
     pageKeys:
     - SUR-S31.p1
     - SUR-S31.p2
