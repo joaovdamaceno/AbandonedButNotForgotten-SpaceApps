@@ -197,7 +197,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var cues = new[]
             {
                 new SubtitleCue("PIO.02.01", "PIO.02.01", 0f, 6f),
-                new SubtitleCue("PIO.02.02", "PIO.02.02", 6.5f, 12.5f),
+                new SubtitleCue("PIO.02.02", "PIO.02.02", 6.5f, 12.6f),
                 new SubtitleCue("PIO.02.03", "PIO.02.03", 13f, 19f),
                 new SubtitleCue("PIO.02.07", "PIO.02.07", 20.5f, 29.5f),
                 new SubtitleCue("PIO.02.04", "PIO.02.04", 30.5f, 39.4f),

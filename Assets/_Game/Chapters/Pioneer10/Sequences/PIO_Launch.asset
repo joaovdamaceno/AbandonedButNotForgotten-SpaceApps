@@ -116,14 +116,14 @@ MonoBehaviour:
   - cueId: PIO.01.03
     textKey: PIO.01.03
     startSeconds: 18
-    endSeconds: 25
+    endSeconds: 22
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: PIO.01.04
     textKey: PIO.01.04
-    startSeconds: 26
+    startSeconds: 26.3
     endSeconds: 32.8
     triggerId: 
     minimumReadSeconds: 0
@@ -133,6 +133,14 @@ MonoBehaviour:
     textKey: PIO.01.05
     startSeconds: 33
     endSeconds: 40
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.01.06
+    textKey: PIO.01.06
+    startSeconds: 22.3
+    endSeconds: 26
     triggerId: 
     minimumReadSeconds: 0
     position: 0

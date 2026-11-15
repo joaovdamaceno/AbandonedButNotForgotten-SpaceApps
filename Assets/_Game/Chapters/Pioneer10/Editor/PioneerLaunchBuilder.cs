@@ -509,9 +509,10 @@ namespace Abandoned.SpaceApps.EditorTools
             {
                 new SubtitleCue("PIO.01.01", "PIO.01.01", 0f, 7f),
                 new SubtitleCue("PIO.01.02", "PIO.01.02", 8f, 16f),
-                new SubtitleCue("PIO.01.03", "PIO.01.03", 18f, 25f),
-                new SubtitleCue("PIO.01.04", "PIO.01.04", 26f, 32.8f),
+                new SubtitleCue("PIO.01.03", "PIO.01.03", 18f, 22f),
+                new SubtitleCue("PIO.01.04", "PIO.01.04", 26.3f, 32.8f),
                 new SubtitleCue("PIO.01.05", "PIO.01.05", 33f, 40f),
+                new SubtitleCue("PIO.01.06", "PIO.01.06", 22.3f, 26f),
             };
 
             var marks = new List<ActorMark>

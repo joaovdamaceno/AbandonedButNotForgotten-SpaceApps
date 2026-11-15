@@ -531,3 +531,7 @@ Lote pedido depois de a pessoa jogar a cena de teste (`Playtest/Pioneer10_Playte
 
 **Limitações.** O PT dos 28 cues reescritos continua com o texto anterior (só traduzi o que mudou de sentido). A lista diz que a sonda passou "3 vezes mais perto que a Lua" (130 mil km); a NASA dá 82.178 milhas sem dizer se do centro ou do topo das nuvens.
 
+
+### Legendas: revisão final com a lista em inglês (15/11/2026)
+
+A lista `CAPTIONS_PIONEER10_EN_UK.md` foi aplicada com cortes: cada legenda ficou uma ideia só e legível a 16 caracteres por segundo, porque a narração em voz virá depois e pode ser mais rica que a legenda. A tabela legenda a legenda (aplicada, mudada ou cortada, com o motivo) está em `Docs/Chapters/PioneerV2/CAPTIONS_STATUS.md`. Novos cues: `PIO.01.06` ("Nothing built by human hands had ever travelled so fast.") e `PIO.06.06` (1993: câmera e detector de radiação desligados). O registro de fontes continua mandando: sem "baterias nucleares" (vira "geradores RTG") e sem "três semanas" (a placa volta ao texto anterior). Além disso, no minigame de Júpiter a barra e o aviso "Toque E" só aparecem quando a foto está liberada (`SpinShotPanelView`, teste `TheInstructionsOnlyAppearWhenThePhotoIsReleased`).
