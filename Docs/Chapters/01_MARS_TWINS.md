@@ -152,9 +152,9 @@ Texto que aparece na tela hoje, na ordem em que aparece. Para mudar uma fala, ed
 
 O capítulo de Marte aparece sempre em inglês (`GameHost`, lista `EnglishOnlyChapters`); a coluna em português fica como tradução.
 
-Os tempos das tabelas são do filme. Alguns trechos são mostrados mais devagar para dar tempo de leitura (`ChapterDirector`, mapas tempo real → filme): pouso 0–13,5 s → 0–7,5 s; anos seguintes 6–14 s → 6–13 s e 25,5–34,5 s → 24,5–32,5 s; último contato 7–15 s → 7–12 s; despedida 0–12,5 → 0–8, 12,5–18,5 → 8–11 e 18,5–27,5 → 11–16 s. Narração sem voz fica na tela pelo maior entre 4,5 s e um segundo a cada 15 caracteres.
+Os tempos das tabelas são do filme. Alguns trechos são mostrados mais devagar para dar tempo de leitura (`ChapterDirector`, mapas tempo real → filme): pouso 0–13,5 s → 0–7,5 s; anos seguintes 6–14 s → 6–13 s e 25,5–34,5 s → 24,5–32,5 s; último contato 7–15 s → 7–12 s; despedida 0–12,5 → 0–8, 12,5–18,5 → 8–11 e 18,5–27,5 → 11–16 s. Falas de orientação ficam na tela pelo maior entre 4,5 s e um segundo a cada 15 caracteres.
 
-As falas com voz gravada estão em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Narration/{pt,en}/<chave>.wav`. Se o texto de uma delas mudar, o áudio da mesma chave deixa de corresponder: regrave-o ou apague o `.wav` (sem áudio, a fala aparece só como texto).
+Não há narração em áudio: todas as falas aparecem como legenda.
 
 ### Abertura · Marte, laboratório e globo (M01–M03)
 
@@ -206,7 +206,7 @@ Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.js
 | observação | `v10.study.berries` | MICROSCOPIA · PEQUENAS ESFERAS | MICROSCOPY · SMALL SPHERES |
 | observação | `v10.berries.first` | A rocha e as pequenas esferas. Segure E para observar. | The rock and its small spheres. Hold E to observe. |
 | observação | `v10.result.berries` | Essas pequenas esferas são concreções ricas em hematita. Junto às camadas e à composição das rochas, ajudam a contar uma história de água antiga. | These small spheres are hematite-rich concretions. Together with rock layers and composition, they help tell a story of ancient water. |
-| narração depois da observação | `v14.berries.water` 🔊 | A hematita costuma se formar onde existe água. Estas esferas são uma pista de que água líquida pode ter passado por aqui. | Hematite usually forms where water exists. These spheres are a clue that liquid water may once have flowed here. |
+| narração depois da observação | `v14.berries.water` | A hematita costuma se formar onde existe água. Estas esferas são uma pista de que água líquida pode ter passado por aqui. | Hematite usually forms where water exists. These spheres are a clue that liquid water may once have flowed here. |
 | narração depois da observação | `v14.berries.doubt` | Ainda assim, pistas na superfície não bastam. Para ter certeza, precisamos olhar dentro das rochas. | Still, surface clues aren't enough. To know for sure, we have to look inside the rocks. |
 | narração depois da observação | `route.outcrop` | Vá até a rocha McKittrick e olhe por dentro dela | Go to the McKittrick rock and look inside it |
 | objetivo | `objective.sample` | Examine a rocha McKittrick | Examine McKittrick |
@@ -251,9 +251,9 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
-| 0 s · fala | `v13.discovery.evidence` 🔊 | Camadas, concreções e composição química apontam para um passado em que a água transformou estas rochas. | Layers, concretions and chemical composition point to a past in which water changed these rocks. |
+| 0 s · fala | `v13.discovery.evidence` | Camadas, concreções e composição química apontam para um passado em que a água transformou estas rochas. | Layers, concretions and chemical composition point to a past in which water changed these rocks. |
 | 6,5 s · título | `v4.water` | EVIDÊNCIAS DE ÁGUA ANTIGA | EVIDENCE OF ANCIENT WATER |
-| 6,5 s · fala | `v14.discovery.bridge` 🔊 | Água confirmada. Mas a Opportunity ainda tinha energia, e Marte ainda tinha perguntas. | Water confirmed. But Opportunity still had energy, and Mars still had questions. |
+| 6,5 s · fala | `v14.discovery.bridge` | Água confirmada. Mas a Opportunity ainda tinha energia, e Marte ainda tinha perguntas. | Water confirmed. But Opportunity still had energy, and Mars still had questions. |
 
 ### 2005 · chegada ao escudo
 
@@ -262,7 +262,7 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
 | 0 s · título | `v10.year2005` | 2005 · O QUE FICOU PARA TRÁS | 2005 · WHAT WE LEFT BEHIND |
-| 0 s · fala | `v13.hardware.arrival` 🔊 | 2005. Seguindo adiante, ela chegou ao local onde seu próprio escudo térmico caiu. Examiná-lo também é fazer ciência. | 2005. Moving on, it reached the place where its own heat shield fell. Examining it is science too. |
+| 0 s · fala | `v13.hardware.arrival` | 2005. Seguindo adiante, ela chegou ao local onde seu próprio escudo térmico caiu. Examiná-lo também é fazer ciência. | 2005. Moving on, it reached the place where its own heat shield fell. Examining it is science too. |
 
 ### Escudo térmico e rocha metálica
 
@@ -275,7 +275,7 @@ Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.js
 | observação | `v10.study.shield` | ENGENHARIA · ESCUDO TÉRMICO | ENGINEERING · HEAT SHIELD |
 | observação | `v10.study.help` | Nada para mirar: segure E até a barra encher para registrar a observação. | Nothing to aim: hold E until the bar fills to record the observation. |
 | observação | `v10.result.shield` | Esse metal veio da Terra. O escudo protegeu a entrada em Marte; seus danos guardam informações sobre a viagem. | This metal came from Earth. The shield protected entry to Mars; its damage preserves information about the journey. |
-| narração depois da observação | `v14.shield.odd` 🔊 | Ao lado do escudo, uma rocha escura e metálica. Ela não combina com o que vimos até aqui. | Beside the shield, a dark, metallic rock. It does not match anything we have seen so far. |
+| narração depois da observação | `v14.shield.odd` | Ao lado do escudo, uma rocha escura e metálica. Ela não combina com o que vimos até aqui. | Beside the shield, a dark, metallic rock. It does not match anything we have seen so far. |
 | narração depois da observação | `v10.goal.meteorite` | Examine a rocha metálica: de onde ela veio? | Examine the metallic rock: where did it come from? |
 | botão | `v13.interact.meteorite` | Examinar o meteorito | Inspect the meteorite |
 | observação | `v10.study.meteorite` | ANÁLISE · UMA ROCHA METÁLICA | ANALYSIS · A METALLIC ROCK |
@@ -288,7 +288,7 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
 | 0 s · título | `v10.meteorite.title` | HEAT SHIELD ROCK · UM VISITANTE | HEAT SHIELD ROCK · A VISITOR |
-| 0 s · fala | `v13.meteorite.result` 🔊 | Ferro e níquel. Ao lado do nosso escudo, o primeiro meteorito identificado em outro planeta. | Iron and nickel. Beside our shield lies the first meteorite identified on another planet. |
+| 0 s · fala | `v13.meteorite.result` | Ferro e níquel. Ao lado do nosso escudo, o primeiro meteorito identificado em outro planeta. | Iron and nickel. Beside our shield lies the first meteorite identified on another planet. |
 
 ### Os anos seguintes · tempestades e Spirit
 
@@ -297,7 +297,7 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
 | 0 s · título | `v10.year2005` | 2005 · O QUE FICOU PARA TRÁS | 2005 · WHAT WE LEFT BEHIND |
-| 0 s · fala | `v13.years.work` 🔊 | A missão de noventa sóis continuou. Rocha após rocha, a história de Marte ganhava novos detalhes. | The ninety-sol mission kept going. Rock by rock, the story of Mars gained new detail. |
+| 0 s · fala | `v13.years.work` | A missão de noventa sóis continuou. Rocha após rocha, a história de Marte ganhava novos detalhes. | The ninety-sol mission kept going. Rock by rock, the story of Mars gained new detail. |
 | 6 s · título | `v3.year2007` | 2007 | 2007 |
 | 6 s · fala | `v15.storm.frequent` | Uma tempestade de poeira começa a esconder o Sol. Tempestades assim são frequentes em Marte; algumas crescem até cobrir o planeta inteiro. | A dust storm begins to hide the Sun. Storms like this are frequent on Mars; some grow until they cover the entire planet. |
 | 13 s · fala | `v15.storm.dark` | Sem luz nos painéis solares, a Opportunity parou de dirigir e poupou energia. Por semanas, quase tudo ficou desligado. | With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off. |
@@ -307,7 +307,7 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 | 32,5 s · fala | `v17.spirit.signal` | O último sinal chegou em 22 de março de 2010; a NASA encerrou a busca por contato em 2011. | Its last signal arrived on March 22, 2010; NASA ended its attempts to regain contact in 2011. |
 | 41 s · fala | `v15.spirit.alone` | Agora só a Opportunity continuava em Marte. E seguiu em frente, por ela e pela irmã gêmea. | Now only Opportunity remained on Mars. And she kept going, for herself and for her twin. |
 | 48 s · título | `v3.year2018` | 2018 | 2018 |
-| 48 s · fala | `v13.years.valley` 🔊 | 2018. Após quase quinze anos, a Opportunity chegou a Perseverance Valley. O céu começava a escurecer. | 2018. After almost fifteen years, Opportunity reached Perseverance Valley. The sky was beginning to darken. |
+| 48 s · fala | `v13.years.valley` | 2018. Após quase quinze anos, a Opportunity chegou a Perseverance Valley. O céu começava a escurecer. | 2018. After almost fifteen years, Opportunity reached Perseverance Valley. The sky was beginning to darken. |
 
 ### 2018 · Perseverance Valley e a tempestade
 
@@ -315,7 +315,7 @@ Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.js
 
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
-| narração ao chegar | `v14.sun.reason` 🔊 | Sua energia vem do Sol. Uma tempestade de poeira se aproxima, e é preciso medir quanta luz ainda chega. | Its power comes from the Sun. A dust storm is approaching, and we must measure how much light still arrives. |
+| narração ao chegar | `v14.sun.reason` | Sua energia vem do Sol. Uma tempestade de poeira se aproxima, e é preciso medir quanta luz ainda chega. | Its power comes from the Sun. A dust storm is approaching, and we must measure how much light still arrives. |
 | narração ao chegar | `v15.storm.again` | Tempestades assim são frequentes em Marte. A Opportunity já sobreviveu a uma em 2007 — mas esta será maior. | Storms like this are frequent on Mars. Opportunity already survived one in 2007 — but this one will be bigger. |
 | objetivo | `v10.goal.sun.clear` | Meça a luz do Sol: ela alimenta os painéis | Measure the Sun's light: it powers the panels |
 | botão | `v13.interact.sun` | Observar o Sol | Observe the Sun |
@@ -329,7 +329,7 @@ Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.js
 | objetivo | `v10.goal.sun.dust` | Compare o Sol através da poeira: quanta luz se perdeu? | Compare the Sun through the dust: how much light was lost? |
 | observação | `v10.study.sundust` | PANCAM · POEIRA NA ATMOSFERA | PANCAM · ATMOSPHERIC DUST |
 | observação | `v10.result.sundust` | Muito menos luz atravessa a atmosfera. A poeira aumenta a opacidade do céu e reduz a energia que chega aos painéis solares. | Much less light passes through the atmosphere. Dust increases the sky’s opacity and reduces the energy reaching the solar panels. |
-| narração depois da observação | `v14.send.reason` 🔊 | Se esta for a última chance, as imagens precisam chegar à Terra. | If this is the last chance, the images must reach Earth. |
+| narração depois da observação | `v14.send.reason` | Se esta for a última chance, as imagens precisam chegar à Terra. | If this is the last chance, the images must reach Earth. |
 | narração depois da observação | `objective.send` | Envie uma imagem à Terra: é o que vai ficar | Send an image to Earth: it is what will remain |
 | envio | `v13.interact.uplink` | Enviar uma imagem | Send an image |
 | envio | `objective.choose` | Escolha uma imagem para enviar | Choose an image to send |
@@ -344,7 +344,7 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
-| 0 s · fala | `v13.last.power` 🔊 | A poeira encobre o Sol. Sem luz suficiente, os painéis deixam de sustentar as operações. | Dust hides the Sun. Without enough light, the solar panels can no longer sustain operations. |
+| 0 s · fala | `v13.last.power` | A poeira encobre o Sol. Sem luz suficiente, os painéis deixam de sustentar as operações. | Dust hides the Sun. Without enough light, the solar panels can no longer sustain operations. |
 | 7 s · título | `v3.lastdate` | 10 JUN 2018 | 10 JUN 2018 |
 | 7 s · fala | `v16.last.contact` | 10 de junho de 2018. A Terra recebe o último contato da Opportunity. A Spirit já tinha silenciado em 22 de março de 2010, do outro lado de Marte. | June 10, 2018. Earth receives the last contact from Opportunity. Spirit had fallen silent on March 22, 2010, on the other side of Mars. |
 
@@ -370,8 +370,6 @@ Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.js
 | tela final | `pause.restart` | Recomeçar capítulo | Restart chapter |
 | tela final | `menu.credits` | Créditos e fontes | Credits & sources |
 | tela final | `pause.menu` | Menu inicial | Main menu |
-
-🔊 = a fala tem voz gravada.
 
 ## Caderno científico e conclusão
 
