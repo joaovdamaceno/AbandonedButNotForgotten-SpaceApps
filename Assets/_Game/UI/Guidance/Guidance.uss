@@ -1,0 +1,87 @@
+/*
+ * UI-005 · Tutorial por ações e assistência (R2). Só estende os tokens e componentes da UI-001: nenhuma cor ou tamanho
+ * novos. A placa entra na coluna da base do HUD, acima do prompt E, então não se sobrepõe a ele nem à legenda. Nada aqui
+ * captura o mouse (picking-mode="Ignore" em todo elemento). Estado muda por forma e texto, nunca só por cor.
+ */
+
+.sa-guide {
+    max-width: 640px;
+    margin-bottom: var(--sa-space-3);
+    border-left-width: 6px;
+    border-left-color: var(--sa-accent-hud);
+}
+
+.sa-guide__title {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf");
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate-muted);
+    margin: 0 0 var(--sa-space-2) 0;
+    padding: 0;
+}
+
+.sa-guide__line {
+    flex-direction: row;
+    align-items: center;
+    min-height: var(--sa-hit-min);
+    margin-bottom: var(--sa-space-2);
+}
+
+/* A tecla é um rótulo, não um botão: largura livre para "SETAS + E" e altura do componente base. */
+.sa-guide__keycap {
+    width: auto;
+    min-width: var(--sa-hit-min);
+    padding: 0 var(--sa-space-3);
+}
+
+.sa-guide__text {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-hud);
+    color: var(--sa-color-on-plate);
+    white-space: normal;
+    flex-shrink: 1;
+    margin: 0;
+    padding: 0;
+}
+
+/* Reforço (12 s sem progresso): borda grossa e tecla cheia, além do texto mais direto. */
+.sa-guide__line--emphasis .sa-guide__keycap {
+    background-color: var(--sa-accent-hud);
+    border-color: var(--sa-accent-hud);
+}
+
+.sa-guide__line--emphasis .sa-guide__keycap .sa-keycap__glyph {
+    color: var(--sa-color-ink);
+}
+
+.sa-guide--reinforce,
+.sa-guide--offer {
+    border-left-width: 10px;
+    border-left-color: var(--sa-color-warn);
+}
+
+/* Movimento reduzido desliga a pulsação; sem a classe nada anima. */
+.sa-guide--pulse .sa-guide__line--emphasis .sa-guide__keycap {
+    transition-property: scale;
+    transition-duration: 0.6s;
+    scale: 1.06 1.06;
+}
+
+/* Cumprida: a linha fica apagada com o texto "feito ✓" e some depois de um instante. */
+.sa-guide__line--done .sa-guide__keycap {
+    border-color: var(--sa-color-confirm);
+    border-width: 2px;
+}
+
+.sa-guide__line--done .sa-keycap__glyph,
+.sa-guide__line--done .sa-guide__text {
+    color: var(--sa-color-on-plate-muted);
+}
+
+.sa-guide__offer {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-warn);
+    white-space: normal;
+    margin: var(--sa-space-3) 0 0 0;
+    padding: 0;
+}
