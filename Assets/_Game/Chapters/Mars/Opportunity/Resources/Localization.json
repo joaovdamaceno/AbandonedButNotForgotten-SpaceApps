@@ -111,11 +111,6 @@
    "en": "Reduce motion & shake"
   },
   {
-   "key": "v14.settings.voice",
-   "pt": "Narração por voz (IA)",
-   "en": "Voice narration (AI)"
-  },
-  {
    "key": "settings.subtitles",
    "pt": "Legendas",
    "en": "Subtitles"
@@ -1801,16 +1796,6 @@
    "en": "Its power comes from the Sun. A dust storm is approaching, and we must measure how much light still arrives."
   },
   {
-   "key": "v15.hint.hold",
-   "pt": "segure E",
-   "en": "hold E"
-  },
-  {
-   "key": "v15.hint.press",
-   "pt": "segure E",
-   "en": "hold E"
-  },
-  {
    "key": "v15.goal.1",
    "pt": "OBJETIVO 1 DA MISSÃO · Determinar a distribuição e a composição de minerais, rochas e solos ao redor dos locais de pouso.",
    "en": "MISSION GOAL 1 · Determine the distribution and composition of minerals, rocks and soils surrounding the landing sites."
@@ -2039,6 +2024,106 @@
    "key": "v18.landing.descent",
    "pt": "Cada rover atravessou a atmosfera protegido por um escudo térmico. Quando o paraquedas abriu, o escudo caiu, e os airbags amorteceram o pouso.",
    "en": "Each rover crossed the atmosphere behind a heat shield. Once the parachute opened, the shield dropped away, and airbags cushioned the landing."
+  },
+  {
+   "key": "cmd.hold",
+   "pt": "SEGURE",
+   "en": "HOLD"
+  },
+  {
+   "key": "cmd.move",
+   "pt": "Mover o rover",
+   "en": "Drive the rover"
+  },
+  {
+   "key": "cmd.fast",
+   "pt": "Mais rápido",
+   "en": "Move faster"
+  },
+  {
+   "key": "cmd.look",
+   "pt": "Olhar ao redor",
+   "en": "Look around"
+  },
+  {
+   "key": "cmd.interact",
+   "pt": "Interagir (perto de um alvo)",
+   "en": "Interact (near a target)"
+  },
+  {
+   "key": "cmd.help",
+   "pt": "Encontrar o objetivo",
+   "en": "Find your objective"
+  },
+  {
+   "key": "cmd.help.short",
+   "pt": "Ajuda",
+   "en": "Help"
+  },
+  {
+   "key": "cmd.pause",
+   "pt": "Pausar",
+   "en": "Pause"
+  },
+  {
+   "key": "cmd.sample",
+   "pt": "Posicionar o braço e examinar",
+   "en": "Position the arm and examine"
+  },
+  {
+   "key": "cmd.photo",
+   "pt": "Abrir a Pancam e fotografar",
+   "en": "Open Pancam and photograph"
+  },
+  {
+   "key": "cmd.send",
+   "pt": "Transmitir agora",
+   "en": "Transmit now"
+  },
+  {
+   "key": "cmd.observe",
+   "pt": "Observar",
+   "en": "Observe"
+  },
+  {
+   "key": "cmd.observe.close",
+   "pt": "Observar (quando perto)",
+   "en": "Observe (when close)"
+  },
+  {
+   "key": "cmd.continue",
+   "pt": "Guardar o resultado e continuar",
+   "en": "Keep the result and continue"
+  },
+  {
+   "key": "cmd.photograph",
+   "pt": "Fotografar",
+   "en": "Photograph"
+  },
+  {
+   "key": "cmd.back",
+   "pt": "Voltar",
+   "en": "Back"
+  },
+  {
+   "key": "cmd.grind",
+   "pt": "Desgastar a superfície · faltam {0} s",
+   "en": "Grind the surface · {0} s left"
+  },
+  {
+   "key": "cmd.grinding",
+   "pt": "Desgastando · faltam {0} s",
+   "en": "Grinding · {0} s left"
+  },
+  {
+   "key": "cmd.seconds.left",
+   "pt": "Faltam {0} s",
+   "en": "{0} s left"
+  },
+  {
+   "key": "cmd.examine",
+   "pt": "Examinar a cavidade",
+   "en": "Examine the cavity"
   }
  ]
 }
