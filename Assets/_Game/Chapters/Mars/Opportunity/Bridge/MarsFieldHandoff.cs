@@ -157,6 +157,7 @@ namespace Abandoned.SpaceApps.Opportunity
             }
 
             field.ExitRequested += Finish;
+            field.RestartRequested += Restart;
         }
 
         void Watch(Abandoned.SpaceApps.ChapterDirector director)
@@ -179,10 +180,19 @@ namespace Abandoned.SpaceApps.Opportunity
             if (field.Stage == ChapterStage.ChapterEnd) reachedEnd = true;
         }
 
+        /// <summary>Recomeçar volta ao início do capítulo (abertura): o capítulo de Marte é recarregado e esta cena sai junto.</summary>
+        void Restart()
+        {
+            if (ended || appDirector == null) return;
+            field.ExitRequested -= Finish;
+            field.RestartRequested -= Restart;
+            appDirector.RestartChapter();
+        }
+
         void Finish()
         {
             if (ended) return;
-            if (field != null) field.ExitRequested -= Finish;
+            if (field != null) { field.ExitRequested -= Finish; field.RestartRequested -= Restart; }
             ended = true;
             StartCoroutine(Close(returnToArchive: true));
         }

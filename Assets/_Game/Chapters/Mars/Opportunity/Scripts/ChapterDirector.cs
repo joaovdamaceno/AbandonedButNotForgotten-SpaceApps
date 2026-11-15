@@ -50,8 +50,11 @@ namespace Abandoned.SpaceApps.Opportunity
             investigation.ResetEvidence();journey.ResetJourney();ResetSession();Enter(Progress.Stage);
             readyForLaunch=true;
         }
+        /// <summary>Pedido para recomeçar o capítulo inteiro (desde a abertura); quem carregou a cena decide como.</summary>
+        public event System.Action RestartRequested;
         public void RestartChapter()
-        { Pause(false);SessionSeconds=0; if (parking != null) StopCoroutine(parking); investigation.ResetEvidence();science.End(); science.surface.ResetSurface();rover.ResetDistance(); journey.ResetJourney(); ResetSession(); Progress.Reset(); }
+        {
+            if(RestartRequested!=null){Pause(false);if(parking!=null)StopCoroutine(parking);investigation.Close();science.End();journey.photography.Close();RestartRequested();return;} Pause(false);SessionSeconds=0; if (parking != null) StopCoroutine(parking); investigation.ResetEvidence();science.End(); science.surface.ResetSurface();rover.ResetDistance(); journey.ResetJourney(); ResetSession(); Progress.Reset(); }
         /// <summary>Pedido para sair do capítulo (pausa ou tela final); quem carregou a cena decide para onde voltar.</summary>
         public event System.Action ExitRequested;
         public void Leave()
