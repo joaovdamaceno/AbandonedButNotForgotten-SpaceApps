@@ -132,7 +132,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             string statusKey=flow.Phase==EclipsePhase.InTransit?"sur.eclipse.transit":flow.Phase==EclipsePhase.Viewing?"sur.eclipse.color":"sur.eclipse.ready";
             status.text=Text(statusKey);
             Show(status,flow.Running && !quiet);
-            prompt.text=Text(flow.NeedsRelease?"sur.eclipse.release":"sur.eclipse.hold");
+            prompt.text=Text(flow.NeedsRelease?"sur.eclipse.release":service.Mode==HoldMode.Toggle?"sur.eclipse.toggle":"sur.eclipse.hold");
             Show(sendButton,playing && flow.Phase==EclipsePhase.AwaitingOrder);
             sendButton.SetEnabled(flow.CanConfirm || action.IsHolding); sendButton.text=Text("sur.eclipse.send");
             Show(prompt,playing && flow.Phase==EclipsePhase.AwaitingOrder);

@@ -102,7 +102,10 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         {
             if(!running || result.SequenceId!=data.SequenceId || result.Reason!=SequenceExitReason.Completed) return;
             Phase=EclipsePhase.Complete;
+            // Release our actors before a consumer of StepEntered starts the next sequence.
+            Stop();
             owner.CompleteStep(StepId,NextStepId);
+            Changed?.Invoke();
         }
         void OnStep(string id) { if(id==StepId) Enter(); else if(running) Stop(); }
         void OnUnload(string id) => Stop();
@@ -113,7 +116,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             if(sequence!=null && sequence.Current==data) sequence.Cancel();
             if(ownsQueue && queue!=null && queue.Generation==queueGeneration) { action.ClearAction(); queue.EndState(); }
             ownsQueue=false; inputLease?.Dispose(); inputLease=null;
-            if(site!=null) { site.MirrorAzimuth.localRotation=azimuthRest; site.MirrorElevation.localRotation=elevationRest; }
+            if(wasRunning && site!=null) { site.MirrorAzimuth.localRotation=azimuthRest; site.MirrorElevation.localRotation=elevationRest; }
             if(wasRunning && camera!=null && !site.CameraDirector.IsControlled)
                 site.CameraDirector.Apply(new CameraPose(opticalPosition,groundRotation,25.3f));
             if(image!=null) image.Show(false);

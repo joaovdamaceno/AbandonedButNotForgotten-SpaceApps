@@ -55,6 +55,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests
                 Assert.That(Vector3.Distance(physicalPosition,host.Flow.TelevisionCamera.transform.position),Is.LessThan(.0001));
                 Assert.That(Quaternion.Angle(bodyRotation,host.Site.MirrorAzimuth.parent.rotation),Is.LessThan(.0001));
                 Advance(host,10.2f); Assert.That(host.Owner.CurrentStepId,Is.EqualTo("LunarNight"));
+                Assert.That(host.Document.rootVisualElement.Q("eclipse-end").style.display.value,Is.EqualTo(DisplayStyle.Flex));
                 Assert.That(host.Site.CameraDirector.IsControlled,Is.False);
                 Assert.That(host.Output.Allocations,Is.EqualTo(1));
                 if(cycle==0)

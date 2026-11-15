@@ -4,9 +4,10 @@ Issue #69; branch SUR-011; base develop `5014f0a` (CORE-006 e UI-004 integradas)
 
 ## Verificado no Unity
 
-- Unity 6000.6.7f1, D3D11, 12 testes aprovados, sem falha: `editmode.xml`.
+- Unity 6000.6.7f1, D3D11, 13 testes aprovados, sem falha: `editmode.xml`.
 - Cena real em Play Mode: três execuções, dois reinícios, mesmo ponto óptico e corpo imóvel; uma alocação e uma liberação do buffer de saída; fonte liberada na desmontagem. `runtime-metrics.json`.
 - Reprodução de 26 s, dois cues com seis segundos cada, oito segundos sem legenda, retorno e transição Eclipse → LunarNight uma única vez.
+- Entrega de controle e descarte posterior não sobrescrevem o espelho da etapa seguinte.
 - Ordem sem efeito físico antes da chegada, hold parcial preservado, modo alternar, pausa durante fila/filme, retorno/cancelamento e E mantido no reinício não vazando para a próxima tentativa.
 - GPU: capturas em 960×600, 1024×768 e 1280×720; halo vermelho presente, sem caixa de legenda vazia. Qualidades existentes 0/Very Low e 1/Low. Pausa centralizada e imagem 4:3 dentro do canvas; `layout-audit.txt` e `Captures/`.
 - Segunda reconstrução: GUIDs e IDs dos objetos dos dois prefabs, sequence asset e cena preservados; `rebuild-audit.json`.

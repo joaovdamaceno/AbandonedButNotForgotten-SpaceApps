@@ -17,6 +17,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests
         SurveyorCommandDelay queue; SurveyorCommandInteraction action; SequenceDirector sequence; SurveyorEclipse flow;
         SurveyorSiteBindings site; Camera camera; CameraDirector cameras; SequenceDefinition track; ChapterDefinition chapter;
         Keyboard keyboard; readonly List<string> entered=new List<string>();
+        bool nextConsumerRunsFirst;
         Transform Child(string name) { var obj=new GameObject(name); obj.transform.SetParent(root.transform); return obj.transform; }
         public override void Setup()
         {
@@ -30,6 +31,9 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests
             var image=Child("Earth").gameObject.AddComponent<SurveyorEclipseImage>();
             track=SurveyorEclipseBuilder.CreateReference();
             owner.Initialize(clock,input,new Loader(),new EvidenceStore()); input.Enable(); service.Initialize(input,clock);
+            // Emulate a consumer initialized before this module in the integrated chapter.
+            nextConsumerRunsFirst=false; owner.StepEntered+=id=>
+            { if(nextConsumerRunsFirst && id=="LunarNight") site.MirrorElevation.localRotation=Quaternion.Euler(-17,0,0); };
             flow.Configure(owner,clock,input,service,queue,action,sequence,track,site,image,Child("Sky"),Child("Ground"));
             chapter=ChapterDefinition.Create("surveyor.eclipse.test","a","b","c","Test",30,track.SequenceId,new[]{new ChapterStep("Eclipse",false,"LunarNight"),new ChapterStep("LunarNight",true)});
             entered.Clear(); owner.StepEntered+=entered.Add; owner.OpenDossier(); owner.Begin(chapter);
@@ -105,5 +109,13 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests
         }
         [Test] public void ToggleModeUsesTheSharedHoldWithoutRequiringPhysicalHold()
         { service.Mode=HoldMode.Toggle; Press(keyboard.eKey); Release(keyboard.eKey); Advance(2.2f); Assert.That(flow.Phase,Is.EqualTo(EclipsePhase.Viewing)); }
+        [Test] public void HandoffAndLaterDisposalNeverOverwriteTheNextConsumersMirror()
+        {
+            nextConsumerRunsFirst=true; Send(); Advance(26.1f);
+            var nextPose=Quaternion.Euler(-17,0,0);
+            Assert.That(Quaternion.Angle(site.MirrorElevation.localRotation,nextPose),Is.LessThan(.001));
+            flow.Dispose();
+            Assert.That(Quaternion.Angle(site.MirrorElevation.localRotation,nextPose),Is.LessThan(.001));
+        }
     }
 }
