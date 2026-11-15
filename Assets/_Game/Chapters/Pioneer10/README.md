@@ -370,3 +370,21 @@ O padrão das atividades é a versão interativa (os testes de cada uma seguem i
 O painel da foto ganhou o rótulo "Passo n/3" e prompts por passo (`PIO.UI.step`, `spin`, `switch_blue`, `combine`, PT-BR e EN) e esconde o cursor de fase na versão nova; as quatro legendas 04.02–04.05 foram reescritas para a história de três passos. O padrão das duas atividades continua sendo a versão antiga (os testes de cada uma seguem iguais) e o controlador liga os modos novos.
 
 **Limitações.** As durações não mudaram (74 s e 52 s; o roteiro quer 45 s e 40 s, ver `Docs/Chapters/PioneerV2/FASES.md`). A atividade de recuperação (`ImagingRecovery`) continua no código e nos testes, mas o capítulo não a inicia. O painel mostra oito faixas de imagem (quatro por cor), não duas imagens inteiras que se sobrepõem: a "montagem" de Júpiter é a existente. Quadros do painel renderizados com as chaves no lugar do texto (a captura não resolve idioma); Play Mode com a UI e teste humano não foram exercitados.
+
+## Roteiro v2, fase 4, parte 1 (PIO-021): o cinturão como cinema
+
+O estado `PIO.Belt` toca a sequência própria `PIO_BeltCinema` (54 s; `PIO_Belt`, de 58 s, segue como a da atividade interativa e dos testes dela).
+
+| Tempo | Plano | O que mostra |
+| --- | --- | --- |
+| 0–8 s | `PIO02.Mars` (anchor `PIO.Belt`) | A sonda cruza a órbita de Marte; só a data "15 JUL 1972" |
+| 8–19 s | `PIO02.Fear` (anchor `PIO.Belt.Field`) | Teleobjetiva de 10°: a parede de pedras compacta atrás da sonda |
+| 19–34 s | `PIO02.Days` (mesmo anchor) | Dolly zoom: o campo de visão abre de 10° a 30° e a câmera se aproxima (a distância vezes a tangente da metade do campo é constante, então a sonda não muda de tamanho) enquanto a parede se abre; o contador "Dia n / 215" acelera até o Dia 140 |
+| 34–44 s | `PIO02.Nike` (anchor `PIO.Belt.Nike`) | Corte para um céu vazio e uma pedra solitária; rótulo "307 Nike · o asteroide conhecido mais próximo" apontando para ela; evento `PIO.Belt.Reality` baixa a música; contador parado em 2 DEZ 1972 |
+| 44–54 s | `PIO02.Exit` (anchor `PIO.Belt`) | A sonda sai para o escuro limpo; o contador chega ao Dia 215 (15 FEV 1973) |
+
+- `PioneerBeltCounter` lê o relógio da sequência e desenha no `BeltPanelView` (`counter-root`): data só nos primeiros 6 s, depois "Dia n / 215" e a data; o texto vem das chaves `PIO.UI.belt_day`, `belt_months` e `belt_nearest`. Os dias são datas reais nos extremos; a curva entre eles é estilizada.
+- O campo de pedras (`BeltField`, 1400 pedras, uma malha e uma chamada de desenho, 20 faces por pedra) e a pedra solitária (`BeltNike`) só aparecem nos anchors com `showBeltField` / `showBeltNike`. O campo é gerado no cone da câmera da teleobjetiva, com tamanho angular parecido em qualquer profundidade; o gerador é determinístico pela semente.
+- A duração nominal do estado cai para 54 s e a do capítulo para 411 s (teto de leitura 417 s).
+
+**Limitações.** O campo é de baixa resolução, sem textura. A teleobjetiva é de 10° porque o contrato de planos aceita no mínimo 10° (o roteiro pedia uma lente mais fechada; mudar o contrato exige acordo com a R1). O contador e o rótulo foram verificados por testes de lógica e de layout, não por quadros de UI nem no Play Mode. A Lua e Marte (cena 1) ainda não estão no primeiro plano. Evidência em `QA/PIO-021/README.md`.

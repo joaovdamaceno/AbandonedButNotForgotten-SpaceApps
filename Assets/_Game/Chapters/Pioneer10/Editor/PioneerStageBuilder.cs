@@ -76,8 +76,8 @@ namespace Abandoned.SpaceApps.EditorTools
 
         sealed class StageAssets
         {
-            public Mesh Sphere, SkySphere, LowSphere, StarMesh;
-            public Material Jupiter, Sky, Stars, Ground, Aldebaran;
+            public Mesh Sphere, SkySphere, LowSphere, StarMesh, BeltRocks, BeltNike;
+            public Material Jupiter, Sky, Stars, Ground, Aldebaran, BeltRock;
         }
 
         static StageAssets BuildAssets(SceneBuildContext context)
@@ -88,6 +88,8 @@ namespace Abandoned.SpaceApps.EditorTools
                 SkySphere = MeshAsset(context, "PIO_SkySphere", m => PioneerStageArt.Sphere(m, "PIO_SkySphere", 48, 24, true)),
                 LowSphere = MeshAsset(context, "PIO_LowSphere", m => PioneerStageArt.Sphere(m, "PIO_LowSphere", 12, 6, false)),
                 StarMesh = MeshAsset(context, "PIO_BrightStars", m => PioneerStageArt.BrightStars(m, 520, 2003, 0.09f, 0.2f)),
+                BeltRocks = MeshAsset(context, "PIO_BeltRocks", m => PioneerStageArt.RockField(m, BeltRockCount, BeltFieldSeed, BeltFieldAxis, 40f, 1000f, BeltTeleCameraMeters, 9.5f, 0.008f, 0.04f)),
+                BeltNike = MeshAsset(context, "PIO_BeltNike", FillNike),
             };
 
             var sky = TextureAsset(context, "PIO_Starfield.png", () => PioneerStageArt.Starfield(2048, 1024, 3400, 1972), 2048, false, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
@@ -99,6 +101,7 @@ namespace Abandoned.SpaceApps.EditorTools
             a.Sky = Unlit(context, "PIO_Sky", Color.white, sky);
             a.Stars = Unlit(context, "PIO_BrightStars", Color.white, palette);
             a.Aldebaran = Unlit(context, "PIO_AldebaranMarker", new Color(1f, 0.6f, 0.42f), null);
+            a.BeltRock = Lit(context, "PIO_BeltRock", new Color(0.30f, 0.29f, 0.28f), 0f, 0.08f);
             return a;
         }
 
@@ -270,6 +273,13 @@ namespace Abandoned.SpaceApps.EditorTools
             jupiter.transform.localRotation = Quaternion.Euler(3f, 0f, 0f);
             jupiter.transform.localScale = Vector3.one * JupiterRadiusMeters;
 
+            // Cena 2 do roteiro v2: campo de pedras e a pedra solitária; só aparecem nos anchors que os pedem.
+            var beltField = Visual(Ensure(deepSpace.transform, "BeltField"), a.BeltRocks, a.BeltRock);
+            beltField.SetActive(false);
+            var beltNike = Visual(Ensure(deepSpace.transform, "BeltNike"), a.BeltNike, a.BeltRock);
+            beltNike.transform.localPosition = NikePosition;
+            beltNike.SetActive(false);
+
             var aldebaran = Visual(Ensure(root.transform, "AldebaranMarker"), a.LowSphere, a.Aldebaran);
             aldebaran.transform.localScale = Vector3.one * 5f;
 
@@ -285,6 +295,8 @@ namespace Abandoned.SpaceApps.EditorTools
             so.FindProperty("reducedMotionSpinScale").floatValue = 0.35f;
             SetArray(so.FindProperty("regionRoots"), new[] { deepSpace, launchSite, groundStation }, (p, g) => p.objectReferenceValue = g);
             so.FindProperty("jupiter").objectReferenceValue = jupiter.transform;
+            so.FindProperty("beltField").objectReferenceValue = beltField.transform;
+            so.FindProperty("beltNike").objectReferenceValue = beltNike.transform;
             so.FindProperty("aldebaranMarker").objectReferenceValue = aldebaran.transform;
             so.FindProperty("aldebaranDirection").vector3Value = AldebaranDirection;
             so.FindProperty("aldebaranDistanceMeters").floatValue = 1100f;
@@ -302,6 +314,52 @@ namespace Abandoned.SpaceApps.EditorTools
         }
 
         public static readonly Vector3 AldebaranDirection = new Vector3(0.2f, 0.08f, -1f);
+
+        // ---------- Cinturão (roteiro v2, cena 2) ----------
+
+        public const int BeltRockCount = 1400;
+        public const int BeltFieldSeed = 1972;
+        /// <summary>Anchor da teleobjetiva/dolly zoom: a câmera chega a ~82 m da sonda; o campo de pedras fica atrás dela.</summary>
+        public static readonly Vector3 BeltFieldCamera = new Vector3(-20f, 20f, 77f);
+        public static readonly Vector3 BeltFieldAxis = (Vector3.zero - BeltFieldCamera).normalized;
+        /// <summary>Distância da câmera à sonda no começo do dolly zoom (teleobjetiva de 10°, mesmo tamanho da sonda que o plano aberto de 30° a BeltFieldCamera).</summary>
+        public static readonly float BeltTeleCameraMeters = BeltFieldCamera.magnitude * Mathf.Tan(15f * Mathf.Deg2Rad) / Mathf.Tan(5f * Mathf.Deg2Rad);
+        /// <summary>Anchor da revelação: o céu vazio, a sonda à esquerda embaixo e uma pedra distante (307 Nike) à direita em cima.</summary>
+        public static readonly Vector3 BeltNikeCamera = new Vector3(46f, 6f, -60f);
+        public const float NikeDistanceMeters = 380f;
+        public const float NikeRadiusMeters = 7f;
+        public const float NikeDegreesRight = 10f;
+        public const float NikeDegreesUp = 4f;
+        static readonly Vector3 BeltNikeLookAt = OffsetLook(BeltNikeCamera, Vector3.zero, 10f, -6f);
+        /// <summary>Posição de mundo da pedra solitária: dez graus à direita e quatro acima do centro do quadro do anchor.</summary>
+        public static readonly Vector3 NikePosition = BeltNikeCamera + (OffsetLook(BeltNikeCamera, BeltNikeLookAt, NikeDegreesRight, -NikeDegreesUp) - BeltNikeCamera).normalized * NikeDistanceMeters;
+
+        /// <summary>
+        /// Onde a pedra solitária cai no quadro do anchor PIO.Belt.Nike (0–1, origem em cima à esquerda), para 16:9 e FOV vertical de
+        /// 30°: a pedra está <see cref="NikeDegreesRight"/>° à direita e <see cref="NikeDegreesUp"/>° acima do centro.
+        /// </summary>
+        public static Vector2 NikeViewport
+        {
+            get
+            {
+                var halfV = Mathf.Tan(15f * Mathf.Deg2Rad);
+                var halfH = halfV * (16f / 9f);
+                return new Vector2(0.5f + 0.5f * Mathf.Tan(NikeDegreesRight * Mathf.Deg2Rad) / halfH, 0.5f - 0.5f * Mathf.Tan(NikeDegreesUp * Mathf.Deg2Rad) / halfV);
+            }
+        }
+
+        static void FillNike(Mesh mesh)
+        {
+            var vertices = new List<Vector3>();
+            var normals = new List<Vector3>();
+            var triangles = new List<int>();
+            PioneerStageArt.AppendRock(vertices, normals, triangles, Vector3.zero, NikeRadiusMeters, 307);
+            mesh.Clear();
+            mesh.SetVertices(vertices);
+            mesh.SetNormals(normals);
+            mesh.SetTriangles(triangles, 0);
+            mesh.RecalculateBounds();
+        }
 
         /// <summary>
         /// Instancia o modelo definitivo da PIO-002 (<c>Art/PioneerActors.prefab</c>) dentro de <c>ProbeSpin</c> e devolve os
@@ -420,7 +478,7 @@ namespace Abandoned.SpaceApps.EditorTools
             public Vector3 Position, LookAt;
             public float Fov = 40f, SpinScale = 1f;
             public PioneerStageRegion Region;
-            public bool Jupiter, Aldebaran;
+            public bool Jupiter, Aldebaran, BeltField, BeltNike;
             public Rect UiFrame;
         }
 
@@ -466,6 +524,12 @@ namespace Abandoned.SpaceApps.EditorTools
                 new AnchorSpec { Id = "PIO.Belt", State = "PIO.Belt", Function = "Plano longo quase vazio: a sonda pequena no cinturão real",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f,
                     Position = new Vector3(-56f, 16f, 54f), LookAt = new Vector3(0f, 0f, 0f) },
+                new AnchorSpec { Id = "PIO.Belt.Field", State = "PIO.Belt", Function = "Cena 2 · teleobjetiva e dolly zoom: a sonda pequena na frente de uma parede de pedras que se abre (campo de pedras ligado)",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f, BeltField = true,
+                    Position = BeltFieldCamera, LookAt = Vector3.zero },
+                new AnchorSpec { Id = "PIO.Belt.Nike", State = "PIO.Belt", Function = "Cena 2 · a revelação: espaço vazio e uma única pedra distante (307 Nike), a milhões de km",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f, BeltNike = true,
+                    Position = BeltNikeCamera, LookAt = BeltNikeLookAt },
                 new AnchorSpec { Id = "PIO.Belt.Sensor", State = "PIO.Belt", Function = "Registro de poeira: dorso do refletor (sensores) à esquerda, instrumento de UI à direita (PIO-005)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 40f,
                     Position = new Vector3(-3.4f, 1.7f, -4.8f), LookAt = OffsetLook(new Vector3(-3.4f, 1.7f, -4.8f), Vector3.zero, 17f, 0f),
@@ -520,6 +584,8 @@ namespace Abandoned.SpaceApps.EditorTools
                     lightGroupId = spec.Light,
                     showJupiter = spec.Jupiter,
                     showAldebaranMarker = spec.Aldebaran,
+                    showBeltField = spec.BeltField,
+                    showBeltNike = spec.BeltNike,
                     spinAlignSocket = spec.AlignSocket,
                     spinAlignTowards = spec.AlignTowards,
                     spinScale = spec.SpinScale,
@@ -570,6 +636,8 @@ namespace Abandoned.SpaceApps.EditorTools
             p.FindPropertyRelative("lightGroupId").stringValue = a.lightGroupId;
             p.FindPropertyRelative("showJupiter").boolValue = a.showJupiter;
             p.FindPropertyRelative("showAldebaranMarker").boolValue = a.showAldebaranMarker;
+            p.FindPropertyRelative("showBeltField").boolValue = a.showBeltField;
+            p.FindPropertyRelative("showBeltNike").boolValue = a.showBeltNike;
             p.FindPropertyRelative("spinAlignSocket").stringValue = a.spinAlignSocket ?? "";
             p.FindPropertyRelative("spinAlignTowards").stringValue = a.spinAlignTowards ?? "";
             p.FindPropertyRelative("spinScale").floatValue = a.spinScale;

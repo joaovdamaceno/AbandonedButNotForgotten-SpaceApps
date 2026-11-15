@@ -216,6 +216,96 @@ namespace Abandoned.SpaceApps.EditorTools
         /// brilho vêm de uma paleta (<see cref="StarPalette"/>) via UV, para um único material e um único draw call.
         /// Tamanho angular em graus: legível de 720p a 1080p sem virar mancha.
         /// </summary>
+        /// <summary>
+        /// Uma pedra irregular (icosfera de 80 faces com vértices deslocados, sombreamento chapado), de raio ~<paramref name="radiusMeters"/>.
+        /// Determinística pela semente. Acrescenta ao mesmo <paramref name="vertices"/>/<paramref name="triangles"/> para juntar muitas pedras numa malha.
+        /// </summary>
+        public static void AppendRock(List<Vector3> vertices, List<Vector3> normals, List<int> triangles, Vector3 center, float radiusMeters, int seed)
+        {
+            var random = new System.Random(seed);
+            float Next() => (float)random.NextDouble();
+            var t = (1f + Mathf.Sqrt(5f)) * 0.5f;
+            var basis = new[]
+            {
+                new Vector3(-1, t, 0), new Vector3(1, t, 0), new Vector3(-1, -t, 0), new Vector3(1, -t, 0),
+                new Vector3(0, -1, t), new Vector3(0, 1, t), new Vector3(0, -1, -t), new Vector3(0, 1, -t),
+                new Vector3(t, 0, -1), new Vector3(t, 0, 1), new Vector3(-t, 0, -1), new Vector3(-t, 0, 1),
+            };
+            var faces = new[]
+            {
+                0, 11, 5, 0, 5, 1, 0, 1, 7, 0, 7, 10, 0, 10, 11, 1, 5, 9, 5, 11, 4, 11, 10, 2, 10, 7, 6, 7, 1, 8,
+                3, 9, 4, 3, 4, 2, 3, 2, 6, 3, 6, 8, 3, 8, 9, 4, 9, 5, 2, 4, 11, 6, 2, 10, 8, 6, 7, 9, 8, 1,
+            };
+            var stretch = new Vector3(0.7f + Next() * 0.6f, 0.7f + Next() * 0.6f, 0.7f + Next() * 0.6f);
+            var rotation = Quaternion.Euler(Next() * 360f, Next() * 360f, Next() * 360f);
+            var radii = new float[basis.Length];
+            for (var i = 0; i < radii.Length; i++)
+                radii[i] = 0.78f + Next() * 0.44f;
+
+            // Cada vértice da icosfera recebe um raio; as faces ficam planas (um normal por face).
+            Vector3 Corner(int i) => center + rotation * Vector3.Scale(basis[i].normalized * (radiusMeters * radii[i]), stretch);
+            for (var f = 0; f < faces.Length; f += 3)
+            {
+                var a = Corner(faces[f]);
+                var b = Corner(faces[f + 1]);
+                var c = Corner(faces[f + 2]);
+                var normal = Vector3.Cross(b - a, c - a).normalized;
+                if (Vector3.Dot(normal, a - center) < 0f)
+                {
+                    (b, c) = (c, b);
+                    normal = -normal;
+                }
+
+                var baseIndex = vertices.Count;
+                vertices.Add(a);
+                vertices.Add(b);
+                vertices.Add(c);
+                normals.Add(normal);
+                normals.Add(normal);
+                normals.Add(normal);
+                triangles.Add(baseIndex);
+                triangles.Add(baseIndex + 1);
+                triangles.Add(baseIndex + 2);
+            }
+        }
+
+        /// <summary>
+        /// Campo de pedras do cinturão (roteiro v2, cena 2): <paramref name="count"/> pedras num cilindro de raio
+        /// <paramref name="radiusMeters"/> ao redor do eixo <paramref name="axis"/> que sai da origem (a sonda), de
+        /// <paramref name="minDepth"/> a <paramref name="maxDepth"/> metros ATRÁS dela. Numa teleobjetiva isso vira uma parede
+        /// compacta; num plano aberto, as pedras ficam pequenas e longe umas das outras. Determinístico pela semente.
+        /// </summary>
+        public static void RockField(Mesh mesh, int count, int seed, Vector3 axis, float minDepth, float maxDepth, float cameraMeters, float halfConeDegrees, float minFraction, float maxFraction)
+        {
+            var random = new System.Random(seed);
+            float Next() => (float)random.NextDouble();
+            axis.Normalize();
+            var right = Vector3.Cross(Vector3.up, axis).normalized;
+            var up = Vector3.Cross(axis, right);
+            var vertices = new List<Vector3>();
+            var normals = new List<Vector3>();
+            var triangles = new List<int>();
+            for (var i = 0; i < count; i++)
+            {
+                var depth = Mathf.Lerp(minDepth, maxDepth, Next());
+                var angle = Next() * Mathf.PI * 2f;
+                // Cone da câmera teleobjetiva (cameraMeters atrás da sonda, meio ângulo halfConeDegrees): cada pedra tem o mesmo
+                // tamanho angular típico, qualquer que seja a profundidade (muitas pequenas, poucas grandes), e todas cabem no quadro.
+                var distance = cameraMeters + depth;
+                var radial = distance * Mathf.Tan(halfConeDegrees * Mathf.Deg2Rad) * Mathf.Sqrt(Next());
+                var size = distance * Mathf.Lerp(minFraction, maxFraction, Next() * Next());
+                var center = axis * depth + right * (Mathf.Cos(angle) * radial) + up * (Mathf.Sin(angle) * radial);
+                AppendRock(vertices, normals, triangles, center, size, seed * 7919 + i);
+            }
+
+            mesh.Clear();
+            mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+            mesh.SetVertices(vertices);
+            mesh.SetNormals(normals);
+            mesh.SetTriangles(triangles, 0);
+            mesh.RecalculateBounds();
+        }
+
         public static void BrightStars(Mesh mesh, int count, int seed, float minDegrees, float maxDegrees)
         {
             var vertices = new List<Vector3>();

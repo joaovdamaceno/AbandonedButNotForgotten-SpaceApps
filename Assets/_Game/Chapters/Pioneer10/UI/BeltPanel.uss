@@ -219,3 +219,54 @@
     padding: var(--sa-space-2) var(--sa-space-4);
     margin: 0;
 }
+
+/* ---------- Contador de dias e rótulo da pedra (roteiro v2, cena 2) ---------- */
+
+.pio-count {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.pio-count__plate {
+    position: absolute;
+    left: 3%;
+    top: 6%;
+    padding: var(--sa-space-3) var(--sa-space-4);
+    display: none;
+}
+
+.pio-count__day {
+    font-size: var(--sa-text-title);
+    color: var(--sa-color-on-plate);
+    -unity-font-style: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.pio-count__date {
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    margin: 0;
+    padding: 0;
+}
+
+.pio-count__line {
+    position: absolute;
+    width: 2px;
+    height: 6%;
+    background-color: var(--sa-color-on-plate);
+    display: none;
+}
+
+.pio-count__note {
+    position: absolute;
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    background-color: rgba(16, 17, 19, 0.82);
+    padding: var(--sa-space-2) var(--sa-space-3);
+    border-radius: var(--sa-radius-md);
+    display: none;
+}

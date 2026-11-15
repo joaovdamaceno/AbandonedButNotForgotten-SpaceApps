@@ -63,8 +63,8 @@
     {
       "key": "PIO.02.05",
       "group": "narrative",
-      "pt": "Os instrumentos procuravam algo bem menor: só poeira fina tocou a sonda.",
-      "en": "The instruments listened for something far smaller: only fine dust brushed the probe."
+      "pt": "Os detectores acusaram só poeira fina.",
+      "en": "The detectors found only fine dust."
     },
     {
       "key": "PIO.02.06",
@@ -371,6 +371,24 @@
       "group": "hud",
       "pt": "Passo {count}/3",
       "en": "Step {count}/3"
+    },
+    {
+      "key": "PIO.UI.belt_day",
+      "group": "hud",
+      "pt": "Dia {count} / 215",
+      "en": "Day {count} / 215"
+    },
+    {
+      "key": "PIO.UI.belt_months",
+      "group": "hud",
+      "pt": "JAN FEV MAR ABR MAI JUN JUL AGO SET OUT NOV DEZ",
+      "en": "JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC"
+    },
+    {
+      "key": "PIO.UI.belt_nearest",
+      "group": "hud",
+      "pt": "307 Nike · o asteroide conhecido mais próximo",
+      "en": "307 Nike · the nearest known asteroid"
     },
     {
       "key": "PIO.UI.spin",

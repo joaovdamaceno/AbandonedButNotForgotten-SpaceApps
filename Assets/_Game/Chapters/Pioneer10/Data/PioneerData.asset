@@ -18,7 +18,7 @@ MonoBehaviour:
     nominalSeconds: 40
   - id: PIO.Belt
     order: 2
-    nominalSeconds: 58
+    nominalSeconds: 54
   - id: PIO.JupiterApproach
     order: 3
     nominalSeconds: 27
@@ -105,8 +105,8 @@ MonoBehaviour:
     state: PIO.Belt
     textKey: PIO.02.02
     timing: 0
-    startSeconds: 6
-    endSeconds: 12
+    startSeconds: 6.5
+    endSeconds: 12.5
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -116,7 +116,7 @@ MonoBehaviour:
     textKey: PIO.02.03
     timing: 0
     startSeconds: 13
-    endSeconds: 20
+    endSeconds: 19
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -125,8 +125,8 @@ MonoBehaviour:
     state: PIO.Belt
     textKey: PIO.02.04
     timing: 0
-    startSeconds: 27
-    endSeconds: 34
+    startSeconds: 34.5
+    endSeconds: 41.5
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -135,8 +135,8 @@ MonoBehaviour:
     state: PIO.Belt
     textKey: PIO.02.05
     timing: 0
-    startSeconds: 34
-    endSeconds: 40
+    startSeconds: 42
+    endSeconds: 46
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -145,11 +145,11 @@ MonoBehaviour:
     state: PIO.Belt
     textKey: PIO.02.06
     timing: 0
-    startSeconds: 51
-    endSeconds: 58
+    startSeconds: 46.5
+    endSeconds: 53.5
     triggerId: 
     minimumReadSeconds: 0
-    gateId: PIO.Belt.Gate
+    gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.03.01
     state: PIO.JupiterApproach
@@ -628,8 +628,8 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.02.05
     group: narrative
-    ptText: "Os instrumentos procuravam algo bem menor: s\xF3 poeira fina tocou a sonda."
-    enText: 'The instruments listened for something far smaller: only fine dust brushed the probe.'
+    ptText: "Os detectores acusaram s\xF3 poeira fina."
+    enText: The detectors found only fine dust.
     ptStatus: derived
     enStatus: derived
   - key: PIO.02.06
@@ -936,6 +936,24 @@ MonoBehaviour:
     group: hud
     ptText: Passo {count}/3
     enText: Step {count}/3
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.belt_day
+    group: hud
+    ptText: Dia {count} / 215
+    enText: Day {count} / 215
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.belt_months
+    group: hud
+    ptText: JAN FEV MAR ABR MAI JUN JUL AGO SET OUT NOV DEZ
+    enText: JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.belt_nearest
+    group: hud
+    ptText: "307 Nike \xB7 o asteroide conhecido mais pr\xF3ximo"
+    enText: "307 Nike \xB7 the nearest known asteroid"
     ptStatus: derived
     enStatus: derived
   - key: PIO.UI.spin
