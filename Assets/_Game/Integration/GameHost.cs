@@ -93,6 +93,14 @@ namespace Abandoned.SpaceApps.Integration
                 var subtitleDocument = subtitles.GetComponentInParent<UIDocument>();
                 if (subtitleDocument != null)
                     subtitleDocument.sortingOrder = 6f;
+                // Mesmo formato de legenda do Surveyor 3 (faixa larga, fundo a 50%, texto creme).
+                var host = subtitleDocument != null ? subtitleDocument.rootVisualElement?.Q("subtitle-host") : null;
+                var style = Resources.Load<StyleSheet>("MarsSubtitles");
+                if (host != null && style != null)
+                {
+                    host.styleSheets.Add(style);
+                    host.AddToClassList("mars-subtitles");
+                }
                 subtitles.Initialize(localization, null);
             }
             else
