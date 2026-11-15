@@ -48,7 +48,8 @@ namespace Abandoned.SpaceApps.Opportunity
         public void CompleteHardware(){if(Stage==ChapterStage.HeatShieldExploration)HardwareStudied=true;}
         public bool ShelterPrepared { get; private set; }
         public bool PanoramaRecorded { get; private set; }
-        public bool MemoryTransmitted { get; private set; }
+        /// <summary>A comparação do Sol limpo com o Sol sob poeira (a última medição do vale) foi registrada.</summary>
+        public bool SolarComparisonDone { get; private set; }
         public bool ContinueToNextChapter { get; set; }
         public event Action<ChapterStage> Changed;
         public bool Advance()
@@ -58,7 +59,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if (Stage == ChapterStage.RockAnalysis && !ScienceComplete) return false;
             if(Stage==ChapterStage.HeatShieldExploration&&!HardwareStudied)return false;
             if (Stage == ChapterStage.FinalExploration && !PanoramaRecorded) return false;
-            if (Stage == ChapterStage.DustStorm && !MemoryTransmitted) return false;
+            if (Stage == ChapterStage.DustStorm && !SolarComparisonDone) return false;
             Set(Next(Stage,ContinueToNextChapter));
             return true;
         }
@@ -66,8 +67,8 @@ namespace Abandoned.SpaceApps.Opportunity
         public void CompleteScience() { if (Stage == ChapterStage.RockAnalysis) ScienceComplete = true; }
         public void PrepareShelter() { if (Stage == ChapterStage.DustStorm) ShelterPrepared = true; }
         public void RecordPanorama() { if(Stage==ChapterStage.FinalExploration||Stage==ChapterStage.DustStorm)PanoramaRecorded=true; }
-        public void TransmitMemory() { if(Stage==ChapterStage.DustStorm)MemoryTransmitted=true; }
-        public void Reset() { HardwareStudied = RockReached = ScienceComplete = ShelterPrepared = PanoramaRecorded = MemoryTransmitted = false; Set(FirstStage); }
+        public void CompleteSolarComparison() { if(Stage==ChapterStage.DustStorm)SolarComparisonDone=true; }
+        public void Reset() { HardwareStudied = RockReached = ScienceComplete = ShelterPrepared = PanoramaRecorded = SolarComparisonDone = false; Set(FirstStage); }
         public void SetForPreview(ChapterStage stage) { Set(stage); }
         void Set(ChapterStage stage) { Stage = stage; Changed?.Invoke(stage); }
     }

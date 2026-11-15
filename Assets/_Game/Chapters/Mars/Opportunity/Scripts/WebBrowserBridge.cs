@@ -84,7 +84,7 @@ namespace Abandoned.SpaceApps.Opportunity
                 var science=chapter.science;
                 if(science)snapshot.science=new ScienceSnapshot{active=science.Active,phase=science.Phase.ToString(),pressure=science.Pressure,progress=science.Progress,temperature=science.Temperature,stowed=science.ToolStowed,deployed=science.ToolDeployed,observations=science.Observations};
                 var journey=chapter.journey;
-                if(journey)snapshot.journey=new JourneySnapshot{traverse=journey.TraverseStep,panoramas=journey.PanoramaCount,transmitting=journey.Transmitting,choosing=journey.ChoosingMemory,complete=journey.TransmissionComplete,frames=journey.photography?journey.photography.Frames.Count:0,photoActive=journey.photography&&journey.photography.Active};
+                if(journey)snapshot.journey=new JourneySnapshot{traverse=journey.TraverseStep,panoramas=journey.PanoramaCount,frames=journey.photography?journey.photography.Frames.Count:0,photoActive=journey.photography&&journey.photography.Active};
             }
             OpportunityBrowser_Snapshot(JsonUtility.ToJson(snapshot));
 #endif
@@ -97,7 +97,7 @@ namespace Abandoned.SpaceApps.Opportunity
         [System.Serializable]sealed class InteractionSnapshot{public string id;public bool available;}
         [System.Serializable]sealed class FieldSnapshot{public string study;public int sample;public bool result,stable,berries,shield,meteorite,sunClear,sunDust;public float aimX,aimY,dwell;}
         [System.Serializable]sealed class ScienceSnapshot{public bool active,stowed,deployed;public string phase;public float pressure,progress,temperature;public int observations;}
-        [System.Serializable]sealed class JourneySnapshot{public int traverse,panoramas,frames;public bool transmitting,choosing,complete,photoActive;}
+        [System.Serializable]sealed class JourneySnapshot{public int traverse,panoramas,frames;public bool photoActive;}
         void OnDestroy(){if(Current==this)Current=null;}
     }
 }

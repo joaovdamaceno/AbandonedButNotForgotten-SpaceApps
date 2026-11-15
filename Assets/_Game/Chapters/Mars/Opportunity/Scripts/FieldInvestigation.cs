@@ -76,7 +76,6 @@ namespace Abandoned.SpaceApps.Opportunity
                 if(Study==FieldStudy.Berries)followUp=new[]{"v14.berries.water","v14.berries.doubt","route.outcrop"};
                 else if(Study==FieldStudy.Shield)followUp=new[]{"v14.shield.odd","v10.goal.meteorite"};
                 else if(Study==FieldStudy.SunClear)followUp=new[]{"objective.panorama"};
-                else if(Study==FieldStudy.SunDust)followUp=new[]{"v14.send.reason","objective.send"};
             }
             StopAllCoroutines();if(Capturing&&chapter&&chapter.hud)chapter.hud.HideForCapture(false);Capturing=false;
             if(Active&&!string.IsNullOrEmpty(previousCue))chapter.sound.Cue(previousCue);
