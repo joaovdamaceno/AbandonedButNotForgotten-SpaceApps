@@ -1,0 +1,14 @@
+[
+  {
+    "level": "warn",
+    "message": "Shader 'Hidden/Universal Render Pipeline/Edge Adaptive Spatial Upsampling' is not supported or has been stripped from the build (in 'Blit FSR Upscaling'). PostProcessing render passes will not execute.\n",
+    "timestamp": "2026-11-15T00:44:22.580Z",
+    "url": "http://127.0.0.1:8751/Build/SUR011Web.framework.js.gz"
+  },
+  {
+    "level": "warn",
+    "message": "Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior.",
+    "timestamp": "2026-11-15T00:44:31.815Z",
+    "url": "http://127.0.0.1:8751/Build/SUR011Web.framework.js.gz"
+  }
+]
