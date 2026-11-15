@@ -1,0 +1,619 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 17260)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 8040)
+VBCSCompiler prewarm took 23.61 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.9f1 (8c45277fb9c5) revision 9192743'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-kauawerle" at "2026-11-15T00:21:00.9026774Z"
+OS: 'Windows 11  (10.0.26200) CoreSingleLanguage' Language: 'en' Physical Memory: 20301 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-15T00:21:00Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Unity.exe
+-batchmode
+-nographics
+-projectPath
+C:\www\AbandonedButNotForgotten-SpaceApps
+-runTests
+-testPlatform
+EditMode
+-assemblyNames
+Abandoned.SpaceApps.Surveyor.Scoop.Tests
+-testResults
+C:\www\AbandonedButNotForgotten-SpaceApps\QA\SUR-009\editmode.xml
+-logFile
+QA/SUR-009/logs/tests.log
+Successfully changed project path to: C:\www\AbandonedButNotForgotten-SpaceApps
+C:/www/AbandonedButNotForgotten-SpaceApps
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [8592]  Target information:
+
+Player connection [8592]  * "[IP] 172.26.80.1 [Port] 55504 [Flags] 2 [Guid] 1840618132 [EditorId] 1840618132 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DHKL54U) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [8592]  * "[IP] 192.168.4.26 [Port] 55504 [Flags] 2 [Guid] 1840618132 [EditorId] 1840618132 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DHKL54U) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [8592] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [8592] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 10004, path: "C:/Program Files/WindowsApps/UnityTechnologies.UnityHub_4.0.0.65535_x64__2vrhnee42bhxm/app/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              4e331450438b4f608ad4dc2650d7d0db
+  Correlation Id:          dba1898c99d001a3a2dc3f8b990eeea6
+  External correlation Id: 3142204496543259241
+  Machine Id:              9Q8MA2ohOdq/m4o9UMGdlzVOLa8=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-kauawerle" (connect: 0.00s, validation: 0.00s, handshake: 0.33s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-kauawerle-notifications" at "2026-11-15T00:21:01.2332038Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 4673248908867-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Module] Licensing Background thread has ended after 0.34s
+[Package Manager] Connected to IPC stream "Upm-17044" after 0.4 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 0df171d908f8e6ab4ef6b63a288b434a
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052576
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = C:/www/AbandonedButNotForgotten-SpaceAppsUnity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.9f1 (8c45277fb9c5)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/www/AbandonedButNotForgotten-SpaceApps/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56044
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003368 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.068 seconds
+Domain Reload Profiling: 1905ms
+	BeginReloadAssembly (201ms)
+		CreateAndSetChildDomain (20ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (99ms)
+	LoadAllAssembliesAndSetupDomain (500ms)
+		LoadAssemblies (176ms)
+		TypeCache.Refresh (346ms)
+			TypeCache.ScanAssembly (326ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (1069ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			BeforeProcessingInitializeOnLoad (159ms)
+			ProcessInitializeOnLoadAttributes (240ms)
+			ProcessInitializeOnLoadMethodAttributes (361ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 33 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ide.rider@3.1.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.ide.rider@570989d4a882)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.20.1 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.searcher@4.9.5 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+  Built-in packages:
+    com.unity.render-pipelines.universal@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.render-pipelines.universal@2a6014b851d8)
+    com.unity.test-framework@1.8.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.test-framework@01a8b42f9cf6)
+    com.unity.modules.animation@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.audio@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.ui@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.render-pipelines.core@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.render-pipelines.core@77e675a23c5f)
+    com.unity.shadergraph@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.shadergraph@807b608040c3)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.modules.physics2d@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.graph-authoring@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.burst@2.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.collections@c70d71c1212e)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.test-framework.performance@6.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.test-framework.performance@816c370aad5b)
+  Git packages:
+    com.coplaydev.unity-mcp@https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#5914ce5bd9d11d66a7896ce72e395b0a2f049c2a (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.coplaydev.unity-mcp@ee0afac15aa0)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.02 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/www/AbandonedButNotForgotten-SpaceApps
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\NetStandard\Extensions\2.0.0\System.Runtime.InteropServices.WindowsRuntime.dll"
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.ComponentModel.Composition.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ComponentModel.Composition.dll"
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 6s836ms
+[619/810    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[758/810    3s] Csc Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.dll (+2 others)
+Assets\_Game\Chapters\Surveyor\Scripts\SurveyorScoop.cs(248,77): warning CS0414: The field 'SurveyorScoop.ownsLease' is assigned but its value is never used
+
+Assets\_Game\Chapters\Mars\Runtime\MarsChapterFlow.cs(617,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+[771/810    1s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Television.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Television.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[772/810    1s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.ContractExamples.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.ContractExamples.dll, with 148 defines and 268 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[773/810    1s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Descent.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Descent.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[774/810    1s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Midcourse.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Midcourse.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[775/810    1s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Mars.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Mars.Tests.dll, with 146 defines and 301 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[776/810    1s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Site.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Site.Tests.dll, with 146 defines and 300 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[777/810    1s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Core.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Core.Tests.dll, with 146 defines and 303 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[778/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Tests.dll, with 146 defines and 300 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[779/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Launch.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Launch.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[796/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Commands.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Commands.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[797/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Scoop.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Scoop.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[802/810    1s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.dll, with 148 defines and 273 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[803/810    0s] CopyFiles Library/ScriptAssemblies/Abandoned.SpaceApps.pdb
+[804/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Editor.dll, with 146 defines and 309 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[806/810    0s] CopyFiles Library/ScriptAssemblies/Abandoned.SpaceApps.dll
+*** Tundra build success (6.79 seconds), 17 items updated, 810 evaluated
+Assets\_Game\Chapters\Surveyor\Scripts\SurveyorScoop.cs(248,77): warning CS0414: The field 'SurveyorScoop.ownsLease' is assigned but its value is never used
+Assets\_Game\Chapters\Mars\Runtime\MarsChapterFlow.cs(617,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+Total cache size 43664388
+Total cache size after purge 43664388, took 00:00:00.1247985
+AssetDatabase: script compilation time: 7.884139s
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.896 seconds
+Domain Reload Profiling: 3699ms
+	BeginReloadAssembly (536ms)
+		DisableScriptedObjects (64ms)
+		CreateAndSetChildDomain (89ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (41ms)
+	initialDomainReloadingComplete (136ms)
+	LoadAllAssembliesAndSetupDomain (1031ms)
+		LoadAssemblies (634ms)
+		TypeCache.Refresh (239ms)
+			TypeCache.ScanAssembly (218ms)
+		AnalyzeDomain (108ms)
+			BuildScriptInfoCaches (94ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (1933ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (3ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (204ms)
+			ProcessInitializeOnLoadAttributes (563ms)
+			ProcessInitializeOnLoadMethodAttributes (380ms)
+			AfterProcessingInitializeOnLoad (11ms)
+		AwakeInstancesAfterBackupRestoration (39ms)
+Starting new worker id: 0 with log in C:/www/AbandonedButNotForgotten-SpaceApps/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=85a2322ce0cba4346b9d5449f48caab1): Total: 12.774 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=2661 ms
+		Asset DB Callback time: managed=263 ms, native=23 ms
+		Scripting: domain reloads=1, domain reload time=1861 ms, compile time=7890 ms, other=73 ms
+		Project Asset Count: scripts=1047, non-scripts=2185
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 24.090ms
+	ApplyChangesToAssetFolders: 0.847ms
+	Scan: 175.477ms
+	Collect global state as custom dependencies: 44.578ms
+	OnSourceAssetsModified: 0.809ms
+	CategorizeScriptCompilationAssets: 26.652ms
+	ProcessAssetsWithTransientArtifactChanges: 98.635ms
+	CategorizeAssets: 75.366ms
+	CompileScripts: 7889.906ms
+	ImportOutOfDateAssets: 1999.378ms (1978.957ms without children)
+		UnloadImportedAssets: 3.899ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.279ms
+		ImportSchedulerStart: 15.198ms
+	PostProcessAllAssets: 265.406ms
+		VCAutoAddAssetPostprocess 1.431ms
+		XRBuildSystem.XRAssetImported 0.290ms
+		PostProcessCallbackCreateDeferredMaterials 0.055ms
+		MonoPostProcessAllAssets: 262.577ms
+			AssetPostprocessor.OnPostprocessAllAssets 132.303ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 33.143ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 22.005ms
+			SyncVS.PostprocessSyncProject 16.126ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 13.340ms
+			AssetChangedListener.OnPostprocessAllAssets 2.811ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 2.625ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 2.420ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 2.332ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 2.284ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.776ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 1.107ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.943ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.933ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.713ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.673ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.573ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.537ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.424ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.418ms
+			PostProcessor.OnPostprocessAllAssets 0.409ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.356ms
+			AssetEvents.OnPostprocessAllAssets 0.316ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.270ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.266ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.263ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.250ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.234ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.174ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.116ms
+	PostAssetChangesProfiler: 1.575ms
+	UnloadStreamsBegin: 3.123ms
+	PersistCurrentRevisions: 0.284ms
+	GenerateScriptTypeHashes: 6.201ms
+	GenerateScriptTypeSerializationHashes: 8.844ms
+	Untracked: 2128.364ms
+
+Application.AssetDatabase Initial Refresh End
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Scanning for USB devices : 1.087ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Abandoned, But Not Forgotten
+Unloading 27 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3971 unused Assets / (1.9 MB). Loaded Objects now: 4985.
+Memory consumption went from 345.3 MB to 343.4 MB.
+Total: 11.351900 ms (FindLiveObjects: 0.927200 ms CreateObjectMapping: 0.524600 ms MarkObjects: 8.495300 ms  DeleteObjects: 1.173700 ms)
+
+Microsoft Media Foundation video decoding to texture disabled: graphics device is Null, only Direct3D 11 and Direct3D 12 (only on desktop) are supported for hardware-accelerated video decoding.
+[Project] Loading completed in 17.294 seconds
+	Project init time: 				16.939 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		0.432 seconds
+		Asset Database init time: 		0.846 seconds
+		Global illumination init time: 	0.002 seconds
+		Assemblies load time: 			1.964 seconds
+		Unity extensions init time: 	0.018 seconds
+		Asset Database refresh time: 	12.774 seconds
+	Scene opening time: 			0.133 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1794702078165,"processId":17044,"projectLoad":17.294201400000002,"projectInit":16.9390631,"templateInit":0.0,"packageManagerInit":0.432149,"assetDatabaseInit":0.8458509,"globalIlluminationInit":0.0019906,"assembliesLoad":1.9638833,"unityExtensionsInit":0.0180321,"assetDatabaseRefresh":12.7741087,"sceneOpening":0.1327486}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1794702078166,"processId":17044,"editorVersion":"6000.6.9f1 (8c45277fb9c5)","branch":"6000.6/staging","buildType":"Release","platform":"Windows"}
+[Licensing::Client] Successfully resolved entitlement details
+Running tests for ExecutionSettings with details:
+targetPlatform = 
+playerHeartbeatTimeout = 600
+filters[0] = 
+   Filter with settings:
+   testMode = EditMode
+   targetPlatform = 
+   testNames = null
+   groupNames = null
+   categoryNames = null
+   assemblyNames = Abandoned.SpaceApps.Surveyor.Scoop.Tests
+ignoreTests = {}
+featureFlags = null
+
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:InitializeAndExecuteRun (string[]) (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/CommandLineTest/Executer.cs:53)
+UnityEditor.TestTools.TestRunner.CommandLineTest.TestStarter:InitializeAndExecuteRun () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/CommandLineTest/TestStarter.cs:64)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/CommandLineTest/Executer.cs Line: 53)
+
+Start Indexing on Editor startup
+[Indexing] Starting Initial Indexing for Assets
+[UnityConnectServicesConfig] config is NOT valid, switching to default
+Created GICache directory at C:/Users/kauawerle/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.036s, timestamps: [17.300 - 17.336]
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets / (Unknown). Loaded Objects now: 5146.
+Memory consumption went from 357.7 MB to 357.7 MB.
+Total: 15.739400 ms (FindLiveObjects: 0.492900 ms CreateObjectMapping: 0.139000 ms MarkObjects: 14.859400 ms  DeleteObjects: 0.012300 ms)
+
+Executing IPrebuildSetup for: Unity.PerformanceTesting.Editor.TestRunBuilder.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.BuildActionTaskBase`1/<ExecuteMethods>d__8<UnityEngine.TestTools.IPrebuildSetup>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs:48)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.BuildActionTaskBase`1/<Execute>d__7<UnityEngine.TestTools.IPrebuildSetup>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs:34)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteStep () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:194)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteCallback () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:129)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs Line: 48)
+
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Applied No Throttling for test run.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+MCPForUnity.Editor.Helpers.McpLog:Info (string,bool) (at ./Library/PackageCache/com.coplaydev.unity-mcp@ee0afac15aa0/Editor/Helpers/McpLog.cs:40)
+MCPForUnity.Editor.Services.TestRunnerNoThrottle:ApplyNoThrottling () (at ./Library/PackageCache/com.coplaydev.unity-mcp@ee0afac15aa0/Editor/Services/TestRunnerNoThrottle.cs:101)
+MCPForUnity.Editor.Services.TestRunnerNoThrottle/TestCallbacks:RunStarted (UnityEditor.TestTools.TestRunner.Api.ITestAdaptor) (at ./Library/PackageCache/com.coplaydev.unity-mcp@ee0afac15aa0/Editor/Services/TestRunnerNoThrottle.cs:138)
+UnityEditor.TestTools.TestRunner.Api.CallbacksDelegator/<>c__DisplayClass7_0:<RunStarted>b__0 (UnityEditor.TestTools.TestRunner.Api.ICallbacks) (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/Api/CallbacksDelegator.cs:42)
+UnityEditor.TestTools.TestRunner.Api.CallbacksDelegator:TryInvokeAllCallbacks (System.Action`1<UnityEditor.TestTools.TestRunner.Api.ICallbacks>) (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/Api/CallbacksDelegator.cs:135)
+UnityEditor.TestTools.TestRunner.Api.CallbacksDelegator:RunStarted (NUnit.Framework.Interfaces.ITest) (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/Api/CallbacksDelegator.cs:42)
+UnityEngine.Events.InvokableCall`1<NUnit.Framework.Interfaces.ITest>:Invoke (NUnit.Framework.Interfaces.ITest)
+UnityEngine.Events.UnityEvent`1<NUnit.Framework.Interfaces.ITest>:Invoke (NUnit.Framework.Interfaces.ITest)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.Events.RunStartedInvocationEvent/<Execute>d__0:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/Tasks/Events/RunStartedInvocationEvent.cs:15)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteStep () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:194)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteCallback () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:129)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.coplaydev.unity-mcp@ee0afac15aa0/Editor/Helpers/McpLog.cs Line: 40)
+
+Worker ready: AssetImportWorkerHW0 0
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+MCPForUnity.Editor.Helpers.McpLog:Info (string,bool) (at ./Library/PackageCache/com.coplaydev.unity-mcp@ee0afac15aa0/Editor/Helpers/McpLog.cs:40)
+MCPForUnity.Editor.Services.TestRunnerNoThrottle:RestoreThrottling () (at ./Library/PackageCache/com.coplaydev.unity-mcp@ee0afac15aa0/Editor/Services/TestRunnerNoThrottle.cs:114)
+MCPForUnity.Editor.Services.TestRunnerNoThrottle/TestCallbacks:RunFinished (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor) (at ./Library/PackageCache/com.coplaydev.unity-mcp@ee0afac15aa0/Editor/Services/TestRunnerNoThrottle.cs:143)
+UnityEditor.TestTools.TestRunner.Api.CallbacksDelegator/<>c__DisplayClass9_0:<RunFinished>b__0 (UnityEditor.TestTools.TestRunner.Api.ICallbacks) (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/Api/CallbacksDelegator.cs:55)
+UnityEditor.TestTools.TestRunner.Api.CallbacksDelegator:TryInvokeAllCallbacks (System.Action`1<UnityEditor.TestTools.TestRunner.Api.ICallbacks>) (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/Api/CallbacksDelegator.cs:135)
+UnityEditor.TestTools.TestRunner.Api.CallbacksDelegator:RunFinished (NUnit.Framework.Interfaces.ITestResult) (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/Api/CallbacksDelegator.cs:55)
+UnityEngine.Events.InvokableCall`1<NUnit.Framework.Interfaces.ITestResult>:Invoke (NUnit.Framework.Interfaces.ITestResult)
+UnityEngine.Events.UnityEvent`1<NUnit.Framework.Interfaces.ITestResult>:Invoke (NUnit.Framework.Interfaces.ITestResult)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.Events.RunFinishedInvocationEvent/<Execute>d__0:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/Tasks/Events/RunFinishedInvocationEvent.cs:24)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteStep () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:194)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteCallback () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:129)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.coplaydev.unity-mcp@ee0afac15aa0/Editor/Helpers/McpLog.cs Line: 40)
+
+Saving results to: C:/Users/kauawerle/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+Saving results to: C:\www\AbandonedButNotForgotten-SpaceApps\QA\SUR-009\editmode.xml
+Executing IPostBuildCleanup for: Unity.PerformanceTesting.Editor.TestRunBuilder.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.BuildActionTaskBase`1/<ExecuteMethods>d__8<UnityEngine.TestTools.IPostBuildCleanup>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs:48)
+UnityEditor.TestTools.TestRunner.TestRun.Tasks.BuildActionTaskBase`1/<Execute>d__7<UnityEngine.TestTools.IPostBuildCleanup>:MoveNext () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs:34)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteStep () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:194)
+UnityEditor.TestTools.TestRunner.TestRun.TestJobRunner:ExecuteCallback () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/TestJobRunner.cs:129)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/TestRun/Tasks/BuildActionTaskBase.cs Line: 48)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets / (Unknown). Loaded Objects now: 5146.
+Memory consumption went from 363.8 MB to 363.8 MB.
+Total: 14.554700 ms (FindLiveObjects: 0.546300 ms CreateObjectMapping: 0.140400 ms MarkObjects: 13.580500 ms  DeleteObjects: 0.014100 ms)
+
+DisplayProgressbar: Undo
+Test run completed. Exiting with code 0 (Ok). Run completed.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:ExitApplication (UnityEditor.TestTools.TestRunner.CommandLineTest.Executer/ReturnCodes,string) (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/CommandLineTest/Executer.cs:81)
+UnityEditor.TestTools.TestRunner.CommandLineTest.Executer:ExitIfRunIsCompleted () (at ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/CommandLineTest/Executer.cs:74)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: ./Library/PackageCache/com.unity.test-framework@01a8b42f9cf6/UnityEditor.TestRunner/CommandLineTest/Executer.cs Line: 81)
+
+MonoPathRemapper: Attempts to remap: 19335; Successful remaps: 11422
+Serialized file version minimum: 23, current 23
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-kauawerle-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-kauawerle channel disconnected successfully.
+Lingering sessions upon destruction of worker manager
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+Shut down UDS service system complete
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+abort_threads: Failed aborting id: 0000000000003C14, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000002768, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000003C14, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000002768, mono_thread_manage will ignore it
+
+debugger-agent: Unable to listen on 3256
+VBCSCompilerPreWarmer: requested VBCSCompiler shutdown
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1794702084230,"processId":17044,"allocatedMemory":15298608,"memoryLabels":[{"Default":171093},{"Permanent":15516},{"NewDelete":68911},{"Thread":4197944},{"Manager":31677},{"VertexData":8},{"Geometry":824},{"Texture":24},{"Shader":840419},{"Material":132},{"GfxDevice":55968},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":16704},{"Input":42840},{"JobScheduler":264},{"TextLib":336},{"Mono":48},{"MonoCode":64},{"ScriptingNativeRuntime":1314896},{"BaseObject":66384},{"Resource":1444},{"Renderer":2504},{"Transform":4781},{"File":4424},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":605891},{"StaticString":3808},{"Utility":2673718},{"Curl":2676},{"PoolAlloc":2264},{"AI":80},{"TypeTree":17165},{"ScriptManager":12688},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":288},{"WebRequest":552},{"VR":49650},{"SceneManager":608},{"Video":64},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":464},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14536},{"Identifiers":7152},{"EntityIdStore":33088},{"Gui":128},{"EditorUtility":118179},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4482943},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40465},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":215},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3232},{"Windowing":456},{"Licensing":840},{"AssetReference":32},{"IPCStream":32}]}

@@ -315,50 +315,6 @@ namespace Abandoned.SpaceApps.EditorTools
             return texture;
         }
 
-        /// <summary>
-        /// Júpiter artístico PROVISÓRIO (ocre/creme): faixas por latitude com turbulência suave e uma oval discreta.
-        /// Não é imagem da missão; a textura com crédito NASA entra no polimento (PIO-016) ou fica esta, declarada.
-        /// </summary>
-        public static Texture2D JupiterBands(int width, int height, int seed)
-        {
-            var bands = new[]
-            {
-                (-90f, new Color(0.55f, 0.47f, 0.40f)), (-62f, new Color(0.66f, 0.56f, 0.45f)), (-48f, new Color(0.80f, 0.70f, 0.56f)),
-                (-36f, new Color(0.64f, 0.50f, 0.37f)), (-26f, new Color(0.86f, 0.78f, 0.64f)), (-18f, new Color(0.62f, 0.45f, 0.32f)),
-                (-8f, new Color(0.90f, 0.84f, 0.72f)), (6f, new Color(0.88f, 0.80f, 0.66f)), (14f, new Color(0.60f, 0.44f, 0.31f)),
-                (22f, new Color(0.84f, 0.76f, 0.62f)), (32f, new Color(0.66f, 0.53f, 0.40f)), (44f, new Color(0.79f, 0.70f, 0.57f)),
-                (60f, new Color(0.63f, 0.54f, 0.44f)), (90f, new Color(0.54f, 0.47f, 0.41f)),
-            };
-
-            var pixels = new Color[width * height];
-            for (var y = 0; y < height; y++)
-            {
-                var latitude = ((y + 0.5f) / height - 0.5f) * 180f;
-                for (var x = 0; x < width; x++)
-                {
-                    var u = (x + 0.5f) / width;
-                    var phi = u * Mathf.PI * 2f;
-                    var p = new Vector3(Mathf.Cos(phi), latitude / 40f, Mathf.Sin(phi));
-                    var wobble = (Fbm(p * 2.5f, seed, 4) - 0.5f) * 5.5f + Mathf.Sin(phi * 9f + latitude * 0.3f) * 0.8f;
-                    var color = BandColor(bands, latitude + wobble);
-                    var grain = (Fbm(new Vector3(phi * 6f, latitude * 0.9f, 0f), seed + 7, 3) - 0.5f) * 0.06f;
-                    color += new Color(grain, grain * 0.9f, grain * 0.75f);
-
-                    // Oval discreta no hemisfério sul (composição artística).
-                    var dLon = Mathf.DeltaAngle(u * 360f, 210f) / 11f;
-                    var dLat = (latitude + 22f) / 5.5f;
-                    var oval = Mathf.Exp(-(dLon * dLon + dLat * dLat));
-                    color = Color.Lerp(color, new Color(0.74f, 0.46f, 0.33f), oval * 0.7f);
-                    pixels[y * width + x] = color;
-                }
-            }
-
-            var texture = new Texture2D(width, height, TextureFormat.RGB24, true, false);
-            texture.SetPixels(Encode(pixels));
-            texture.Apply(true);
-            return texture;
-        }
-
         static Color BandColor((float latitude, Color color)[] bands, float latitude)
         {
             for (var i = 0; i < bands.Length - 1; i++)
