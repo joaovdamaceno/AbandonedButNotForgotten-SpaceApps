@@ -80,5 +80,8 @@
                 <ui:VisualElement name="timeline-marker" picking-mode="Ignore" class="pio-hud__marker" />
             </ui:VisualElement>
         </ui:VisualElement>
+
+        <!-- Cena 9 · As seis primeiras vezes: estrelas criadas pela vista, uma por vez, ao redor da sonda. -->
+        <ui:VisualElement name="firsts" picking-mode="Ignore" class="pio-hud__firsts" />
     </ui:VisualElement>
 </ui:UXML>

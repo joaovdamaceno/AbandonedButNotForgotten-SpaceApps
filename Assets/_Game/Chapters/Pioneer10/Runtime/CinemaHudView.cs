@@ -47,7 +47,9 @@ namespace Abandoned.SpaceApps
 
         VisualElement root, staticLayer, radiation, radiationFill, speed, distances, moonFill, cloudsFill;
         Label radiationTitle, speedLabel, moonLabel, cloudsLabel;
-        VisualElement years, energyFill, timelineTicks, timelineMarker;
+        VisualElement years, energyFill, timelineTicks, timelineMarker, firsts;
+        readonly VisualElement[] firstStars = new VisualElement[PioneerFirstsHud.StarCount];
+        readonly Label[] firstLabels = new Label[PioneerFirstsHud.StarCount];
         Label yearBig, yearEvent, yearNote, instrumentsTitle, energyTitle, energyLaunch, energyJupiter;
         readonly VisualElement[] instrumentRows = new VisualElement[5];
         readonly Label[] instrumentLabels = new Label[5];
@@ -96,6 +98,8 @@ namespace Abandoned.SpaceApps
             }
 
             BuildTimeline();
+            firsts = tree.Q("firsts");
+            BuildFirsts();
             if (staticLayer != null && staticTexture != null)
             {
                 staticLayer.style.backgroundImage = new StyleBackground(staticTexture);
@@ -188,6 +192,55 @@ namespace Abandoned.SpaceApps
                 timelineMarker.style.left = Length.Percent(Mathf.Clamp01(state.YearFraction) * 100f);
         }
 
+        /// <summary>
+        /// Cena 9: as seis estrelas das primeiras vezes. <paramref name="progress"/> (0–1 por estrela) é o quanto cada uma já acendeu e
+        /// <paramref name="labels"/> os rótulos (vazio = apagada).
+        /// </summary>
+        public void SetFirsts(bool visible, string[] labels, float[] progress)
+        {
+            EnsureBound();
+            Show(firsts, visible);
+            if (!visible || firsts == null || labels == null || progress == null)
+                return;
+
+            for (var i = 0; i < firstStars.Length && i < labels.Length && i < progress.Length; i++)
+            {
+                var lit = progress[i] > 0.001f;
+                Show(firstStars[i], lit);
+                if (!lit)
+                    continue;
+                SetText(firstLabels[i], labels[i]);
+                firstStars[i].style.scale = new Scale(new Vector3(progress[i], progress[i], 1f));
+                firstStars[i].style.opacity = progress[i];
+            }
+        }
+
+        /// <summary>Cria uma vez as seis estrelas (posição por <see cref="PioneerFirstsHud.ViewportOf"/>); o rótulo fica do lado de fora da elipse.</summary>
+        void BuildFirsts()
+        {
+            if (firsts == null || firsts.childCount > 0)
+                return;
+
+            for (var i = 0; i < PioneerFirstsHud.StarCount; i++)
+            {
+                var position = PioneerFirstsHud.ViewportOf(i);
+                var star = new VisualElement { name = "first-" + i, pickingMode = PickingMode.Ignore };
+                star.AddToClassList("pio-hud__first");
+                star.style.left = Length.Percent(position.x * 100f);
+                star.style.top = Length.Percent(position.y * 100f);
+                var glow = new VisualElement { pickingMode = PickingMode.Ignore };
+                glow.AddToClassList("pio-hud__firststar");
+                star.Add(glow);
+                var label = new Label { pickingMode = PickingMode.Ignore };
+                label.AddToClassList("pio-hud__firstlabel");
+                label.AddToClassList(position.x < PioneerFirstsHud.EllipseCenter.x ? "pio-hud__firstlabel--left" : "pio-hud__firstlabel--right");
+                star.Add(label);
+                firsts.Add(star);
+                firstStars[i] = star;
+                firstLabels[i] = label;
+            }
+        }
+
         /// <summary>Cria uma vez os traços da linha do tempo (1973–1998), mais altos e com o número nos anos de marco.</summary>
         void BuildTimeline()
         {
@@ -229,6 +282,7 @@ namespace Abandoned.SpaceApps
             Show(speed, false);
             Show(distances, false);
             Show(years, false);
+            Show(firsts, false);
         }
 
         void EnsureBound()

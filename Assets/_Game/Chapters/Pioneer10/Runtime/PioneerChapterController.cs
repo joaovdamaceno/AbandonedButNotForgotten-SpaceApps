@@ -68,6 +68,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("Cena 3: Júpiter nasce de um ponto e a Terra pequena entra para a comparação.")] PioneerJupiterReveal jupiterReveal;
         [SerializeField, Tooltip("Cena 5: medidor de radiação, estática, velocidade e comparação de distâncias.")] PioneerClosestHud closestHud;
         [SerializeField, Tooltip("Cena 7: ano, linha do tempo, instrumentos e medidor de energia dos RTG.")] PioneerYearsHud yearsHud;
+        [SerializeField, Tooltip("Cena 9: as seis estrelas das primeiras vezes.")] PioneerFirstsHud firstsHud;
         [SerializeField] ImagingRecovery recovery;
         [SerializeField] HistoricalImageReveal reveal;
         [SerializeField] PioneerPlaqueActivity plaque;
@@ -157,6 +158,7 @@ namespace Abandoned.SpaceApps
             jupiterReveal.Initialize(sequenceDirector);
             closestHud.Initialize(sequenceDirector, text);
             yearsHud.Initialize(sequenceDirector, text);
+            firstsHud.Initialize(sequenceDirector, text);
             imaging.Initialize(sequenceDirector, interactions, router, time, text);
             recovery.Initialize(interactions, time, text);
             reveal.Initialize(time, text);
@@ -349,6 +351,8 @@ namespace Abandoned.SpaceApps
                 closestHud.Hide();
             if (yearsHud != null)
                 yearsHud.Hide();
+            if (firstsHud != null)
+                firstsHud.Hide();
             if (cinemaState != null)
             {
                 cinemaState = null;
@@ -418,6 +422,7 @@ namespace Abandoned.SpaceApps
             Require(jupiterReveal, nameof(jupiterReveal));
             Require(closestHud, nameof(closestHud));
             Require(yearsHud, nameof(yearsHud));
+            Require(firstsHud, nameof(firstsHud));
             Require(imaging, nameof(imaging));
             Require(recovery, nameof(recovery));
             Require(reveal, nameof(reveal));

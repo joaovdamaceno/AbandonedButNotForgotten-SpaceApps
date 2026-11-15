@@ -313,3 +313,53 @@
     border-width: 2px;
     border-color: rgb(245, 241, 232);
 }
+
+/* ---------- Cena 9 · As seis primeiras vezes ---------- */
+
+.pio-hud__firsts {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+.pio-hud__first {
+    position: absolute;
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.pio-hud__firststar {
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 232, 170);
+    border-width: 3px;
+    border-color: rgba(255, 214, 120, 0.55);
+}
+
+.pio-hud__firstlabel {
+    position: absolute;
+    top: -17px;
+    padding: var(--sa-space-2) var(--sa-space-3);
+    border-radius: var(--sa-radius-md);
+    background-color: rgba(16, 17, 19, 0.82);
+    font-size: var(--sa-text-label);
+    color: var(--sa-color-on-plate);
+    max-width: 240px;
+    white-space: normal;
+}
+
+.pio-hud__firstlabel--right {
+    left: 22px;
+}
+
+.pio-hud__firstlabel--left {
+    right: 22px;
+}
