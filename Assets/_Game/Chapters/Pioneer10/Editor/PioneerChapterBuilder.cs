@@ -69,6 +69,15 @@ namespace Abandoned.SpaceApps.EditorTools
             so.FindProperty("closestSequence").objectReferenceValue = closest;
             so.FindProperty("beltCinemaSequence").objectReferenceValue = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(PioneerBeltBuilder.CinemaSequencePath);
             so.FindProperty("beltCounter").objectReferenceValue = Only<PioneerBeltCounter>();
+            var reveal3 = context.Component<PioneerJupiterReveal>(context.Child(root, "JupiterReveal"));
+            var reveal3So = new SerializedObject(reveal3);
+            reveal3So.FindProperty("presentation").objectReferenceValue = presentation;
+            reveal3So.FindProperty("sequence").objectReferenceValue = jupiter;
+            reveal3So.FindProperty("earth").objectReferenceValue = presentation.Earth;
+            reveal3So.FindProperty("earthFrom").vector3Value = PioneerStageBuilder.EarthCompareFrom;
+            reveal3So.FindProperty("earthTo").vector3Value = PioneerStageBuilder.EarthCompareTo;
+            reveal3So.ApplyModifiedPropertiesWithoutUndo();
+            so.FindProperty("jupiterReveal").objectReferenceValue = reveal3;
             so.FindProperty("imaging").objectReferenceValue = Only<PioneerImaging>();
             so.FindProperty("recovery").objectReferenceValue = Only<ImagingRecovery>();
             so.FindProperty("reveal").objectReferenceValue = Only<HistoricalImageReveal>();
@@ -150,10 +159,10 @@ namespace Abandoned.SpaceApps.EditorTools
             var shots = new[]
             {
                 new ShotDefinition("PIO03.Grow", 9f, "PIO.JupiterApproach",
-                    new[] { Key(0f, Vector3.zero, 70f), Key(9f, Vector3.zero, 44f) },
+                    new[] { Key(0f, Vector3.zero, 70f), Key(9f, Vector3.zero, PioneerStageBuilder.ApproachOpenFov) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
                 new ShotDefinition("PIO03.Open", 10f, "PIO.JupiterApproach",
-                    new[] { Key(0f, Vector3.zero, 44f), Key(10f, Vector3.zero, 44f) },
+                    new[] { Key(0f, Vector3.zero, PioneerStageBuilder.ApproachOpenFov), Key(10f, Vector3.zero, PioneerStageBuilder.ApproachOpenFov) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f, continueFromPreviousShot: true),
                 new ShotDefinition("PIO03.Instrument", 8f, "PIO.JupiterApproach.Instrument",
                     new[] { Key(0f, Vector3.zero, 38f), Key(8f, new Vector3(0f, 0f, 0.05f), 38f) },

@@ -65,6 +65,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("PIO.Closest (a máxima aproximação de Júpiter) é só cinema: conclui quando a sequência termina.")] SequenceDefinition closestSequence;
         [SerializeField, Tooltip("PIO.Belt (roteiro v2, cena 2) é só cinema: a sequência de 54 s e o contador de dias.")] SequenceDefinition beltCinemaSequence;
         [SerializeField] PioneerBeltCounter beltCounter;
+        [SerializeField, Tooltip("Cena 3: Júpiter nasce de um ponto e a Terra pequena entra para a comparação.")] PioneerJupiterReveal jupiterReveal;
         [SerializeField] ImagingRecovery recovery;
         [SerializeField] HistoricalImageReveal reveal;
         [SerializeField] PioneerPlaqueActivity plaque;
@@ -150,6 +151,7 @@ namespace Abandoned.SpaceApps
             launch.Initialize(sequenceDirector, interactions, router, time);
             belt.Initialize(sequenceDirector, interactions, router, time, text);
             beltCounter.Initialize(sequenceDirector, text);
+            jupiterReveal.Initialize(sequenceDirector);
             imaging.Initialize(sequenceDirector, interactions, router, time, text);
             recovery.Initialize(interactions, time, text);
             reveal.Initialize(time, text);
@@ -336,6 +338,8 @@ namespace Abandoned.SpaceApps
         {
             if (beltCounter != null)
                 beltCounter.Hide();
+            if (jupiterReveal != null)
+                jupiterReveal.Hide();
             if (cinemaState != null)
             {
                 cinemaState = null;
@@ -402,6 +406,7 @@ namespace Abandoned.SpaceApps
             Require(closestSequence, nameof(closestSequence));
             Require(beltCinemaSequence, nameof(beltCinemaSequence));
             Require(beltCounter, nameof(beltCounter));
+            Require(jupiterReveal, nameof(jupiterReveal));
             Require(imaging, nameof(imaging));
             Require(recovery, nameof(recovery));
             Require(reveal, nameof(reveal));

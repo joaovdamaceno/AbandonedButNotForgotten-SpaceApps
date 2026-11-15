@@ -442,6 +442,42 @@ namespace Abandoned.SpaceApps.EditorTools
             return texture;
         }
 
+        /// <summary>
+        /// Terra (equiretangular): oceano azul, continentes verde-marrom de baixa frequência, nuvens brancas e calotas polares. Estilizada
+        /// (os continentes não são os reais): serve para a comparação de tamanho com Júpiter, onde ocupa poucas dezenas de pixels.
+        /// </summary>
+        public static Texture2D EarthSurface(int width, int height, int seed)
+        {
+            var pixels = new Color32[width * height];
+            var ocean = new Color(0.05f, 0.2f, 0.52f);
+            var deep = new Color(0.02f, 0.1f, 0.34f);
+            var green = new Color(0.22f, 0.42f, 0.18f);
+            var brown = new Color(0.52f, 0.42f, 0.26f);
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var u = x / (float)width;
+                    var v = y / (float)height;
+                    var land = Smooth(0.54f, 0.58f, Fractal(u, v, 3, 5, seed));
+                    var color = Color.Lerp(ocean, deep, Fractal(u, v, 6, 3, seed + 7) * 0.8f);
+                    var ground = Color.Lerp(green, brown, Smooth(0.45f, 0.7f, Fractal(u, v, 9, 3, seed + 19)));
+                    color = Color.Lerp(color, ground, land);
+                    var clouds = Smooth(0.5f, 0.72f, Fractal(u, v, 5, 5, seed + 101)) * 0.85f;
+                    color = Color.Lerp(color, Color.white, clouds);
+                    var latitude = Mathf.Abs(v - 0.5f) * 2f;
+                    color = Color.Lerp(color, Color.white, Smooth(0.84f, 0.9f, latitude));
+                    color.a = 1f;
+                    pixels[y * width + x] = color;
+                }
+            }
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false) { name = "PIO_EarthSurface" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
         public static void BrightStars(Mesh mesh, int count, int seed, float minDegrees, float maxDegrees)
         {
             var vertices = new List<Vector3>();

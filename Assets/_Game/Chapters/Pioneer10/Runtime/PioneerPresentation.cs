@@ -95,6 +95,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("Campo de pedras do cinturão (roteiro v2, cena 2); só aparece nos anchors que o pedem.")] Transform beltField;
         [SerializeField, Tooltip("Pedra solitária (307 Nike); só aparece nos anchors que a pedem.")] Transform beltNike;
         [SerializeField, Tooltip("Marte (roteiro v2, cena 2); só aparece nos anchors que o pedem.")] Transform mars;
+        [SerializeField, Tooltip("Terra de comparação (roteiro v2, cena 3); ligada e desligada por PioneerJupiterReveal.")] Transform earth;
         [SerializeField, Tooltip("Direção de mundo do marcador (direção geral de Aldebaran no palco, não posição calculada).")] Vector3 aldebaranDirection = new Vector3(0.2f, 0.08f, -1f);
         [SerializeField, Min(10f)] float aldebaranDistanceMeters = 1100f;
         [SerializeField, Tooltip("Esfera de céu centrada na câmera: sem paralaxe e sem milhares de objetos.")] Transform sky;
@@ -125,6 +126,7 @@ namespace Abandoned.SpaceApps
         public Transform BeltField => beltField;
         public Transform BeltNike => beltNike;
         public Transform Mars => mars;
+        public Transform Earth => earth;
         public bool ReducedMotion => reducedMotion;
         public float SpinDegreesPerSecond => spinDegreesPerSecond;
 
