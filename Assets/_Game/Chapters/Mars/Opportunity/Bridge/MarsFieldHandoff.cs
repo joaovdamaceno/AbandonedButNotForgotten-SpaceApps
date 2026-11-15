@@ -33,6 +33,7 @@ namespace Abandoned.SpaceApps.Opportunity
         readonly List<Behaviour> disabled = new List<Behaviour>();
         readonly List<VisualElement> hiddenUi = new List<VisualElement>();
         bool started, ended, reachedEnd, frozen;
+        MarsOpeningMusic openingMusic;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
@@ -61,6 +62,8 @@ namespace Abandoned.SpaceApps.Opportunity
             if (step == null)
                 return;
 
+            StartOpeningMusic();
+
             // A cena seguinte carrega em segundo plano durante o laboratório, para o pouso começar sem tela preta.
             if (preload == null && (step == PreloadStep || step == LabStep || step == GlobeStep))
             {
@@ -83,7 +86,27 @@ namespace Abandoned.SpaceApps.Opportunity
                 sequence.Pause();
             frozen = globeEnding;
             started = true;
+            if (openingMusic != null)
+                openingMusic.FadeOutAndStop(2f);
             StartCoroutine(Begin());
+        }
+
+        void StartOpeningMusic()
+        {
+            if (openingMusic != null)
+                return;
+            var clip = Resources.Load<AudioClip>(MarsOpeningMusic.ClipResource);
+            if (clip == null)
+            {
+                Debug.LogWarning("[Marte] Faixa da abertura ausente: " + MarsOpeningMusic.ClipResource);
+                return;
+            }
+
+            var shellSettings = new Abandoned.SpaceApps.SettingsStore();
+            shellSettings.Load();
+            openingMusic = gameObject.AddComponent<MarsOpeningMusic>();
+            var app = FindAnyObjectByType<Abandoned.SpaceApps.ChapterDirector>();
+            openingMusic.Begin(clip, shellSettings.Current.masterVolume, shellSettings.Current.musicVolume, () => app != null && app.IsPaused);
         }
 
         IEnumerator Begin()
