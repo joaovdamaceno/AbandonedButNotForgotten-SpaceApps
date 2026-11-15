@@ -22,9 +22,10 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string ChapterRootName = "[R5] Pioneer Chapter";
         public const string ChapterAssetPath = ChapterFolder + "/Data/PioneerChapter.asset";
         public const string JupiterSequencePath = ChapterFolder + "/Sequences/PIO_JupiterApproach.asset";
+        public const string ClosestSequencePath = ChapterFolder + "/Sequences/PIO_Closest.asset";
         public const string DataAssetPath = ChapterFolder + "/Data/PioneerData.asset";
         public const string CueMapAssetPath = ChapterFolder + "/Audio/PioneerCueMap.asset";
-        public const float TargetDurationSeconds = 375f;
+        public const float TargetDurationSeconds = 415f;
 
         public override string Id => ChapterBuilderId;
         public override string Owner => "R5 · PIO-014";
@@ -46,6 +47,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var presentation = Only<PioneerPresentation>();
             var chapter = BuildChapter(context);
             var jupiter = BuildJupiterSequence(context);
+            var closest = BuildClosestSequence(context);
 
             var root = context.Root.transform;
             var narration = context.Component<PioneerNarration>(context.Child(root, "PioneerNarration"));
@@ -64,6 +66,7 @@ namespace Abandoned.SpaceApps.EditorTools
             so.FindProperty("launch").objectReferenceValue = Only<PioneerLaunchActivity>();
             so.FindProperty("belt").objectReferenceValue = Only<BeltInvestigation>();
             so.FindProperty("jupiterSequence").objectReferenceValue = jupiter;
+            so.FindProperty("closestSequence").objectReferenceValue = closest;
             so.FindProperty("imaging").objectReferenceValue = Only<PioneerImaging>();
             so.FindProperty("recovery").objectReferenceValue = Only<ImagingRecovery>();
             so.FindProperty("reveal").objectReferenceValue = Only<HistoricalImageReveal>();
@@ -87,10 +90,16 @@ namespace Abandoned.SpaceApps.EditorTools
             var jupiter = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(JupiterSequencePath);
             if (jupiter == null || Mathf.Abs(jupiter.TotalDurationSeconds - 27f) > 0.01f)
                 errors.Add($"{ChapterBuilderId}: PIO.JupiterApproach deve durar 27 s ({JupiterSequencePath}).");
-            if (jupiter != null)
+            var closest = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(ClosestSequencePath);
+            if (closest == null || Mathf.Abs(closest.TotalDurationSeconds - 40f) > 0.01f)
+                errors.Add($"{ChapterBuilderId}: PIO.Closest deve durar 40 s ({ClosestSequencePath}).");
+            var stage = context.Scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<PioneerPresentation>(true)).First();
+            foreach (var sequence in new[] { jupiter, closest })
             {
-                var stage = context.Scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<PioneerPresentation>(true)).First();
-                foreach (var shot in jupiter.Shots)
+                if (sequence == null)
+                    continue;
+
+                foreach (var shot in sequence.Shots)
                 {
                     if (!stage.TryGetAnchor(shot.RigId, out _))
                         errors.Add($"{ChapterBuilderId}: plano {shot.ShotId} usa rig '{shot.RigId}', que não é anchor do palco.");
@@ -151,12 +160,73 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var cues = new[]
             {
-                new SubtitleCue("PIO.03.01", "PIO.03.01", 0f, 8f),
-                new SubtitleCue("PIO.03.02", "PIO.03.02", 9f, 17f),
-                new SubtitleCue("PIO.03.03", "PIO.03.03", 18f, 26f),
+                new SubtitleCue("PIO.03.01", "PIO.03.01", 0f, 6f),
+                new SubtitleCue("PIO.03.02", "PIO.03.02", 7f, 13f),
+                new SubtitleCue("PIO.03.03", "PIO.03.03", 14f, 20f),
+                new SubtitleCue("PIO.03.04", "PIO.03.04", 21f, 26f),
             };
 
             return SequenceDefinition.Create("PIO_JupiterApproach", shots, cues);
+        }
+
+        // ---------- PIO.Closest (45 s) ----------
+
+        static ShotKeyframe KeyAt(float t, Vector3 p, Vector3 euler, float fov) => new ShotKeyframe(t, p, euler, fov);
+
+        /// <summary>
+        /// Roteiro v2, cena 5 · "O mais perto possível" (só cinema, 40 s). 0–6 chegada e as luas, 6–17 a radiação sobre o fotopolarímetro,
+        /// 17–28 a passagem rente às nuvens (data e distância), 28–34 o plano alto da curva, 34–40 a sonda saindo. Usa só os anchors
+        /// do palco; as luas, a linha da trajetória e o medidor de radiação NÃO existem ainda (próximas fases). Legendas PIO.09.01–07.
+        /// </summary>
+        public static SequenceDefinition CreateClosestSequence()
+        {
+            var shots = new[]
+            {
+                new ShotDefinition("PIO09.Arrival", 6f, "PIO.JupiterApproach",
+                    new[] { Key(0f, Vector3.zero, 40f), Key(6f, new Vector3(0f, 0f, 60f), 34f) },
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
+                new ShotDefinition("PIO09.Radiation", 11f, "PIO.JupiterApproach.Instrument",
+                    new[]
+                    {
+                        Key(0f, Vector3.zero, 38f), Key(3f, new Vector3(0.012f, -0.008f, 0.01f), 38f), Key(6f, new Vector3(-0.01f, 0.01f, 0.02f), 37f),
+                        Key(8f, new Vector3(0.014f, 0.006f, 0.03f), 36f), Key(11f, new Vector3(0f, 0f, 0.05f), 35f),
+                    },
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                new ShotDefinition("PIO09.Pass", 11f, "PIO.Closest",
+                    new[] { Key(0f, new Vector3(-70f, 6f, -30f), 60f), Key(11f, new Vector3(70f, -4f, 40f), 72f) },
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
+                new ShotDefinition("PIO09.Bend", 6f, "PIO.Closest",
+                    new[] { KeyAt(0f, new Vector3(0f, 150f, -190f), new Vector3(34f, 0f, 0f), 50f), KeyAt(6f, new Vector3(0f, 175f, -230f), new Vector3(34f, 0f, 0f), 55f) },
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                new ShotDefinition("PIO09.Leaving", 6f, "PIO.Outbound",
+                    new[] { Key(0f, Vector3.zero, 40f), Key(6f, new Vector3(0f, 0f, -8f), 38f) },
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
+            };
+
+            var cues = new[]
+            {
+                new SubtitleCue("PIO.09.01", "PIO.09.01", 0f, 5.75f),
+                new SubtitleCue("PIO.09.02", "PIO.09.02", 6f, 11.5f),
+                new SubtitleCue("PIO.09.03", "PIO.09.03", 11.75f, 18f),
+                new SubtitleCue("PIO.09.04", "PIO.09.04", 18.25f, 23.5f),
+                new SubtitleCue("PIO.09.05", "PIO.09.05", 23.75f, 28.5f),
+                new SubtitleCue("PIO.09.06", "PIO.09.06", 28.75f, 34.5f),
+                new SubtitleCue("PIO.09.07", "PIO.09.07", 34.75f, 40f),
+            };
+
+            return SequenceDefinition.Create("PIO_Closest", shots, cues);
+        }
+
+        static SequenceDefinition BuildClosestSequence(SceneBuildContext context)
+        {
+            var fresh = CreateClosestSequence();
+            fresh.name = "PIO_Closest";
+            var asset = context.Asset(ClosestSequencePath, () => Object.Instantiate(fresh));
+            EditorUtility.CopySerialized(fresh, asset);
+            asset.name = "PIO_Closest";
+            EditorUtility.SetDirty(asset);
+            Object.DestroyImmediate(fresh);
+            return asset;
         }
 
         static SequenceDefinition BuildJupiterSequence(SceneBuildContext context)

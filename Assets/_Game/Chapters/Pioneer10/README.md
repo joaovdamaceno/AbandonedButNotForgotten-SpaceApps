@@ -330,3 +330,19 @@ O contorno **correto** da peça selecionada pulsa devagar (1,4 s de período; co
 **Limitações.** A rota foi exercitada por um operador automatizado no EditMode (teclado de verdade, serviços reais do Core, `SceneManager` substituído por um carregador instantâneo); **Play Mode, a cena carregada de verdade pelo `SceneManager`, o navegador e a Build Settings não foram exercitados**. O operador usa o mesmo padrão de E em todos os estados (mantido 3,4 s, solto, toque): isso prova que cada atividade conclui sem penalidade, não que uma pessoa a conclui em 375 s. Evidências (galeria) não são registradas pelo controlador. O áudio real (clipes) continua pendente (AUD-002 liga só o `AudioDirector`).
 
 **Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.zchapter`.
+
+## Roteiro v2, fase 1 (PIO-018)
+
+Recebido em 15/11/2026 um roteiro de 9 cenas e legendas em inglês britânico (cópias em `Docs/Chapters/PioneerV2/`). Esta fase muda o texto e a estrutura, não as interações.
+
+| Arquivo | Papel |
+| --- | --- |
+| `Data/Localization/Pioneer10.pt-BR.json` e `.en.json` | Todas as legendas narrativas reescritas (120 chaves por idioma, status `derived`), na regra de 16 caracteres por segundo do projeto; `Assets/_Game/Shared/Localization/Pioneer10Texts.json` reexportado |
+| `Sequences/PIO_Closest.asset` | **Estado novo `PIO.Closest`** (cena 5, "O mais perto possível"): 40 s só de cinema, cinco planos nos anchors do palco, legendas `PIO.09.01–07` |
+| `Runtime/PioneerChapterController.cs` | Nove estados; os estados só de cinema (`PIO.JupiterApproach` e `PIO.Closest`) usam o mesmo caminho e concluem pelo fim da sequência |
+| `Editor/PioneerStageBuilder.cs` | Anchor `PIO.Closest` (Júpiter a ~130 m do centro, raio 80 m, escala de composição) |
+| `Docs/Chapters/PioneerV2/FASES.md` | Mapeamento das 9 cenas, trocas de frase (fatos seguros) e as fases seguintes |
+
+Total nominal: **415 s (6:55)**, 421 s com o alongamento de leitura de dois cues. As chaves do estado novo são `PIO.09.xx` (as dos demais estados não mudaram); o mapa de áudio ganhou `PIO.Closest` com a música `MUS_PIO_CUR` continuando, sem reiniciar.
+
+**Limitações da fase 1.** As cenas de cinema que o roteiro descreve (Lua e Marte, dolly zoom do cinturão, luas de Júpiter em 3D, linha da trajetória, medidor de radiação, montagem dos anos, as seis estrelas) **não existem ainda**: as legendas novas acompanham as imagens que já havia, e o `PIO.Closest` usa só Júpiter, o fotopolarímetro e a sonda saindo. Cinturão, placa e cartão de energia ainda têm interação, e o roteiro as quer como cinema; a foto é de oito faixas, e não de três passos. As legendas foram escritas com as formulações do registro de fontes, e algumas frases do roteiro foram trocadas (lista em `FASES.md`); precisam de revisão da R7, inclusive o inglês. Textos de arquivo (cartões e HUD) não foram reescritos.

@@ -15,6 +15,7 @@ sem batching: não são números do profiler nem da build Web. Metas do roteiro:
 | `PIO.JupiterApproach` | PIO.JupiterApproach | DeepSpace | 40° | 11 | 17718 | 11 | 2 | 0 | 6.33 m |
 | `PIO.JupiterApproach.Instrument` | PIO.JupiterApproach | DeepSpace | 38° | 10 | 13750 | 10 | 2 | 0 | 0.97 m |
 | `PIO.Imaging` | PIO.Imaging | DeepSpace | 46° | 7 | 15722 | 7 | 2 | 0 | 1.38 m |
+| `PIO.Closest` | PIO.Closest | DeepSpace | 55° | 3 | 7216 | 3 | 2 | 0 | 204.66 m |
 | `PIO.Plaque` | PIO.Plaque | DeepSpace | 36° | 9 | 16654 | 9 | 2 | 0 | 0.76 m |
 | `PIO.Outbound` | PIO.Outbound | DeepSpace | 40° | 10 | 13750 | 10 | 2 | 0 | 15.91 m |
 | `PIO.Listening` | PIO.Listening | GroundStation | 55° | 16 | 36560 | 16 | 2 | 0 | — |
@@ -33,7 +34,8 @@ Rotação visual de cruzeiro: 24°/s (valor de direção, não telemetria).
 - PIO.Belt.Sensor → PIO.JupiterApproach: Δângulo 105°, Δposição 13.6 m, ΔFOV 0°, região igual
 - PIO.JupiterApproach → PIO.JupiterApproach.Instrument: Δângulo 101°, Δposição 12.9 m, ΔFOV 2°, região igual
 - PIO.JupiterApproach.Instrument → PIO.Imaging: Δângulo 74°, Δposição 4.4 m, ΔFOV 8°, região igual
-- PIO.Imaging → PIO.Plaque: Δângulo 22°, Δposição 1.4 m, ΔFOV 10°, região igual
+- PIO.Imaging → PIO.Closest: Δângulo 34°, Δposição 211.1 m, ΔFOV 9°, região igual
+- PIO.Closest → PIO.Plaque: Δângulo 39°, Δposição 210.3 m, ΔFOV 19°, região igual
 - PIO.Plaque → PIO.Outbound: Δângulo 174°, Δposição 19.1 m, ΔFOV 4°, região igual
 - PIO.Outbound → PIO.Listening: Δângulo 151°, Δposição 742.5 m, ΔFOV 15°, região muda
 - PIO.Listening → PIO.Farewell: Δângulo 156°, Δposição 735.5 m, ΔFOV 10°, região muda
