@@ -10,19 +10,17 @@ namespace Abandoned.SpaceApps.Opportunity
         VisualElement tutorialPanel, assistance;
         Label tutorialTitle,tutorialBody,assistanceText;
         public Texture2D ratPhoto, routeMap, panorama;
-        VisualElement root,flight,cinema,science,pause,settings,controls,credits,journal,end,fade,marker,photo,memory,photoFlash;
+        VisualElement root,flight,cinema,science,pause,settings,controls,credits,journal,end,fade,marker,photo,photoFlash;
         VisualElement endActions,thermal,thermalFill,safeBand,rockHint;
-        VisualElement pressureFill,grindFill,energyFill,cursor,featureA,featureB,energyBox,memoryChoices;
-        Image remembrance,chosenImage;
-        Label exploreHint,scienceFindings,objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,skip,photoCount,memoryTitle;
+        VisualElement pressureFill,grindFill,energyFill,cursor,featureA,featureB,energyBox;
+        Label exploreHint,scienceFindings,objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,skip,photoCount;
         VisualElement splitView,splitDivider,splitTopLabel,splitBottomLabel,letterTop,letterBottom;Label splitTopName,splitTopPlace,splitBottomName,splitBottomPlace,splitNote,fieldGoal,scienceGoal;
         float toastTime,objectiveAge;
         string toastKey,objectiveKey,activeLanguage,lastFilmTitle;
         Font filmSans;VisualElement filmVeil;Image orbitEvidence;Label orbitCredit;
-        bool journalOpen,wasChoosing;
+        bool journalOpen;
         VisualElement field,fieldFill,fieldReticle,fieldPictures,fieldCenter,framingFill;Label fieldTitle,fieldBody,fieldStatus,comparisonA,comparisonB;Image fieldA,fieldB,archiveImage;Label archiveCredit;
         readonly System.Collections.Generic.Dictionary<FieldStudy,Image> studyAlbum=new System.Collections.Generic.Dictionary<FieldStudy,Image>();
-        int galleryVersion=-1,selected=-1;
         public VisualElement Root=>root;
         void OnEnable()
         {
@@ -52,7 +50,6 @@ namespace Abandoned.SpaceApps.Opportunity
             letterTop=Box(cinema,"letterbox top");letterBottom=Box(cinema,"letterbox bottom");var words=Box(cinema,"cinematic-words");
             heading=Text(words,"","display cinematic-heading");story=Text(words,"","cinematic-story");caption=Text(cinema,"","caption");skip=Text(cinema,"","skip");
             orbitEvidence=new Image{scaleMode=ScaleMode.ScaleToFit};orbitEvidence.AddToClassList("orbital-evidence");cinema.Add(orbitEvidence);orbitCredit=Text(cinema,"","orbital-credit");
-            remembrance=new Image{scaleMode=ScaleMode.ScaleAndCrop};remembrance.AddToClassList("remembrance");cinema.Add(remembrance);
             splitView=Box(root,"split-view");splitView.pickingMode=PickingMode.Ignore;splitDivider=Box(splitView,"split-divider");
             splitTopLabel=Box(splitView,"split-label");splitTopName=Text(splitTopLabel,"","split-name");splitTopPlace=Text(splitTopLabel,"","split-place");
             splitBottomLabel=Box(splitView,"split-label");splitBottomName=Text(splitBottomLabel,"","split-name");splitBottomPlace=Text(splitBottomLabel,"","split-place");
@@ -62,10 +59,7 @@ namespace Abandoned.SpaceApps.Opportunity
             var instruction=Box(science,"science-instruction");scienceTitle=Text(instruction,"","objective");scienceBody=Text(instruction,"","science-body");scienceGoal=Text(instruction,"","goal-line");
             var tool=Box(science,"tool-readout");pressureFill=Box(Box(tool,"pressure-track"),"pressure-fill");safeBand=Box(pressureFill.parent,"safe-band");thermal=Box(tool,"thermal-cue");Text(thermal,"","small").name="thermal-label";thermalFill=Box(Box(thermal,"progress-track"),"thermal-fill");
             scienceReadout=Text(tool,"","small");scienceFindings=Text(tool,"","small");scienceFindings.style.whiteSpace=WhiteSpace.Normal;scienceFindings.style.marginTop=8;grindFill=Box(Box(tool,"progress-track"),"progress-fill");
-            photo=Box(root,"photo-view");photo.pickingMode=PickingMode.Ignore;Box(photo,"viewfinder");Text(photo,"PANCAM   /   MER-B","photo-id eyebrow");Text(photo,"","photo-help").name="photo-help";photoCount=Text(photo,"","photo-count small");
-            memory=Box(root,"memory-screen");var memoryCard=Box(memory,"memory-card");Text(memoryCard,"","eyebrow").name="memory-eyebrow";
-            memoryTitle=Text(memoryCard,"","display memory-title");chosenImage=new Image{scaleMode=ScaleMode.ScaleToFit};chosenImage.AddToClassList("chosen-image");memoryCard.Add(chosenImage);
-            memoryChoices=Box(memoryCard,"memory-choices row");var actions=Box(memoryCard,"row");Button(actions,"photo.send",()=>chapter.journey.ConfirmTransmission(),"primary");Button(actions,"photo.continue",()=>chapter.journey.CancelTransmission());
+            photo=Box(root,"photo-view");photo.pickingMode=PickingMode.Ignore;Box(photo,"viewfinder");Text(photo,"PANORAMIC CAMERA   /   MER-B","photo-id eyebrow");Text(photo,"","photo-help").name="photo-help";photoCount=Text(photo,"","photo-count small");
             field=Box(root,"field-study");field.pickingMode=PickingMode.Ignore;fieldTitle=Text(field,"","field-title");fieldBody=Text(field,"","field-body");fieldGoal=Text(field,"","field-goal");fieldReticle=Box(field,"field-reticle");fieldCenter=Box(field,"field-center");framingFill=Box(Box(field,"framing-track"),"framing-fill");fieldStatus=Text(field,"","field-status");fieldFill=Box(Box(field,"field-track"),"field-progress");fieldPictures=Box(field,"field-comparison");fieldA=new Image{scaleMode=ScaleMode.ScaleToFit};fieldB=new Image{scaleMode=ScaleMode.ScaleToFit};fieldPictures.Add(fieldA);fieldPictures.Add(fieldB);comparisonA=Text(fieldA,"","comparison-label");comparisonB=Text(fieldB,"","comparison-label");
             archiveImage=new Image{scaleMode=ScaleMode.ScaleToFit};archiveImage.AddToClassList("field-archive");field.Add(archiveImage);archiveCredit=Text(field,"","field-credit");
             tutorialPanel=Box(flight,"tutorial-card");tutorialPanel.name="tutorial-card";
@@ -81,15 +75,15 @@ namespace Abandoned.SpaceApps.Opportunity
             Toggle(scroll,"settings.invert",GameSettings.Invert,v=>GameSettings.Invert=v);Toggle(scroll,"settings.easy",GameSettings.Easy,v=>GameSettings.Easy=v);Toggle(scroll,"settings.motion",GameSettings.ReducedMotion,v=>GameSettings.ReducedMotion=v);Toggle(scroll,"settings.subtitles",GameSettings.Subtitles,v=>GameSettings.Subtitles=v);Toggle(scroll,"v14.settings.voice",GameSettings.Voice,v=>GameSettings.Voice=v);Toggle(scroll,"settings.large",GameSettings.LargeText,v=>{GameSettings.LargeText=v;RefreshText();});
             Button(sc,"back",()=>{PlayerPrefs.Save();Show(settings,false);});
             controls=Box(root,"modal-backdrop");var kc=Box(controls,"controls-card");Text(kc,"","display modal-title").name="controls-title";var ks=new ScrollView();kc.Add(ks);
-            foreach(var cid in new[]{"drive","fast","mouse","e","f","space","r","h","tab","p","rat"}){var crow=Box(ks,"controls-row");var ckey=Text(crow,"","controls-key");ckey.userData="v14.controls."+cid;var cdesc=Text(crow,"","controls-desc");cdesc.userData="v14.controls."+cid+".d";}
+            foreach(var cid in new[]{"drive","fast","mouse","e","f","space","h","tab","p","rat"}){var crow=Box(ks,"controls-row");var ckey=Text(crow,"","controls-key");ckey.userData="v14.controls."+cid;var cdesc=Text(crow,"","controls-desc");cdesc.userData="v14.controls."+cid+".d";}
             Button(kc,"back",()=>Show(controls,false));
             credits=Box(root,"modal-backdrop");var cc=Box(credits,"credits-card");Text(cc,"","display modal-title").name="credits-title";var cs=new ScrollView();cc.Add(cs);Text(cs,"","credits-body").name="credits-body";Button(cc,"back",()=>Show(credits,false));
             journal=Box(root,"modal-backdrop");var jc=Box(journal,"journal-card");Text(jc,"","display modal-title").name="journal-title";var js=new ScrollView();jc.Add(js);Text(js,"","journal-body").name="journal-body";
-            AddPhoto(js,ratPhoto,"McKittrick · NASA/JPL");AddPhoto(js,routeMap,"45,16 km · NASA/JPL-Caltech/MSSS");AddPhoto(js,panorama,"Perseverance Valley · NASA/JPL-Caltech/Cornell/ASU");AddPhoto(js,chapter.investigation.berryArchive,"Berry Bowl · NASA/JPL-Caltech/Cornell");AddPhoto(js,chapter.investigation.shieldArchive,"Escudo térmico / Heat shield · NASA/JPL/Cornell");AddPhoto(js,chapter.investigation.solarArchive,"Pancam · NASA/JPL-Caltech/Cornell/ASU");foreach(FieldStudy kind in new[]{FieldStudy.Berries,FieldStudy.Shield,FieldStudy.Meteorite,FieldStudy.SunClear,FieldStudy.SunDust}){var card=Box(js,"study-album-card");var image=new Image{scaleMode=ScaleMode.ScaleToFit};image.AddToClassList("journal-image");card.Add(image);Text(card,Localization.Get("v10.study."+kind.ToString().ToLowerInvariant()),"small");studyAlbum.Add(kind,image);}
+            AddPhoto(js,ratPhoto,"McKittrick · NASA/JPL");AddPhoto(js,routeMap,"45,16 km · NASA/JPL-Caltech/MSSS");AddPhoto(js,panorama,"Perseverance Valley · NASA/JPL-Caltech/Cornell/ASU");AddPhoto(js,chapter.investigation.berryArchive,"Berry Bowl · NASA/JPL-Caltech/Cornell");AddPhoto(js,chapter.investigation.shieldArchive,"Escudo térmico / Heat shield · NASA/JPL/Cornell");AddPhoto(js,chapter.investigation.solarArchive,"Panoramic camera · NASA/JPL-Caltech/Cornell/ASU");foreach(FieldStudy kind in new[]{FieldStudy.Berries,FieldStudy.Shield,FieldStudy.Meteorite,FieldStudy.SunClear,FieldStudy.SunDust}){var card=Box(js,"study-album-card");var image=new Image{scaleMode=ScaleMode.ScaleToFit};image.AddToClassList("journal-image");card.Add(image);Text(card,Localization.Get("v10.study."+kind.ToString().ToLowerInvariant()),"small");studyAlbum.Add(kind,image);}
             Button(jc,"back",ToggleJournal);
-            end=Box(root,"end-screen");var endWords=Box(end,"cinematic-words memorial-title");var endKicker=Text(endWords,"","end-kicker");endKicker.name="end-label";var endTitle=Text(endWords,"","cinematic-heading end-name");endTitle.name="end-title";endTitle.style.fontSize=56;endTitle.style.letterSpacing=6;endActions=Box(end,"end-actions");Button(endActions,"end.menu",chapter.Leave,"primary end-button");Button(endActions,"end.restart",chapter.RestartChapter,"end-button");Button(endActions,"end.credits",()=>Open(credits),"end-link");
+            end=Box(root,"end-screen");var endWords=Box(end,"cinematic-words memorial-title");var endKicker=Text(endWords,"","end-kicker");endKicker.name="end-label";var endTitle=Text(endWords,"","cinematic-heading end-name");endTitle.name="end-title";endTitle.style.fontSize=56;endTitle.style.letterSpacing=6;Text(endWords,"","cinematic-story end-subtitle").name="end-subtitle";endActions=Box(end,"end-actions");Button(endActions,"end.menu",chapter.Leave,"primary end-button");Button(endActions,"end.restart",chapter.RestartChapter,"end-button");Button(endActions,"end.credits",()=>Open(credits),"end-link");
             exploreHint=Text(root,"","explore-hint");exploreHint.pickingMode=PickingMode.Ignore;notification=Text(root,"","toast");notification.pickingMode=PickingMode.Ignore;photoFlash=Box(root,"photo-flash");photoFlash.pickingMode=PickingMode.Ignore;fade=Box(root,"fade");fade.pickingMode=PickingMode.Ignore;
-            foreach(var e in new[]{pause,settings,controls,credits,journal,memory,end,tutorialPanel,assistance,rockHint,splitView})Show(e,false);RefreshText();
+            foreach(var e in new[]{pause,settings,controls,credits,journal,end,tutorialPanel,assistance,rockHint,splitView})Show(e,false);RefreshText();
         }
         void Slider(VisualElement p,string key,float value,float min,float max,System.Action<float> setter)
         {var s=new Slider(Localization.Get(key),min,max){value=value,userData=key};s.RegisterValueChangedCallback(e=>setter(e.newValue));p.Add(s);}
@@ -105,7 +99,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(root==null)return;activeLanguage=GameSettings.English.ToString();root.EnableInClassList("large-text",GameSettings.LargeText);
             QualitySelector.RefreshQualitySelectors(root);
             root.Query<Button>().ForEach(b=>{if(b.userData is string k)b.text=Localization.Get(k);});root.Query<Label>(className:"controls-key").ForEach(b=>{if(b.userData is string k)b.text=Localization.Get(k);});root.Query<Label>(className:"controls-desc").ForEach(b=>{if(b.userData is string k)b.text=Localization.Get(k);});root.Query<Slider>().ForEach(b=>{if(b.userData is string k)b.label=Localization.Get(k);});root.Query<Toggle>().ForEach(b=>{if(b.userData is string k)b.label=Localization.Get(k);});
-            foreach(var pair in new[]{new[]{"pause-title","pause.title"},new[]{"end-title","v3.opportunity"},new[]{"settings-title","menu.settings"},new[]{"controls-title","v14.controls.title"},new[]{"credits-title","menu.credits"},new[]{"credits-body","credits.body"},new[]{"journal-title","journal.title"},new[]{"journal-body","journal.body"},new[]{"end-label","end.label"},new[]{"end-subtitle","end.subtitle"},new[]{"photo-help","photo.controls"},new[]{"memory-eyebrow","photo.memory"}})Set(pair[0],pair[1]);
+            foreach(var pair in new[]{new[]{"pause-title","pause.title"},new[]{"end-title","v3.opportunity"},new[]{"settings-title","menu.settings"},new[]{"controls-title","v14.controls.title"},new[]{"credits-title","menu.credits"},new[]{"credits-body","credits.body"},new[]{"journal-title","journal.title"},new[]{"journal-body","journal.body"},new[]{"end-label","end.label"},new[]{"end-subtitle","mars.still.waiting"},new[]{"photo-help","photo.controls"}})Set(pair[0],pair[1]);
         }
         public void ShowPause(bool visible)
         {Show(pause,visible);if(!visible){journalOpen=false;foreach(var e in new[]{journal,settings,controls,credits})Show(e,false);}}
@@ -121,7 +115,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(GameInput.Press(Key.P)&&chapter.Stage!=ChapterStage.ChapterEnd)chapter.Pause(!chapter.Paused);
             var s=chapter.Stage;var j=chapter.journey;var p=j.photography;var fieldStudy=chapter.investigation;bool drive=s==ChapterStage.Exploration||s==ChapterStage.HeatShieldExploration||j.FinalAct;
             endActions.style.opacity=Mathf.Clamp01((chapter.Elapsed-2)/1.5f);endActions.pickingMode=s==ChapterStage.ChapterEnd&&chapter.Elapsed>2?PickingMode.Position:PickingMode.Ignore;foreach(var button in endActions.Children())button.SetEnabled(chapter.Elapsed>2);
-            Show(end,s==ChapterStage.ChapterEnd);Show(flight,drive&&!fieldStudy.Active&&!p.Active&&!j.ChoosingMemory);Show(field,fieldStudy.Active);if(fieldStudy.Active)UpdateField();Show(science,s==ChapterStage.RockAnalysis);Show(cinema,chapter.Cinematic);Show(photo,p.Active);Show(memory,j.ChoosingMemory);
+            Show(end,s==ChapterStage.ChapterEnd);Show(flight,drive&&!fieldStudy.Active&&!p.Active);Show(field,fieldStudy.Active);if(fieldStudy.Active)UpdateField();Show(science,s==ChapterStage.RockAnalysis);Show(cinema,chapter.Cinematic);Show(photo,p.Active);
             UpdateSplit();ApplyPlateScale();
             // Antes da primeira observação: perto da rocha das esferas, um aviso no meio da tela.
             var act=chapter.interactions?chapter.interactions.Current:default;
@@ -130,8 +124,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(drive)UpdateFlight();if(s==ChapterStage.RockAnalysis)UpdateScience();if(chapter.Cinematic)UpdateCinema();
             var tutor=chapter.tutorial;bool offer=tutor&&tutor.HelpOffered&&!chapter.Paused&&!chapter.Cinematic&&s!=ChapterStage.ChapterEnd;
             Show(assistance,offer);assistance.EnableInClassList("strong",tutor&&tutor.StrongHelp);if(offer)assistanceText.text=Localization.Get(tutor.HelpBodyKey);
-            photoCount.text=j.FinalAct?Localization.Get(j.PanoramaCount>0?"v13.photo.recorded":"v13.photo.required"):$"{p.Frames.Count}   ·   PANCAM";
-            if(j.ChoosingMemory)UpdateMemory();else wasChoosing=false;
+            photoCount.text=j.FinalAct?Localization.Get(j.PanoramaCount>0?"v13.photo.recorded":"v13.photo.required"):$"{p.Frames.Count}   ·   PANORAMIC CAMERA";
             toastTime=Mathf.Max(0,toastTime-Time.unscaledDeltaTime);notification.text=Localization.Get(toastKey);notification.style.opacity=p.Active||chapter.investigation.Active||chapter.Cinematic?0:Mathf.Clamp01(toastTime);
             photoFlash.style.opacity=drive&&!GameSettings.ReducedMotion?p.Flash*.18f:0;
             float t=chapter.Elapsed,alpha=0;
@@ -182,14 +175,12 @@ namespace Abandoned.SpaceApps.Opportunity
             objective.parent.style.opacity=objectiveAge>7?.72f:1;
             string key=j.FinalAct&&j.PanoramaCount>0?"controls.final":"controls.drive";
             if(chapter.Stage==ChapterStage.Exploration&&j.ReadyForScience&&chapter.TargetDistance<3.4f)key="controls.sample";
-            else if(j.FinalAct&&j.NearUplink&&j.PanoramaCount>0)key="controls.send";
             else if(j.FinalAct&&j.NearbyStation>=0)key="controls.photo";
-            if(j.Transmitting)key="photo.sending";
             if(chapter.investigation.OverridesTarget)key=chapter.investigation.Near?"v10.controls.observe":"v10.controls.approach";
-            help.text=Localization.Get(key)+(j.Transmitting?$"  {j.Transmission*100:0}%":"");Show(energyBox,storm);
+            help.text=Localization.Get(key);Show(energyBox,storm);
             energy.text=Localization.Get("telemetry.solar");energyFill.style.width=Length.Percent(chapter.Energy*100);energyFill.style.backgroundColor=new Color(.94f,.64f,.37f);
             var action=chapter.interactions?chapter.interactions.Current:default;
-            bool valid=action.Valid&&!j.Transmitting&&!chapter.Paused;
+            bool valid=action.Valid&&!chapter.Paused;
             bool available=valid&&action.Available;
             Vector3 point=valid?action.Anchor.position+Vector3.up*.85f:chapter.ActiveTarget.position+Vector3.up*1.1f;
             var viewport=chapter.cameras.view.WorldToViewportPoint(point);
@@ -201,7 +192,7 @@ namespace Abandoned.SpaceApps.Opportunity
             bool holdAction=valid&&(action.Id=="berries"||action.Id=="shield"||action.Id=="meteorite"||action.Id=="sun-clear"||action.Id=="sun-dust");
             rockHint.Q<Label>("rock-interaction-sub").text=valid?Localization.Get(holdAction?"v15.hint.hold":"v15.hint.press"):"";
             rockHint.userData=valid?action.Id:null;
-            bool markerVisible=!available&&!j.Transmitting&&!chapter.Paused;
+            bool markerVisible=!available&&!chapter.Paused;
             Show(marker,markerVisible);
             // On screen the marker shows a drawn "!"; at the screen edge it shows an arrow toward the destination.
             marker.EnableInClassList("marker-edge",viewport.z<0||viewport.x<.08f||viewport.x>.92f);
@@ -257,17 +248,6 @@ namespace Abandoned.SpaceApps.Opportunity
             // Barra da abrasão no canto inferior direito, longe da rocha.
             var readout=scienceReadout.parent;readout.style.position=Position.Absolute;readout.style.right=32;readout.style.bottom=96;readout.style.left=StyleKeyword.Auto;readout.style.top=StyleKeyword.Auto;readout.style.width=300;
         }
-        void UpdateMemory()
-        {
-            var j=chapter.journey;var p=j.photography;
-            if(!wasChoosing||galleryVersion!=p.CaptureVersion)
-            {
-                wasChoosing=true;galleryVersion=p.CaptureVersion;selected=-1;memoryChoices.Clear();
-                for(int n=0;n<p.Frames.Count;n++){int index=n;var b=new Button(()=>j.ChooseMemory(index));b.AddToClassList("memory-thumb");var i=new Image{image=p.Frames[n],scaleMode=ScaleMode.ScaleToFit};b.Add(i);memoryChoices.Add(b);}
-            }
-            if(selected!=j.SelectedMemory){selected=j.SelectedMemory;chosenImage.image=p.SelectedFrame;for(int n=0;n<memoryChoices.childCount;n++)memoryChoices[n].EnableInClassList("selected",n==selected);}
-            memoryTitle.text=Localization.Get("photo.choose");
-        }
         void UpdateCinema()
         {
             var film=chapter.film;float local=film.BeatTime;float orbitStart=0,orbitEnd=0;bool orbital=chapter.Stage==ChapterStage.Intro&&film.CaptionWindow(out orbitStart,out orbitEnd,"v14.intro.hematite1","v14.intro.hematite2")&&chapter.Elapsed>=orbitStart&&chapter.Elapsed<orbitEnd;Show(orbitEvidence,orbital);Show(orbitCredit,orbital);orbitEvidence.image=chapter.investigation.orbitalMap;orbitEvidence.style.opacity=Mathf.Clamp01((chapter.Elapsed-orbitStart)/1.4f)*Mathf.Clamp01((orbitEnd-chapter.Elapsed)/1.4f)*.85f;orbitCredit.text="MERIDIANI PLANUM  ·  NASA/JPL-Caltech/ASU";
@@ -277,12 +257,11 @@ namespace Abandoned.SpaceApps.Opportunity
             heading.style.fontSize=memorialTitle?64:film.TitleKey!=null&&film.TitleKey.StartsWith("v3.year")?56:30;
             heading.style.letterSpacing=memorialTitle?9:2;
             heading.parent.EnableInClassList("memorial-title",memorialTitle);
-            story.text="";
+            // Fim do módulo: "Still waiting on Mars" menor, abaixo de "Spirit and Opportunity" (como "Em viagem" na tela final da Pioneer).
+            story.text=memorialTitle?Localization.Get("mars.still.waiting"):"";
             filmVeil.style.opacity=film.PictureBlack;
             skip.text=chapter.CanSkip&&!memorialTitle?Localization.Get("controls.skip"):"";
-            bool memory=chapter.Stage==ChapterStage.Farewell&&chapter.FilmTime>=16&&chapter.FilmTime<23&&chapter.journey.photography.SelectedFrame;
-            remembrance.image=chapter.journey.photography.SelectedFrame;Show(remembrance,memory);Show(heading.parent,!memory&&!string.IsNullOrEmpty(film.TitleKey));
-            remembrance.style.opacity=memory?Mathf.Clamp01((chapter.FilmTime-16)/.65f)*Mathf.Clamp01((23-chapter.FilmTime)/.65f):0;
+            Show(heading.parent,!string.IsNullOrEmpty(film.TitleKey));
             heading.parent.style.opacity=Mathf.Clamp01(local/.65f)*(memorialTitle?1:Mathf.Clamp01((film.BeatLength-local)/.5f));
             caption.style.opacity=film.CaptionOpacity;caption.BringToFront();skip.BringToFront();
         }

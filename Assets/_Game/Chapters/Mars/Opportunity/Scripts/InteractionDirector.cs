@@ -33,7 +33,7 @@ namespace Abandoned.SpaceApps.Opportunity
             {
                 if(!chapter||!chapter.rover||chapter.Paused||chapter.Cinematic)return default;
                 var field=chapter.investigation;var journey=chapter.journey;
-                if(!field||!journey||field.Active||field.InputBlockedThisFrame||journey.photography.Active||journey.ChoosingMemory||journey.Transmitting)return default;
+                if(!field||!journey||field.Active||field.InputBlockedThisFrame||journey.photography.Active)return default;
                 if(field.NeedBerries)return Present("berries","v13.interact.berries",field.berriesSite,3.5f);
                 if(chapter.Stage==ChapterStage.Exploration&&journey.ReadyForScience)return Present("rat","v13.interact.rat",chapter.science.surface.workFrame,3.4f);
                 if(chapter.Stage==ChapterStage.HeatShieldExploration)
@@ -45,10 +45,9 @@ namespace Abandoned.SpaceApps.Opportunity
                 if(!journey.FinalAct)return default;
                 if(!field.ClearSunMeasured)return Present("sun-clear","v13.interact.sun",field.clearSunSite,8);
                 if(journey.PanoramaCount>0&&!field.DustSunMeasured)return Present("sun-dust","v13.interact.sun",field.dustSunSite,8);
-                // Once the required view and solar comparison are recorded, E must
-                // guide the main mission to the uplink. Optional photographs remain
-                // available with F without trapping navigation in repeated captures.
-                if(journey.PanoramaCount>0)return Present("uplink","v13.interact.uplink",journey.uplink,7);
+                // Com a vista e a comparação solar registradas, a etapa termina sozinha (sem envio de imagem);
+                // fotos opcionais seguem disponíveis com F.
+                if(journey.PanoramaCount>0)return default;
                 int station=journey.NearbyStation;
                 if(station>=0)return Present("photo","v13.interact.photo",journey.panoramaStations[station],8);
                 return Present("photo","v13.interact.photo",journey.CurrentTarget,8);
@@ -69,7 +68,6 @@ namespace Abandoned.SpaceApps.Opportunity
                 case "sun-clear":chapter.investigation.Begin(FieldStudy.SunClear);break;
                 case "sun-dust":chapter.investigation.Begin(FieldStudy.SunDust);break;
                 case "photo":chapter.journey.photography.Toggle();break;
-                case "uplink":chapter.journey.OpenTransmission();break;
                 default:return false;
             }
             return true;
