@@ -198,8 +198,8 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             return new List<MarsLightingProfile>
             {
                 P(RegionOrigin, 1.5f, new Color(0.96f, 0.95f, 0.92f), new Vector3(28f, 105f, 0f), new Color(0.22f, 0.22f, 0.25f), new Color(0.015f, 0.015f, 0.02f)),
-                P(RegionLanding, 1.4f, new Color(1f, 0.92f, 0.82f), new Vector3(50f, -30f, 0f), new Color(0.36f, 0.29f, 0.25f), new Color(0.62f, 0.47f, 0.37f)),
-                P(RegionEagle, 1.5f, new Color(1f, 0.92f, 0.82f), new Vector3(45f, 200f, 0f), new Color(0.34f, 0.27f, 0.23f), new Color(0.66f, 0.5f, 0.4f)),
+                P(RegionLanding, 2.1f, new Color(1f, 0.79f, 0.57f), new Vector3(24f, 323f, 0f), new Color(0.38f, 0.34f, 0.32f), new Color(0.62f, 0.47f, 0.37f)),
+                P(RegionEagle, 2.1f, new Color(1f, 0.79f, 0.57f), new Vector3(24f, 323f, 0f), new Color(0.38f, 0.34f, 0.32f), new Color(0.66f, 0.5f, 0.4f)),
                 P(RegionShield, 1.5f, new Color(1f, 0.92f, 0.82f), new Vector3(40f, 160f, 0f), new Color(0.34f, 0.27f, 0.23f), new Color(0.66f, 0.5f, 0.4f)),
                 P(RegionValley, 1.4f, new Color(1f, 0.92f, 0.82f), new Vector3(38f, 150f, 0f), new Color(0.34f, 0.28f, 0.24f), new Color(0.6f, 0.5f, 0.42f)),
                 P(RegionSpirit, 1.3f, new Color(1f, 0.93f, 0.85f), new Vector3(36f, 150f, 0f), new Color(0.3f, 0.26f, 0.24f), new Color(0.02f, 0.02f, 0.03f)),

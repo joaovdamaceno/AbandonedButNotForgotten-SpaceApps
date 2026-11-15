@@ -1,18 +1,16 @@
 {
   "schemaVersion": 1,
   "chapterId": "mars",
-  "source": "Docs/Chapters/01_MARS_TWINS.md (M01 placas; M02 destinos; M03 lançamentos). Texto de jogo só aqui: nenhuma frase em C#.",
+  "source": "Docs/Chapters/01_MARS_SOURCES.md (MS01–MS05). Texto de jogo só aqui: nenhuma frase em C#.",
   "notes": [
-    "MAR-013. Mesmo formato de 'texts' em MarsSubtitles.json. MAR.T01 (título de M01) já existe lá.",
-    "Rótulos de M03 mostram só mês e ano (JUN/JUL 2003), sem o dia, para não misturar UTC e calendário local."
+    "MAR-013 (revisada). Mesmo formato de 'texts' em MarsSubtitles.json. 'GUSEV CRATER' e 'MERIDIANI PLANUM' nomeiam os dois locais no globo; 'THIS ROVER IS OPPORTUNITY' abre a parte da hematita. O título '2003' é MAR.T01 em MarsSubtitles.json.",
+    "A pedido, o campo pt espelha o inglês nestes textos (sem tradução para português)."
   ],
   "texts": [
-    { "key": "MAR.ORI.01", "pt": "SPIRIT", "en": "SPIRIT" },
-    { "key": "MAR.ORI.02", "pt": "OPPORTUNITY", "en": "OPPORTUNITY" },
-    { "key": "MAR.ORI.03", "pt": "GUSEV", "en": "GUSEV" },
-    { "key": "MAR.ORI.04", "pt": "MERIDIANI", "en": "MERIDIANI" },
-    { "key": "MAR.ORI.05", "pt": "HEMATITA", "en": "HEMATITE" },
-    { "key": "MAR.ORI.06", "pt": "JUN 2003", "en": "JUN 2003" },
-    { "key": "MAR.ORI.07", "pt": "JUL 2003", "en": "JUL 2003" }
+    { "key": "MAR.ORI.01", "pt": "EARTH · MISSION PREPARATION", "en": "EARTH · MISSION PREPARATION" },
+    { "key": "MAR.ORI.02", "pt": "WHY MERIDIANI PLANUM?", "en": "WHY MERIDIANI PLANUM?" },
+    { "key": "MAR.ORI.04", "pt": "MERIDIANI PLANUM", "en": "MERIDIANI PLANUM" },
+    { "key": "MAR.ORI.05", "pt": "THIS ROVER IS OPPORTUNITY", "en": "THIS ROVER IS OPPORTUNITY" },
+    { "key": "MAR.ORI.03", "pt": "GUSEV CRATER", "en": "GUSEV CRATER" }
   ]
 }

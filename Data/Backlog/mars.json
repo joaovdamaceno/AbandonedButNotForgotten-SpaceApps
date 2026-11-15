@@ -543,7 +543,7 @@
   },
   {
     "id": "MAR-013",
-    "title": "Autorar laboratório, mapa e lançamentos curtos com propósito",
+    "title": "Autorar laboratório, mapa e abertura curta com propósito",
     "role": "R4",
     "priority": "P0",
     "hours": 1.5,
@@ -557,12 +557,12 @@
       "Assets/_Game/Chapters/Mars/Art/Origin/"
     ],
     "context": "Capítulo Spirit & Opportunity, alvo de 360 s / 5–7 min, Unity 6000.6.7f1 + URP 17.6, WebGL desktop. Leia o contexto mestre, os contratos globais, Docs/Chapters/01_MARS_TWINS.md e 01_MARS_SOURCES.md. M01–M03 somam 25 s. Cada plano muda assunto ou escala. O arquivo detalhado já é opcional no menu.",
-    "deliverable": "Três sequências nativas: dois rovers, globo dos destinos e lançamentos separados.",
+    "deliverable": "Três sequências nativas: Marte no espaço, laboratório com os dois rovers e globo dos destinos, sem lançamentos.",
     "instructions": [
       "Laboratório utilitário com cabos, suportes e materiais coerentes; detalhe prioritário no rover.",
       "Luz lateral e contraste recortam o equipamento, sem objetos de fundo sem função.",
       "Mapa real destaca só o local relacionado à legenda.",
-      "Reutilizar foguete/efeito em sequência, não duas campanhas; sem vídeo."
+      "Não há lançamentos: a abertura vai de Marte no espaço ao laboratório e ao globo; sem vídeo."
     ],
     "acceptance": [
       "Identifica gêmeas e pergunta científica em 25 s.",

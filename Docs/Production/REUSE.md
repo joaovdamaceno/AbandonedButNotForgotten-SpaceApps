@@ -51,6 +51,7 @@ Soluções a estudar, sem importação automática: rastros projetados no terren
 
 Resultados de testes de outubro não aprovam a edição de novembro. Assets NASA e músicas mantêm licenças e atribuições, mesmo se o código for reescrito. Modelos entregues depois pela equipe passam por ART-001 e tarefas próprias; usar referência pública não significa que o arquivo já foi obtido.
 
+
 ## SUR-008 — observação e fotografias (14/11/2026)
 
 Novo código de observação, dados, painel, composição e testes nesta base (`211ab0d`), consumindo SUR-002/004/006/007 e Core atuais. O mundo, modelo da equipe e shader TV não foram copiados de outro projeto nem reatribuídos. O preview aninha a entrega SUR-007 com referências/overrides locais; as fontes anteriores são preservadas. Capturas são renderizações da partida; não são fotografias NASA. Sinal RecordConfirm.wav original, sintetizado para confirmação de interface, sem nova licença de terceiros. Não houve reaproveitamento de código ou assets do antigo capítulo Opportunity. Integração e fontes: [SURVEYOR_OBSERVATION.md](SURVEYOR_OBSERVATION.md).

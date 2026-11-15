@@ -68,7 +68,7 @@ namespace Abandoned.SpaceApps
             if (Math.Abs(splitSeconds - MerLandingChoreography.SplitSeconds) > 1e-3f
                 || Math.Abs(eagleSeconds - MerLandingChoreography.EagleSeconds) > 1e-3f
                 || Math.Abs(verificationSeconds - MerLandingChoreography.VerificationSeconds) > 1e-3f)
-                ContractValidation.Report(errors, owner, "as durações de M04–M06 devem ser 18/4/5 s (roteiro e coreografia).");
+                ContractValidation.Report(errors, owner, "as durações de M04–M06 devem ser 18/4/9,5 s (roteiro e coreografia).");
             if (DaysBetweenLandings != 21)
                 ContractValidation.Report(errors, owner, $"intervalo entre os pousos {DaysBetweenLandings} dias; o roteiro e a NASA dizem 21.");
             if (SpiritLanding >= OpportunityLanding || Egress <= OpportunityLanding)

@@ -87,7 +87,16 @@ namespace Abandoned.SpaceApps
         {
             if (!binding.IsCinematic)
             {
+                // Etapa de jogo: devolve a câmera e as regiões, mas mantém a luz da região em que o jogo acontece (o perfil existe por região;
+                // sem ele o terreno ficava com a exposição padrão da cena, escura e com céu genérico).
+                var gameplayRegion = activeRegionId;
                 ReleaseCinematic();
+                if (gameplayRegion != null)
+                {
+                    activeRegionId = gameplayRegion;
+                    ApplyLighting(gameplayRegion);
+                }
+
                 return;
             }
 
@@ -164,7 +173,9 @@ namespace Abandoned.SpaceApps
             var camera = cameraDirector != null ? cameraDirector.TargetCamera : null;
             if (camera != null)
             {
-                camera.clearFlags = CameraClearFlags.SolidColor;
+                // Regiões de chão com céu próprio (mapa importado) usam o céu; abertura, Spirit e memorial seguem com a cor do perfil (o preto do espaço).
+                var groundRegion = regionId != "mars.origin" && regionId != "mars.spirit" && regionId != "mars.memorial";
+                camera.clearFlags = groundRegion && RenderSettings.skybox != null ? CameraClearFlags.Skybox : CameraClearFlags.SolidColor;
                 camera.backgroundColor = profile.backgroundColor;
             }
         }
