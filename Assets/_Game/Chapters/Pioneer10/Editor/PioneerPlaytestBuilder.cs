@@ -15,6 +15,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string ScenePath = "Assets/_Game/Chapters/Pioneer10/Playtest/Pioneer10_Playtest.unity";
         const string ChapterPath = "Assets/_Game/Chapters/Pioneer10/Data/PioneerChapter.asset";
         const string TextsPath = "Assets/_Game/Shared/Localization/Pioneer10Texts.json";
+        const string AudioPrefabPath = "Assets/_Game/Shared/Audio/AudioDirector.prefab";
         const string SubtitlePrefabPath = "Assets/_Game/Shared/Localization/SubtitleLayer.prefab";
 
         [MenuItem("Abandoned Space Apps/PIO/Criar cena de teste jogável")]
@@ -48,11 +49,13 @@ namespace Abandoned.SpaceApps.EditorTools
             chapter = AssetDatabase.LoadAssetAtPath<ChapterDefinition>(ChapterPath);
             texts = AssetDatabase.LoadAssetAtPath<TextAsset>(TextsPath);
             subtitle = AssetDatabase.LoadAssetAtPath<GameObject>(SubtitlePrefabPath);
+            var audio = AssetDatabase.LoadAssetAtPath<GameObject>(AudioPrefabPath);
             var host = new GameObject("[PLAYTEST] Pioneer 10");
             var component = host.AddComponent<PioneerPlaytestHost>();
             var so = new SerializedObject(component);
             so.FindProperty("chapter").objectReferenceValue = chapter;
             so.FindProperty("subtitleLayer").objectReferenceValue = subtitle;
+            so.FindProperty("audioDirectorPrefab").objectReferenceValue = audio;
             var tables = so.FindProperty("textTables");
             tables.arraySize = 1;
             tables.GetArrayElementAtIndex(0).objectReferenceValue = texts;

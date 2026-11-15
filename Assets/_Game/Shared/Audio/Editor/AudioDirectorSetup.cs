@@ -20,10 +20,14 @@ namespace Abandoned.SpaceApps.EditorTools
         /// <summary>IDs da planilha de cues (Docs/Art/AUDIO_CUE_SHEET.md) que os capítulos já pedem, com bus e loop. Fonte: PIO-013 (mapa) e a planilha.</summary>
         public static List<AudioCueDefinition> PlannedCues() => new List<AudioCueDefinition>
         {
-            new AudioCueDefinition("MUS_PIO_PARTIDA", AudioBus.Music, loop: true),
-            new AudioCueDefinition("MUS_PIO_CUR", AudioBus.Music, loop: true),
-            new AudioCueDefinition("MUS_PIO_DISTANCIA", AudioBus.Music, loop: true),
-            new AudioCueDefinition("MUS_PIO_ESCUTA", AudioBus.Music, loop: true),
+            // Pioneer 10 (roteiro novo): os clipes entram por PioneerMusicImporter (Tools/convert_pioneer10_music.py, CC BY 4.0).
+            new AudioCueDefinition("MUS_PIO_LANCAMENTO", AudioBus.Music, loop: true),
+            new AudioCueDefinition("MUS_PIO_CINTURAO", AudioBus.Music, loop: true),
+            new AudioCueDefinition("MUS_PIO_MARAVILHA", AudioBus.Music, loop: true),
+            new AudioCueDefinition("MUS_PIO_JUPITER", AudioBus.Music, loop: true),
+            new AudioCueDefinition("MUS_PIO_ANOS", AudioBus.Music, loop: true),
+            new AudioCueDefinition("MUS_PIO_RADIO", AudioBus.Music, loop: true),
+            new AudioCueDefinition("MUS_PIO_FINAL", AudioBus.Music, loop: true),
             new AudioCueDefinition("SFX_PIO_LAUNCH", AudioBus.Sfx),
             new AudioCueDefinition("SFX_SCAN", AudioBus.Sfx, loop: true, maxSeconds: 40f),
             new AudioCueDefinition("SFX_PIO_RADIATION_NOISE", AudioBus.Sfx),

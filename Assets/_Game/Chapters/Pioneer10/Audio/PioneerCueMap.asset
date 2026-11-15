@@ -15,37 +15,37 @@ MonoBehaviour:
   cancelFadeSeconds: 0.5
   states:
   - stateId: PIO.Launch
-    musicCueId: MUS_PIO_PARTIDA
+    musicCueId: MUS_PIO_LANCAMENTO
     fadeSeconds: 1.75
-    note: "VIA: pulso e crescimento; no espa\xE7o s\xF3 m\xFAsica."
+    note: "Chronicle: come\xE7a quase em sil\xEAncio e sobe; no espa\xE7o s\xF3 m\xFAsica."
   - stateId: PIO.Belt
-    musicCueId: MUS_PIO_CUR
+    musicCueId: MUS_PIO_CINTURAO
     fadeSeconds: 1.75
-    note: "CUR, varia\xE7\xE3o l\xFAdica na fantasia."
+    note: "Descent: o medo do cintur\xE3o (escura e misteriosa). O corte para a calma da revela\xE7\xE3o \xE9 do MUS_PIO_MARAVILHA."
   - stateId: PIO.JupiterApproach
-    musicCueId: MUS_PIO_CUR
+    musicCueId: MUS_PIO_JUPITER
     fadeSeconds: 1.75
-    note: CUR cresce com a escala; mesmo cue do estado anterior, sem reiniciar.
+    note: "Sanctum: orquestral e edificante, para a radia\xE7\xE3o, o mergulho e o empurr\xE3o gravitacional."
   - stateId: PIO.Imaging
-    musicCueId: MUS_PIO_CUR
+    musicCueId: MUS_PIO_MARAVILHA
     fadeSeconds: 1.75
-    note: 
+    note: 'The Distant Sun: calma e discreta, para a foto montada linha por linha.'
   - stateId: PIO.Plaque
-    musicCueId: MUS_PIO_DISTANCIA
+    musicCueId: MUS_PIO_ANOS
     fadeSeconds: 1.75
-    note: "Delicada; o pulso sai em 38\u201347 s."
+    note: "Extrapolation: piano sombrio com um fio de esperan\xE7a."
   - stateId: PIO.Outbound
-    musicCueId: MUS_PIO_DISTANCIA
+    musicCueId: MUS_PIO_ANOS
     fadeSeconds: 1.75
-    note: 
+    note: 'Mesmo cue da placa: segue sem reiniciar.'
   - stateId: PIO.Listening
-    musicCueId: MUS_PIO_ESCUTA
+    musicCueId: MUS_PIO_RADIO
     fadeSeconds: 1.75
-    note: "LEG: piano e cordas com sil\xEAncio estruturado."
+    note: "Signal to Noise: misteriosa, melanc\xF3lica e esperan\xE7osa; o sil\xEAncio real de 2,5 s \xE9 pedido ao \xE1udio."
   - stateId: PIO.Farewell
-    musicCueId: MUS_PIO_ESCUTA
+    musicCueId: MUS_PIO_FINAL
     fadeSeconds: 1.75
-    note: O tema resolve; nenhum efeito externo.
+    note: "Filaments (trecho do cl\xEDmax): o tema resolve; nenhum efeito externo."
   events:
   - eventId: PIO.Launch.Ignition
     action: 0
@@ -125,45 +125,75 @@ MonoBehaviour:
     proposedEvent: 1
     note: "Tentativa 4 sem resposta: sil\xEAncio real de 2,5 s, sem hiss em loop."
   cues:
-  - cueId: MUS_PIO_PARTIDA
+  - cueId: MUS_PIO_LANCAMENTO
     kind: 0
     family: VIA
     interfaceSound: 1
     loop: 0
     maxSeconds: 0
     idConfirmedInCueSheet: 1
-    licenseStatus: candidate
-    creditId: 
+    licenseStatus: acquired
+    creditId: M-SB-PIO-01
     clip: {fileID: 0}
-  - cueId: MUS_PIO_CUR
+  - cueId: MUS_PIO_CINTURAO
+    kind: 0
+    family: VIA
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 0
+    idConfirmedInCueSheet: 1
+    licenseStatus: acquired
+    creditId: M-SB-PIO-02
+    clip: {fileID: 0}
+  - cueId: MUS_PIO_MARAVILHA
     kind: 0
     family: CUR
     interfaceSound: 1
     loop: 0
     maxSeconds: 0
     idConfirmedInCueSheet: 1
-    licenseStatus: candidate
-    creditId: 
+    licenseStatus: acquired
+    creditId: M-SB-PIO-03
     clip: {fileID: 0}
-  - cueId: MUS_PIO_DISTANCIA
+  - cueId: MUS_PIO_JUPITER
     kind: 0
-    family: VIA/LEG
+    family: VIA
     interfaceSound: 1
     loop: 0
     maxSeconds: 0
     idConfirmedInCueSheet: 1
-    licenseStatus: candidate
-    creditId: 
+    licenseStatus: acquired
+    creditId: M-SB-PIO-04
     clip: {fileID: 0}
-  - cueId: MUS_PIO_ESCUTA
+  - cueId: MUS_PIO_ANOS
     kind: 0
     family: LEG
     interfaceSound: 1
     loop: 0
     maxSeconds: 0
     idConfirmedInCueSheet: 1
-    licenseStatus: candidate
-    creditId: 
+    licenseStatus: acquired
+    creditId: M-SB-PIO-05
+    clip: {fileID: 0}
+  - cueId: MUS_PIO_RADIO
+    kind: 0
+    family: LEG
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 0
+    idConfirmedInCueSheet: 1
+    licenseStatus: acquired
+    creditId: M-SB-PIO-06
+    clip: {fileID: 0}
+  - cueId: MUS_PIO_FINAL
+    kind: 0
+    family: LEG
+    interfaceSound: 1
+    loop: 0
+    maxSeconds: 0
+    idConfirmedInCueSheet: 1
+    licenseStatus: acquired
+    creditId: M-SB-PIO-07
     clip: {fileID: 0}
   - cueId: SFX_PIO_LAUNCH
     kind: 1

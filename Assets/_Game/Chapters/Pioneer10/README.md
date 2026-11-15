@@ -346,3 +346,23 @@ O contorno **correto** da peça selecionada pulsa devagar (1,4 s de período; co
 **O que a primeira rodada em Play Mode achou (e corrigi):** o prompt de E do Imaging ficava na chave (`PIO.UI.scan`) até a primeira faixa, porque o texto só era atualizado quando as faixas mudavam; o quadro do Outbound e o do Listening ficavam por baixo da legenda de base (agora o Outbound termina em 82% da altura e o Listening sobe para `bottom: 16%`, em vez dos 7% do `UiFrame` do anchor). O Launch, o Belt, o Imaging, o Outbound, o Listening e a Plaque foram vistos rodando; o Farewell foi alcançado, mas a captura dele não chegou a ser conferida.
 
 **Limites:** sem áudio, sem dossiê, sem a pausa e a legenda finais do shell. Não foi uma partida completa por uma pessoa (cada estado foi visto por saltos). O tempo e o ritmo reais de jogo ainda precisam de gente.
+
+## Música (roteiro novo)
+
+Sete faixas de **Scott Buckley (CC BY 4.0)** ligadas ao `AudioDirector` (AUD-002), uma por clima das nove cenas do `ROTEIRO_PIONEER10.md`. A tabela completa (cena, tempo, trecho, intenção, clima da faixa) está na **seção 6 de `Docs/Art/AUDIO_CUE_SHEET.md`**.
+
+| Arquivo | Papel |
+| --- | --- |
+| `Audio/Music/*.ogg` | Trechos (60 a 120 s) recortados, normalizados (-20 LUFS), com fade de 1 s na entrada e 3 s na saída, Ogg Vorbis ~64 kbps: **4,35 MB** no total |
+| `Tools/convert_pioneer10_music.py` | Baixa os MP3 das páginas da fonte, confere o SHA-256, recorta e codifica (precisa de ffmpeg com libvorbis). `--check` confere os `.ogg` e o registro sem ffmpeg. Os MP3 originais (5 a 15 MB) **não** ficam no repositório |
+| `Data/Assets/PioneerMusic.json` | Procedência: URL, SHA-256 do original e do `.ogg`, trecho, volume, licença e linha de crédito |
+| `Editor/PioneerMusicImporter.cs` | Configura a importação (Vorbis, streaming, sem pré-carga) e liga os clipes aos cues do catálogo; menu **Abandoned Space Apps → PIO → Importar música da Pioneer** |
+| `Tests/PioneerMusicTests.cs` | 5 testes EditMode |
+
+**Cue por estado (hoje):** `Launch → MUS_PIO_LANCAMENTO` (Chronicle), `Belt → MUS_PIO_CINTURAO` (Descent), `JupiterApproach → MUS_PIO_JUPITER` (Sanctum), `Imaging → MUS_PIO_MARAVILHA` (The Distant Sun), `Plaque` e `Outbound → MUS_PIO_ANOS` (Extrapolation), `Listening → MUS_PIO_RADIO` (Signal to Noise), `Farewell → MUS_PIO_FINAL` (Filaments, trecho do clímax). Os quatro cues antigos (`PARTIDA/CUR/DISTANCIA/ESCUTA`) saíram. Quando os estados forem reorganizados para as nove cenas, **só a tabela de estados do `PioneerCueMap`** (em `PioneerDataBuilder`) muda.
+
+**Atribuição obrigatória (CC BY 4.0):** `ASSET_CREDITS.md` (linhas `M-SB-PIO-01…07`) e `credits.line.pioneer_music` em `DossierTexts.json` (PT e EN). A tela de créditos do dossiê precisa **exibir** essa linha.
+
+**Na cena de teste** (`Playtest/`): o anfitrião agora cria o `AudioDirector` (liberado no Editor), liga o `PioneerAudioAdapter` e mostra no painel qual música toca.
+
+**Limitações.** **Nenhuma faixa foi ouvida por pessoa**: a escolha foi feita pela descrição da página de cada faixa e pelo envelope de volume medido; falta ouvir cada uma na cena. Os trechos são curtos e **repetem com emenda** se a cena durar mais (o minigame e a sintonia têm ritmo próprio); a emenda tem fade de 3 s. As faixas foram feitas para ouvir inteiras, então um corte no meio de uma frase musical é possível. O orçamento Web (4,35 MB de 10 MB para todo o áudio do jogo) não foi medido no navegador. Os efeitos sonoros (SFX) continuam **sem arquivo**.

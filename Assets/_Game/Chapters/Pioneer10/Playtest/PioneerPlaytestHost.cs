@@ -23,6 +23,7 @@ namespace Abandoned.SpaceApps
         [SerializeField] ChapterDefinition chapter;
         [SerializeField, Tooltip("Tabelas JSON de texto PT/EN (Pioneer10Texts.json).")] TextAsset[] textTables;
         [SerializeField, Tooltip("Prefab SubtitleLayer (UI-004).")] GameObject subtitleLayer;
+        [SerializeField, Tooltip("Prefab AudioDirector (AUD-002) com o catálogo de cues da música da Pioneer.")] GameObject audioDirectorPrefab;
         [SerializeField] string language = SettingsData.Portuguese;
         [SerializeField, Tooltip("Mostra o painel de teste (estado, tempo, teclas).")] bool showOverlay = true;
 
@@ -32,6 +33,8 @@ namespace Abandoned.SpaceApps
         ChapterDirector director;
         LocalizationService localization;
         SubtitlePresenter subtitles;
+        AudioDirector audioDirector;
+        IPioneerAudioPort audioPort;
         PioneerChapterController controller;
         string note = "Carregando o capítulo…";
         bool restartingForLanguage;
@@ -62,6 +65,14 @@ namespace Abandoned.SpaceApps
             }
 
             localization.SetLanguage(language);
+            if (audioDirectorPrefab != null)
+            {
+                audioDirector = Instantiate(audioDirectorPrefab, transform).GetComponent<AudioDirector>();
+                audioDirector.Initialize(null, clock, new SettingsData(), null, true); // no Editor o áudio já está liberado
+                audioDirector.BindInteraction(interaction);
+                audioPort = new PioneerAudioAdapter(audioDirector);
+            }
+
             director.ChapterStarted += OnChapterStarted;
             director.ChapterUnloading += OnChapterUnloading;
             director.LoadFailed += reason => note = "Falha ao carregar o capítulo: " + reason;
@@ -90,7 +101,7 @@ namespace Abandoned.SpaceApps
             }
 
             archive = false;
-            controller.Initialize(director, clock, router, interaction, null, language, ReturnToArchive);
+            controller.Initialize(director, clock, router, interaction, audioPort, language, ReturnToArchive);
             controller.ReturnToArchiveRequested += OnReturnRequested;
             if (subtitleLayer != null)
             {
@@ -123,9 +134,15 @@ namespace Abandoned.SpaceApps
         void TogglePause()
         {
             if (director.IsPaused)
+            {
                 director.Resume("playtest");
+                audioDirector?.SetPaused("playtest", false);
+            }
             else
+            {
                 director.Pause("playtest");
+                audioDirector?.SetPaused("playtest", true);
+            }
         }
 
         void Update()
@@ -188,7 +205,7 @@ namespace Abandoned.SpaceApps
 
             var scale = Mathf.Max(1f, Screen.height / 720f);
             GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1f));
-            var box = new Rect(8, 8, 310, 232);
+            var box = new Rect(8, 8, 310, 236);
             GUI.Box(box, GUIContent.none);
             var state = controller != null ? controller.CurrentState : "—";
             GUI.Label(new Rect(16, 12, 296, 22), $"TESTE · Pioneer 10 · {(language == SettingsData.Portuguese ? "PT" : "EN")}");
@@ -196,10 +213,10 @@ namespace Abandoned.SpaceApps
             GUI.Label(new Rect(16, 52, 296, 22), $"Tempo ativo: {director.ActiveSeconds:0} s   {(director.IsPaused ? "· PAUSADO" : string.Empty)}");
             GUI.Label(new Rect(16, 72, 296, 40), "Setas/WASD/mouse · E (todas as ações)\nP/Esc pausa · L idioma · R reiniciar · N pular");
             if (!string.IsNullOrEmpty(note))
-                GUI.Label(new Rect(16, 112, 296, 40), note);
+                GUI.Label(new Rect(16, 130, 296, 40), note);
 
             var x = 16f;
-            var y = 154f;
+            var y = 160f;
             foreach (var id in PioneerChapterController.StateIds)
             {
                 var label = id.Substring(4, Mathf.Min(6, id.Length - 4));
