@@ -1,0 +1,1 @@
+mergeInto(LibraryManager.library,{WebBaselineReport:function(ptr){var value=JSON.parse(UTF8ToString(ptr));window.webBaseline=value;var node=document.getElementById('qa');if(node)node.textContent=JSON.stringify(value,null,2);}});
