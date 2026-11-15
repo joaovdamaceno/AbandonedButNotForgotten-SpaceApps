@@ -11,8 +11,8 @@ namespace Abandoned.SpaceApps
     /// </summary>
     public sealed class PioneerSystemTour : MonoBehaviour
     {
-        /// <summary>A sonda é ampliada para ser vista na escala do mapa (o refletor real tem 2,74 m).</summary>
-        public const float ProbeScaleFactor = 4f;
+        /// <summary>A sonda é ampliada só um pouco para ser vista na escala do mapa (o refletor real tem 2,74 m); o marcador dourado a destaca.</summary>
+        public const float ProbeScaleFactor = 1.5f;
         public static readonly Rect OverlayFrame = new Rect(0f, 0f, 1f, 1f);
 
         [SerializeField] PioneerPresentation presentation;

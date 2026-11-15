@@ -125,16 +125,31 @@ namespace Abandoned.SpaceApps.EditorTools
                 Steel = Lit(context, "PIO_TowerSteel", new Color(0.22f, 0.2f, 0.2f), 0.3f, 0.3f, folder: LaunchFolder),
                 Flame = Additive(context, "PIO_Flame", new Color(1f, 0.58f, 0.24f), flameTexture),
                 Smoke = SmokeMaterial(context, smokeTexture),
-                Earth = Unlit(context, "PIO_EarthDiagram", Color.white, EarthTexture(context), LaunchFolder),
-                Moon = Unlit(context, "PIO_MoonDiagram", new Color(1.12f, 1.12f, 1.1f),
-                    PioneerStageBuilder.TextureAsset(context, "PIO_MoonSurface.png", () => PioneerStageArt.MoonSurface(1024, 512, 1969), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp, folder: LaunchFolder),
-                    LaunchFolder),
+                Earth = LitBody(context, "PIO_EarthDiagram", Color.white, 0.12f, EarthTexture(context), 0.7f),
+                Moon = LitBody(context, "PIO_MoonDiagram", new Color(1.05f, 1.05f, 1.03f), 0.04f,
+                    PioneerStageBuilder.TextureAsset(context, "PIO_MoonSurface.png", () => PioneerStageArt.MoonSurface(1024, 512, 1969), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp, folder: LaunchFolder), 0.7f),
                 Orbit = Unlit(context, "PIO_OrbitLine", new Color(0.30f, 0.36f, 0.48f), null, LaunchFolder),
                 Trajectory = Unlit(context, "PIO_TrajectoryLine", new Color(0.62f, 0.55f, 0.40f), null, LaunchFolder),
                 Trace = Unlit(context, "PIO_TraceHead", new Color(1f, 0.95f, 0.82f), null, LaunchFolder),
                 Heat = Additive(context, "PIO_RtgHeat", new Color(0.62f, 0.24f, 0.06f), null),
                 Electric = Additive(context, "PIO_Electric", new Color(0.20f, 0.42f, 0.55f), null),
             };
+        }
+
+        /// <summary>
+        /// Corpo do diagrama Terra–Lua: material com luz (a luz de cruzeiro do palco dá o claro-escuro, como na Terra ao lado de Júpiter) e um
+        /// brilho de base para o lado sem luz continuar legível; assim os corpos deixam de parecer figurinhas coladas no céu.
+        /// </summary>
+        static Material LitBody(SceneBuildContext context, string name, Color color, float smoothness, Texture2D map, float baseGlow)
+        {
+            var material = Lit(context, name, color, 0f, smoothness, map, LaunchFolder);
+            material.EnableKeyword("_EMISSION");
+            material.SetColor("_EmissionColor", new Color(baseGlow, baseGlow, baseGlow));
+            material.SetTexture("_EmissionMap", map);
+            // RealtimeEmissive (e não None): com None o URP trata a emissão como preta ao reimportar e apaga a palavra-chave _EMISSION.
+            material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+            EditorUtility.SetDirty(material);
+            return material;
         }
 
         /// <summary>Tronco de cone ao longo de +Z (raio na base → raio no topo), faces laterais planas.</summary>
@@ -380,13 +395,19 @@ namespace Abandoned.SpaceApps.EditorTools
         /// "parava no meio da tela". Em <paramref name="s"/> de 0 a 1 é igual a <see cref="TrajectoryPoint"/>.
         /// </summary>
         public const float TrajectoryExtent = 1.9f;
+        const float TangentStep = 0.01f;
+        /// <summary>Pontos da linha (suave: um por 1,2% do percurso) e marcas da bolinha (uma por 2% do percurso, mesma função da linha).</summary>
+        public const int TrajectoryLinePoints = 161;
+        public const int TraceMarkCount = 49;
         public static Vector3 ExtendedTrajectoryPoint(float s)
         {
             if (s <= 1f)
                 return TrajectoryPoint(s);
 
-            var end = TrajectoryPoint(1f) - EarthLocal;
-            return EarthLocal + end.normalized * (end.magnitude + (s - 1f) * 130f);
+            // Continua pela tangente do último trecho (sem quebra de direção em s = 1): antes a reta saía radial e a linha tinha um canto.
+            var end = TrajectoryPoint(1f);
+            var tangent = (end - TrajectoryPoint(1f - TangentStep)).normalized;
+            return end + tangent * ((s - 1f) * 130f);
         }
 
         static Transform BuildDiagram(SceneBuildContext context, Transform root, LaunchAssets a)
@@ -409,7 +430,7 @@ namespace Abandoned.SpaceApps.EditorTools
             }
 
             Line(context, context.Child(diagram, "MoonOrbit"), a.Orbit, orbit, true, 0.28f);
-            var path = Enumerable.Range(0, 65).Select(i => ExtendedTrajectoryPoint(i / 64f * TrajectoryExtent)).ToArray(); // até sair do quadro
+            var path = Enumerable.Range(0, TrajectoryLinePoints).Select(i => ExtendedTrajectoryPoint(i / (TrajectoryLinePoints - 1f) * TrajectoryExtent)).ToArray(); // até sair do quadro
             Line(context, context.Child(diagram, "Trajectory"), a.Trajectory, path, false, 0.36f);
             DiagramVisual(context, context.Child(diagram, "TraceHead"), a.Sphere, a.Trace, TrajectoryPoint(0f), 0.9f);
             return diagram;
@@ -434,7 +455,8 @@ namespace Abandoned.SpaceApps.EditorTools
             line.SetPositions(points);
             line.widthMultiplier = width;
             line.alignment = LineAlignment.View;
-            line.numCapVertices = 0;
+            line.numCapVertices = 4;
+            line.numCornerVertices = 4;
             line.sharedMaterial = material;
             line.shadowCastingMode = ShadowCastingMode.Off;
             line.receiveShadows = false;
@@ -523,9 +545,9 @@ namespace Abandoned.SpaceApps.EditorTools
                 new ActorMark(PioneerLaunchActivity.AtlasActorId, 15f, new Vector3(0f, 14f, 0f), Vector3.zero),
                 new ActorMark(PioneerLaunchActivity.AtlasActorId, 17f, new Vector3(0f, 42f, 0f), Vector3.zero),
             };
-            for (var i = 0; i <= 8; i++)
+            for (var i = 0; i < TraceMarkCount; i++)
             {
-                var s = i / 8f;
+                var s = i / (TraceMarkCount - 1f);
                 marks.Add(new ActorMark(PioneerLaunchActivity.TraceActorId, 17f + 0.5f + s * 8f, ExtendedTrajectoryPoint(s * TrajectoryExtent), Vector3.zero)); // a sonda segue a linha até a borda da tela
             }
 
