@@ -65,6 +65,7 @@ namespace Abandoned.SpaceApps
         bool running;
         bool ignited;
         bool pendingHold;
+        bool cinemaHold;
         bool awaitingHold;
         bool holdDone;
         bool completedRaised;
@@ -75,6 +76,12 @@ namespace Abandoned.SpaceApps
 
         /// <summary>Estado concluído (sequência terminou ou foi pulada). Dispara uma vez por <see cref="Begin"/>.</summary>
         public event Action Completed;
+
+        /// <summary>
+        /// Roteiro v2 (cena 1 só de cinema): a demonstração dos geradores corre sozinha em <see cref="HoldSeconds"/> segundos, sem pedir
+        /// E e sem pausar a sequência. Ligado pelo controlador do capítulo; o padrão (falso) é a versão interativa.
+        /// </summary>
+        public bool CinemaMode { get; set; }
 
         public SequenceDefinition Sequence => sequence;
         public bool IsRunning => running;
@@ -176,7 +183,10 @@ namespace Abandoned.SpaceApps
                     break;
                 case EventRtgHold:
                     // Adiado ao próximo Tick: ao pular, a sequência dispara os eventos restantes e termina antes dele.
-                    pendingHold = !holdDone;
+                    if (CinemaMode)
+                        cinemaHold = !holdDone;
+                    else
+                        pendingHold = !holdDone;
                     break;
             }
         }
@@ -219,6 +229,16 @@ namespace Abandoned.SpaceApps
                 pendingHold = false;
                 if (director != null && director.IsPlaying)
                     OpenHold();
+            }
+
+            if (cinemaHold && activeDeltaSeconds > 0f)
+            {
+                holdProgress = Mathf.Clamp01(holdProgress + activeDeltaSeconds / HoldSeconds);
+                if (holdProgress >= 1f)
+                {
+                    holdDone = true;
+                    cinemaHold = false;
+                }
             }
 
             if (activeDeltaSeconds > 0f)
@@ -329,6 +349,7 @@ namespace Abandoned.SpaceApps
                 presentation.UnbindSequenceDirector();
             running = false;
             pendingHold = false;
+            cinemaHold = false;
             holdDone = false;
             acquiredSeconds = 0f;
             holdProgress = 0f;
@@ -381,7 +402,7 @@ namespace Abandoned.SpaceApps
         void UpdateEnergyVisuals()
         {
             var p = holdProgress;
-            var active = awaitingHold || holdDone;
+            var active = awaitingHold || holdDone || cinemaHold;
             SetGlow(rtgGlowA, active, rtgGlowScaleMeters * (0.35f + 0.65f * Mathf.Clamp01(p * 1.6f)));
             SetGlow(rtgGlowB, active, rtgGlowScaleMeters * (0.35f + 0.65f * Mathf.Clamp01(p * 1.6f)));
             SetGlow(compartmentGlow, active && p > 0.25f, compartmentGlowScaleMeters * Mathf.Clamp01((p - 0.25f) / 0.75f));

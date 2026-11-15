@@ -81,6 +81,8 @@ namespace Abandoned.SpaceApps
         /// <summary>Progresso da ajuda (segurar E, 0–1).</summary>
         public float AssistProgress;
         public PlaqueHoldState Hold;
+        /// <summary>Versão só de cinema: o painel não mostra instruções de escolher peça nem de E.</summary>
+        public bool Cinema;
     }
 
     /// <summary>
@@ -108,6 +110,9 @@ namespace Abandoned.SpaceApps
         /// <summary>Segurar E por este tempo encaixa a peça focada (ajuda). Cinco peças ≤ 30 s.</summary>
         public const float AssistHoldSeconds = 2f;
         public const float MaxAssistedRunSeconds = 30f;
+        /// <summary>Versão só de cinema: a primeira peça encaixa sozinha 1,5 s depois do início do encaixe, e as demais a cada 5,5 s (cada legenda dura 4 s).</summary>
+        public const float CinemaFirstPieceSeconds = 1.5f;
+        public const float CinemaPieceIntervalSeconds = 5.5f;
         /// <summary>Pressionar e soltar o E dentro deste tempo é um toque (seleciona ou encaixa).</summary>
         public const float TapMaxSeconds = 0.35f;
         public const float RetrySeconds = 3f;
@@ -136,7 +141,7 @@ namespace Abandoned.SpaceApps
         bool running, candidateOpen, holding, pausedByRelease, completedRaised, allRaised, revealRaised, skipped, navigateBound;
         string waitingGate;
         int placedBits, placed, selected = -1, focusPiece = -1, focusOutline = -1, wrongCount;
-        float holdSeconds, pulseClock, retryTimer;
+        float holdSeconds, pulseClock, retryTimer, cinemaClock;
         int retryOutline = -1;
 
         public event Action Completed;
@@ -159,6 +164,12 @@ namespace Abandoned.SpaceApps
         public int FocusPiece => focusPiece;
         public int FocusOutline => focusOutline;
         public int WrongAttempts => wrongCount;
+        /// <summary>
+        /// Roteiro v2 (cena 6 só de cinema): as cinco peças encaixam sozinhas, uma a cada <see cref="CinemaPieceIntervalSeconds"/>, sem
+        /// pedir entrada e sem mostrar instruções de E. Ligado pelo controlador do capítulo; o padrão (falso) é a versão interativa.
+        /// </summary>
+        public bool CinemaMode { get; set; }
+
         public bool IsPlaced(int piece) => piece >= 0 && piece < PieceCount && (placedBits & (1 << piece)) != 0;
         public bool ReducedMotion => reducedMotion;
         public void SetReducedMotion(bool value) => reducedMotion = value;
@@ -216,7 +227,8 @@ namespace Abandoned.SpaceApps
             }
 
             director.Play(sequence, skippable);
-            OpenInput(); // depois do Play: o lease Panel precisa ficar acima do lease Cinematic da sequência
+            if (!CinemaMode)
+                OpenInput(); // depois do Play: o lease Panel precisa ficar acima do lease Cinematic da sequência
             PushView();
         }
 
@@ -293,6 +305,7 @@ namespace Abandoned.SpaceApps
         void StartFit()
         {
             phase = PlaquePhase.Fit;
+            cinemaClock = 0f;
             mode = PlaqueMode.ChoosePiece;
             selected = -1;
             focusPiece = FirstRemaining(0);
@@ -314,6 +327,13 @@ namespace Abandoned.SpaceApps
         {
             if (!running)
                 return;
+
+            if (CinemaMode && dt > 0f && phase == PlaquePhase.Fit && placed < PieceCount)
+            {
+                cinemaClock += dt;
+                if (cinemaClock >= CinemaFirstPieceSeconds + placed * CinemaPieceIntervalSeconds)
+                    AssistPlace();
+            }
 
             if (dt > 0f)
             {
@@ -648,7 +668,7 @@ namespace Abandoned.SpaceApps
             mode = PlaqueMode.ChoosePiece;
             placedBits = placed = wrongCount = 0;
             selected = focusPiece = focusOutline = retryOutline = -1;
-            holdSeconds = pulseClock = retryTimer = 0f;
+            holdSeconds = pulseClock = retryTimer = cinemaClock = 0f;
             PushView();
         }
 
@@ -669,6 +689,7 @@ namespace Abandoned.SpaceApps
                 RetryOutline = retryOutline,
                 AssistProgress = holding ? Mathf.Clamp01(holdSeconds / AssistHoldSeconds) : 0f,
                 Hold = HoldState(),
+                Cinema = CinemaMode,
             };
         }
 

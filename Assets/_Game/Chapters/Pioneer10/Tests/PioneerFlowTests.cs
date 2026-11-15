@@ -303,10 +303,10 @@ namespace Abandoned.SpaceApps.Tests
         public void NothingConcludesByTimeAloneAndPausingFreezesTheStateClock()
         {
             BeginChapter();
-            Run(120f); // dois minutos sem tocar em nada
-            Assert.That(director.CurrentStepId, Is.EqualTo("PIO.Launch"), "o hold do RTG espera o jogador: o tempo não conclui nada");
-            Assert.That(completed, Is.Empty);
-            Assert.That(entered, Is.EqualTo(new[] { "PIO.Launch" }));
+            Run(300f); // cinco minutos sem tocar em nada
+            Assert.That(director.CurrentStepId, Is.EqualTo("PIO.Imaging"), "só cinema corre sozinho; a foto (interação 1) espera o jogador: o tempo não conclui nada");
+            Assert.That(completed, Is.EqualTo(new[] { "PIO.Launch", "PIO.Belt", "PIO.JupiterApproach" }));
+            Assert.That(entered, Is.EqualTo(new[] { "PIO.Launch", "PIO.Belt", "PIO.JupiterApproach", "PIO.Imaging" }));
 
             var before = controller.CurrentStateSeconds;
             director.Pause("test");
@@ -360,7 +360,7 @@ namespace Abandoned.SpaceApps.Tests
         // ---------- Reset por estado ----------
 
         [Test]
-        public void RestartingInEachActivityCleansInteractionsWithoutDuplicatingListenersOrObjects([NUnit.Framework.Range(0, 7)] int stateIndex)
+        public void RestartingInEachActivityCleansInteractionsWithoutDuplicatingListenersOrObjects([NUnit.Framework.Range(0, 8)] int stateIndex)
         {
             BeginChapter();
             var target = StateIds[stateIndex];
@@ -429,6 +429,38 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(controller.CurrentState, Is.EqualTo("PIO.Imaging"));
             Assert.That(controller.LastReport.activeSeconds[2] - 0f, Is.EqualTo(27f).Within(1.5f), "27 s de cinema, a duração nominal");
             Assert.That(start, Is.LessThan(1f));
+        }
+
+        [Test]
+        public void LaunchPlaqueAndOutboundRunWithoutAnyInputAndAskForNoKeyPress()
+        {
+            BeginChapter();
+            // Cena 1: a demonstração dos geradores corre sozinha (evento aos 32,5 s, 3 s de rampa) e o estado conclui no fim da sequência.
+            Run(34f);
+            Assert.That(launch.HoldDone, Is.False);
+            Assert.That(launch.HoldProgress, Is.GreaterThan(0f).And.LessThan(1f), "a rampa começou sozinha");
+            Assert.That(router.DescribeLeases(), Does.Not.Contain("PIO.Launch.Rtg"), "nenhum lease de painel: não há E a segurar");
+            Run(2.5f);
+            Assert.That(launch.HoldDone, Is.True, "a demonstração terminou sem entrada");
+            Run(4f);
+            Assert.That(completed, Does.Contain("PIO.Launch"));
+
+            // Cena 6: as cinco peças encaixam sozinhas e nenhuma instrução de E é pedida.
+            OperateUntil(() => controller.CurrentState == "PIO.Plaque");
+            SetE(false);
+            Run(1f);
+            Assert.That(router.DescribeLeases(), Does.Not.Contain("PIO.Plaque"));
+            Run(10f); // o encaixe começa aos 9 s do estado; a primeira peça entra 1,5 s depois e a segunda só aos 16 s
+            Assert.That(plaque.IsPlaced(0), Is.True, "a primeira peça já encaixou sozinha");
+            Assert.That(plaque.IsPlaced(4), Is.False);
+            OperateUntil(() => controller.CurrentState == "PIO.Outbound");
+            Assert.That(completed, Does.Contain("PIO.Plaque"), "as cinco peças encaixaram e o estado concluiu sem entrada");
+
+            // Cena 7: a priorização da comunicação corre sozinha.
+            SetE(false);
+            Run(30f);
+            Assert.That(router.DescribeLeases(), Does.Not.Contain("PIO.Outbound.Power"));
+            Assert.That(outbound.HoldDone || completed.Contains("PIO.Outbound") || controller.CurrentState == "PIO.Listening", Is.True);
         }
 
         [Test]

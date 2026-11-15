@@ -138,6 +138,10 @@ namespace Abandoned.SpaceApps
                 return string.IsNullOrEmpty(value) ? key : value;
             };
 
+            // Roteiro v2: só duas interações no capítulo (a foto e a sintonia de rádio). Lançamento, placa e anos são cinema.
+            launch.CinemaMode = true;
+            plaque.CinemaMode = true;
+            outbound.CinemaMode = true;
             launch.Initialize(sequenceDirector, interactions, router, time);
             belt.Initialize(sequenceDirector, interactions, router, time, text);
             imaging.Initialize(sequenceDirector, interactions, router, time, text);
@@ -149,7 +153,6 @@ namespace Abandoned.SpaceApps
             farewell.Initialize(sequenceDirector, interactions, router, time, text);
 
             Bind(launch, nameof(launch), h => launch.Completed += h, h => launch.Completed -= h, "PIO.Launch");
-            Bind(belt, nameof(belt), h => belt.Completed += h, h => belt.Completed -= h, "PIO.Belt");
             Bind(imaging, nameof(imaging), h => imaging.Completed += h, h => imaging.Completed -= h, "PIO.Imaging");
             Bind(plaque, nameof(plaque), h => plaque.Completed += h, h => plaque.Completed -= h, "PIO.Plaque");
             Bind(outbound, nameof(outbound), h => outbound.Completed += h, h => outbound.Completed -= h, "PIO.Outbound");
@@ -210,7 +213,7 @@ namespace Abandoned.SpaceApps
             switch (stepId)
             {
                 case "PIO.Launch": launch.Begin(); break;
-                case "PIO.Belt": belt.Begin(); break;
+                case "PIO.Belt": BeginCinema(stepId, "PIO.Belt", belt.Sequence); break; // cinema: a arena de poeira interativa não é usada
                 case "PIO.JupiterApproach": BeginCinema(stepId, "PIO.JupiterApproach", jupiterSequence); break;
                 case "PIO.Imaging": imaging.Begin(); break;
                 case "PIO.Closest": BeginCinema(stepId, "PIO.Closest", closestSequence); break;

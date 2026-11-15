@@ -40,6 +40,8 @@ namespace Abandoned.SpaceApps
         public bool PowerConfirmed;
         /// <summary>Quantos anéis de órbita a sonda já ultrapassou em distância (0–4: Júpiter, Saturno, Urano, Netuno).</summary>
         public int OrbitsCrossed;
+        /// <summary>Versão só de cinema: o painel não mostra o prompt de E.</summary>
+        public bool Cinema;
     }
 
     /// <summary>
@@ -82,7 +84,7 @@ namespace Abandoned.SpaceApps
         IDisposable inputLease;
 
         OutboundPhase phase;
-        bool running, pendingHold, awaitingHold, holdDone, completedRaised, holding;
+        bool running, pendingHold, cinemaHold, awaitingHold, holdDone, completedRaised, holding;
         float acquiredSeconds;
         float holdProgress;
 
@@ -94,6 +96,12 @@ namespace Abandoned.SpaceApps
         public SequenceDefinition Sequence => sequence;
         public OutboundPhase Phase => phase;
         public bool IsRunning => running;
+        /// <summary>
+        /// Roteiro v2 (cena 7 só de cinema): a priorização da comunicação corre sozinha em <see cref="HoldSeconds"/> segundos, sem pedir E
+        /// e sem pausar a sequência. Ligado pelo controlador do capítulo; o padrão (falso) é a versão interativa.
+        /// </summary>
+        public bool CinemaMode { get; set; }
+
         public bool IsAwaitingHold => awaitingHold;
         public bool HoldDone => holdDone;
         public float HoldProgress => holdProgress;
@@ -152,7 +160,10 @@ namespace Abandoned.SpaceApps
                     break;
                 case EventPower:
                     // Adiado ao próximo Tick: ao pular, a sequência dispara os eventos restantes e termina antes dele.
-                    pendingHold = !holdDone;
+                    if (CinemaMode)
+                        cinemaHold = !holdDone;
+                    else
+                        pendingHold = !holdDone;
                     if (phase < OutboundPhase.Power)
                         phase = OutboundPhase.Power;
                     break;
@@ -196,6 +207,17 @@ namespace Abandoned.SpaceApps
                 pendingHold = false;
                 if (director != null && director.IsPlaying)
                     OpenHold();
+            }
+
+            if (cinemaHold && activeDeltaSeconds > 0f)
+            {
+                holdProgress = Mathf.Clamp01(holdProgress + activeDeltaSeconds / HoldSeconds);
+                if (holdProgress >= 1f)
+                {
+                    holdDone = true;
+                    cinemaHold = false;
+                    PowerConfirmed?.Invoke();
+                }
             }
 
             PushView();
@@ -300,7 +322,7 @@ namespace Abandoned.SpaceApps
 
             if (presentation != null)
                 presentation.UnbindSequenceDirector();
-            running = pendingHold = holdDone = holding = false;
+            running = pendingHold = cinemaHold = holdDone = holding = false;
             acquiredSeconds = holdProgress = 0f;
             phase = OutboundPhase.Idle;
             PushView();
@@ -312,6 +334,7 @@ namespace Abandoned.SpaceApps
             HoldProgress = holdProgress,
             Hold = HoldState(),
             PowerConfirmed = holdDone,
+            Cinema = CinemaMode,
             OrbitsCrossed = phase switch
             {
                 OutboundPhase.Saturn1976 => 2,
@@ -324,7 +347,7 @@ namespace Abandoned.SpaceApps
         {
             if (holdDone)
                 return OutboundHoldState.Done;
-            if (holding)
+            if (holding || cinemaHold)
                 return OutboundHoldState.Holding;
             if (awaitingHold && router != null && router.IsInteractPhysicallyHeld)
                 return OutboundHoldState.Rearm;

@@ -314,7 +314,7 @@ namespace Abandoned.SpaceApps
                 Show(orbit, !showChart);
                 Show(chart, showChart);
                 Show(powerColumn, state.Phase == OutboundPhase.Power || showChart);
-                Show(holdPlate, state.Phase == OutboundPhase.Power);
+                Show(holdPlate, state.Phase == OutboundPhase.Power && !state.Cinema);
                 Show(sunLabel, !showChart);
                 foreach (var ring in ringLabels)
                     Show(ring, !showChart);
