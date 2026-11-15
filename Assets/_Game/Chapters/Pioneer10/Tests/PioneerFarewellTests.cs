@@ -10,8 +10,8 @@ using UnityEngine.InputSystem;
 namespace Abandoned.SpaceApps.Tests
 {
     /// <summary>
-    /// PIO-012: despedida de 38 s e conclusão. Teclado simulado e relógio ativo manual: planos com rigs diferentes, guia de
-    /// Aldebaran, preto do memorial, conclusão uma vez em 36 s, ações finais por setas + E/Enter, E mantido de antes,
+    /// PIO-012: despedida de 40 s e conclusão. Teclado simulado e relógio ativo manual: planos com rigs diferentes, guia de
+    /// Aldebaran, preto do memorial, conclusão uma vez em 38 s, ações finais por setas + E/Enter, E mantido de antes,
     /// pausa, movimento reduzido, reinício na troca das antenas e o memorial sem relógio nem capítulo automático.
     /// </summary>
     public class PioneerFarewellTests : InputTestFixture
@@ -128,8 +128,8 @@ namespace Abandoned.SpaceApps.Tests
             var sequence = farewell.Sequence;
             Assert.That(sequence.Validate(), Is.Empty);
             Assert.That(director.Validate(sequence), Is.Empty);
-            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(38f).Within(1e-4f));
-            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 4f, 4f, 6f, 6f, 10f, 8f }));
+            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(40f).Within(1e-4f));
+            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 4f, 4f, 6f, 6f, 10f, 10f }));
 
             var rigs = sequence.Shots.Select(s => s.RigId).ToArray();
             for (var i = 1; i < rigs.Length; i++)
@@ -206,7 +206,7 @@ namespace Abandoned.SpaceApps.Tests
         // ---------- A cena e o memorial ----------
 
         [Test]
-        public void TheSceneRunsTheGuideThenBlackThenCompletesOnceAtThirtySixAndKeepsTheMemorialOpen()
+        public void TheSceneRunsTheGuideThenBlackThenCompletesOnceAtThirtyEightAndKeepsTheMemorialOpen()
         {
             farewell.Begin();
             Assert.That(farewell.Phase, Is.EqualTo(FarewellPhase.Playing));
@@ -232,7 +232,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(black.ChoicesVisible, Is.False, "as ações só nos últimos 2 s");
             Assert.That(completed, Is.Zero);
 
-            RunUntilTime(36.2f);
+            RunUntilTime(38.2f);
             Assert.That(farewell.ViewState().ChoicesVisible, Is.True);
             Assert.That(completed, Is.EqualTo(1), "conclui quando o memorial abre");
             Assert.That(farewell.Phase, Is.EqualTo(FarewellPhase.Memorial));
@@ -264,7 +264,7 @@ namespace Abandoned.SpaceApps.Tests
         public void ArrowsMoveTheFocusAndETapOrEnterActivatesOnlyTheFirstChoice()
         {
             farewell.Begin();
-            RunUntilTime(36.3f);
+            RunUntilTime(38.3f);
             Assert.That(farewell.Focus, Is.EqualTo(0), "o foco começa em Voltar ao arquivo");
             Assert.That(interaction.TryGetActive(out var candidate), Is.True);
             Assert.That(candidate.VerbKey, Is.EqualTo(PioneerFarewellActivity.ReturnKey), "o prompt fala do botão em foco");
@@ -289,7 +289,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That((replays, returns), Is.EqualTo((1, 0)));
             Assert.That(router.DescribeLeases(), Does.Not.Contain("PIO.Farewell"), "a escolha solta a entrada da despedida");
             Assert.That(interaction.TryGetActive(out _), Is.False);
-            RunUntil(() => !director.IsPlaying); // o fim da sequência (38 s) solta o último lease
+            RunUntil(() => !director.IsPlaying); // o fim da sequência (40 s) solta o último lease
             Assert.That(router.DescribeLeases(), Is.Empty);
             Assert.That((replays, returns), Is.EqualTo((1, 0)));
         }
@@ -298,7 +298,7 @@ namespace Abandoned.SpaceApps.Tests
         public void EnterAndAHoldOfHalfASecondAlsoActivateAndNeverTwice()
         {
             farewell.Begin();
-            RunUntilTime(36.3f);
+            RunUntilTime(38.3f);
             Press(keyboard.enterKey);
             Step(Frame);
             Release(keyboard.enterKey);
@@ -308,7 +308,7 @@ namespace Abandoned.SpaceApps.Tests
 
             farewell.Cancel();
             farewell.Begin();
-            RunUntilTime(36.3f);
+            RunUntilTime(38.3f);
             Press(keyboard.eKey);
             Run(PioneerFarewellActivity.ActivateHoldSeconds + 0.3f);
             Release(keyboard.eKey);
@@ -376,7 +376,7 @@ namespace Abandoned.SpaceApps.Tests
         public void CancelingWithTheMemorialOpenClosesItWithoutRaisingAChoice()
         {
             farewell.Begin();
-            RunUntilTime(36.3f);
+            RunUntilTime(38.3f);
             farewell.Cancel();
             Assert.That(farewell.Phase, Is.EqualTo(FarewellPhase.Idle));
             Assert.That(farewell.ViewState().ChoicesVisible, Is.False);

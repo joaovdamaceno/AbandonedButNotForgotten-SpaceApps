@@ -32,9 +32,9 @@ panel.Render(state, loc.Resolver);                           // os painéis dos 
 - **Chave ausente ou texto vazio no idioma atual devolve vazio**, nunca a chave nem o outro idioma; o pedido fica em `MissingRequests` para o QA. A legenda esconde a placa inteira (`sa-subtitle--hidden`): nenhuma caixa vazia, fundo ou linha decorativa.
 - **Duplicatas:** mesma chave e mesmo texto é só repetição (vale a primeira); texto diferente é conflito (vale a primeira e vai para `Problems`).
 - **Uma ideia por cue**: o tempo é do diretor (janela ou gatilho com leitura mínima); o apresentador só mostra e esconde. Com cues simultâneos vale a maior prioridade e, em empate, o mais recente; ao sair, volta o anterior ainda ativo. Base e topo têm placas independentes.
-- **Datas e nomes** (grupo `card`, ou `SetStamp(chave)`) usam o carimbo (Plex Mono, destaque), claramente diferente do corpo (Outfit). Um cartão sem corpo vira uma placa só de carimbo.
+- **Datas e nomes** (grupo `card`, ou `SetStamp(chave)`) usam o carimbo (Plex Mono, destaque), claramente diferente do corpo (Outfit Medium, peso 450). Um cartão sem corpo vira uma placa só de carimbo.
 - **Troca de idioma** é imediata e idempotente; o cue, a etapa e o tempo de leitura continuam do `SequenceDirector`. Quem chama (menu de preferências ou pausa) o faz num estado seguro.
-- Cobertura de glifos conferida com fontTools: nenhum caractere das 112 chaves da Pioneer (PT e EN) falta em Outfit Regular, Outfit SemiBold ou Plex Mono SemiBold.
+- Cobertura de glifos conferida com fontTools: nenhum caractere das 112 chaves da Pioneer (PT e EN) falta em Outfit Regular, Outfit Medium, Outfit SemiBold ou Plex Mono SemiBold.
 
 ## Limitações
 

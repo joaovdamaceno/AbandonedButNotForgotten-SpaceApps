@@ -1,0 +1,90 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="CinemaHud.uss" />
+    <!-- Roteiro v2 · HUD dos planos de cinema (sem interação): medidor de radiação, estática, velocidade e comparação de distâncias.
+         Sem frases literais: os rótulos recebem chaves PIO.UI.* resolvidas pelo capítulo. -->
+    <ui:VisualElement name="hud-root" picking-mode="Ignore" class="sa-root pio-hud">
+        <!-- Fase 5 · barras de cinema (letterbox): abaixo de todo o resto do HUD. -->
+        <ui:VisualElement name="bar-top" picking-mode="Ignore" class="pio-hud__bar pio-hud__bar--top" />
+        <ui:VisualElement name="bar-bottom" picking-mode="Ignore" class="pio-hud__bar pio-hud__bar--bottom" />
+        <ui:VisualElement name="static" picking-mode="Ignore" class="pio-hud__static" />
+
+        <ui:VisualElement name="radiation" picking-mode="Ignore" class="sa-plate pio-hud__radiation">
+            <ui:Label name="radiation-title" picking-mode="Ignore" class="pio-hud__title" />
+            <ui:VisualElement name="radiation-track" picking-mode="Ignore" class="pio-hud__track">
+                <ui:VisualElement name="radiation-fill" picking-mode="Ignore" class="pio-hud__fill" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="speed" picking-mode="Ignore" class="sa-plate pio-hud__speed">
+            <ui:Label name="speed-label" picking-mode="Ignore" class="pio-hud__value" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="distances" picking-mode="Ignore" class="sa-plate pio-hud__distances">
+            <ui:Label name="distance-moon-label" picking-mode="Ignore" class="pio-hud__caption" />
+            <ui:VisualElement picking-mode="Ignore" class="pio-hud__track">
+                <ui:VisualElement name="distance-moon-fill" picking-mode="Ignore" class="pio-hud__fill pio-hud__fill--moon" />
+            </ui:VisualElement>
+            <ui:Label name="distance-clouds-label" picking-mode="Ignore" class="pio-hud__caption" />
+            <ui:VisualElement picking-mode="Ignore" class="pio-hud__track">
+                <ui:VisualElement name="distance-clouds-fill" picking-mode="Ignore" class="pio-hud__fill pio-hud__fill--clouds" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Cena 7 · Os anos: ano em destaque, ícones dos instrumentos, medidor de energia dos RTG e linha do tempo. -->
+        <ui:VisualElement name="years" picking-mode="Ignore" class="pio-hud__years">
+            <ui:VisualElement name="year-plate" picking-mode="Ignore" class="sa-plate pio-hud__headline">
+                <ui:Label name="year-big" picking-mode="Ignore" class="pio-hud__year" />
+                <ui:Label name="year-event" picking-mode="Ignore" class="pio-hud__caption" />
+                <ui:Label name="year-note" picking-mode="Ignore" class="pio-hud__note" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="instruments" picking-mode="Ignore" class="sa-plate pio-hud__instruments">
+                <ui:Label name="instruments-title" picking-mode="Ignore" class="pio-hud__title" />
+                <ui:VisualElement name="inst-0" picking-mode="Ignore" class="pio-hud__inst">
+                    <ui:VisualElement picking-mode="Ignore" class="pio-hud__icon pio-hud__icon--camera"><ui:VisualElement picking-mode="Ignore" class="pio-hud__glyph pio-hud__glyph--dot" /></ui:VisualElement>
+                    <ui:Label name="inst-label-0" picking-mode="Ignore" class="pio-hud__caption" />
+                </ui:VisualElement>
+                <ui:VisualElement name="inst-1" picking-mode="Ignore" class="pio-hud__inst">
+                    <ui:VisualElement picking-mode="Ignore" class="pio-hud__icon pio-hud__icon--ring"><ui:VisualElement picking-mode="Ignore" class="pio-hud__glyph pio-hud__glyph--ring" /></ui:VisualElement>
+                    <ui:Label name="inst-label-1" picking-mode="Ignore" class="pio-hud__caption" />
+                </ui:VisualElement>
+                <ui:VisualElement name="inst-2" picking-mode="Ignore" class="pio-hud__inst">
+                    <ui:VisualElement picking-mode="Ignore" class="pio-hud__icon pio-hud__icon--ring"><ui:VisualElement picking-mode="Ignore" class="pio-hud__glyph pio-hud__glyph--diamond" /></ui:VisualElement>
+                    <ui:Label name="inst-label-2" picking-mode="Ignore" class="pio-hud__caption" />
+                </ui:VisualElement>
+                <ui:VisualElement name="inst-3" picking-mode="Ignore" class="pio-hud__inst">
+                    <ui:VisualElement picking-mode="Ignore" class="pio-hud__icon pio-hud__icon--ring"><ui:VisualElement picking-mode="Ignore" class="pio-hud__glyph pio-hud__glyph--dot" /></ui:VisualElement>
+                    <ui:Label name="inst-label-3" picking-mode="Ignore" class="pio-hud__caption" />
+                </ui:VisualElement>
+                <ui:VisualElement name="inst-4" picking-mode="Ignore" class="pio-hud__inst">
+                    <ui:VisualElement picking-mode="Ignore" class="pio-hud__icon pio-hud__icon--camera"><ui:VisualElement picking-mode="Ignore" class="pio-hud__glyph pio-hud__glyph--bar" /></ui:VisualElement>
+                    <ui:Label name="inst-label-4" picking-mode="Ignore" class="pio-hud__caption" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="energy" picking-mode="Ignore" class="sa-plate pio-hud__energy">
+                <ui:Label name="energy-title" picking-mode="Ignore" class="pio-hud__title" />
+                <ui:VisualElement picking-mode="Ignore" class="pio-hud__gauge">
+                    <ui:VisualElement name="energy-track" picking-mode="Ignore" class="pio-hud__vtrack">
+                        <ui:VisualElement name="energy-fill" picking-mode="Ignore" class="pio-hud__vfill" />
+                    </ui:VisualElement>
+                    <ui:VisualElement picking-mode="Ignore" class="pio-hud__mark pio-hud__mark--launch" />
+                    <ui:Label name="energy-launch" picking-mode="Ignore" class="pio-hud__marklabel pio-hud__marklabel--launch" />
+                    <ui:VisualElement picking-mode="Ignore" class="pio-hud__mark pio-hud__mark--jupiter" />
+                    <ui:Label name="energy-jupiter" picking-mode="Ignore" class="pio-hud__marklabel pio-hud__marklabel--jupiter" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="timeline" picking-mode="Ignore" class="pio-hud__timeline">
+                <ui:VisualElement name="timeline-line" picking-mode="Ignore" class="pio-hud__tline" />
+                <ui:VisualElement name="timeline-ticks" picking-mode="Ignore" class="pio-hud__ticks" />
+                <ui:VisualElement name="timeline-marker" picking-mode="Ignore" class="pio-hud__marker" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Cena 9 · As seis primeiras vezes: estrelas criadas pela vista, uma por vez, ao redor da sonda. -->
+        <ui:VisualElement name="firsts" picking-mode="Ignore" class="pio-hud__firsts" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -11,7 +11,7 @@ namespace Abandoned.SpaceApps.EditorTools
     /// <summary>
     /// PIO-006 · Builder da varredura IPP (CORE-006, raiz <c>[R5] Pioneer Imaging</c> na cena da Pioneer):
     /// <c>UI/ImagingPanel.prefab</c> (UIDocument + <see cref="ImagingPanelView"/>), <see cref="PioneerImaging"/> ligada ao
-    /// palco e a sequência <c>Sequences/PIO_Imaging.asset</c> (74 s).
+    /// palco e a sequência <c>Sequences/PIO_Imaging.asset</c> (64 s).
     /// </summary>
     public sealed class PioneerImagingBuilder : SceneBuilderModule
     {
@@ -71,8 +71,8 @@ namespace Abandoned.SpaceApps.EditorTools
             }
 
             errors.AddRange(sequence.Validate().Select(e => $"{ImagingBuilderId}: {e}"));
-            if (Mathf.Abs(sequence.TotalDurationSeconds - 74f) > 0.01f)
-                errors.Add($"{ImagingBuilderId}: PIO.Imaging dura {sequence.TotalDurationSeconds} s; o roteiro pede 74 s.");
+            if (Mathf.Abs(sequence.TotalDurationSeconds - 64f) > 0.01f)
+                errors.Add($"{ImagingBuilderId}: PIO.Imaging dura {sequence.TotalDurationSeconds} s; o roteiro v2 retemporizado pede 64 s.");
 
             var stage = context.Scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<PioneerPresentation>(true)).First();
             foreach (var shot in sequence.Shots)
@@ -106,7 +106,7 @@ namespace Abandoned.SpaceApps.EditorTools
         static ShotKeyframe Key(float t, Vector3 p, float fov) => new ShotKeyframe(t, p, Vector3.zero, fov);
 
         /// <summary>
-        /// 0–16 aprender, 16–48 oito passagens (3 s cada), 48–74 revelação. Os marcos de 28, 34, 40 e 46 s seguram a
+        /// 0–10 aprender, 10–38 as passagens (os marcos de 21, 27, 31,5 e 37 s), 38–64 revelação. Os marcos seguram a
         /// sequência até a faixa 4, a interrupção (faixa 6), a recuperação e 8/8; no ritmo nominal (uma faixa por
         /// passagem) nenhuma espera acontece e as legendas PIO.04.03–05 caem exatamente nas lacunas do roteiro.
         /// </summary>
@@ -114,20 +114,20 @@ namespace Abandoned.SpaceApps.EditorTools
         {
             var shots = new[]
             {
-                new ShotDefinition("PIO04.Learn", 16f, PioneerImaging.StateId,
-                    new[] { Key(0f, Vector3.zero, 46f), Key(16f, new Vector3(0f, 0f, 0.2f), 46f) },
+                new ShotDefinition("PIO04.Learn", 10f, PioneerImaging.StateId,
+                    new[] { Key(0f, Vector3.zero, 46f), Key(10f, new Vector3(0f, 0f, 0.2f), 46f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerImaging.EventLearn) }),
-                new ShotDefinition("PIO04.Sweep", 32f, PioneerImaging.StateId,
-                    new[] { Key(0f, new Vector3(0f, 0f, 0.2f), 46f), Key(32f, new Vector3(0f, 0f, 0.4f), 46f) },
+                new ShotDefinition("PIO04.Sweep", 28f, PioneerImaging.StateId,
+                    new[] { Key(0f, new Vector3(0f, 0f, 0.2f), 46f), Key(28f, new Vector3(0f, 0f, 0.4f), 46f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[]
                     {
                         new ShotEvent(0f, PioneerImaging.EventSweep),
-                        new ShotEvent(12f, PioneerImaging.EventGateChannels),
-                        new ShotEvent(18f, PioneerImaging.EventGateInterruption),
-                        new ShotEvent(24f, PioneerImaging.EventGateRecovery),
-                        new ShotEvent(30f, PioneerImaging.EventGateComplete),
+                        new ShotEvent(11f, PioneerImaging.EventGateChannels),
+                        new ShotEvent(17f, PioneerImaging.EventGateInterruption),
+                        new ShotEvent(21.5f, PioneerImaging.EventGateRecovery),
+                        new ShotEvent(27f, PioneerImaging.EventGateComplete),
                     }),
                 new ShotDefinition("PIO04.Reveal", 26f, PioneerImaging.StateId,
                     new[] { Key(0f, new Vector3(0f, 0f, 0.4f), 46f), Key(26f, new Vector3(0f, 0f, 0.4f), 46f) },
@@ -137,15 +137,15 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var cues = new[]
             {
-                new SubtitleCue("PIO.04.01", "PIO.04.01", 0f, 8f),
-                new SubtitleCue("PIO.04.02", "PIO.04.02", 8f, 16f),
-                new SubtitleCue("PIO.04.03", "PIO.04.03", 28f, 34f),
-                new SubtitleCue("PIO.04.04", "PIO.04.04", 34f, 40f),
-                new SubtitleCue("PIO.04.05", "PIO.04.05", 40f, 46f),
-                new SubtitleCue("PIO.04.06", "PIO.04.06", 48f, 55f),
-                new SubtitleCue("PIO.04.07", "PIO.04.07", 55f, 63f),
-                new SubtitleCue("PIO.04.08", "PIO.04.08", 63f, 69f),
-                new SubtitleCue("PIO.04.09", "PIO.04.09", 69f, 74f),
+                new SubtitleCue("PIO.04.01", "PIO.04.01", 0f, 3.2f),
+                new SubtitleCue("PIO.04.02", "PIO.04.02", 3.4f, 9.8f),
+                new SubtitleCue("PIO.04.03", "PIO.04.03", 21f, 27f),
+                new SubtitleCue("PIO.04.04", "PIO.04.04", 27f, 31.5f),
+                new SubtitleCue("PIO.04.05", "PIO.04.05", 31.5f, 37f),
+                new SubtitleCue("PIO.04.06", "PIO.04.06", 38f, 45f),
+                new SubtitleCue("PIO.04.07", "PIO.04.07", 45f, 53f),
+                new SubtitleCue("PIO.04.08", "PIO.04.08", 53f, 59f),
+                new SubtitleCue("PIO.04.09", "PIO.04.09", 59f, 64f),
             };
 
             return SequenceDefinition.Create("PIO_Imaging", shots, cues);

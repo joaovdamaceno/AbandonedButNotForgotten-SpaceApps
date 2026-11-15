@@ -76,8 +76,8 @@ namespace Abandoned.SpaceApps.EditorTools
 
         sealed class StageAssets
         {
-            public Mesh Sphere, SkySphere, LowSphere, StarMesh, BeltRocks, BeltNike;
-            public Material Jupiter, Sky, Stars, Ground, Aldebaran, BeltRock, Mars, Earth;
+            public Mesh Sphere, SkySphere, LowSphere, StarMesh, BeltRocks, BeltNike, Trajectory;
+            public Material Jupiter, Sky, Stars, Ground, Aldebaran, BeltRock, Mars, Earth, Ganymede, Callisto, Europa, TrajectoryLine;
         }
 
         static StageAssets BuildAssets(SceneBuildContext context)
@@ -90,6 +90,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 StarMesh = MeshAsset(context, "PIO_BrightStars", m => PioneerStageArt.BrightStars(m, 520, 2003, 0.09f, 0.2f)),
                 BeltRocks = MeshAsset(context, "PIO_BeltRocks", m => PioneerStageArt.RockField(m, BeltRockCount, BeltFieldSeed, BeltFieldAxis, 40f, 1000f, BeltTeleCameraMeters, 9.5f, 0.008f, 0.04f)),
                 BeltNike = MeshAsset(context, "PIO_BeltNike", FillNike),
+                Trajectory = MeshAsset(context, "PIO_JupiterTrajectory", m => PioneerStageArt.Ribbon(m, TrajectoryPoints(), TrajectoryWidthMeters)),
             };
 
             var sky = TextureAsset(context, "PIO_Starfield.png", () => PioneerStageArt.Starfield(2048, 1024, 3400, 1972), 2048, false, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
@@ -106,6 +107,10 @@ namespace Abandoned.SpaceApps.EditorTools
             a.Mars = Lit(context, "PIO_Mars", Color.white, 0f, 0.04f, marsTexture);
             var earthTexture = TextureAsset(context, "PIO_EarthSurface.png", () => PioneerStageArt.EarthSurface(1024, 512, 1972), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
             a.Earth = Lit(context, "PIO_EarthCompare", Color.white, 0f, 0.12f, earthTexture);
+            a.Ganymede = Lit(context, "PIO_Ganymede", Color.white, 0f, 0.05f, TextureAsset(context, "PIO_Ganymede.png", () => PioneerStageArt.GalileanMoonSurface(512, 256, 1610, 0), 512, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp));
+            a.Callisto = Lit(context, "PIO_Callisto", Color.white, 0f, 0.05f, TextureAsset(context, "PIO_Callisto.png", () => PioneerStageArt.GalileanMoonSurface(512, 256, 1610, 1), 512, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp));
+            a.Europa = Lit(context, "PIO_Europa", Color.white, 0f, 0.1f, TextureAsset(context, "PIO_Europa.png", () => PioneerStageArt.GalileanMoonSurface(512, 256, 1610, 2), 512, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp));
+            a.TrajectoryLine = Unlit(context, "PIO_JupiterTrajectory", new Color(1f, 0.84f, 0.46f), null);
             return a;
         }
 
@@ -298,6 +303,20 @@ namespace Abandoned.SpaceApps.EditorTools
             earth.transform.localScale = Vector3.one * EarthCompareRadiusMeters;
             earth.SetActive(false);
 
+            // Cena 5: as luas galileanas (raios na razão real entre elas) e a trajetória; só aparecem nos anchors que as pedem.
+            var moons = Ensure(deepSpace.transform, "GalileanMoons");
+            foreach (var moon in MoonSpecs)
+            {
+                var body = Visual(Ensure(moons.transform, moon.Name), a.Sphere, moon.Name == "Ganymede" ? a.Ganymede : moon.Name == "Callisto" ? a.Callisto : a.Europa);
+                body.transform.localPosition = moon.Position;
+                body.transform.localRotation = Quaternion.Euler(10f, moon.Name == "Europa" ? 60f : 200f, 0f);
+                body.transform.localScale = Vector3.one * moon.RadiusMeters;
+            }
+
+            moons.SetActive(false);
+            var trajectory = Visual(Ensure(deepSpace.transform, "JupiterTrajectory"), a.Trajectory, a.TrajectoryLine);
+            trajectory.SetActive(false);
+
             var aldebaran = Visual(Ensure(root.transform, "AldebaranMarker"), a.LowSphere, a.Aldebaran);
             aldebaran.transform.localScale = Vector3.one * 5f;
 
@@ -317,6 +336,8 @@ namespace Abandoned.SpaceApps.EditorTools
             so.FindProperty("beltNike").objectReferenceValue = beltNike.transform;
             so.FindProperty("mars").objectReferenceValue = mars.transform;
             so.FindProperty("earth").objectReferenceValue = earth.transform;
+            so.FindProperty("moons").objectReferenceValue = moons.transform;
+            so.FindProperty("trajectory").objectReferenceValue = trajectory.transform;
             so.FindProperty("aldebaranMarker").objectReferenceValue = aldebaran.transform;
             so.FindProperty("aldebaranDirection").vector3Value = AldebaranDirection;
             so.FindProperty("aldebaranDistanceMeters").floatValue = 1100f;
@@ -342,6 +363,17 @@ namespace Abandoned.SpaceApps.EditorTools
         /// <summary>A 880 m da câmera, 9° à direita e 3° abaixo do centro do quadro (a sonda), no anchor PIO.Belt.Mars.</summary>
         public static readonly Vector3 MarsPosition = BeltMarsCamera + (OffsetLook(BeltMarsCamera, Vector3.zero, 9f, 3f) - BeltMarsCamera).normalized * 880f;
         public const float MarsRadiusMeters = 85f;
+        public const float TrajectoryWidthMeters = 2.4f;
+        /// <summary>Luas galileanas (cena 5): raios na razão real entre elas (2.634, 2.410 e 1.561 km), maiores que a razão com Júpiter para aparecerem; cada lua tem a sua câmera a 24 m.</summary>
+        public struct MoonSpec { public string Name; public Vector3 Position; public float RadiusMeters; }
+        public static readonly MoonSpec[] MoonSpecs =
+        {
+            new MoonSpec { Name = "Ganymede", Position = new Vector3(520f, 20f, 0f), RadiusMeters = 4.4f },
+            new MoonSpec { Name = "Callisto", Position = new Vector3(560f, 20f, 70f), RadiusMeters = 4.0f },
+            new MoonSpec { Name = "Europa", Position = new Vector3(600f, 20f, 140f), RadiusMeters = 2.6f },
+        };
+        public const float MoonCameraDistanceMeters = 24f;
+        public static Vector3 MoonCamera(int index) => MoonSpecs[index].Position + new Vector3(0f, 1.6f, -MoonCameraDistanceMeters);
         /// <summary>Cena 3: a Terra tem 1/11,2 do diâmetro de Júpiter (razão real dos diâmetros equatoriais).</summary>
         public const float EarthCompareRadiusMeters = JupiterRadiusMeters / 11.2f;
         /// <summary>Onde a Terra para no quadro do plano aberto (0–1, origem em cima à esquerda) e de onde ela entra (fora do quadro, à esquerda).</summary>
@@ -464,6 +496,36 @@ namespace Abandoned.SpaceApps.EditorTools
         static readonly Vector3 JupiterDirection = JupiterPosition.normalized;
 
         /// <summary>A câmera da aproximação de Júpiter (cena 3): 11 m atrás da sonda, um pouco acima e ao lado.</summary>
+        /// <summary>
+        /// A trajetória da sonda em volta de Júpiter (cena 5): chega em linha reta a 130 m do centro do planeta, curva uns 38° na direção dele
+        /// (a gravidade) e segue em linha reta; deitada no plano horizontal do centro de Júpiter. É uma linha de composição, não de cálculo orbital.
+        /// </summary>
+        public static Vector3 TrajectoryIncoming => new Vector3(JupiterDirection.x, 0f, JupiterDirection.z).normalized;
+        public static Vector3 TrajectorySide => Vector3.Cross(Vector3.up, TrajectoryIncoming).normalized;
+        /// <summary>Plano alto da curva (cena 5d): 620 m acima do plano da trajetória, um pouco antes de Júpiter, olhando quase de cima.</summary>
+        public static Vector3 BendCamera => JupiterPosition + Vector3.up * 620f - TrajectoryIncoming * 230f + TrajectorySide * 40f;
+        public static Vector3 BendLookAt => JupiterPosition + TrajectoryIncoming * 40f + TrajectorySide * 70f;
+
+        public static Vector3[] TrajectoryPoints()
+        {
+            var incoming = TrajectoryIncoming;
+            var side = TrajectorySide;
+            var points = new List<Vector3>();
+            var position = JupiterPosition + side * 130f - incoming * 900f;
+            position.y = JupiterPosition.y;
+            const float step = 12f;
+            for (var traveled = 0f; traveled < 1800f; traveled += step)
+            {
+                points.Add(position);
+                var u = Mathf.Clamp01((traveled - 700f) / 400f); // a curva acontece perto do ponto mais próximo
+                var turn = 38f * Mathf.Deg2Rad * (u * u * (3f - 2f * u));
+                var direction = incoming * Mathf.Cos(turn) - side * Mathf.Sin(turn); // dobra na direção do planeta
+                position += direction * step;
+            }
+
+            return points.ToArray();
+        }
+
         public static readonly Vector3 ApproachCamera = -JupiterDirection * 11f + Vector3.up * 3.2f + Vector3.Cross(Vector3.up, JupiterDirection).normalized * 3.5f;
         public static readonly Vector3 ApproachLookAt = OffsetLook(ApproachCamera, JupiterPosition, -7f, 4f);
 
@@ -502,11 +564,12 @@ namespace Abandoned.SpaceApps.EditorTools
         static List<PioneerLightGroup> LightGroups() => new List<PioneerLightGroup>
         {
             Group("PIO.Light.ColdRim", new Vector3(-0.95f, -0.1f, 0.25f), new Color(0.72f, 0.83f, 1f), 1.7f, new Vector3(-0.3f, -0.2f, -1f), new Color(0.3f, 0.38f, 0.55f), 0.04f),
-            Group("PIO.Light.Cruise", new Vector3(-0.55f, -0.25f, -0.8f), new Color(1f, 0.96f, 0.9f), 1.25f, new Vector3(0.6f, 0.3f, 0.75f), new Color(0.45f, 0.55f, 0.75f), 0.12f),
+            Group("PIO.Light.Cruise", new Vector3(-0.55f, -0.25f, -0.8f), new Color(0.84f, 0.9f, 1f), 1.25f, new Vector3(0.6f, 0.3f, 0.75f), new Color(0.45f, 0.55f, 0.75f), 0.12f),
             Group("PIO.Light.JupiterAxis", JupiterKeyDirection, new Color(1f, 0.95f, 0.88f), 1.3f, new Vector3(0.7f, 0.25f, 0.65f), new Color(0.4f, 0.48f, 0.65f), 0.08f),
             Group("PIO.Light.Plaque", new Vector3(0.36f, -0.86f, 0.38f), new Color(1f, 0.88f, 0.72f), 1.1f, new Vector3(0.3f, -0.6f, 0.7f), new Color(0.45f, 0.5f, 0.65f), 0.15f),
-            Group("PIO.Light.FarSun", new Vector3(-0.1f, -0.15f, -1f), new Color(0.95f, 0.95f, 1f), 0.75f, new Vector3(0.4f, 0.3f, 1f), new Color(0.35f, 0.4f, 0.55f), 0.05f),
-            Group("PIO.Light.Night", new Vector3(0.3f, -0.6f, 0.7f), new Color(0.55f, 0.65f, 0.9f), 0.35f, new Vector3(-0.4f, -0.3f, -0.8f), new Color(0.25f, 0.3f, 0.45f), 0.08f),
+            Group("PIO.Light.FarSun", new Vector3(-0.1f, -0.15f, -1f), new Color(0.86f, 0.92f, 1f), 0.75f, new Vector3(0.4f, 0.3f, 1f), new Color(0.35f, 0.4f, 0.55f), 0.05f),
+            // Fase 5: na Terra (plataforma de lançamento e antena da Deep Space Network) a luz é quente; no espaço, fria.
+            Group("PIO.Light.EarthWarm", new Vector3(0.3f, -0.6f, 0.7f), new Color(1f, 0.74f, 0.46f), 0.9f, new Vector3(-0.4f, -0.3f, -0.8f), new Color(0.42f, 0.3f, 0.26f), 0.1f),
             Group("PIO.Light.FarewellRim", new Vector3(-0.75f, -0.2f, -0.6f), new Color(0.85f, 0.9f, 1f), 0.55f, new Vector3(0.5f, 0.4f, 0.7f), new Color(0.3f, 0.35f, 0.5f), 0.03f),
         };
 
@@ -528,7 +591,7 @@ namespace Abandoned.SpaceApps.EditorTools
             public Vector3 Position, LookAt;
             public float Fov = 40f, SpinScale = 1f;
             public PioneerStageRegion Region;
-            public bool Jupiter, Aldebaran, BeltField, BeltNike, Mars;
+            public bool Jupiter, Aldebaran, BeltField, BeltNike, Mars, Moons, Trajectory;
             public Rect UiFrame;
         }
 
@@ -563,7 +626,7 @@ namespace Abandoned.SpaceApps.EditorTools
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.ColdRim", Fov = 34f,
                     Position = new Vector3(3.4f, 0.9f, 5.6f), LookAt = new Vector3(0f, 0.05f, 0.2f) },
                 new AnchorSpec { Id = "PIO.Launch.Pad", State = "PIO.Launch", Function = "PIO01.B · plano baixo lateral do Atlas-Centaur à noite (silhueta da PIO-004 no AtlasSocket)",
-                    Region = PioneerStageRegion.LaunchSite, Light = "PIO.Light.Night", Fov = 50f,
+                    Region = PioneerStageRegion.LaunchSite, Light = "PIO.Light.EarthWarm", Fov = 50f,
                     Position = LaunchSiteCenter + new Vector3(27f, 1.4f, -25f), LookAt = LaunchSiteCenter + new Vector3(0f, 12f, 0f) },
                 new AnchorSpec { Id = "PIO.Launch.Ellipse", State = "PIO.Launch", Function = "PIO01.C · diagrama Terra–Lua: a trajetória cruza a órbita lunar longe da Lua (PIO-004 no LaunchDiagramSocket)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 42f,
@@ -602,6 +665,18 @@ namespace Abandoned.SpaceApps.EditorTools
                 new AnchorSpec { Id = "PIO.Closest", State = "PIO.Closest", Function = "PIO05 (roteiro v2, cena 5) · a máxima aproximação: Júpiter enche o quadro, a poucas dezenas de metros do topo das nuvens (escala de composição)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 55f, Jupiter = true,
                     Position = closestCamera, LookAt = JupiterPosition + Vector3.down * 12f },
+                new AnchorSpec { Id = "PIO.Closest.Ganymede", State = "PIO.Closest", Function = "Cena 5a · Ganimedes cruza o quadro (as luas ligadas)",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 30f, Moons = true,
+                    Position = MoonCamera(0), LookAt = MoonSpecs[0].Position },
+                new AnchorSpec { Id = "PIO.Closest.Callisto", State = "PIO.Closest", Function = "Cena 5a · Calisto cruza o quadro (as luas ligadas)",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 30f, Moons = true,
+                    Position = MoonCamera(1), LookAt = MoonSpecs[1].Position },
+                new AnchorSpec { Id = "PIO.Closest.Europa", State = "PIO.Closest", Function = "Cena 5a · Europa cruza o quadro (as luas ligadas)",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 30f, Moons = true,
+                    Position = MoonCamera(2), LookAt = MoonSpecs[2].Position },
+                new AnchorSpec { Id = "PIO.Closest.Bend", State = "PIO.Closest", Function = "Cena 5d · plano alto: a trajetória da sonda curva em volta de Júpiter (trajetória ligada)",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 50f, Jupiter = true, Trajectory = true,
+                    Position = BendCamera, LookAt = BendLookAt },
                 new AnchorSpec { Id = "PIO.Plaque", State = "PIO.Plaque", Function = "Placa presa aos suportes da antena; rotação visual suspensa só neste close",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Plaque", Fov = 36f, Jupiter = true, SpinScale = 0f,
                     AlignSocket = "Plaque", Position = plaqueCamera, LookAt = plaqueAligned },
@@ -609,7 +684,7 @@ namespace Abandoned.SpaceApps.EditorTools
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.FarSun", Fov = 40f,
                     Position = new Vector3(-4.5f, -1.8f, 17f), LookAt = new Vector3(0f, 0f, 0f) },
                 new AnchorSpec { Id = "PIO.Listening", State = "PIO.Listening", Function = "Antena terrestre sob céu noturno (silhueta DSN da PIO-011 no DishSocket); painel de onda embaixo à direita",
-                    Region = PioneerStageRegion.GroundStation, Light = "PIO.Light.Night", Fov = 55f,
+                    Region = PioneerStageRegion.GroundStation, Light = "PIO.Light.EarthWarm", Fov = 55f,
                     Position = GroundStationCenter + new Vector3(0f, 1.7f, -36f), LookAt = GroundStationCenter + new Vector3(0f, 14f, 0f),
                     UiFrame = new Rect(0.56f, 0.07f, 0.40f, 0.33f) },
                 new AnchorSpec { Id = "PIO.Farewell", State = "PIO.Farewell", Function = "Pioneer diminui no campo de estrelas, na direção geral de Aldebaran (sem iluminá-la)",
@@ -640,6 +715,8 @@ namespace Abandoned.SpaceApps.EditorTools
                     showBeltField = spec.BeltField,
                     showBeltNike = spec.BeltNike,
                     showMars = spec.Mars,
+                    showMoons = spec.Moons,
+                    showTrajectory = spec.Trajectory,
                     spinAlignSocket = spec.AlignSocket,
                     spinAlignTowards = spec.AlignTowards,
                     spinScale = spec.SpinScale,
@@ -693,6 +770,8 @@ namespace Abandoned.SpaceApps.EditorTools
             p.FindPropertyRelative("showBeltField").boolValue = a.showBeltField;
             p.FindPropertyRelative("showBeltNike").boolValue = a.showBeltNike;
             p.FindPropertyRelative("showMars").boolValue = a.showMars;
+            p.FindPropertyRelative("showMoons").boolValue = a.showMoons;
+            p.FindPropertyRelative("showTrajectory").boolValue = a.showTrajectory;
             p.FindPropertyRelative("spinAlignSocket").stringValue = a.spinAlignSocket ?? "";
             p.FindPropertyRelative("spinAlignTowards").stringValue = a.spinAlignTowards ?? "";
             p.FindPropertyRelative("spinScale").floatValue = a.spinScale;

@@ -478,6 +478,134 @@ namespace Abandoned.SpaceApps.EditorTools
             return texture;
         }
 
+        /// <summary>
+        /// Luas galileanas (equiretangular), estilizadas: <paramref name="kind"/> 0 Ganimedes (cinza-marrom com manchas escuras e crateras
+        /// de borda clara), 1 Calisto (escura e muito craterizada), 2 Europa (clara, creme, com fraturas marrom-avermelhadas).
+        /// Cores do aspecto geral de cada lua, não de mapas reais.
+        /// </summary>
+        public static Texture2D GalileanMoonSurface(int width, int height, int seed, int kind)
+        {
+            var pixels = new Color32[width * height];
+            Color baseColor, darkColor;
+            int craterCount;
+            switch (kind)
+            {
+                case 1:
+                    baseColor = new Color(0.36f, 0.31f, 0.27f);
+                    darkColor = new Color(0.2f, 0.18f, 0.16f);
+                    craterCount = 420;
+                    break;
+                case 2:
+                    baseColor = new Color(0.84f, 0.81f, 0.74f);
+                    darkColor = new Color(0.62f, 0.5f, 0.4f);
+                    craterCount = 24;
+                    break;
+                default:
+                    baseColor = new Color(0.55f, 0.5f, 0.44f);
+                    darkColor = new Color(0.32f, 0.29f, 0.26f);
+                    craterCount = 130;
+                    break;
+            }
+
+            var random = new System.Random(seed);
+            var craters = new List<Vector3>();
+            for (var i = 0; i < craterCount; i++)
+                craters.Add(new Vector3((float)random.NextDouble(), 0.08f + (float)random.NextDouble() * 0.84f, Mathf.Lerp(0.006f, kind == 2 ? 0.05f : 0.032f, Mathf.Pow((float)random.NextDouble(), 2.4f))));
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var u = x / (float)width;
+                    var v = y / (float)height;
+                    var patch = Smooth(0.5f, 0.64f, Fractal(u, v, 4, 4, seed));
+                    var color = Color.Lerp(baseColor, darkColor, patch * (kind == 2 ? 0.25f : 0.85f));
+                    color *= 0.9f + Fractal(u, v, 14, 4, seed + 37) * 0.2f;
+                    if (kind == 2)
+                    {
+                        // fraturas: cristas finas onde o ruído cruza 0,5
+                        var ridge = Mathf.Abs(Fractal(u, v, 5, 4, seed + 211) - 0.5f);
+                        color = Color.Lerp(new Color(0.55f, 0.33f, 0.22f), color, Smooth(0.0f, 0.035f, ridge));
+                    }
+
+                    var shade = 0f;
+                    foreach (var crater in craters)
+                    {
+                        var du = Mathf.Abs(u - crater.x);
+                        du = Mathf.Min(du, 1f - du) * 2f;
+                        var d = Mathf.Sqrt(du * du + (v - crater.y) * (v - crater.y)) / crater.z;
+                        if (d > 1.25f)
+                            continue;
+                        shade += d < 0.92f ? -(1f - d) * 0.09f : (1f - Mathf.Abs(d - 1.05f) / 0.2f) * 0.07f;
+                    }
+
+                    color = new Color(color.r + shade, color.g + shade, color.b + shade, 1f);
+                    pixels[y * width + x] = color;
+                }
+            }
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false) { name = "PIO_GalileanMoon" + kind };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
+        /// <summary>Ruído branco tileável em tons de cinza, com alfa variável (estática do medidor de radiação).</summary>
+        public static Texture2D StaticNoise(int size, int seed)
+        {
+            var random = new System.Random(seed);
+            var pixels = new Color32[size * size];
+            for (var i = 0; i < pixels.Length; i++)
+            {
+                var gray = (byte)random.Next(120, 256);
+                pixels[i] = new Color32(gray, gray, gray, (byte)random.Next(0, 200));
+            }
+
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false) { name = "PIO_StaticNoise" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
+        /// <summary>
+        /// Faixa plana (face para cima) seguindo <paramref name="points"/>, de largura <paramref name="width"/>, deitada no plano
+        /// horizontal (a trajetória vista de cima). Os vértices ficam em <paramref name="up"/> sobre o plano da linha.
+        /// </summary>
+        public static void Ribbon(Mesh mesh, IReadOnlyList<Vector3> points, float width)
+        {
+            var vertices = new List<Vector3>();
+            var normals = new List<Vector3>();
+            var uvs = new List<Vector2>();
+            var triangles = new List<int>();
+            for (var i = 0; i < points.Count; i++)
+            {
+                var previous = points[Mathf.Max(0, i - 1)];
+                var next = points[Mathf.Min(points.Count - 1, i + 1)];
+                var direction = (next - previous).normalized;
+                var side = Vector3.Cross(direction, Vector3.up).normalized * (width * 0.5f);
+                vertices.Add(points[i] - side);
+                vertices.Add(points[i] + side);
+                normals.Add(Vector3.up);
+                normals.Add(Vector3.up);
+                var along = i / (float)(points.Count - 1);
+                uvs.Add(new Vector2(0f, along));
+                uvs.Add(new Vector2(1f, along));
+            }
+
+            for (var i = 0; i < points.Count - 1; i++)
+            {
+                var a = i * 2;
+                triangles.AddRange(new[] { a, a + 1, a + 2, a + 1, a + 3, a + 2 }); // face voltada para cima (a câmera olha de cima)
+            }
+
+            mesh.Clear();
+            mesh.SetVertices(vertices);
+            mesh.SetNormals(normals);
+            mesh.SetUVs(0, uvs);
+            mesh.SetTriangles(triangles, 0);
+            mesh.RecalculateBounds();
+        }
+
         public static void BrightStars(Mesh mesh, int count, int seed, float minDegrees, float maxDegrees)
         {
             var vertices = new List<Vector3>();

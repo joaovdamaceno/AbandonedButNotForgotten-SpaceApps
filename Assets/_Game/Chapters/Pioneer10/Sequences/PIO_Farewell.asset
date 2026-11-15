@@ -106,7 +106,7 @@ MonoBehaviour:
     - timeSeconds: 0.05
       eventId: PIO.Farewell.GuideEnd
   - shotId: PIO08.Memorial
-    durationSeconds: 8
+    durationSeconds: 10
     rigId: PIO.Outbound
     lookAtTargetId: 
     easing: 0
@@ -117,14 +117,14 @@ MonoBehaviour:
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 38
-    - timeSeconds: 8
+    - timeSeconds: 10
       positionMeters: {x: -3, y: -0.8, z: -32}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 36
     events:
     - timeSeconds: 0.05
       eventId: PIO.Farewell.Memorial
-    - timeSeconds: 6
+    - timeSeconds: 8
       eventId: PIO.Farewell.Choices
   cues:
   - cueId: PIO.08.01

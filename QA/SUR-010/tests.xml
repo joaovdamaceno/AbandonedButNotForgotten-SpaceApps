@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 05:31:11Z" end-time="2026-11-15 05:31:13Z" duration="1,5472908">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="1018" result="Passed" start-time="2026-11-15 05:31:11Z" end-time="2026-11-15 05:31:13Z" duration="1.547291" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2116" name="Abandoned.SpaceApps.Surveyor.Soil.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Soil.Tests.dll" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 05:31:12Z" end-time="2026-11-15 05:31:13Z" duration="1.127616" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27096" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2117" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 05:31:12Z" end-time="2026-11-15 05:31:13Z" duration="1.122691" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2118" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 05:31:12Z" end-time="2026-11-15 05:31:13Z" duration="1.118036" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="2119" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 05:31:12Z" end-time="2026-11-15 05:31:13Z" duration="1.113512" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="2120" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 05:31:12Z" end-time="2026-11-15 05:31:13Z" duration="1.109106" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="2121" name="SoilTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 05:31:12Z" end-time="2026-11-15 05:31:13Z" duration="1.105043" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="2108" name="SoilFlowTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-15 05:30:57Z" end-time="2026-11-15 05:30:59Z" duration="2.363484" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="2109" name="OneHeldKeyCannotDigPressAndDrop" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests.OneHeldKeyCannotDigPressAndDrop" methodname="OneHeldKeyCannotDigPressAndDrop" classname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests" runstate="Runnable" seed="275619438" result="Passed" start-time="2026-11-15 05:30:57Z" end-time="2026-11-15 05:30:58Z" duration="1.422197" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="2110" name="ReleaseAndPausePreserveThePressWork" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests.ReleaseAndPausePreserveThePressWork" methodname="ReleaseAndPausePreserveThePressWork" classname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests" runstate="Runnable" seed="1851667" result="Passed" start-time="2026-11-15 05:30:58Z" end-time="2026-11-15 05:30:59Z" duration="0.247268" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="2111" name="RestartReleasesPhotosAndRestoresExcavation" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests.RestartReleasesPhotosAndRestoresExcavation" methodname="RestartReleasesPhotosAndRestoresExcavation" classname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests" runstate="Runnable" seed="937866778" result="Passed" start-time="2026-11-15 05:30:59Z" end-time="2026-11-15 05:30:59Z" duration="0.221442" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="2112" name="ReturningDuringContactClearsInputAndDoesNotCreateLateResults" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests.ReturningDuringContactClearsInputAndDoesNotCreateLateResults" methodname="ReturningDuringContactClearsInputAndDoesNotCreateLateResults" classname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests" runstate="Runnable" seed="659705487" result="Passed" start-time="2026-11-15 05:30:59Z" end-time="2026-11-15 05:30:59Z" duration="0.205424" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="2113" name="TheExistingArmOnlyAcceptsTestPosesAfterSafeRetraction" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests.TheExistingArmOnlyAcceptsTestPosesAfterSafeRetraction" methodname="TheExistingArmOnlyAcceptsTestPosesAfterSafeRetraction" classname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilFlowTests" runstate="Runnable" seed="601322080" result="Passed" start-time="2026-11-15 05:30:59Z" end-time="2026-11-15 05:30:59Z" duration="0.219833" asserts="0">
+                    <properties />
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="2114" name="SoilSceneTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilSceneTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilSceneTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 05:31:12Z" end-time="2026-11-15 05:31:13Z" duration="1.075746" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="2115" name="SameAreaHasDifferentRealBeforeAndAfterPictures" fullname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilSceneTests.SameAreaHasDifferentRealBeforeAndAfterPictures" methodname="SameAreaHasDifferentRealBeforeAndAfterPictures" classname="Abandoned.SpaceApps.Chapters.Surveyor.SoilTests.SoilSceneTests" runstate="Runnable" seed="908349039" result="Passed" start-time="2026-11-15 05:30:59Z" end-time="2026-11-15 05:31:13Z" duration="13.465745" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Damaceno/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

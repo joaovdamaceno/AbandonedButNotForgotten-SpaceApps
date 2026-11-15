@@ -18,13 +18,13 @@ namespace Abandoned.SpaceApps
         /// <summary>O contador começa a acelerar (início do plano do dolly zoom).</summary>
         public const float DaysStartSeconds = 19f;
         /// <summary>Chega ao Dia 140 (2 DEZ 1972).</summary>
-        public const float DaysRampEndSeconds = 34f;
+        public const float DaysRampEndSeconds = 30f;
         /// <summary>Fim da pausa em 140 e da revelação de 307 Nike; o contador segue até o Dia 215.</summary>
-        public const float HoldEndSeconds = 44f;
-        public const float ExitEndSeconds = 51f;
+        public const float HoldEndSeconds = 40f;
+        public const float ExitEndSeconds = 47f;
         public const int StopDay = 140;
         public const int FinalDay = 215;
-        /// <summary>Quanto o contador acelera: a taxa final é <c>e^k</c> vezes a inicial (k = 5: de ~0,3 a ~47 dias por segundo).</summary>
+        /// <summary>Quanto o contador acelera: a taxa final é <c>e^k</c> vezes a inicial (k = 5: de ~0,4 a ~63 dias por segundo).</summary>
         public const float Acceleration = 5f;
 
         /// <summary>Primeiro dia da travessia: 15 de julho de 1972.</summary>

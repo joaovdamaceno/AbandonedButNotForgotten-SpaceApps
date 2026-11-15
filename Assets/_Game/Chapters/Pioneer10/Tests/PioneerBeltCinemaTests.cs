@@ -104,10 +104,10 @@ namespace Abandoned.SpaceApps.Tests
         {
             presentation.RegisterWithCameraDirector();
             var sequence = controller.BeltCinemaSequence;
-            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(54f).Within(1e-4f));
+            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(50f).Within(1e-4f));
             var days = sequence.Shots.Single(s => s.ShotId == "PIO02.Days");
             var reference = -1f;
-            foreach (var t in new[] { 0f, 3f, 6f, 9f, 12f, 15f })
+            foreach (var t in new[] { 0f, 2.2f, 4.4f, 6.6f, 8.8f, 11f })
             {
                 var pose = presentation.CameraDirector.Evaluate(days, t, null);
                 var size = pose.Position.magnitude * Mathf.Tan(pose.FieldOfViewDegrees * 0.5f * Mathf.Deg2Rad); // metros cobertos no plano da sonda
@@ -117,7 +117,7 @@ namespace Abandoned.SpaceApps.Tests
             }
 
             var first = presentation.CameraDirector.Evaluate(days, 0f, null);
-            var last = presentation.CameraDirector.Evaluate(days, 15f, null);
+            var last = presentation.CameraDirector.Evaluate(days, 11f, null);
             Assert.That((first.FieldOfViewDegrees, last.FieldOfViewDegrees), Is.EqualTo((10f, 30f)), "da teleobjetiva ao plano aberto");
             Assert.That(first.Position.magnitude, Is.GreaterThan(last.Position.magnitude * 2.5f), "a câmera se aproxima enquanto o campo de visão abre");
         }
@@ -200,11 +200,11 @@ namespace Abandoned.SpaceApps.Tests
             var sequence = controller.BeltCinemaSequence;
             Assert.That(sequence.Validate(), Is.Empty);
             Assert.That(sequence.Shots.Select(s => s.ShotId), Is.EqualTo(new[] { "PIO02.Mars", "PIO02.Fear", "PIO02.Days", "PIO02.Nike", "PIO02.Exit" }));
-            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 8f, 11f, 15f, 10f, 10f }));
+            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 8f, 11f, 11f, 10f, 10f }));
             Assert.That(sequence.Cues.Select(c => c.TextKey), Is.EqualTo(new[] { "PIO.02.01", "PIO.02.02", "PIO.02.03", "PIO.02.04", "PIO.02.05", "PIO.02.06" }));
             Assert.That(sequence.Shots.Single(s => s.ShotId == "PIO02.Nike").Events.Select(e => e.eventId), Does.Contain(BeltInvestigation.EventReality), "a música baixa na revelação");
-            Assert.That(PioneerBeltCounter.NikeVisibleAt(34.2f) && PioneerBeltCounter.NikeVisibleAt(43.9f) && !PioneerBeltCounter.NikeVisibleAt(44.1f), Is.True,
-                "o rótulo acompanha o plano da revelação (34–44 s)");
+            Assert.That(PioneerBeltCounter.NikeVisibleAt(30.2f) && PioneerBeltCounter.NikeVisibleAt(39.9f) && !PioneerBeltCounter.NikeVisibleAt(40.1f), Is.True,
+                "o rótulo acompanha o plano da revelação (30–40 s)");
         }
     }
 }

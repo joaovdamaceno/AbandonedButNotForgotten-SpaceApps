@@ -11,7 +11,7 @@ namespace Abandoned.SpaceApps.EditorTools
     /// <summary>
     /// PIO-012 · Builder da despedida (CORE-006, raiz <c>[R5] Pioneer Farewell</c> na cena da Pioneer):
     /// <c>UI/FarewellPanel.prefab</c> (UIDocument + <see cref="FarewellPanelView"/> + <see cref="ResponsiveLayoutClass"/>),
-    /// <see cref="PioneerFarewellActivity"/> ligada ao palco e a sequência <c>Sequences/PIO_Farewell.asset</c> (38 s).
+    /// <see cref="PioneerFarewellActivity"/> ligada ao palco e a sequência <c>Sequences/PIO_Farewell.asset</c> (40 s).
     /// </summary>
     public sealed class PioneerFarewellBuilder : SceneBuilderModule
     {
@@ -104,7 +104,7 @@ namespace Abandoned.SpaceApps.EditorTools
 
         /// <summary>
         /// 0–4 antena terrestre e 4–8 contorno do refletor (o match cut), 8–14 placa em close, 14–20 plano aberto com a direção
-        /// de Aldebaran (a luz da placa já apagou, pois o rig muda), 20–30 a Pioneer diminuindo, 30–38 preto do memorial
+        /// de Aldebaran (a luz da placa já apagou, pois o rig muda), 20–30 a Pioneer diminuindo, 30–40 preto do memorial
         /// (marco em 36 s: as duas ações finais e a conclusão). Cada plano usa um rig diferente do anterior (nunca o mesmo
         /// zoom); só o preto continua o plano anterior, sem salto.
         /// </summary>
@@ -130,10 +130,10 @@ namespace Abandoned.SpaceApps.EditorTools
                     new[] { Key(0f, Vector3.zero, 40f), Key(10f, new Vector3(-2.5f, -0.6f, -25f), 38f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0.05f, PioneerFarewellActivity.EventGuideEnd) }),
-                new ShotDefinition("PIO08.Memorial", 8f, "PIO.Outbound",
-                    new[] { Key(0f, Vector3.zero, 38f), Key(8f, new Vector3(-3f, -0.8f, -32f), 36f) },
+                new ShotDefinition("PIO08.Memorial", 10f, "PIO.Outbound",
+                    new[] { Key(0f, Vector3.zero, 38f), Key(10f, new Vector3(-3f, -0.8f, -32f), 36f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f, continueFromPreviousShot: true,
-                    events: new[] { new ShotEvent(0.05f, PioneerFarewellActivity.EventMemorial), new ShotEvent(6f, PioneerFarewellActivity.EventChoices) }),
+                    events: new[] { new ShotEvent(0.05f, PioneerFarewellActivity.EventMemorial), new ShotEvent(8f, PioneerFarewellActivity.EventChoices) }),
             };
 
             var cues = new[]
