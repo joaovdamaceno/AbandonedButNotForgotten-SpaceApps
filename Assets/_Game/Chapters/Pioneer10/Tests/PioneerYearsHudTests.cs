@@ -18,9 +18,9 @@ namespace Abandoned.SpaceApps.Tests
         public void TheYearRunsFrom1974To1998WithoutGoingBackAndStopsOnTheRealMilestones()
         {
             Assert.That(PioneerYearsHud.YearAt(0f), Is.EqualTo(1974f));
-            Assert.That(PioneerYearsHud.YearAt(39f), Is.EqualTo(PioneerYearsHud.VoyagerYear).Within(1e-4f));
+            Assert.That(PioneerYearsHud.YearAt(55f), Is.EqualTo(PioneerYearsHud.VoyagerYear).Within(1e-4f));
             var previous = 0f;
-            for (var t = 0f; t <= 39f; t += 0.25f)
+            for (var t = 0f; t <= 55f; t += 0.25f)
             {
                 var year = PioneerYearsHud.YearAt(t);
                 Assert.That(year, Is.GreaterThanOrEqualTo(previous), $"o ano nunca volta ({t} s)");
@@ -28,23 +28,23 @@ namespace Abandoned.SpaceApps.Tests
             }
 
             Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(0.5f)), Is.EqualTo(PioneerYearsHud.YearsEvent.None), "sem marco no começo");
-            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(3.5f)), Is.EqualTo(PioneerYearsHud.YearsEvent.Saturn));
-            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(7f)), Is.EqualTo(PioneerYearsHud.YearsEvent.Uranus));
-            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(13f)), Is.EqualTo(PioneerYearsHud.YearsEvent.Neptune));
-            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(20f)), Is.EqualTo(PioneerYearsHud.YearsEvent.None), "no meio da queda de energia o ano só passa");
-            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(25f)), Is.EqualTo(PioneerYearsHud.YearsEvent.TrackingEnd));
-            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(30f)), Is.EqualTo(PioneerYearsHud.YearsEvent.Voyager));
+            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(5f)), Is.EqualTo(PioneerYearsHud.YearsEvent.Saturn));
+            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(11f)), Is.EqualTo(PioneerYearsHud.YearsEvent.Uranus));
+            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(20f)), Is.EqualTo(PioneerYearsHud.YearsEvent.Neptune));
+            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(30f)), Is.EqualTo(PioneerYearsHud.YearsEvent.None), "no meio da queda de energia o ano só passa");
+            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(39f)), Is.EqualTo(PioneerYearsHud.YearsEvent.TrackingEnd));
+            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(48f)), Is.EqualTo(PioneerYearsHud.YearsEvent.Voyager));
             Assert.That(PioneerYearsHud.NeptuneYear, Is.EqualTo(1983.449f).Within(0.001f), "13 de junho é o dia 164 do ano");
         }
 
         [Test]
         public void EachMilestoneStaysInsideTheCaptionWindowThatTalksAboutIt()
         {
-            // PIO.06.01 (0–8 s): Saturno e Urano; PIO.06.02 (8–16 s): Netuno; PIO.06.04 (25–33 s): a Voyager 1.
-            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(3.5f)) == PioneerYearsHud.YearsEvent.Saturn && PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(7f)) == PioneerYearsHud.YearsEvent.Uranus, Is.True);
-            for (var t = 11.5f; t <= 15.5f; t += 0.5f)
-                Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(t)), Is.EqualTo(PioneerYearsHud.YearsEvent.Neptune), $"Netuno parado de 11 a 16 s ({t} s)");
-            for (var t = 28f; t <= 33f; t += 1f)
+            // PIO.06.01 (1–9,5 s): Saturno e Urano; PIO.06.02 (16–24 s): Netuno; PIO.06.04 (41,5–49 s): a Voyager 1.
+            Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(5f)) == PioneerYearsHud.YearsEvent.Saturn && PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(11f)) == PioneerYearsHud.YearsEvent.Uranus, Is.True);
+            for (var t = 16.5f; t <= 23.5f; t += 0.5f)
+                Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(t)), Is.EqualTo(PioneerYearsHud.YearsEvent.Neptune), $"Netuno parado de 16 a 24 s ({t} s)");
+            for (var t = 43f; t <= 49f; t += 1f)
                 Assert.That(PioneerYearsHud.EventAt(PioneerYearsHud.YearAt(t)), Is.EqualTo(PioneerYearsHud.YearsEvent.Voyager), $"a Voyager 1 enquanto a legenda fala dela ({t} s)");
         }
 
@@ -87,7 +87,7 @@ namespace Abandoned.SpaceApps.Tests
         [Test]
         public void TheStateCarriesFiveInstrumentNamesTheKeysAndTheTimelinePosition()
         {
-            var state = PioneerYearsHud.StateAt(13f, Echo);
+            var state = PioneerYearsHud.StateAt(20f, Echo);
             Assert.That(state.Big, Is.EqualTo(CinemaHudView.Card1983Key), "em Netuno o destaque é a data completa");
             Assert.That(state.Event, Is.EqualTo(CinemaHudView.PastNeptuneKey));
             Assert.That(state.Note, Is.EqualTo(CinemaHudView.NotEdgeKey), "o aviso de que passar as órbitas não é sair do Sistema Solar");
