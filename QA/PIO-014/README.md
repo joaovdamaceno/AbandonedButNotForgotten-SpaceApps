@@ -30,3 +30,16 @@ O que **não** é defeito da cena e foi só da ferramenta (documentado para não
 | --- | --- |
 | Builders `pioneer10.stage`, `pioneer10.stage.farewell`, `pioneer10.zchapter` reexecutados | Só mudaram `SpaceStage.prefab` (um campo de anchor) e `PIO_Farewell.asset` (dois keyframes) |
 | Testes EditMode filtrados por `Pioneer` | 186 de 186 passaram (os dois testes novos incluídos; 184 de 184 antes deles), inclusive a reconstrução idêntica do palco. A suíte completa não foi reexecutada nesta correção |
+
+## Modelo definitivo da sonda no palco (15/11/2026)
+
+O palco da PIO-003 ainda usava a `ProvisionalSilhouette`: o `PioneerActors.prefab` da PIO-002 existia, mas ninguém o instanciou (a troca estava só descrita no README). Agora o `PioneerStageBuilder` o instancia dentro de `ProbeSpin` e usa os sockets do modelo. O close da placa passou a ser calculado a partir da placa do modelo (a câmera fica no plano radial/axial da placa, porque a rotação alinha o azimute da placa ao da câmera).
+
+| Verificação | Resultado |
+| --- | --- |
+| Builders `pioneer10.*` reexecutados (sonda → palco → atividades → capítulo) | Sem erro; a validação do palco acusou a câmera da placa a 0,43 m da sonda (mínimo 0,5 m) e a distância foi aumentada para 1,3 m |
+| Testes EditMode filtrados por `Pioneer` | 186 de 186 passaram (um teste de `PioneerProbeTests` foi atualizado: os sockets do palco são os do modelo) |
+| Build WebGL da cena `Pioneer10.unity` (cache limpo) | Sucesso: 17 arquivos, **15,67 MiB** (era 14,74), shaders 3/3, hashes conferidos |
+| Capturas `Docs/Art/Pioneer10_Stage/` e `STAGE_STATS.md` | Regeneradas com o modelo novo; a ferramenta de captura agora pendura as silhuetas DSN e do Atlas nos sockets (como o controlador), senão elas apareciam como caixas pretas na origem |
+
+**Limites:** o modelo não tem peça identificada como fotopolarímetro (socket hipotético); o ônibus e os RTGs não foram comparados com fotografias da missão; o custo é de build, não medido no navegador; o polimento de refletor e placa (normal maps, PIO-016) fica para o fim.

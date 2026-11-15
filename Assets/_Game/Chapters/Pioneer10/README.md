@@ -86,7 +86,7 @@ Cada anchor é registrado como rig no `CameraDirector` com o próprio ID. Um `Sh
 
 ### Contrato com o modelo definitivo (PIO-002 → PIO-014)
 
-A sonda é `Regions/DeepSpace/Probe/ProbeSpin`: eixo Z local = eixo da antena = eixo de rotação (P-S05). O modelo NASA entra como filho de `ProbeSpin` no lugar de `ProvisionalSilhouette`, com o refletor em escala real (2,74 m). Os **sockets** em `ProbeSpin/Sockets` (`Reflector`, `Feed`, `EquipmentCompartment`, `RtgBoomA`, `RtgBoomB`, `MagnetometerBoom`, `Plaque`, `Photopolarimeter`) são o ponto de troca: posicione-os sobre as peças do modelo e as atividades continuam funcionando. A silhueta atual é **provisória** (G-PIO-03 em `ASSET_CREDITS.md`).
+A sonda é `Regions/DeepSpace/Probe/ProbeSpin`: eixo Z local = eixo da antena = eixo de rotação (P-S05). **Desde 15/11/2026 o palco instancia o modelo da PIO-002** (`Art/PioneerActors.prefab`, instância `PioneerActors` dentro de `ProbeSpin`, refletor em escala real de 2,74 m); a silhueta provisória (G-PIO-03) foi removida junto com suas malhas e materiais. Os **sockets** do palco (`Reflector`, `Feed`, `EquipmentCompartment`, `RtgBoomA`, `RtgBoomB`, `MagnetometerBoom`, `Plaque`, `Photopolarimeter`) são os do próprio modelo; os das hastes acompanham a articulação. A rotação continua sendo do `ProbeSpin`: o `Spin_Root` do modelo fica parado. O close da placa (`PIO.Plaque`) é calculado a partir da placa do modelo pelo `PioneerStageBuilder`; o do fotopolarímetro aponta para um socket de posição **hipotética** (o modelo não traz uma peça identificada como o instrumento). O custo Web subiu de 14,74 para 15,67 MiB na cena (build medida, não o navegador).
 
 ### Perfil leve
 
