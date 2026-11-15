@@ -15,6 +15,7 @@
 }
 
 .sa-font-regular { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Regular.ttf"); }
+.sa-font-medium { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Medium.ttf"); }
 .sa-font-semibold { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf"); }
 .sa-font-bold { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf"); }
 .sa-font-mono { -unity-font-definition: url("/Assets/_Game/Shared/Fonts/IBMPlexMono/IBMPlexMono-SemiBold.ttf"); }
@@ -467,6 +468,7 @@
 }
 
 .sa-subtitle__text {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Medium.ttf"); /* Outfit Medium, peso 450 */
     font-size: var(--sa-text-subtitle);
     color: var(--sa-color-on-plate);
     -unity-text-align: middle-center;

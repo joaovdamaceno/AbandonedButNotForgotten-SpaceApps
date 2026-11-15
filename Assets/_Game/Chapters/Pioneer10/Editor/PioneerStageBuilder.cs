@@ -564,11 +564,12 @@ namespace Abandoned.SpaceApps.EditorTools
         static List<PioneerLightGroup> LightGroups() => new List<PioneerLightGroup>
         {
             Group("PIO.Light.ColdRim", new Vector3(-0.95f, -0.1f, 0.25f), new Color(0.72f, 0.83f, 1f), 1.7f, new Vector3(-0.3f, -0.2f, -1f), new Color(0.3f, 0.38f, 0.55f), 0.04f),
-            Group("PIO.Light.Cruise", new Vector3(-0.55f, -0.25f, -0.8f), new Color(1f, 0.96f, 0.9f), 1.25f, new Vector3(0.6f, 0.3f, 0.75f), new Color(0.45f, 0.55f, 0.75f), 0.12f),
+            Group("PIO.Light.Cruise", new Vector3(-0.55f, -0.25f, -0.8f), new Color(0.84f, 0.9f, 1f), 1.25f, new Vector3(0.6f, 0.3f, 0.75f), new Color(0.45f, 0.55f, 0.75f), 0.12f),
             Group("PIO.Light.JupiterAxis", JupiterKeyDirection, new Color(1f, 0.95f, 0.88f), 1.3f, new Vector3(0.7f, 0.25f, 0.65f), new Color(0.4f, 0.48f, 0.65f), 0.08f),
             Group("PIO.Light.Plaque", new Vector3(0.36f, -0.86f, 0.38f), new Color(1f, 0.88f, 0.72f), 1.1f, new Vector3(0.3f, -0.6f, 0.7f), new Color(0.45f, 0.5f, 0.65f), 0.15f),
-            Group("PIO.Light.FarSun", new Vector3(-0.1f, -0.15f, -1f), new Color(0.95f, 0.95f, 1f), 0.75f, new Vector3(0.4f, 0.3f, 1f), new Color(0.35f, 0.4f, 0.55f), 0.05f),
-            Group("PIO.Light.Night", new Vector3(0.3f, -0.6f, 0.7f), new Color(0.55f, 0.65f, 0.9f), 0.35f, new Vector3(-0.4f, -0.3f, -0.8f), new Color(0.25f, 0.3f, 0.45f), 0.08f),
+            Group("PIO.Light.FarSun", new Vector3(-0.1f, -0.15f, -1f), new Color(0.86f, 0.92f, 1f), 0.75f, new Vector3(0.4f, 0.3f, 1f), new Color(0.35f, 0.4f, 0.55f), 0.05f),
+            // Fase 5: na Terra (plataforma de lançamento e antena da Deep Space Network) a luz é quente; no espaço, fria.
+            Group("PIO.Light.EarthWarm", new Vector3(0.3f, -0.6f, 0.7f), new Color(1f, 0.74f, 0.46f), 0.9f, new Vector3(-0.4f, -0.3f, -0.8f), new Color(0.42f, 0.3f, 0.26f), 0.1f),
             Group("PIO.Light.FarewellRim", new Vector3(-0.75f, -0.2f, -0.6f), new Color(0.85f, 0.9f, 1f), 0.55f, new Vector3(0.5f, 0.4f, 0.7f), new Color(0.3f, 0.35f, 0.5f), 0.03f),
         };
 
@@ -625,7 +626,7 @@ namespace Abandoned.SpaceApps.EditorTools
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.ColdRim", Fov = 34f,
                     Position = new Vector3(3.4f, 0.9f, 5.6f), LookAt = new Vector3(0f, 0.05f, 0.2f) },
                 new AnchorSpec { Id = "PIO.Launch.Pad", State = "PIO.Launch", Function = "PIO01.B · plano baixo lateral do Atlas-Centaur à noite (silhueta da PIO-004 no AtlasSocket)",
-                    Region = PioneerStageRegion.LaunchSite, Light = "PIO.Light.Night", Fov = 50f,
+                    Region = PioneerStageRegion.LaunchSite, Light = "PIO.Light.EarthWarm", Fov = 50f,
                     Position = LaunchSiteCenter + new Vector3(27f, 1.4f, -25f), LookAt = LaunchSiteCenter + new Vector3(0f, 12f, 0f) },
                 new AnchorSpec { Id = "PIO.Launch.Ellipse", State = "PIO.Launch", Function = "PIO01.C · diagrama Terra–Lua: a trajetória cruza a órbita lunar longe da Lua (PIO-004 no LaunchDiagramSocket)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 42f,
@@ -683,7 +684,7 @@ namespace Abandoned.SpaceApps.EditorTools
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.FarSun", Fov = 40f,
                     Position = new Vector3(-4.5f, -1.8f, 17f), LookAt = new Vector3(0f, 0f, 0f) },
                 new AnchorSpec { Id = "PIO.Listening", State = "PIO.Listening", Function = "Antena terrestre sob céu noturno (silhueta DSN da PIO-011 no DishSocket); painel de onda embaixo à direita",
-                    Region = PioneerStageRegion.GroundStation, Light = "PIO.Light.Night", Fov = 55f,
+                    Region = PioneerStageRegion.GroundStation, Light = "PIO.Light.EarthWarm", Fov = 55f,
                     Position = GroundStationCenter + new Vector3(0f, 1.7f, -36f), LookAt = GroundStationCenter + new Vector3(0f, 14f, 0f),
                     UiFrame = new Rect(0.56f, 0.07f, 0.40f, 0.33f) },
                 new AnchorSpec { Id = "PIO.Farewell", State = "PIO.Farewell", Function = "Pioneer diminui no campo de estrelas, na direção geral de Aldebaran (sem iluminá-la)",
