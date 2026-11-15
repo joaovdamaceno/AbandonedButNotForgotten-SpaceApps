@@ -60,3 +60,5 @@ Legenda: **A** = aplicada com o texto da lista · **M** = aplicada com mudança 
 | 9 | "Pioneer: one who goes first." + "Every great journey…" | M: fundidas em uma legenda | PIO.08.04 |
 
 **O que ainda diverge:** o PT dos cues reescritos que não mudaram de sentido continua o texto anterior; a lista diz que a sonda passou a "130.000 km acima das nuvens" e a NASA dá 82.178 milhas sem dizer se do centro ou do topo das nuvens.
+
+**Atualização (PIO-037):** as legendas em inglês foram reescritas em inglês americano direto (frases curtas, voz ativa, sem calques do português). Os cues e as chaves acima não mudaram; o antes e depois está em `CAPTIONS_EN_V3.md`.
