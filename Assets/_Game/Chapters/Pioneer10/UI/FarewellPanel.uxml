@@ -29,6 +29,14 @@
                 <ui:VisualElement picking-mode="Ignore" class="sa-keycap pio-farewell__keycap"><ui:Label text="E" class="sa-keycap__glyph" /></ui:VisualElement>
                 <ui:Label name="replay-label" picking-mode="Ignore" class="pio-farewell__button-label" />
             </ui:VisualElement>
+            <!-- Mesmo link discreto dos outros capitulos; abre o painel de fontes e creditos (so mouse, como Marte e Surveyor). -->
+            <ui:Button name="credits-button" class="pio-farewell__credits" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="credits-panel" class="pio-farewell__credits-panel">
+            <ui:Label name="credits-title" class="pio-farewell__credits-title" />
+            <ui:ScrollView class="pio-farewell__credits-scroll"><ui:Label name="credits-body" class="pio-farewell__credits-body" /></ui:ScrollView>
+            <ui:Button name="credits-close" class="pio-farewell__credits-close" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

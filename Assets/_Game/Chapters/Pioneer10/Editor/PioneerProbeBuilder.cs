@@ -31,7 +31,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public const float Lod1CellMeters = 0.15f;
         public const string Lod1Name = "Lod1";
         /// <summary>Altura relativa na tela abaixo da qual entra o LOD1, e abaixo da qual a sonda some (corte).</summary>
-        public const float Lod1TransitionHeight = 0.12f;
+        public const float Lod1TransitionHeight = 0.03f; // o modelo cheio (8 mil triângulos) fica até a sonda ocupar só 3% da altura da tela
         public const float CullTransitionHeight = 0.01f;
         /// <summary>O LOD1 deve ter no máximo esta fração dos triângulos do LOD0.</summary>
         public const float Lod1MaxTriangleFraction = 0.30f;
@@ -261,7 +261,8 @@ namespace Abandoned.SpaceApps.EditorTools
             var web = importer.GetPlatformTextureSettings("WebGL");
             var wanted = importer.textureType == TextureImporterType.Default && importer.sRGBTexture && importer.mipmapEnabled
                          && importer.wrapMode == TextureWrapMode.Clamp && importer.maxTextureSize == 2048 && importer.alphaSource == TextureImporterAlphaSource.None
-                         && web.overridden && web.maxTextureSize == 2048 && web.format == TextureImporterFormat.DXT1;
+                         && web.overridden && web.maxTextureSize == 2048 && web.format == TextureImporterFormat.DXT1
+                         && web.compressionQuality >= 100 && importer.filterMode == FilterMode.Trilinear && importer.anisoLevel >= 8;
             if (wanted)
                 return;
 
@@ -270,14 +271,14 @@ namespace Abandoned.SpaceApps.EditorTools
             importer.alphaSource = TextureImporterAlphaSource.None;
             importer.mipmapEnabled = true;
             importer.wrapMode = TextureWrapMode.Clamp;
-            importer.filterMode = FilterMode.Bilinear;
-            importer.anisoLevel = 4;
+            importer.filterMode = FilterMode.Trilinear;
+            importer.anisoLevel = 8;
             importer.maxTextureSize = 2048;
             importer.textureCompression = TextureImporterCompression.Compressed;
             web.overridden = true;
             web.maxTextureSize = 2048;
             web.format = TextureImporterFormat.DXT1;
-            web.compressionQuality = 50;
+            web.compressionQuality = 100;
             importer.SetPlatformTextureSettings(web);
             importer.SaveAndReimport();
         }
@@ -287,8 +288,10 @@ namespace Abandoned.SpaceApps.EditorTools
             var material = context.Material(MaterialFolder + "/" + name + ".mat", "Universal Render Pipeline/Lit");
             material.SetColor("_BaseColor", Color.white);
             material.SetTexture("_BaseMap", atlas);
-            material.SetFloat("_Metallic", 0f);      // como no original: metalicidade 0, rugosidade 0,5
-            material.SetFloat("_Smoothness", 0.5f);
+            // O original usa metalicidade 0 e rugosidade 0,5, o que deixa o refletor e as hastes foscos e achatados sob a luz de cruzeiro;
+            // um pouco de metal e de brilho (decisão de arte de 15/11/2026) devolve o reflexo da luz nas bordas sem mudar as texturas da NASA.
+            material.SetFloat("_Metallic", 0.15f);
+            material.SetFloat("_Smoothness", 0.6f);
             material.SetFloat("_Cull", 0f);          // dupla face, como no original (cascas finas do refletor e das hastes)
             material.SetFloat("_EnvironmentReflections", 0f);
             material.EnableKeyword("_ENVIRONMENTREFLECTIONS_OFF");

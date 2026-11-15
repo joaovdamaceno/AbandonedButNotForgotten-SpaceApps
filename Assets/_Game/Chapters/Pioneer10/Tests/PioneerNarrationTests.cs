@@ -104,7 +104,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(data.Validate(), Is.Empty);
             Assert.That(data.States.Count, Is.EqualTo(9));
             Assert.That(data.Cues.Count, Is.EqualTo(61));
-            Assert.That(data.Texts.Count, Is.EqualTo(174));
+            Assert.That(data.Texts.Count, Is.EqualTo(178)); // +4: Sources and credits (button, title, body, close) on the farewell menu
             Assert.That(data.States.Sum(s => s.nominalSeconds), Is.EqualTo(427));
             foreach (var cue in data.Cues)
             {

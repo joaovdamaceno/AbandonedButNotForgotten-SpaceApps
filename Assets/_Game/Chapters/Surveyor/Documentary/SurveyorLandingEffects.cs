@@ -30,7 +30,10 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 bool visible = active && age >= 0f && age < 1.5f; grains[i].gameObject.SetActive(visible); if (!visible) continue;
                 float a = i * 2.399963f; var radial = new Vector3(Mathf.Cos(a), 0f, Mathf.Sin(a));
                 float speed = .25f + (i % 5) * .08f;
-                var p = origin + radial * (.35f + speed * age) + Vector3.up * ((.21f + i % 3 * .07f) * age - .5f * SurveyorLandingMotion.LunarGravity * age * age);
+                // Each contact happens where the craft actually touched down, further up the slope than the final resting place.
+                var site = origin + SurveyorLandingMotion.UphillDirection * SurveyorLandingMotion.TravelRemaining(SurveyorLandingMotion.ContactTime(contact));
+                site.y = SurveyorLunarSurface.Height(site.x, site.z);
+                var p = site + radial * (.35f + speed * age) + Vector3.up * ((.21f + i % 3 * .07f) * age - .5f * SurveyorLandingMotion.LunarGravity * age * age);
                 p.y = Mathf.Max(p.y, SurveyorLunarSurface.Height(p.x, p.z) + .004f); grains[i].position = p;
             }
         }

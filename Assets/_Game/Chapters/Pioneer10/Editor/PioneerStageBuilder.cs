@@ -109,7 +109,11 @@ namespace Abandoned.SpaceApps.EditorTools
             var glow = TextureAsset(context, "PIO_StarGlow.png", () => PioneerStageArt.GlowTexture(128), 128, false, TextureWrapMode.Clamp, TextureWrapMode.Clamp, FilterMode.Bilinear, StageFolder, true);
             a.AldebaranHalo = AdditiveUnlit(context, "PIO_AldebaranHalo", new Color(1f, 0.55f, 0.32f, 0.85f), glow);
             a.BeltRock = Lit(context, "PIO_BeltRock", new Color(0.78f, 0.74f, 0.68f), 0f, 0.15f);
-            var marsTexture = TextureAsset(context, "PIO_MarsSurface.png", () => PioneerStageArt.MarsSurface(1024, 512, 1976), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
+            // O mesmo Marte da abertura do capítulo de Marte (modelo NASA "Planet Mars" reamostrado em equirretangular): a textura é a do
+            // capítulo, referenciada e não copiada, para o planeta ser idêntico nos dois capítulos e não pesar duas vezes no build.
+            var marsTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(MarsPlanetTexturePath);
+            if (marsTexture == null)
+                throw new InvalidOperationException("Textura do Marte da NASA ausente: " + MarsPlanetTexturePath);
             a.Mars = Lit(context, "PIO_Mars", Color.white, 0f, 0.04f, marsTexture);
             var earthMap = EarthTexture(context);
             a.Earth = Lit(context, "PIO_EarthCompare", Color.white, 0f, 0.12f, earthMap);
@@ -142,6 +146,8 @@ namespace Abandoned.SpaceApps.EditorTools
         /// </summary>
         public const string EarthSourcePath = "ArtSource/Pioneer10/PIO-031/bluemarble-2048.png";
         public const string EarthTexturePath = StageFolder + "/Textures/PIO_Earth_NASA.png";
+        /// <summary>Marte da NASA do capítulo de Marte (abertura e globo); a Pioneer usa a mesma textura.</summary>
+        public const string MarsPlanetTexturePath = "Assets/_Game/Chapters/Mars/Art/Origin/Textures/Mars_Equirect.jpg";
 
         /// <summary>
         /// Mapa da Terra da NASA (Blue Marble, 2048×1024, equiretangular; NASA SVS 2915) copiado byte a byte para o projeto e importado: sRGB,

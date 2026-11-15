@@ -104,7 +104,13 @@
 .end-words { position:absolute; top:37%; left:0; right:0; align-items:center; }
 .end-title { font-size:64px; letter-spacing:9px; color:rgb(232,226,213); margin-top:0; margin-bottom:5px; }
 .end-dates { font-size:20px; letter-spacing:5px; margin-top:12px; color:rgb(155,157,156); }
-.end-actions { position:absolute; bottom:12%; align-self:center; }
+.end-actions { position:absolute; bottom:12%; align-self:center; align-items:center; }
+/* End menu shared by every chapter: green primary "Main menu", quiet "Restart chapter", text link for credits. */
+.end-kicker { font-size:18px; letter-spacing:4px; color:rgb(194,186,163); margin-bottom:12px; -unity-text-align:middle-center; }
+.end-actions .end-button { min-width:280px; align-self:center; margin:0 0 10px 0; padding:10px 18px; font-size:19px; -unity-text-align:middle-center; border-width:1px; border-color:rgba(178,193,169,.4); background-color:rgba(195,202,182,.07); color:rgb(214,219,200); }
+.end-actions .end-button:hover { background-color:rgba(195,202,182,.16); }
+.end-actions .button.primary { background-color:rgb(67,85,61); border-color:rgb(196,214,168); color:rgb(238,241,222); font-size:19px; }
+.end-actions .end-link { background-color:rgba(0,0,0,0); color:rgb(196,192,177); font-size:16px; margin:6px 0 0 0; padding:6px 12px; min-height:0; }
 
 .thermal-cue { margin-top:8px; border-top-width:1px; border-top-color:rgba(209,150,81,.35); }
 .thermal-cue .small { color:rgb(236,179,104); margin:8px 0; font-size:16px; }

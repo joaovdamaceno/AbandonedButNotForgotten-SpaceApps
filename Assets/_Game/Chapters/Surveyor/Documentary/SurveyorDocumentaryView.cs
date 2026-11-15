@@ -14,7 +14,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         Material runtimeTreatment;
         VisualElement root, screen, photo, controls, reticle, subtitleHost, creditsPanel, guide, progressFill, progressTrack;
         Label date, title, objective, hint, state, credit;
-        Button action, creditsButton;
+        Button action, creditsButton, restartButton;
         Label progressLabel;
         int lastProgress = -1;
         Label creditsTitle, creditsBody;
@@ -22,6 +22,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         Camera camera;
         public event Action ActionRequested;
         public event Action PauseRequested;
+        /// <summary>"Restart chapter" on the end menu.</summary>
+        public event Action RestartRequested;
         public VisualElement SubtitleHost => subtitleHost;
         public VisualElement Screen => screen;
         public RenderTexture Raw => raw;
@@ -35,6 +37,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             action = root.Q<Button>("action");
             guide = root.Q("drag-guide"); progressTrack = root.Q("work-progress"); progressFill = root.Q("work-fill"); progressLabel = root.Q<Label>("work-label");
             action.clicked += () => ActionRequested?.Invoke(); root.Q<Button>("pause").clicked += () => PauseRequested?.Invoke();
+            restartButton = root.Q<Button>("restart"); restartButton.clicked += () => RestartRequested?.Invoke();
             creditsButton = root.Q<Button>("credits"); creditsPanel = root.Q("credits-panel"); creditsTitle = root.Q<Label>("credits-title"); creditsBody = root.Q<Label>("credits-body");
             creditsButton.clicked += () => creditsPanel.style.display = DisplayStyle.Flex;
             root.Q<Button>("credits-close").clicked += () => creditsPanel.style.display = DisplayStyle.None;
@@ -71,8 +74,9 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         public void SetPhoto(Texture2D image, bool visible, string caption)
         { photo.style.backgroundImage = new StyleBackground(image != null ? image : archive); SetHistory(visible, caption); }
         public void SetActionEnabled(bool enabled) => action.SetEnabled(enabled);
-        public void SetEnded(bool ended, string button, string titleText, string body, string close)
+        public void SetEnded(bool ended, string button, string titleText, string body, string close, string restart)
         {
+            restartButton.text = restart;
             root.EnableInClassList("ended", ended); creditsButton.text = button; creditsTitle.text = titleText; creditsBody.text = body; root.Q<Button>("credits-close").text = close;
             if (!ended) creditsPanel.style.display = DisplayStyle.None;
             if (ended) { progressTrack.style.display = DisplayStyle.None; guide.style.display = DisplayStyle.None; }

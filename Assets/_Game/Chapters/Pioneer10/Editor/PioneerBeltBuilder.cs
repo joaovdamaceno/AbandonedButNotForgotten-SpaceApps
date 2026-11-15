@@ -148,6 +148,11 @@ namespace Abandoned.SpaceApps.EditorTools
         /// </summary>
         /// <summary>Metros que a câmera avança no plano do contador de dias (as pedras mais próximas ficam a mais de 60 m).</summary>
         public const float DaysTravelMeters = 55f;
+        /// <summary>
+        /// O ponto de vista começa fora do campo (o campo vai até 520 m do centro): de longe as pedras parecem muitas e juntas; conforme a
+        /// sonda entra se vê que estão bem separadas. O avanço acumulado segue a mesma curva exponencial do contador de dias.
+        /// </summary>
+        public const float DaysStartBackMeters = 640f;
 
         /// <summary>
         /// Posições do ponto de vista: o avanço acumulado é proporcional aos dias contados (mesma exponencial do contador), de modo que a
@@ -161,7 +166,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 var u = i / 11f;
                 var share = (Mathf.Exp(PioneerBeltCounter.Acceleration * u) - 1f) / (Mathf.Exp(PioneerBeltCounter.Acceleration) - 1f);
                 var sway = Mathf.Sin(u * Mathf.PI * 3f);
-                keys[i] = new ShotKeyframe(11f * u, new Vector3(1.2f * sway, -0.6f * sway, DaysTravelMeters * share),
+                keys[i] = new ShotKeyframe(11f * u, new Vector3(1.2f * sway, -0.6f * sway, -DaysStartBackMeters + (DaysStartBackMeters + DaysTravelMeters) * share),
                     new Vector3(-0.7f * sway, 1.0f * sway, -1.2f * sway), PioneerStageBuilder.BeltPovFov + 8f * u * u);
             }
 

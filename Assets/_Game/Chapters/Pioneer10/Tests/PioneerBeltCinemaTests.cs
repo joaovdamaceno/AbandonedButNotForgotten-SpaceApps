@@ -134,22 +134,24 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(days.RigId, Is.EqualTo(PioneerStageBuilder.BeltPovAnchorId), "ponto de vista da sonda, não mais o zoom de fora");
             var centers = PioneerStageBuilder.BeltRockCenters();
             var closest = float.MaxValue;
-            var travelled = 0f;
+            var start = presentation.CameraDirector.Evaluate(days, 0f, null).Position;
+            var end = presentation.CameraDirector.Evaluate(days, 11f, null).Position;
+            Assert.That(start.magnitude, Is.GreaterThan(PioneerStageBuilder.BeltOuterRadiusMeters), "começa fora do campo: de longe as pedras parecem muitas e juntas");
+            Assert.That(end.magnitude, Is.LessThan(PioneerStageBuilder.BeltClearRadiusMeters * 0.65f), "termina perto do centro do campo, onde há espaço vazio");
             for (var t = 0f; t <= 11f; t += 0.5f)
             {
                 var pose = presentation.CameraDirector.Evaluate(days, t, null);
-                Assert.That(pose.Position.magnitude, Is.LessThan(PioneerStageBuilder.BeltClearRadiusMeters * 0.65f), $"a câmera avança pouco ({t} s)");
                 Assert.That(pose.FieldOfViewDegrees, Is.InRange(60f, 82f), $"campo largo de primeira pessoa ({t} s)");
                 closest = Mathf.Min(closest, centers.Select(c => Vector3.Distance(c, pose.Position)).Min());
-                travelled = Mathf.Max(travelled, pose.Position.magnitude);
             }
 
-            Assert.That(travelled, Is.GreaterThan(30f), "a sonda avança de verdade pelo cinturão (as pedras passam)");
-            var half = presentation.CameraDirector.Evaluate(days, 5.5f, null).Position.magnitude;
-            var tenth = presentation.CameraDirector.Evaluate(days, 10f, null).Position.magnitude - presentation.CameraDirector.Evaluate(days, 9f, null).Position.magnitude;
-            var firstSecond = presentation.CameraDirector.Evaluate(days, 1f, null).Position.magnitude;
-            Assert.That(tenth, Is.GreaterThan(firstSecond * 5f), "a velocidade acelera junto com os dias contados (no fim, bem mais que no começo)");
-            Assert.That(half, Is.LessThan(travelled * 0.4f), "metade do tempo percorre menos de 40% do caminho: avanço exponencial como o contador");
+            var travelled = Vector3.Distance(start, end);
+            Assert.That(travelled, Is.GreaterThan(PioneerStageBuilder.BeltOuterRadiusMeters), "a sonda atravessa o cinturão de verdade, das pedras agrupadas ao espaço vazio");
+            Vector3 At(float t) => presentation.CameraDirector.Evaluate(days, t, null).Position;
+            var lastSecond = Vector3.Distance(At(9f), At(10f));
+            var firstSecond = Vector3.Distance(At(0f), At(1f));
+            Assert.That(lastSecond, Is.GreaterThan(firstSecond * 5f), "a velocidade acelera junto com os dias contados (no fim, bem mais que no começo)");
+            Assert.That(Vector3.Distance(start, At(5.5f)), Is.LessThan(travelled * 0.4f), "metade do tempo percorre menos de 40% do caminho: avanço exponencial como o contador");
             Assert.That(closest, Is.GreaterThan(PioneerStageBuilder.BeltClearRadiusMeters * 0.4f), "nenhuma pedra encosta na câmera");
         }
 

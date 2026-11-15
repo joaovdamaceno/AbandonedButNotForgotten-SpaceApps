@@ -201,8 +201,8 @@ namespace Abandoned.SpaceApps.EditorTools
                 ("guia de Aldebaran", root.Q("guide-label")),
                 ("título do memorial", root.Q("ending-title")),
                 ("linha de situação", root.Q("ending-subtitle")),
-                ("Voltar ao arquivo", root.Q("return-label")),
-                ("Repetir capítulo", root.Q("replay-label")),
+                ("Menu principal", root.Q("return-label")),
+                ("Reiniciar capítulo", root.Q("replay-label")),
                 ("tecla E", root.Q(className: "sa-keycap__glyph")),
             };
             foreach (var (label, element) in textElements)

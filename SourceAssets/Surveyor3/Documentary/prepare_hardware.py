@@ -1,4 +1,5 @@
-"""Split recoverable camera from existing team UV atlas; extract the team's real retro stage."""
+"""NOTE (SUR-021): the face selection below cut the camera in half; run fix_recoverable_camera.py afterwards.
+Split recoverable camera from existing team UV atlas; extract the team's real retro stage."""
 import bpy,bmesh,json
 from pathlib import Path
 from mathutils import Vector
