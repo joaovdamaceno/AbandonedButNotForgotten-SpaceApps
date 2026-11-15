@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"><Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss"/><Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss"/><Style src="ChapterStory.uss"/>
+ <ui:VisualElement class="sa-root story-root"><ui:VisualElement name="story-frame" class="story-frame"><ui:Image name="story-picture" class="story-picture"/><ui:Label name="story-date" class="sa-stamp story-date"/><ui:Label name="story-credit" class="story-credit"/></ui:VisualElement>
+ <ui:Label name="story-title" class="story-title"/><ui:Label name="story-location" class="story-location sa-stamp"/><ui:Label name="story-total" class="story-total sa-stamp"/><ui:Button name="story-send" class="story-send"/><ui:Button name="story-return" class="story-return"/>
+ </ui:VisualElement></ui:UXML>

@@ -79,3 +79,10 @@ Reutiliza cenário/modelo da equipe SUR-002, alvo de render SUR-007, contratos C
 | Roteiro v2 do capítulo Pioneer 10 (`Docs/Chapters/PioneerV2/`) e a base `develop` com PIO-025 | R5 / PIO-026 | `Runtime/PioneerFirstsHud.cs`, `CinemaHudView.cs`, `PioneerChapterController.cs`, `UI/CinemaHud.uxml` e `.uss`, `Editor/PioneerChapterBuilder.cs`, `PioneerHudCapture.cs`, `Tests/PioneerFirstsHudTests.cs`, textos em `Data/Localization/`, `Docs/Chapters/02_PIONEER_SOURCES.md` | Seis estrelas das primeiras vezes como HUD de cinema; nenhum código ou asset externo | Nenhum asset externo; fatos da página da NASA dos 50 anos do lançamento (lida em 15/11/2026), pendentes de R7 | Testes (219/219) e quadros do HUD; Play Mode, teste humano, contraste, WebGL e suíte completa pendentes |
 | Roteiro v2 do capítulo Pioneer 10 (`Docs/Chapters/PioneerV2/`) e a base `develop` com PIO-026 | R5 / PIO-027 | `Runtime/PioneerLetterbox.cs`, `CinemaHudView.cs`, `PioneerChapterController.cs`, `UI/CinemaHud.uxml` e `.uss`, `Editor/PioneerStageBuilder.cs`, `PioneerChapterBuilder.cs`, `PioneerHudCapture.cs`, `Tests/PioneerCinemaLookTests.cs`, quadros regenerados em `Docs/Art/Pioneer10_Stage`, `Pioneer10_Launch` e `Pioneer10_Listening` | Barras de cinema pela interface e temperatura da luz por grupo; nenhum código ou asset externo | Nenhum asset externo | Testes (223/223) e quadros; Play Mode, teste humano, WebGL e suíte completa pendentes |
 
+
+
+## SUR-015 — composição do capítulo
+
+- Reutilizados os controladores/prefabs/fontes/fotos do novo projeto SUR-001…014 e UI/Core aprovados, com referências explícitas no builder próprio. Não se copiou a antiga campanha Opportunity.
+- Novos: host de composição, arquivo isolado, relay de legendas acessíveis, poses ópticas de FirstImage, score procedural e cenas montadas. Modificada a aproximação da câmera de solo para transição de dois segundos antes da fotografia inicial, mantendo o centro óptico.
+- Música temporária original: `SourceAssets/Surveyor3/Score`; sem gravações externas. Ferramentas Python Playwright e navegadores de QA ficam ignorados fora da distribuição.
