@@ -56,4 +56,14 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
+
+    <!-- Roteiro v2, cena 2 (cinema): contador de dias e data, e o rótulo da pedra solitária. Só texto por chave. -->
+    <ui:VisualElement name="counter-root" picking-mode="Ignore" class="sa-root pio-count">
+        <ui:VisualElement name="counter" picking-mode="Ignore" class="sa-plate pio-count__plate">
+            <ui:Label name="counter-day" picking-mode="Ignore" class="pio-count__day" />
+            <ui:Label name="counter-date" picking-mode="Ignore" class="pio-count__date" />
+        </ui:VisualElement>
+        <ui:VisualElement name="nike-line" picking-mode="Ignore" class="pio-count__line" />
+        <ui:Label name="nike-label" picking-mode="Ignore" class="pio-count__note" />
+    </ui:VisualElement>
 </ui:UXML>

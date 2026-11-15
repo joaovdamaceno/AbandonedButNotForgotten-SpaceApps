@@ -192,7 +192,7 @@ namespace Abandoned.SpaceApps.Tests
 
         static readonly Dictionary<string, string> SequenceAssets = new Dictionary<string, string>
         {
-            { "PIO.Launch", "PIO_Launch" }, { "PIO.Belt", "PIO_Belt" }, { "PIO.JupiterApproach", "PIO_JupiterApproach" }, { "PIO.Imaging", "PIO_Imaging" },
+            { "PIO.Launch", "PIO_Launch" }, { "PIO.Belt", "PIO_BeltCinema" }, { "PIO.JupiterApproach", "PIO_JupiterApproach" }, { "PIO.Imaging", "PIO_Imaging" },
             { "PIO.Closest", "PIO_Closest" }, { "PIO.Plaque", "PIO_Plaque" }, { "PIO.Outbound", "PIO_Outbound" }, { "PIO.Listening", "PIO_Listening" }, { "PIO.Farewell", "PIO_Farewell" },
         };
 
@@ -205,7 +205,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(chapter.Validate(), Is.Empty);
             Assert.That(chapter.ChapterId, Is.EqualTo("pioneer10"), "igual ao slot do dossiê");
             Assert.That(chapter.SceneName, Is.EqualTo("Pioneer10"));
-            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(415f));
+            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(411f));
 
             var order = new List<string>();
             var cursor = chapter.InitialStepId;
@@ -243,7 +243,7 @@ namespace Abandoned.SpaceApps.Tests
                 total += sequence.TotalDurationSeconds;
             }
 
-            Assert.That(total, Is.EqualTo(415f).Within(0.01f), "soma nominal do capítulo");
+            Assert.That(total, Is.EqualTo(411f).Within(0.01f), "soma nominal do capítulo");
             Assert.That(controller.JupiterSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.03.01", "PIO.03.02", "PIO.03.03", "PIO.03.04" }));
             Assert.That(controller.ClosestSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.09.01", "PIO.09.02", "PIO.09.03", "PIO.09.04", "PIO.09.05", "PIO.09.06", "PIO.09.07" }));
         }

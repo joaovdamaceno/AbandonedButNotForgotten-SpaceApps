@@ -25,7 +25,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string ClosestSequencePath = ChapterFolder + "/Sequences/PIO_Closest.asset";
         public const string DataAssetPath = ChapterFolder + "/Data/PioneerData.asset";
         public const string CueMapAssetPath = ChapterFolder + "/Audio/PioneerCueMap.asset";
-        public const float TargetDurationSeconds = 415f;
+        public const float TargetDurationSeconds = 411f;
 
         public override string Id => ChapterBuilderId;
         public override string Owner => "R5 · PIO-014";
@@ -67,6 +67,8 @@ namespace Abandoned.SpaceApps.EditorTools
             so.FindProperty("belt").objectReferenceValue = Only<BeltInvestigation>();
             so.FindProperty("jupiterSequence").objectReferenceValue = jupiter;
             so.FindProperty("closestSequence").objectReferenceValue = closest;
+            so.FindProperty("beltCinemaSequence").objectReferenceValue = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(PioneerBeltBuilder.CinemaSequencePath);
+            so.FindProperty("beltCounter").objectReferenceValue = Only<PioneerBeltCounter>();
             so.FindProperty("imaging").objectReferenceValue = Only<PioneerImaging>();
             so.FindProperty("recovery").objectReferenceValue = Only<ImagingRecovery>();
             so.FindProperty("reveal").objectReferenceValue = Only<HistoricalImageReveal>();

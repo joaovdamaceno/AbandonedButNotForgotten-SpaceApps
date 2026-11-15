@@ -9,7 +9,7 @@ Decisões do responsável (15/11/2026): **entrega em fases**; visual **só o que
 | Cena do roteiro v2 | Alvo | Estado | Hoje (fase 1) |
 | --- | --- | --- | --- |
 | 1 Pioneira (0:00–0:55) | 55 s | `PIO.Launch` (40 s) | Legendas novas; **cinema (fase 2)**: a demonstração dos geradores corre sozinha. Faltam a Lua, Marte e a montagem de RTGs de outras sondas |
-| 2 O cinturão (0:55–1:45), **só cinema** | 50 s | `PIO.Belt` (58 s) | Legendas novas; **cinema (fase 2)**: só a sequência 3D e as legendas, sem a arena de poeira. Falta o dolly zoom, o contador de dias e a revelação de 307 Nike |
+| 2 O cinturão (0:55–1:45), **só cinema** | 50 s | `PIO.Belt` (54 s) | Legendas novas; **cinema (fase 4, parte 1)**: sequência própria `PIO_BeltCinema` com a parede de pedras na teleobjetiva, dolly zoom (10° a 30°) com o contador de dias (15 JUL 1972 a 15 FEV 1973) e a revelação de 307 Nike num céu vazio. Falta a lente de 5° (o contrato aceita 10°) e Marte no primeiro plano |
 | 3 O rei dos planetas (1:45–2:15) | 30 s | `PIO.JupiterApproach` (27 s) | Quatro legendas novas. Faltam Júpiter nascendo de um ponto, a Terra pequena para comparar e o limbo/terminador |
 | 4 Interação 1: uma foto, três passos (2:15–3:00) | 45 s | `PIO.Imaging` (74 s) | Legendas novas; **três passos (fase 3)**: girar em vermelho (E mantido), trocar para azul (toque) e girar, e juntar (toque); sem radiação nem recuperação. A duração segue a da sequência (74 s) |
 | 5 O mais perto possível (3:00–4:05), cinema | 65 s | **`PIO.Closest` (40 s), novo** | Estado novo só de cinema, 7 legendas, 5 planos nos anchors do palco. Faltam luas em 3D, fotos reais das luas, medidor de radiação, linhas Terra–Lua e da trajetória, velocímetro |
@@ -18,7 +18,7 @@ Decisões do responsável (15/11/2026): **entrega em fases**; visual **só o que
 | 8 Interação 2: trinta anos depois (5:20–6:00) | 40 s | `PIO.Listening` (52 s) | Legendas novas; **uma rodada (fase 3)**: só o primeiro contato pede o botão; o segundo, o terceiro e a tentativa sem sinal chegam sozinhos nos marcos |
 | 9 Rumo a Aldebaran (6:00–6:40) | 40 s | `PIO.Farewell` (38 s) | Legendas novas; faltam as seis estrelas que acendem uma a uma |
 
-Duração nominal passa de 375 s para **415 s (6:55)**, dentro do teto de 7:00 do roteiro (421 s com o alongamento de leitura de dois cues); o alvo de 6:40 só chega quando as interações virarem cinema.
+Duração nominal passa de 375 s para **411 s (6:51)** (415 s até a parte 1 da fase 4), dentro do teto de 7:00 do roteiro (421 s com o alongamento de leitura de dois cues); o alvo de 6:40 só chega quando as interações virarem cinema.
 
 ## O que é diferente do roteiro e por quê (fatos seguros)
 
@@ -46,5 +46,5 @@ Também diferem: a chave `PIO.09.xx` é a do estado novo (a numeração de chave
 1. **Fase 1 (esta entrega):** legendas PT-BR e EN-UK de todos os estados; estado novo `PIO.Closest` (cena 5) como cinema com os planos disponíveis; 9 etapas no capítulo, validador, dados e testes atualizados.
 2. **Fase 2 (entregue):** o lançamento, o cinturão, a placa e os anos viram cinema; só restam duas interações (a foto e a sintonia de rádio). **Retemporizar para os tempos do roteiro (Launch 55, Belt 50, Imaging 45, Plaque 20, Years 55, Listening 40, Farewell 40, Jupiter 30, Closest 65) NÃO foi feito**: os testes de cada atividade dependem dos marcos de tempo das sequências atuais, e uma duração só faz sentido junto com as imagens da fase 4. A regra de leitura do projeto (16 caracteres por segundo) também torna alguns tempos do roteiro (por exemplo, a placa em 20 s com seis legendas) inviáveis sem cortar texto.
 3. **Fase 3 (entregue):** a interação 1 vira os três passos do roteiro (vermelho, azul, juntar) e a interação 2 uma única rodada de sintonia. As duas continuam com as durações atuais (74 s e 52 s); a radiação e a recuperação saíram da cena 4 e ficam só nas legendas da cena 5.
-4. **Fase 4:** as cenas de cinema que faltam: Lua e Marte, cinturão com dolly zoom e contador de dias, luas de Júpiter em 3D, passagem rente às nuvens com a trajetória, montagem dos anos com medidor de energia e ícones, as seis estrelas.
+4. **Fase 4 (em partes, um PR por cena):** parte 1 entregue (cinturão, cena 2). As cenas de cinema que faltam: Lua e Marte, cinturão com dolly zoom e contador de dias, luas de Júpiter em 3D, passagem rente às nuvens com a trajetória, montagem dos anos com medidor de energia e ícones, as seis estrelas.
 5. **Fase 5:** barras de cinema (letterbox) pela interface, cor quente na Terra e fria no espaço por grupo de luz.
