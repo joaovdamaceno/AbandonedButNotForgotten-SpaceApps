@@ -47,7 +47,7 @@ Legenda: **A** = aplicada com o texto da lista · **M** = aplicada com mudança 
 | 7 | 1976 Saturno / 1979 Urano / 1983 Netuno / 1997 / 1998 | HUD (cartões e linha do tempo) + Netuno e Voyager em legendas | PIO.06.02, PIO.06.04 |
 | 7 | 1980 detector de meteoroides, 1986 sensores solares, 1995 plasma, 1996 quatro instrumentos | C: 17 legendas em 55 s passam de 16 cps; o HUD apaga os instrumentos um a um e a narração pode contar cada um | — |
 | 7 | "1989: its power was fading…" | A | PIO.06.03 |
-| 7 | "1993: to save power, the camera… was switched off, followed by the radiation detector." | A (novo) | PIO.06.06 |
+| 7 | "1993: to save power, the camera… was switched off, followed by the radiation detector." | M: sem o "1993" (o HUD dos anos é estilizado e passa por 1993 em ~1 s, então o ano na legenda contradizia o que se vê) | PIO.06.06 |
 | 7 | "By 2001, it had less power than it needed…" | C: sem janela; vai para a narração | — |
 | 8 | "3 March 2002: thirty years since launch." | HUD (cartão da data) | — |
 | 8 | "Its signal was now fainter than a whisper…" | A | PIO.07.01 |
