@@ -6,8 +6,9 @@ package=json.loads((out/'package.json').read_text()); suite=ET.parse(out/'editor
 assert suite.attrib['failed']=='0' and suite.attrib['passed']=='13'
 expected={f['path'].split('/')[-1]:f['sha256'] for f in package['files'] if f['path'].endswith('.br')}
 result={'unity':'6000.6.7f1','urp':'17.6.0','editorTests':{'passed':13,'failed':0},
-        'buildBytes':package['buildBytes'],'zipBytes':package['zipBytes'],'browsers':[],
-        'limits':['Not a novice study or artistic/audio approval.','Not tested on integrated GPU or hosted itch.io.',
+        'buildBytes':package['buildBytes'],'zipBytes':package['zipBytes'],
+        'initialTargetBytes':package['initialTargetBytes'],'withinInitialTarget':package['withinInitialTarget'],'browsers':[],
+        'limits':['Initial 25 MB target exceeded after upstream integration; global Resources packaging remains pending.', 'Not a novice study or artistic/audio approval.','Not tested on integrated GPU or hosted itch.io.',
                   'WASM heap excludes GPU and much of the browser.','FPS values are samples, not a sustained benchmark.',
                   'The headless tab switch did not report a hidden page; focus handling is covered by native tests, not proven by this switch.',
                   'Firefox masks the GPU name; its GTX 980 string is not hardware identification.',
