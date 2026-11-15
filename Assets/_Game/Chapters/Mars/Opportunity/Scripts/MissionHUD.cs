@@ -24,7 +24,9 @@ namespace Abandoned.SpaceApps.Opportunity
         readonly System.Collections.Generic.Dictionary<FieldStudy,Image> studyAlbum=new System.Collections.Generic.Dictionary<FieldStudy,Image>();
         int galleryVersion=-1,selected=-1;
         // Painel de comandos no topo, ao lado da ajuda do H: uma linha por comando, teclas desenhadas como botões.
-        VisualElement guideStack,commandPanel;Label primaryCommand;string[] commandRows;string commandLanguage;
+        VisualElement guideStack,commandPanel;Label primaryCommand;string[] commandRows;string commandLanguage;float commandIntroSeconds;
+        // O painel fica na tela nos primeiros segundos de controle do capítulo e volta só quando a pessoa fica parada (a mesma hora da ajuda do H).
+        const float CommandIntroSeconds=7f;
         static readonly string[] DriveRows={"W A S D / ↑ ← ↓ →|cmd.move","Shift|cmd.fast","Mouse|cmd.look","hold E|cmd.interact","H|cmd.help","P|cmd.pause"};
         static readonly string[] SampleRows={"hold E|cmd.sample|primary","W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","H|cmd.help","P|cmd.pause"};
         static readonly string[] PhotoRows={"hold E|cmd.photo|primary","W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","H|cmd.help","P|cmd.pause"};
@@ -60,7 +62,7 @@ namespace Abandoned.SpaceApps.Opportunity
             var id=Box(flight,"identity");Text(id,"MER-B   /   OPPORTUNITY","eyebrow");location=Text(id,"","small muted");
             var goal=Box(flight,"goal");objective=Text(goal,"","objective");distance=Text(goal,"","small muted");
             help=Text(flight,"","controls");help.style.display=DisplayStyle.None;energyBox=Box(flight,"solar");energy=Text(energyBox,"","eyebrow");energyFill=Box(Box(energyBox,"energy-track"),"energy-fill");
-            marker=Box(flight,"marker");Box(marker,"marker-halo");Box(marker,"marker-diamond");Box(marker,"marker-bar");Box(marker,"marker-dot");Text(marker,"‹","marker-glyph");marker.pickingMode=PickingMode.Ignore;foreach(var part in marker.Children())part.pickingMode=PickingMode.Ignore;rockHint=Box(flight,"interaction-hint");rockHint.name="rock-interaction";Text(rockHint,"E","interaction-key");Text(rockHint,"","interaction-name").name="rock-interaction-label";Text(rockHint,"","interaction-sub").name="rock-interaction-sub";
+            marker=Box(flight,"marker");Box(marker,"marker-halo");Box(marker,"marker-diamond");Box(marker,"marker-bar");Box(marker,"marker-dot");Text(marker,"‹","marker-glyph");marker.pickingMode=PickingMode.Ignore;foreach(var part in marker.Children())part.pickingMode=PickingMode.Ignore;rockHint=Box(flight,"interaction-hint");rockHint.name="rock-interaction";Text(rockHint,"E","interaction-key");Text(rockHint,"","interaction-name").name="rock-interaction-label";
             cinema=Box(root,"cinema");cinema.pickingMode=PickingMode.Ignore;
             filmVeil=Box(cinema,"film-veil");filmVeil.pickingMode=PickingMode.Ignore;
             letterTop=Box(cinema,"letterbox top");letterBottom=Box(cinema,"letterbox bottom");var words=Box(cinema,"cinematic-words");
@@ -92,7 +94,7 @@ namespace Abandoned.SpaceApps.Opportunity
             language.RegisterValueChangedCallback(e=>{GameSettings.English=e.newValue=="English";RefreshText();});scroll.Add(language);
             QualitySelector.AddQualitySelector(scroll);
             Slider(scroll,"settings.master",GameSettings.Master,0,1,v=>GameSettings.Master=v);Slider(scroll,"settings.music",GameSettings.Music,0,1,v=>GameSettings.Music=v);Slider(scroll,"settings.effects",GameSettings.Effects,0,1,v=>GameSettings.Effects=v);Slider(scroll,"settings.ui",GameSettings.Interface,0,1,v=>GameSettings.Interface=v);Slider(scroll,"settings.sensitivity",GameSettings.Sensitivity,.25f,2.5f,v=>GameSettings.Sensitivity=v);
-            Toggle(scroll,"settings.invert",GameSettings.Invert,v=>GameSettings.Invert=v);Toggle(scroll,"settings.easy",GameSettings.Easy,v=>GameSettings.Easy=v);Toggle(scroll,"settings.motion",GameSettings.ReducedMotion,v=>GameSettings.ReducedMotion=v);Toggle(scroll,"settings.subtitles",GameSettings.Subtitles,v=>GameSettings.Subtitles=v);Toggle(scroll,"v14.settings.voice",GameSettings.Voice,v=>GameSettings.Voice=v);Toggle(scroll,"settings.large",GameSettings.LargeText,v=>{GameSettings.LargeText=v;RefreshText();});
+            Toggle(scroll,"settings.invert",GameSettings.Invert,v=>GameSettings.Invert=v);Toggle(scroll,"settings.easy",GameSettings.Easy,v=>GameSettings.Easy=v);Toggle(scroll,"settings.motion",GameSettings.ReducedMotion,v=>GameSettings.ReducedMotion=v);Toggle(scroll,"settings.subtitles",GameSettings.Subtitles,v=>GameSettings.Subtitles=v);Toggle(scroll,"settings.large",GameSettings.LargeText,v=>{GameSettings.LargeText=v;RefreshText();});
             Button(sc,"back",()=>{PlayerPrefs.Save();Show(settings,false);});
             controls=Box(root,"modal-backdrop");var kc=Box(controls,"controls-card");Text(kc,"","display modal-title").name="controls-title";var ks=new ScrollView();kc.Add(ks);
             foreach(var cid in new[]{"drive","fast","mouse","e","f","space","r","h","tab","p","rat"}){var crow=Box(ks,"controls-row");var ckey=Text(crow,"","controls-key");ckey.userData="v14.controls."+cid;var cdesc=Text(crow,"","controls-desc");cdesc.userData="v14.controls."+cid+".d";}
@@ -213,8 +215,6 @@ namespace Abandoned.SpaceApps.Opportunity
             float hintY=viewport.z>0?1-viewport.y:.5f;
             rockHint.style.left=Length.Percent(Mathf.Clamp(hintX*100,12,82));rockHint.style.top=Length.Percent(Mathf.Clamp(hintY*100,hintX>.64f?40:24,72));
             rockHint.Q<Label>("rock-interaction-label").text=valid?Localization.Get(action.LabelKey):"";
-            bool holdAction=valid&&(action.Id=="berries"||action.Id=="shield"||action.Id=="meteorite"||action.Id=="sun-clear"||action.Id=="sun-dust");
-            rockHint.Q<Label>("rock-interaction-sub").text=valid?Localization.Get(holdAction?"v15.hint.hold":"v15.hint.press"):"";
             rockHint.userData=valid?action.Id:null;
             bool markerVisible=!available&&!j.Transmitting&&!chapter.Paused;
             Show(marker,markerVisible);
@@ -252,6 +252,11 @@ namespace Abandoned.SpaceApps.Opportunity
                 else if(j.FinalAct&&j.NearUplink&&j.PanoramaCount>0)rows=SendRows;
                 else if(j.FinalAct&&j.NearbyStation>=0)rows=PhotoRows;
             }
+            if(chapter.Stage==ChapterStage.Landing)commandIntroSeconds=0;
+            bool intro=commandIntroSeconds<CommandIntroSeconds;
+            if(rows!=null&&intro)commandIntroSeconds+=Time.deltaTime;
+            bool idle=chapter.tutorial&&chapter.tutorial.HelpOffered;
+            if(!intro&&!idle)rows=null;
             Show(commandPanel,rows!=null);
             if(rows==null)return;
             if(rows!=commandRows||commandLanguage!=activeLanguage)BuildCommands(rows);

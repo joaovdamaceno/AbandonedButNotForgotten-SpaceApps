@@ -10,34 +10,17 @@ namespace Abandoned.SpaceApps.Opportunity
         public AbrasionSurface montageSurface;
         public ParticleSystem montageDust;
         float filmCut;
-        // AI-generated narration (Piper TTS), stored as Resources/Narration/{pt|en}/<bodyKey>.wav. Missing clips are silently skipped.
-        AudioSource voice;string spoken;
-        void Speak(string key)
-        {
-            if(key==spoken)return;spoken=key;
-            if(!voice){voice=gameObject.AddComponent<AudioSource>();voice.playOnAwake=false;voice.spatialBlend=0;}
-            voice.Stop();if(string.IsNullOrEmpty(key)||!GameSettings.Voice)return;
-            var clip=Resources.Load<AudioClip>("Narration/"+(GameSettings.English?"en":"pt")+"/"+key);
-            if(clip){voice.clip=clip;voice.volume=1;voice.Play();}
-        }
-        /// <summary>Plays narration lines one after another during free play (caption shown as a toast).</summary>
+        /// <summary>Mostra falas uma após a outra durante o jogo livre (como aviso embaixo), cada uma pelo tempo de leitura.</summary>
         Coroutine speaking;
         public void SpeakSequence(params string[] keys){if(speaking!=null)StopCoroutine(speaking);speaking=StartCoroutine(SpeakLines(keys));}
         System.Collections.IEnumerator SpeakLines(string[] keys)
         {
             foreach(var key in keys)
             {
-                spoken=null;Speak(key);
-                var clip=voice?voice.clip:null;float seconds=GameSettings.Voice&&clip&&voice.isPlaying?clip.length:Mathf.Max(4.5f,Localization.Get(key).Length/15f); // sem voz: tempo de leitura
+                float seconds=Mathf.Max(4.5f,Localization.Get(key).Length/15f);
                 chapter.hud.Toast(key,seconds+.6f);
                 yield return new WaitForSeconds(seconds+.5f);
             }
-        }
-        void Update()
-        {
-            if(!voice)return;
-            if(!GameSettings.Voice&&voice.isPlaying)voice.Stop();
-            if(chapter&&chapter.Paused)voice.Pause();else voice.UnPause();
         }
         public float YearsStormStart {get{foreach(var sequence in sequences)if(sequence.stage==ChapterStage.TimeSkip)foreach(var b in sequence.beats)if(b.bodyKey=="v7.years.approach")return b.at;return 15;}}
         public bool MemorialActive=>(current&&current.stage==ChapterStage.Farewell)||chapter.Stage==ChapterStage.ChapterEnd;
@@ -85,7 +68,7 @@ namespace Abandoned.SpaceApps.Opportunity
         void Initialize(){if(initialized)return;toolRest=chapter.rover.tool.localPosition;toolRotation=chapter.rover.tool.localRotation;if(mast)mastRest=mast.localRotation;initialized=true;}
         public void Enter(ChapterStage stage)
         {
-            if(speaking!=null){StopCoroutine(speaking);speaking=null;}Speak(null);initialStorm=chapter.environment.Storm;chapter.cameras.Shake=0;chapter.environment.StoryLighting=false;radioBeat=-1;Initialize();if(stage!=ChapterStage.Landing)chapter.split?.ShowSpirit(false,Vector3.zero,0);current=null;beat=null;beatIndex=lastImpact=-1;Power=1;photoFired=pressureReleased=false;
+            if(speaking!=null){StopCoroutine(speaking);speaking=null;}initialStorm=chapter.environment.Storm;chapter.cameras.Shake=0;chapter.environment.StoryLighting=false;radioBeat=-1;Initialize();if(stage!=ChapterStage.Landing)chapter.split?.ShowSpirit(false,Vector3.zero,0);current=null;beat=null;beatIndex=lastImpact=-1;Power=1;photoFired=pressureReleased=false;
             if((stage==ChapterStage.TimeSkip||stage==ChapterStage.HeatShieldArrival)&&montageSurface){montageSurface.ResetSurface();filmCut=0;}
             if(chapter.investigation.entryCapsule)chapter.investigation.entryCapsule.SetActive(false);if(chapter.investigation.entryBridle)chapter.investigation.entryBridle.gameObject.SetActive(false);
             if(assemblyBay)assemblyBay.gameObject.SetActive(false);chapter.environment.Indoors=false;
@@ -108,7 +91,6 @@ namespace Abandoned.SpaceApps.Opportunity
             if(changed)
             {
                 beatIndex=index;photoFired=false;
-                if(!string.IsNullOrWhiteSpace(beat.bodyKey))Speak(beat.bodyKey);
                 if(current.stage!=ChapterStage.Intro&&current.stage!=ChapterStage.Transition)
                 {
                     chapter.environment.Region(beat.valley,false);chapter.environment.Travel(beat.travel);chapter.environment.Hardware(beat.hardware);
