@@ -16,13 +16,19 @@ namespace Abandoned.SpaceApps
         public const string RedKey = "PIO.UI.red";
         public const string BlueKey = "PIO.UI.blue";
         public const string ScanKey = "PIO.UI.scan";
+        /// <summary>Roteiro v2 (três passos): "Passo {count}/3", "Segure E · girar", "E · trocar para azul" e "E · juntar".</summary>
+        public const string StepKey = "PIO.UI.step";
+        public const string SpinKey = "PIO.UI.spin";
+        public const string SwitchBlueKey = "PIO.UI.switch_blue";
+        public const string CombineKey = "PIO.UI.combine";
 
         [SerializeField] UIDocument document;
 
         VisualElement root, zone, cursor, holdPlate, progressFill, greenChip, interruptDim, recoverySlot;
         VisualElement[] strips;
-        Label redLabel, blueLabel, scanLabel;
-        string lastRed, lastBlue, lastScan;
+        Label redLabel, blueLabel, scanLabel, stepLabel;
+        string lastRed, lastBlue, lastScan, lastStep;
+        float lastSpin = -1f;
         int lastCaptured = -1;
         float lastZoneStart = -1f, lastZoneEnd = -1f;
         ImagingPhase lastPhase = (ImagingPhase)(-1);
@@ -69,7 +75,9 @@ namespace Abandoned.SpaceApps
             redLabel = root.Q<Label>("channel-red");
             blueLabel = root.Q<Label>("channel-blue");
             scanLabel = root.Q<Label>("scan-label");
-            lastRed = lastBlue = lastScan = null;
+            stepLabel = root.Q<Label>("step-label");
+            lastRed = lastBlue = lastScan = lastStep = null;
+            lastSpin = -1f;
             lastCaptured = -1;
             lastZoneStart = lastZoneEnd = -1f;
             lastPhase = (ImagingPhase)(-1);
@@ -97,6 +105,7 @@ namespace Abandoned.SpaceApps
                 Show(holdPlate, state.Phase == ImagingPhase.Learn || state.Phase == ImagingPhase.Sweep || state.Phase == ImagingPhase.Interrupted);
             }
 
+            root.EnableInClassList("pio-img--steps", state.StepsMode);
             if (state.Captured != lastCaptured)
             {
                 lastCaptured = state.Captured;
@@ -107,7 +116,25 @@ namespace Abandoned.SpaceApps
                 }
 
                 progressFill.style.width = Length.Percent(state.Captured * 100f / ImagingStrips);
-                SetText(scanLabel, ScanKey, text, ref lastScan, state.Captured);
+                if (!state.StepsMode)
+                    SetText(scanLabel, ScanKey, text, ref lastScan, state.Captured);
+            }
+
+            if (state.StepsMode)
+            {
+                // Versão de três passos: o prompt segue o passo e a barra mostra também o giro da faixa em curso.
+                var promptKey = state.Step == ImagingStep.SwitchToBlue ? SwitchBlueKey : state.Step == ImagingStep.Combine ? CombineKey : SpinKey;
+                SetText(scanLabel, promptKey, text, ref lastScan);
+                var spin = state.Step == ImagingStep.Red || state.Step == ImagingStep.Blue ? state.SpinProgress : 0f;
+                if (!Mathf.Approximately(spin, lastSpin) || state.Captured != lastCaptured)
+                {
+                    lastSpin = spin;
+                    progressFill.style.width = Length.Percent((state.Captured + spin) * 100f / ImagingStrips);
+                }
+
+                stepLabel.style.display = state.StepNumber > 0 ? DisplayStyle.Flex : DisplayStyle.None;
+                if (state.StepNumber > 0)
+                    SetText(stepLabel, StepKey, text, ref lastStep, state.StepNumber);
             }
 
             // O cursor pode ficar parado fora da janela: só a zona reposiciona quando muda (ajuda ampliou).
@@ -171,7 +198,7 @@ namespace Abandoned.SpaceApps
             var required = new System.Collections.Generic.List<string>
             {
                 "imaging-root", "frame", "image", "disc", "interrupt-dim", "track", "zone", "cursor", "hold", "progress-fill",
-                "scan-label", "channel-red", "channel-blue", "green-chip", "recovery-slot",
+                "scan-label", "step-label", "channel-red", "channel-blue", "green-chip", "recovery-slot",
             };
             for (var i = 0; i < ImagingStrips; i++)
                 required.Add("strip-" + i);
@@ -181,7 +208,7 @@ namespace Abandoned.SpaceApps
                     errors.Add($"{owner}: o UXML não tem o elemento '{name}'.");
             }
 
-            foreach (var key in new[] { RedKey, BlueKey, ScanKey })
+            foreach (var key in new[] { RedKey, BlueKey, ScanKey, StepKey, SpinKey, SwitchBlueKey, CombineKey })
             {
                 if (string.IsNullOrEmpty(key) || !key.StartsWith("PIO.UI."))
                     errors.Add($"{owner}: chave de texto inválida '{key}'.");

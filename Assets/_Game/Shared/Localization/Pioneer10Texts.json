@@ -111,20 +111,20 @@
     {
       "key": "PIO.04.03",
       "group": "narrative",
-      "pt": "Primeiro a luz vermelha: a imagem começa a aparecer, uma linha de cada vez.",
-      "en": "Red light first, and the picture begins to appear, one line at a time."
+      "pt": "A luz vermelha montou a primeira imagem, linha a linha. Agora o azul: a mesma volta paciente.",
+      "en": "Red light built the first picture, one line at a time. Now blue: the same patient turning."
     },
     {
       "key": "PIO.04.04",
       "group": "narrative",
-      "pt": "Então a radiação de Júpiter disparou comandos indevidos no instrumento.",
-      "en": "Then Jupiter’s radiation triggered unwanted commands in the instrument."
+      "pt": "Uma segunda imagem toma forma, de novo uma linha fina de cada vez.",
+      "en": "A second picture takes shape, again one thin line at a time."
     },
     {
       "key": "PIO.04.05",
       "group": "narrative",
-      "pt": "A equipe enviou sequências de recuperação, e a observação continuou.",
-      "en": "The team sent recovery sequences, and the observing carried on."
+      "pt": "Vermelho e azul vieram do instrumento. A terceira cor teria de ser calculada na Terra.",
+      "en": "Red and blue came from the instrument. The third colour would be worked out on Earth."
     },
     {
       "key": "PIO.04.06",
@@ -365,6 +365,30 @@
       "group": "hud",
       "pt": "Segure E · registrar a passagem {count}/8",
       "en": "Hold E · record this pass {count}/8"
+    },
+    {
+      "key": "PIO.UI.step",
+      "group": "hud",
+      "pt": "Passo {count}/3",
+      "en": "Step {count}/3"
+    },
+    {
+      "key": "PIO.UI.spin",
+      "group": "hud",
+      "pt": "Segure E · girar",
+      "en": "Hold E · spin"
+    },
+    {
+      "key": "PIO.UI.switch_blue",
+      "group": "hud",
+      "pt": "E · trocar para azul",
+      "en": "E · switch to blue"
+    },
+    {
+      "key": "PIO.UI.combine",
+      "group": "hud",
+      "pt": "E · juntar as duas imagens",
+      "en": "E · combine the two pictures"
     },
     {
       "key": "PIO.UI.red",
