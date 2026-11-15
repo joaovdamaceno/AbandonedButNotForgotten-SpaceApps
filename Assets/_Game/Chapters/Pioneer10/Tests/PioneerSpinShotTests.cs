@@ -108,6 +108,21 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void TheInstructionsOnlyAppearWhenThePhotoIsReleased()
+        {
+            var panel = (SpinShotPanelView)typeof(PioneerImaging).GetField("spinPanel", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(imaging);
+            imaging.Begin();
+            Step(1f / 60f);
+            Assert.That(imaging.SpinState().Phase, Is.EqualTo(SpinShotPhase.Learn));
+            var aim = panel.Root.Q("aim");
+            Assert.That(aim.style.display.value, Is.EqualTo(UnityEngine.UIElements.DisplayStyle.None), "na demonstração não há barra nem aviso \"Toque E\": ninguém é convidado a apertar antes da hora");
+            RunUntil(() => imaging.Phase == ImagingPhase.Sweep);
+            Step(1f / 60f);
+            Assert.That(imaging.SpinState().Phase, Is.EqualTo(SpinShotPhase.Shoot));
+            Assert.That(aim.style.display.value, Is.EqualTo(UnityEngine.UIElements.DisplayStyle.Flex), "liberada a foto, a barra e o aviso aparecem");
+        }
+
+        [Test]
         public void TheDemonstrationRegistersNothingAndTheSweepStartsAfterIt()
         {
             imaging.Begin();
