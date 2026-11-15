@@ -30,7 +30,7 @@ MonoBehaviour:
     nominalSeconds: 40
   - id: PIO.Plaque
     order: 6
-    nominalSeconds: 47
+    nominalSeconds: 33
   - id: PIO.Outbound
     order: 7
     nominalSeconds: 39
@@ -356,7 +356,7 @@ MonoBehaviour:
     textKey: PIO.05.01
     timing: 0
     startSeconds: 0
-    endSeconds: 8
+    endSeconds: 7.3
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -378,7 +378,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.Pulsars
-    minimumReadSeconds: 4
+    minimumReadSeconds: 3.7
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.05.04
@@ -388,7 +388,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.SolarSystem
-    minimumReadSeconds: 4
+    minimumReadSeconds: 3.9
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.05.05
@@ -398,7 +398,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.PioneerScale
-    minimumReadSeconds: 4
+    minimumReadSeconds: 3.6
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.05.06
@@ -408,15 +408,15 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.People
-    minimumReadSeconds: 4
+    minimumReadSeconds: 3.6
     gateId: 
     readingStretchMaxSeconds: 0
   - id: PIO.05.07
     state: PIO.Plaque
     textKey: PIO.05.07
     timing: 0
-    startSeconds: 38
-    endSeconds: 46
+    startSeconds: 27.7
+    endSeconds: 33
     triggerId: 
     minimumReadSeconds: 0
     gateId: PIO.Plaque.Gate

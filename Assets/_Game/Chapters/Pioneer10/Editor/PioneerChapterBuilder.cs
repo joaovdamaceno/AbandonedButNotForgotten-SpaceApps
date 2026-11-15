@@ -25,7 +25,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string ClosestSequencePath = ChapterFolder + "/Sequences/PIO_Closest.asset";
         public const string DataAssetPath = ChapterFolder + "/Data/PioneerData.asset";
         public const string CueMapAssetPath = ChapterFolder + "/Audio/PioneerCueMap.asset";
-        public const float TargetDurationSeconds = 407f;
+        public const float TargetDurationSeconds = 393f;
 
         public override string Id => ChapterBuilderId;
         public override string Owner => "R5 · PIO-014";

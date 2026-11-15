@@ -153,13 +153,13 @@ namespace Abandoned.SpaceApps.Tests
             var sequence = plaque.Sequence;
             Assert.That(sequence.Validate(), Is.Empty);
             Assert.That(director.Validate(sequence), Is.Empty);
-            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(47f).Within(1e-4f));
-            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 9f, 29f, 9f }));
+            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(33f).Within(1e-4f));
+            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 7.5f, 20f, 5.5f }));
             Assert.That(sequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.05.01", "PIO.05.02", "PIO.05.03", "PIO.05.04", "PIO.05.05", "PIO.05.06", "PIO.05.07" }));
             Assert.That(sequence.Cues.Where(c => c.IsTriggered).Select(c => c.TriggerId), Is.EqualTo(PioneerPlaqueActivity.TriggerIds));
-            Assert.That(sequence.Cues.Where(c => c.IsTriggered).All(c => c.MinimumReadSeconds >= 3f && c.MinimumReadSeconds <= 4f), Is.True, "frase de 3–4 s");
+            Assert.That(sequence.Cues.Where(c => c.IsTriggered).All(c => c.MinimumReadSeconds >= 3.5f && c.MinimumReadSeconds <= 4f), Is.True, "frase de 3,5–4 s: o tempo de ler a 16 caracteres por segundo");
             var timed = sequence.Cues.Where(c => !c.IsTriggered).Select(c => (c.CueId, c.StartSeconds, c.EndSeconds)).ToArray();
-            Assert.That(timed, Is.EqualTo(new[] { ("PIO.05.01", 0f, 8f), ("PIO.05.07", 38f, 46f) }));
+            Assert.That(timed, Is.EqualTo(new[] { ("PIO.05.01", 0f, 7.3f), ("PIO.05.07", 27.7f, 33f) }));
         }
 
         [Test]
@@ -332,7 +332,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(activeSeconds, Is.LessThanOrEqualTo(PioneerPlaqueActivity.MaxAssistedRunSeconds), "cinco peças assistidas em até 30 s");
             Assert.That(plaque.Phase, Is.EqualTo(PlaquePhase.Complete));
             Assert.That(fitted.Select(f => f.piece).Distinct().Count(), Is.EqualTo(5));
-            Assert.That(director.TimeSeconds - start, Is.LessThanOrEqualTo(MaxSequenceSecondsForAssistedRun), "dentro da janela de 9–38 s");
+            Assert.That(director.TimeSeconds - start, Is.LessThanOrEqualTo(MaxSequenceSecondsForAssistedRun), "dentro da janela de 7,5–27,5 s");
         }
 
         const float MaxSequenceSecondsForAssistedRun = 30f;
@@ -410,7 +410,7 @@ namespace Abandoned.SpaceApps.Tests
             var waitingAt = director.TimeSeconds;
             Run(20f);
             Assert.That(director.TimeSeconds, Is.EqualTo(waitingAt).Within(1e-4f), "a revelação espera as cinco peças; nada passa por inatividade");
-            Assert.That(waitingAt, Is.EqualTo(37.5f).Within(0.1f));
+            Assert.That(waitingAt, Is.EqualTo(27.4f).Within(0.1f));
             Assert.That(reveals, Is.Zero);
 
             foreach (var piece in new[] { 1, 2, 3, 4 })
