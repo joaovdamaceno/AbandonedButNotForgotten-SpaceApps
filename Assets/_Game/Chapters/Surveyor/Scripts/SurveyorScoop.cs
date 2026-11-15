@@ -660,6 +660,16 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         }
 
         // ---- pose e malha ----
+        /// <summary>SUR-010 consumes the same arm only after digging and safe retraction have finished.
+        /// Coordinates are local to Trench; this never changes excavation progress or grants input.</summary>
+        public bool PositionForSoilTest(Vector3 tipLocal, float tiltDegrees = TravelTiltDegrees)
+        {
+            if (!configured || Phase != ScoopPhase.Complete || IsPaused) return false;
+            tipLocal.y = Mathf.Max(tipLocal.y, Shape.MinTipHeight(Passes, tipLocal.x, tipLocal.z, tiltDegrees));
+            Pose(tipLocal, tiltDegrees);
+            return true;
+        }
+
         void Pose(Vector3 tipLocal, float tiltDegrees)
         {
             Quaternion local = Quaternion.LookRotation(path.DragDirection, Vector3.up) * Quaternion.Euler(tiltDegrees, 0f, 0f);

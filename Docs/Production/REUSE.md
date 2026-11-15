@@ -60,6 +60,10 @@ Novo código de observação, dados, painel, composição e testes nesta base (`
 
 Reutiliza SUR-002 (cenário e modelo fornecido pela equipe), SUR-007 (TV640×480 e shader Scan), CORE-004/005 (câmera, sequência, progresso/evidências) e UI-004/006 (legendas, localização, pausa/preferências/foco). Origens e licenças dessas entregas permanecem nos respectivos registros. Código de montagem, sequências e textos locais adaptados do roteiro atual; nenhum asset externo novo. Fontes e simplificações em[SURVEYOR_NIGHT.md](SURVEYOR_NIGHT.md).
 
+## SUR-010 — carga e impacto
+
+Reutiliza a pá, IK, malhas/solo e som da SUR-009, TV/scan da SUR-007 e Core/UI comuns. Acrescenta um método de pose segura na SUR-009 para o consumidor posterior ao recolhimento, sem alterar a escavação. Dados de legendas são da SUR-014; novos objetivos ficam em SoilTexts.json. Fotografia NASA AS12-48-7110 incorporada com origem/hash em ASSET_CREDITS.md. Marcas, UI e código do módulo são novos; não veio código da edição antiga. Contrato, distinção entre partida/arquivo e simplificações em [SURVEYOR_SOIL.md](SURVEYOR_SOIL.md).
+
 ## SUR-014 — textos PT/EN e vínculo dos 31 cues
 
 Os textos de `Assets/_Game/Chapters/Surveyor/Localization/surveyor.pt-BR.json` e `surveyor.en.json` são a transcrição literal das tabelas "Legendas finais PT/EN" e "Textos de UI PT/EN" de `Docs/Chapters/03_SURVEYOR_3.md` (autoria do próprio projeto; sem narração de IA e sem material externo novo). As chaves de UI ganham o prefixo `sur.` para não colidir com o dossiê. Os pares `SUR-Sxx.p1/.p2` são metades de frases aprovadas, para fonte ampliada. O formato por idioma segue `Data/Localization/Pioneer10.*.json`; `SurveyorSubtitles.cs` e seus testes são código novo. Nenhum código do projeto anterior foi copiado.
