@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "source": "UI-005 (R2). Textos do tutorial por ações e da assistência compartilhada. Tabela do capítulo (alvo, objeto) fica com o capítulo.",
+  "notes": [
+    "Formato igual a HudTexts.json: {key, pt, en}.",
+    "Textos propostos por R2 e ainda sem revisão editorial.",
+    "Teclas citadas (WASD, setas, E, H, A/D) são as do InputRouter; mudar uma tecla exige mudar o texto aqui."
+  ],
+  "texts": [
+    {
+      "key": "guide.title",
+      "pt": "COMO JOGAR",
+      "en": "HOW TO PLAY"
+    },
+    {
+      "key": "guide.done",
+      "pt": "feito ✓",
+      "en": "done ✓"
+    },
+    {
+      "key": "guide.glyph.move",
+      "pt": "WASD",
+      "en": "WASD"
+    },
+    {
+      "key": "guide.glyph.interact",
+      "pt": "E",
+      "en": "E"
+    },
+    {
+      "key": "guide.glyph.help",
+      "pt": "H",
+      "en": "H"
+    },
+    {
+      "key": "guide.glyph.plaque",
+      "pt": "SETAS + E",
+      "en": "ARROWS + E"
+    },
+    {
+      "key": "guide.glyph.tuning",
+      "pt": "A D",
+      "en": "A D"
+    },
+    {
+      "key": "guide.glyph.sweep",
+      "pt": "E",
+      "en": "E"
+    },
+    {
+      "key": "guide.step.move",
+      "pt": "Mova-se com W A S D ou as setas",
+      "en": "Move with W A S D or the arrow keys"
+    },
+    {
+      "key": "guide.step.move.reinforce",
+      "pt": "Ainda parado? Segure W ou a seta para cima por um instante",
+      "en": "Still standing? Hold W or the up arrow for a moment"
+    },
+    {
+      "key": "guide.step.interact.hold",
+      "pt": "Chegue perto do alvo e segure E",
+      "en": "Get close to the target and hold E"
+    },
+    {
+      "key": "guide.step.interact.press",
+      "pt": "Chegue perto do alvo e pressione E",
+      "en": "Get close to the target and press E"
+    },
+    {
+      "key": "guide.step.interact.reinforce.hold",
+      "pt": "Aproxime-se mais do alvo marcado. Quando o E aparecer, segure-o",
+      "en": "Move closer to the marked target. When E appears, hold it"
+    },
+    {
+      "key": "guide.step.interact.reinforce.press",
+      "pt": "Aproxime-se mais do alvo marcado. Quando o E aparecer, pressione-o",
+      "en": "Move closer to the marked target. When E appears, press it"
+    },
+    {
+      "key": "guide.activity.plaque",
+      "pt": "Escolha a peça com as setas e confirme com E",
+      "en": "Pick a piece with the arrow keys and confirm with E"
+    },
+    {
+      "key": "guide.activity.plaque.reinforce",
+      "pt": "Sem mouse: as setas movem o foco e E confirma. Arrastar é opcional",
+      "en": "No mouse needed: arrows move the focus and E confirms. Dragging is optional"
+    },
+    {
+      "key": "guide.activity.tuning",
+      "pt": "Gire o botão com A e D ou as setas; o mouse é opcional",
+      "en": "Turn the knob with A and D or the arrow keys; the mouse is optional"
+    },
+    {
+      "key": "guide.activity.tuning.reinforce",
+      "pt": "Sem pressa: segure A ou D e observe o medidor de proximidade",
+      "en": "No rush: hold A or D and watch the proximity meter"
+    },
+    {
+      "key": "guide.activity.sweep",
+      "pt": "Mantenha E pressionada para varrer; soltar só pausa",
+      "en": "Hold E to sweep; releasing only pauses"
+    },
+    {
+      "key": "guide.activity.sweep.reinforce",
+      "pt": "Sem pressa: segure E de novo e a varredura continua de onde parou",
+      "en": "No rush: hold E again and the sweep continues where it stopped"
+    },
+    {
+      "key": "guide.offer.help",
+      "pt": "Quer ajuda? Pressione H para enquadrar o alvo",
+      "en": "Need help? Press H to frame the target"
+    },
+    {
+      "key": "guide.help.hint",
+      "pt": "Dica: H enquadra o alvo",
+      "en": "Tip: H frames the target"
+    },
+    {
+      "key": "guide.offer.corridor",
+      "pt": "Sem pressa: volte pelo corredor marcado",
+      "en": "No rush: head back along the marked corridor"
+    }
+  ]
+}
