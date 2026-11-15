@@ -11,14 +11,14 @@
     "IDs de gatilho de PIO.Imaging seguem o código já integrado (PioneerImaging). Os de PIO.Plaque foram CONFIRMADOS pela PIO-009 (PioneerPlaqueActivity dispara PIO.Plaque.Hydrogen, Pulsars, SolarSystem, PioneerScale e People na SequenceDirector). Os de PIO.Listening continuam PROPOSTOS aqui e devem ser confirmados por PIO-011."
   ],
   "timeBudget": {
-    "nominalSeconds": 383,
+    "nominalSeconds": 371,
     "approvalRangeSeconds": [300, 420],
     "excludes": "arquivo, carregamento e pausa",
     "readingStretch": [
       {"cueId": "PIO.07.06", "nominalSeconds": 4, "maxSeconds": 7, "note": "A animação pode alongar até 7 s sem cortar a legenda."},
       {"cueId": "PIO.04.09", "nominalSeconds": 5, "maxSeconds": 8, "note": "Mesmo critério se o idioma precisar de mais tempo."}
     ],
-    "maxWithStretchSeconds": 389,
+    "maxWithStretchSeconds": 377,
     "rule": "Nunca acelerar a leitura para preservar um número exato de segundos."
   },
   "states": [
@@ -65,7 +65,7 @@
       "hold": {"id": "PIO.Outbound.Power", "seconds": 3, "promptKey": "PIO.UI.power"}
     },
     {
-      "id": "PIO.Listening", "order": 8, "nominalSeconds": 52, "globalStartSeconds": 293, "globalEndSeconds": 345,
+      "id": "PIO.Listening", "order": 8, "nominalSeconds": 40, "globalStartSeconds": 293, "globalEndSeconds": 333,
       "summary": "Sintoniza três contatos e presencia uma quarta tentativa sem resposta.",
       "requiredExit": "Três contatos e a janela final de silêncio concluídos.",
       "contacts": [
@@ -77,7 +77,7 @@
       "silenceSeconds": 2.5
     },
     {
-      "id": "PIO.Farewell", "order": 9, "nominalSeconds": 38, "globalStartSeconds": 345, "globalEndSeconds": 383,
+      "id": "PIO.Farewell", "order": 9, "nominalSeconds": 38, "globalStartSeconds": 333, "globalEndSeconds": 371,
       "summary": "Entende que perder a comunicação não interrompe a trajetória.",
       "requiredExit": "Memorial e tela de conclusão (Voltar ao arquivo / Repetir).",
       "lastSecondsOffer": 2
@@ -133,12 +133,12 @@
     {"id": "PIO.06.04", "state": "PIO.Outbound", "textKey": "PIO.06.04", "timing": {"kind": "window", "startSeconds": 25, "endSeconds": 33}},
     {"id": "PIO.06.05", "state": "PIO.Outbound", "textKey": "PIO.06.05", "timing": {"kind": "window", "startSeconds": 33, "endSeconds": 39}},
 
-    {"id": "PIO.07.01", "state": "PIO.Listening", "textKey": "PIO.07.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 7}},
-    {"id": "PIO.07.02", "state": "PIO.Listening", "textKey": "PIO.07.02", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact1", "afterEvent": "contato 1 concluído", "minimumReadSeconds": 5}},
-    {"id": "PIO.07.03", "state": "PIO.Listening", "textKey": "PIO.07.03", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact2", "afterEvent": "contato 2 concluído", "minimumReadSeconds": 5}},
-    {"id": "PIO.07.04", "state": "PIO.Listening", "textKey": "PIO.07.04", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact3", "afterEvent": "contato 3 concluído", "minimumReadSeconds": 7}},
-    {"id": "PIO.07.05", "state": "PIO.Listening", "textKey": "PIO.07.05", "timing": {"kind": "window", "startSeconds": 39, "endSeconds": 45}},
-    {"id": "PIO.07.06", "state": "PIO.Listening", "textKey": "PIO.07.06", "timing": {"kind": "window", "startSeconds": 48, "endSeconds": 52}, "readingStretchMaxSeconds": 7},
+    {"id": "PIO.07.01", "state": "PIO.Listening", "textKey": "PIO.07.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 5.8}},
+    {"id": "PIO.07.02", "state": "PIO.Listening", "textKey": "PIO.07.02", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact1", "afterEvent": "contato 1 concluído", "minimumReadSeconds": 4.8}},
+    {"id": "PIO.07.03", "state": "PIO.Listening", "textKey": "PIO.07.03", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact2", "afterEvent": "contato 2 concluído", "minimumReadSeconds": 4.5}},
+    {"id": "PIO.07.04", "state": "PIO.Listening", "textKey": "PIO.07.04", "timing": {"kind": "trigger", "triggerId": "PIO.Listening.Contact3", "afterEvent": "contato 3 concluído", "minimumReadSeconds": 6.8}},
+    {"id": "PIO.07.05", "state": "PIO.Listening", "textKey": "PIO.07.05", "timing": {"kind": "window", "startSeconds": 24.5, "endSeconds": 29.5}},
+    {"id": "PIO.07.06", "state": "PIO.Listening", "textKey": "PIO.07.06", "timing": {"kind": "window", "startSeconds": 32, "endSeconds": 36}, "readingStretchMaxSeconds": 7},
 
     {"id": "PIO.08.01", "state": "PIO.Farewell", "textKey": "PIO.08.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 8}},
     {"id": "PIO.08.02", "state": "PIO.Farewell", "textKey": "PIO.08.02", "timing": {"kind": "window", "startSeconds": 9, "endSeconds": 17}},
