@@ -1,0 +1,890 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 16844)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 17396)
+VBCSCompiler prewarm took 27.62 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.9f1 (8c45277fb9c5) revision 9192743'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-kauawerle" at "2026-11-15T00:21:54.5836266Z"
+OS: 'Windows 11  (10.0.26200) CoreSingleLanguage' Language: 'en' Physical Memory: 20301 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-15T00:21:54Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Unity.exe
+-batchmode
+-quit
+-projectPath
+C:\www\AbandonedButNotForgotten-SpaceApps
+-executeMethod
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder.CaptureEditor
+-logFile
+QA/SUR-009/logs/capture-editor.log
+Successfully changed project path to: C:\www\AbandonedButNotForgotten-SpaceApps
+C:/www/AbandonedButNotForgotten-SpaceApps
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [7192]  Target information:
+
+Player connection [7192]  * "[IP] 172.26.80.1 [Port] 55504 [Flags] 2 [Guid] 3522264611 [EditorId] 3522264611 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DHKL54U) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [7192]  * "[IP] 192.168.4.26 [Port] 55504 [Flags] 2 [Guid] 3522264611 [EditorId] 3522264611 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DHKL54U) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [7192] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [7192] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 10004, path: "C:/Program Files/WindowsApps/UnityTechnologies.UnityHub_4.0.0.65535_x64__2vrhnee42bhxm/app/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              45eac6f7dd464f8ab1e25982e4160859
+  Correlation Id:          dba1898c99d001a3a2dc3f8b990eeea6
+  External correlation Id: 9016022385045407857
+  Machine Id:              9Q8MA2ohOdq/m4o9UMGdlzVOLa8=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-kauawerle" (connect: 0.00s, validation: 0.00s, handshake: 0.25s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-kauawerle-notifications" at "2026-11-15T00:21:54.8411791Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 4673248908867-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.27s
+[Package Manager] Connected to IPC stream "Upm-10404" after 0.5 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 0df171d908f8e6ab4ef6b63a288b434a
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052576
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = C:/www/AbandonedButNotForgotten-SpaceAppsUnity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.9f1 (8c45277fb9c5)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/www/AbandonedButNotForgotten-SpaceApps/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.1]
+    Renderer:        NVIDIA GeForce MX250 (ID=0x1d13)
+    Vendor:          NVIDIA
+    VRAM:            1983 MB
+    App VRAM Budget: 1686 MB
+    Driver:          31.0.15.1640
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56404
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002896 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.289 seconds
+Domain Reload Profiling: 2140ms
+	BeginReloadAssembly (199ms)
+		CreateAndSetChildDomain (11ms)
+	RebuildCommonClasses (8ms)
+	RebuildNativeTypeToScriptingClass (27ms)
+	initialDomainReloadingComplete (99ms)
+	LoadAllAssembliesAndSetupDomain (514ms)
+		LoadAssemblies (184ms)
+		TypeCache.Refresh (352ms)
+			TypeCache.ScanAssembly (330ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (1293ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			BeforeProcessingInitializeOnLoad (209ms)
+			ProcessInitializeOnLoadAttributes (212ms)
+			ProcessInitializeOnLoadMethodAttributes (497ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 33 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ide.rider@3.1.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.ide.rider@570989d4a882)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.20.1 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.searcher@4.9.5 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+  Built-in packages:
+    com.unity.render-pipelines.universal@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.render-pipelines.universal@2a6014b851d8)
+    com.unity.test-framework@1.8.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.test-framework@01a8b42f9cf6)
+    com.unity.modules.animation@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.audio@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.ui@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.render-pipelines.core@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.render-pipelines.core@77e675a23c5f)
+    com.unity.shadergraph@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.shadergraph@807b608040c3)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.modules.physics2d@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.graph-authoring@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.burst@2.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.collections@c70d71c1212e)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.test-framework.performance@6.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.test-framework.performance@816c370aad5b)
+  Git packages:
+    com.coplaydev.unity-mcp@https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#5914ce5bd9d11d66a7896ce72e395b0a2f049c2a (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.coplaydev.unity-mcp@ee0afac15aa0)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.02 seconds
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/www/AbandonedButNotForgotten-SpaceApps
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\NetStandard\Extensions\2.0.0\System.Runtime.InteropServices.WindowsRuntime.dll"
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.ComponentModel.Composition.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ComponentModel.Composition.dll"
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 0s550ms
+[632/810    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra build success (0.49 seconds), 1 items updated, 810 evaluated
+AssetDatabase: script compilation time: 1.372374s
+Total cache size 43664388
+Total cache size after purge 43664388, took 00:00:00.1638154
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.832 seconds
+Domain Reload Profiling: 3368ms
+	BeginReloadAssembly (498ms)
+		DisableScriptedObjects (58ms)
+		CreateAndSetChildDomain (102ms)
+	RebuildCommonClasses (21ms)
+	RebuildNativeTypeToScriptingClass (32ms)
+	initialDomainReloadingComplete (102ms)
+	LoadAllAssembliesAndSetupDomain (881ms)
+		LoadAssemblies (529ms)
+		TypeCache.Refresh (184ms)
+			TypeCache.ScanAssembly (167ms)
+		AnalyzeDomain (87ms)
+			BuildScriptInfoCaches (72ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (1834ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (3ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (213ms)
+			ProcessInitializeOnLoadAttributes (562ms)
+			ProcessInitializeOnLoadMethodAttributes (260ms)
+			AfterProcessingInitializeOnLoad (22ms)
+		AwakeInstancesAfterBackupRestoration (56ms)
+Starting new worker id: 0 with log in C:/www/AbandonedButNotForgotten-SpaceApps/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=9bc108c7524d8ab4d94b9efee9894b52): Total: 5.762 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=2524 ms
+		Asset DB Callback time: managed=113 ms, native=24 ms
+		Scripting: domain reloads=1, domain reload time=1636 ms, compile time=1377 ms, other=85 ms
+		Project Asset Count: scripts=1047, non-scripts=2186
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 27.840ms
+	ApplyChangesToAssetFolders: 0.879ms
+	Scan: 125.769ms
+	Collect global state as custom dependencies: 41.149ms
+	CategorizeScriptCompilationAssets: 27.835ms
+	ProcessAssetsWithTransientArtifactChanges: 78.260ms
+	CategorizeAssets: 103.145ms
+	CompileScripts: 1376.730ms
+	ImportOutOfDateAssets: 1875.764ms (1839.707ms without children)
+		ReloadNativeAssets: 0.055ms
+		UnloadImportedAssets: 2.976ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.167ms
+		ImportSchedulerStart: 31.852ms
+	PostProcessAllAssets: 114.116ms
+		MonoPostProcessAllAssets: 113.911ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 31.977ms
+			SyncVS.PostprocessSyncProject 24.126ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 5.318ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 3.561ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 2.279ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 1.479ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 1.237ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 1.005ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.601ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.539ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.491ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.325ms
+	UnloadStreamsBegin: 3.228ms
+	PersistCurrentRevisions: 0.368ms
+	GenerateScriptTypeHashes: 6.940ms
+	GenerateScriptTypeSerializationHashes: 9.352ms
+	Untracked: 1940.311ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Scanning for USB devices : 0.935ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Abandoned, But Not Forgotten
+Unloading 27 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3971 unused Assets / (6.9 MB). Loaded Objects now: 4985.
+Memory consumption went from 355.6 MB to 348.6 MB.
+Total: 27.088400 ms (FindLiveObjects: 0.774800 ms CreateObjectMapping: 0.458300 ms MarkObjects: 12.625600 ms  DeleteObjects: 12.915400 ms)
+
+Opening scene 'Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopPreview.unity'
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopPreview.unity'
+	Deserialize:            8.061 ms
+	Integration:            238.233 ms
+	Integration of assets:  0.006 ms
+	Thread Wait Time:       0.062 ms
+	Total Operation Time:   246.361 ms
+Unloading 6 unused Assets / (Unknown). Loaded Objects now: 9231.
+Memory consumption went from 363.3 MB to 365.1 MB.
+Total: 23.931900 ms (FindLiveObjects: 1.833100 ms CreateObjectMapping: 1.299400 ms MarkObjects: 20.118500 ms  DeleteObjects: 0.152300 ms)
+
+SUR-009 preview dig=0.00 cam=low depth=0.000 clearance=0.2500 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+Worker ready: AssetImportWorkerHW0 0
+SUR-009 preview retract=0.00 cam=low depth=0.000 clearance=-0.1328 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.10 cam=low depth=0.024 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.10 cam=low depth=0.000 clearance=-0.1035 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.20 cam=low depth=0.045 clearance=0.0255 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.20 cam=low depth=0.000 clearance=-0.0597 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.30 cam=low depth=0.060 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.30 cam=low depth=0.000 clearance=-0.0482 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.40 cam=low depth=0.075 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.40 cam=low depth=0.000 clearance=0.0410 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.50 cam=low depth=0.090 clearance=0.0533 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.50 cam=low depth=0.000 clearance=0.0232 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.60 cam=low depth=0.114 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.60 cam=low depth=0.000 clearance=0.0205 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.70 cam=low depth=0.135 clearance=0.0255 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.70 cam=low depth=0.000 clearance=0.0737 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.80 cam=low depth=0.150 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.80 cam=low depth=0.000 clearance=0.2093 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.90 cam=low depth=0.165 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.90 cam=low depth=0.000 clearance=0.3487 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=1.00 cam=low depth=0.180 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=1.00 cam=low depth=0.000 clearance=0.4128 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.00 cam=tv depth=0.000 clearance=0.2500 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.00 cam=tv depth=0.000 clearance=-0.1328 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.10 cam=tv depth=0.024 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.10 cam=tv depth=0.000 clearance=-0.1035 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.20 cam=tv depth=0.045 clearance=0.0255 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.20 cam=tv depth=0.000 clearance=-0.0597 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.30 cam=tv depth=0.060 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.30 cam=tv depth=0.000 clearance=-0.0482 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.40 cam=tv depth=0.075 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.40 cam=tv depth=0.000 clearance=0.0410 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.50 cam=tv depth=0.090 clearance=0.0533 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.50 cam=tv depth=0.000 clearance=0.0232 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.60 cam=tv depth=0.114 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.60 cam=tv depth=0.000 clearance=0.0205 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.70 cam=tv depth=0.135 clearance=0.0255 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.70 cam=tv depth=0.000 clearance=0.0737 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.80 cam=tv depth=0.150 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.80 cam=tv depth=0.000 clearance=0.2093 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=0.90 cam=tv depth=0.165 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=0.90 cam=tv depth=0.000 clearance=0.3487 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview dig=1.00 cam=tv depth=0.180 clearance=0.0005 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009 preview retract=1.00 cam=tv depth=0.000 clearance=0.4128 reach=0.0000 ground=Chunk_2_2
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.SurveyorScoopWebPreview:ApplyState (single,single,string) (at Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs:59)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:87)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Preview/SurveyorScoopWebPreview.cs Line: 59)
+
+SUR-009: capturas em QA/SUR-009\Captures\Editor
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopPreviewBuilder:CaptureEditor () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs:100)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopPreviewBuilder.cs Line: 100)
+
+Batchmode quit successfully invoked - shutting down!
+Importing 'GUID: 00000000000000009000000000000000 - Path: ProjectSettings/QualitySettings.asset' with importer (LibraryAssetImporter)
+Imported 'GUID: 00000000000000009000000000000000' -> (Import Result ID: 'fb423b337042eb240015b72b7099f3c6') in 0.032 seconds [static dependencies only]. Details - ImportResultOutputID=2a108b3da874f726c62fbe5f12be4a8a DependenciesID=39950e12cf1ad2ec6bbc79a63c5dcd9b StaticDependenciesID=d6f709ccbeef8f12919464bab463f930 
+Importing 'GUID: a21b62fad9dc3c84c9ba62cd4243d5cd - Path: Assets/_Game/Chapters/Surveyor/Art/ScoopGenerated/TrenchSoil.mat' with importer (NativeFormatImporter)
+Imported 'GUID: a21b62fad9dc3c84c9ba62cd4243d5cd' -> (Import Result ID: '2f76d63767d02c932a1f00d347d1bd74') in 0.004 seconds [static dependencies only]. Details - ImportResultOutputID=3e574961ca9c3102836f0f2a4bb495c9 DependenciesID=6df19911f1a3d414601d742cff3e24ff StaticDependenciesID=df541bf4271ff7a97acdc7949596b61e 
+Asset Pipeline Refresh (id=9b9033db1e108c74f8c4b10252d6a0e1): Total: 0.261 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-kauawerle-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-kauawerle channel disconnected successfully.
+Lingering sessions upon destruction of worker manager
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+Shut down UDS service system complete
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+abort_threads: Failed aborting id: 0000000000000C80, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 00000000000008D0, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000000C80, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 00000000000008D0, mono_thread_manage will ignore it
+
+debugger-agent: Unable to listen on 3948
+Exiting batchmode successfully now!
+[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 0

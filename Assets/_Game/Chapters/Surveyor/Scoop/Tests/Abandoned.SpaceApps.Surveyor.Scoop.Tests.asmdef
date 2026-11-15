@@ -1,0 +1,14 @@
+{
+    "name": "Abandoned.SpaceApps.Surveyor.Scoop.Tests",
+    "rootNamespace": "Abandoned.SpaceApps.Chapters.Surveyor.ScoopTests",
+    "references": ["Abandoned.SpaceApps", "Abandoned.SpaceApps.Editor", "Unity.InputSystem", "Unity.InputSystem.TestFramework", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": ["nunit.framework.dll"],
+    "autoReferenced": false,
+    "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

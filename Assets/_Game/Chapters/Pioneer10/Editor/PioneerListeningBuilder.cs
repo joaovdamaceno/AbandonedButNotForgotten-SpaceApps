@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Abandoned.SpaceApps.UI;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using static Abandoned.SpaceApps.EditorTools.PioneerStageBuilder;
 
@@ -10,13 +13,13 @@ namespace Abandoned.SpaceApps.EditorTools
 {
     /// <summary>
     /// PIO-011 · Builder da escuta DSN (CORE-006, raiz <c>[R5] Pioneer Listening</c> na cena da Pioneer):
-    /// <c>Art/DsnSilhouette.prefab</c> (silhueta de antena de 70 m gerada por código), <c>UI/ListeningPanel.prefab</c>
+    /// <c>Art/DsnSilhouette.prefab</c> (modelo NASA da antena DSN de 70 m), <c>UI/ListeningPanel.prefab</c>
     /// (UIDocument + <see cref="ListeningPanelView"/>), <see cref="PioneerListening"/> ligada ao palco e a sequência
     /// <c>Sequences/PIO_Listening.asset</c> (52 s).
     /// <para>
-    /// A silhueta NÃO foi derivada de uma fotografia: o item de referência encontrado (NASA/Ames, "70 meter dish") é um modelo 3D,
-    /// não foi baixado e não tem licença própria na página. As proporções (prato parabólico de 70 m com tripé do subrefletor e
-    /// base em alidade) são as de uma antena DSN genérica. A escolha de uma fotografia creditada continua pendente (ver README).
+    /// A antena é o modelo NASA "Deep Space Network 70-meter" (NASA/Brian E. Kumanchik; NASA/Christian A. Lopez), convertido por
+    /// <c>Tools/convert_dsn70.py</c> (hierarquia azimute › elevação preservada, atlas 1024²) e montado aqui a partir de
+    /// <c>Data/Assets/Dsn70*.json</c>. Entra reduzido à escala do palco (<see cref="ModelScale"/>): a câmera continua a 36 m.
     /// </para>
     /// </summary>
     public sealed class PioneerListeningBuilder : SceneBuilderModule
@@ -30,9 +33,27 @@ namespace Abandoned.SpaceApps.EditorTools
         const string PanelSettingsPath = "Assets/_Game/UI/Design/SpaceAppsPanelSettings.asset"; // UI-001 (consumido, não editado)
         const string DsnFolder = ArtFolder + "/Dsn";
 
-        /// <summary>Dimensões da silhueta em metros (prato de 70 m reduzido à escala do palco; a câmera fica a 36 m).</summary>
-        public const float DishRadiusMeters = 13f;
-        public const float DishFocalMeters = 10.4f; // foco = 0,4 do diâmetro, proporção típica de prato de 70 m
+        public const string GeometryPath = "Data/Assets/Dsn70.geometry.json";
+        public const string AtlasPath = DsnFolder + "/Textures/DsnAtlas.png";
+        /// <summary>O prato real tem 70 m (raio 35 m); no palco ele é reduzido a 26 m (raio 13 m), como a silhueta anterior: a câmera fica a 36 m.</summary>
+        public const float ModelScale = 13f / 35f;
+        /// <summary>Elevação do prato a partir do zênite (o modelo está em "zênite") e giro do azimute para voltar o prato à câmera do anchor (em −Z).</summary>
+        const float DishTiltFromZenithDegrees = 40f;
+        const float AzimuthYawDegrees = 90f;
+
+        [Serializable] sealed class DsnGeometry { public DsnNode[] nodes; }
+
+        [Serializable]
+        sealed class DsnNode
+        {
+            public string name;
+            public string parent;
+            public float[] translation;
+            public float[] positions;
+            public float[] normals;
+            public float[] uv;
+            public int[] indices;
+        }
 
         public override string Id => ListeningBuilderId;
         public override string Owner => "R5 · PIO-011";
@@ -51,39 +72,8 @@ namespace Abandoned.SpaceApps.EditorTools
             if (layout == null || panelSettings == null)
                 throw new System.InvalidOperationException("ListeningPanel.uxml ou SpaceAppsPanelSettings ausente.");
 
-            // Silhueta (prefab) ------------------------------------------------------------------------------------
-            var dishMesh = MeshAsset(context, "PIO_DsnDish", FillDish, DsnFolder);
-            var cube = Resources.GetBuiltinResource<Mesh>("Cube.fbx");
-            var sphere = AssetDatabase.LoadAssetAtPath<Mesh>(StageFolder + "/Meshes/PIO_LowSphere.asset");
-            var dark = Unlit(context, "PIO_DsnBody", new Color(0.05f, 0.06f, 0.08f), null, DsnFolder);
-            var face = Unlit(context, "PIO_DsnDish", new Color(0.2f, 0.23f, 0.29f), null, DsnFolder);
-            var dishPrefab = context.Prefab(DishPrefabPath, root =>
-            {
-                Part(root, "Pedestal", cube, dark, new Vector3(0f, 5f, 0f), new Vector3(7f, 10f, 7f));
-                Part(root, "YokeBeam", cube, dark, new Vector3(0f, 10.5f, 0f), new Vector3(20f, 2f, 4f));
-                Part(root, "YokeArmLeft", cube, dark, new Vector3(-9f, 12f, 0f), new Vector3(2.2f, 7f, 3.5f));
-                Part(root, "YokeArmRight", cube, dark, new Vector3(9f, 12f, 0f), new Vector3(2.2f, 7f, 3.5f));
-
-                // O prato aponta para o céu, a ~50° de elevação e voltado para a câmera do anchor (que está em -Z).
-                var pivot = Ensure(root.transform, "DishPivot");
-                pivot.transform.localPosition = new Vector3(0f, 14f, 0f);
-                pivot.transform.localRotation = Quaternion.LookRotation(new Vector3(0f, 0.77f, -0.64f), Vector3.up);
-                pivot.transform.localScale = Vector3.one;
-                Visual(Ensure(pivot.transform, "Dish"), dishMesh, face);
-
-                var focus = new Vector3(0f, 0f, DishFocalMeters);
-                Part(pivot, "Subreflector", sphere, dark, focus, Vector3.one * 2f);
-                for (var i = 0; i < 3; i++)
-                {
-                    var angle = (90f + 120f * i) * Mathf.Deg2Rad;
-                    var rim = new Vector3(Mathf.Cos(angle) * DishRadiusMeters, Mathf.Sin(angle) * DishRadiusMeters, DishRadiusMeters * DishRadiusMeters / (4f * DishFocalMeters));
-                    var leg = Ensure(pivot.transform, "Leg" + i);
-                    leg.transform.localPosition = (rim + focus) * 0.5f;
-                    leg.transform.localRotation = Quaternion.LookRotation(focus - rim);
-                    leg.transform.localScale = new Vector3(0.45f, 0.45f, (focus - rim).magnitude);
-                    Visual(leg, cube, dark);
-                }
-            });
+            // Antena (prefab) --------------------------------------------------------------------------------------
+            var dishPrefab = BuildDishPrefab(context);
 
             // Painel (prefab) --------------------------------------------------------------------------------------
             var panelPrefab = context.Prefab(PanelPrefabPath, root =>
@@ -110,52 +100,133 @@ namespace Abandoned.SpaceApps.EditorTools
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
-        static void Part(GameObject parent, string name, Mesh mesh, Material material, Vector3 position, Vector3 scale)
+        /// <summary>
+        /// Monta <c>Art/DsnSilhouette.prefab</c> a partir do modelo NASA convertido: a hierarquia mecânica (base, azimute, elevação,
+        /// prato, alimentador, quadripé, treliças) vira GameObjects com as articulações em seus pivôs; as peças que não giram
+        /// ficam no azimute. O prato é posado a <see cref="DishTiltFromZenithDegrees"/> do zênite, voltado para a câmera do anchor.
+        /// </summary>
+        static GameObject BuildDishPrefab(SceneBuildContext context)
         {
-            var go = Ensure(parent.transform, name);
-            go.transform.localPosition = position;
-            go.transform.localRotation = Quaternion.identity;
-            go.transform.localScale = scale;
-            Visual(go, mesh, material);
-        }
+            var geometry = JsonUtility.FromJson<DsnGeometry>(File.ReadAllText(GeometryPath));
+            if (geometry?.nodes == null || geometry.nodes.Length == 0)
+                throw new InvalidOperationException("Dados do conversor ausentes ou inválidos: rode Tools/convert_dsn70.py.");
 
-        /// <summary>Paraboloide z = r²/(4f), aberto para +Z, com as duas faces (o material é Unlit e pode ser visto de ambos os lados).</summary>
-        static void FillDish(Mesh mesh)
-        {
-            const int segments = 28;
-            const int rings = 6;
-            var vertices = new List<Vector3> { new Vector3(0f, 0f, 0f) };
-            for (var ring = 1; ring <= rings; ring++)
+            ConfigureAtlasImport();
+            var atlas = AssetDatabase.LoadAssetAtPath<Texture2D>(AtlasPath);
+            if (atlas == null)
+                throw new InvalidOperationException("Atlas ausente: " + AtlasPath);
+
+            var material = Lit(context, "PIO_DsnModel", Color.white, 0f, 0.3f, atlas, DsnFolder);
+            material.SetFloat("_Cull", 0f); // dupla face, como no original (cascas finas do prato e das treliças)
+            EditorUtility.SetDirty(material);
+
+            var meshes = new Dictionary<string, Mesh>();
+            foreach (var node in geometry.nodes.Where(n => n.indices != null && n.indices.Length > 0))
             {
-                var r = DishRadiusMeters * ring / rings;
-                for (var s = 0; s < segments; s++)
-                {
-                    var angle = s * Mathf.PI * 2f / segments;
-                    vertices.Add(new Vector3(Mathf.Cos(angle) * r, Mathf.Sin(angle) * r, r * r / (4f * DishFocalMeters)));
-                }
+                var mesh = MeshAsset(context, "PIO_Dsn_" + node.name.Replace('.', '_'), m => FillMesh(m, node), DsnFolder);
+                MeshUtility.SetMeshCompression(mesh, ModelImporterMeshCompression.Medium);
+                EditorUtility.SetDirty(mesh);
+                meshes[node.name] = mesh;
             }
 
-            var triangles = new List<int>();
-            void Quad(int a, int b, int c) { triangles.Add(a); triangles.Add(b); triangles.Add(c); triangles.Add(a); triangles.Add(c); triangles.Add(b); }
-            for (var s = 0; s < segments; s++)
-                Quad(0, 1 + s, 1 + (s + 1) % segments);
-            for (var ring = 1; ring < rings; ring++)
+            return context.Prefab(DishPrefabPath, root =>
             {
-                var inner = 1 + (ring - 1) * segments;
-                var outer = 1 + ring * segments;
-                for (var s = 0; s < segments; s++)
+                // Peças da versão anterior (silhueta por código) não ficam órfãs no prefab.
+                foreach (var child in root.transform.Cast<Transform>().ToList())
                 {
-                    var n = (s + 1) % segments;
-                    Quad(inner + s, outer + s, outer + n);
-                    Quad(inner + s, outer + n, inner + n);
+                    if (child.name != "Model")
+                        UnityEngine.Object.DestroyImmediate(child.gameObject);
                 }
+
+                var model = Ensure(root.transform, "Model").transform;
+                model.localPosition = Vector3.zero;
+                model.localRotation = Quaternion.identity;
+                model.localScale = Vector3.one * ModelScale;
+
+                var created = new Dictionary<string, Transform> { { "_root", model } };
+                var pending = geometry.nodes.Where(n => n.name != "_root").ToList();
+                while (pending.Count > 0)
+                {
+                    var progressed = false;
+                    foreach (var node in pending.ToList())
+                    {
+                        if (!created.TryGetValue(node.parent ?? "_root", out var parent))
+                            continue;
+
+                        var go = Ensure(parent, node.name);
+                        go.transform.localPosition = new Vector3(node.translation[0], node.translation[1], node.translation[2]);
+                        go.transform.localRotation = Quaternion.identity;
+                        go.transform.localScale = Vector3.one;
+                        if (meshes.TryGetValue(node.name, out var mesh))
+                            Visual(go, mesh, material);
+                        created[node.name] = go.transform;
+                        pending.Remove(node);
+                        progressed = true;
+                    }
+
+                    if (!progressed)
+                        throw new InvalidOperationException("Nó sem pai no modelo da antena: " + pending[0].name);
+                }
+
+                created["azimuth"].localRotation = Quaternion.Euler(0f, AzimuthYawDegrees, 0f);
+                created["elevation"].localRotation = Quaternion.Euler(0f, 0f, -DishTiltFromZenithDegrees);
+            });
+        }
+
+        static void FillMesh(Mesh mesh, DsnNode node)
+        {
+            var count = node.positions.Length / 3;
+            var vertices = new Vector3[count];
+            var normals = new Vector3[count];
+            var uvs = new Vector2[count];
+            for (var i = 0; i < count; i++)
+            {
+                vertices[i] = new Vector3(node.positions[i * 3], node.positions[i * 3 + 1], node.positions[i * 3 + 2]);
+                normals[i] = new Vector3(node.normals[i * 3], node.normals[i * 3 + 1], node.normals[i * 3 + 2]);
+                uvs[i] = new Vector2(node.uv[i * 2], node.uv[i * 2 + 1]);
             }
 
             mesh.Clear();
+            mesh.indexFormat = count > 65000 ? IndexFormat.UInt32 : IndexFormat.UInt16;
             mesh.SetVertices(vertices);
-            mesh.SetTriangles(triangles, 0);
+            mesh.SetNormals(normals);
+            mesh.SetUVs(0, uvs);
+            mesh.SetTriangles(node.indices, 0);
             mesh.RecalculateBounds();
-            mesh.RecalculateNormals();
+        }
+
+        /// <summary>Atlas: sRGB, mipmaps, repetição travada; override WebGL em DXT1 (RGB opaco), 1024.</summary>
+        static void ConfigureAtlasImport()
+        {
+            var importer = AssetImporter.GetAtPath(AtlasPath) as TextureImporter;
+            if (importer == null)
+            {
+                AssetDatabase.ImportAsset(AtlasPath, ImportAssetOptions.ForceUpdate);
+                importer = AssetImporter.GetAtPath(AtlasPath) as TextureImporter;
+            }
+
+            var web = importer.GetPlatformTextureSettings("WebGL");
+            var wanted = importer.textureType == TextureImporterType.Default && importer.sRGBTexture && importer.mipmapEnabled
+                         && importer.wrapMode == TextureWrapMode.Clamp && importer.maxTextureSize == 1024 && importer.alphaSource == TextureImporterAlphaSource.None
+                         && web.overridden && web.maxTextureSize == 1024 && web.format == TextureImporterFormat.DXT1;
+            if (wanted)
+                return;
+
+            importer.textureType = TextureImporterType.Default;
+            importer.sRGBTexture = true;
+            importer.alphaSource = TextureImporterAlphaSource.None;
+            importer.mipmapEnabled = true;
+            importer.wrapMode = TextureWrapMode.Clamp;
+            importer.filterMode = FilterMode.Bilinear;
+            importer.anisoLevel = 4;
+            importer.maxTextureSize = 1024;
+            importer.textureCompression = TextureImporterCompression.Compressed;
+            web.overridden = true;
+            web.maxTextureSize = 1024;
+            web.format = TextureImporterFormat.DXT1;
+            web.compressionQuality = 50;
+            importer.SetPlatformTextureSettings(web);
+            importer.SaveAndReimport();
         }
 
         public override void Validate(SceneBuildContext context, List<string> errors)
@@ -189,11 +260,11 @@ namespace Abandoned.SpaceApps.EditorTools
         {
             var fresh = CreateSequence();
             fresh.name = "PIO_Listening";
-            var asset = context.Asset(SequencePath, () => Object.Instantiate(fresh));
+            var asset = context.Asset(SequencePath, () => UnityEngine.Object.Instantiate(fresh));
             EditorUtility.CopySerialized(fresh, asset);
             asset.name = "PIO_Listening";
             EditorUtility.SetDirty(asset);
-            Object.DestroyImmediate(fresh);
+            UnityEngine.Object.DestroyImmediate(fresh);
             return asset;
         }
 
