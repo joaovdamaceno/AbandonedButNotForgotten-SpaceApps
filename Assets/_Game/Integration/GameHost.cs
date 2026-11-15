@@ -89,6 +89,10 @@ namespace Abandoned.SpaceApps.Integration
             if (subtitleLayerPrefab != null)
             {
                 subtitles = Instantiate(subtitleLayerPrefab, transform).GetComponentInChildren<SubtitlePresenter>(true);
+                // Acima do HUD (5), abaixo da pausa (8) e do dossiê (10): a legenda nunca cobre um menu.
+                var subtitleDocument = subtitles.GetComponentInParent<UIDocument>();
+                if (subtitleDocument != null)
+                    subtitleDocument.sortingOrder = 6f;
                 subtitles.Initialize(localization, null);
             }
             else
