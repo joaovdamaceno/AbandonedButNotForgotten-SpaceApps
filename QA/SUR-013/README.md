@@ -10,6 +10,8 @@ Abrir `Assets/_Game/Chapters/Surveyor/Sequences/Visit/Preview/SurveyorVisitPrevi
 
 **9 testes aprovados**, oito de fluxo/input e um de integração em Play Mode com render real. O resultado completo está em `tests.xml`.
 
+Após incorporar develop `20c4167` (SUR-009 e atualização de arte da Pioneer), a compilação e os oito testes de fluxo/input foram conferidos novamente: **8 aprovados**, em `postmerge.xml`. Os arquivos de cenário/contratos usados nas capturas não mudaram nessa integração.
+
 - Aviso antes da imagem; progressão aos 32/44/50 s, sem pular a leitura final.
 - S29 32–38, S30 38–43 e S31 44–50, sem sobreposição.
 - E mantido durante a cena não retorna ao arquivo; exige soltar e pressionar novamente. Botão separado só funciona depois dos 50 s e sem E mantido.
