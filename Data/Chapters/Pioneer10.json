@@ -12,8 +12,8 @@
   ],
   "timeBudget": {
     "nominalSeconds": 417,
-    "approvalRangeSeconds": [300, 420],
-    "excludes": "arquivo, carregamento e pausa",
+    "approvalRangeSeconds": [300, 600],
+    "excludes": "arquivo, carregamento, pausa e o tempo que a pessoa leva nas duas interações (a foto e a sintonia de rádio)",
     "readingStretch": [
       {"cueId": "PIO.07.06", "nominalSeconds": 4, "maxSeconds": 7, "note": "A animação pode alongar até 7 s sem cortar a legenda."},
       {"cueId": "PIO.04.09", "nominalSeconds": 5, "maxSeconds": 8, "note": "Mesmo critério se o idioma precisar de mais tempo."}
