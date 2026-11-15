@@ -77,7 +77,7 @@ namespace Abandoned.SpaceApps.EditorTools
         sealed class StageAssets
         {
             public Mesh Sphere, SkySphere, LowSphere, StarMesh, BeltRocks, BeltNike;
-            public Material Jupiter, Sky, Stars, Ground, Aldebaran, BeltRock, Mars;
+            public Material Jupiter, Sky, Stars, Ground, Aldebaran, BeltRock, Mars, Earth;
         }
 
         static StageAssets BuildAssets(SceneBuildContext context)
@@ -104,6 +104,8 @@ namespace Abandoned.SpaceApps.EditorTools
             a.BeltRock = Lit(context, "PIO_BeltRock", new Color(0.30f, 0.29f, 0.28f), 0f, 0.08f);
             var marsTexture = TextureAsset(context, "PIO_MarsSurface.png", () => PioneerStageArt.MarsSurface(1024, 512, 1976), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
             a.Mars = Lit(context, "PIO_Mars", Color.white, 0f, 0.04f, marsTexture);
+            var earthTexture = TextureAsset(context, "PIO_EarthSurface.png", () => PioneerStageArt.EarthSurface(1024, 512, 1972), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
+            a.Earth = Lit(context, "PIO_EarthCompare", Color.white, 0f, 0.12f, earthTexture);
             return a;
         }
 
@@ -289,6 +291,13 @@ namespace Abandoned.SpaceApps.EditorTools
             mars.transform.localScale = Vector3.one * MarsRadiusMeters;
             mars.SetActive(false);
 
+            // Cena 3: a Terra de comparação (11,2 vezes menor que Júpiter); PioneerJupiterReveal a liga no plano aberto.
+            var earth = Visual(Ensure(deepSpace.transform, "EarthCompare"), a.Sphere, a.Earth);
+            earth.transform.localPosition = EarthCompareTo;
+            earth.transform.localRotation = Quaternion.Euler(20f, 90f, 0f);
+            earth.transform.localScale = Vector3.one * EarthCompareRadiusMeters;
+            earth.SetActive(false);
+
             var aldebaran = Visual(Ensure(root.transform, "AldebaranMarker"), a.LowSphere, a.Aldebaran);
             aldebaran.transform.localScale = Vector3.one * 5f;
 
@@ -307,6 +316,7 @@ namespace Abandoned.SpaceApps.EditorTools
             so.FindProperty("beltField").objectReferenceValue = beltField.transform;
             so.FindProperty("beltNike").objectReferenceValue = beltNike.transform;
             so.FindProperty("mars").objectReferenceValue = mars.transform;
+            so.FindProperty("earth").objectReferenceValue = earth.transform;
             so.FindProperty("aldebaranMarker").objectReferenceValue = aldebaran.transform;
             so.FindProperty("aldebaranDirection").vector3Value = AldebaranDirection;
             so.FindProperty("aldebaranDistanceMeters").floatValue = 1100f;
@@ -332,6 +342,12 @@ namespace Abandoned.SpaceApps.EditorTools
         /// <summary>A 880 m da câmera, 9° à direita e 3° abaixo do centro do quadro (a sonda), no anchor PIO.Belt.Mars.</summary>
         public static readonly Vector3 MarsPosition = BeltMarsCamera + (OffsetLook(BeltMarsCamera, Vector3.zero, 9f, 3f) - BeltMarsCamera).normalized * 880f;
         public const float MarsRadiusMeters = 85f;
+        /// <summary>Cena 3: a Terra tem 1/11,2 do diâmetro de Júpiter (razão real dos diâmetros equatoriais).</summary>
+        public const float EarthCompareRadiusMeters = JupiterRadiusMeters / 11.2f;
+        /// <summary>Onde a Terra para no quadro do plano aberto (0–1, origem em cima à esquerda) e de onde ela entra (fora do quadro, à esquerda).</summary>
+        public static readonly Vector2 EarthCompareViewport = new Vector2(0.2f, 0.7f);
+        public static readonly Vector2 EarthCompareEnterViewport = new Vector2(-0.12f, 0.7f);
+        public const float ApproachOpenFov = 36f;
         public const int BeltRockCount = 1400;
         public const int BeltFieldSeed = 1972;
         /// <summary>Anchor da teleobjetiva/dolly zoom: a câmera chega a ~82 m da sonda; o campo de pedras fica atrás dela.</summary>
@@ -447,6 +463,25 @@ namespace Abandoned.SpaceApps.EditorTools
 
         static readonly Vector3 JupiterDirection = JupiterPosition.normalized;
 
+        /// <summary>A câmera da aproximação de Júpiter (cena 3): 11 m atrás da sonda, um pouco acima e ao lado.</summary>
+        public static readonly Vector3 ApproachCamera = -JupiterDirection * 11f + Vector3.up * 3.2f + Vector3.Cross(Vector3.up, JupiterDirection).normalized * 3.5f;
+        public static readonly Vector3 ApproachLookAt = OffsetLook(ApproachCamera, JupiterPosition, -7f, 4f);
+
+        /// <summary>Ponto do mundo que cai no ponto <paramref name="viewport"/> do quadro (16:9, origem em cima à esquerda) de uma câmera, à distância dada.</summary>
+        public static Vector3 ViewportPoint(Vector3 camera, Vector3 lookAt, float fovDegrees, Vector2 viewport, float distance)
+        {
+            var forward = (lookAt - camera).normalized;
+            var right = Vector3.Cross(Vector3.up, forward).normalized;
+            var up = Vector3.Cross(forward, right);
+            var halfV = Mathf.Tan(fovDegrees * 0.5f * Mathf.Deg2Rad);
+            var halfH = halfV * (16f / 9f);
+            var direction = forward + right * ((viewport.x - 0.5f) * 2f * halfH) + up * ((0.5f - viewport.y) * 2f * halfV);
+            return camera + direction.normalized * distance;
+        }
+
+        public static Vector3 EarthCompareTo => ViewportPoint(ApproachCamera, ApproachLookAt, ApproachOpenFov, EarthCompareViewport, (JupiterPosition - ApproachCamera).magnitude);
+        public static Vector3 EarthCompareFrom => ViewportPoint(ApproachCamera, ApproachLookAt, ApproachOpenFov, EarthCompareEnterViewport, (JupiterPosition - ApproachCamera).magnitude);
+
         /// <summary>Sol atrás da câmera e à esquerda nos planos de Júpiter: o mesmo eixo de luz na aproximação e na imagem.</summary>
         static readonly Vector3 JupiterKeyDirection =
             (JupiterDirection + Vector3.Cross(Vector3.up, JupiterDirection).normalized * 0.55f + Vector3.down * 0.12f).normalized;
@@ -515,7 +550,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var jupiterFlat = new Vector3(JupiterDirection.x, JupiterDirection.y, 0f).normalized;
             var instrument = jupiterFlat * (CompartmentRadiusMeters + 0.06f) + Vector3.forward * -0.30f;
             var instrumentCamera = instrument + jupiterFlat * 1.1f + Vector3.forward * -0.9f + Vector3.Cross(Vector3.forward, jupiterFlat) * 0.35f;
-            var approachCamera = -JupiterDirection * 11f + Vector3.up * 3.2f + jupiterRight * 3.5f;
+            var approachCamera = ApproachCamera;
             // Máxima aproximação (cena 5): ~130 m do centro de Júpiter (raio 80 m), um pouco acima e ao lado do eixo de chegada.
             var closestCamera = JupiterPosition - JupiterDirection * 130f + Vector3.up * 22f + jupiterRight * 24f;
             var aldebaran = AldebaranDirection.normalized;
