@@ -24,7 +24,7 @@ namespace Abandoned.SpaceApps.EditorTools
         static readonly string[] RequiredElements =
         {
             "pause-root", "pause-corner", "pause-button", "pause-button-label", "pause-button-key", "pause-overlay",
-            "pause-card", "pause-title", "pause-subtitle", "view-main", "btn-resume", "btn-settings", "btn-fullscreen",
+            "pause-card", "pause-title", "pause-subtitle", "view-main", "btn-resume", "btn-settings",
             "btn-restart", "btn-dossier", "pause-hint", "view-settings", "settings-title", "settings-scroll", "btn-back",
             "pause-navigation",
         };

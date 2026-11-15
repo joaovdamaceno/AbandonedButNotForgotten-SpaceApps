@@ -96,7 +96,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         public void ApplyTextScale(float scale)
         {
             objective.style.fontSize = 20f * scale; hint.style.fontSize = 18f * scale; action.style.fontSize = 17f * scale;
-            if (subtitleHost != null) foreach (var label in subtitleHost.Query<Label>(className: "sa-subtitle__text").ToList()) label.style.fontSize = 23f * scale;
+            if (subtitleHost != null) foreach (var label in subtitleHost.Query<Label>(className: "sa-subtitle__text").ToList()) label.style.fontSize = 28f * scale;
         }
         public void SetReducedEffect(bool reduced) => reducedEffect = reduced;
         public bool TryPointer(Vector2 screenPosition, out Vector2 uv)

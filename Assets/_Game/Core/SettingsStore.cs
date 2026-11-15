@@ -16,7 +16,7 @@ namespace Abandoned.SpaceApps
         public const string English = "en";
 
         public int version = CurrentVersion;
-        public string languageCode = Portuguese;
+        public string languageCode = English;
         [Range(0f, 1f)] public float masterVolume = 1f;
         [Range(0f, 1f)] public float musicVolume = 0.8f;
         [Range(0f, 1f)] public float sfxVolume = 0.9f;
@@ -36,7 +36,7 @@ namespace Abandoned.SpaceApps
         {
             version = CurrentVersion;
             if (languageCode != Portuguese && languageCode != English)
-                languageCode = Portuguese;
+                languageCode = English;
 
             masterVolume = Clamp(masterVolume, 0f, 1f, 1f);
             musicVolume = Clamp(musicVolume, 0f, 1f, 0.8f);

@@ -312,25 +312,25 @@ namespace Abandoned.SpaceApps.Tests
             var storage = new MemoryStorage();
             var store = new SettingsStore(storage);
             Assert.That(store.Load(), Is.False);
-            Assert.That(store.Current.languageCode, Is.EqualTo("pt"));
+            Assert.That(store.Current.languageCode, Is.EqualTo("en"), "o padrão do jogo é inglês");
 
             store.Apply(s =>
             {
-                s.languageCode = "en";
+                s.languageCode = "pt";
                 s.musicVolume = 0.25f;
                 s.holdMode = HoldMode.Toggle;
             });
 
             var reloaded = new SettingsStore(storage);
             Assert.That(reloaded.Load(), Is.True);
-            Assert.That(reloaded.Current.languageCode, Is.EqualTo("en"));
+            Assert.That(reloaded.Current.languageCode, Is.EqualTo("pt"), "a escolha em português persiste");
             Assert.That(reloaded.Current.musicVolume, Is.EqualTo(0.25f));
             Assert.That(reloaded.Current.holdMode, Is.EqualTo(HoldMode.Toggle));
 
             storage.Values[SettingsStore.StorageKey] = "{ isto não é json";
             var corrupt = new SettingsStore(storage);
             Assert.DoesNotThrow(() => corrupt.Load());
-            Assert.That(corrupt.Current.languageCode, Is.EqualTo("pt"));
+            Assert.That(corrupt.Current.languageCode, Is.EqualTo("en"));
         }
 
         [Test]
@@ -349,7 +349,7 @@ namespace Abandoned.SpaceApps.Tests
             });
 
             var current = store.Current;
-            Assert.That(current.languageCode, Is.EqualTo("pt"));
+            Assert.That(current.languageCode, Is.EqualTo("en"));
             Assert.That(current.masterVolume, Is.EqualTo(1f));
             Assert.That(current.textScale, Is.EqualTo(1f));
             Assert.That(current.lookSensitivity, Is.EqualTo(0.1f));

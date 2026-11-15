@@ -196,7 +196,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.CommandTests
         {
             var tree=AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(SurveyorCommandBuilder.UiFolder+"/CommandTransit.uxml").CloneTree();
             var view=root.AddComponent<CommandTransitView>(); Offer();
-            view.Configure(tree,AssetDatabase.LoadAssetAtPath<TextAsset>(SurveyorCommandBuilder.UiFolder+"/CommandTransitTexts.json"),queue,action,new SettingsData());
+            view.Configure(tree,AssetDatabase.LoadAssetAtPath<TextAsset>(SurveyorCommandBuilder.UiFolder+"/CommandTransitTexts.json"),queue,action,new SettingsData{languageCode="pt"}); // o padrão do jogo é inglês; o teste confere a troca PT → EN
             ConfirmWithoutOffer();
             Assert.That(tree.Q<Label>("command-status").text,Does.StartWith("Enviada"));
             Assert.That(view.LastFeedbackFrames,Is.Zero); Assert.That(executions,Is.Zero);

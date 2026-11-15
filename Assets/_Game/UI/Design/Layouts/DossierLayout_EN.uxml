@@ -65,7 +65,7 @@
                 <ui:Button text="Sound and text" class="sa-button sa-button--link" />
                 <ui:Button text="Credits and sources" class="sa-button sa-button--link" />
             </ui:VisualElement>
-            <ui:Label text="Independent educational production · not affiliated with or endorsed by NASA" class="sa-stamp sa-dossier__disclaimer" />
+            <ui:Label text="Independent educational production" class="sa-stamp sa-dossier__disclaimer" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

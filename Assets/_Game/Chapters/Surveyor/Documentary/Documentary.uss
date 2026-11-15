@@ -22,7 +22,7 @@
 .sa-subtitle-layer--hosted { width: 100%; align-items: center; }
 .sa-subtitle { width: 100%; max-width: 100%; padding: 8px 16px; background-color: rgba(4,6,7,.50); }
 .sa-subtitle--hidden { display: none; }
-.sa-subtitle__text { width: 100%; font-size: 23px; white-space: normal; -unity-text-align: middle-center; color: rgb(238,235,220); }
+.sa-subtitle__text { width: 100%; font-size: 28px; white-space: normal; -unity-text-align: middle-center; color: rgb(238,235,220); }
 #credits { display: none; color: rgb(196,192,177); background-color: transparent; border-width: 0; font-size: 16px; margin-top: 10px; }
 .ended #mission-heading { left: 15%; right: 15%; top: 32%; max-width: 70%; align-items: center; border-left-width: 0; padding-left: 0; }
 .ended #title { font-size: 54px; letter-spacing: 8px; }

@@ -237,17 +237,10 @@ namespace Abandoned.SpaceApps.Integration
                 bootListener.enabled = !chapterHasListener;
         }
 
-        /// <summary>Capítulos que sempre aparecem em inglês, independentemente do idioma escolhido (os outros seguem as configurações).</summary>
-        static readonly string[] EnglishOnlyChapters = { "mars" };
         string runningChapter;
 
-        void ApplyLanguage()
-        {
-            if (runningChapter != null && System.Array.IndexOf(EnglishOnlyChapters, runningChapter) >= 0)
-                localization.SetLanguage(SettingsData.English);
-            else
-                localization.ApplySettings(settings.Current);
-        }
+        /// <summary>Os três capítulos seguem o idioma escolhido nas configurações (inglês na primeira abertura).</summary>
+        void ApplyLanguage() => localization.ApplySettings(settings.Current);
 
         void OnChapterStarted(string chapterId)
         {

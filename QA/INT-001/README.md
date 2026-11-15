@@ -1,6 +1,19 @@
 # QA/INT-001 — Integração dos três capítulos ao Boot (PR 1)
 
-Escopo deste PR: blocos **A, B, C, D e H** do card INT-001 (catálogo, Build Settings, `GameHost` com Pioneer 10 e Surveyor 3, dono único de câmera/áudio/pausa, descarte e testes). Os blocos **F** (QA absorvidos de MAR-010, MAR-020 e PIO-015) e **G** (inglês como padrão e identidade visual) são do PR 2 e **não foram feitos aqui**. UI-007 está fora do card.
+Escopo desta branch: blocos **A, B, C, D e H** do card INT-001 (catálogo, Build Settings, `GameHost` com Pioneer 10 e Surveyor 3, dono único de câmera/áudio/pausa, descarte e testes) **mais o início do G**: inglês como idioma padrão nos três capítulos, com troca pelas Configurações. O dono decidiu unificar isso na mesma branch (o card previa dois PRs).
+
+**Ainda não feito:** o bloco **F** (QA absorvidos de MAR-010, MAR-020 e PIO-015) e a unificação visual (ver "Idioma" abaixo). UI-007 está fora do card.
+
+## Idioma (bloco G)
+
+- `SettingsData.languageCode` padrão e o fallback de valor inválido agora são `en`. Quem já tem preferência salva em `pt` continua em português.
+- `DossierFlow` cai em `en` quando o idioma inicial é inválido.
+- `EnglishOnlyChapters` saiu do `GameHost`; Marte segue a escolha. A parte da `Opportunity` guarda o idioma à parte (`GameSettings.English`, PlayerPrefs): o `MarsFieldHandoff` agora copia a escolha do dossiê em vez de forçar inglês.
+- Testes ajustados ao novo padrão: `ChapterFlowTests`, `DossierFlowTests`, `PauseTests`, `GuidanceUiTests`.
+- **Estes ajustes ainda não foram executados**: o Editor estava aberto e bloqueou a execução em lote. Rodar o Test Runner (EditMode inteiro e `BootPlayTests`) antes de commitar.
+- **Ajustes de UI pedidos após o primeiro teste manual:** "Tela cheia (opcional)" saiu do menu de pausa e virou linha de Preferências (`SettingsPanel`, chave `prefs.fullscreen`); legenda do Surveyor de 23 px para 28 px, igual ao token `--sa-text-subtitle` das outras; rodapé do dossiê só "Independent educational production" / "Produção educativa independente" (a nota de não afiliação à NASA continua nos créditos).
+- **Resultado do Test Runner do dono (1111 testes, 14 falhas)**: 4 eram texto em português com o novo padrão em inglês (corrigidos nos testes), 5 são antigas (`ProjectSetupTests` ×2, eclipse, 2 do roteiro do Surveyor), 4 de tempo real do Surveyor (Descent, Launch, Midcourse, CommandDelay) e `PioneerStageTests` (`PIO_EarthCompare.mat`) ainda sem causa confirmada; suspeita de perda de foco da janela do Editor durante a execução.
+- **Identidade visual:** a Pioneer 10, o dossiê, o HUD, a pausa e o guia usam os tokens `--sa-*`; **nenhum** `.uss` do Surveyor (13 arquivos) nem a UI da Opportunity (`MissionUI.uss`) usa. Não reestilizei: seria um redesenho visual sem como conferir a tela daqui.
 
 ## Base
 
