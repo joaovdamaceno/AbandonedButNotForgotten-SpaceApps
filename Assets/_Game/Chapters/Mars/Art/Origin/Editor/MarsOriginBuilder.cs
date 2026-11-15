@@ -96,7 +96,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
                 var z = RoverZ;
                 yield return ("mars.origin.lab.wide", 4.9f, u => Move(u, new Vector3(0.3f, 0.9f, 7.4f), new Vector3(-0.1f, 1.0f, 5.9f), new Vector3(0f, 0.85f, z), new Vector3(0f, 0.9f, z), 38f),
                     new[] { new ShotEvent(0f, "mars.origin.lab.wide") });
-                yield return ("mars.origin.lab.detail", 8.2f, u => Orbit(u, new Vector3(SpiritX, 0f, z), 3.6f, 80f, -100f, 1.1f, 1.5f, 0.95f, 36f),
+                yield return ("mars.origin.lab.detail", 8.2f, u => Orbit(u, new Vector3(SpiritX, 0f, z), 3.6f, 45f, -45f, 1.1f, 1.4f, 0.95f, 36f),
                     new[] { new ShotEvent(0f, "mars.origin.lab.detail") });
                 yield return ("mars.origin.globe.meridiani", 7.7f, u => Move(u, GlobeOffset + new Vector3(-1.4f, 0.5f, -9.2f), GlobeOffset + new Vector3(-1.0f, 0.4f, -8.4f), GlobeOffset, GlobeOffset, 30f),
                     new[] { new ShotEvent(0f, "mars.origin.globe.meridiani") });

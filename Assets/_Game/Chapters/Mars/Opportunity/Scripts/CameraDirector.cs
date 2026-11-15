@@ -98,9 +98,9 @@ namespace Abandoned.SpaceApps.Opportunity
             {
                 if (activePath != null)
                 {
-                    activePath.Evaluate(chapter.Elapsed, out var authoredPosition, out var authoredRotation);
+                    activePath.Evaluate(chapter.FilmTime, out var authoredPosition, out var authoredRotation);
                     cinematicRig.SetPositionAndRotation(authoredPosition, authoredRotation);
-                    fov=activePath.Lens(chapter.Elapsed);
+                    fov=activePath.Lens(chapter.FilmTime);
                 }
                 position = cinematicRig.position;
                 rotation = cinematicRig.rotation;

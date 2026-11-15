@@ -33,6 +33,13 @@ namespace Abandoned.SpaceApps.Opportunity
         public ChapterProgress Progress { get; } = new ChapterProgress();
         public ChapterStage Stage => Progress.Stage;
         public float Elapsed { get; private set; }
+        /// <summary>Segundos a mais na queda das duas sondas (até o impacto dos airbags, aos 7,5 s do filme do pouso).</summary>
+        public const float LandingFallExtraSeconds = 6f;
+        const float LandingFallEndSeconds = 7.5f;
+        /// <summary>Tempo do filme da etapa: no pouso, a queda é desacelerada para durar mais; nas outras etapas, igual a <see cref="Elapsed"/>.</summary>
+        public float FilmTime => Stage != ChapterStage.Landing ? Elapsed
+            : Elapsed < LandingFallEndSeconds + LandingFallExtraSeconds ? Elapsed * LandingFallEndSeconds / (LandingFallEndSeconds + LandingFallExtraSeconds)
+            : Elapsed - LandingFallExtraSeconds;
         public bool Paused { get; private set; }
         public Vector3 FinalPosition {get; private set;}
         public float FinalYaw {get; private set;}
@@ -129,7 +136,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(Paused)return;
             Elapsed+=Time.deltaTime;
             if(Stage!=ChapterStage.ChapterEnd)SessionSeconds+=Time.unscaledDeltaTime;
-            film.Evaluate(Elapsed);
+            film.Evaluate(FilmTime);
             // Interações começam segurando E (sem clique ou mira).
             interactHold=GameInput.ActionHeld?interactHold+Time.deltaTime:0;
             if(interactions&&interactHold>=InteractHoldSeconds){interactHold=float.NegativeInfinity;interactions.TryExecute();}
@@ -139,7 +146,7 @@ namespace Abandoned.SpaceApps.Opportunity
             switch(Stage)
             {
                 case ChapterStage.Intro:if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
-                case ChapterStage.Landing:if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
+                case ChapterStage.Landing:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.Activation:
                     lander.GetComponent<AirbagLanderRig>()?.Pose(1,1);
                     if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;

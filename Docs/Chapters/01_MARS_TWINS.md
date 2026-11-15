@@ -172,6 +172,8 @@ As falas com voz gravada estão em `Assets/_Game/Chapters/Mars/Opportunity/Resou
 
 ### Pouso das duas sondas
 
+O pouso dura 24 s: a queda até o impacto dos airbags (7,5 s do filme) é mostrada em 13,5 s (`ChapterDirector.LandingFallExtraSeconds`); os tempos abaixo são do filme.
+
 Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_Landing.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`. Letreiros da tela dividida: mesmo arquivo de textos.
 
 | Momento | Chave | Português | English |
@@ -180,7 +182,6 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 | tela dividida | `v15.split.spirit.place` | ↓ caindo na CRATERA GUSEV · 4 JAN 2004 | ↓ landing in GUSEV CRATER · 4 JAN 2004 |
 | tela dividida | `v15.split.opportunity` | OPPORTUNITY | OPPORTUNITY |
 | tela dividida | `v15.split.opportunity.place` | ↓ caindo em MERIDIANI PLANUM · 25 JAN 2004 | ↓ landing on MERIDIANI PLANUM · 25 JAN 2004 |
-| 0 s · fala | `v15.landing.twins` | Duas sondas gêmeas caem em Marte, protegidas por airbags: uma dentro da Cratera Gusev, a outra em Meridiani Planum. | Two twin rovers fall toward Mars, protected by airbags: one into Gusev Crater, the other onto Meridiani Planum. |
 | 13,5 s · fala | `v15.landing.opp` | Depois de uma semana de preparação, a Opportunity põe as rodas em Meridiani Planum. | After a week of preparing, Opportunity lands its wheels on Meridiani Planum. |
 
 ### Saída do módulo
