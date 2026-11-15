@@ -23,7 +23,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public override void Build(SceneBuildContext c)
         {
             var names=new[]{"Launch","Cruise","Descent","FirstImage","Observe","Sample","Eclipse","LunarNight","TimePassage","ImaginedVisit","HistoricalReceipt","End"};
-            var template=ChapterDefinition.Create("surveyor3","sur.chapter.title","sur.chapter.description","sur.chapter.question","SurveyorChapter",360,"surveyor.seq.Launch",names.Select((n,i)=>new ChapterStep(n,i==names.Length-1,i==names.Length-1?Array.Empty<string>():new[]{names[i+1]})));
+            var template=ChapterDefinition.Create("surveyor3","sur.chapter.title","sur.chapter.description","sur.chapter.question","SurveyorChapter",360,"surveyor.seq.Launch",names.Select((n,i)=>new ChapterStep(n,i==names.Length-1,i==names.Length-1?Array.Empty<string>():new[]{names[i+1]})),Load<Sprite>(ReturnedCameraBuilder.CoverPath));
             var chapter=c.Asset(ChapterPath,()=>template);if(chapter!=template){EditorUtility.CopySerialized(template,chapter);Object.DestroyImmediate(template);}EditorUtility.SetDirty(chapter);
             var panel=c.Asset(Folder+"/ChapterPanelSettings.asset",()=>Object.Instantiate(Load<PanelSettings>("Assets/_Game/UI/Design/SpaceAppsPanelSettings.asset")));panel.sortingOrder=4;EditorUtility.SetDirty(panel);
             var overlayPanel=c.Asset(Folder+"/ChapterOverlaySettings.asset",()=>Object.Instantiate(panel));overlayPanel.sortingOrder=8;EditorUtility.SetDirty(overlayPanel);

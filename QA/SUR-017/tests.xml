@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 08:25:18Z" end-time="2026-11-15 08:25:19Z" duration="0,9145284">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="1045" result="Passed" start-time="2026-11-15 08:25:18Z" end-time="2026-11-15 08:25:19Z" duration="0.914528" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1905" name="Abandoned.SpaceApps.Surveyor.Chapter.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Chapter.Tests.dll" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 08:25:18Z" end-time="2026-11-15 08:25:19Z" duration="0.660041" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28476" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1906" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 08:25:18Z" end-time="2026-11-15 08:25:19Z" duration="0.658310" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1907" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 08:25:18Z" end-time="2026-11-15 08:25:19Z" duration="0.657350" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1908" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 08:25:18Z" end-time="2026-11-15 08:25:19Z" duration="0.656104" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1909" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 08:25:18Z" end-time="2026-11-15 08:25:19Z" duration="0.654843" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1910" name="ChapterTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 08:25:18Z" end-time="2026-11-15 08:25:19Z" duration="0.653378" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1900" name="ReturnedCameraTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.ReturnedCameraTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.ReturnedCameraTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 08:25:18Z" end-time="2026-11-15 08:25:19Z" duration="0.650232" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1901" name="OptionalCardUsesExistingNasaPhotographAndNeverStartsChapter" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.ReturnedCameraTests.OptionalCardUsesExistingNasaPhotographAndNeverStartsChapter" methodname="OptionalCardUsesExistingNasaPhotographAndNeverStartsChapter" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.ReturnedCameraTests" runstate="Runnable" seed="1058647735" result="Passed" start-time="2026-11-15 08:25:09Z" end-time="2026-11-15 08:25:19Z" duration="10.039468" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Damaceno/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

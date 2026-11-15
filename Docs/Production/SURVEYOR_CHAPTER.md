@@ -35,3 +35,8 @@ Três trechos originais temporários gerados pelo script versionado em `SourceAs
 ## Aceitação
 
 Veja `Assets/_Game/Chapters/Surveyor/QA/Surveyor/Acceptance.md` e evidências em `QA/SUR-015`. Tempo automatizado não é mediana humana. Teste com cinco novatos, GPU integrada, memória total da aba e upload real itch.io continuam exigindo os respectivos dispositivos/pessoas/acesso. Este capítulo não declara integrada a campanha global dos três capítulos.
+
+
+## Acabamento e ficha final
+
+SUR-016 reaplica o acabamento de terreno/luva durante a reconstrução e elimina pausas redundantes. SUR-017 adiciona a ficha opcional em Detalhes, com PT/EN, fonte NASA e identificação do exemplar de teste Smithsonian. A capa referencia a foto NASA existente. A ficha não é aberta no final e fica fora da contagem do capítulo. O builder final é `Abandoned.SpaceApps.EditorTools.ReturnedCameraBuilder.BuildWeb`; o ZIP local para itch.io fica em `Builds/Surveyor3-itch.zip`. Evidências finais em QA/SUR-017.

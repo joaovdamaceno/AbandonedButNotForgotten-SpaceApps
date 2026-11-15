@@ -4,7 +4,7 @@ import os,sys,json,argparse,re,time,statistics,math
 root=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(root/'QA/Local/BrowserLib'));os.environ['PLAYWRIGHT_BROWSERS_PATH']=str(root/'QA/Local/Browsers')
 from playwright.sync_api import sync_playwright
-ap=argparse.ArgumentParser();ap.add_argument('--browser',default='chromium');ap.add_argument('--port',type=int,default=8868);args=ap.parse_args();out=root/'QA/SUR-015'
+ap=argparse.ArgumentParser();ap.add_argument('--browser',default='chromium');ap.add_argument('--port',type=int,default=8868);ap.add_argument('--out',default='QA/SUR-015');ap.add_argument('--dossier-details',action='store_true');args=ap.parse_args();out=root/args.out;out.mkdir(exist_ok=True,parents=True)
 with sync_playwright() as p:
     opts={'headless':True}
     if args.browser=='chromium':opts['args']=['--use-angle=d3d11','--autoplay-policy=user-gesture-required']
@@ -34,6 +34,8 @@ with sync_playwright() as p:
             wait(.3)
     try:
         page.goto(f'http://127.0.0.1:{args.port}/',wait_until='domcontentloaded');page.wait_for_function('window.unityInstance',timeout=120000);wait(2);shot('archive');size=page.viewport_size
+        if args.dossier_details:
+            page.locator('#game').click(position={'x':size['width']*.924,'y':size['height']*.244});wait(.5);shot('details');page.keyboard.press('Escape');wait(.4)
         page.locator('#game').click(position={'x':size['width']*.884,'y':size['height']*.814});stage('Launch');wait(4);shot('launch')
         page.keyboard.press('p');wait(.5);shot('pause');page.keyboard.press('p');wait(.5)
         wait(14);hold(2.8);stage('Cruise');wait(10.5);page.keyboard.press('h');wait(6.5);hold(3.3);stage('Descent');wait(14.3);hold(3.3);stage('FirstImage');hold(2.3);wait(7);shot('first-image');stage('Observe')
