@@ -4,20 +4,20 @@ using UnityEngine;
 namespace Abandoned.SpaceApps
 {
     /// <summary>
-    /// Roteiro v2, cena 5 · O mais perto possível (só cinema). Lê o relógio da sequência <c>PIO_Closest</c> (40 s) e desenha no
-    /// <see cref="CinemaHudView"/>: o medidor de radiação que sobe com a estática do quadro (6–17 s, plano da radiação), e, no ponto
-    /// mais próximo (24–29 s), a velocidade e a comparação de distâncias: uma barra Terra–Lua (384.400 km) e outra, 3 vezes menor,
+    /// Roteiro v2, cena 5 · O mais perto possível (só cinema). Lê o relógio da sequência <c>PIO_Closest</c> (65 s) e desenha no
+    /// <see cref="CinemaHudView"/>: o medidor de radiação que sobe com a estática do quadro (12–27 s, plano da radiação), e, no ponto
+    /// mais próximo (35–42 s), a velocidade e a comparação de distâncias: uma barra Terra–Lua (384.400 km) e outra, 3 vezes menor,
     /// da sonda até as nuvens (130.000 km). Os números vêm da linha do tempo do roteiro; a curva de subida do medidor é estilizada.
     /// </summary>
     public sealed class PioneerClosestHud : MonoBehaviour
     {
-        public const float RadiationStartSeconds = 6f;
-        public const float RadiationRiseEndSeconds = 15f;
-        public const float RadiationEndSeconds = 17f;
-        public const float DistancesStartSeconds = 24f;
-        public const float DistancesEndSeconds = 29f;
-        public const float MoonBarFullSeconds = 25.5f;
-        public const float CloudsBarFullSeconds = 27f;
+        public const float RadiationStartSeconds = 12f;
+        public const float RadiationRiseEndSeconds = 24f;
+        public const float RadiationEndSeconds = 27f;
+        public const float DistancesStartSeconds = 35f;
+        public const float DistancesEndSeconds = 42f;
+        public const float MoonBarFullSeconds = 37f;
+        public const float CloudsBarFullSeconds = 39f;
         /// <summary>130.000 km sobre 384.400 km: a barra da sonda tem pouco mais de um terço da barra da Lua ("3 vezes mais perto").</summary>
         public const float CloudsFraction = 130000f / 384400f;
         /// <summary>Quadros por segundo do tremor da estática (o deslocamento só muda neste ritmo).</summary>
@@ -38,7 +38,7 @@ namespace Abandoned.SpaceApps
 
         public static bool RadiationVisibleAt(float seconds) => seconds >= RadiationStartSeconds && seconds < RadiationEndSeconds;
 
-        /// <summary>Nível do medidor de radiação: sobe de ~0,08 a 1 entre 6 e 15 s (mais devagar no começo) e fica cheio até sair.</summary>
+        /// <summary>Nível do medidor de radiação: sobe de ~0,08 a 1 entre 12 e 24 s (mais devagar no começo) e fica cheio até sair.</summary>
         public static float RadiationFillAt(float seconds)
         {
             var u = Mathf.Clamp01((seconds - RadiationStartSeconds) / (RadiationRiseEndSeconds - RadiationStartSeconds));

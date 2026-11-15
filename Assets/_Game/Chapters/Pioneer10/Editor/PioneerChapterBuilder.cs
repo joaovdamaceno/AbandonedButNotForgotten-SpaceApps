@@ -25,7 +25,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string ClosestSequencePath = ChapterFolder + "/Sequences/PIO_Closest.asset";
         public const string DataAssetPath = ChapterFolder + "/Data/PioneerData.asset";
         public const string CueMapAssetPath = ChapterFolder + "/Audio/PioneerCueMap.asset";
-        public const float TargetDurationSeconds = 376f;
+        public const float TargetDurationSeconds = 401f;
 
         public override string Id => ChapterBuilderId;
         public override string Owner => "R5 · PIO-014";
@@ -125,8 +125,8 @@ namespace Abandoned.SpaceApps.EditorTools
             if (jupiter == null || Mathf.Abs(jupiter.TotalDurationSeconds - 30f) > 0.01f)
                 errors.Add($"{ChapterBuilderId}: PIO.JupiterApproach deve durar 30 s ({JupiterSequencePath}).");
             var closest = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(ClosestSequencePath);
-            if (closest == null || Mathf.Abs(closest.TotalDurationSeconds - 40f) > 0.01f)
-                errors.Add($"{ChapterBuilderId}: PIO.Closest deve durar 40 s ({ClosestSequencePath}).");
+            if (closest == null || Mathf.Abs(closest.TotalDurationSeconds - 65f) > 0.01f)
+                errors.Add($"{ChapterBuilderId}: PIO.Closest deve durar 65 s ({ClosestSequencePath}).");
             var stage = context.Scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<PioneerPresentation>(true)).First();
             foreach (var sequence in new[] { jupiter, closest })
             {
@@ -203,56 +203,56 @@ namespace Abandoned.SpaceApps.EditorTools
             return SequenceDefinition.Create("PIO_JupiterApproach", shots, cues);
         }
 
-        // ---------- PIO.Closest (45 s) ----------
+        // ---------- PIO.Closest (65 s) ----------
 
         static ShotKeyframe KeyAt(float t, Vector3 p, Vector3 euler, float fov) => new ShotKeyframe(t, p, euler, fov);
 
         /// <summary>
-        /// Roteiro v2, cena 5 · "O mais perto possível" (só cinema, 40 s). 0–6 chegada e as luas, 6–17 a radiação sobre o fotopolarímetro,
-        /// 17–28 a passagem rente às nuvens (data e distância), 28–34 o plano alto da curva, 34–40 a sonda saindo. Usa só os anchors
-        /// do palco; as luas, a linha da trajetória e o medidor de radiação NÃO existem ainda (próximas fases). Legendas PIO.09.01–07.
+        /// Roteiro v2, cena 5 · "O mais perto possível" (só cinema, 65 s, o tempo do roteiro). 0–12 as três luas, 12–27 a radiação sobre o
+        /// fotopolarímetro, 27–41 a passagem rente às nuvens (data e distância), 41–55 o plano alto da curva, 55–65 a sonda saindo.
+        /// Usa só os anchors do palco. Legendas PIO.09.01–07, cada uma com a janela de leitura que o texto pede.
         /// </summary>
         public static SequenceDefinition CreateClosestSequence()
         {
             var shots = new[]
             {
-                // 5a (0–6 s): as três luas galileanas cruzam o quadro, uma a cada 2 s (a câmera desliza ao lado de cada uma).
-                new ShotDefinition("PIO09.Ganymede", 2f, "PIO.Closest.Ganymede",
-                    new[] { Key(0f, new Vector3(-6f, 0f, 0f), 30f), Key(2f, new Vector3(6f, 0f, 0f), 30f) },
+                // 5a (0–12 s): as três luas galileanas cruzam o quadro, uma a cada 4 s (a câmera desliza ao lado de cada uma).
+                new ShotDefinition("PIO09.Ganymede", 4f, "PIO.Closest.Ganymede",
+                    new[] { Key(0f, new Vector3(-6f, 0f, 0f), 30f), Key(4f, new Vector3(6f, 0f, 0f), 30f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
-                new ShotDefinition("PIO09.Callisto", 2f, "PIO.Closest.Callisto",
-                    new[] { Key(0f, new Vector3(6f, 0f, 0f), 30f), Key(2f, new Vector3(-6f, 0f, 0f), 30f) },
+                new ShotDefinition("PIO09.Callisto", 4f, "PIO.Closest.Callisto",
+                    new[] { Key(0f, new Vector3(6f, 0f, 0f), 30f), Key(4f, new Vector3(-6f, 0f, 0f), 30f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
-                new ShotDefinition("PIO09.Europa", 2f, "PIO.Closest.Europa",
-                    new[] { Key(0f, new Vector3(-5f, 0f, 0f), 30f), Key(2f, new Vector3(5f, 0f, 0f), 30f) },
+                new ShotDefinition("PIO09.Europa", 4f, "PIO.Closest.Europa",
+                    new[] { Key(0f, new Vector3(-5f, 0f, 0f), 30f), Key(4f, new Vector3(5f, 0f, 0f), 30f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
-                new ShotDefinition("PIO09.Radiation", 11f, "PIO.JupiterApproach.Instrument",
+                new ShotDefinition("PIO09.Radiation", 15f, "PIO.JupiterApproach.Instrument",
                     new[]
                     {
-                        Key(0f, Vector3.zero, 38f), Key(3f, new Vector3(0.012f, -0.008f, 0.01f), 38f), Key(6f, new Vector3(-0.01f, 0.01f, 0.02f), 37f),
-                        Key(8f, new Vector3(0.014f, 0.006f, 0.03f), 36f), Key(11f, new Vector3(0f, 0f, 0.05f), 35f),
+                        Key(0f, Vector3.zero, 38f), Key(4f, new Vector3(0.012f, -0.008f, 0.01f), 38f), Key(8f, new Vector3(-0.01f, 0.01f, 0.02f), 37f),
+                        Key(11f, new Vector3(0.014f, 0.006f, 0.03f), 36f), Key(15f, new Vector3(0f, 0f, 0.05f), 35f),
                     },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
-                new ShotDefinition("PIO09.Pass", 11f, "PIO.Closest",
-                    new[] { Key(0f, new Vector3(-70f, 6f, -30f), 60f), Key(11f, new Vector3(70f, -4f, 40f), 72f) },
+                new ShotDefinition("PIO09.Pass", 14f, "PIO.Closest",
+                    new[] { Key(0f, new Vector3(-70f, 6f, -30f), 60f), Key(14f, new Vector3(70f, -4f, 40f), 72f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
-                new ShotDefinition("PIO09.Bend", 6f, "PIO.Closest.Bend",
-                    new[] { Key(0f, Vector3.zero, 50f), Key(6f, new Vector3(0f, 0f, -70f), 50f) },
+                new ShotDefinition("PIO09.Bend", 14f, "PIO.Closest.Bend",
+                    new[] { Key(0f, Vector3.zero, 50f), Key(14f, new Vector3(0f, 0f, -70f), 50f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
-                new ShotDefinition("PIO09.Leaving", 6f, "PIO.Outbound",
-                    new[] { Key(0f, Vector3.zero, 40f), Key(6f, new Vector3(0f, 0f, -8f), 38f) },
+                new ShotDefinition("PIO09.Leaving", 10f, "PIO.Outbound",
+                    new[] { Key(0f, Vector3.zero, 40f), Key(10f, new Vector3(0f, 0f, -8f), 38f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
             };
 
             var cues = new[]
             {
-                new SubtitleCue("PIO.09.01", "PIO.09.01", 0f, 5.75f),
-                new SubtitleCue("PIO.09.02", "PIO.09.02", 6f, 11.5f),
-                new SubtitleCue("PIO.09.03", "PIO.09.03", 11.75f, 18f),
-                new SubtitleCue("PIO.09.04", "PIO.09.04", 18.25f, 23.5f),
-                new SubtitleCue("PIO.09.05", "PIO.09.05", 23.75f, 28.5f),
-                new SubtitleCue("PIO.09.06", "PIO.09.06", 28.75f, 34.5f),
-                new SubtitleCue("PIO.09.07", "PIO.09.07", 34.75f, 40f),
+                new SubtitleCue("PIO.09.01", "PIO.09.01", 1f, 8f),
+                new SubtitleCue("PIO.09.02", "PIO.09.02", 12.5f, 19.5f),
+                new SubtitleCue("PIO.09.03", "PIO.09.03", 20f, 27f),
+                new SubtitleCue("PIO.09.04", "PIO.09.04", 28f, 35f),
+                new SubtitleCue("PIO.09.05", "PIO.09.05", 35.5f, 42f),
+                new SubtitleCue("PIO.09.06", "PIO.09.06", 43f, 51f),
+                new SubtitleCue("PIO.09.07", "PIO.09.07", 56f, 64f),
             };
 
             return SequenceDefinition.Create("PIO_Closest", shots, cues);
