@@ -1,0 +1,209 @@
+{
+  "id": "dsn70",
+  "model": "Deep Space Network 70-meter.glb",
+  "source": "https://science.nasa.gov/3d-resources/deep-space-network-70-meter",
+  "credit": "NASA/Brian E. Kumanchik; NASA/Christian A. Lopez",
+  "sha256": "72dddfd955f5c212a40f368556ab4c13ab59a109bc1b46855b09c8549b18aa5c",
+  "bytes": 1867668,
+  "conversion": "Tools/convert_dsn70.py",
+  "axes": "glTF (mão direita, Y para cima) -> Unity (inverte Z); sem mudança de escala (metros)",
+  "atlas": {
+    "size": 1024,
+    "windows": {
+      "tex_01": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "tex_02": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "tex_02b": [
+        0,
+        512,
+        256,
+        256
+      ],
+      "flat_gray": [
+        256,
+        512,
+        256,
+        256
+      ],
+      "base_tiles": [
+        0,
+        768,
+        512,
+        64
+      ]
+    },
+    "flat_gray_srgb": [
+      230,
+      230,
+      230
+    ]
+  },
+  "stats": {
+    "triangles": 33112,
+    "vertices": 57519,
+    "uv_clamped_nodes": [
+      "azimuth"
+    ]
+  },
+  "nodes": [
+    {
+      "name": "collector",
+      "parent": "elevation",
+      "translation": [
+        0.0,
+        15.1434,
+        -0.0
+      ],
+      "triangles": 670
+    },
+    {
+      "name": "dish",
+      "parent": "elevation",
+      "translation": [
+        3e-05,
+        13.99805,
+        0.00019
+      ],
+      "triangles": 1440
+    },
+    {
+      "name": "dish.001",
+      "parent": "elevation",
+      "translation": [
+        1e-05,
+        9.44266,
+        0.00021
+      ],
+      "triangles": 720
+    },
+    {
+      "name": "dish.002",
+      "parent": "elevation",
+      "translation": [
+        1e-05,
+        9.54465,
+        0.00021
+      ],
+      "triangles": 720
+    },
+    {
+      "name": "quad",
+      "parent": "elevation",
+      "translation": [
+        0.0,
+        24.14024,
+        0.00021
+      ],
+      "triangles": 3572
+    },
+    {
+      "name": "truss_box",
+      "parent": "elevation",
+      "translation": [
+        0.0,
+        6.04783,
+        0.00021
+      ],
+      "triangles": 1240
+    },
+    {
+      "name": "truss_dish",
+      "parent": "elevation",
+      "translation": [
+        0.0,
+        12.28199,
+        0.00016
+      ],
+      "triangles": 15504
+    },
+    {
+      "name": "truss_pendulum",
+      "parent": "elevation",
+      "translation": [
+        0.0,
+        -3.9636,
+        -0.0
+      ],
+      "triangles": 1554
+    },
+    {
+      "name": "elevation",
+      "parent": "azimuth",
+      "translation": [
+        0.0,
+        33.90018,
+        -0.00016
+      ],
+      "triangles": 0
+    },
+    {
+      "name": "landing",
+      "parent": "azimuth",
+      "translation": [
+        -5.92357,
+        8.20884,
+        12.66623
+      ],
+      "triangles": 662
+    },
+    {
+      "name": "rails",
+      "parent": "azimuth",
+      "translation": [
+        -0.35682,
+        17.17857,
+        6.70481
+      ],
+      "triangles": 3791
+    },
+    {
+      "name": "stairs",
+      "parent": "azimuth",
+      "translation": [
+        -5.51786,
+        8.35574,
+        12.02925
+      ],
+      "triangles": 752
+    },
+    {
+      "name": "azimuth",
+      "parent": "_root",
+      "translation": [
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "triangles": 2071
+    },
+    {
+      "name": "base",
+      "parent": "_root",
+      "translation": [
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "triangles": 416
+    },
+    {
+      "name": "_root",
+      "parent": null,
+      "translation": [
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "triangles": 0
+    }
+  ]
+}

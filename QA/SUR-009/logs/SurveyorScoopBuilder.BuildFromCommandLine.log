@@ -1,0 +1,562 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 13064)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 9744)
+VBCSCompiler prewarm took 28.58 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.9f1 (8c45277fb9c5) revision 9192743'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-kauawerle" at "2026-11-15T00:22:35.0255554Z"
+OS: 'Windows 11  (10.0.26200) CoreSingleLanguage' Language: 'en' Physical Memory: 20301 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-15T00:22:35Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Unity.exe
+-batchmode
+-quit
+-projectPath
+C:\www\AbandonedButNotForgotten-SpaceApps
+-executeMethod
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopBuilder.BuildFromCommandLine
+-logFile
+QA/SUR-009/logs/SurveyorScoopBuilder.BuildFromCommandLine.log
+Successfully changed project path to: C:\www\AbandonedButNotForgotten-SpaceApps
+C:/www/AbandonedButNotForgotten-SpaceApps
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [15756]  Target information:
+
+Player connection [15756]  * "[IP] 172.26.80.1 [Port] 55504 [Flags] 2 [Guid] 2998535827 [EditorId] 2998535827 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DHKL54U) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [15756]  * "[IP] 192.168.4.26 [Port] 55504 [Flags] 2 [Guid] 2998535827 [EditorId] 2998535827 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DHKL54U) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [15756] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [15756] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 10004, path: "C:/Program Files/WindowsApps/UnityTechnologies.UnityHub_4.0.0.65535_x64__2vrhnee42bhxm/app/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              68d6d7f5093f444391f9380af8e268d1
+  Correlation Id:          dba1898c99d001a3a2dc3f8b990eeea6
+  External correlation Id: 9211402966666210426
+  Machine Id:              9Q8MA2ohOdq/m4o9UMGdlzVOLa8=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-kauawerle" (connect: 0.00s, validation: 0.00s, handshake: 0.29s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-kauawerle-notifications" at "2026-11-15T00:22:35.3201511Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 4673248908867-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.31s
+[Package Manager] Connected to IPC stream "Upm-14120" after 0.7 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 0df171d908f8e6ab4ef6b63a288b434a
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052576
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = C:/www/AbandonedButNotForgotten-SpaceAppsUnity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.9f1 (8c45277fb9c5)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/www/AbandonedButNotForgotten-SpaceApps/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.1]
+    Renderer:        NVIDIA GeForce MX250 (ID=0x1d13)
+    Vendor:          NVIDIA
+    VRAM:            1983 MB
+    App VRAM Budget: 1686 MB
+    Driver:          31.0.15.1640
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56120
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002904 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.515 seconds
+Domain Reload Profiling: 2684ms
+	BeginReloadAssembly (225ms)
+		CreateAndSetChildDomain (31ms)
+	RebuildCommonClasses (8ms)
+	RebuildNativeTypeToScriptingClass (28ms)
+	initialDomainReloadingComplete (96ms)
+	LoadAllAssembliesAndSetupDomain (811ms)
+		LoadAssemblies (188ms)
+		TypeCache.Refresh (576ms)
+			TypeCache.ScanAssembly (553ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (1517ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			BeforeProcessingInitializeOnLoad (224ms)
+			ProcessInitializeOnLoadAttributes (322ms)
+			ProcessInitializeOnLoadMethodAttributes (503ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 33 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ide.rider@3.1.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.ide.rider@570989d4a882)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.20.1 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.searcher@4.9.5 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+  Built-in packages:
+    com.unity.render-pipelines.universal@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.render-pipelines.universal@2a6014b851d8)
+    com.unity.test-framework@1.8.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.test-framework@01a8b42f9cf6)
+    com.unity.modules.animation@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.audio@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.ui@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.render-pipelines.core@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.render-pipelines.core@77e675a23c5f)
+    com.unity.shadergraph@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.shadergraph@807b608040c3)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.modules.physics2d@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.graph-authoring@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.burst@2.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.collections@c70d71c1212e)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.test-framework.performance@6.6.0 (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.unity.test-framework.performance@816c370aad5b)
+  Git packages:
+    com.coplaydev.unity-mcp@https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#5914ce5bd9d11d66a7896ce72e395b0a2f049c2a (location: C:\www\AbandonedButNotForgotten-SpaceApps\Library\PackageCache\com.coplaydev.unity-mcp@ee0afac15aa0)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.04 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/www/AbandonedButNotForgotten-SpaceApps
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\NetStandard\Extensions\2.0.0\System.Runtime.InteropServices.WindowsRuntime.dll"
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.ComponentModel.Composition.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ComponentModel.Composition.dll"
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 10s
+[619/810    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[758/810    4s] Csc Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.dll (+2 others)
+Assets\_Game\Chapters\Surveyor\Scripts\SurveyorScoop.cs(248,77): warning CS0414: The field 'SurveyorScoop.ownsLease' is assigned but its value is never used
+
+Assets\_Game\Chapters\Mars\Runtime\MarsChapterFlow.cs(617,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+[760/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.ContractExamples.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.ContractExamples.dll, with 148 defines and 268 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[763/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.dll, with 148 defines and 273 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[764/810    0s] CopyFiles Library/ScriptAssemblies/Abandoned.SpaceApps.pdb
+[765/810    0s] CopyFiles Library/ScriptAssemblies/Abandoned.SpaceApps.dll
+[766/810    3s] Csc Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Editor.dll (+2 others)
+Assets\_Game\Chapters\Mars\Art\Eagle\Editor\EagleCapture.cs(50,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Surveyor\Scoop\Editor\SurveyorScoopPreviewBuilder.cs(74,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\Landing\Editor\MerLandingCapture.cs(68,28): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\Landing\Editor\MerLandingCapture.cs(69,34): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\Landing\Editor\MerLandingCapture.cs(70,36): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\Memorial\Editor\MarsMemorialCapture.cs(19,32): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\Memorial\Editor\MarsMemorialCapture.cs(20,38): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\Memorial\Editor\MarsMemorialCapture.cs(21,40): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\Origin\Editor\MarsOriginCapture.cs(24,32): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\Origin\Editor\MarsOriginCapture.cs(25,38): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\Origin\Editor\MarsOriginCapture.cs(26,40): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\SpiritArchive\Editor\SpiritInterludeCapture.cs(39,32): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\SpiritArchive\Editor\SpiritInterludeCapture.cs(40,38): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\SpiritArchive\Editor\SpiritInterludeCapture.cs(41,40): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Game\Chapters\Mars\Art\ShieldField\Editor\ShieldFieldCapture.cs(46,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+[777/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Site.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Site.Tests.dll, with 146 defines and 300 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[778/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Launch.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Launch.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[779/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Television.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Television.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[780/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Commands.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Commands.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[781/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Descent.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Descent.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[782/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Midcourse.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Midcourse.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[795/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Tests.dll, with 146 defines and 300 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[796/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Surveyor.Scoop.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Surveyor.Scoop.Tests.dll, with 146 defines and 302 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[800/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Mars.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Mars.Tests.dll, with 146 defines and 301 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[802/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Core.Tests.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Core.Tests.dll, with 146 defines and 303 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[805/810    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Abandoned.SpaceApps.Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Abandoned.SpaceApps.Editor.dll, with 146 defines and 309 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[806/810    0s] CopyFiles Library/ScriptAssemblies/Abandoned.SpaceApps.Editor.pdb
+[808/810    0s] CopyFiles Library/ScriptAssemblies/Abandoned.SpaceApps.Editor.dll
+*** Tundra build success (10.48 seconds), 20 items updated, 810 evaluated
+Assets\_Game\Chapters\Surveyor\Scripts\SurveyorScoop.cs(248,77): warning CS0414: The field 'SurveyorScoop.ownsLease' is assigned but its value is never used
+Assets\_Game\Chapters\Mars\Runtime\MarsChapterFlow.cs(617,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.
+Assets\_Game\Chapters\Mars\Art\Eagle\Editor\EagleCapture.cs(50,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Surveyor\Scoop\Editor\SurveyorScoopPreviewBuilder.cs(74,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\Landing\Editor\MerLandingCapture.cs(68,28): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\Landing\Editor\MerLandingCapture.cs(69,34): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\Landing\Editor\MerLandingCapture.cs(70,36): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\Memorial\Editor\MarsMemorialCapture.cs(19,32): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\Memorial\Editor\MarsMemorialCapture.cs(20,38): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\Memorial\Editor\MarsMemorialCapture.cs(21,40): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\Origin\Editor\MarsOriginCapture.cs(24,32): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\Origin\Editor\MarsOriginCapture.cs(25,38): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\Origin\Editor\MarsOriginCapture.cs(26,40): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\SpiritArchive\Editor\SpiritInterludeCapture.cs(39,32): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\SpiritArchive\Editor\SpiritInterludeCapture.cs(40,38): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\SpiritArchive\Editor\SpiritInterludeCapture.cs(41,40): warning CS0618: 'Object.FindFirstObjectByType<T>(FindObjectsInactive)' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Game\Chapters\Mars\Art\ShieldField\Editor\ShieldFieldCapture.cs(46,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Total cache size 43664388
+Total cache size after purge 43664388, took 00:00:00.1845187
+AssetDatabase: script compilation time: 12.506472s
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  2.171 seconds
+Domain Reload Profiling: 4541ms
+	BeginReloadAssembly (863ms)
+		DisableScriptedObjects (82ms)
+		CreateAndSetChildDomain (148ms)
+	RebuildCommonClasses (30ms)
+	RebuildNativeTypeToScriptingClass (52ms)
+	initialDomainReloadingComplete (136ms)
+	LoadAllAssembliesAndSetupDomain (1287ms)
+		LoadAssemblies (936ms)
+		TypeCache.Refresh (368ms)
+			TypeCache.ScanAssembly (332ms)
+		AnalyzeDomain (89ms)
+			BuildScriptInfoCaches (76ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (2173ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (4ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (277ms)
+			ProcessInitializeOnLoadAttributes (707ms)
+			ProcessInitializeOnLoadMethodAttributes (229ms)
+			AfterProcessingInitializeOnLoad (15ms)
+		AwakeInstancesAfterBackupRestoration (52ms)
+Starting new worker id: 0 with log in C:/www/AbandonedButNotForgotten-SpaceApps/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=f1e09f9204f549a4980523762face45d): Total: 18.642 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=3096 ms
+		Asset DB Callback time: managed=338 ms, native=64 ms
+		Scripting: domain reloads=1, domain reload time=2495 ms, compile time=12511 ms, other=135 ms
+		Project Asset Count: scripts=1047, non-scripts=2186
+		Asset File Changes: new=0, changed=2, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 56.149ms
+	ApplyChangesToAssetFolders: 1.002ms
+	Scan: 279.235ms
+	Collect global state as custom dependencies: 39.916ms
+	OnSourceAssetsModified: 0.786ms
+	CategorizeScriptCompilationAssets: 108.585ms
+	ProcessAssetsWithTransientArtifactChanges: 80.998ms
+	CategorizeAssets: 87.368ms
+	CompileScripts: 12510.614ms
+	ImportOutOfDateAssets: 2209.318ms (2180.458ms without children)
+		ReloadNativeAssets: 0.055ms
+		UnloadImportedAssets: 6.084ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.449ms
+		ImportSchedulerStart: 21.261ms
+	PostProcessAllAssets: 342.370ms
+		VCAutoAddAssetPostprocess 2.109ms
+		XRBuildSystem.XRAssetImported 0.526ms
+		PostProcessCallbackCreateDeferredMaterials 0.102ms
+		MonoPostProcessAllAssets: 338.165ms
+			AssetPostprocessor.OnPostprocessAllAssets 168.979ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 38.253ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 37.018ms
+			SyncVS.PostprocessSyncProject 18.322ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 13.575ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 5.455ms
+			AssetChangedListener.OnPostprocessAllAssets 5.135ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 4.240ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 3.732ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 3.577ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.972ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 1.619ms
+			MaterialPostprocessor.OnPostprocessAllAssets 1.464ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 1.002ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.826ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.815ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.761ms
+			PostProcessor.OnPostprocessAllAssets 0.653ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.646ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.612ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.607ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.594ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.517ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.501ms
+			AssetEvents.OnPostprocessAllAssets 0.473ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.436ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.341ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.294ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.280ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.134ms
+	PostAssetChangesProfiler: 8.180ms
+	UnloadStreamsBegin: 3.413ms
+	PersistCurrentRevisions: 0.486ms
+	GenerateScriptTypeHashes: 6.069ms
+	GenerateScriptTypeSerializationHashes: 8.215ms
+	Untracked: 2858.924ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Scanning for USB devices : 1.376ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Abandoned, But Not Forgotten
+Unloading 27 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3971 unused Assets / (6.5 MB). Loaded Objects now: 4985.
+Memory consumption went from 355.5 MB to 349.1 MB.
+Total: 21.420000 ms (FindLiveObjects: 0.874600 ms CreateObjectMapping: 0.531600 ms MarkObjects: 13.780500 ms  DeleteObjects: 5.903400 ms)
+
+Asset Pipeline Refresh (id=c0ca151da92f2414db2caa3a7a7cc92f): Total: 0.122 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+Loaded scene 'Library/Unused/2fd51ebcd0eb8ed4ca490e5c52d90df1'
+	Deserialize:            1.313 ms
+	Integration:            9.122 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       0.028 ms
+	Total Operation Time:   10.464 ms
+Asset Pipeline Refresh (id=87a1319b676fb9948acdea62b87db85d): Total: 0.014 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: e7f9b2a9c44e04944acc750c8adf1109 - Path: Assets/_Game/Chapters/Surveyor/Art/ScoopGenerated/ScoopMotor.wav' with importer (AudioImporter)
+Imported 'GUID: e7f9b2a9c44e04944acc750c8adf1109' -> (Import Result ID: '993e592679d0b93cf9c8cd1f8ab81a15') in 0.075 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=72264f374bda216f94d9d5d5a6476dac DependenciesID=e358347090b906393ebc88bb3943a7fa StaticDependenciesID=9a6f01034386d0bb63893e6045da5c9f 
+Asset Pipeline Refresh (id=02d12b8ec9ba2584fb74ad053ee34da2): Total: 0.115 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=601b8293144db9341a59e6c4d397ab68): Total: 0.015 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: a21b62fad9dc3c84c9ba62cd4243d5cd - Path: Assets/_Game/Chapters/Surveyor/Art/ScoopGenerated/TrenchSoil.mat' with importer (NativeFormatImporter)
+Imported 'GUID: a21b62fad9dc3c84c9ba62cd4243d5cd' -> (Import Result ID: '07391e058e3b3aea35d8dc2a2bc67e08') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=3e574961ca9c3102836f0f2a4bb495c9 DependenciesID=393e73dd931b7d1e5f72b4a92d14b6cb StaticDependenciesID=d48aaaebf5d5e21a2cd4dd8a420e54c7 
+Importing 'GUID: 86a8b996c79bb72409691cca5df660d2 - Path: Assets/_Game/Chapters/Surveyor/Art/ScoopGenerated/ScoopGrain.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 86a8b996c79bb72409691cca5df660d2' -> (Import Result ID: '76abd2fb556630232c9ca9e65b86ee76') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=3ce00a227328f8196c2f03a25279b768 DependenciesID=c76185d09b23c9bb65e4de493e01634b StaticDependenciesID=a39982ab917a3b4c982801b43cab28b4 
+Importing 'GUID: f1a14c4949056a342a9808586f150efc - Path: Assets/_Game/Chapters/Surveyor/Art/ScoopGenerated/ScoopUpperLink.asset' with importer (NativeFormatImporter)
+Imported 'GUID: f1a14c4949056a342a9808586f150efc' -> (Import Result ID: 'c240b54a499d532752491855ee762b05') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=706ce68ed022af5fc753271634f12ffc DependenciesID=9366fce138ea85f55eff3ee9f56de91b StaticDependenciesID=748e527ce940d9442a515f85ecfb2cb6 
+Importing 'GUID: d2aa9accd2dfa6348ba889735958f106 - Path: Assets/_Game/Chapters/Surveyor/Art/ScoopGenerated/TrenchGroove.asset' with importer (NativeFormatImporter)
+Imported 'GUID: d2aa9accd2dfa6348ba889735958f106' -> (Import Result ID: '3f07e1cd1823fb724b76a62ff56719ae') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=06562274295993962be7a8e3e1c205ef DependenciesID=98bf1541648768e78b2923043caef6ef StaticDependenciesID=b43a581078f5b444d3e21d3962b875e4 
+Importing 'GUID: 17a2b2a6646dd3446a47d4b734b47613 - Path: Assets/_Game/Chapters/Surveyor/Art/ScoopGenerated/ScoopForeLink.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 17a2b2a6646dd3446a47d4b734b47613' -> (Import Result ID: '60b9920910c262a2409fffd162e56791') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=defc385d41e3e25655fc51893c721815 DependenciesID=15fed745604fbe22803b36eb206126c2 StaticDependenciesID=e4ed678475020ac464e0baf91ab322c8 
+Importing 'GUID: c7f09fa0c26741c4cb9c312fd4ee0f0f - Path: Assets/_Game/Chapters/Surveyor/Art/ScoopGenerated/ScoopGrain.asset' with importer (NativeFormatImporter)
+Imported 'GUID: c7f09fa0c26741c4cb9c312fd4ee0f0f' -> (Import Result ID: '0d9ae6ddc0360e9bb41710767e6ced30') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=3366f79b3cb1bb45371f1be19a2857b6 DependenciesID=64227d49b42c0790c7c67f9723795d0f StaticDependenciesID=eac40aca45571838abffa3c26aceb142 
+Importing 'GUID: 48e90b53a8b8e954fa694c0e8ec4b879 - Path: Assets/_Game/Chapters/Surveyor/Art/ScoopGenerated/ScoopBucket.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 48e90b53a8b8e954fa694c0e8ec4b879' -> (Import Result ID: '61f598cb1af543cb246b70b89c61ef45') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=04f006022b422ac4700fbbf0f3c89c9c DependenciesID=d5a18d67a4d649243a4b929bab25fb6f StaticDependenciesID=f12395b305907d24a11b458afe0baf66 
+Importing 'GUID: ea202a984ade71a40a922724e30d26aa - Path: Assets/_Game/Chapters/Surveyor/Art/ScoopGenerated/TrenchTile.asset' with importer (NativeFormatImporter)
+Imported 'GUID: ea202a984ade71a40a922724e30d26aa' -> (Import Result ID: '8de640516cf4debb96167b2656257c08') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=a688e73fcb6d27b770c4ec93ebf9af12 DependenciesID=6c85f88bc1106f2e09f81cf61f7454b4 StaticDependenciesID=3c043ae06c6fb1aa10248ce6dc0f47d9 
+Asset Pipeline Refresh (id=374719064a27e864095f942628e0a6f6): Total: 0.088 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=0001e52c69eb152428d8c87d4355fb06): Total: 0.019 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+SUR-009: Trench.prefab e ScoopRig.prefab reconstruídos e válidos.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopBuilder:BuildFromMenu () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopBuilder.cs:369)
+Abandoned.SpaceApps.Chapters.Surveyor.EditorTools.SurveyorScoopBuilder:BuildFromCommandLine () (at Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopBuilder.cs:374)
+
+(Filename: Assets/_Game/Chapters/Surveyor/Scoop/Editor/SurveyorScoopBuilder.cs Line: 369)
+
+MonoPathRemapper: Attempts to remap: 6755; Successful remaps: 0
+Serialized file version minimum: 23, current 23
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-kauawerle-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-kauawerle channel disconnected successfully.
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+Shut down UDS service system complete
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+abort_threads: Failed aborting id: 0000000000001E04, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 00000000000012BC, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000001E04, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 00000000000012BC, mono_thread_manage will ignore it
+
+debugger-agent: Unable to listen on 3924
+VBCSCompilerPreWarmer: requested VBCSCompiler shutdown
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1794702183020,"processId":14120,"allocatedMemory":15322180,"memoryLabels":[{"Default":194988},{"Permanent":15516},{"NewDelete":69407},{"Thread":4205680},{"Manager":31709},{"VertexData":8},{"Geometry":824},{"Texture":24},{"Shader":840995},{"Material":132},{"GfxDevice":58024},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":17920},{"Input":42840},{"JobScheduler":264},{"TextLib":336},{"Mono":48},{"MonoCode":64},{"ScriptingNativeRuntime":1292664},{"BaseObject":51216},{"Resource":1444},{"Renderer":2504},{"Transform":4781},{"File":4424},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":604293},{"StaticString":3808},{"Utility":2673718},{"Curl":2676},{"PoolAlloc":2264},{"AI":80},{"TypeTree":17165},{"ScriptManager":12688},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":7296},{"WebRequest":7189},{"VR":49650},{"SceneManager":608},{"Video":64},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":592},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14536},{"Identifiers":7152},{"EntityIdStore":33088},{"Gui":128},{"EditorUtility":116587},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4483023},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40441},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":215},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3606},{"Windowing":456},{"Licensing":840},{"AssetReference":32},{"IPCStream":32}]}
+~StackAllocator(ALLOC_TEMP_MAIN) m_LastAlloc not NULL. Did you forget to call FreeAllStackAllocations()? To get more information, run app with -diag-temp-memory-leak-validation cmd line argument
