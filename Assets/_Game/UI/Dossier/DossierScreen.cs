@@ -616,6 +616,9 @@ namespace Abandoned.SpaceApps.UI
             view.Meta.text = ChapterText(entry, DescriptionKey(entry), DossierKeys.SlotMeta);
             view.Question.text = ChapterText(entry, QuestionKey(entry), DossierKeys.SlotQuestion);
             view.Duration.text = DossierFormat.Duration(chapter != null ? chapter.TargetDurationSeconds : 0f);
+            // The archive cards show neither the period ("MARS · 2004–2018") nor the running time; the labels stay bound but hidden.
+            view.Meta.style.display = DisplayStyle.None;
+            view.Duration.style.display = DisplayStyle.None;
 
             var cover = chapter != null ? chapter.Cover : null;
             if (cover != null)
@@ -692,14 +695,9 @@ namespace Abandoned.SpaceApps.UI
             modalStamp.text = T(DossierKeys.DetailsStamp);
             modalTitle.text = ChapterText(entry, TitleKey(entry), DossierKeys.SlotTitle);
 
-            AddBodyLabel(ChapterText(entry, DescriptionKey(entry), DossierKeys.SlotMeta), "sa-stamp", "sa-stamp--accent");
             AddBodyLabel(ChapterText(entry, QuestionKey(entry), DossierKeys.SlotQuestion), "sa-modal__question");
-            var chapter = entry.Chapter;
-            AddBodyLabel(T(DossierKeys.DetailsDuration) + " · " + DossierFormat.Duration(chapter != null ? chapter.TargetDurationSeconds : 0f),
-                "sa-stamp", "sa-modal__section");
             AddBodyLabel(T(DossierKeys.DetailsTodo), "sa-stamp", "sa-modal__section");
             AddBodyLabel(T(DossierKeys.Slot(entry.SlotId, DossierKeys.SlotDetail)), "sa-modal__text");
-            AddBodyLabel(T(DossierKeys.DetailsOptional), "sa-modal__text", "sa-modal__text--muted");
 
             var slotId = entry.SlotId;
             if (flow.CanStart(slotId) == StartResult.Accepted)

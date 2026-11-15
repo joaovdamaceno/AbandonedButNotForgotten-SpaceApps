@@ -27,6 +27,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         ChapterDirector owner; SessionClock clock; InputRouter input; InteractionService interactions; SettingsStore settings;
         AudioDirector music; SubtitlePresenter subtitles;
         SettingsData preferences;
+        SequenceDefinition arrivalTrack;
         IDisposable scienceInput, scienceCamera;
         string step; float stepStart, scienceStart, pressSeconds, photoRead;
         string feedbackState, feedbackText;
@@ -54,9 +55,10 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             cameras.Initialize(outputCamera); cameras.GroundProbe = Ground;
             cameras.RegisterRig("sur.craft", film.Spacecraft); cameras.RegisterLookTarget("sur.touchdown", transform.Find("TouchdownTarget"));
             cameras.RegisterLookTarget("sur.landing", transform.Find("LandingFrame"));
+            cameras.RegisterRig("sur.chase", film.ChaseRig); cameras.RegisterLookTarget("sur.chase.look", film.ChaseTarget);
             cameras.RegisterLookTarget("sur.reunion", transform.Find("ReunionFrame"));
             cameras.RegisterLookTarget("sur.trench", workPatch); cameras.RegisterLookTarget("sur.optical", opticalMount); cameras.RegisterLookTarget("sur.eclipse", film.Eclipse); sequence.Initialize(cameras, input, clock); sequence.enabled = false;
-            view.Initialize(outputCamera); view.ActionRequested += PrimaryAction; view.PauseRequested += PauseGame;
+            view.Initialize(outputCamera); view.ActionRequested += PrimaryAction; view.PauseRequested += PauseGame; view.RestartRequested += RestartFromEnd;
             subtitles = GetComponent<SubtitlePresenter>(); subtitles.Initialize(localization, sequence, view.SubtitleHost);
             music = GetComponent<AudioDirector>(); music.Initialize(audio, clock, settings.Current); music.Unlock();
             pause.Initialize(owner, input, settings); GetComponent<FocusPause>().Initialize(pause.Controller, owner, music);
@@ -81,6 +83,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         public void PauseGame() => pause.Controller?.RequestPause();
         public void Resume() => pause.Controller?.Continue();
         public void Restart() => owner.RestartChapter();
+        void RestartFromEnd() { if (!owner.IsPaused && owner.State == AppState.Completion) owner.RestartChapter(); }
         void Paused(bool value)
         { ClearContact(); music.SetPaused(value); if (value) { descentMotor.Pause(); contactSound.Pause(); } else { descentMotor.UnPause(); contactSound.UnPause(); } }
         void ClearContact() { contactBegan = false; primaryArmed = false; pointerAllowed = false; scoop.StopContact(); }
@@ -120,7 +123,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             else
             {
                 int index = id == "Prologue" ? 0 : id == "Arrival" ? 1 : id == "Activation" ? 2 : id == "Findings" ? 3 : id == "Night" ? 4 : id == "Reunion" ? 5 : 6;
-                sequence.Play(tracks[index]);
+                if (index == 1 && arrivalTrack == null) arrivalTrack = SurveyorChaseShot.EnsureTracking(tracks[1]);
+                sequence.Play(index == 1 ? arrivalTrack : tracks[index]);
                 music.SetCue(id == "Reunion" || id == "Legacy" ? "sur.doc.return" : id == "Findings" ? "sur.doc.science" : "sur.doc.departure", 2f);
                 if (id == "Night") music.SetMusicLevel(.65f, 2f); else music.SetMusicLevel(1f, 2f);
             }
@@ -252,7 +256,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             }
             else if (step == "End") button = localization.Get("sur.doc.return");
             view.SetText(localization.Get(date), localization.Get(title), objective, hint, status, button);
-            view.SetEnded(step == "End", localization.Get("sur.doc.credits.button"), localization.Get("sur.doc.credits.title"), localization.Get("sur.doc.credits.body"), localization.Get("sur.doc.credits.close"));
+            view.SetEnded(step == "End", localization.Get("sur.doc.credits.button"), localization.Get("sur.doc.credits.title"), localization.Get("sur.doc.credits.body"), localization.Get("sur.doc.credits.close"), localization.Get("sur.doc.restart"));
         }
         void Unload(string id)
         {
@@ -265,6 +269,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             owner.StepEntered -= Enter; owner.ChapterUnloading -= Unload; owner.PausedChanged -= Paused; sequence.Finished -= Finished;
             input.InteractDown -= Interact; input.InteractUp -= Release; input.PrimaryDown -= PointerDown; input.PrimaryUp -= PointerUp; input.InputCleared -= ClearContact; input.HelpDown -= Center; settings.Changed -= ApplySettings;
             scienceInput?.Dispose(); scienceCamera?.Dispose();
+            if (arrivalTrack != null && arrivalTrack != tracks[1]) Destroy(arrivalTrack);
         }
     }
 }

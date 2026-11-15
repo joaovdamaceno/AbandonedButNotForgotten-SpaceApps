@@ -4,7 +4,7 @@
     0.9649999737739563,
     1.5999999046325684
   ],
-  "cameraHousingTriangles": 460,
-  "notes": "Split of existing team atlas; unchanged UVs and full camera removed with recovered housing.",
+  "cameraHousingTriangles": 665,
+  "notes": "Split of existing team atlas; unchanged UVs. SUR-021: the first split cut the housing in half (faces chosen around CameraMount, 14.5 cm off the camera axis); fix_recoverable_camera.py moved the whole camera, piece by piece, into CameraHousing. Mounting plate, bolts, tripod legs and the cable stay on the probe.",
   "retroTriangles": 4772
 }

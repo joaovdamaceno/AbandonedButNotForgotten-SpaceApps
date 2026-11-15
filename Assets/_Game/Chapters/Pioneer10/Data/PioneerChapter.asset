@@ -16,7 +16,7 @@ MonoBehaviour:
   titleKey: slot.pioneer10.title
   descriptionKey: slot.pioneer10.meta
   questionKey: slot.pioneer10.question
-  cover: {fileID: 0}
+  cover: {fileID: 21300000, guid: 05eebfe459c943e39e039615457fc59d, type: 3}
   sceneName: Pioneer10
   targetDurationSeconds: 427
   initialSequenceId: PIO_Launch

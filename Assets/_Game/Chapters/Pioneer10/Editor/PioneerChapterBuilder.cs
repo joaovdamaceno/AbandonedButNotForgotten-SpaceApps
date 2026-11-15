@@ -26,6 +26,8 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string DataAssetPath = ChapterFolder + "/Data/PioneerData.asset";
         public const string CueMapAssetPath = ChapterFolder + "/Audio/PioneerCueMap.asset";
         public const float TargetDurationSeconds = 427f;
+        /// <summary>Capa do dossiê (ilustração NASA da Pioneer 10). Mantida no recriar do asset para não voltar a "foto pendente".</summary>
+        public const string CoverPath = "Assets/_Game/UI/Dossier/Covers/Pioneer10Cover.jpg";
 
         public override string Id => ChapterBuilderId;
         public override string Owner => "R5 · PIO-014";
@@ -209,7 +211,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var ids = PioneerChapterController.StateIds;
             var steps = ids.Select((id, i) => i == ids.Length - 1 ? new ChapterStep(id, true) : new ChapterStep(id, false, ids[i + 1])).ToArray();
             return ChapterDefinition.Create(PioneerChapterController.ChapterId, "slot.pioneer10.title", "slot.pioneer10.meta", "slot.pioneer10.question",
-                "Pioneer10", TargetDurationSeconds, "PIO_Launch", steps);
+                "Pioneer10", TargetDurationSeconds, "PIO_Launch", steps, AssetDatabase.LoadAssetAtPath<Sprite>(CoverPath));
         }
 
         static ChapterDefinition BuildChapter(SceneBuildContext context)

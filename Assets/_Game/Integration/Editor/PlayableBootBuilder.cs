@@ -30,6 +30,8 @@ namespace Abandoned.SpaceApps.Integration.EditorTools
 
         /// <summary>Crédito da capa do Surveyor (a mesma procedência que o arquivo isolado do capítulo registra).</summary>
         public const string SurveyorCoverCredit = "NASA · AS12-48-7134";
+        /// <summary>Créditos das capas de Pioneer 10 e Marte (as imagens ficam em UI/Dossier/Covers).</summary>
+        public const string PioneerCoverCredit = "NASA · Pioneer 10 illustration", MarsCoverCredit = "NASA · Spirit and Opportunity";
 
         /// <summary>As cenas do jogo, na ordem das Build Settings (Boot é o índice 0).</summary>
         public static readonly string[] GameScenes = { BootPath, MarsPath, OpportunityPath, PioneerPath, SurveyorPath };
@@ -140,7 +142,7 @@ namespace Abandoned.SpaceApps.Integration.EditorTools
             var catalog = Load<ChapterCatalog>(CatalogPath);
             var serialized = new SerializedObject(catalog);
             var entries = serialized.FindProperty("entries");
-            SetEntry(entries, "pioneer10", Load<ChapterDefinition>(PioneerChapterPath), null, "sa-chapter--pioneer", string.Empty);
+            SetEntry(entries, "pioneer10", Load<ChapterDefinition>(PioneerChapterPath), null, "sa-chapter--pioneer", PioneerCoverCredit);
             SetEntry(entries, "surveyor3", Load<ChapterDefinition>(SurveyorChapterPath), Load<TextAsset>(SurveyorTextsPath), "sa-chapter--surveyor", SurveyorCoverCredit);
             serialized.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(catalog);
