@@ -37,6 +37,7 @@ namespace Abandoned.SpaceApps.EditorTools
             ("cinturao_dias_t23", 23f),
             ("cinturao_nota_t28", 28f),
             ("cinturao_nike_t35", 35f),
+            ("terra_rotulo_t18", 18f),
         };
         // Quadros com este prefixo desenham o HUD da cena 7 (PioneerYearsHud); os demais, o da cena 5 (PioneerClosestHud).
         const string YearsPrefix = "anos_";
@@ -98,6 +99,13 @@ namespace Abandoned.SpaceApps.EditorTools
                 {
                     view.Bind();
                     var t = current.seconds;
+                    if (current.name.StartsWith("terra_", StringComparison.Ordinal))
+                    {
+                        view.SetEarthLabel(PioneerJupiterReveal.EarthLabelVisibleAt(t), Text(PioneerJupiterReveal.EarthLabelKey),
+                            Vector2.Lerp(PioneerStageBuilder.EarthCompareEnterViewport, PioneerStageBuilder.EarthCompareViewport, PioneerJupiterReveal.EarthBlendAt(t)));
+                        return;
+                    }
+
                     if (current.name.StartsWith("cinturao_", StringComparison.Ordinal))
                     {
                         var day = PioneerBeltCounter.DayAt(t);

@@ -48,8 +48,8 @@ namespace Abandoned.SpaceApps
         VisualElement root, staticLayer, radiation, radiationFill, speed, distances, moonFill, cloudsFill;
         Label radiationTitle, speedLabel, moonLabel, cloudsLabel;
         VisualElement years, energyFill, timelineTicks, timelineMarker, firsts, barTop, barBottom;
-        VisualElement beltCounter, beltLine, beltNotePlate;
-        Label beltDay, beltDate, beltLabel, beltNote;
+        VisualElement beltCounter, beltLine, beltNotePlate, earthLine;
+        Label beltDay, beltDate, beltLabel, beltNote, earthLabel;
         readonly VisualElement[] firstStars = new VisualElement[PioneerFirstsHud.StarCount];
         readonly Label[] firstLabels = new Label[PioneerFirstsHud.StarCount];
         Label yearBig, yearEvent, yearNote, instrumentsTitle, energyTitle, energyLaunch, energyJupiter;
@@ -89,6 +89,8 @@ namespace Abandoned.SpaceApps
             beltDate = tree.Q<Label>("belt-date");
             beltLine = tree.Q("belt-line");
             beltLabel = tree.Q<Label>("belt-label");
+            earthLine = tree.Q("earth-line");
+            earthLabel = tree.Q<Label>("earth-label");
             beltNotePlate = tree.Q("belt-note-plate");
             beltNote = tree.Q<Label>("belt-note");
             barBottom = tree.Q("bar-bottom");
@@ -338,6 +340,25 @@ namespace Abandoned.SpaceApps
                 SetText(beltNote, note);
         }
 
+        /// <summary>
+        /// Cena 3: o rótulo "Terra" com uma linha fina que sai da Terra de comparação, no ponto <paramref name="viewport"/> (0–1, origem em
+        /// cima à esquerda), para a comparação de tamanho com Júpiter não aparecer do nada.
+        /// </summary>
+        public void SetEarthLabel(bool visible, string text, Vector2 viewport)
+        {
+            EnsureBound();
+            Show(earthLine, visible);
+            Show(earthLabel, visible);
+            if (!visible || earthLine == null || earthLabel == null)
+                return;
+
+            SetText(earthLabel, text);
+            earthLine.style.left = Length.Percent(viewport.x * 100f);
+            earthLine.style.top = Length.Percent(viewport.y * 100f + 4f);
+            earthLabel.style.left = Length.Percent(viewport.x * 100f - 3.5f);
+            earthLabel.style.top = Length.Percent(viewport.y * 100f + 10f);
+        }
+
         /// <summary>Esconde tudo (fora dos planos de cinema que usam o HUD).</summary>
         public void HideAll()
         {
@@ -350,6 +371,7 @@ namespace Abandoned.SpaceApps
             Show(years, false);
             Show(firsts, false);
             SetBeltCounter(false, string.Empty, string.Empty, false, string.Empty, Vector2.zero, string.Empty);
+            SetEarthLabel(false, string.Empty, Vector2.zero);
         }
 
         void EnsureBound()

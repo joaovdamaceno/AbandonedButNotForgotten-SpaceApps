@@ -444,3 +444,16 @@ O estado `PIO.Belt` toca a sequência própria `PIO_BeltCinema` (54 s; `PIO_Belt
 - **Contador no HUD de cinema** (`PioneerBeltCounter` agora usa `CinemaHudView.SetBeltCounter`): o dia, a data, o rótulo do 307 Nike e a nota `PIO.UI.belt_far` ("o asteroide conhecido mais próximo ficou a milhões de quilômetros da sonda", de 25 a 30 s). O HUD é renderizado e conferido em imagem (`PioneerHudCapture`).
 - **Estrelas:** as fracas passam a ser geometria (3.000 discos de 8 lados), nítidas em qualquer zoom.
 - **Limitações.** Escala e distâncias são de composição; sem linha tracejada até a pedra; restam algumas estrelas fracas da textura que viram quadrados no zoom mais fechado. Evidência em `QA/PIO-032/README.md`.
+
+## A placa de ouro como cutscene (PIO-033)
+
+- **Placa dourada em 3D** (`PioneerStageBuilder`: objeto `PlaqueHero` em `PlaqueHeroCenter`, 3 × 4,5 × 0,05 m, material `PIO_PlaqueHeroGold` e face `PIO_PlaqueHeroFace` com a textura `PioneerStageArt.PlaqueBoard`): ouro anodizado com a moldura e as cinco gravuras da `PioneerPlaqueArt`. Só aparece nos anchors com `showPlaqueHero` (`PIO.Plaque.Board`).
+- **Planos** (`PioneerPlaqueBuilder.CreateSequence`, 33 s, rig `PIO.Plaque.Board`): chegada (placa inteira e depois a primeira peça), cinco zooms moderados (cada peça enquadrada com ~60% da altura, `PlaquePieceOffset`), recuo até a placa inteira. A câmera troca de peça nos últimos 0,8 s de cada legenda.
+- **Sem painel em cinema:** `PioneerPlaqueActivity.PushView` renderiza o estado `Idle` quando `CinemaMode` está ligado (a lógica de encaixe continua testada).
+- **Limitações.** Gravuras simplificadas do projeto (não a reprodução da placa real); sem Play Mode nem teste humano. Evidência em `QA/PIO-033/README.md`.
+
+## Câmeras abertas e a Terra com nome (PIO-034)
+
+- **Planos livres da abertura** (`PioneerStageBuilder`, anchors `PIO.Launch.Reveal` e `PIO.Launch`; `PioneerLaunchBuilder.CreateSequence`): a câmera fica a ~11 m e ~12,5 m da sonda, com campo de visão de 32° e 34° e um movimento lento. O modelo tem poucos polígonos e não aguenta planos colados.
+- **Rótulo da Terra** (`PioneerJupiterReveal`, `CinemaHudView.SetEarthLabel`, texto `PIO.UI.earth_label`): de 13,5 a 21,5 s, "Terra" com uma linha fina acompanha a Terra de comparação no HUD de cinema; a Terra ganhou emissão de base.
+- **Limitações.** Brilho dos RTGs ainda com esferas aditivas simples; sem Play Mode nem teste humano. Evidência em `QA/PIO-034/README.md`.

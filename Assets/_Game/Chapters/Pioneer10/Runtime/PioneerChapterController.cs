@@ -156,7 +156,7 @@ namespace Abandoned.SpaceApps
             launch.Initialize(sequenceDirector, interactions, router, time);
             belt.Initialize(sequenceDirector, interactions, router, time, text);
             beltCounter.Initialize(sequenceDirector, text);
-            jupiterReveal.Initialize(sequenceDirector);
+            jupiterReveal.Initialize(sequenceDirector, text);
             closestHud.Initialize(sequenceDirector, text);
             yearsHud.Initialize(sequenceDirector, text);
             firstsHud.Initialize(sequenceDirector, text);

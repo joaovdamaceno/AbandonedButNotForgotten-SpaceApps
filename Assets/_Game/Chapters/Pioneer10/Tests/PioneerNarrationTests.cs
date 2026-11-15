@@ -104,7 +104,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(data.Validate(), Is.Empty);
             Assert.That(data.States.Count, Is.EqualTo(9));
             Assert.That(data.Cues.Count, Is.EqualTo(53));
-            Assert.That(data.Texts.Count, Is.EqualTo(148));
+            Assert.That(data.Texts.Count, Is.EqualTo(149));
             Assert.That(data.States.Sum(s => s.nominalSeconds), Is.EqualTo(417));
             foreach (var cue in data.Cues)
             {

@@ -80,6 +80,9 @@ namespace Abandoned.SpaceApps.EditorTools
             reveal3So.FindProperty("earth").objectReferenceValue = presentation.Earth;
             reveal3So.FindProperty("earthFrom").vector3Value = PioneerStageBuilder.EarthCompareFrom;
             reveal3So.FindProperty("earthTo").vector3Value = PioneerStageBuilder.EarthCompareTo;
+            reveal3So.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();
+            reveal3So.FindProperty("earthViewportFrom").vector2Value = PioneerStageBuilder.EarthCompareEnterViewport;
+            reveal3So.FindProperty("earthViewportTo").vector2Value = PioneerStageBuilder.EarthCompareViewport;
             reveal3So.ApplyModifiedPropertiesWithoutUndo();
             so.FindProperty("jupiterReveal").objectReferenceValue = reveal3;
             var closestHud = context.Component<PioneerClosestHud>(context.Child(root, "ClosestHud"));
