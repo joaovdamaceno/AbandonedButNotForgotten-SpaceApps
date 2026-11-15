@@ -134,15 +134,18 @@ namespace Abandoned.SpaceApps
 
             var aiming = state.Phase == SpinShotPhase.Learn || state.Phase == SpinShotPhase.Shoot;
             var merging = state.Phase == SpinShotPhase.Combine || state.Phase == SpinShotPhase.Done;
+            // Teste de jogo: as instruções (a barra e o aviso "Toque E") só aparecem quando a foto está liberada (fase Shoot). Antes, na demonstração,
+            // as pessoas tentavam apertar E antes da hora e ficavam confusas.
+            var canShoot = state.Phase == SpinShotPhase.Shoot;
             Show(reticle, aiming);
-            Show(aim, aiming);
+            Show(aim, canShoot);
             Show(combine, merging);
             Show(film, true);
 
             // Mira: dourada enquanto Júpiter preenche a mira (nunca só cor: o contorno engrossa e a barra também acende).
-            if (reticleActive != (aiming && state.InWindow))
+            if (reticleActive != (canShoot && state.InWindow))
             {
-                reticleActive = aiming && state.InWindow;
+                reticleActive = canShoot && state.InWindow;
                 reticle.MarkDirtyRepaint();
             }
 

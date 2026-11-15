@@ -270,7 +270,7 @@ O contorno **correto** da peça selecionada pulsa devagar (1,4 s de período; co
 
 **Quatro resultados diferentes** (selo, cartão de data e forma de onda diferentes): 3 MAR 2002 sinal recebido (onda suave); 27 ABR 2002 últimos dados de telemetria (blocos regulares); 23 JAN 2003 portadora muito fraca, **sem dados novos** (uma linha fina com um único pico, o último sinal); 7 FEV 2003 nenhum sinal detectado. Na tentativa 4 **não há zona nem frequência correta**: "Segure E · escutar" por 2 s e "Nenhum sinal detectado · Sua escuta funcionou. Desta vez, não houve resposta." Depois os controles recolhem e há **2,5 s de silêncio real** (onda parada e mínima, nada animado). Datas são de recepção na Terra em UTC.
 
-**Eventos para a integração (PIO-014).** `StateEvent` dispara `PIO.Listening.Tune` (a cada rodada), `.Contact1/2/3` e `.Attempt4` (início do silêncio): ligar a `PioneerNarration.RaiseEvent`. Os mesmos ids `Contact1/2/3` são os gatilhos das legendas, que a atividade abre direto no `SequenceDirector.Trigger`. Isso **confirma** os ids propostos na PIO-001/013. Uso: `listening.Initialize(sequenceDirector, interactionService, inputRouter, sessionClock, resolverDeTexto)`, `Completed += () => chapterDirector.CompleteStep("PIO.Listening")`, `Begin(skippable)`; `Cancel()` na mudança de estado.
+**Eventos para a integração (PIO-014).** `StateEvent` dispara `PIO.Listening.Tune` (a cada rodada), `.Contact1/2/3` e `.Attempt4` (início do silêncio): o `PioneerChapterController` já os encaminha a `PioneerNarration.RaiseEvent`. Os mesmos ids `Contact1/2/3` são os gatilhos das legendas, que a atividade abre direto no `SequenceDirector.Trigger`. Isso **confirma** os ids propostos na PIO-001/013. Uso: `listening.Initialize(sequenceDirector, interactionService, inputRouter, sessionClock, resolverDeTexto)`, `Completed += () => chapterDirector.CompleteStep("PIO.Listening")`, `Begin(skippable)`; `Cancel()` na mudança de estado.
 
 **Textos novos (PIO-001):** `PIO.UI.listen`, `PIO.UI.kind_data` e `PIO.UI.kind_carrier` (os três `derived`, a R7 precisa revisar). Os cartões e as chaves `tune`, `nearer`, `farther`, `received`, `no_signal`, `no_fault` e `help` já existiam.
 
@@ -428,6 +428,24 @@ O estado `PIO.Belt` toca a sequência própria `PIO_BeltCinema` (54 s; `PIO_Belt
 - **Barras de cinema** (`PioneerLetterbox`, `CinemaHudView.SetLetterbox`, elementos `bar-top` e `bar-bottom` de `UI/CinemaHud.uxml`, desenhados abaixo de todo o resto do HUD): duas barras pretas de 7% da altura cada deslizam em 0,8 s nos sete estados que são só cinema (`PIO.Launch`, `Belt`, `JupiterApproach`, `Closest`, `Plaque`, `Outbound` e `Farewell`) e saem quando o estado acaba. Ficam recolhidas nas duas interações (`PIO.Imaging` e `PIO.Listening`) e no memorial da despedida (a partir de 30 s), que tem botões. As legendas (ordem 20) ficam acima das barras (ordem 12), então o texto cai sobre o preto. O avanço usa o tempo ativo do capítulo.
 - **Cor por grupo de luz** (`PioneerStageBuilder.LightGroups`): o novo `PIO.Light.EarthWarm` (luz principal âmbar, 0,9 de intensidade) substitui o frio `PIO.Light.Night` nos planos da Terra (plataforma de lançamento e antena da Deep Space Network); no espaço, `Cruise` e `FarSun` ficaram mais frios (branco-azulado) e `FarewellRim` e `ColdRim` já eram frios. Júpiter e a placa seguem quentes (iluminados pelo Sol).
 - **Limitações.** Deslize linear, sem easing; sem correção de cor por cena nem pós-processamento (perfil Web leve); as cenas 4 e 8 ficam sem barras inclusive nos trechos de cinema; os quadros do cinturão interativo em `Docs/Art/Pioneer10_Belt` mantêm a luz antiga. Evidência em `QA/PIO-027/README.md`.
+## Música (roteiro novo)
+
+Sete faixas de **Scott Buckley (CC BY 4.0)** ligadas ao `AudioDirector` (AUD-002), uma por clima das nove cenas do roteiro. A tabela completa (cena, tempo, trecho, intenção, clima da faixa) está na **seção 6 de `Docs/Art/AUDIO_CUE_SHEET.md`**.
+
+| Arquivo | Papel |
+| --- | --- |
+| `Audio/Music/*.ogg` | Trechos (60 a 120 s) recortados, normalizados (-20 LUFS), com fade de 1 s na entrada e 3 s na saída, Ogg Vorbis ~64 kbps: **4,35 MB** no total |
+| `Tools/convert_pioneer10_music.py` | Baixa os MP3 das páginas da fonte, confere o SHA-256, recorta e codifica (precisa de ffmpeg com libvorbis). `--check` confere os `.ogg` e o registro sem ffmpeg. Os MP3 originais (5 a 15 MB) **não** ficam no repositório |
+| `Data/Assets/PioneerMusic.json` | Procedência: URL, SHA-256 do original e do `.ogg`, trecho, volume, licença e linha de crédito |
+| `Editor/PioneerMusicImporter.cs` | Configura a importação (Vorbis, streaming, sem pré-carga) e liga os clipes aos cues do catálogo; menu **Abandoned Space Apps → PIO → Importar música da Pioneer** |
+| `Tests/PioneerMusicTests.cs` | 5 testes EditMode |
+
+**Cue por estado:** `Launch → MUS_PIO_LANCAMENTO` (A Kind Of Hope), `Belt → MUS_PIO_CINTURAO` (Descent), `JupiterApproach` e `Imaging → MUS_PIO_MARAVILHA` (The Distant Sun), `Closest → MUS_PIO_JUPITER` (The Things That Keep Us Here), `Plaque` e `Outbound → MUS_PIO_ANOS` (Extrapolation), `Listening → MUS_PIO_RADIO` (Signal to Noise), `Farewell → MUS_PIO_FINAL` (Filaments, trecho do clímax). Os quatro cues antigos (`PARTIDA/CUR/DISTANCIA/ESCUTA`) saíram. **Falta** um evento no roteiro do Belt para o corte "tensão → maravilha" de 1:33 (`AudioDirector.SetCue("MUS_PIO_MARAVILHA")`); se os estados mudarem, só a tabela de estados do `PioneerCueMap` (em `PioneerDataBuilder`) muda.
+
+**Atribuição obrigatória (CC BY 4.0):** `ASSET_CREDITS.md` (linhas `M-SB-PIO-01…07`) e `credits.line.pioneer_music` em `DossierTexts.json` (PT e EN). A tela de créditos do dossiê precisa **exibir** essa linha.
+
+**Limitações.** **Nenhuma faixa foi ouvida por pessoa**: a escolha foi feita pela descrição da página de cada faixa e pelo envelope de volume medido; falta ouvir cada uma na cena. Os trechos são curtos e **repetem com emenda** se a cena durar mais (o minigame e a sintonia têm ritmo próprio); a emenda tem fade de 3 s. As faixas foram feitas para ouvir inteiras, então um corte no meio de uma frase musical é possível. O orçamento Web (4,35 MB de 10 MB para todo o áudio do jogo) não foi medido no navegador. Os efeitos sonoros (SFX) continuam **sem arquivo**.
+
 
 ## Qualidade visual do lote de 15/11/2026 (PIO-031): céu, Aldebaran e a Terra da NASA
 
@@ -465,3 +483,51 @@ O estado `PIO.Belt` toca a sequência própria `PIO_BeltCinema` (54 s; `PIO_Belt
 - **Aldebaran:** `AldebaranCoreMeters` 7 m e `AldebaranHaloMeters` 52 m.
 - **Captura de quadros:** `PioneerMinigameCapture` (`QA/PIO-036`).
 - **Limitações.** Ruído e faixas desenhados; volta de 9 s é de jogabilidade (a real, ~12,5 s); textos `derived`; sem movimento reduzido; sem Play Mode nem teste humano. Evidência e fontes em `QA/PIO-036/README.md`.
+
+## Ajustes do teste de jogo (15/11/2026)
+
+Lote pedido depois de a pessoa jogar a cena de teste (`Playtest/Pioneer10_Playtest.unity`). Evidência em `QA/PIO-AJUSTES/` (capturas do Play Mode).
+
+| Pedido | O que mudou |
+| --- | --- |
+| Primeira música fora de tom | `MUS_PIO_LANCAMENTO` agora é **A Kind Of Hope** (Scott Buckley, CC BY 4.0), calma e introdutória, no lugar de Chronicle. |
+| Música "asiática" em Ganimedes e Europa | `MUS_PIO_JUPITER` agora é **The Things That Keep Us Here** (piano e cordas), no lugar de Sanctum. As duas vêm da pasta de músicas do projeto anterior (mesma página do autor); `Tools/convert_pioneer10_music.py` lê de lá (`PIONEER_MUSIC_DIR`). |
+| Efeito do foguete e de equipamento desligado | `SFX_PIO_LAUNCH` (7 s) e `SFX_PIO_POWERDOWN` (1,1 s), **sintetizados** com `Tools/generate_pioneer10_sfx.py`. O desligar toca no instante em que a comunicação é priorizada (`PioneerChapterController` liga `OutboundAtlas.PowerConfirmed` ao evento `PIO.Outbound.PowerDown`). |
+| Minigame da foto parava de girar | Causa: com a sequência **pausada** num marco (esperando as fotos), o `SequenceDirector` não reavalia a câmera, então o giro do anchor congelava. Correção: `SequenceDirector.RefreshCamera()` (aditivo) chamado por `PioneerImaging.PushView` quando pausada. Verificado em Play Mode: duas capturas 2,4 s depois, com a sequência parada em "Foto 1/5", mostram o céu e o marcador em movimento. |
+| Minigame longo e difícil | Volta de 9 s para **6 s**; janela de ±15° para **±19°** (ainda do tamanho do disco de Júpiter); a ajuda alarga a janela (×2,5) depois de **6 s** sem foto (antes 12 s); a junção das cinco fotos de 9 s para **5 s**. |
+| Sensação de movimento durante as fotos e a revelação | Os três planos do ponto de vista (`PIO04.Learn/Sweep/Reveal`) ganham deriva suave (inclinação, rolagem, avanço de poucos metros e respiração do FOV). Não há referência próxima no espaço, então o efeito é de balanço, não de paralaxe. |
+| Júpiter melhor, espaço mais preto | Textura 2048×1024 do **Solar System Scope (CC BY 4.0)** no lugar da de 720×360 da Voyager (`ArtSource/Pioneer10/PIO-jupiter-2k/`). Céu: fundo e faixa difusa bem mais escuros e neutros, ambiente neutro, preenchimentos das luzes sem tom azul. |
+| Terra "do nada no canto" | `PioneerJupiterReveal.ShowEarthComparison` desligado por padrão (Júpiter continua a crescer e a legenda cita o tamanho). |
+| Estilingue em tempo acelerado | Novo `PioneerSlingshot`: no plano `PIO09.Bend` a sonda (ampliada 22×, senão não se vê a 700 m) percorre a trajetória dourada em volta de Júpiter, devagar na chegada e rápida na saída (`Progress(u)=u^1,8`); a câmera a acompanha. |
+| Cruzar Netuno no mapa | Novo `SystemMapElement` (Painter2D) no `CinemaHudView`. Na cena 7 mostra as órbitas de Júpiter a Netuno, a sonda a ~2,6 UA/ano (bate com Saturno em 1976, Urano em 1979 e Netuno em 13 JUN 1983) e a órbita cruzada pulsa em âmbar. Esquemático e dito no próprio mapa. |
+| Cinturão no mapa e câmera da sonda | Na cena 2, de 8 a 19 s, o mapa interno mostra a faixa do cinturão (pontos de tamanhos variados), a linha do caminho da sonda (forte até a posição atual, fraca à frente) e o marcador; de 19 a 30 s a câmera vira ponto de vista da sonda (`PIO.Belt.Pov`, FOV 70) avançando 50 m entre as pedras. As pedras ficaram **mais claras**, **110** em vez de 70 e com tamanhos de **2 a 30 m** (distribuição que favorece as pequenas). |
+| Legenda sobre o minigame do rádio | `ListeningPanel.uss`: o quadro sobe (`bottom: 18%`), acima da faixa da legenda. |
+
+**Limitações.** Nenhuma faixa foi ouvida por pessoa (as duas trocadas também não); os efeitos sonoros são sintéticos e simples. A trajetória do estilingue é de composição, não cálculo orbital. O mapa não é à escala. A deriva da câmera do minigame congela com a sequência parada num marco (o giro do jogo continua). Os pulos do `PioneerPlaytestHost` só vão para a frente.
+
+### Segunda rodada de ajustes (15/11/2026)
+
+| Pedido | O que mudou |
+| --- | --- |
+| Estilingue em primeira pessoa | `PioneerSlingshot` agora move a **pose do anchor** `PIO.Closest.Bend` (a câmera é a da sonda, modelo escondido) pela trajetória em volta de Júpiter, devagar na chegada e cada vez mais rápido (`u^1,8`), com o campo de visão abrindo de 58° para 84°. Depois da passagem o olhar se volta para Júpiter, que fica encolhendo atrás. |
+| Linha amarela da Lua até a borda da tela | No gráfico Terra–Lua (`PioneerLaunchBuilder`) a linha e a sonda seguem a trajetória prolongada em linha reta (`ExtendedTrajectoryPoint`, `TrajectoryExtent = 1,9`) até sair do quadro. |
+| Sistema Solar com fundo diferente / "idealmente 3D" | O mapa 2D foi trocado por um **Sistema Solar 3D no palco** (`SolarSystem`: sol, seis planetas de tamanho exagerado, órbitas, cinturão de 420 pedras e a linha do caminho), ligado só pelos anchors `PIO.System.Belt` (cena 2, 8–19 s) e `PIO.System.Out` (cena 7). `PioneerSystemTour` anda com a sonda (ampliada 4×, com farol de brilho) sobre a linha, acende a órbita cruzada e pede ao HUD os rótulos, que ficam **sem fundo** sobre a imagem (`SystemMapElement` em modo sobreposição). Escala esquemática: raio = 28 m × raiz da distância em UA. |
+| Velocidade da sonda x dias do cinturão | O ponto de vista do cinturão (`PIO02.Days`) agora avança pela **mesma exponencial** do contador de dias (`DaysPovKeys`, `PioneerBeltCounter.Acceleration`): lento no começo e cada vez mais rápido no fim, junto com os dias; o FOV abre de 70° para 78°. |
+| Foto real de Júpiter sob a legenda | O quadro da revelação (`HistoricalImageReveal.uss`) agora vai de 7% a 77% da altura, acima da legenda. |
+| Legendas em inglês | **Parcial.** A cena de teste agora abre em inglês (tecla L alterna). A lista completa em inglês (`CAPTIONS_PIONEER10_EN_UK.md`, 81 legendas) **ainda não foi aplicada**: só 8 estão idênticas no jogo, 28 foram reescritas e 45 são novas, e várias cenas (fotos, placa, escuta) têm legendas ligadas a gatilhos, então reaplicar os textos e re-temporizar as cenas é uma tarefa própria. |
+
+**Limitações.** Os rótulos do mapa usam a projeção da câmera do anchor e podem encostar nos cartões do HUD em outras resoluções (conferi em 16:9). A sonda no mapa é o modelo real ampliado; com a escala do mapa ela aparece pequena. O estilingue continua sendo composição, não cálculo orbital.
+
+### Terceira rodada de ajustes (15/11/2026)
+
+| Pedido | O que mudou |
+| --- | --- |
+| Ganimedes e Io na cena de Júpiter | **Fatos conferidos na NASA** ([45 anos: Pioneer 10, o primeiro a explorar Júpiter](https://www.nasa.gov/feature/45-years-ago-pioneer-10-first-to-explore-jupiter) e [Pioneer 10 – Ganymede](https://science.nasa.gov/resource/pioneer-10-ganymede)): imagens de **baixa resolução** de Calisto, Ganimedes e Europa; "uma imagem de Io foi tirada, mas **perdida** para a intensa radiação"; maior aproximação em 3 dez 1973 (4 dez UT), a 82.178 milhas (~132 mil km), a 78.000 mph (~125 mil km/h). Essas páginas **não** trazem a dose de radiação, os comandos falsos, a ordem das imagens nem a distância em que a foto de Ganimedes foi feita. Mudanças: a revelação da cena 4 mostra **só** a foto real de Júpiter (saiu a foto de Ganimedes e o aviso "Io perdida", que apareciam junto de Júpiter); na cena 5 as luas vêm primeiro (`PIO.09.01` Ganimedes, `PIO.09.08` Calisto e Europa em baixa resolução), depois a radiação (`PIO.09.02`–`03`) e **só então** a imagem de Io perdida (novo `PIO.09.10`), seguida da maior aproximação (`PIO.09.04`). |
+| Estilingue direto da passagem | `PioneerSlingshot` agora cobre `PIO09.Pass` + `PIO09.Bend` (28 s): um único voo em primeira pessoa, sem corte de volta para longe. |
+| Som de desligamento não tocava | Causa: o evento `PIO.Outbound.PowerDown` só saía do fim do hold do atlas, que não acontece na versão só de cinema. Agora `PioneerYearsHud` emite `InstrumentSwitchedOff` cada vez que um instrumento apaga no HUD dos anos, e o controlador o liga ao efeito `SFX_PIO_POWERDOWN`. Em Play Mode, 4 eventos numa execução real (não ouvi o som). |
+| Minigame de Júpiter mais rápido | A sonda **não gira mais**: Júpiter fica parado no centro e só a barra anda (3,2 s por passada, zona dourada de ±42° = 23% da barra, ajuda aos 5 s, junção de 3,5 s). O texto do prompt agora diz "barra na zona dourada"; o bloco da barra subiu para 17% de altura (o aviso ficava atrás da legenda). |
+| Final | `PioneerFarewellDrift`: a partir do plano em que a sonda se afasta (20 s) ela anda para Aldebaran a 0,9 m/s do palco, sem parar, enquanto a tela de escolhas estiver aberta. O memorial deixou de ser preto total (`MemorialDimMax = 0,55`) para a sonda aparecer por trás do texto. |
+| Legendas em inglês | Aplicadas a **28 cues** com correspondência conferida (texto da lista `CAPTIONS_PIONEER10_EN_UK.md`) mais os da cena 5; **janelas e tempos de leitura** ajustados onde o texto novo é mais longo (16 caracteres/s). **Ainda não aplicadas:** 38 legendas novas da lista e a re-temporização estrutural das cenas com gatilhos (fotos, placa, escuta) e dos anos (a lista cita desligamentos por ano que o HUD ainda não segue). |
+
+**Limitações.** O PT dos 28 cues reescritos continua com o texto anterior (só traduzi o que mudou de sentido). A lista diz que a sonda passou "3 vezes mais perto que a Lua" (130 mil km); a NASA dá 82.178 milhas sem dizer se do centro ou do topo das nuvens.
+

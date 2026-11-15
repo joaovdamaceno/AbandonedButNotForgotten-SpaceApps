@@ -67,9 +67,15 @@ namespace Abandoned.SpaceApps
             return u * u * (3f - 2f * u);
         }
 
-        public static bool EarthVisibleAt(float seconds) => seconds >= EarthEnterSeconds && seconds < EarthLeaveSeconds;
+        /// <summary>
+        /// A comparação com a Terra está desligada: no teste de jogo a Terra "aparecia do nada no canto". Júpiter continua a crescer e a
+        /// legenda cita o tamanho dele; religar aqui devolve a Terra e o rótulo (os testes cobrem os dois estados).
+        /// </summary>
+        public static bool ShowEarthComparison { get; set; }
 
-        public static bool EarthLabelVisibleAt(float seconds) => seconds >= EarthLabelStartSeconds && seconds < EarthLabelEndSeconds;
+        public static bool EarthVisibleAt(float seconds) => ShowEarthComparison && seconds >= EarthEnterSeconds && seconds < EarthLeaveSeconds;
+
+        public static bool EarthLabelVisibleAt(float seconds) => ShowEarthComparison && seconds >= EarthLabelStartSeconds && seconds < EarthLabelEndSeconds;
 
         /// <summary>Onde a Terra está no quadro no instante <paramref name="seconds"/> (0–1, origem em cima à esquerda).</summary>
         public Vector2 EarthViewportAt(float seconds) => Vector2.Lerp(earthViewportFrom, earthViewportTo, EarthBlendAt(seconds));

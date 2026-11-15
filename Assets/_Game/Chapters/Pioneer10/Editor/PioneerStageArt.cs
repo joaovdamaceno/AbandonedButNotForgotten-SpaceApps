@@ -679,6 +679,13 @@ namespace Abandoned.SpaceApps.EditorTools
         }
 
         /// <summary>O cinturão como ele é: pedras pequenas e bem separadas (uma malha só), com muito espaço vazio entre elas.</summary>
+        /// <summary>
+        /// Tamanho de uma pedra: distribuição logarítmica enviesada para as pequenas, com poucas grandes (o cinturão de verdade tem
+        /// muito mais pedras pequenas que grandes). <paramref name="random"/> é um número uniforme de 0 a 1.
+        /// </summary>
+        public static float RockSize(float minSize, float maxSize, float random) =>
+            minSize * Mathf.Pow(maxSize / minSize, Mathf.Pow(Mathf.Clamp01(random), 1.45f));
+
         public static void SparseRockField(Mesh mesh, IReadOnlyList<Vector3> centers, int seed, float minSize, float maxSize)
         {
             var random = new System.Random(seed + 17);
@@ -686,7 +693,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var normals = new List<Vector3>();
             var triangles = new List<int>();
             for (var i = 0; i < centers.Count; i++)
-                AppendRock(vertices, normals, triangles, centers[i], Mathf.Lerp(minSize, maxSize, (float)random.NextDouble()), seed * 7919 + i);
+                AppendRock(vertices, normals, triangles, centers[i], RockSize(minSize, maxSize, (float)random.NextDouble()), seed * 7919 + i);
 
             mesh.Clear();
             mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
@@ -829,7 +836,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public static Texture2D Starfield(int width, int height, int starCount, int seed)
         {
             var pixels = new Color[width * height];
-            var background = new Color(0.006f, 0.008f, 0.015f);
+            var background = new Color(0.0015f, 0.0015f, 0.002f); // quase preto e neutro (teste de jogo: o espaço estava azulado)
             var bandNormal = new Vector3(0.35f, 0.82f, 0.45f).normalized;
             for (var y = 0; y < height; y++)
             {
@@ -842,8 +849,8 @@ namespace Abandoned.SpaceApps.EditorTools
                     var cloud = Fbm(dir * 3.2f, seed, 4);
                     var dust = Mathf.Clamp01(Fbm(dir * 6.5f + new Vector3(11f, 3f, 7f), seed + 5, 4) * 1.9f - 0.45f); // faixas escuras de poeira
                     var core = Mathf.Clamp01(Fbm(dir * 1.7f, seed + 9, 3));
-                    var glow = band * (0.30f + 0.70f * cloud) * (1f - 0.7f * dust) * 0.055f;
-                    var warm = Color.Lerp(new Color(0.88f, 0.94f, 1.1f), new Color(1.12f, 0.96f, 0.82f), core); // núcleo mais quente, bordas azuladas
+                    var glow = band * (0.30f + 0.70f * cloud) * (1f - 0.7f * dust) * 0.016f;
+                    var warm = Color.Lerp(new Color(0.96f, 0.97f, 1.0f), new Color(1.08f, 0.98f, 0.9f), core); // núcleo levemente mais quente, bordas neutras
                     pixels[y * width + x] = background + new Color(glow * warm.r, glow * warm.g, glow * warm.b);
                 }
             }

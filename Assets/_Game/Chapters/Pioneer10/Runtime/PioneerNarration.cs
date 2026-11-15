@@ -112,7 +112,7 @@ namespace Abandoned.SpaceApps
             if (!active || audio == null || !audio.Available || cueMap == null || !cueMap.TryGetState(stateId, out var audioState))
                 return;
 
-            audio.SetMusic(audioState.musicCueId, audioState.fadeSeconds);
+            audio.SetMusic(string.IsNullOrEmpty(requestedMusic) ? audioState.musicCueId : requestedMusic, audioState.fadeSeconds);
             if (requestedMusicLevel != 1f)
                 audio.SetMusicLevel(requestedMusicLevel, audioState.fadeSeconds);
             audio.SetPaused(paused);
@@ -190,6 +190,12 @@ namespace Abandoned.SpaceApps
                     case PioneerAudioAction.Silence:
                         var seconds = audioEvent.seconds;
                         Request(a => a.Silence(seconds));
+                        break;
+                    case PioneerAudioAction.Music:
+                        var musicCue = audioEvent.cueId;
+                        var musicFade = audioEvent.seconds;
+                        requestedMusic = musicCue; // o estado seguinte com o mesmo cue não reinicia
+                        Request(a => a.SetMusic(musicCue, musicFade));
                         break;
                 }
             }

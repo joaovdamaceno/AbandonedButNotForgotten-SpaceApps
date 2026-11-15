@@ -8,12 +8,12 @@
     bottom: 0;
 }
 
-/* Quadro do anchor PIO.Listening (0,54 · 0,05 · 0,42 · 0,44), embaixo à direita; .sa-instrument fixa top, por isso top: auto. */
+/* Quadro do anchor PIO.Listening, embaixo à direita mas ACIMA da faixa da legenda (bottom 18%, teste de jogo: a legenda cobria o minigame); .sa-instrument fixa top, por isso top: auto. */
 .pio-lis__frame {
     position: absolute;
     left: 54%;
     top: auto;
-    bottom: 5%;
+    bottom: 18%;
     width: 42%;
     height: 44%;
     padding: var(--sa-space-3);

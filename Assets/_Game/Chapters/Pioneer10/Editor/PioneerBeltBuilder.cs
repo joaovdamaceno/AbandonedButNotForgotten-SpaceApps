@@ -141,11 +141,33 @@ namespace Abandoned.SpaceApps.EditorTools
 
         /// <summary>
         /// Roteiro v2, cena 2 (só cinema, 50 s, o tempo do roteiro): 0–8 a sonda cruza a órbita de Marte (data 15 JUL 1972); 8–19 visão larga
-        /// do cinturão: pedras pequenas e muito afastadas; 19–30 zoom na sonda (a pedra mais próxima fica longe) enquanto o contador de
+        /// do cinturão: pedras pequenas e muito afastadas; 8–19 o mapa do Sistema Solar com o cinturão e o caminho da sonda; 19–30 o ponto de vista da sonda dentro do cinturão enquanto o contador de
         /// dias acelera até 2 DEZ 1972; 30–40 corte para o espaço vazio e a pedra
         /// solitária (307 Nike); 40–50 a sonda sai para o escuro limpo (o contador chega a 15 FEV 1973). O contador e o rótulo vêm de
-        /// <see cref="PioneerBeltCounter"/>, pelo relógio desta sequência. O evento PIO.Belt.Reality baixa a música na revelação.
+        /// <see cref="PioneerBeltCounter"/>, pelo relógio desta sequência. O evento PIO.Belt.Reality troca a música tensa pela calma (MUS_PIO_MARAVILHA) na revelação.
         /// </summary>
+        /// <summary>Metros que a câmera avança no plano do contador de dias (as pedras mais próximas ficam a mais de 60 m).</summary>
+        public const float DaysTravelMeters = 55f;
+
+        /// <summary>
+        /// Posições do ponto de vista: o avanço acumulado é proporcional aos dias contados (mesma exponencial do contador), de modo que a
+        /// velocidade da sonda cresce junto com o ritmo dos dias; o campo de visão abre no fim para reforçar a velocidade.
+        /// </summary>
+        public static ShotKeyframe[] DaysPovKeys()
+        {
+            var keys = new ShotKeyframe[12];
+            for (var i = 0; i < keys.Length; i++)
+            {
+                var u = i / 11f;
+                var share = (Mathf.Exp(PioneerBeltCounter.Acceleration * u) - 1f) / (Mathf.Exp(PioneerBeltCounter.Acceleration) - 1f);
+                var sway = Mathf.Sin(u * Mathf.PI * 3f);
+                keys[i] = new ShotKeyframe(11f * u, new Vector3(1.2f * sway, -0.6f * sway, DaysTravelMeters * share),
+                    new Vector3(-0.7f * sway, 1.0f * sway, -1.2f * sway), PioneerStageBuilder.BeltPovFov + 8f * u * u);
+            }
+
+            return keys;
+        }
+
         public static SequenceDefinition CreateCinemaSequence()
         {
             var shots = new[]
@@ -154,13 +176,15 @@ namespace Abandoned.SpaceApps.EditorTools
                     new[] { Key(0f, new Vector3(0f, 0f, -10f), 30f), Key(8f, new Vector3(0f, 0f, 10f), 30f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
                 // 8–19 s: a visão larga do cinturão, de longe: pedras pequenas e muito afastadas; a câmera se aproxima devagar.
-                new ShotDefinition("PIO02.Fear", 11f, "PIO.Belt.Field",
-                    new[] { Key(0f, Vector3.zero, 40f), Key(11f, new Vector3(0f, 0f, 120f), 38f) },
-                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
-                // 19–30 s: zoom na sonda, a 70 m no fim: o espaço vazio em volta mostra como é difícil acertar uma pedra.
-                new ShotDefinition("PIO02.Days", 11f, "PIO.Belt.Field",
-                    new[] { Key(0f, new Vector3(0f, 0f, 120f), 38f), Key(11f, new Vector3(0f, 0f, BeltFieldCameraMeters - 70f), 26f) },
+                // 8–19 s: o Sistema Solar em 3D (PioneerSystemTour): a sonda sai de Marte e entra no cinturão; a câmera se aproxima devagar.
+                new ShotDefinition("PIO02.Fear", 11f, PioneerStageBuilder.SystemBeltAnchorId,
+                    new[] { Key(0f, new Vector3(0f, 0f, -30f), 40f), Key(11f, new Vector3(0f, 0f, 25f), 38f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
+                // 19–30 s: zoom na sonda, a 70 m no fim: o espaço vazio em volta mostra como é difícil acertar uma pedra.
+                // 19–30 s: ponto de vista da sonda (modelo escondido) dentro do cinturão. A velocidade segue a MESMA curva do contador de dias
+                // (PioneerBeltCounter.DayAt: exponencial), então as pedras passam cada vez mais depressa na mesma proporção em que os dias aceleram.
+                new ShotDefinition("PIO02.Days", 11f, PioneerStageBuilder.BeltPovAnchorId, DaysPovKeys(),
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
                 new ShotDefinition("PIO02.Nike", 10f, "PIO.Belt.Nike",
                     new[] { Key(0f, Vector3.zero, 30f), Key(10f, new Vector3(0f, 0f, 3f), 30f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
@@ -175,8 +199,9 @@ namespace Abandoned.SpaceApps.EditorTools
                 new SubtitleCue("PIO.02.01", "PIO.02.01", 0f, 6f),
                 new SubtitleCue("PIO.02.02", "PIO.02.02", 6.5f, 12.5f),
                 new SubtitleCue("PIO.02.03", "PIO.02.03", 13f, 19f),
-                new SubtitleCue("PIO.02.04", "PIO.02.04", 30.5f, 37.5f),
-                new SubtitleCue("PIO.02.05", "PIO.02.05", 38f, 42f),
+                new SubtitleCue("PIO.02.07", "PIO.02.07", 20.5f, 29.5f),
+                new SubtitleCue("PIO.02.04", "PIO.02.04", 30.5f, 39.4f),
+                new SubtitleCue("PIO.02.05", "PIO.02.05", 39.6f, 42.3f),
                 new SubtitleCue("PIO.02.06", "PIO.02.06", 42.5f, 49.5f),
             };
 

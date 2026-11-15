@@ -4,6 +4,7 @@ using Abandoned.SpaceApps.EditorTools;
 using NUnit.Framework;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 
 namespace Abandoned.SpaceApps.Tests
@@ -108,6 +109,21 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void TheInstructionsOnlyAppearWhenThePhotoIsReleased()
+        {
+            var panel = (SpinShotPanelView)typeof(PioneerImaging).GetField("spinPanel", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(imaging);
+            imaging.Begin();
+            Step(1f / 60f);
+            Assert.That(imaging.SpinState().Phase, Is.EqualTo(SpinShotPhase.Learn));
+            var aim = panel.Root.Q("aim");
+            Assert.That(aim.style.display.value, Is.EqualTo(UnityEngine.UIElements.DisplayStyle.None), "na demonstração não há barra nem aviso \"Toque E\": ninguém é convidado a apertar antes da hora");
+            RunUntil(() => imaging.Phase == ImagingPhase.Sweep);
+            Step(1f / 60f);
+            Assert.That(imaging.SpinState().Phase, Is.EqualTo(SpinShotPhase.Shoot));
+            Assert.That(aim.style.display.value, Is.EqualTo(UnityEngine.UIElements.DisplayStyle.Flex), "liberada a foto, a barra e o aviso aparecem");
+        }
+
+        [Test]
         public void TheDemonstrationRegistersNothingAndTheSweepStartsAfterIt()
         {
             imaging.Begin();
@@ -176,7 +192,7 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void TheCameraSpinsWithTheProbeAndJupiterIsCenteredExactlyWhenThePhotoCounts()
+        public void TheCameraStaysStillWithJupiterCenteredWhileOnlyTheBarMoves()
         {
             StartSweeping();
             var camera = presentation.CameraDirector.TargetCamera;
@@ -184,25 +200,26 @@ namespace Abandoned.SpaceApps.Tests
             camera.aspect = 16f / 9f;
             Assert.That(presentation.ProbeSpin.gameObject.activeInHierarchy, Is.False, "a câmera está dentro da sonda: o modelo some");
 
-            // Júpiter centrado (erro 0): está no meio do quadro; a meia volta depois está fora do quadro.
-            RunUntil(() => Mathf.Abs(imaging.SpinErrorDegrees) < 1f);
-            Step(1f / 60f);
-            var centered = camera.WorldToViewportPoint(PioneerStageBuilder.JupiterPosition);
-            Assert.That(centered.z, Is.GreaterThan(0f));
-            Assert.That(centered.x, Is.EqualTo(0.5f).Within(0.08f));
-            Assert.That(centered.y, Is.EqualTo(0.5f).Within(0.08f));
+            // Teste de jogo: a sonda não gira mais antes da foto. Júpiter fica no meio do quadro o tempo todo e só a barra (o erro da volta) anda.
+            var sawBarAtBothSides = new[] { false, false };
+            for (var i = 0; i < 6; i++)
+            {
+                RunUntil(() => Mathf.Abs(imaging.SpinErrorDegrees - (i % 2 == 0 ? -120f : 120f)) < 6f);
+                Step(1f / 60f);
+                var viewport = camera.WorldToViewportPoint(PioneerStageBuilder.JupiterPosition);
+                Assert.That(viewport.z, Is.GreaterThan(0f));
+                Assert.That(viewport.x, Is.EqualTo(0.5f).Within(0.12f), "Júpiter fica centrado mesmo com a barra longe da zona");
+                Assert.That(viewport.y, Is.EqualTo(0.5f).Within(0.12f));
+                sawBarAtBothSides[imaging.SpinErrorDegrees < 0f ? 0 : 1] = true;
+                Assert.That(imaging.PovYawDegrees, Is.EqualTo(0f), "a câmera não gira");
+            }
 
-            RunUntil(() => Mathf.Abs(imaging.SpinErrorDegrees) > 150f);
-            Step(1f / 60f);
-            var away = camera.WorldToViewportPoint(PioneerStageBuilder.JupiterPosition);
-            Assert.That(away.z < 0f || away.x < -0.2f || away.x > 1.2f, Is.True, "no resto da volta Júpiter sai do quadro");
+            Assert.That(sawBarAtBothSides, Is.EqualTo(new[] { true, true }), "a barra passou pelos dois lados");
         }
 
         [Test]
-        public void TheWindowIsWideEnoughForJupiterToFillTheReticle()
+        public void TheWindowIsAWideZoneOnTheBarWithEnoughTimeToReact()
         {
-            var jupiterAngularRadius = Mathf.Asin(PioneerStageBuilder.JupiterRadiusMeters / PioneerStageBuilder.JupiterPosition.magnitude) * Mathf.Rad2Deg;
-            Assert.That(PioneerImaging.SpinWindowHalfDegrees, Is.InRange(jupiterAngularRadius * 0.9f, jupiterAngularRadius * 1.4f), "a janela é do tamanho do disco de Júpiter visto da sonda");
             Assert.That(SpinShotPanelView.PovFov, Is.EqualTo(PioneerStageBuilder.ImagingPovFov), "a mira e a câmera usam o mesmo campo de visão");
             Assert.That(PioneerImaging.SpinWindowHalfDegrees * 2f / 360f * PioneerImaging.SpinPeriodSeconds, Is.GreaterThan(0.6f), "tempo de reação de pelo menos 0,6 s");
         }

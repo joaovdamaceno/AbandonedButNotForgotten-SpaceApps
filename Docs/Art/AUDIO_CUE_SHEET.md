@@ -56,6 +56,8 @@ Notação: **MUS** música · **SFX** efeito · **AMB** ambiente · **SIL** sil�
 
 ### Capítulo II — Pioneer 10 (8 estados, 375 s)
 
+> **Música:** os cues de música desta tabela (`MUS_PIO_PARTIDA/CUR/DISTANCIA/ESCUTA`) foram substituídos pelos sete da **seção 6** (roteiro novo, 15/11/2026). Os efeitos continuam valendo.
+
 | Estado | Cue | Camadas | Equivalente visual |
 | --- | --- | --- | --- |
 | PIO.Launch | `MUS_PIO_PARTIDA` (`VIA`, pulso e crescimento) | SFX lançamento na Terra; no espaço só música; hold RTG = zumbido de interface calor→eletricidade | Cartão RTG com barra |
@@ -144,3 +146,25 @@ Para cada arquivo: ID do cue, título, autor, URL da página específica, licen�
 - [ ] Medir tamanho comprimido no primeiro build Web (QA-001).
 
 Nada desta seção foi executado em AUD-001; os itens ficam para AUD-002/AUD-003 e para quem importar os arquivos.
+
+## 6. Música da Pioneer 10 para o roteiro novo (15/11/2026)
+
+Substitui os quatro cues `MUS_PIO_PARTIDA/CUR/DISTANCIA/ESCUTA` por sete, um por clima do roteiro novo (`ROTEIRO_PIONEER10.md`, 6:40, nove cenas). Todas as faixas são de **Scott Buckley, CC BY 4.0** (a página de cada faixa declara a licença; ver `ASSET_CREDITS.md`, linhas `M-SB-PIO-01…07`). Os trechos são gerados por `Tools/convert_pioneer10_music.py` (recorte, loudnorm de -20 LUFS, fade de 1 s na entrada e 3 s na saída, Ogg Vorbis ~64 kbps, 4,35 MB no total). **Escolhidas pela descrição da página e pelo envelope de volume; nenhuma foi ouvida por pessoa.** Quem for aprovar deve ouvir cada uma no momento da cena.
+
+| Cue | Faixa (trecho) | Cenas e tempo do roteiro | O que a música faz | Clima da faixa (página) |
+| --- | --- | --- | --- | --- |
+| `MUS_PIO_LANCAMENTO` | A Kind Of Hope (0–80 s) | 1 · 0:00–0:55 | Entra do silêncio na noite de lançamento e sobe devagar até a travessia da Lua e as baterias nucleares | começa em tons ambient escuros, sobe para a orquestra e chega a uma melodia de duduk |
+| `MUS_PIO_CINTURAO` | Descent (0–60 s) | 2 · 0:55–1:33 | O medo: "ninguém sabia se dava para atravessar"; para no corte do dia 140 | escura, atmosférica, sinistra e misteriosa |
+| `MUS_PIO_MARAVILHA` | The Distant Sun (0–120 s) | 2 · 1:33–1:48, 3 · 1:48–2:15 e 4 · 2:15–3:00 | O corte limpo para a calma: os asteroides longe uns dos outros, Júpiter e a foto montada linha por linha (discreta, é a mais baixa de todas) | calma, olhar para as estrelas, cordas e violoncelo solo |
+| `MUS_PIO_JUPITER` | The Things That Keep Us Here (0–90 s) | 5 · 3:00–4:05 (`PIO.Closest`) | A radiação, 1 s de silêncio, o mergulho sobre as nuvens e o empurrão gravitacional | orquestral cinematográfica e edificante, flautas, percussão e cordas |
+| `MUS_PIO_ANOS` | Extrapolation (0–110 s) | 6 · 4:05–4:25 e 7 · 4:25–5:20 | A placa dourada e os anos que passam, instrumento por instrumento | piano sombrio com cordas, levemente edificante e melancólica |
+| `MUS_PIO_RADIO` | Signal to Noise (0–80 s) | 8 · 5:20–6:00 | A antena à noite; termina antes dos 2 a 3 s de silêncio total | neoclássica cinematográfica, misteriosa, melancólica e esperançosa |
+| `MUS_PIO_FINAL` | Filaments (245–340 s) | 9 · 6:00–6:40 | Rumo a Aldebaran e as seis primeiras vezes; o clímax cai por volta de 15 a 55 s do trecho | piano quente e sombrio, cordas emotivas e um final dramático por volta de 4:10 |
+
+**Estado atual do jogo (nove estados do roteiro v2):** `PIO.Launch → LANCAMENTO`, `Belt → CINTURAO`, `JupiterApproach → MARAVILHA`, `Imaging → MARAVILHA` (sem reiniciar), `Closest → JUPITER`, `Plaque` e `Outbound → ANOS` (sem reiniciar), `Listening → RADIO`, `Farewell → FINAL`. A revelação do cinturão (cena 2, 1:33) também é `MARAVILHA`: hoje ela só toca a partir de `JupiterApproach`, então o corte limpo "tensão → maravilha" dentro do Belt precisa de um evento de música no roteiro (`AudioDirector.SetCue`). Se os estados mudarem de novo, só a tabela de estados do `PioneerCueMap` (`PioneerDataBuilder`) muda; os sete cues e os clipes continuam os mesmos.
+
+**Pontos de atenção:**
+- Os trechos são curtos (60 a 120 s) e **repetem** (loop com emenda) se a cena durar mais, o que é provável no minigame e na sintonia, onde o ritmo é da pessoa; a emenda tem fade de 3 s. Se isso incomodar, trocar por um trecho mais longo ou por uma faixa com loop próprio.
+- **Ligados no jogo:** o evento `PIO.Belt.Reality` troca `CINTURAO` por `MARAVILHA` (ação `Music`, crossfade de 0,8 s) na revelação do cinturão (~1:33); `PIO.Closest.Dive` (`ShotEvent` a 14 s do plano `PIO09.Radiation`, na lacuna entre legendas) pede `Silence(1 s)`; `PIO.Listening.Attempt4` pede o silêncio de 2,5 s, encaminhado pelo `PioneerChapterController` (`listening.StateEvent` → `narration.RaiseEvent`). Todos dependem de o controlador receber o `PioneerAudioAdapter`.
+- **Orçamento Web:** 4,35 MB só da Pioneer, de 10 MB para todo o áudio do jogo. Reduzir (menos trechos ou bitrate menor) se Marte e a Surveyor precisarem de espaço.
+- A **atribuição é obrigatória** nos créditos do jogo: já existe a linha `credits.line.pioneer_music` no dossiê (PT e EN).

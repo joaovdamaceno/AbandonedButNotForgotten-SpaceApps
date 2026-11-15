@@ -23,6 +23,9 @@ namespace Abandoned.SpaceApps
 
         [SerializeField] UIDocument document;
 
+        /// <summary>O memorial não é mais preto total: no máximo este tanto de escuro, para a sonda seguindo devagar para Aldebaran aparecer por trás do texto.</summary>
+        public const float MemorialDimMax = 0.55f;
+
         VisualElement root, guide, black, memorial, choices, returnButton, replayButton;
         Label guideLabel, titleLabel, subtitleLabel, returnLabel, replayLabel;
         string lastGuide, lastTitle, lastSubtitle, lastReturn, lastReplay;
@@ -99,7 +102,7 @@ namespace Abandoned.SpaceApps
             }
 
             guide.style.display = state.GuideVisible ? DisplayStyle.Flex : DisplayStyle.None;
-            black.style.opacity = state.BlackAlpha;
+            black.style.opacity = state.BlackAlpha * MemorialDimMax; // escurece, mas deixa ver a sonda indo para a estrela (teste de jogo)
             black.style.display = state.BlackAlpha > 0f ? DisplayStyle.Flex : DisplayStyle.None;
             memorial.style.display = state.EndingVisible ? DisplayStyle.Flex : DisplayStyle.None;
             choices.style.display = state.ChoicesVisible ? DisplayStyle.Flex : DisplayStyle.None;

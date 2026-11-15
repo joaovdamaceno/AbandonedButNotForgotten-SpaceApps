@@ -245,7 +245,7 @@ namespace Abandoned.SpaceApps.Tests
 
             Assert.That(total, Is.EqualTo(417f).Within(0.01f), "soma nominal do capítulo");
             Assert.That(controller.JupiterSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.03.01", "PIO.03.02", "PIO.03.03", "PIO.03.04" }));
-            Assert.That(controller.ClosestSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.09.01", "PIO.09.02", "PIO.09.03", "PIO.09.04", "PIO.09.05", "PIO.09.06", "PIO.09.07" }));
+            Assert.That(controller.ClosestSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.09.01", "PIO.09.08", "PIO.09.02", "PIO.09.03", "PIO.09.04", "PIO.09.05", "PIO.09.06", "PIO.09.09", "PIO.09.10", "PIO.09.07" }));
         }
 
         [Test]

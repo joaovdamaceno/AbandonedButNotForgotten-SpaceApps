@@ -27,7 +27,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string StageRootName = "[R5] Pioneer Stage";
         public const string InstanceName = "SpaceStage";
         /// <summary>Textura de Júpiter da NASA (JPL/Caltech, de imagens da Voyager), original preservado em ArtSource.</summary>
-        public const string JupiterSourcePath = "ArtSource/Pioneer10/PIO-003/original/Jupiter.jpg";
+        public const string JupiterSourcePath = "ArtSource/Pioneer10/PIO-jupiter-2k/2k_jupiter.jpg"; // CC BY 4.0, Solar System Scope (antes: NASA/JPL 720×360)
         public const string JupiterTexturePath = StageFolder + "/Textures/PIO_Jupiter_NASA.jpg";
         public const string ModelInstanceName = "PioneerActors";
 
@@ -76,7 +76,8 @@ namespace Abandoned.SpaceApps.EditorTools
 
         sealed class StageAssets
         {
-            public Mesh Sphere, SkySphere, LowSphere, StarMesh, BeltRocks, BeltNike, Trajectory, GlowQuad, PlaqueBox;
+            public Mesh Sphere, SkySphere, LowSphere, StarMesh, BeltRocks, BeltNike, Trajectory, GlowQuad, PlaqueBox, SystemBelt;
+            public Material SystemSun, SystemSaturn, SystemUranus, SystemNeptune, SystemOrbit, SystemPath, SystemBeacon;
             public Material Jupiter, Sky, Stars, Ground, Aldebaran, AldebaranHalo, BeltRock, Mars, Earth, Ganymede, Callisto, Europa, TrajectoryLine, PlaqueGold, PlaqueFace;
         }
 
@@ -93,6 +94,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 GlowQuad = MeshAsset(context, "PIO_GlowQuad", PioneerStageArt.GlowQuad),
                 PlaqueBox = MeshAsset(context, "PIO_PlaqueHeroBox", m => PioneerStageArt.Box(m, "PIO_PlaqueHeroBox", new Vector3(PlaqueHeroWidthMeters, PlaqueHeroHeightMeters, PlaqueHeroThicknessMeters))),
                 Trajectory = MeshAsset(context, "PIO_JupiterTrajectory", m => PioneerStageArt.Ribbon(m, TrajectoryPoints(), TrajectoryWidthMeters)),
+                SystemBelt = MeshAsset(context, "PIO_SystemBelt", m => PioneerStageArt.SparseRockField(m, SystemBeltCenters(), 7202, 0.14f, 0.9f)),
             };
 
             var sky = TextureAsset(context, "PIO_Starfield.png", () => PioneerStageArt.Starfield(2048, 1024, 800, 1972), 2048, false, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
@@ -106,7 +108,7 @@ namespace Abandoned.SpaceApps.EditorTools
             a.Aldebaran = Unlit(context, "PIO_AldebaranMarker", new Color(1f, 0.74f, 0.52f), null);
             var glow = TextureAsset(context, "PIO_StarGlow.png", () => PioneerStageArt.GlowTexture(128), 128, false, TextureWrapMode.Clamp, TextureWrapMode.Clamp, FilterMode.Bilinear, StageFolder, true);
             a.AldebaranHalo = AdditiveUnlit(context, "PIO_AldebaranHalo", new Color(1f, 0.55f, 0.32f, 0.85f), glow);
-            a.BeltRock = Lit(context, "PIO_BeltRock", new Color(0.30f, 0.29f, 0.28f), 0f, 0.08f);
+            a.BeltRock = Lit(context, "PIO_BeltRock", new Color(0.78f, 0.74f, 0.68f), 0f, 0.15f);
             var marsTexture = TextureAsset(context, "PIO_MarsSurface.png", () => PioneerStageArt.MarsSurface(1024, 512, 1976), 1024, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp);
             a.Mars = Lit(context, "PIO_Mars", Color.white, 0f, 0.04f, marsTexture);
             var earthMap = EarthTexture(context);
@@ -122,6 +124,13 @@ namespace Abandoned.SpaceApps.EditorTools
             a.Callisto = Lit(context, "PIO_Callisto", Color.white, 0f, 0.05f, TextureAsset(context, "PIO_Callisto.png", () => PioneerStageArt.GalileanMoonSurface(512, 256, 1610, 1), 512, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp));
             a.Europa = Lit(context, "PIO_Europa", Color.white, 0f, 0.1f, TextureAsset(context, "PIO_Europa.png", () => PioneerStageArt.GalileanMoonSurface(512, 256, 1610, 2), 512, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp));
             a.TrajectoryLine = Unlit(context, "PIO_JupiterTrajectory", new Color(1f, 0.84f, 0.46f), null);
+            a.SystemSun = Unlit(context, "PIO_SystemSun", new Color(1f, 0.84f, 0.42f), null);
+            a.SystemSaturn = Lit(context, "PIO_SystemSaturn", new Color(0.86f, 0.78f, 0.58f), 0f, 0.1f);
+            a.SystemUranus = Lit(context, "PIO_SystemUranus", new Color(0.62f, 0.85f, 0.9f), 0f, 0.1f);
+            a.SystemNeptune = Lit(context, "PIO_SystemNeptune", new Color(0.28f, 0.42f, 0.92f), 0f, 0.1f);
+            a.SystemOrbit = Unlit(context, "PIO_SystemOrbit", new Color(0.46f, 0.52f, 0.62f), null);
+            a.SystemPath = Unlit(context, "PIO_SystemPath", new Color(1f, 0.82f, 0.42f), null);
+            a.SystemBeacon = AdditiveUnlit(context, "PIO_SystemBeacon", new Color(1f, 0.92f, 0.62f, 0.9f), glow);
             return a;
         }
 
@@ -184,7 +193,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var importer = (TextureImporter)AssetImporter.GetAtPath(JupiterTexturePath);
             if (importer.textureType != TextureImporterType.Default || !importer.sRGBTexture || !importer.mipmapEnabled
                 || importer.wrapModeU != TextureWrapMode.Repeat || importer.wrapModeV != TextureWrapMode.Clamp
-                || importer.maxTextureSize != 1024 || importer.filterMode != FilterMode.Trilinear)
+                || importer.maxTextureSize != 2048 || importer.filterMode != FilterMode.Trilinear)
             {
                 importer.textureType = TextureImporterType.Default;
                 importer.sRGBTexture = true;
@@ -192,7 +201,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 importer.wrapModeU = TextureWrapMode.Repeat;
                 importer.wrapModeV = TextureWrapMode.Clamp;
                 importer.filterMode = FilterMode.Trilinear;
-                importer.maxTextureSize = 1024;
+                importer.maxTextureSize = 2048;
                 importer.textureCompression = TextureImporterCompression.Compressed;
                 importer.SaveAndReimport();
             }
@@ -384,6 +393,7 @@ namespace Abandoned.SpaceApps.EditorTools
             moons.SetActive(false);
             var trajectory = Visual(Ensure(deepSpace.transform, "JupiterTrajectory"), a.Trajectory, a.TrajectoryLine);
             trajectory.SetActive(false);
+            var solarSystem = BuildSolarSystem(deepSpace.transform, a);
 
             // Aldebaran: um miolo laranja-claro e um halo largo e suave (aditivo) voltado para a câmera; bem mais visível que as outras estrelas.
             // Cena 6: a placa dourada em destaque (uma chapa com a face gravada), só nos anchors PIO.Plaque.*.
@@ -418,6 +428,7 @@ namespace Abandoned.SpaceApps.EditorTools
             so.FindProperty("earth").objectReferenceValue = earth.transform;
             so.FindProperty("moons").objectReferenceValue = moons.transform;
             so.FindProperty("trajectory").objectReferenceValue = trajectory.transform;
+            so.FindProperty("solarSystem").objectReferenceValue = solarSystem.transform;
             so.FindProperty("plaqueHero").objectReferenceValue = plaqueHero.transform;
             so.FindProperty("aldebaranMarker").objectReferenceValue = aldebaran.transform;
             so.FindProperty("aldebaranDirection").vector3Value = AldebaranDirection;
@@ -522,18 +533,20 @@ namespace Abandoned.SpaceApps.EditorTools
         public static readonly Vector2 EarthCompareViewport = new Vector2(0.2f, 0.7f);
         public static readonly Vector2 EarthCompareEnterViewport = new Vector2(-0.12f, 0.7f);
         public const float ApproachOpenFov = 36f;
-        public const int BeltRockCount = 70;
+        public const int BeltRockCount = 110;
         public const int BeltFieldSeed = 1972;
         /// <summary>Anchor da teleobjetiva/dolly zoom: a câmera chega a ~82 m da sonda; o campo de pedras fica atrás dela.</summary>
         public static readonly Vector3 BeltFieldCamera = new Vector3(-20f, 20f, 77f).normalized * BeltFieldCameraMeters;
         // O cinturão de verdade: pedras pequenas e bem separadas, com muito espaço vazio (a chance de acertar uma é mínima).
         public const float BeltClearRadiusMeters = 90f;
         public const float BeltOuterRadiusMeters = 520f;
-        public const float BeltRockMinMeters = 2.5f;
-        public const float BeltRockMaxMeters = 8f;
+        public const float BeltRockMinMeters = 2f;
+        public const float BeltRockMaxMeters = 30f;
         public const float BeltRockSeparationMeters = 60f;
         public const float BeltCameraClearanceMeters = 80f;
         public const float BeltFieldCameraMeters = 650f;
+        public const float BeltPovFov = 70f;
+        public const string BeltPovAnchorId = "PIO.Belt.Pov";
         public static List<Vector3> BeltRockCenters() =>
             PioneerStageArt.SparseRockCenters(BeltRockCount, BeltFieldSeed, BeltClearRadiusMeters, BeltOuterRadiusMeters, BeltRockSeparationMeters,
                 BeltFieldCamera.normalized, BeltFieldCameraMeters, BeltCameraClearanceMeters);
@@ -641,6 +654,97 @@ namespace Abandoned.SpaceApps.EditorTools
             ground.transform.localScale = new Vector3(40f, 1f, 40f);
         }
 
+        // ---------- Sistema Solar esquemático em 3D (cenas 2 e 7) ----------
+
+        public const string SystemBeltAnchorId = "PIO.System.Belt";
+        public const string SystemOutAnchorId = "PIO.System.Out";
+        /// <summary>Afastado do resto do palco (a validação exige anchors a menos de 1000 m da origem); o céu acompanha a câmera.</summary>
+        public static readonly Vector3 SystemCenter = new Vector3(350f, 0f, -350f);
+        /// <summary>Raio (m) = escala × raiz da distância em UA: esquemático, para o interior do sistema não virar um ponto.</summary>
+        public const float SystemMetersPerRootAu = 28f;
+        public const float SystemPathAngleDegrees = -38f;
+        public static readonly string[] SystemPlanetNames = { "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
+        public static readonly float[] SystemPlanetAu = { 1f, 1.52f, 5.2f, 9.58f, 19.2f, 30.05f };
+        static readonly float[] SystemPlanetAngle = { 110f, 170f, 215f, 285f, 335f, 20f };
+        static readonly float[] SystemPlanetSize = { 3.4f, 2.6f, 9f, 8f, 5.2f, 5.2f };
+        public const float SystemBeltInnerAu = 2.1f;
+        public const float SystemBeltOuterAu = 3.3f;
+
+        public static float SystemRadius(float au) => SystemMetersPerRootAu * Mathf.Sqrt(Mathf.Max(0f, au));
+
+        /// <summary>Ponto (local ao Sistema Solar) a <paramref name="au"/> UA do Sol e no ângulo dado, no plano das órbitas.</summary>
+        public static Vector3 SystemLocalPoint(float au, float angleDegrees)
+        {
+            var angle = angleDegrees * Mathf.Deg2Rad;
+            return new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * SystemRadius(au);
+        }
+
+        static List<Vector3> SystemBeltCenters()
+        {
+            var random = new System.Random(7202);
+            var centers = new List<Vector3>();
+            for (var i = 0; i < 420; i++)
+            {
+                var au = Mathf.Lerp(SystemBeltInnerAu, SystemBeltOuterAu, (float)random.NextDouble());
+                var point = SystemLocalPoint(au, (float)random.NextDouble() * 360f);
+                point.y = ((float)random.NextDouble() - 0.5f) * 1.4f;
+                centers.Add(point);
+            }
+
+            return centers;
+        }
+
+        static LineRenderer SystemLine(GameObject go, Material material, Vector3[] points, bool loop, float width)
+        {
+            var line = Get<LineRenderer>(go);
+            line.useWorldSpace = false;
+            line.loop = loop;
+            line.positionCount = points.Length;
+            line.SetPositions(points);
+            line.widthMultiplier = width;
+            line.alignment = LineAlignment.View;
+            line.numCapVertices = 0;
+            line.sharedMaterial = material;
+            line.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            line.receiveShadows = false;
+            line.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
+            line.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
+            return line;
+        }
+
+        /// <summary>
+        /// O Sistema Solar esquemático das cenas 2 e 7: sol, seis planetas (tamanhos exagerados), as órbitas (uma LineRenderer por planeta,
+        /// que o <see cref="PioneerSystemTour"/> acende ao ser cruzada), o cinturão de asteroides (pedras pequenas de tamanhos variados) e a
+        /// linha do caminho da sonda. Nada aqui é à escala; só as anchors <c>PIO.System.*</c> o ligam.
+        /// </summary>
+        static GameObject BuildSolarSystem(Transform deepSpace, StageAssets a)
+        {
+            var system = Ensure(deepSpace, "SolarSystem");
+            system.transform.localPosition = SystemCenter;
+            var sun = Visual(Ensure(system.transform, "Sun"), a.Sphere, a.SystemSun);
+            sun.transform.localScale = Vector3.one * 10f;
+            var materials = new[] { a.Earth, a.Mars, a.Jupiter, a.SystemSaturn, a.SystemUranus, a.SystemNeptune };
+            for (var i = 0; i < SystemPlanetNames.Length; i++)
+            {
+                var planet = Visual(Ensure(system.transform, "Planet_" + SystemPlanetNames[i]), a.Sphere, materials[i]);
+                planet.transform.localPosition = SystemLocalPoint(SystemPlanetAu[i], SystemPlanetAngle[i]);
+                planet.transform.localScale = Vector3.one * SystemPlanetSize[i];
+                var ring = new Vector3[128];
+                for (var k = 0; k < ring.Length; k++)
+                    ring[k] = SystemLocalPoint(SystemPlanetAu[i], k / (float)ring.Length * 360f);
+                SystemLine(Ensure(system.transform, "Orbit_" + SystemPlanetNames[i]), a.SystemOrbit, ring, true, 0.7f);
+            }
+
+            Visual(Ensure(system.transform, "Belt"), a.SystemBelt, a.BeltRock);
+            Ensure(system.transform, "BeltMarker").transform.localPosition = SystemLocalPoint((SystemBeltInnerAu + SystemBeltOuterAu) * 0.5f, 62f);
+            var path = new[] { SystemLocalPoint(1f, SystemPathAngleDegrees), SystemLocalPoint(72f, SystemPathAngleDegrees) };
+            SystemLine(Ensure(system.transform, "ProbePath"), a.SystemPath, path, false, 1.1f);
+            var beacon = Visual(Ensure(system.transform, "Beacon"), a.GlowQuad, a.SystemBeacon);
+            beacon.transform.localScale = new Vector3(26f, 26f, 1f);
+            system.SetActive(false);
+            return system;
+        }
+
         // ---------- Anchors e luz ----------
 
         static readonly Vector3 JupiterDirection = JupiterPosition.normalized;
@@ -653,7 +757,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public static Vector3 TrajectoryIncoming => new Vector3(JupiterDirection.x, 0f, JupiterDirection.z).normalized;
         public static Vector3 TrajectorySide => Vector3.Cross(Vector3.up, TrajectoryIncoming).normalized;
         /// <summary>Plano alto da curva (cena 5d): 620 m acima do plano da trajetória, um pouco antes de Júpiter, olhando quase de cima.</summary>
-        public static Vector3 BendCamera => JupiterPosition + Vector3.up * 620f - TrajectoryIncoming * 230f + TrajectorySide * 40f;
+        public static Vector3 BendCamera => JupiterPosition + Vector3.up * 700f - TrajectoryIncoming * 230f + TrajectorySide * 40f;
         public static Vector3 BendLookAt => JupiterPosition + TrajectoryIncoming * 40f + TrajectorySide * 70f;
 
         public static Vector3[] TrajectoryPoints()
@@ -713,16 +817,16 @@ namespace Abandoned.SpaceApps.EditorTools
 
         static List<PioneerLightGroup> LightGroups() => new List<PioneerLightGroup>
         {
-            Group("PIO.Light.ColdRim", new Vector3(-0.95f, -0.1f, 0.25f), new Color(0.72f, 0.83f, 1f), 1.7f, new Vector3(-0.3f, -0.2f, -1f), new Color(0.3f, 0.38f, 0.55f), 0.04f),
-            Group("PIO.Light.Cruise", new Vector3(-0.55f, -0.25f, -0.8f), new Color(0.84f, 0.9f, 1f), 1.25f, new Vector3(0.6f, 0.3f, 0.75f), new Color(0.45f, 0.55f, 0.75f), 0.12f),
-            Group("PIO.Light.JupiterAxis", JupiterKeyDirection, new Color(1f, 0.95f, 0.88f), 1.3f, new Vector3(0.7f, 0.25f, 0.65f), new Color(0.4f, 0.48f, 0.65f), 0.08f),
+            Group("PIO.Light.ColdRim", new Vector3(-0.95f, -0.1f, 0.25f), new Color(0.72f, 0.83f, 1f), 1.7f, new Vector3(-0.3f, -0.2f, -1f), new Color(0.39f, 0.41f, 0.43f), 0.04f),
+            Group("PIO.Light.Cruise", new Vector3(-0.55f, -0.25f, -0.8f), new Color(0.84f, 0.9f, 1f), 1.25f, new Vector3(0.6f, 0.3f, 0.75f), new Color(0.56f, 0.58f, 0.61f), 0.12f),
+            Group("PIO.Light.JupiterAxis", JupiterKeyDirection, new Color(1f, 0.95f, 0.88f), 1.3f, new Vector3(0.7f, 0.25f, 0.65f), new Color(0.49f, 0.51f, 0.53f), 0.08f),
             // Cena 6: luz de frente, um pouco de cima e da direita, para a placa dourada brilhar sem estourar.
-            Group("PIO.Light.PlaqueHero", new Vector3(0.25f, -0.3f, 0.92f), new Color(1f, 0.9f, 0.76f), 1.5f, new Vector3(-0.4f, 0.2f, 0.9f), new Color(0.45f, 0.5f, 0.65f), 0.2f),
-            Group("PIO.Light.Plaque", new Vector3(0.36f, -0.86f, 0.38f), new Color(1f, 0.88f, 0.72f), 1.1f, new Vector3(0.3f, -0.6f, 0.7f), new Color(0.45f, 0.5f, 0.65f), 0.15f),
-            Group("PIO.Light.FarSun", new Vector3(-0.1f, -0.15f, -1f), new Color(0.86f, 0.92f, 1f), 0.75f, new Vector3(0.4f, 0.3f, 1f), new Color(0.35f, 0.4f, 0.55f), 0.05f),
+            Group("PIO.Light.PlaqueHero", new Vector3(0.25f, -0.3f, 0.92f), new Color(1f, 0.9f, 0.76f), 1.5f, new Vector3(-0.4f, 0.2f, 0.9f), new Color(0.52f, 0.53f, 0.55f), 0.2f),
+            Group("PIO.Light.Plaque", new Vector3(0.36f, -0.86f, 0.38f), new Color(1f, 0.88f, 0.72f), 1.1f, new Vector3(0.3f, -0.6f, 0.7f), new Color(0.52f, 0.53f, 0.55f), 0.15f),
+            Group("PIO.Light.FarSun", new Vector3(-0.1f, -0.15f, -1f), new Color(0.86f, 0.92f, 1f), 0.75f, new Vector3(0.4f, 0.3f, 1f), new Color(0.42f, 0.43f, 0.45f), 0.05f),
             // Fase 5: na Terra (plataforma de lançamento e antena da Deep Space Network) a luz é quente; no espaço, fria.
-            Group("PIO.Light.EarthWarm", new Vector3(0.3f, -0.6f, 0.7f), new Color(1f, 0.74f, 0.46f), 0.9f, new Vector3(-0.4f, -0.3f, -0.8f), new Color(0.42f, 0.3f, 0.26f), 0.1f),
-            Group("PIO.Light.FarewellRim", new Vector3(-0.75f, -0.2f, -0.6f), new Color(0.85f, 0.9f, 1f), 0.55f, new Vector3(0.5f, 0.4f, 0.7f), new Color(0.3f, 0.35f, 0.5f), 0.03f),
+            Group("PIO.Light.EarthWarm", new Vector3(0.3f, -0.6f, 0.7f), new Color(1f, 0.74f, 0.46f), 0.9f, new Vector3(-0.4f, -0.3f, -0.8f), new Color(0.34f, 0.32f, 0.32f), 0.1f),
+            Group("PIO.Light.FarewellRim", new Vector3(-0.75f, -0.2f, -0.6f), new Color(0.85f, 0.9f, 1f), 0.55f, new Vector3(0.5f, 0.4f, 0.7f), new Color(0.37f, 0.38f, 0.4f), 0.03f),
         };
 
         static PioneerLightGroup Group(string id, Vector3 keyDirection, Color keyColor, float keyIntensity, Vector3 fillDirection, Color fillColor, float fillIntensity) =>
@@ -743,7 +847,7 @@ namespace Abandoned.SpaceApps.EditorTools
             public Vector3 Position, LookAt;
             public float Fov = 40f, SpinScale = 1f;
             public PioneerStageRegion Region;
-            public bool Jupiter, Aldebaran, BeltField, BeltNike, Mars, Moons, Trajectory, PlaqueHero, HideProbe;
+            public bool Jupiter, Aldebaran, BeltField, BeltNike, Mars, Moons, Trajectory, PlaqueHero, HideProbe, SolarSystem;
             public Rect UiFrame;
         }
 
@@ -797,6 +901,9 @@ namespace Abandoned.SpaceApps.EditorTools
                 new AnchorSpec { Id = "PIO.Belt.Field", State = "PIO.Belt", Function = "Cena 2 · teleobjetiva e dolly zoom: a sonda pequena na frente de uma parede de pedras que se abre (campo de pedras ligado)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f, BeltField = true,
                     Position = BeltFieldCamera, LookAt = Vector3.zero },
+                new AnchorSpec { Id = "PIO.Belt.Pov", State = "PIO.Belt", Function = "Cena 2 · ponto de vista da sonda dentro do cinturão: a câmera fica na sonda (modelo escondido) e as pedras, dispersas e de tamanhos variados, passam ao longe",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = BeltPovFov, BeltField = true, HideProbe = true,
+                    Position = Vector3.zero, LookAt = -BeltFieldCamera.normalized * 100f },
                 new AnchorSpec { Id = "PIO.Belt.Nike", State = "PIO.Belt", Function = "Cena 2 · a revelação: espaço vazio e uma única pedra distante (307 Nike), a milhões de km",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 30f, BeltNike = true,
                     Position = BeltNikeCamera, LookAt = BeltNikeLookAt },
@@ -831,8 +938,8 @@ namespace Abandoned.SpaceApps.EditorTools
                 new AnchorSpec { Id = "PIO.Closest.Europa", State = "PIO.Closest", Function = "Cena 5a · Europa cruza o quadro (as luas ligadas)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 30f, Moons = true,
                     Position = MoonCamera(2), LookAt = MoonSpecs[2].Position },
-                new AnchorSpec { Id = "PIO.Closest.Bend", State = "PIO.Closest", Function = "Cena 5d · plano alto: a trajetória da sonda curva em volta de Júpiter (trajetória ligada)",
-                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 50f, Jupiter = true, Trajectory = true,
+                new AnchorSpec { Id = "PIO.Closest.Bend", State = "PIO.Closest", Function = "Cena 5d · o estilingue em primeira pessoa: a câmera é a da sonda (modelo escondido) e percorre a trajetória em volta de Júpiter em tempo acelerado (PioneerSlingshot move esta pose)",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 58f, Jupiter = true, Trajectory = true, HideProbe = true,
                     Position = BendCamera, LookAt = BendLookAt },
                 new AnchorSpec { Id = "PIO.Plaque", State = "PIO.Plaque", Function = "Placa presa aos suportes da antena; rotação visual suspensa só neste close",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Plaque", Fov = 36f, Jupiter = true, SpinScale = 0f,
@@ -843,6 +950,12 @@ namespace Abandoned.SpaceApps.EditorTools
                 new AnchorSpec { Id = "PIO.Outbound", State = "PIO.Outbound", Function = "Sonda se afasta com a antena voltada à Terra; o diagrama orbital 2D (PIO-010) assume o quadro",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.FarSun", Fov = 40f,
                     Position = new Vector3(-4.5f, -1.8f, 17f), LookAt = new Vector3(0f, 0f, 0f) },
+                new AnchorSpec { Id = SystemBeltAnchorId, State = "PIO.Belt", Function = "Cena 2 · o Sistema Solar esquemático em 3D (sol, planetas, cinturão de asteroides e o caminho da sonda), visto de cima e de lado",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 40f, SolarSystem = true,
+                    Position = SystemCenter + new Vector3(-35f, 135f, -150f), LookAt = SystemCenter + new Vector3(15f, 0f, -8f) },
+                new AnchorSpec { Id = SystemOutAnchorId, State = "PIO.Outbound", Function = "Cena 7 · o Sistema Solar esquemático em 3D de Júpiter a Netuno e além, com a sonda cruzando as órbitas",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Cruise", Fov = 40f, SolarSystem = true,
+                    Position = SystemCenter + new Vector3(-70f, 380f, -340f), LookAt = SystemCenter + new Vector3(45f, 0f, -45f) },
                 new AnchorSpec { Id = "PIO.Listening", State = "PIO.Listening", Function = "Antena terrestre sob céu noturno (silhueta DSN da PIO-011 no DishSocket); painel de onda embaixo à direita",
                     Region = PioneerStageRegion.GroundStation, Light = "PIO.Light.EarthWarm", Fov = 55f,
                     // Ângulo baixo: a câmera olha para cima, de modo que o chão preto fica abaixo do quadro e a antena se recorta contra as estrelas.
@@ -883,6 +996,7 @@ namespace Abandoned.SpaceApps.EditorTools
                     showPlaqueHero = spec.PlaqueHero,
                     hideProbe = spec.HideProbe,
                     showTrajectory = spec.Trajectory,
+                    showSolarSystem = spec.SolarSystem,
                     spinAlignSocket = spec.AlignSocket,
                     spinAlignTowards = spec.AlignTowards,
                     spinScale = spec.SpinScale,
@@ -940,6 +1054,7 @@ namespace Abandoned.SpaceApps.EditorTools
             p.FindPropertyRelative("showPlaqueHero").boolValue = a.showPlaqueHero;
             p.FindPropertyRelative("hideProbe").boolValue = a.hideProbe;
             p.FindPropertyRelative("showTrajectory").boolValue = a.showTrajectory;
+            p.FindPropertyRelative("showSolarSystem").boolValue = a.showSolarSystem;
             p.FindPropertyRelative("spinAlignSocket").stringValue = a.spinAlignSocket ?? "";
             p.FindPropertyRelative("spinAlignTowards").stringValue = a.spinAlignTowards ?? "";
             p.FindPropertyRelative("spinScale").floatValue = a.spinScale;
@@ -1013,7 +1128,7 @@ namespace Abandoned.SpaceApps.EditorTools
         {
             RenderSettings.skybox = null;
             RenderSettings.ambientMode = AmbientMode.Flat;
-            RenderSettings.ambientLight = new Color(0.018f, 0.021f, 0.03f);
+            RenderSettings.ambientLight = new Color(0.010f, 0.010f, 0.011f); // neutro e escuro, sem tom azul
             RenderSettings.fog = false;
             RenderSettings.defaultReflectionMode = DefaultReflectionMode.Custom;
             RenderSettings.customReflectionTexture = null;

@@ -65,6 +65,9 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("PIO.Closest (a máxima aproximação de Júpiter) é só cinema: conclui quando a sequência termina.")] SequenceDefinition closestSequence;
         [SerializeField, Tooltip("PIO.Belt (roteiro v2, cena 2) é só cinema: a sequência de 54 s e o contador de dias.")] SequenceDefinition beltCinemaSequence;
         [SerializeField] PioneerBeltCounter beltCounter;
+        [SerializeField, Tooltip("Cena 9: a sonda segue devagar, sem parar, na direção de Aldebaran.")] PioneerFarewellDrift farewellDrift;
+        [SerializeField, Tooltip("Cenas 2 e 7: a sonda no Sistema Solar esquemático em 3D.")] PioneerSystemTour systemTour;
+        [SerializeField, Tooltip("Cena 5d: a sonda percorre a trajetória em volta de Júpiter em tempo acelerado.")] PioneerSlingshot slingshot;
         [SerializeField, Tooltip("Cena 3: Júpiter nasce de um ponto e a Terra pequena entra para a comparação.")] PioneerJupiterReveal jupiterReveal;
         [SerializeField, Tooltip("Cena 5: medidor de radiação, estática, velocidade e comparação de distâncias.")] PioneerClosestHud closestHud;
         [SerializeField, Tooltip("Cena 7: ano, linha do tempo, instrumentos e medidor de energia dos RTG.")] PioneerYearsHud yearsHud;
@@ -157,6 +160,9 @@ namespace Abandoned.SpaceApps
             belt.Initialize(sequenceDirector, interactions, router, time, text);
             beltCounter.Initialize(sequenceDirector, text);
             jupiterReveal.Initialize(sequenceDirector, text);
+            slingshot.Initialize(sequenceDirector);
+            systemTour.Initialize(sequenceDirector, text);
+            farewellDrift.Initialize(time);
             closestHud.Initialize(sequenceDirector, text);
             yearsHud.Initialize(sequenceDirector, text);
             firstsHud.Initialize(sequenceDirector, text);
@@ -174,6 +180,17 @@ namespace Abandoned.SpaceApps
             Bind(plaque, nameof(plaque), h => plaque.Completed += h, h => plaque.Completed -= h, "PIO.Plaque");
             Bind(outbound, nameof(outbound), h => outbound.Completed += h, h => outbound.Completed -= h, "PIO.Outbound");
             Bind(listening, nameof(listening), h => listening.Completed += h, h => listening.Completed -= h, "PIO.Listening");
+            // Cena 7: o equipamento secundário é desligado quando a comunicação é priorizada.
+            Action onInstrumentOff = () => narration.RaiseEvent("PIO.Outbound.PowerDown");
+            yearsHud.InstrumentSwitchedOff += onInstrumentOff;
+            unsubscribers.Add(() => yearsHud.InstrumentSwitchedOff -= onInstrumentOff);
+            Action onPowerConfirmed = onInstrumentOff;
+            outbound.PowerConfirmed += onPowerConfirmed;
+            unsubscribers.Add(() => outbound.PowerConfirmed -= onPowerConfirmed);
+            // Eventos de áudio da sintonia (contatos, silêncio da 4ª tentativa) viram efeitos pela narração.
+            Action<string> onListeningEvent = narration.RaiseEvent;
+            listening.StateEvent += onListeningEvent;
+            unsubscribers.Add(() => listening.StateEvent -= onListeningEvent);
             Bind(farewell, nameof(farewell), h => farewell.Completed += h, h => farewell.Completed -= h, "PIO.Farewell");
 
             Action onReturn = OnReturnRequested;
@@ -237,7 +254,7 @@ namespace Abandoned.SpaceApps
                 case "PIO.Plaque": plaque.Begin(); break;
                 case "PIO.Outbound": outbound.Begin(); break;
                 case "PIO.Listening": listening.Begin(); break;
-                case "PIO.Farewell": farewell.Begin(); break;
+                case "PIO.Farewell": farewell.Begin(); farewellDrift.Begin(); break;
             }
         }
 
@@ -349,6 +366,12 @@ namespace Abandoned.SpaceApps
                 beltCounter.Hide();
             if (jupiterReveal != null)
                 jupiterReveal.Hide();
+            if (slingshot != null)
+                slingshot.Hide();
+            if (systemTour != null)
+                systemTour.Hide();
+            if (farewellDrift != null)
+                farewellDrift.Hide();
             if (closestHud != null)
                 closestHud.Hide();
             if (yearsHud != null)
@@ -422,6 +445,9 @@ namespace Abandoned.SpaceApps
             Require(beltCinemaSequence, nameof(beltCinemaSequence));
             Require(beltCounter, nameof(beltCounter));
             Require(jupiterReveal, nameof(jupiterReveal));
+            Require(slingshot, nameof(slingshot));
+            Require(systemTour, nameof(systemTour));
+            Require(farewellDrift, nameof(farewellDrift));
             Require(closestHud, nameof(closestHud));
             Require(yearsHud, nameof(yearsHud));
             Require(firstsHud, nameof(firstsHud));

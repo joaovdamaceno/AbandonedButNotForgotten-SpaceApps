@@ -87,7 +87,7 @@
     position: absolute;
     left: 27%;
     right: 27%;
-    bottom: 5%;
+    bottom: 17%; /* acima da faixa da legenda: o aviso "Toque E" ficava atrás dela */
     flex-direction: column;
     align-items: center;
 }

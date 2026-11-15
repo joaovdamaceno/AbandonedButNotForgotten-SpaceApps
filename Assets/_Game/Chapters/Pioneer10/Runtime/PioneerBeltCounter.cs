@@ -13,6 +13,39 @@ namespace Abandoned.SpaceApps
     /// </summary>
     public sealed class PioneerBeltCounter : MonoBehaviour
     {
+        /// <summary>O mapa do Sistema Solar com o cinturão e o caminho da sonda: a visão larga (8–19 s), antes do ponto de vista da sonda.</summary>
+        public const float MapStartSeconds = 8f;
+        public const float MapEndSeconds = 19f;
+        public static readonly Rect MapFrame = new Rect(0.27f, 0.12f, 0.46f, 0.64f);
+        /// <summary>A sonda sai da órbita de Marte (1,52 UA) e chega ao meio do cinturão (3 UA) no fim do mapa.</summary>
+        public const float MapStartAu = 1.52f;
+        public const float MapEndAu = 3f;
+
+        public static bool MapVisibleAt(float seconds) => seconds >= MapStartSeconds && seconds < MapEndSeconds;
+
+        /// <summary>Distância da sonda ao Sol (UA) no mapa: parte de Marte e avança suavemente pelo cinturão.</summary>
+        public static float MapProbeAuAt(float seconds)
+        {
+            var u = Mathf.Clamp01((seconds - MapStartSeconds) / (MapEndSeconds - MapStartSeconds));
+            return Mathf.Lerp(MapStartAu, MapEndAu, u * u * (3f - 2f * u));
+        }
+
+        /// <summary>Estado do mapa da cena 2 no instante dado.</summary>
+        public static SystemMapElement.State MapStateAt(float seconds, Func<string, string> resolve) => new SystemMapElement.State
+        {
+            Mode = SystemMapElement.MapMode.Inner,
+            ProbeAu = MapProbeAuAt(seconds),
+            PathStartAu = MapStartAu,
+            PathEndAu = 4.4f,
+            ShowPath = true,
+            PulseRing = 2,
+            Pulse01 = Mathf.Repeat(seconds, 1.6f) / 1.6f,
+            Labels = new[] { resolve("PIO.UI.map_earth"), resolve("PIO.UI.map_mars"), resolve("PIO.UI.map_belt"), resolve("PIO.UI.orbit_jupiter") },
+            Title = resolve("PIO.UI.map_title_belt"),
+            Footnote = resolve("PIO.UI.map_note"),
+            ProbeLabel = resolve("PIO.UI.map_probe"),
+        };
+
         /// <summary>Só a data, no começo (mostra "15 JUL 1972").</summary>
         public const float DateOnlyEndSeconds = 6f;
         /// <summary>O contador começa a acelerar (início do plano do dolly zoom).</summary>

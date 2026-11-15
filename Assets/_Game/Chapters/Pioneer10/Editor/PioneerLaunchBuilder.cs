@@ -375,6 +375,20 @@ namespace Abandoned.SpaceApps.EditorTools
             return EarthLocal + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * radius;
         }
 
+        /// <summary>
+        /// A mesma trajetória, prolongada em linha reta além do último ponto (s &gt; 1) até sair do quadro: no teste de jogo a linha amarela
+        /// "parava no meio da tela". Em <paramref name="s"/> de 0 a 1 é igual a <see cref="TrajectoryPoint"/>.
+        /// </summary>
+        public const float TrajectoryExtent = 1.9f;
+        public static Vector3 ExtendedTrajectoryPoint(float s)
+        {
+            if (s <= 1f)
+                return TrajectoryPoint(s);
+
+            var end = TrajectoryPoint(1f) - EarthLocal;
+            return EarthLocal + end.normalized * (end.magnitude + (s - 1f) * 130f);
+        }
+
         static Transform BuildDiagram(SceneBuildContext context, Transform root, LaunchAssets a)
         {
             var diagram = context.Child(root, "LunarDiagram").transform;
@@ -395,7 +409,7 @@ namespace Abandoned.SpaceApps.EditorTools
             }
 
             Line(context, context.Child(diagram, "MoonOrbit"), a.Orbit, orbit, true, 0.28f);
-            var path = Enumerable.Range(0, 49).Select(i => TrajectoryPoint(i / 48f)).ToArray();
+            var path = Enumerable.Range(0, 65).Select(i => ExtendedTrajectoryPoint(i / 64f * TrajectoryExtent)).ToArray(); // até sair do quadro
             Line(context, context.Child(diagram, "Trajectory"), a.Trajectory, path, false, 0.36f);
             DiagramVisual(context, context.Child(diagram, "TraceHead"), a.Sphere, a.Trace, TrajectoryPoint(0f), 0.9f);
             return diagram;
@@ -496,7 +510,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 new SubtitleCue("PIO.01.01", "PIO.01.01", 0f, 7f),
                 new SubtitleCue("PIO.01.02", "PIO.01.02", 8f, 16f),
                 new SubtitleCue("PIO.01.03", "PIO.01.03", 18f, 25f),
-                new SubtitleCue("PIO.01.04", "PIO.01.04", 26f, 32f),
+                new SubtitleCue("PIO.01.04", "PIO.01.04", 26f, 32.8f),
                 new SubtitleCue("PIO.01.05", "PIO.01.05", 33f, 40f),
             };
 
@@ -511,7 +525,7 @@ namespace Abandoned.SpaceApps.EditorTools
             for (var i = 0; i <= 8; i++)
             {
                 var s = i / 8f;
-                marks.Add(new ActorMark(PioneerLaunchActivity.TraceActorId, 17f + 0.5f + s * 8f, TrajectoryPoint(s), Vector3.zero));
+                marks.Add(new ActorMark(PioneerLaunchActivity.TraceActorId, 17f + 0.5f + s * 8f, ExtendedTrajectoryPoint(s * TrajectoryExtent), Vector3.zero)); // a sonda segue a linha até a borda da tela
             }
 
             return SequenceDefinition.Create("PIO_Launch", shots, cues, marks);
