@@ -464,21 +464,20 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void OnlyTheFirstContactAsksForTheKnobAndTheLaterOnesArriveByThemselves()
+        public void TheListeningRoundsOpenAtOnceAndAdvanceWithoutTheEKey()
         {
             var contacts = new List<int>();
             var silences = 0;
             BeginChapter();
             OperateUntil(() => controller.CurrentState == "PIO.Listening");
+            SetE(false);
             listening.ContactMade += n => contacts.Add(n);
             listening.NoSignalHeard += () => silences++;
-            OperateUntil(() => contacts.Count > 0);
-            SetE(false);
-            Run(0.2f); // o contato 2 chega sozinho no marco dele, poucos segundos depois
-            Assert.That(contacts, Is.EqualTo(new[] { 1 }));
-            Assert.That(router.DescribeLeases(), Does.Not.Contain("PIO.Listening"), "a única rodada terminou: sem botão e sem lease");
+            Assert.That(listening.Phase, Is.EqualTo(ListeningPhase.Contact1), "a primeira rodada já está aberta quando a cena aparece");
+            Assert.That(listening.ViewState().AutoListen, Is.True, "sem E: só as setas sintonizam");
 
-            Run(48f); // nenhuma tecla: o segundo e o terceiro contatos e a tentativa sem sinal chegam nos marcos
+            // Nenhuma tecla: depois de 15 s parado a ajuda aproxima a antena da zona, a escuta é automática e as rodadas avançam sozinhas.
+            Run(300f);
             Assert.That(contacts, Is.EqualTo(new[] { 1, 2, 3 }));
             Assert.That(silences, Is.EqualTo(1), "a quarta tentativa sem sinal chega uma vez");
             Assert.That(completed, Does.Contain("PIO.Listening"), "o estado conclui sem outra entrada");

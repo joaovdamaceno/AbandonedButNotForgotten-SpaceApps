@@ -55,6 +55,46 @@ namespace Abandoned.SpaceApps
         Done = 4,
     }
 
+    /// <summary>Fase do jogo da foto em ponto de vista (roteiro v2, cena 4).</summary>
+    public enum SpinShotPhase
+    {
+        Hidden = 0,
+        /// <summary>A câmera gira e a demonstração mostra a mira; nada é registrado.</summary>
+        Learn = 1,
+        /// <summary>O jogador toca E quando Júpiter cruza a mira.</summary>
+        Shoot = 2,
+        /// <summary>As fotos se juntam sozinhas (sem apertar E).</summary>
+        Combine = 3,
+        /// <summary>Imagem final montada.</summary>
+        Done = 4,
+    }
+
+    /// <summary>O que o painel do jogo da foto desenha neste quadro.</summary>
+    public struct SpinShotViewState
+    {
+        public SpinShotPhase Phase;
+        /// <summary>Posição na volta da sonda (0–1); Júpiter está no centro da mira em 0,5.</summary>
+        public float Angle01;
+        public float WindowStart;
+        public float WindowEnd;
+        public bool InWindow;
+        /// <summary>Fotos registradas (cada uma tem um quadro vermelho e um azul).</summary>
+        public int Shots;
+        public int ShotTarget;
+        public bool PassCaptured;
+        public bool PassMissed;
+        /// <summary>O toque caiu fora da janela (só informativo, sem punição).</summary>
+        public bool PressedOutside;
+        public bool Assisted;
+        /// <summary>1 logo depois de uma foto, caindo a 0 (o clarão da foto).</summary>
+        public float Flash;
+        /// <summary>Progresso da junção automática (0–1).</summary>
+        public float CombineProgress;
+        /// <summary>A revelação histórica já começou: o painel sai de cena.</summary>
+        public bool Revealed;
+        public ImagingHoldState Hold;
+    }
+
     /// <summary>O que o painel desenha neste quadro (sem tipos de UI: a lógica é testável sem painel).</summary>
     public struct ImagingViewState
     {
@@ -131,9 +171,28 @@ namespace Abandoned.SpaceApps
         /// <summary>Candidato de interação sem fim prático: a atividade só usa "E está mantido", nunca um hold concluído.</summary>
         const float OpenHoldSeconds = 100000f;
 
+        // ---------- Jogo da foto em ponto de vista (roteiro v2, cena 4, SpinShotMode) ----------
+        /// <summary>Anchor da câmera dentro da sonda: ela gira com a sonda e Júpiter cruza a mira uma vez por volta.</summary>
+        public const string PovAnchorId = "PIO.Imaging.Pov";
+        /// <summary>Duração de uma volta no jogo. A sonda real girava a ~4,8 rpm (12,5 s por volta, nominal); aqui a volta é mais rápida só para o jogo andar.</summary>
+        public const float SpinPeriodSeconds = 9f;
+        /// <summary>Fotos a registrar; cada foto traz um quadro vermelho e um azul, tirados juntos (os dois canais do instrumento são simultâneos).</summary>
+        public const int SpinShotCount = 5;
+        /// <summary>Meia largura da janela, em graus de giro: Júpiter (raio de ~14° visto da sonda) preenche a mira.</summary>
+        public const float SpinWindowHalfDegrees = 15f;
+        /// <summary>Quanto a ajuda alarga a janela depois de 12 s sem foto (sem punição).</summary>
+        public const float SpinAssistedScale = 2.5f;
+        public const float CombineSeconds = 9f;
+        public const float FlashSeconds = 0.5f;
+        public const float OutsideFeedbackSeconds = 0.5f;
+        /// <summary>Onde a primeira volta começa (fração da volta): Júpiter entra em quadro poucos instantes depois.</summary>
+        const float SpinStartFraction = 0.3f;
+        const float CombineSettleSeconds = 1.2f;
+
         [SerializeField] SequenceDefinition sequence;
         [SerializeField] PioneerPresentation presentation;
         [SerializeField] ImagingPanelView panel;
+        [SerializeField, Tooltip("Painel do jogo da foto em ponto de vista (SpinShotMode).")] SpinShotPanelView spinPanel;
 
         SequenceDirector director;
         IInteractionService interaction;
@@ -151,6 +210,9 @@ namespace Abandoned.SpaceApps
         float spinSeconds;
         float passClock, idleSeconds, missedTimer;
         int captured, missedPasses;
+        float spinClock, flashTimer, outsideTimer, combineClock, combineStartYaw;
+        int shots;
+        bool combining;
 
         public event Action Completed;
         /// <summary>Faixa registrada (1–8), com o canal que mediu.</summary>
@@ -171,6 +233,24 @@ namespace Abandoned.SpaceApps
         /// e sem recuperação. Ligado pelo controlador do capítulo; o padrão (falso) é a versão de oito passagens.
         /// </summary>
         public bool ThreeStepMode { get; set; }
+
+        /// <summary>
+        /// Roteiro v2 (cena 4, versão final): a foto em ponto de vista. A câmera gira com a sonda e Júpiter cruza a mira uma vez por volta;
+        /// um toque de E dentro da janela registra uma foto (um quadro vermelho e um azul, tirados juntos), cinco vezes; depois as fotos
+        /// se juntam sozinhas. Tem precedência sobre <see cref="ThreeStepMode"/>. O padrão (falso) é a versão de oito passagens.
+        /// </summary>
+        public bool SpinShotMode { get; set; }
+
+        /// <summary>Fotos registradas no jogo em ponto de vista (cada uma com dois quadros).</summary>
+        public int ShotsCaptured => shots;
+        public bool IsCombining => combining;
+        /// <summary>Quanto a câmera está girada em relação a Júpiter no centro, em graus (0 = Júpiter centrado).</summary>
+        public float SpinErrorDegrees => (spinClock / SpinPeriodSeconds - 0.5f) * 360f;
+        /// <summary>Meia largura da janela agora (com a ajuda, mais larga).</summary>
+        public float WindowHalfDegreesNow => SpinWindowHalfDegrees * (assisted ? SpinAssistedScale : 1f);
+        public bool InSpinWindow => Mathf.Abs(SpinErrorDegrees) <= WindowHalfDegreesNow;
+        /// <summary>Uma foto foi registrada (1–5).</summary>
+        public event Action<int> ShotCaptured;
 
         public ImagingStep Step => step;
         public SequenceDefinition Sequence => sequence;
@@ -210,10 +290,11 @@ namespace Abandoned.SpaceApps
             phase = ImagingPhase.Learn; // o primeiro quadro já mostra a demonstração, antes do evento Learn
             director.EventRaised += OnEventRaised;
             director.Finished += OnFinished;
+            spinClock = SpinStartFraction * SpinPeriodSeconds;
             if (presentation != null)
             {
                 presentation.BindSequenceDirector(director);
-                presentation.ShowAnchor(StateId);
+                presentation.ShowAnchor(SpinShotMode ? PovAnchorId : StateId);
             }
 
             director.Play(sequence, skippable);
@@ -320,7 +401,13 @@ namespace Abandoned.SpaceApps
             // Amostra a entrada uma vez por quadro: E mantido, ou tocado entre dois quadros.
             var pressed = holding || tapPending;
             tapPending = false;
-            if (dt > 0f)
+            if (dt > 0f && SpinShotMode)
+            {
+                missedTimer = Mathf.Max(0f, missedTimer - dt);
+                if (phase == ImagingPhase.Learn || phase == ImagingPhase.Sweep)
+                    AdvanceSpin(dt);
+            }
+            else if (dt > 0f)
             {
                 missedTimer = Mathf.Max(0f, missedTimer - dt);
                 if (phase == ImagingPhase.Learn)
@@ -347,7 +434,15 @@ namespace Abandoned.SpaceApps
             passCaptured = false;
             passMissed = false;
             idleSeconds = 0f;
-            if (ThreeStepMode)
+            if (SpinShotMode)
+            {
+                // Sem radiação nesta cena (ela é da cena 5): os marcos de interrupção e de recuperação já estão satisfeitos.
+                interruptionRaised = true;
+                recoveryDone = true;
+                shots = 0;
+                combining = false;
+            }
+            else if (ThreeStepMode)
             {
                 step = ImagingStep.Red;
                 spinSeconds = 0f;
@@ -506,6 +601,142 @@ namespace Abandoned.SpaceApps
             return true;
         }
 
+        // ---------- Jogo da foto em ponto de vista ----------
+
+        /// <summary>Giro da câmera em graus em relação a Júpiter centrado: segue a volta; depois da última foto volta suavemente ao centro.</summary>
+        public float PovYawDegrees
+        {
+            get
+            {
+                if (!SpinShotMode || !running)
+                    return 0f;
+                if (combining)
+                {
+                    var u = Mathf.Clamp01(combineClock / CombineSettleSeconds);
+                    return combineStartYaw * (1f - u * u * (3f - 2f * u));
+                }
+
+                if (phase == ImagingPhase.Learn || phase == ImagingPhase.Sweep)
+                    return SpinErrorDegrees;
+                return 0f;
+            }
+        }
+
+        /// <summary>Avança a volta da sonda e, depois da última foto, a junção automática.</summary>
+        void AdvanceSpin(float dt)
+        {
+            flashTimer = Mathf.Max(0f, flashTimer - dt);
+            outsideTimer = Mathf.Max(0f, outsideTimer - dt);
+            if (combining)
+            {
+                combineClock += dt;
+                if (combineClock >= CombineSeconds)
+                {
+                    combining = false;
+                    combineClock = CombineSeconds;
+                    FinishSweep();
+                }
+
+                return;
+            }
+
+            var guard = 0;
+            while (dt > 1e-6f && guard++ < 64)
+            {
+                var step = Mathf.Min(dt, SpinPeriodSeconds - spinClock);
+                spinClock += step;
+                dt -= step;
+                if (phase == ImagingPhase.Sweep)
+                {
+                    idleSeconds += step;
+                    if (!assisted && idleSeconds >= HelpAssistSeconds)
+                        assisted = true; // sem foto por 12 s, a janela alarga e fica assim até o fim (sem punição)
+                }
+
+                if (spinClock >= SpinPeriodSeconds - 1e-6f)
+                {
+                    spinClock = 0f;
+                    if (phase == ImagingPhase.Sweep && !passCaptured)
+                    {
+                        missedPasses++;
+                        passMissed = true;
+                        missedTimer = SpinPeriodSeconds * 0.5f;
+                        PassMissed?.Invoke();
+                    }
+
+                    passCaptured = false;
+                }
+            }
+        }
+
+        /// <summary>Um toque de E: registra a foto se Júpiter está na mira; fora da janela só dá um aviso, sem punição.</summary>
+        void TrySpinShot()
+        {
+            if (phase != ImagingPhase.Sweep || combining || passCaptured || shots >= SpinShotCount)
+                return;
+
+            if (!InSpinWindow)
+            {
+                outsideTimer = OutsideFeedbackSeconds;
+                PushView();
+                return;
+            }
+
+            passCaptured = true;
+            passMissed = false;
+            idleSeconds = 0f;
+            flashTimer = FlashSeconds;
+            shots++;
+            captured += 2; // um quadro vermelho e um azul por foto: os dois canais são simultâneos
+            StripCaptured?.Invoke(captured - 1, ImagingChannel.Red);
+            StripCaptured?.Invoke(captured, ImagingChannel.Blue);
+            ShotCaptured?.Invoke(shots);
+            if (captured == ChannelStripCount)
+                ReleaseGateIf(EventGateChannels); // duas fotos: a legenda da foto ruidosa já pode abrir
+            if (shots >= SpinShotCount)
+            {
+                combineStartYaw = SpinErrorDegrees;
+                combining = true;
+                combineClock = 0f;
+            }
+
+            PushView();
+        }
+
+        public SpinShotViewState SpinState()
+        {
+            var phaseNow = SpinShotPhase.Hidden;
+            if (running)
+            {
+                if (phase == ImagingPhase.Learn)
+                    phaseNow = SpinShotPhase.Learn;
+                else if (phase == ImagingPhase.Sweep)
+                    phaseNow = combining ? SpinShotPhase.Combine : SpinShotPhase.Shoot;
+                else if (phase == ImagingPhase.Assembled)
+                    phaseNow = SpinShotPhase.Done;
+            }
+
+            var half = WindowHalfDegreesNow / 360f;
+            return new SpinShotViewState
+            {
+                Phase = phaseNow,
+                Angle01 = spinClock / SpinPeriodSeconds,
+                WindowStart = 0.5f - half,
+                WindowEnd = 0.5f + half,
+                InWindow = InSpinWindow,
+                Shots = shots,
+                ShotTarget = SpinShotCount,
+                PassCaptured = passCaptured,
+                PassMissed = passMissed && missedTimer > 0f,
+                PressedOutside = outsideTimer > 0f,
+                Assisted = assisted,
+                Flash = Mathf.Clamp01(flashTimer / FlashSeconds),
+                CombineProgress = phase == ImagingPhase.Assembled ? 1f : Mathf.Clamp01(combineClock / CombineSeconds),
+                Revealed = revealRaised,
+                Hold = HoldState(),
+            };
+        }
+
         // ---------- Entrada ----------
 
         void OpenInput()
@@ -543,6 +774,12 @@ namespace Abandoned.SpaceApps
             holding = true;
             tapPending = true;
             pausedByRelease = false;
+            if (SpinShotMode)
+            {
+                TrySpinShot();
+                return;
+            }
+
             if (ThreeStepMode && phase == ImagingPhase.Sweep && !awaitRelease)
             {
                 if (step == ImagingStep.SwitchToBlue)
@@ -613,6 +850,11 @@ namespace Abandoned.SpaceApps
             phase = ImagingPhase.Idle;
             passClock = idleSeconds = missedTimer = 0f;
             captured = missedPasses = 0;
+            shots = 0;
+            combining = false;
+            spinClock = flashTimer = outsideTimer = combineClock = combineStartYaw = 0f;
+            if (presentation != null)
+                presentation.SetAnchorYaw(PovAnchorId, 0f);
             PushView();
         }
 
@@ -719,11 +961,30 @@ namespace Abandoned.SpaceApps
             else
                 errors.AddRange(panel.ValidateSetup());
 
+            if (spinPanel == null)
+                errors.Add($"{owner}: spinPanel (SpinShotPanelView) não atribuído.");
+            else
+                errors.AddRange(spinPanel.ValidateSetup());
+            if (presentation != null && !presentation.TryGetAnchor(PovAnchorId, out _))
+                errors.Add($"{owner}: o palco não tem o anchor {PovAnchorId} (ponto de vista do fotopolarímetro).");
+
             return errors;
         }
 
         void PushView()
         {
+            if (SpinShotMode)
+            {
+                // O painel antigo (faixas) fica escondido: o jogo da foto tem painel e câmera próprios.
+                if (panel != null)
+                    panel.Render(new ImagingViewState { Phase = ImagingPhase.Idle }, resolveText);
+                if (running && presentation != null)
+                    presentation.SetAnchorYaw(PovAnchorId, PovYawDegrees);
+                if (spinPanel != null)
+                    spinPanel.Render(SpinState(), resolveText);
+                return;
+            }
+
             if (panel != null)
                 panel.Render(ViewState(), resolveText);
         }

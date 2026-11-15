@@ -151,8 +151,8 @@ namespace Abandoned.SpaceApps
             plaque.CinemaMode = true;
             outbound.CinemaMode = true;
             outbound.YearsMode = true;      // cena 7: o HUD dos anos substitui o painel do atlas
-            imaging.ThreeStepMode = true;   // cena 4: a foto em três passos (sem radiação nem recuperação)
-            listening.SingleRound = true;   // cena 8: uma única rodada de sintonia
+            imaging.SpinShotMode = true;    // cena 4: a foto em ponto de vista (a câmera gira com a sonda; sem radiação nem recuperação)
+            listening.AutoListenMode = true; // cena 8: quatro rodadas sem E (escuta automática), zona cada vez mais estreita e sinal mais fraco
             launch.Initialize(sequenceDirector, interactions, router, time);
             belt.Initialize(sequenceDirector, interactions, router, time, text);
             beltCounter.Initialize(sequenceDirector, text);

@@ -303,7 +303,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 110, y: 110, z: 1}
+  m_LocalScale: {x: 52, y: 52, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1043999019839922527}
@@ -522,6 +522,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -546,6 +547,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -570,6 +572,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -594,6 +597,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -618,6 +622,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -642,6 +647,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -666,6 +672,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -690,6 +697,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -714,6 +722,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0.56
@@ -738,6 +747,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -762,6 +772,7 @@ MonoBehaviour:
     spinAlignSocket: Photopolarimeter
     spinAlignTowards: PIO.Jupiter
     spinScale: 0
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -786,12 +797,38 @@ MonoBehaviour:
     spinAlignSocket: Photopolarimeter
     spinAlignTowards: PIO.Jupiter
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0.53
       y: 0.12
       width: 0.43
       height: 0.76
+  - anchorId: PIO.Imaging.Pov
+    stateId: PIO.Imaging
+    function: "PIO04 (roteiro v2, cena 4) \xB7 ponto de vista do fotopolar\xEDmetro: a c\xE2mera fica na sonda (modelo escondido), olha para J\xFApiter e gira com ela"
+    pose: {fileID: 1632509621266030855}
+    fieldOfViewDegrees: 40
+    region: 0
+    lightGroupId: PIO.Light.JupiterAxis
+    showJupiter: 1
+    showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
+    showPlaqueHero: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 0
+    hideProbe: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
   - anchorId: PIO.Closest
     stateId: PIO.Closest
     function: "PIO05 (roteiro v2, cena 5) \xB7 a m\xE1xima aproxima\xE7\xE3o: J\xFApiter enche o quadro, a poucas dezenas de metros do topo das nuvens (escala de composi\xE7\xE3o)"
@@ -810,6 +847,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -834,6 +872,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -858,6 +897,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -882,6 +922,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -906,6 +947,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -930,6 +972,7 @@ MonoBehaviour:
     spinAlignSocket: Plaque
     spinAlignTowards: 
     spinScale: 0
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -954,6 +997,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 0
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -978,6 +1022,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -1002,12 +1047,13 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
-      x: 0.56
-      y: 0.07
-      width: 0.4
-      height: 0.33
+      x: 0.54
+      y: 0.05
+      width: 0.42
+      height: 0.44
   - anchorId: PIO.Farewell
     stateId: PIO.Farewell
     function: "Pioneer diminui no campo de estrelas, na dire\xE7\xE3o geral de Aldebaran (sem ilumin\xE1-la)"
@@ -1026,6 +1072,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -1050,6 +1097,7 @@ MonoBehaviour:
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
+    hideProbe: 0
     uiFrameViewport:
       serializedVersion: 2
       x: 0
@@ -1451,7 +1499,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806101966861783477}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.1638734, y: 0, z: 0, w: 0.98648137}
+  m_LocalRotation: {x: -0.24028723, y: 0.17878936, z: 0.045078155, w: 0.9530291}
   m_LocalPosition: {x: -500, y: 1.7, z: -536}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3031,6 +3079,7 @@ Transform:
   - {fileID: 5071792076968916263}
   - {fileID: 5849941907586199971}
   - {fileID: 3012027976321883639}
+  - {fileID: 1632509621266030855}
   m_Father: {fileID: 7110141134317143998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6724439147850653092
@@ -3600,6 +3649,37 @@ Transform:
   - {fileID: 8962249228994117316}
   m_Father: {fileID: 4913624567188064843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8074464017383917321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1632509621266030855}
+  m_Layer: 0
+  m_Name: "PIO.Imaging.Pov \xB7 PIO04 (roteiro v2, cena 4) \xB7 ponto de vista do"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1632509621266030855
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8074464017383917321}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.048447724, y: -0.38215688, z: -0.020067703, w: 0.9226084}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8864116595321496731
 GameObject:
   m_ObjectHideFlags: 0
@@ -3749,7 +3829,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 14, y: 14, z: 14}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1043999019839922527}

@@ -437,8 +437,8 @@ namespace Abandoned.SpaceApps.EditorTools
 
         public static readonly Vector3 AldebaranDirection = new Vector3(0.2f, 0.08f, -1f);
         /// <summary>A 1.100 m da câmera: miolo de 14 m (~0,7°) e halo de 110 m (~5,7°): bem mais visível que o resto do céu.</summary>
-        public const float AldebaranCoreMeters = 14f;
-        public const float AldebaranHaloMeters = 110f;
+        public const float AldebaranCoreMeters = 7f;
+        public const float AldebaranHaloMeters = 52f;
         public const float FarewellAwayDistanceMeters = 16f;
         /// <summary>Onde Aldebaran cai no quadro do plano em que a Pioneer se afasta (0–1, origem em cima à esquerda): no alto, à esquerda.</summary>
         public static readonly Vector2 AldebaranAwayViewport = new Vector2(0.14f, 0.18f);
@@ -478,6 +478,8 @@ namespace Abandoned.SpaceApps.EditorTools
         public const float PlaqueHeroHeightMeters = 4.5f;
         public const float PlaqueHeroThicknessMeters = 0.05f;
         public const float PlaqueHeroFov = 30f;
+        /// <summary>Campo de visão vertical do ponto de vista do fotopolarímetro (a mira do jogo da foto usa o mesmo valor).</summary>
+        public const float ImagingPovFov = 40f;
         const float PlaqueUnitMeters = 0.01f;
 
         /// <summary>Centro da peça <paramref name="piece"/> (0–4) na placa, em metros, a partir do centro da placa (x à direita, y para cima).</summary>
@@ -741,7 +743,7 @@ namespace Abandoned.SpaceApps.EditorTools
             public Vector3 Position, LookAt;
             public float Fov = 40f, SpinScale = 1f;
             public PioneerStageRegion Region;
-            public bool Jupiter, Aldebaran, BeltField, BeltNike, Mars, Moons, Trajectory, PlaqueHero;
+            public bool Jupiter, Aldebaran, BeltField, BeltNike, Mars, Moons, Trajectory, PlaqueHero, HideProbe;
             public Rect UiFrame;
         }
 
@@ -814,6 +816,9 @@ namespace Abandoned.SpaceApps.EditorTools
                     AlignSocket = "Photopolarimeter", AlignTowards = PioneerPresentation.JupiterTargetId,
                     Position = imagingCamera, LookAt = OffsetLook(imagingCamera, JupiterPosition, 19f, -3f),
                     UiFrame = new Rect(0.53f, 0.12f, 0.43f, 0.76f) },
+                new AnchorSpec { Id = "PIO.Imaging.Pov", State = "PIO.Imaging", Function = "PIO04 (roteiro v2, cena 4) · ponto de vista do fotopolarímetro: a câmera fica na sonda (modelo escondido), olha para Júpiter e gira com ela",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = ImagingPovFov, Jupiter = true, SpinScale = 0f, HideProbe = true,
+                    Position = Vector3.zero, LookAt = JupiterPosition },
                 new AnchorSpec { Id = "PIO.Closest", State = "PIO.Closest", Function = "PIO05 (roteiro v2, cena 5) · a máxima aproximação: Júpiter enche o quadro, a poucas dezenas de metros do topo das nuvens (escala de composição)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 55f, Jupiter = true,
                     Position = closestCamera, LookAt = JupiterPosition + Vector3.down * 12f },
@@ -840,8 +845,9 @@ namespace Abandoned.SpaceApps.EditorTools
                     Position = new Vector3(-4.5f, -1.8f, 17f), LookAt = new Vector3(0f, 0f, 0f) },
                 new AnchorSpec { Id = "PIO.Listening", State = "PIO.Listening", Function = "Antena terrestre sob céu noturno (silhueta DSN da PIO-011 no DishSocket); painel de onda embaixo à direita",
                     Region = PioneerStageRegion.GroundStation, Light = "PIO.Light.EarthWarm", Fov = 55f,
-                    Position = GroundStationCenter + new Vector3(0f, 1.7f, -36f), LookAt = GroundStationCenter + new Vector3(0f, 14f, 0f),
-                    UiFrame = new Rect(0.56f, 0.07f, 0.40f, 0.33f) },
+                    // Ângulo baixo: a câmera olha para cima, de modo que o chão preto fica abaixo do quadro e a antena se recorta contra as estrelas.
+                    Position = GroundStationCenter + new Vector3(0f, 1.7f, -36f), LookAt = GroundStationCenter + new Vector3(14f, 22.5f, 0f),
+                    UiFrame = new Rect(0.54f, 0.05f, 0.42f, 0.44f) },
                 new AnchorSpec { Id = "PIO.Farewell", State = "PIO.Farewell", Function = "Pioneer diminui no campo de estrelas, na direção geral de Aldebaran (sem iluminá-la)",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.FarewellRim", Fov = 45f, Aldebaran = true,
                     Position = farewellCamera, LookAt = farewellLook },
@@ -875,6 +881,7 @@ namespace Abandoned.SpaceApps.EditorTools
                     showMars = spec.Mars,
                     showMoons = spec.Moons,
                     showPlaqueHero = spec.PlaqueHero,
+                    hideProbe = spec.HideProbe,
                     showTrajectory = spec.Trajectory,
                     spinAlignSocket = spec.AlignSocket,
                     spinAlignTowards = spec.AlignTowards,
@@ -931,6 +938,7 @@ namespace Abandoned.SpaceApps.EditorTools
             p.FindPropertyRelative("showMars").boolValue = a.showMars;
             p.FindPropertyRelative("showMoons").boolValue = a.showMoons;
             p.FindPropertyRelative("showPlaqueHero").boolValue = a.showPlaqueHero;
+            p.FindPropertyRelative("hideProbe").boolValue = a.hideProbe;
             p.FindPropertyRelative("showTrajectory").boolValue = a.showTrajectory;
             p.FindPropertyRelative("spinAlignSocket").stringValue = a.spinAlignSocket ?? "";
             p.FindPropertyRelative("spinAlignTowards").stringValue = a.spinAlignTowards ?? "";

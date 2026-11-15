@@ -24,6 +24,7 @@ Base: `develop` com o PR 194 mesclado (lote de qualidade visual do teste em Play
 | Qualidade visual · cinturão | 190 (PIO-032) | 70 pedras pequenas e bem separadas, zoom na sonda até 70 m, nota de que a pedra mais próxima ficou a milhões de km; o contador de dias e o rótulo de 307 Nike passam a viver no HUD de cinema (renderizado e conferido em imagem) |
 | Qualidade visual · placa | 193 (PIO-033) | Placa dourada 3D com as cinco gravuras, plano geral e zoom moderado em cada peça no ritmo das legendas; sem painel nem barra de E |
 | Qualidade visual · câmeras e Terra | 194 (PIO-034) | Planos livres da abertura a ~11–12,5 m da sonda (sem colar no modelo); rótulo "Terra" na cena de Júpiter |
+| Os dois jogos refeitos | PIO-036 | Foto em ponto de vista (câmera girando, toque no timing, cinco fotos vermelho+azul juntas, junção automática com o ruído caindo) e sintonia do rádio sem E (quatro rodadas, zona cada vez menor, sinal cada vez mais fraco, onda de osciloscópio, chão escondido); Aldebaran menor (`QA/PIO-036`) |
 
 **Verificação, em números (15/11/2026):**
 

@@ -20,6 +20,8 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string PanelPrefabPath = ChapterFolder + "/UI/ImagingPanel.prefab";
         public const string PanelLayoutPath = ChapterFolder + "/UI/ImagingPanel.uxml";
         public const string SequencePath = ChapterFolder + "/Sequences/PIO_Imaging.asset";
+        public const string SpinPanelPrefabPath = ChapterFolder + "/UI/SpinShotPanel.prefab";
+        public const string SpinPanelLayoutPath = ChapterFolder + "/UI/SpinShotPanel.uxml";
         const string PanelSettingsPath = "Assets/_Game/UI/Design/SpaceAppsPanelSettings.asset"; // UI-001 (consumido, não editado)
 
         public override string Id => ImagingBuilderId;
@@ -34,10 +36,11 @@ namespace Abandoned.SpaceApps.EditorTools
             if (stage == null)
                 throw new System.InvalidOperationException("o palco da PIO-003 (pioneer10.stage) precisa existir antes da varredura IPP.");
 
+            var spinLayout = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(SpinPanelLayoutPath);
             var layout = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(PanelLayoutPath);
             var panelSettings = AssetDatabase.LoadAssetAtPath<PanelSettings>(PanelSettingsPath);
-            if (layout == null || panelSettings == null)
-                throw new System.InvalidOperationException("ImagingPanel.uxml ou SpaceAppsPanelSettings ausente.");
+            if (layout == null || spinLayout == null || panelSettings == null)
+                throw new System.InvalidOperationException("ImagingPanel.uxml, SpinShotPanel.uxml ou SpaceAppsPanelSettings ausente.");
 
             var prefab = context.Prefab(PanelPrefabPath, root =>
             {
@@ -50,14 +53,27 @@ namespace Abandoned.SpaceApps.EditorTools
                 Get<ResponsiveLayoutClass>(root); // UI_SPEC: todo UIDocument de tela cheia aplica sa-layout--narrow em 4:3
             });
 
+            var spinPrefab = context.Prefab(SpinPanelPrefabPath, spinRoot =>
+            {
+                var document = Get<UIDocument>(spinRoot);
+                document.panelSettings = panelSettings;
+                document.visualTreeAsset = spinLayout;
+                document.sortingOrder = 10;
+                var view = Get<SpinShotPanelView>(spinRoot);
+                Set(view, "document", document);
+                Get<ResponsiveLayoutClass>(spinRoot);
+            });
+
             var root = context.Root.transform;
             var panel = context.PrefabInstance(root, prefab, "ImagingPanel");
+            var spinPanel = context.PrefabInstance(root, spinPrefab, "SpinShotPanel");
             var sequence = BuildSequence(context);
             var imaging = context.Component<PioneerImaging>(context.Child(root, "PioneerImaging"));
             var so = new SerializedObject(imaging);
             so.FindProperty("sequence").objectReferenceValue = sequence;
             so.FindProperty("presentation").objectReferenceValue = stage;
             so.FindProperty("panel").objectReferenceValue = panel.GetComponent<ImagingPanelView>();
+            so.FindProperty("spinPanel").objectReferenceValue = spinPanel.GetComponent<SpinShotPanelView>();
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
@@ -114,12 +130,12 @@ namespace Abandoned.SpaceApps.EditorTools
         {
             var shots = new[]
             {
-                new ShotDefinition("PIO04.Learn", 10f, PioneerImaging.StateId,
-                    new[] { Key(0f, Vector3.zero, 46f), Key(10f, new Vector3(0f, 0f, 0.2f), 46f) },
+                new ShotDefinition("PIO04.Learn", 10f, PioneerImaging.PovAnchorId,
+                    new[] { Key(0f, Vector3.zero, ImagingPovFov), Key(10f, Vector3.zero, ImagingPovFov) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerImaging.EventLearn) }),
-                new ShotDefinition("PIO04.Sweep", 28f, PioneerImaging.StateId,
-                    new[] { Key(0f, new Vector3(0f, 0f, 0.2f), 46f), Key(28f, new Vector3(0f, 0f, 0.4f), 46f) },
+                new ShotDefinition("PIO04.Sweep", 28f, PioneerImaging.PovAnchorId,
+                    new[] { Key(0f, Vector3.zero, ImagingPovFov), Key(28f, Vector3.zero, ImagingPovFov) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[]
                     {
@@ -129,8 +145,8 @@ namespace Abandoned.SpaceApps.EditorTools
                         new ShotEvent(21.5f, PioneerImaging.EventGateRecovery),
                         new ShotEvent(27f, PioneerImaging.EventGateComplete),
                     }),
-                new ShotDefinition("PIO04.Reveal", 26f, PioneerImaging.StateId,
-                    new[] { Key(0f, new Vector3(0f, 0f, 0.4f), 46f), Key(26f, new Vector3(0f, 0f, 0.4f), 46f) },
+                new ShotDefinition("PIO04.Reveal", 26f, PioneerImaging.PovAnchorId,
+                    new[] { Key(0f, Vector3.zero, ImagingPovFov), Key(26f, Vector3.zero, ImagingPovFov) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerImaging.EventReveal) }),
             };

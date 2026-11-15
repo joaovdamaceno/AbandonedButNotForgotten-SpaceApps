@@ -16,7 +16,7 @@ MonoBehaviour:
   shots:
   - shotId: PIO04.Learn
     durationSeconds: 10
-    rigId: PIO.Imaging
+    rigId: PIO.Imaging.Pov
     lookAtTargetId: 
     easing: 0
     minGroundClearanceMeters: 0
@@ -25,30 +25,30 @@ MonoBehaviour:
     - timeSeconds: 0
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      fieldOfViewDegrees: 40
     - timeSeconds: 10
-      positionMeters: {x: 0, y: 0, z: 0.2}
+      positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      fieldOfViewDegrees: 40
     events:
     - timeSeconds: 0
       eventId: PIO.Imaging.Learn
   - shotId: PIO04.Sweep
     durationSeconds: 28
-    rigId: PIO.Imaging
+    rigId: PIO.Imaging.Pov
     lookAtTargetId: 
     easing: 0
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 0.2}
+      positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      fieldOfViewDegrees: 40
     - timeSeconds: 28
-      positionMeters: {x: 0, y: 0, z: 0.4}
+      positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      fieldOfViewDegrees: 40
     events:
     - timeSeconds: 0
       eventId: PIO.Imaging.Sweep
@@ -62,20 +62,20 @@ MonoBehaviour:
       eventId: PIO.Imaging.Gate8
   - shotId: PIO04.Reveal
     durationSeconds: 26
-    rigId: PIO.Imaging
+    rigId: PIO.Imaging.Pov
     lookAtTargetId: 
     easing: 0
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 0.4}
+      positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      fieldOfViewDegrees: 40
     - timeSeconds: 26
-      positionMeters: {x: 0, y: 0, z: 0.4}
+      positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 46
+      fieldOfViewDegrees: 40
     events:
     - timeSeconds: 0
       eventId: PIO.Imaging.Reveal
