@@ -43,3 +43,17 @@ O palco da PIO-003 ainda usava a `ProvisionalSilhouette`: o `PioneerActors.prefa
 | Capturas `Docs/Art/Pioneer10_Stage/` e `STAGE_STATS.md` | Regeneradas com o modelo novo; a ferramenta de captura agora pendura as silhuetas DSN e do Atlas nos sockets (como o controlador), senão elas apareciam como caixas pretas na origem |
 
 **Limites:** o modelo não tem peça identificada como fotopolarímetro (socket hipotético); o ônibus e os RTGs não foram comparados com fotografias da missão; o custo é de build, não medido no navegador; o polimento de refletor e placa (normal maps, PIO-016) fica para o fim.
+
+## Antena DSN e Júpiter da NASA (15/11/2026)
+
+Os dois eram provisórios gerados por código (silhueta de caixas e textura de faixas). Foram baixados, com autorização do usuário, o modelo NASA "Deep Space Network 70-meter" (NASA/Kumanchik e Lopez, 1,78 MB) e a textura NASA "Jupiter" (JPL e Caltech, de imagens da Voyager, 220,58 KB); também veio o "70 meter dish" (2,11 MB), preservado sem uso. Para o foguete do lançamento **não há modelo oficial do Atlas-Centaur** no catálogo da NASA: a silhueta continua.
+
+| Verificação | Resultado |
+| --- | --- |
+| Conversão (`Tools/convert_dsn70.py`) | 33.112 triângulos, 57.519 vértices, atlas 1024²; a `base` repete a textura 4× ao redor e foi refeita lado a lado no atlas |
+| Builders `pioneer10.*` | Sem erro; só a cena (14 mudanças da escuta) e o prefab da antena mudaram |
+| Testes EditMode filtrados por `Pioneer` | 187 de 187 (um teste alterado e um novo: antena documentada com SHA-256 do original; Júpiter com a textura da NASA byte a byte) |
+| Build WebGL da cena `Pioneer10.unity` (cache limpo) | Sucesso: **16,16 MiB** (era 15,67 com a sonda nova e 14,74 antes), shaders 3/3, hashes conferidos |
+| Quadros 3D (`framing/`) e `Docs/Art/Pioneer10_Stage/` | Regerados: antena nos planos de escuta e despedida; Júpiter nos planos do estado 3 |
+
+**Limites:** a textura de Júpiter tem só 720×360 e vem da Voyager (1979), não da Pioneer 10 (1973); a cor é mais saturada que a versão anterior. A antena foi reduzida a 13/35 para manter os enquadramentos (não está em escala real), sem sítio identificado e sem comparação da R7 com fotografia. O custo é medido por build, não no navegador. O foguete continua provisório.
