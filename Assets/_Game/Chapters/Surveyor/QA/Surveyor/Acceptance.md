@@ -24,3 +24,8 @@ Relatórios, carregamento, memória disponível e capturas por navegador ficam e
 - Revisão artística e musical por pessoas. Atores próximos são uma reconstrução leve; a foto NASA continua sendo a evidência documental.
 
 A ausência desses dispositivos/pessoas é registrada como pendência, não como aprovação simulada. Falhas de fluxo conhecidas devem ser corrigidas antes da integração; polimento P1 fica em SUR-016 e SUR-017.
+
+
+## Revisão final SUR-016/017
+
+Polimento e ficha foram implementados e receberam evidências próprias em QA/SUR-016 e QA/SUR-017. A ficha foi aberta por ponteiro no Chrome e testada em PT/EN no Editor, sem iniciar o relógio. A versão final completou novamente as doze etapas no Firefox em 314,97 s e retornou ao arquivo após uma nova pressão de E; zero erros. O pacote de 18,5 MB tem index.html na raiz e não inclui bibliotecas de QA ou fontes do projeto. Permanecem pendentes apenas os testes humanos/dispositivos/hospedagem descritos acima; não foram convertidos em aprovações simuladas.
