@@ -225,7 +225,7 @@ Prefab `Art/PioneerActors.prefab` (raiz `PioneerActors`, componente `PioneerProb
 
 | Arquivo | Papel |
 | --- | --- |
-| `Sequences/PIO_Plaque.asset` | 47 s: chegada à placa 0–9, cinco peças 9–38 (marco `PIO.Plaque.Gate` em 37,5 s), placa inteira 38–47. Legendas PIO.05.01 e .07 por janela; PIO.05.02–06 **por gatilho**, 4 s cada |
+| `Sequences/PIO_Plaque.asset` | (43 s desde a legenda de contexto: chegada de 17,5 s com PIO.05.01/.01b/.01c; as cinco peças e a revelação seguem como abaixo, deslocadas em 10 s) 47 s: chegada à placa 0–9, cinco peças 9–38 (marco `PIO.Plaque.Gate` em 37,5 s), placa inteira 38–47. Legendas PIO.05.01 e .07 por janela; PIO.05.02–06 **por gatilho**, 4 s cada |
 | `Runtime/PioneerPlaqueActivity.cs` | Lógica do estado (sem UI): seleção, encaixe, setas + E, ajuda de segurar E, contorno errado sem perda, marco 5/5 |
 | `Runtime/PlaquePanelView.cs` + `UI/PlaquePanel.uxml/.uss/.prefab` | Painel UI Toolkit: quadro 2:3 com cinco contornos nomeados e a bandeja com as cinco peças; só desenha um `PlaqueViewState` e devolve cliques e soltar do arrastar. Textos por chave (`PIO.UI.*`) |
 | `Art/PlaqueEducational.svg` | SVG mestre da placa educativa (traço dourado). Gerado: **não editar à mão** |
