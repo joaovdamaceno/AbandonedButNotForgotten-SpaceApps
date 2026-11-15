@@ -265,6 +265,7 @@ MonoBehaviour:
   beltCinemaSequence: {fileID: 11400000, guid: 60862166270a6b8438b3966d0cb40b73, type: 2}
   beltCounter: {fileID: 1595566807}
   jupiterReveal: {fileID: 142227805}
+  closestHud: {fileID: 934654340}
   recovery: {fileID: 1846412636}
   reveal: {fileID: 1013705932}
   plaque: {fileID: 1192973470}
@@ -855,6 +856,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4272637670345615654, guid: f6f6fba2090b2a14aba56727f55f2581, type: 3}
   m_PrefabInstance: {fileID: 479463837}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &487529349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1512487283}
+    m_Modifications:
+    - target: {fileID: 7449376761145465829, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_Name
+      value: CinemaHud
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+--- !u!4 &487529350 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8367198043744675622, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+  m_PrefabInstance: {fileID: 487529349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &487529351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7591381777700232219, guid: 6db86e77927c45f409e0d6f3fe3c757b, type: 3}
+  m_PrefabInstance: {fileID: 487529349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba95842674dae544eae3cb6ba2b6add4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.CinemaHudView
 --- !u!1 &489640736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,6 +1619,52 @@ MonoBehaviour:
   compartmentGlow: {fileID: 33179021}
   rtgGlowScaleMeters: 0.26
   compartmentGlowScaleMeters: 0.5
+--- !u!1 &934654338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934654339}
+  - component: {fileID: 934654340}
+  m_Layer: 0
+  m_Name: ClosestHud
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934654339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934654338}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 976992987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &934654340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934654338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63da82c18d4b13a449af07d1a9c9462f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerClosestHud
+  hud: {fileID: 487529351}
+  sequence: {fileID: 11400000, guid: 3cfb701df9691a542a8e3b8ee35b1907, type: 2}
 --- !u!1 &976992986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,6 +1698,7 @@ Transform:
   - {fileID: 1018944553}
   - {fileID: 89717225}
   - {fileID: 142227804}
+  - {fileID: 934654339}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1013705930
@@ -2465,6 +2586,38 @@ MonoBehaviour:
   presentation: {fileID: 219729566}
   panel: {fileID: 1978686194}
   dishRoot: {fileID: 1670560442}
+--- !u!1 &1512487282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1512487283}
+  m_Layer: 0
+  m_Name: '[R5] Pioneer Cinema HUD'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1512487283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512487282}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 487529350}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1595566805
 GameObject:
   m_ObjectHideFlags: 0
@@ -3142,3 +3295,4 @@ SceneRoots:
   - {fileID: 632809206}
   - {fileID: 323400075}
   - {fileID: 976992987}
+  - {fileID: 1512487283}

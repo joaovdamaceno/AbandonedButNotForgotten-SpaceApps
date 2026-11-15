@@ -14,22 +14,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
   sequenceId: PIO_Closest
   shots:
-  - shotId: PIO09.Arrival
-    durationSeconds: 6
-    rigId: PIO.JupiterApproach
+  - shotId: PIO09.Ganymede
+    durationSeconds: 2
+    rigId: PIO.Closest.Ganymede
     lookAtTargetId: 
-    easing: 1
+    easing: 0
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 0, z: 0}
+      positionMeters: {x: -6, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 40
-    - timeSeconds: 6
-      positionMeters: {x: 0, y: 0, z: 60}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 2
+      positionMeters: {x: 6, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 34
+      fieldOfViewDegrees: 30
+    events: []
+  - shotId: PIO09.Callisto
+    durationSeconds: 2
+    rigId: PIO.Closest.Callisto
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 6, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 2
+      positionMeters: {x: -6, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    events: []
+  - shotId: PIO09.Europa
+    durationSeconds: 2
+    rigId: PIO.Closest.Europa
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: -5, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 2
+      positionMeters: {x: 5, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
     events: []
   - shotId: PIO09.Radiation
     durationSeconds: 11
@@ -79,20 +113,20 @@ MonoBehaviour:
     events: []
   - shotId: PIO09.Bend
     durationSeconds: 6
-    rigId: PIO.Closest
+    rigId: PIO.Closest.Bend
     lookAtTargetId: 
     easing: 0
     minGroundClearanceMeters: 0
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 0, y: 150, z: -190}
-      eulerAnglesDegrees: {x: 34, y: 0, z: 0}
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 50
     - timeSeconds: 6
-      positionMeters: {x: 0, y: 175, z: -230}
-      eulerAnglesDegrees: {x: 34, y: 0, z: 0}
-      fieldOfViewDegrees: 55
+      positionMeters: {x: 0, y: 0, z: -70}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 50
     events: []
   - shotId: PIO09.Leaving
     durationSeconds: 6

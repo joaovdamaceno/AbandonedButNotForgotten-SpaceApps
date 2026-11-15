@@ -956,6 +956,30 @@ MonoBehaviour:
     enText: "307 Nike \xB7 the nearest known asteroid"
     ptStatus: derived
     enStatus: derived
+  - key: PIO.UI.rad_title
+    group: hud
+    ptText: "Radia\xE7\xE3o"
+    enText: Radiation
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.speed_label
+    group: hud
+    ptText: Mais de 120.000 km/h
+    enText: Over 120,000 km/h
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.dist_moon
+    group: hud
+    ptText: "Terra\u2013Lua \xB7 384.400 km"
+    enText: "Earth\u2013Moon \xB7 384,400 km"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.dist_clouds
+    group: hud
+    ptText: "Sonda\u2013nuvens \xB7 130.000 km"
+    enText: "Probe to the clouds \xB7 130,000 km"
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.spin
     group: hud
     ptText: "Segure E \xB7 girar"

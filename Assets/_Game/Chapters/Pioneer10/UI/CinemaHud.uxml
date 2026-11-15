@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="CinemaHud.uss" />
+    <!-- Roteiro v2 · HUD dos planos de cinema (sem interação): medidor de radiação, estática, velocidade e comparação de distâncias.
+         Sem frases literais: os rótulos recebem chaves PIO.UI.* resolvidas pelo capítulo. -->
+    <ui:VisualElement name="hud-root" picking-mode="Ignore" class="sa-root pio-hud">
+        <ui:VisualElement name="static" picking-mode="Ignore" class="pio-hud__static" />
+
+        <ui:VisualElement name="radiation" picking-mode="Ignore" class="sa-plate pio-hud__radiation">
+            <ui:Label name="radiation-title" picking-mode="Ignore" class="pio-hud__title" />
+            <ui:VisualElement name="radiation-track" picking-mode="Ignore" class="pio-hud__track">
+                <ui:VisualElement name="radiation-fill" picking-mode="Ignore" class="pio-hud__fill" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement name="speed" picking-mode="Ignore" class="sa-plate pio-hud__speed">
+            <ui:Label name="speed-label" picking-mode="Ignore" class="pio-hud__value" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="distances" picking-mode="Ignore" class="sa-plate pio-hud__distances">
+            <ui:Label name="distance-moon-label" picking-mode="Ignore" class="pio-hud__caption" />
+            <ui:VisualElement picking-mode="Ignore" class="pio-hud__track">
+                <ui:VisualElement name="distance-moon-fill" picking-mode="Ignore" class="pio-hud__fill pio-hud__fill--moon" />
+            </ui:VisualElement>
+            <ui:Label name="distance-clouds-label" picking-mode="Ignore" class="pio-hud__caption" />
+            <ui:VisualElement picking-mode="Ignore" class="pio-hud__track">
+                <ui:VisualElement name="distance-clouds-fill" picking-mode="Ignore" class="pio-hud__fill pio-hud__fill--clouds" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

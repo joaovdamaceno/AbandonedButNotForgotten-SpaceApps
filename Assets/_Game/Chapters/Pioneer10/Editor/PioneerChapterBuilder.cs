@@ -78,6 +78,12 @@ namespace Abandoned.SpaceApps.EditorTools
             reveal3So.FindProperty("earthTo").vector3Value = PioneerStageBuilder.EarthCompareTo;
             reveal3So.ApplyModifiedPropertiesWithoutUndo();
             so.FindProperty("jupiterReveal").objectReferenceValue = reveal3;
+            var closestHud = context.Component<PioneerClosestHud>(context.Child(root, "ClosestHud"));
+            var closestHudSo = new SerializedObject(closestHud);
+            closestHudSo.FindProperty("hud").objectReferenceValue = Only<CinemaHudView>();
+            closestHudSo.FindProperty("sequence").objectReferenceValue = closest;
+            closestHudSo.ApplyModifiedPropertiesWithoutUndo();
+            so.FindProperty("closestHud").objectReferenceValue = closestHud;
             so.FindProperty("imaging").objectReferenceValue = Only<PioneerImaging>();
             so.FindProperty("recovery").objectReferenceValue = Only<ImagingRecovery>();
             so.FindProperty("reveal").objectReferenceValue = Only<HistoricalImageReveal>();
@@ -193,9 +199,16 @@ namespace Abandoned.SpaceApps.EditorTools
         {
             var shots = new[]
             {
-                new ShotDefinition("PIO09.Arrival", 6f, "PIO.JupiterApproach",
-                    new[] { Key(0f, Vector3.zero, 40f), Key(6f, new Vector3(0f, 0f, 60f), 34f) },
-                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
+                // 5a (0–6 s): as três luas galileanas cruzam o quadro, uma a cada 2 s (a câmera desliza ao lado de cada uma).
+                new ShotDefinition("PIO09.Ganymede", 2f, "PIO.Closest.Ganymede",
+                    new[] { Key(0f, new Vector3(-6f, 0f, 0f), 30f), Key(2f, new Vector3(6f, 0f, 0f), 30f) },
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                new ShotDefinition("PIO09.Callisto", 2f, "PIO.Closest.Callisto",
+                    new[] { Key(0f, new Vector3(6f, 0f, 0f), 30f), Key(2f, new Vector3(-6f, 0f, 0f), 30f) },
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                new ShotDefinition("PIO09.Europa", 2f, "PIO.Closest.Europa",
+                    new[] { Key(0f, new Vector3(-5f, 0f, 0f), 30f), Key(2f, new Vector3(5f, 0f, 0f), 30f) },
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
                 new ShotDefinition("PIO09.Radiation", 11f, "PIO.JupiterApproach.Instrument",
                     new[]
                     {
@@ -206,8 +219,8 @@ namespace Abandoned.SpaceApps.EditorTools
                 new ShotDefinition("PIO09.Pass", 11f, "PIO.Closest",
                     new[] { Key(0f, new Vector3(-70f, 6f, -30f), 60f), Key(11f, new Vector3(70f, -4f, 40f), 72f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
-                new ShotDefinition("PIO09.Bend", 6f, "PIO.Closest",
-                    new[] { KeyAt(0f, new Vector3(0f, 150f, -190f), new Vector3(34f, 0f, 0f), 50f), KeyAt(6f, new Vector3(0f, 175f, -230f), new Vector3(34f, 0f, 0f), 55f) },
+                new ShotDefinition("PIO09.Bend", 6f, "PIO.Closest.Bend",
+                    new[] { Key(0f, Vector3.zero, 50f), Key(6f, new Vector3(0f, 0f, -70f), 50f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
                 new ShotDefinition("PIO09.Leaving", 6f, "PIO.Outbound",
                     new[] { Key(0f, Vector3.zero, 40f), Key(6f, new Vector3(0f, 0f, -8f), 38f) },
