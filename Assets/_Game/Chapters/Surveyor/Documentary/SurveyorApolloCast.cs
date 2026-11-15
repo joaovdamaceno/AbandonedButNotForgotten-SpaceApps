@@ -12,27 +12,31 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         [SerializeField] Transform recoveredCamera, cameraHome, cameraHand, recoveredScoop, scoopHand;
         [SerializeField] Renderer[] cameraParts;
         [SerializeField] Transform nativeArm;
+        [SerializeField] Vector3 cameraGripLocal;
         Transform[][] bones;
         Quaternion[][] footBind;
         Quaternion[] alignment;
         Vector3[] modelForward;
         float[][] lateral;
+        float[][] armSide;
         Vector3 scoopScale;
         bool initialized;
         static readonly string[] Names = { "Thigh_L", "Shin_L", "Foot_L", "Thigh_R", "Shin_R", "Foot_R", "UpperArm_R", "ForeArm_R", "Hand_R", "UpperArm_L", "ForeArm_L", "Hand_L", "Pelvis", "Spine", "Head" };
         public GameObject[] Astronauts => astronauts;
         public Vector3 FacingDirection(int actor) => astronauts[actor].transform.TransformDirection(modelForward[actor]);
         public Vector3 FootPosition(int actor, int leg) => bones[actor][leg * 3 + 2].position;
+        public Vector3 HandPosition(int actor, int arm) => bones[actor][arm == 0 ? 8 : 11].position;
+        public Vector3 ElbowPosition(int actor, int arm) => bones[actor][arm == 0 ? 7 : 10].position;
         public void Configure(GameObject[] actors, AnimationClip walking, AnimationClip inspection, AnimationClip idle, Transform[] from, Transform[] to)
         { astronauts = actors; walk = walking; inspect = inspection; stand = idle; start = from; stop = to; }
-        public void ConfigureRecovery(Transform camera, Transform home, Transform hand, Transform scoop, Transform scoopCarry, Renderer[] parts, Transform arm)
-        { recoveredCamera = camera; cameraHome = home; cameraHand = hand; recoveredScoop = scoop; scoopHand = scoopCarry; cameraParts = parts; nativeArm = arm; }
+        public void ConfigureRecovery(Transform camera, Transform home, Transform hand, Transform scoop, Transform scoopCarry, Renderer[] parts, Transform arm, Vector3 grip)
+        { recoveredCamera = camera; cameraHome = home; cameraHand = hand; recoveredScoop = scoop; scoopHand = scoopCarry; cameraParts = parts; nativeArm = arm; cameraGripLocal = grip; }
         void Initialize()
         {
             if (initialized) return;
             initialized = true; scoopScale = recoveredScoop.localScale;
             int count = astronauts.Length;
-            bones = new Transform[count][]; footBind = new Quaternion[count][]; alignment = new Quaternion[count]; modelForward = new Vector3[count]; lateral = new float[count][];
+            bones = new Transform[count][]; footBind = new Quaternion[count][]; alignment = new Quaternion[count]; modelForward = new Vector3[count]; lateral = new float[count][]; armSide = new float[count][];
             for (int i = 0; i < count; i++)
             {
                 var actor = astronauts[i]; stand.SampleAnimation(actor, 0f);
@@ -42,6 +46,12 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 // Imported foot bones run from ankle to toes. FBX +Z need not be the suit's front.
                 modelForward[i] = Vector3.ProjectOnPlane(actor.transform.InverseTransformDirection(bones[i][2].up + bones[i][5].up), Vector3.up).normalized;
                 alignment[i] = Quaternion.FromToRotation(modelForward[i], Vector3.forward);
+                armSide[i] = new float[2];
+                for (int arm = 0; arm < 2; arm++)
+                {
+                    var shoulder = bones[i][arm == 0 ? 6 : 9];
+                    armSide[i][arm] = Mathf.Sign((alignment[i] * actor.transform.InverseTransformPoint(shoulder.position)).x);
+                }
                 footBind[i] = new Quaternion[2]; lateral[i] = new float[2];
                 for (int leg = 0; leg < 2; leg++)
                 {
@@ -91,19 +101,19 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 }
                 for (int arm = 0; arm < 2; arm++)
                 {
-                    int b = arm == 0 ? 6 : 9; float side = arm == 0 ? 1f : -1f;
-                    Vector3 rest = position + Vector3.up * 1.02f + right * side * .38f + facing * .08f;
+                    int b = arm == 0 ? 6 : 9; float side = armSide[i][arm];
+                    Vector3 rest = bones[i][b].position + Vector3.down * .35f + right * side * .14f + facing * .10f;
                     Vector3 target = rest + facing * (walking ? Mathf.Sin((phase + arm * .5f) * Mathf.PI * 2f) * .075f : 0f);
                     if (i == 0 && arm == 0 && !walking)
                     {
-                        var grip = cameraHome.position + Vector3.down * .12f;
-                        var carry = position + Vector3.up * 1.12f + facing * .35f + right * .13f;
+                        var grip = cameraHome.TransformPoint(cameraGripLocal);
+                        var carry = position + Vector3.up * 1.07f + facing * .40f + right * side * .30f;
                         target = Vector3.Lerp(rest, Vector3.Lerp(grip, carry, Mathf.SmoothStep(0f, 1f, (seconds - CameraPickupSeconds) / 3f)), settle);
                     }
                     if (i == 1 && arm == 1 && seconds > 30f)
                     {
                         var source = nativeArm.GetChild(0);
-                        var carry = position + Vector3.up * 1.02f + facing * .32f - right * .15f;
+                        var carry = position + Vector3.up * 1.02f + facing * .36f + right * side * .30f;
                         target = Vector3.Lerp(rest, Vector3.Lerp(source.position, carry, Mathf.SmoothStep(0f, 1f, (seconds - ScoopPickupSeconds) / 3f)), Mathf.Clamp01((seconds - 30f) / 3f));
                     }
                     IK(bones[i][b], bones[i][b + 1], bones[i][b + 2], target, position + right * side * .85f + Vector3.up * 1.3f + facing * .15f);
@@ -117,7 +127,10 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             if (cameraCarried)
             {
                 float transfer = Mathf.SmoothStep(0f, 1f, (seconds - CameraPickupSeconds) / .8f);
-                recoveredCamera.SetPositionAndRotation(Vector3.Lerp(cameraHome.position, cameraHand.position, transfer), Quaternion.Slerp(cameraHome.rotation, cameraHand.rotation, transfer));
+                Vector3 facing = FacingDirection(0).normalized, right = Vector3.Cross(Vector3.up, facing);
+                var carryRotation = Quaternion.AngleAxis(8f * armSide[0][0], facing) * cameraHome.rotation;
+                var carryPosition = cameraHand.position - carryRotation * cameraGripLocal;
+                recoveredCamera.SetPositionAndRotation(Vector3.Lerp(cameraHome.position, carryPosition, transfer), Quaternion.Slerp(cameraHome.rotation, carryRotation, transfer));
             }
             if (scoopCarried)
             {
@@ -128,6 +141,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         static void IK(Transform upper, Transform lower, Transform end, Vector3 target, Vector3 pole)
         {
             float a = Vector3.Distance(upper.position, lower.position), b = Vector3.Distance(lower.position, end.position);
+            target = upper.position + Vector3.ClampMagnitude(target - upper.position, Mathf.Max(.01f, a + b - .006f));
             SurveyorScoop.SolveTwoBone(upper.position, target, a, b, pole - upper.position, out var joint);
             var rotation = end.rotation;
             upper.rotation = Quaternion.FromToRotation(lower.position - upper.position, joint - upper.position) * upper.rotation;

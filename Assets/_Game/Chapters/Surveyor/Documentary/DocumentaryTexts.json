@@ -159,14 +159,14 @@
     {
       "key": "sur.doc.goal.2",
       "group": "ui",
-      "pt": "Teste a borda",
-      "en": "Test the edge"
+      "pt": "Pressione a borda",
+      "en": "Press the edge"
     },
     {
       "key": "sur.doc.goal.3",
       "group": "ui",
-      "pt": "Fotografe o resultado",
-      "en": "Photograph the result"
+      "pt": "Registrando o resultado",
+      "en": "Recording the result"
     },
     {
       "key": "sur.doc.goal.4",
@@ -177,26 +177,26 @@
     {
       "key": "sur.doc.hint.0",
       "group": "ui",
-      "pt": "Você já pode segurar E para começar.",
-      "en": "You can hold E now to begin."
+      "pt": "A pá está se aproximando do solo.",
+      "en": "The scoop is moving into position."
     },
     {
       "key": "sur.doc.hint.1",
       "group": "ui",
-      "pt": "Arraste a pá pela faixa indicada.\nOu segure E para fazer um corte assistido.",
-      "en": "Drag the scoop along the guide.\nOr hold E for an assisted cut."
+      "pt": "Clique e arraste.",
+      "en": "Click and drag."
     },
     {
       "key": "sur.doc.hint.2",
       "group": "ui",
-      "pt": "Segure E ou o mouse. A pá se apoia na borda.",
-      "en": "Hold E or the mouse button. The scoop presses against the edge."
+      "pt": "Segure E.",
+      "en": "Hold E."
     },
     {
       "key": "sur.doc.hint.3",
       "group": "ui",
-      "pt": "Aperte E ou o botão para fotografar.",
-      "en": "Press E or the button to take a picture."
+      "pt": "A câmera fotografa sua escavação.",
+      "en": "The camera is photographing your trench."
     },
     {
       "key": "sur.doc.hint.4",
@@ -393,8 +393,8 @@
     {
       "key": "sur.doc.feedback.lifted",
       "group": "ui",
-      "pt": "ARRASTE OU SEGURE E",
-      "en": "DRAG OR HOLD E"
+      "pt": "CLIQUE E ARRASTE",
+      "en": "CLICK AND DRAG"
     },
     {
       "key": "sur.doc.feedback.cut.ready",
@@ -405,8 +405,8 @@
     {
       "key": "sur.doc.feedback.positioning",
       "group": "ui",
-      "pt": "POSICIONANDO A PÁ",
-      "en": "POSITIONING THE SCOOP"
+      "pt": "SEGURE E",
+      "en": "HOLD E"
     },
     {
       "key": "sur.doc.feedback.pressing",
@@ -435,8 +435,32 @@
     {
       "key": "sur.doc.hint.cut.ready",
       "group": "ui",
-      "pt": "Agora segure E para testar a borda.",
-      "en": "Now hold E to test the edge."
+      "pt": "Solte o mouse para continuar.",
+      "en": "Release the mouse to continue."
+    },
+    {
+      "key": "sur.doc.feedback.recording",
+      "group": "ui",
+      "pt": "FOTOGRAFANDO",
+      "en": "TAKING PICTURE"
+    },
+    {
+      "key": "sur.doc.date.eclipse",
+      "group": "ui",
+      "pt": "24 ABR 1967 · ECLIPSE",
+      "en": "24 APR 1967 · ECLIPSE"
+    },
+    {
+      "key": "sur.doc.date.dayslater",
+      "group": "ui",
+      "pt": "DIAS DEPOIS · NOITE LUNAR",
+      "en": "DAYS LATER · LUNAR NIGHT"
+    },
+    {
+      "key": "sur.doc.date.lastcontact",
+      "group": "ui",
+      "pt": "4 MAI 1967 · ÚLTIMO CONTATO",
+      "en": "4 MAY 1967 · LAST CONTACT"
     }
   ]
 }

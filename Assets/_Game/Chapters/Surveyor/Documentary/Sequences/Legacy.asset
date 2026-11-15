@@ -17,19 +17,19 @@ MonoBehaviour:
   - shotId: sur.doc.legacy.photo
     durationSeconds: 8
     rigId: world
-    lookAtTargetId: sur.touchdown
+    lookAtTargetId: sur.reunion
     easing: 1
     minGroundClearanceMeters: 0.18
     continueFromPreviousShot: 1
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 4.5, y: 3.2765245, z: 6}
+      positionMeters: {x: 4.7, y: 3.2191606, z: 3.9}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 45
+      fieldOfViewDegrees: 43
     - timeSeconds: 8
-      positionMeters: {x: 4.5, y: 3.2765245, z: 6}
+      positionMeters: {x: 4.7, y: 3.2191606, z: 3.9}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 45
+      fieldOfViewDegrees: 43
     events: []
   - shotId: sur.doc.legacy.remains
     durationSeconds: 5

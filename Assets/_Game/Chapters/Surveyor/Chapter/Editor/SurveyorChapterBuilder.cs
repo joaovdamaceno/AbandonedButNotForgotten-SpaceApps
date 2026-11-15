@@ -10,7 +10,7 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string Folder = "Assets/_Game/Chapters/Surveyor/Chapter";
         public const string Scene = "Assets/_Game/Chapters/Surveyor/Scenes/SurveyorChapter.unity", ChapterPath = Folder + "/SurveyorChapter.asset";
         public override string Id => "surveyor.chapter";
-        public override string Owner => "R6 · SUR-019";
+        public override string Owner => "R6 · SUR-020";
         public override string ScenePath => Scene;
         public override string RootName => "[R6] Surveyor full chapter";
         public override string AssetFolder => "Assets/_Game/Chapters/Surveyor";

@@ -48,25 +48,25 @@ MonoBehaviour:
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 44
     events: []
-  - shotId: sur.doc.descent.ground
-    durationSeconds: 6
-    rigId: world
-    lookAtTargetId: sur.touchdown
-    easing: 1
-    minGroundClearanceMeters: 0.18
-    continueFromPreviousShot: 0
-    keyframes:
-    - timeSeconds: 0
-      positionMeters: {x: 9, y: 3.8923132, z: -12}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 40
-    - timeSeconds: 6
-      positionMeters: {x: 8, y: 3.4550452, z: -11}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 40
-    events: []
   - shotId: sur.doc.descent.contacts
-    durationSeconds: 8
+    durationSeconds: 12.5
+    rigId: world
+    lookAtTargetId: sur.landing
+    easing: 1
+    minGroundClearanceMeters: 0.18
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 13, y: 5.875108, z: -16}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 48
+    - timeSeconds: 12.5
+      positionMeters: {x: 13.3, y: 5.950175, z: -16.3}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 48
+    events: []
+  - shotId: sur.doc.descent.settled
+    durationSeconds: 4.5
     rigId: world
     lookAtTargetId: sur.touchdown
     easing: 1
@@ -74,11 +74,11 @@ MonoBehaviour:
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 4, y: 1.5118262, z: -5}
+      positionMeters: {x: 4, y: 1.7118261, z: -5}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 44
-    - timeSeconds: 8
-      positionMeters: {x: 4.3, y: 1.6663588, z: -5.3}
+    - timeSeconds: 4.5
+      positionMeters: {x: 4.3, y: 1.8163588, z: -5.3}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 44
     events: []
@@ -102,15 +102,15 @@ MonoBehaviour:
   - cueId: sur.doc.arrival.3
     textKey: sur.doc.arrival.3
     startSeconds: 18
-    endSeconds: 25
+    endSeconds: 26
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: sur.doc.arrival.4
     textKey: sur.doc.arrival.4
-    startSeconds: 25
-    endSeconds: 31
+    startSeconds: 27
+    endSeconds: 34
     triggerId: 
     minimumReadSeconds: 0
     position: 0

@@ -1,0 +1,8 @@
+# Full Editor/browser logs are generated locally; version the structured reports and selected evidence.
+*.log
+unity-results.xml
+project.json
+
+# Alternative camera auditions; final authored frames are retained.
+framing/
+framing-review.jpg

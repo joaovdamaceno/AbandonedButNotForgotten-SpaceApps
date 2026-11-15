@@ -1,3 +1,5 @@
+> **Edição atual: SUR-020.** A composição SUR-015 abaixo é histórica. Para executar, abra SurveyorArchive e Play. O fluxo atual é Prologue → Arrival → Activation → Science → Findings → Night → Reunion → Legacy → End. Na ciência: **clique e arraste**, solte ao concluir, depois **segure E**. Foto automática. Controles, tempos, reconstrução e evidências atuais: `Assets/_Game/Chapters/Surveyor/README.md`, `Docs/Chapters/03_SURVEYOR_3.md` e `QA/SUR-020/README.md`.
+
 # Surveyor 3 — capítulo integrado (SUR-015)
 
 Abra `Assets/_Game/Chapters/Surveyor/Scenes/SurveyorArchive.unity` e pressione Play. Escolha Iniciar na pasta Surveyor 3. `SurveyorChapter.unity` também abre isoladamente para inspeção; a entrada publicada é o arquivo. O catálogo de teste deixa os outros capítulos indisponíveis; não substitui Boot, Dossier nem o catálogo global de R1.
