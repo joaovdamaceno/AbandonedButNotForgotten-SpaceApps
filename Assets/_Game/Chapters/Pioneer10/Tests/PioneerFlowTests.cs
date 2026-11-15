@@ -193,7 +193,7 @@ namespace Abandoned.SpaceApps.Tests
         static readonly Dictionary<string, string> SequenceAssets = new Dictionary<string, string>
         {
             { "PIO.Launch", "PIO_Launch" }, { "PIO.Belt", "PIO_Belt" }, { "PIO.JupiterApproach", "PIO_JupiterApproach" }, { "PIO.Imaging", "PIO_Imaging" },
-            { "PIO.Plaque", "PIO_Plaque" }, { "PIO.Outbound", "PIO_Outbound" }, { "PIO.Listening", "PIO_Listening" }, { "PIO.Farewell", "PIO_Farewell" },
+            { "PIO.Closest", "PIO_Closest" }, { "PIO.Plaque", "PIO_Plaque" }, { "PIO.Outbound", "PIO_Outbound" }, { "PIO.Listening", "PIO_Listening" }, { "PIO.Farewell", "PIO_Farewell" },
         };
 
         // ---------- Montagem ----------
@@ -205,7 +205,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(chapter.Validate(), Is.Empty);
             Assert.That(chapter.ChapterId, Is.EqualTo("pioneer10"), "igual ao slot do dossiê");
             Assert.That(chapter.SceneName, Is.EqualTo("Pioneer10"));
-            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(375f));
+            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(415f));
 
             var order = new List<string>();
             var cursor = chapter.InitialStepId;
@@ -243,8 +243,9 @@ namespace Abandoned.SpaceApps.Tests
                 total += sequence.TotalDurationSeconds;
             }
 
-            Assert.That(total, Is.EqualTo(375f).Within(0.01f), "soma nominal do capítulo");
-            Assert.That(controller.JupiterSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.03.01", "PIO.03.02", "PIO.03.03" }));
+            Assert.That(total, Is.EqualTo(415f).Within(0.01f), "soma nominal do capítulo");
+            Assert.That(controller.JupiterSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.03.01", "PIO.03.02", "PIO.03.03", "PIO.03.04" }));
+            Assert.That(controller.ClosestSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.09.01", "PIO.09.02", "PIO.09.03", "PIO.09.04", "PIO.09.05", "PIO.09.06", "PIO.09.07" }));
         }
 
         [Test]
@@ -259,14 +260,14 @@ namespace Abandoned.SpaceApps.Tests
         // ---------- Rota ----------
 
         [Test]
-        public void TheEightStatesPassInOrderEachOnceThenTheChapterFinishesOnce()
+        public void TheNineStatesPassInOrderEachOnceThenTheChapterFinishesOnce()
         {
             BeginChapter();
             Assert.That(controller.IsInitialized, Is.True);
             Assert.That(controller.CurrentState, Is.EqualTo("PIO.Launch"));
 
             OperateUntil(() => director.State != AppState.Playing || finished > 0);
-            Assert.That(entered, Is.EqualTo(StateIds), "os oito estados, na ordem");
+            Assert.That(entered, Is.EqualTo(StateIds), "os nove estados, na ordem");
             Assert.That(completed, Is.EqualTo(StateIds), "cada estado conclui uma vez, pela própria atividade");
             Assert.That(finished, Is.EqualTo(1), "uma única conclusão do capítulo");
             Assert.That(director.State, Is.EqualTo(AppState.Completion), "o memorial é o estado Completion: não conta como tempo ativo");
@@ -428,6 +429,21 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(controller.CurrentState, Is.EqualTo("PIO.Imaging"));
             Assert.That(controller.LastReport.activeSeconds[2] - 0f, Is.EqualTo(27f).Within(1.5f), "27 s de cinema, a duração nominal");
             Assert.That(start, Is.LessThan(1f));
+        }
+
+        [Test]
+        public void TheClosestApproachIsCinemaOnlyAndConcludesWhenItsSequenceEnds()
+        {
+            BeginChapter();
+            OperateUntil(() => controller.CurrentState == "PIO.Closest");
+            SetE(false);
+            Run(20f);
+            Assert.That(controller.CurrentState, Is.EqualTo("PIO.Closest"), "20 s depois ainda é cinema: nada conclui por clique nem por tempo antes do fim da sequência");
+            Assert.That(completed, Does.Not.Contain("PIO.Closest"));
+            Run(25f);
+            Assert.That(completed, Does.Contain("PIO.Closest"));
+            Assert.That(controller.CurrentState, Is.EqualTo("PIO.Plaque"));
+            Assert.That(controller.LastReport.activeSeconds[4], Is.EqualTo(40f).Within(1.5f), "40 s de cinema, a duração nominal");
         }
     }
 }

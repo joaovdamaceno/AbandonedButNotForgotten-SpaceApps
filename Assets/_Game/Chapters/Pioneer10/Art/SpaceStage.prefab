@@ -441,6 +441,24 @@ MonoBehaviour:
       y: 0.12
       width: 0.43
       height: 0.76
+  - anchorId: PIO.Closest
+    stateId: PIO.Closest
+    function: "PIO05 (roteiro v2, cena 5) \xB7 a m\xE1xima aproxima\xE7\xE3o: J\xFApiter enche o quadro, a poucas dezenas de metros do topo das nuvens (escala de composi\xE7\xE3o)"
+    pose: {fileID: 3840515966632898432}
+    fieldOfViewDegrees: 55
+    region: 0
+    lightGroupId: PIO.Light.JupiterAxis
+    showJupiter: 1
+    showAldebaranMarker: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
   - anchorId: PIO.Plaque
     stateId: PIO.Plaque
     function: "Placa presa aos suportes da antena; rota\xE7\xE3o visual suspensa s\xF3 neste close"
@@ -938,6 +956,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10204, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2291301966612148080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3840515966632898432}
+  m_Layer: 0
+  m_Name: "PIO.Closest \xB7 PIO05 (roteiro v2, cena 5) \xB7 a m\xE1xima"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3840515966632898432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2291301966612148080}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.06798263, y: -0.4643653, z: 0.03577987, w: 0.8823055}
+  m_LocalPosition: {x: -126.61113, y: 43.384506, z: 160.55226}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2293410327048363899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,6 +1766,7 @@ Transform:
   - {fileID: 1241571127381635050}
   - {fileID: 7176797557390841779}
   - {fileID: 553531033452038761}
+  - {fileID: 3840515966632898432}
   m_Father: {fileID: 7110141134317143998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6724439147850653092

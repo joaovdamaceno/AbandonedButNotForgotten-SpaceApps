@@ -71,7 +71,7 @@ namespace Abandoned.SpaceApps
         /// <summary>Estados do capítulo na ordem do roteiro (Docs/Chapters/02_PIONEER_10.md).</summary>
         public static readonly string[] StateIds =
         {
-            "PIO.Launch", "PIO.Belt", "PIO.JupiterApproach", "PIO.Imaging",
+            "PIO.Launch", "PIO.Belt", "PIO.JupiterApproach", "PIO.Imaging", "PIO.Closest",
             "PIO.Plaque", "PIO.Outbound", "PIO.Listening", "PIO.Farewell",
         };
 

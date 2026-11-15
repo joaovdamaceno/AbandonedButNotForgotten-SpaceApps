@@ -167,6 +167,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 new PioneerStateAudio { stateId = "PIO.Belt", musicCueId = "MUS_PIO_CUR", fadeSeconds = fade, note = "CUR, variação lúdica na fantasia." },
                 new PioneerStateAudio { stateId = "PIO.JupiterApproach", musicCueId = "MUS_PIO_CUR", fadeSeconds = fade, note = "CUR cresce com a escala; mesmo cue do estado anterior, sem reiniciar." },
                 new PioneerStateAudio { stateId = "PIO.Imaging", musicCueId = "MUS_PIO_CUR", fadeSeconds = fade },
+                new PioneerStateAudio { stateId = "PIO.Closest", musicCueId = "MUS_PIO_CUR", fadeSeconds = fade, note = "Roteiro v2, cena 5: a música continua (sem reiniciar); o silêncio de 1 s antes da passagem é decisão de áudio futura (AUD-002)." },
                 new PioneerStateAudio { stateId = "PIO.Plaque", musicCueId = "MUS_PIO_DISTANCIA", fadeSeconds = fade, note = "Delicada; o pulso sai em 38–47 s." },
                 new PioneerStateAudio { stateId = "PIO.Outbound", musicCueId = "MUS_PIO_DISTANCIA", fadeSeconds = fade },
                 new PioneerStateAudio { stateId = "PIO.Listening", musicCueId = "MUS_PIO_ESCUTA", fadeSeconds = fade, note = "LEG: piano e cordas com silêncio estruturado." },

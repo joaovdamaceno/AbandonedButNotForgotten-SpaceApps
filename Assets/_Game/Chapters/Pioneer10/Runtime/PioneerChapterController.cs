@@ -28,7 +28,7 @@ namespace Abandoned.SpaceApps
 
     /// <summary>
     /// PIO-014 · Controlador do capítulo Pioneer 10: liga os oito estados ao contrato global (<see cref="IChapterDirector"/>) e
-    /// faz a rota dossiê → Launch → Belt → JupiterApproach → Imaging → Plaque → Outbound → Listening → Farewell → resultado →
+    /// faz a rota dossiê → Launch → Belt → JupiterApproach → Imaging → Closest → Plaque → Outbound → Listening → Farewell → resultado →
     /// arquivo, sem comandos manuais do Editor. A ordem vem da tabela de etapas de <c>Data/PioneerChapter.asset</c>
     /// (nunca de um enum) e cada etapa só conclui quando a ATIVIDADE do estado conclui; nenhum cronômetro conclui nada.
     /// <list type="bullet">
@@ -47,10 +47,10 @@ namespace Abandoned.SpaceApps
     {
         public const string ChapterId = "pioneer10";
 
-        /// <summary>Os oito estados na ordem do roteiro (também os IDs das etapas de PioneerChapter.asset).</summary>
+        /// <summary>Os nove estados na ordem do roteiro (também os IDs das etapas de PioneerChapter.asset).</summary>
         public static readonly string[] StateIds =
         {
-            "PIO.Launch", "PIO.Belt", "PIO.JupiterApproach", "PIO.Imaging", "PIO.Plaque", "PIO.Outbound", "PIO.Listening", "PIO.Farewell",
+            "PIO.Launch", "PIO.Belt", "PIO.JupiterApproach", "PIO.Imaging", "PIO.Closest", "PIO.Plaque", "PIO.Outbound", "PIO.Listening", "PIO.Farewell",
         };
 
         [SerializeField] ChapterDefinition chapter;
@@ -62,6 +62,7 @@ namespace Abandoned.SpaceApps
         [SerializeField] BeltInvestigation belt;
         [SerializeField, Tooltip("PIO.JupiterApproach é só cinema (sem interação): conclui quando a sequência termina.")] SequenceDefinition jupiterSequence;
         [SerializeField] PioneerImaging imaging;
+        [SerializeField, Tooltip("PIO.Closest (a máxima aproximação de Júpiter) é só cinema: conclui quando a sequência termina.")] SequenceDefinition closestSequence;
         [SerializeField] ImagingRecovery recovery;
         [SerializeField] HistoricalImageReveal reveal;
         [SerializeField] PioneerPlaqueActivity plaque;
@@ -75,7 +76,8 @@ namespace Abandoned.SpaceApps
         InputRouter router;
         IInteractionService interactions;
         Func<bool> returnToArchive;
-        bool initialized, jupiterRunning, jupiterBound;
+        bool initialized, cinemaBound;
+        string cinemaState;
         string currentState;
         float stateSeconds;
         readonly PioneerRunReport report = new PioneerRunReport();
@@ -96,6 +98,7 @@ namespace Abandoned.SpaceApps
         public string CurrentState => currentState;
         public bool IsInitialized => initialized;
         public SequenceDefinition JupiterSequence => jupiterSequence;
+        public SequenceDefinition ClosestSequence => closestSequence;
 
         /// <summary>Relatório do tempo ativo por estado desta execução (operador assistido, nunca resultado humano).</summary>
         public PioneerRunReport LastReport => report;
@@ -208,8 +211,9 @@ namespace Abandoned.SpaceApps
             {
                 case "PIO.Launch": launch.Begin(); break;
                 case "PIO.Belt": belt.Begin(); break;
-                case "PIO.JupiterApproach": BeginJupiter(); break;
+                case "PIO.JupiterApproach": BeginCinema(stepId, "PIO.JupiterApproach", jupiterSequence); break;
                 case "PIO.Imaging": imaging.Begin(); break;
+                case "PIO.Closest": BeginCinema(stepId, "PIO.Closest", closestSequence); break;
                 case "PIO.Plaque": plaque.Begin(); break;
                 case "PIO.Outbound": outbound.Begin(); break;
                 case "PIO.Listening": listening.Begin(); break;
@@ -217,30 +221,31 @@ namespace Abandoned.SpaceApps
             }
         }
 
-        /// <summary>PIO.JupiterApproach: só cinema. Conclui pelo fim da sequência, nunca por cronômetro.</summary>
-        void BeginJupiter()
+        /// <summary>Estados só de cinema (PIO.JupiterApproach e PIO.Closest): concluem pelo fim da sequência, nunca por cronômetro.</summary>
+        void BeginCinema(string stateId, string anchorId, SequenceDefinition sequence)
         {
-            if (!jupiterBound)
+            if (!cinemaBound)
             {
-                jupiterBound = true;
-                sequenceDirector.Finished += OnJupiterFinished;
+                cinemaBound = true;
+                sequenceDirector.Finished += OnCinemaFinished;
             }
 
-            jupiterRunning = true;
+            cinemaState = stateId;
             presentation.BindSequenceDirector(sequenceDirector);
-            presentation.ShowAnchor("PIO.JupiterApproach");
-            sequenceDirector.Play(jupiterSequence, false);
+            presentation.ShowAnchor(anchorId);
+            sequenceDirector.Play(sequence, false);
         }
 
-        void OnJupiterFinished(SequenceResult result)
+        void OnCinemaFinished(SequenceResult result)
         {
-            if (!jupiterRunning)
+            if (cinemaState == null)
                 return;
 
-            jupiterRunning = false;
+            var state = cinemaState;
+            cinemaState = null;
             presentation.UnbindSequenceDirector();
             if (result.Reason != SequenceExitReason.Canceled)
-                CompleteState("PIO.JupiterApproach");
+                CompleteState(state);
         }
 
         void CompleteState(string stateId)
@@ -320,9 +325,9 @@ namespace Abandoned.SpaceApps
         /// <summary>Cancela a atividade do estado atual e tudo que ela deixou: legenda, música, efeitos, recuperação e fotos.</summary>
         void CancelActive()
         {
-            if (jupiterRunning)
+            if (cinemaState != null)
             {
-                jupiterRunning = false;
+                cinemaState = null;
                 presentation.UnbindSequenceDirector();
                 if (sequenceDirector.IsPlaying)
                     sequenceDirector.Cancel();
@@ -350,9 +355,10 @@ namespace Abandoned.SpaceApps
             foreach (var unsubscribe in unsubscribers)
                 unsubscribe();
             unsubscribers.Clear();
-            if (jupiterBound && sequenceDirector != null)
-                sequenceDirector.Finished -= OnJupiterFinished;
-            jupiterBound = false;
+            if (cinemaBound && sequenceDirector != null)
+                sequenceDirector.Finished -= OnCinemaFinished;
+            cinemaBound = false;
+            cinemaState = null;
             if (initialized && presentation != null)
                 presentation.UnregisterFromCameraDirector();
             initialized = false;
@@ -363,8 +369,8 @@ namespace Abandoned.SpaceApps
         void OnDestroy() => Teardown();
 
         /// <summary>
-        /// Erros de montagem (lista vazia = conforme): referências, a tabela de etapas igual aos oito estados e em ordem,
-        /// uma sequência para cada estado com anchor no palco e a sequência do Júpiter.
+        /// Erros de montagem (lista vazia = conforme): referências, a tabela de etapas igual aos nove estados e em ordem,
+        /// uma sequência para cada estado com anchor no palco e as sequências de cinema (Júpiter e máxima aproximação).
         /// </summary>
         public List<string> ValidateSetup()
         {
@@ -382,6 +388,7 @@ namespace Abandoned.SpaceApps
             Require(launch, nameof(launch));
             Require(belt, nameof(belt));
             Require(jupiterSequence, nameof(jupiterSequence));
+            Require(closestSequence, nameof(closestSequence));
             Require(imaging, nameof(imaging));
             Require(recovery, nameof(recovery));
             Require(reveal, nameof(reveal));
@@ -431,6 +438,8 @@ namespace Abandoned.SpaceApps
 
             if (jupiterSequence != null)
                 errors.AddRange(jupiterSequence.Validate().ConvertAll(e => $"{owner}: {e}"));
+            if (closestSequence != null)
+                errors.AddRange(closestSequence.Validate().ConvertAll(e => $"{owner}: {e}"));
             return errors;
         }
     }
