@@ -15,7 +15,7 @@ namespace Abandoned.SpaceApps.EditorTools
     /// <c>Art/PlaqueEducational.svg</c> e os cinco PNGs do painel a partir da MESMA lista de formas
     /// (<see cref="PioneerPlaqueArt"/>), <c>UI/PlaquePanel.prefab</c> (UIDocument + <see cref="PlaquePanelView"/> +
     /// <see cref="ResponsiveLayoutClass"/>), <see cref="PioneerPlaqueActivity"/> ligada ao palco e a sequência
-    /// <c>Sequences/PIO_Plaque.asset</c> (47 s).
+    /// <c>Sequences/PIO_Plaque.asset</c> (33 s).
     /// </summary>
     public sealed class PioneerPlaqueBuilder : SceneBuilderModule
     {
@@ -140,36 +140,37 @@ namespace Abandoned.SpaceApps.EditorTools
         static ShotKeyframe Key(float t, Vector3 p, float fov) => new ShotKeyframe(t, p, Vector3.zero, fov);
 
         /// <summary>
-        /// 0–9 chegada à placa presa à sonda, 9–38 as cinco peças (marco em 37,5 s: a revelação espera 5/5), 38–47 placa inteira
-        /// e a escala humana devolvida ao refletor. As legendas das peças (PIO.05.02–06) abrem por gatilho, 4 s cada.
+        /// 0–7,5 chegada à placa presa à sonda, 7,5–27,5 as cinco peças (marco em 27,4 s: a revelação espera 5/5), 27,5–33 placa inteira
+        /// e a escala humana devolvida ao refletor. As legendas das peças (PIO.05.02–06) abrem por gatilho e ficam o tempo de ler
+        /// a 16 caracteres por segundo no pior idioma (de 3,6 a 4 s). 33 s é o mínimo que a regra de leitura permite (o roteiro pede 20 s).
         /// </summary>
         public static SequenceDefinition CreateSequence()
         {
             var shots = new[]
             {
-                new ShotDefinition("PIO05.Arrive", 9f, PioneerPlaqueActivity.StateId,
-                    new[] { Key(0f, new Vector3(0.3f, 0f, -0.5f), 36f), Key(9f, Vector3.zero, 36f) },
+                new ShotDefinition("PIO05.Arrive", 7.5f, PioneerPlaqueActivity.StateId,
+                    new[] { Key(0f, new Vector3(0.3f, 0f, -0.5f), 36f), Key(7.5f, Vector3.zero, 36f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerPlaqueActivity.EventArrive) }),
-                new ShotDefinition("PIO05.Fit", 29f, PioneerPlaqueActivity.StateId,
-                    new[] { Key(0f, Vector3.zero, 36f), Key(29f, new Vector3(0f, 0f, 0.1f), 36f) },
+                new ShotDefinition("PIO05.Fit", 20f, PioneerPlaqueActivity.StateId,
+                    new[] { Key(0f, Vector3.zero, 36f), Key(20f, new Vector3(0f, 0f, 0.1f), 36f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
-                    events: new[] { new ShotEvent(0f, PioneerPlaqueActivity.EventActivity), new ShotEvent(28.5f, PioneerPlaqueActivity.EventGate) }),
-                new ShotDefinition("PIO05.Reveal", 9f, PioneerPlaqueActivity.StateId,
-                    new[] { Key(0f, Vector3.zero, 36f), Key(9f, new Vector3(0f, 0f, -1.2f), 44f) },
+                    events: new[] { new ShotEvent(0f, PioneerPlaqueActivity.EventActivity), new ShotEvent(19.9f, PioneerPlaqueActivity.EventGate) }),
+                new ShotDefinition("PIO05.Reveal", 5.5f, PioneerPlaqueActivity.StateId,
+                    new[] { Key(0f, Vector3.zero, 36f), Key(5.5f, new Vector3(0f, 0f, -1.2f), 44f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerPlaqueActivity.EventReveal) }),
             };
 
             var cues = new[]
             {
-                new SubtitleCue("PIO.05.01", "PIO.05.01", 0f, 8f),
-                SubtitleCue.Triggered("PIO.05.02", "PIO.05.02", PioneerPlaqueActivity.TriggerIds[0], 4f),
-                SubtitleCue.Triggered("PIO.05.03", "PIO.05.03", PioneerPlaqueActivity.TriggerIds[1], 4f),
-                SubtitleCue.Triggered("PIO.05.04", "PIO.05.04", PioneerPlaqueActivity.TriggerIds[2], 4f),
-                SubtitleCue.Triggered("PIO.05.05", "PIO.05.05", PioneerPlaqueActivity.TriggerIds[3], 4f),
-                SubtitleCue.Triggered("PIO.05.06", "PIO.05.06", PioneerPlaqueActivity.TriggerIds[4], 4f),
-                new SubtitleCue("PIO.05.07", "PIO.05.07", 38f, 46f),
+                new SubtitleCue("PIO.05.01", "PIO.05.01", 0f, 7.3f),
+                SubtitleCue.Triggered("PIO.05.02", "PIO.05.02", PioneerPlaqueActivity.TriggerIds[0], 4.0f),
+                SubtitleCue.Triggered("PIO.05.03", "PIO.05.03", PioneerPlaqueActivity.TriggerIds[1], 3.7f),
+                SubtitleCue.Triggered("PIO.05.04", "PIO.05.04", PioneerPlaqueActivity.TriggerIds[2], 3.9f),
+                SubtitleCue.Triggered("PIO.05.05", "PIO.05.05", PioneerPlaqueActivity.TriggerIds[3], 3.6f),
+                SubtitleCue.Triggered("PIO.05.06", "PIO.05.06", PioneerPlaqueActivity.TriggerIds[4], 3.6f),
+                new SubtitleCue("PIO.05.07", "PIO.05.07", 27.7f, 33f),
             };
 
             return SequenceDefinition.Create("PIO_Plaque", shots, cues);

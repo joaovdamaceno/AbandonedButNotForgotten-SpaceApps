@@ -18,7 +18,7 @@ MonoBehaviour:
   questionKey: slot.pioneer10.question
   cover: {fileID: 0}
   sceneName: Pioneer10
-  targetDurationSeconds: 407
+  targetDurationSeconds: 393
   initialSequenceId: PIO_Launch
   steps:
   - stepId: PIO.Launch
