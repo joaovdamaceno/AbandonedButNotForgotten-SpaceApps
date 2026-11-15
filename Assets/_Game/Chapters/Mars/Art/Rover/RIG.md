@@ -38,8 +38,8 @@ Posições em metros, no espaço da raiz, na pose de repouso. Sinais na convenç
 | `PMA_Head` | PMA_Mast | (0,030; 1,400; 0,550) | X | Elevação da cabeça de câmeras. + = olha para baixo |
 | `HGA_Gimbal` | Body | (−0,340; 0,670; −0,230) | Y | Azimute da antena de alto ganho |
 | `HGA_Dish` | HGA_Gimbal | (−0,410; 0,820; −0,230) | X | Elevação da antena. − = levanta o prato (M29) |
-| `IDD_Shoulder` | Body | (0,240; 0,400; 0,575) | Y (azimute), Z (elevação) | Braço guardado sob a frente. Desdobrar: Y ≈ −80° |
-| `IDD_Elbow` | IDD_Shoulder | (−0,210; 0,400; 0,615) | Y | Desdobrar: Y ≈ +150° (com o ombro em −80°, o antebraço aponta para a frente) |
+| `IDD_Shoulder` | Body | (0,240; 0,400; 0,575) | Y (azimute), Z (elevação) | Braço guardado sob a frente. Desdobrar: Y ≈ +80° na Unity (−80° no referencial do Blender, usado no clipe `RigDemo`) |
+| `IDD_Elbow` | IDD_Shoulder | (−0,210; 0,400; 0,615) | Y | Desdobrar: Y ≈ −150° na Unity (+150° no Blender; com o ombro aberto, o antebraço aponta para a frente) |
 | `IDD_Wrist` | IDD_Elbow | (0,070; 0,365; 0,660) | Y | Orienta a torre |
 | `IDD_Turret` | IDD_Wrist | (0,030; 0,235; 0,685) | X | Troca de ferramenta: 90° por ferramenta |
 | `Tool_RAT` | IDD_Turret | (0,030; 0,180; 0,685) | — | Em repouso aponta para −Y (para baixo) |

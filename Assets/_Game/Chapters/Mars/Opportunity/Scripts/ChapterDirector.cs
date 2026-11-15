@@ -26,6 +26,9 @@ namespace Abandoned.SpaceApps.Opportunity
         public float SessionSeconds { get; private set; }
         public NarrativeDirector film;
         public MechanicalFeedback feedback;public StormPresentation weather;public SplitLanding split;
+#if UNITY_EDITOR
+        void OnDrawGizmos()=>WorkReachGizmo.Draw(rover,science,parking2004);
+#endif
         public Transform spawn2004, parking2004, spawn2018, scienceTarget, observationTarget, shelterTarget;
         public Transform lander, airbagRoot, landerPetals;
         public Transform[] petals, montagePoses;
@@ -134,8 +137,10 @@ namespace Abandoned.SpaceApps.Opportunity
         IEnumerator ParkAndDeploy()
         {
             float time=0;
-            while(Vector3.Distance(rover.transform.position,parking2004.position)>.12f&&time<3.5f)
-            {rover.AssistParking(parking2004.position,parking2004.rotation,Time.deltaTime);time+=Time.deltaTime;yield return null;}
+            // O braço IDD real alcança ~0,75 m a partir do ombro: o rover para com o ponto de abrasão à distância de trabalho, não no marco do cenário.
+            Vector3 park=rover.WorkParking(science.surface.WorldPoint(new Vector2(.5f,.5f)),parking2004.rotation);
+            while(new Vector2(park.x-rover.transform.position.x,park.z-rover.transform.position.z).magnitude>.02f&&time<5f)
+            {rover.AssistParking(park,parking2004.rotation,Time.deltaTime);time+=Time.deltaTime;yield return null;}
             science.Begin();
         }
         void Update()
