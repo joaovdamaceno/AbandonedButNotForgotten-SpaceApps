@@ -164,13 +164,11 @@ As falas com voz gravada estão em `Assets/_Game/Chapters/Mars/Opportunity/Resou
 | M01 · 0–6,3 s · fala | `MAR.C01` | In 2003, NASA sent two robotic explorers to Mars: Spirit and Opportunity. | In 2003, NASA sent two robotic explorers to Mars: Spirit and Opportunity. |
 | M02 · 6,3–11,2 s · fala | `MAR.C02` | Their mission was to search the rocks for traces of a past with liquid water. | Their mission was to search the rocks for traces of a past with liquid water. |
 | M02 · 6,3–11,2 s · letreiro | `MAR.ORI.01` | EARTH · MISSION PREPARATION | EARTH · MISSION PREPARATION |
-| M02 · 11,2–19,4 s · fala | `MAR.C03` | Before landing, an orbiting probe, Mars Global Surveyor, studied Mars from above and detected hematite in Meridiani Planum. | Before landing, an orbiting probe, Mars Global Surveyor, studied Mars from above and detected hematite in Meridiani Planum. |
-| M02 · 11,2–19,4 s · letreiro | `MAR.ORI.05` | THIS ROVER IS OPPORTUNITY | THIS ROVER IS OPPORTUNITY |
-| M02 · 19,4–27,1 s · fala | `MAR.C04` | On Earth, hematite usually forms where water exists. If water was there, the rocks might still hold that story. | On Earth, hematite usually forms where water exists. If water was there, the rocks might still hold that story. |
-| M02 · 19,4–27,1 s · letreiro | `MAR.ORI.02` | WHY MERIDIANI PLANUM? | WHY MERIDIANI PLANUM? |
-| M03 · 27,1–34,8 s · fala | `MAR.C05` | Its twin, Spirit, went to Gusev Crater, a possible ancient lake. | Its twin, Spirit, went to Gusev Crater, a possible ancient lake. |
-| M03 · 27,4–34,8 s · letreiro | `MAR.ORI.04` | MERIDIANI PLANUM | MERIDIANI PLANUM |
-| M03 · 32,7–34,8 s · letreiro | `MAR.ORI.03` | GUSEV CRATER | GUSEV CRATER |
+| M02 · 11,2–19,4 s · fala | `MAR.C03` | Mars Global Surveyor mapped the planet's surface, helping NASA pinpoint two promising landing sites. | Mars Global Surveyor mapped the planet's surface, helping NASA pinpoint two promising landing sites. |
+| M02 · 19,4–27,1 s · fala | `MAR.C04` | Meridiani Planum, rich in hematite, which only typically forms in liquid water. | Meridiani Planum, rich in hematite, which only typically forms in liquid water. |
+| M02 · 19,7–34,8 s · letreiro | `MAR.ORI.04` | MERIDIANI PLANUM | MERIDIANI PLANUM |
+| M03 · 27,1–34,8 s · fala | `MAR.C05` | And Gusev Crater, a massive basin that once looked like an ancient lake. | And Gusev Crater, a massive basin that once looked like an ancient lake. |
+| M03 · 30,7–34,8 s · letreiro | `MAR.ORI.03` | GUSEV CRATER | GUSEV CRATER |
 
 ### Pouso das duas sondas
 
@@ -179,12 +177,11 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
 | tela dividida | `v15.split.spirit` | SPIRIT | SPIRIT |
-| tela dividida | `v15.split.spirit.place` | ↓ caindo na CRATERA GUSEV | ↓ landing in GUSEV CRATER |
+| tela dividida | `v15.split.spirit.place` | ↓ caindo na CRATERA GUSEV · 4 JAN 2004 | ↓ landing in GUSEV CRATER · 4 JAN 2004 |
 | tela dividida | `v15.split.opportunity` | OPPORTUNITY | OPPORTUNITY |
-| tela dividida | `v15.split.opportunity.place` | ↓ caindo em MERIDIANI PLANUM | ↓ landing on MERIDIANI PLANUM |
-| tela dividida | `v15.split.note` | Janeiro de 2004 · Os dois pousos aconteceram com três semanas de diferença; aqui, lado a lado. | January 2004 · The two landings were three weeks apart; shown here side by side. |
+| tela dividida | `v15.split.opportunity.place` | ↓ caindo em MERIDIANI PLANUM · 25 JAN 2004 | ↓ landing on MERIDIANI PLANUM · 25 JAN 2004 |
 | 0 s · fala | `v15.landing.twins` | Duas sondas gêmeas caem em Marte, protegidas por airbags: uma dentro da Cratera Gusev, a outra em Meridiani Planum. | Two twin rovers fall toward Mars, protected by airbags: one into Gusev Crater, the other onto Meridiani Planum. |
-| 13,5 s · fala | `v15.landing.opp` | A Opportunity descansa dentro da Cratera Eagle, em Meridiani Planum. A partir daqui, você a conduz. | Opportunity comes to rest inside Eagle Crater, in Meridiani Planum. From here, you drive her. |
+| 13,5 s · fala | `v15.landing.opp` | Depois de uma semana de preparação, a Opportunity põe as rodas em Meridiani Planum. | After a week of preparing, Opportunity lands its wheels on Meridiani Planum. |
 
 ### Saída do módulo
 
@@ -201,12 +198,13 @@ Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.js
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
 | objetivo | `v10.goal.berries` | Procure por hematita nas rochas | Look for hematite in the rocks |
+| aviso no meio da tela, perto da rocha | `v17.hint.explore` | Segure E para explorar | Hold E to explore |
 | botão | `v13.interact.berries` | Observar rocha | Observe the rock |
 | observação | `v10.study.berries` | MICROSCOPIA · PEQUENAS ESFERAS | MICROSCOPY · SMALL SPHERES |
 | observação | `v10.berries.first` | A rocha e as pequenas esferas. Segure E para observar. | The rock and its small spheres. Hold E to observe. |
 | observação | `v10.result.berries` | Essas pequenas esferas são concreções ricas em hematita. Junto às camadas e à composição das rochas, ajudam a contar uma história de água antiga. | These small spheres are hematite-rich concretions. Together with rock layers and composition, they help tell a story of ancient water. |
 | narração depois da observação | `v14.berries.water` 🔊 | A hematita costuma se formar onde existe água. Estas esferas são uma pista de que água líquida pode ter passado por aqui. | Hematite usually forms where water exists. These spheres are a clue that liquid water may once have flowed here. |
-| narração depois da observação | `v14.berries.doubt` 🔊 | Mas uma pista não basta. Para ter certeza, precisamos ver o interior de uma rocha. | But one clue is not enough. To be sure, we need to see inside a rock. |
+| narração depois da observação | `v14.berries.doubt` | Ainda assim, pistas na superfície não bastam. Para ter certeza, precisamos olhar dentro das rochas. | Still, surface clues aren't enough. To know for sure, we have to look inside the rocks. |
 | narração depois da observação | `route.outcrop` | Vá até a rocha McKittrick e olhe por dentro dela | Go to the McKittrick rock and look inside it |
 | objetivo | `objective.sample` | Examine a rocha McKittrick | Examine McKittrick |
 | botão | `v13.interact.rat` | Analisar a rocha | Analyze the rock |
@@ -278,7 +276,7 @@ Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.js
 | narração depois da observação | `v10.goal.meteorite` | Examine a rocha metálica: de onde ela veio? | Examine the metallic rock: where did it come from? |
 | botão | `v13.interact.meteorite` | Examinar o meteorito | Inspect the meteorite |
 | observação | `v10.study.meteorite` | ANÁLISE · UMA ROCHA METÁLICA | ANALYSIS · A METALLIC ROCK |
-| observação | `v10.result.meteorite` | Ferro e níquel: um meteorito, não um pedaço do escudo. O primeiro identificado em outro planeta. | Iron and nickel: a meteorite, not a piece of the shield. The first identified on another planet. |
+| observação | `v10.result.meteorite` | Feito de ferro e níquel, o primeiro meteorito identificado em outro planeta. | Made of iron and nickel, the first meteorite identified on another planet. |
 
 ### Meteorito
 
@@ -298,12 +296,12 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 | 0 s · título | `v10.year2005` | 2005 · O QUE FICOU PARA TRÁS | 2005 · WHAT WE LEFT BEHIND |
 | 0 s · fala | `v13.years.work` 🔊 | A missão de noventa sóis continuou. Rocha após rocha, a história de Marte ganhava novos detalhes. | The ninety-sol mission kept going. Rock by rock, the story of Mars gained new detail. |
 | 6 s · título | `v3.year2007` | 2007 | 2007 |
-| 6 s · fala | `v15.storm.frequent` | 2007. Uma tempestade de poeira começa a esconder o Sol. Tempestades assim são frequentes em Marte; algumas crescem até cobrir o planeta inteiro. | 2007. A dust storm begins to hide the Sun. Storms like this are frequent on Mars; some grow until they cover the entire planet. |
-| 11,5 s · fala | `v15.storm.dark` | Sem luz nos painéis solares, a Opportunity parou de dirigir e poupou energia. Por semanas, quase tudo ficou desligado. | With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off. |
-| 18 s · fala | `v13.years.storm` 🔊 | Em 2007, a poeira quase apagou sua fonte de energia. Dessa vez, a luz voltou — e a jornada continuou. | In 2007, dust nearly cut off its energy supply. That time, the light returned — and the journey continued. |
+| 6 s · fala | `v15.storm.frequent` | Uma tempestade de poeira começa a esconder o Sol. Tempestades assim são frequentes em Marte; algumas crescem até cobrir o planeta inteiro. | A dust storm begins to hide the Sun. Storms like this are frequent on Mars; some grow until they cover the entire planet. |
+| 13 s · fala | `v15.storm.dark` | Sem luz nos painéis solares, a Opportunity parou de dirigir e poupou energia. Por semanas, quase tudo ficou desligado. | With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off. |
+| 18 s · fala | `v15.storm.dark` | Sem luz nos painéis solares, a Opportunity parou de dirigir e poupou energia. Por semanas, quase tudo ficou desligado. | With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off. |
 | 24,5 s · título | `v15.spirit.title` | SPIRIT · 2010 | SPIRIT · 2010 |
 | 24,5 s · fala | `v15.spirit.death` | Em 2009, a Spirit atolou em areia fofa. Presa e mal inclinada para o Sol, não recebia luz suficiente no inverno marciano. O último sinal chegou em 22 de março de 2010; a NASA encerrou a busca por contato em 2011. | In 2009, Spirit became stuck in soft sand. Trapped and poorly tilted toward the Sun, it could not collect enough light in the Martian winter. Its last signal arrived on March 22, 2010; NASA ended its attempts to regain contact in 2011. |
-| 32,5 s · fala | `v15.spirit.legacy` | Projetada para 90 sóis, trabalhou por mais de seis anos e percorreu 7,7 km. Subiu colinas e achou sílica e sulfatos: sinais de antigas fontes quentes e de água em Gusev. | Designed for 90 sols, it worked for more than six years and drove 7.7 km. It climbed hills and found silica and sulfates: signs of ancient hot springs and water at Gusev. |
+| 32,5 s · fala | `v15.spirit.death` | Em 2009, a Spirit atolou em areia fofa. Presa e mal inclinada para o Sol, não recebia luz suficiente no inverno marciano. O último sinal chegou em 22 de março de 2010; a NASA encerrou a busca por contato em 2011. | In 2009, Spirit became stuck in soft sand. Trapped and poorly tilted toward the Sun, it could not collect enough light in the Martian winter. Its last signal arrived on March 22, 2010; NASA ended its attempts to regain contact in 2011. |
 | 41 s · fala | `v15.spirit.alone` | Agora só a Opportunity continuava em Marte. E seguiu em frente, por ela e pela irmã gêmea. | Now only Opportunity remained on Mars. And she kept going, for herself and for her twin. |
 | 48 s · título | `v3.year2018` | 2018 | 2018 |
 | 48 s · fala | `v13.years.valley` 🔊 | 2018. Após quase quinze anos, a Opportunity chegou a Perseverance Valley. O céu começava a escurecer. | 2018. After almost fifteen years, Opportunity reached Perseverance Valley. The sky was beginning to darken. |
@@ -349,15 +347,14 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 
 ### Despedida
 
-Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_Farewell.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`. Anos sob o título: chave `v6.memorial.dates`.
+Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_Farewell.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
 
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
-| 0 s · fala | `v16.farewell.legacy` | Projetadas para noventa sóis, as duas gêmeas foram muito além: a Spirit trabalhou por mais de seis anos e percorreu 7,73 km; a Opportunity explorou por quase quinze anos e percorreu 45,16 km, um recorde na época. | Designed for ninety sols, the twins went much further: Spirit worked for more than six years and drove 7.73 km; Opportunity explored for almost fifteen years and drove 45.16 km, a record at the time. |
+| 0 s · fala | `v16.farewell.legacy` | Projetadas para noventa sóis, as duas gêmeas foram muito além: a Spirit trabalhou por mais de seis anos e percorreu 7,73 km; subiu colinas e achou sílica e sulfatos: sinais de antigas fontes quentes e de água em Gusev. A Opportunity explorou por quase quinze anos e percorreu 45,16 km, um recorde na época. | Designed for ninety sols, the twins went much further: Spirit worked for more than six years and drove 7.73 km; it climbed hills and found silica and sulfates: signs of ancient hot springs and water at Gusev. Opportunity explored for almost fifteen years and drove 45.16 km, a record at the time. |
 | 8 s · fala | `v16.farewell.end` | A NASA encerrou as tentativas de contato com a Spirit em 25 de maio de 2011 e, após meses sem resposta da Opportunity, encerrou a missão dela em 13 de fevereiro de 2019. | NASA ended its attempts to contact Spirit on May 25, 2011 and, after months without a reply from Opportunity, ended its mission on February 13, 2019. |
 | 16 s · fala | `v16.farewell.memory` | As rodas das duas ficaram em Marte, em lados opostos do planeta. Suas imagens e descobertas chegaram até nós. | Both rovers' wheels stayed on Mars, on opposite sides of the planet. Their images and discoveries reached us. |
 | 23 s · título | `v3.opportunity` | Spirit e Opportunity | Spirit and Opportunity |
-| sob o título | `v6.memorial.dates` | Spirit 2004 — 2010   ·   Opportunity 2004 — 2018 | Spirit 2004 — 2010   ·   Opportunity 2004 — 2018 |
 
 ### Tela final
 
@@ -366,7 +363,6 @@ Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.js
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
 | tela final | `v3.opportunity` | Spirit e Opportunity | Spirit and Opportunity |
-| tela final | `v16.end.years` | Spirit 2004 — 2010   ·   Opportunity 2004 — 2018 | Spirit 2004 — 2010   ·   Opportunity 2004 — 2018 |
 | tela final | `pause.restart` | Recomeçar capítulo | Restart chapter |
 | tela final | `menu.credits` | Créditos e fontes | Credits & sources |
 | tela final | `pause.menu` | Menu inicial | Main menu |

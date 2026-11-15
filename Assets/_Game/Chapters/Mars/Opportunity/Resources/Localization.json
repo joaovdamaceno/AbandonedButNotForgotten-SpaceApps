@@ -1062,8 +1062,8 @@
   },
   {
    "key": "v10.result.meteorite",
-   "pt": "Ferro e níquel: um meteorito, não um pedaço do escudo. O primeiro identificado em outro planeta.",
-   "en": "Iron and nickel: a meteorite, not a piece of the shield. The first identified on another planet."
+   "pt": "Feito de ferro e níquel, o primeiro meteorito identificado em outro planeta.",
+   "en": "Made of iron and nickel, the first meteorite identified on another planet."
   },
   {
    "key": "v10.result.sunclear",
@@ -1832,8 +1832,8 @@
   },
   {
    "key": "v14.berries.doubt",
-   "pt": "Mas uma pista não basta. Para ter certeza, precisamos ver o interior de uma rocha.",
-   "en": "But one clue is not enough. To be sure, we need to see inside a rock."
+   "pt": "Ainda assim, pistas na superfície não bastam. Para ter certeza, precisamos olhar dentro das rochas.",
+   "en": "Still, surface clues aren't enough. To know for sure, we have to look inside the rocks."
   },
   {
    "key": "v14.discovery.bridge",
@@ -1912,8 +1912,8 @@
   },
   {
    "key": "v15.landing.opp",
-   "pt": "A Opportunity descansa dentro da Cratera Eagle, em Meridiani Planum. A partir daqui, você a conduz.",
-   "en": "Opportunity comes to rest inside Eagle Crater, in Meridiani Planum. From here, you drive her."
+   "pt": "Depois de uma semana de preparação, a Opportunity põe as rodas em Meridiani Planum.",
+   "en": "After a week of preparing, Opportunity lands its wheels on Meridiani Planum."
   },
   {
    "key": "v15.split.spirit",
@@ -1922,8 +1922,8 @@
   },
   {
    "key": "v15.split.spirit.place",
-   "pt": "↓ caindo na CRATERA GUSEV",
-   "en": "↓ landing in GUSEV CRATER"
+   "pt": "↓ caindo na CRATERA GUSEV · 4 JAN 2004",
+   "en": "↓ landing in GUSEV CRATER · 4 JAN 2004"
   },
   {
    "key": "v15.split.opportunity",
@@ -1932,8 +1932,8 @@
   },
   {
    "key": "v15.split.opportunity.place",
-   "pt": "↓ caindo em MERIDIANI PLANUM",
-   "en": "↓ landing on MERIDIANI PLANUM"
+   "pt": "↓ caindo em MERIDIANI PLANUM · 25 JAN 2004",
+   "en": "↓ landing on MERIDIANI PLANUM · 25 JAN 2004"
   },
   {
    "key": "v15.split.note",
@@ -1942,8 +1942,8 @@
   },
   {
    "key": "v15.storm.frequent",
-   "pt": "2007. Uma tempestade de poeira começa a esconder o Sol. Tempestades assim são frequentes em Marte; algumas crescem até cobrir o planeta inteiro.",
-   "en": "2007. A dust storm begins to hide the Sun. Storms like this are frequent on Mars; some grow until they cover the entire planet."
+   "pt": "Uma tempestade de poeira começa a esconder o Sol. Tempestades assim são frequentes em Marte; algumas crescem até cobrir o planeta inteiro.",
+   "en": "A dust storm begins to hide the Sun. Storms like this are frequent on Mars; some grow until they cover the entire planet."
   },
   {
    "key": "v15.storm.dark",
@@ -2052,8 +2052,8 @@
   },
   {
    "key": "v16.farewell.legacy",
-   "pt": "Projetadas para noventa sóis, as duas gêmeas foram muito além: a Spirit trabalhou por mais de seis anos e percorreu 7,73 km; a Opportunity explorou por quase quinze anos e percorreu 45,16 km, um recorde na época.",
-   "en": "Designed for ninety sols, the twins went much further: Spirit worked for more than six years and drove 7.73 km; Opportunity explored for almost fifteen years and drove 45.16 km, a record at the time."
+   "pt": "Projetadas para noventa sóis, as duas gêmeas foram muito além: a Spirit trabalhou por mais de seis anos e percorreu 7,73 km; subiu colinas e achou sílica e sulfatos: sinais de antigas fontes quentes e de água em Gusev. A Opportunity explorou por quase quinze anos e percorreu 45,16 km, um recorde na época.",
+   "en": "Designed for ninety sols, the twins went much further: Spirit worked for more than six years and drove 7.73 km; it climbed hills and found silica and sulfates: signs of ancient hot springs and water at Gusev. Opportunity explored for almost fifteen years and drove 45.16 km, a record at the time."
   },
   {
    "key": "v16.farewell.end",
@@ -2069,6 +2069,11 @@
    "key": "v16.end.years",
    "pt": "Spirit 2004 — 2010   ·   Opportunity 2004 — 2018",
    "en": "Spirit 2004 — 2010   ·   Opportunity 2004 — 2018"
+  },
+  {
+   "key": "v17.hint.explore",
+   "pt": "Segure E para explorar",
+   "en": "Hold E to explore"
   }
  ]
 }

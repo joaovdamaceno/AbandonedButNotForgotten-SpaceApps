@@ -14,7 +14,7 @@ namespace Abandoned.SpaceApps.Opportunity
         VisualElement endActions,thermal,thermalFill,safeBand,rockHint;
         VisualElement pressureFill,grindFill,energyFill,cursor,featureA,featureB,energyBox,memoryChoices;
         Image remembrance,chosenImage;
-        Label scienceFindings,objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,skip,photoCount,memoryTitle;
+        Label exploreHint,scienceFindings,objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,skip,photoCount,memoryTitle;
         VisualElement splitView,splitDivider,splitTopLabel,splitBottomLabel,letterTop,letterBottom;Label splitTopName,splitTopPlace,splitBottomName,splitBottomPlace,splitNote,fieldGoal,scienceGoal;
         float toastTime,objectiveAge;
         string toastKey,objectiveKey,activeLanguage,lastFilmTitle;
@@ -87,8 +87,8 @@ namespace Abandoned.SpaceApps.Opportunity
             journal=Box(root,"modal-backdrop");var jc=Box(journal,"journal-card");Text(jc,"","display modal-title").name="journal-title";var js=new ScrollView();jc.Add(js);Text(js,"","journal-body").name="journal-body";
             AddPhoto(js,ratPhoto,"McKittrick · NASA/JPL");AddPhoto(js,routeMap,"45,16 km · NASA/JPL-Caltech/MSSS");AddPhoto(js,panorama,"Perseverance Valley · NASA/JPL-Caltech/Cornell/ASU");AddPhoto(js,chapter.investigation.berryArchive,"Berry Bowl · NASA/JPL-Caltech/Cornell");AddPhoto(js,chapter.investigation.shieldArchive,"Escudo térmico / Heat shield · NASA/JPL/Cornell");AddPhoto(js,chapter.investigation.solarArchive,"Pancam · NASA/JPL-Caltech/Cornell/ASU");foreach(FieldStudy kind in new[]{FieldStudy.Berries,FieldStudy.Shield,FieldStudy.Meteorite,FieldStudy.SunClear,FieldStudy.SunDust}){var card=Box(js,"study-album-card");var image=new Image{scaleMode=ScaleMode.ScaleToFit};image.AddToClassList("journal-image");card.Add(image);Text(card,Localization.Get("v10.study."+kind.ToString().ToLowerInvariant()),"small");studyAlbum.Add(kind,image);}
             Button(jc,"back",ToggleJournal);
-            end=Box(root,"end-screen");var endWords=Box(end,"cinematic-words memorial-title");var endTitle=Text(endWords,"","cinematic-heading end-name");endTitle.name="end-title";endTitle.style.fontSize=56;endTitle.style.letterSpacing=6;Text(endWords,"","cinematic-story").name="end-years";endActions=Box(end,"end-actions row");Button(endActions,"pause.restart",chapter.RestartChapter);Button(endActions,"menu.credits",()=>Open(credits));Button(endActions,"pause.menu",chapter.Leave);
-            notification=Text(root,"","toast");notification.pickingMode=PickingMode.Ignore;photoFlash=Box(root,"photo-flash");photoFlash.pickingMode=PickingMode.Ignore;fade=Box(root,"fade");fade.pickingMode=PickingMode.Ignore;
+            end=Box(root,"end-screen");var endWords=Box(end,"cinematic-words memorial-title");var endTitle=Text(endWords,"","cinematic-heading end-name");endTitle.name="end-title";endTitle.style.fontSize=56;endTitle.style.letterSpacing=6;endActions=Box(end,"end-actions row");Button(endActions,"pause.restart",chapter.RestartChapter);Button(endActions,"menu.credits",()=>Open(credits));Button(endActions,"pause.menu",chapter.Leave);
+            exploreHint=Text(root,"","explore-hint");exploreHint.pickingMode=PickingMode.Ignore;notification=Text(root,"","toast");notification.pickingMode=PickingMode.Ignore;photoFlash=Box(root,"photo-flash");photoFlash.pickingMode=PickingMode.Ignore;fade=Box(root,"fade");fade.pickingMode=PickingMode.Ignore;
             foreach(var e in new[]{pause,settings,controls,credits,journal,memory,end,tutorialPanel,assistance,rockHint,splitView})Show(e,false);RefreshText();
         }
         void Slider(VisualElement p,string key,float value,float min,float max,System.Action<float> setter)
@@ -105,7 +105,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(root==null)return;activeLanguage=GameSettings.English.ToString();root.EnableInClassList("large-text",GameSettings.LargeText);
             QualitySelector.RefreshQualitySelectors(root);
             root.Query<Button>().ForEach(b=>{if(b.userData is string k)b.text=Localization.Get(k);});root.Query<Label>(className:"controls-key").ForEach(b=>{if(b.userData is string k)b.text=Localization.Get(k);});root.Query<Label>(className:"controls-desc").ForEach(b=>{if(b.userData is string k)b.text=Localization.Get(k);});root.Query<Slider>().ForEach(b=>{if(b.userData is string k)b.label=Localization.Get(k);});root.Query<Toggle>().ForEach(b=>{if(b.userData is string k)b.label=Localization.Get(k);});
-            foreach(var pair in new[]{new[]{"pause-title","pause.title"},new[]{"end-years","v16.end.years"},new[]{"end-title","v3.opportunity"},new[]{"settings-title","menu.settings"},new[]{"controls-title","v14.controls.title"},new[]{"credits-title","menu.credits"},new[]{"credits-body","credits.body"},new[]{"journal-title","journal.title"},new[]{"journal-body","journal.body"},new[]{"end-label","end.label"},new[]{"end-subtitle","end.subtitle"},new[]{"photo-help","photo.controls"},new[]{"memory-eyebrow","photo.memory"}})Set(pair[0],pair[1]);
+            foreach(var pair in new[]{new[]{"pause-title","pause.title"},new[]{"end-title","v3.opportunity"},new[]{"settings-title","menu.settings"},new[]{"controls-title","v14.controls.title"},new[]{"credits-title","menu.credits"},new[]{"credits-body","credits.body"},new[]{"journal-title","journal.title"},new[]{"journal-body","journal.body"},new[]{"end-label","end.label"},new[]{"end-subtitle","end.subtitle"},new[]{"photo-help","photo.controls"},new[]{"memory-eyebrow","photo.memory"}})Set(pair[0],pair[1]);
         }
         public void ShowPause(bool visible)
         {Show(pause,visible);if(!visible){journalOpen=false;foreach(var e in new[]{journal,settings,controls,credits})Show(e,false);}}
@@ -123,6 +123,10 @@ namespace Abandoned.SpaceApps.Opportunity
             endActions.style.opacity=Mathf.Clamp01((chapter.Elapsed-2)/1.5f);endActions.pickingMode=s==ChapterStage.ChapterEnd&&chapter.Elapsed>2?PickingMode.Position:PickingMode.Ignore;foreach(var button in endActions.Children())button.SetEnabled(chapter.Elapsed>2);
             Show(end,s==ChapterStage.ChapterEnd);Show(flight,drive&&!fieldStudy.Active&&!p.Active&&!j.ChoosingMemory);Show(field,fieldStudy.Active);if(fieldStudy.Active)UpdateField();Show(science,s==ChapterStage.RockAnalysis);Show(cinema,chapter.Cinematic);Show(photo,p.Active);Show(memory,j.ChoosingMemory);
             UpdateSplit();
+            // Antes da primeira observação: perto da rocha das esferas, um aviso no meio da tela.
+            var act=chapter.interactions?chapter.interactions.Current:default;
+            bool explore=act.Valid&&act.Available&&act.Id=="berries"&&!fieldStudy.Active&&!chapter.Paused;
+            if(explore)exploreHint.text=Localization.Get("v17.hint.explore");Show(exploreHint,explore);
             if(drive)UpdateFlight();if(s==ChapterStage.RockAnalysis)UpdateScience();if(chapter.Cinematic)UpdateCinema();
             var tutor=chapter.tutorial;bool offer=tutor&&tutor.HelpOffered&&!chapter.Paused&&!chapter.Cinematic&&s!=ChapterStage.ChapterEnd;
             Show(assistance,offer);assistance.EnableInClassList("strong",tutor&&tutor.StrongHelp);if(offer)assistanceText.text=Localization.Get(tutor.HelpBodyKey);
@@ -150,7 +154,7 @@ namespace Abandoned.SpaceApps.Opportunity
             var n=splitNote.style;n.left=Length.Percent(2.5f);n.right=StyleKeyword.Auto;n.top=Length.Percent(15f);n.bottom=StyleKeyword.Auto;n.maxWidth=Length.Percent(Mathf.Max(10f,left-5f));n.unityTextAlign=TextAnchor.UpperLeft;
             splitTopName.text=Localization.Get("v15.split.spirit");splitTopPlace.text=Localization.Get("v15.split.spirit.place");
             splitBottomName.text=Localization.Get("v15.split.opportunity");splitBottomPlace.text=Localization.Get("v15.split.opportunity.place");
-            splitNote.text=Localization.Get("v15.split.note");
+            splitNote.text="";Show(splitNote,false);
         }
         bool s_IsLanding()=>chapter.Stage==ChapterStage.Landing;
         string GoalFor(FieldStudy study)=>study==FieldStudy.Berries||study==FieldStudy.Meteorite?"v15.goal.1":study==FieldStudy.None?null:null;
@@ -259,7 +263,7 @@ namespace Abandoned.SpaceApps.Opportunity
             heading.style.fontSize=memorialTitle?64:film.TitleKey!=null&&film.TitleKey.StartsWith("v3.year")?56:30;
             heading.style.letterSpacing=memorialTitle?9:2;
             heading.parent.EnableInClassList("memorial-title",memorialTitle);
-            story.text=memorialTitle?Localization.Get("v6.memorial.dates"):"";
+            story.text="";
             filmVeil.style.opacity=film.PictureBlack;
             skip.text=chapter.CanSkip&&!memorialTitle?Localization.Get("controls.skip"):"";
             bool memory=chapter.Stage==ChapterStage.Farewell&&chapter.Elapsed>=16&&chapter.Elapsed<23&&chapter.journey.photography.SelectedFrame;

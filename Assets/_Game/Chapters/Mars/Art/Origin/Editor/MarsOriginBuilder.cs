@@ -91,23 +91,20 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             }
             else if (sequence == MarsOriginDirector.SequenceM02)
             {
-                // Sala limpa: câmera baixa, lente longa e movimentos lentos. Abertura larga com os dois rovers; travelling lateral; um plano
-                // em órbita lenta em torno do Opportunity e um plano baixo do braço.
+                // Sala limpa: abertura larga com os dois rovers; órbita lenta e ampla em volta da Opportunity; depois o globo em Meridiani Planum
+                // (a fala da hematita), que gira devagar até a fala de Gusev.
                 var z = RoverZ;
                 yield return ("mars.origin.lab.wide", 4.9f, u => Move(u, new Vector3(0.3f, 0.9f, 7.4f), new Vector3(-0.1f, 1.0f, 5.9f), new Vector3(0f, 0.85f, z), new Vector3(0f, 0.9f, z), 38f),
                     new[] { new ShotEvent(0f, "mars.origin.lab.wide") });
-                yield return ("mars.origin.lab.detail", 8.2f, u => Orbit(u, new Vector3(SpiritX, 0f, z), 4.0f, 35f, -50f, 1.2f, 1.4f, 0.95f, 36f),
+                yield return ("mars.origin.lab.detail", 8.2f, u => Orbit(u, new Vector3(SpiritX, 0f, z), 3.6f, 80f, -100f, 1.1f, 1.5f, 0.95f, 36f),
                     new[] { new ShotEvent(0f, "mars.origin.lab.detail") });
-                yield return ("mars.origin.lab.opportunity", 7.7f, u => Move(u, new Vector3(0.6f, 0.45f, 2.7f), new Vector3(1.4f, 0.6f, 2.1f), new Vector3(2.0f, 0.7f, z), new Vector3(2.0f, 0.8f, z), 23f),
-                    new[] { new ShotEvent(0f, "mars.origin.lab.meridiani") });
+                yield return ("mars.origin.globe.meridiani", 7.7f, u => Move(u, GlobeOffset + new Vector3(-1.4f, 0.5f, -9.2f), GlobeOffset + new Vector3(-1.0f, 0.4f, -8.4f), GlobeOffset, GlobeOffset, 30f),
+                    new[] { new ShotEvent(0f, "mars.origin.globe.meridiani") });
             }
             else
             {
-                // Globo: um plano para cada local, afastado, com o marcador perto do centro. O primeiro mostra Meridiani Planum; o segundo acompanha a
-                // volta até a Cratera Gusev.
-                yield return ("mars.origin.globe.meridiani", 3.4f, u => Move(u, GlobeOffset + new Vector3(-1.4f, 0.5f, -9.2f), GlobeOffset + new Vector3(-1.0f, 0.4f, -8.4f), GlobeOffset, GlobeOffset, 30f),
-                    new[] { new ShotEvent(0f, "mars.origin.globe.meridiani") });
-                yield return ("mars.origin.globe.gusev", 4.3f, u => Move(u, GlobeOffset + new Vector3(1.8f, -0.3f, -9.0f), GlobeOffset + new Vector3(1.3f, -0.2f, -8.2f), GlobeOffset, GlobeOffset, 30f),
+                // Globo: acompanha a volta de Meridiani Planum até a Cratera Gusev, que começa junto com a fala de Gusev.
+                yield return ("mars.origin.globe.gusev", 7.7f, u => Move(u, GlobeOffset + new Vector3(0.6f, -0.4f, -8.8f), GlobeOffset + new Vector3(1.0f, -0.2f, -8.0f), GlobeOffset, GlobeOffset, 27f),
                     new[] { new ShotEvent(0f, "mars.origin.globe.gusev") });
             }
         }
@@ -139,8 +136,6 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
         static List<MarsLandingLabel> DefaultLabels() => new List<MarsLandingLabel>
         {
             new MarsLandingLabel("MAR.ORI.01", LabStart, LabStart + 4.9f, MarsLandingLabelAnchor.Full),
-            new MarsLandingLabel("MAR.ORI.05", LabStart + 4.9f, LabStart + 13.1f, MarsLandingLabelAnchor.Full),
-            new MarsLandingLabel("MAR.ORI.02", LabStart + 13.1f, GlobeStart, MarsLandingLabelAnchor.Full),
             // Sobre os marcadores do globo (a UI ancora o texto no marcador).
             new MarsLandingLabel(MarsOriginDirector.MeridianiLabelKey, MeridianiMarkedAt, TotalSeconds, MarsLandingLabelAnchor.Full),
             new MarsLandingLabel(MarsOriginDirector.GusevLabelKey, GusevMarkedAt, TotalSeconds, MarsLandingLabelAnchor.Full),

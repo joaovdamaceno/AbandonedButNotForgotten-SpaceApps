@@ -130,8 +130,10 @@ namespace Abandoned.SpaceApps.Integration
                 return;
             }
 
-            mars.Initialize(director, clock, router, interactions, evidence, settings);
+            // A legenda se liga ao diretor de sequência ANTES do fluxo: ao fim de uma sequência ela limpa primeiro, e só depois o fluxo
+            // começa a próxima (senão a primeira fala da sequência seguinte seria apagada).
             subtitles.Bind(mars.SequenceDirector);
+            mars.Initialize(director, clock, router, interactions, evidence, settings);
             hud.Initialize(interactions, router, director, settings, mars.CameraDirector);
             hud.SetReference(mars.Rover.transform);
             mars.Flow.CueEntered += subtitles.ShowCue;

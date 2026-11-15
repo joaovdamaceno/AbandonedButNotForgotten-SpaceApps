@@ -3,8 +3,8 @@ using UnityEngine;
 namespace Abandoned.SpaceApps
 {
     /// <summary>
-    /// M01–M03 (34,8 s) como função pura do tempo global: Marte visto do espaço (M01, 6,3 s), laboratório com os dois rovers (M02, 20,8 s) e o globo
-    /// que mostra Meridiani Planum e a Cratera Gusev (M03, 7,7 s). Inclui a Spirit e Gusev depois de Meridiani Planum.
+    /// M01–M03 (34,8 s) como função pura do tempo global: Marte visto do espaço (M01, 6,3 s), laboratório com os dois rovers e órbita em volta da
+    /// Opportunity (M02, até 19,4 s), globo em Meridiani Planum (fim de M02) e o giro até a Cratera Gusev (M03, 7,7 s).
     /// Latitude/longitude em graus (leste positivo); locais de pouso conforme NASA GISS Mars24.
     /// </summary>
     public static class MarsOriginChoreography
@@ -22,10 +22,13 @@ namespace Abandoned.SpaceApps
         public static readonly Vector2 Gusev = new Vector2(-14.57f, 175.48f);
         public static readonly Vector2 Meridiani = new Vector2(-1.95f, 354.47f);
 
-        // Globo (M03): começa de frente para Meridiani Planum, que é marcada; gira até a Cratera Gusev, que é marcada ao chegar. Os dois ficam marcados.
-        public const float IntroTurnStart = GlobeStart + 2f;
+        // Globo: entra no fim de M02 (fala de Meridiani) de frente para Meridiani Planum, marcada, girando devagar; quando começa a fala de Gusev
+        // (início de M03), gira até a Cratera Gusev, que é marcada ao chegar. Os dois ficam marcados.
+        public const float MeridianiShotStart = LabStart + 13.1f;
+        public const float MeridianiDriftDegrees = 8f;
+        public const float IntroTurnStart = GlobeStart;
         public const float IntroTurnSeconds = 4f;
-        public const float MeridianiMarkedAt = GlobeStart + 0.3f;
+        public const float MeridianiMarkedAt = MeridianiShotStart + 0.3f;
         public const float GusevMarkedAt = IntroTurnStart + IntroTurnSeconds - 0.4f;
         public const float PulsePeriodSeconds = 1.6f;
 
@@ -56,7 +59,7 @@ namespace Abandoned.SpaceApps
 
         static float Smooth(float x) => MerLandingChoreography.Smooth(x);
 
-        public static int RegionAt(float t) => t < LabStart ? RegionSpace : t < GlobeStart ? RegionLab : RegionGlobe;
+        public static int RegionAt(float t) => t < LabStart ? RegionSpace : t < MeridianiShotStart ? RegionLab : RegionGlobe;
 
 
         public static Pose Sample(float t)
@@ -65,7 +68,10 @@ namespace Abandoned.SpaceApps
             return new Pose
             {
                 PlanetSpinDegrees = PlanetSpinDegreesPerSecond * Mathf.Min(t, SpaceSeconds),
-                GlobeRotation = Quaternion.Slerp(FacingCamera(Meridiani), FacingCamera(Gusev), Smooth((t - IntroTurnStart) / IntroTurnSeconds)),
+                // Deriva lenta sobre Meridiani (termina em zero quando o giro até Gusev começa), depois o giro.
+                GlobeRotation = Quaternion.Slerp(
+                    Quaternion.AngleAxis(Mathf.Lerp(MeridianiDriftDegrees, 0f, Mathf.Clamp01((t - MeridianiShotStart) / (IntroTurnStart - MeridianiShotStart))), Vector3.up) * FacingCamera(Meridiani),
+                    FacingCamera(Gusev), Smooth((t - IntroTurnStart) / IntroTurnSeconds)),
                 Pulse = Mathf.Repeat(t / PulsePeriodSeconds, 1f),
                 // Os dois locais ficam acesos depois de marcados, até o fim.
                 MeridianiGlow = Smooth((t - MeridianiMarkedAt) / 0.4f),

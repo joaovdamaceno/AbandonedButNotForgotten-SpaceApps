@@ -264,3 +264,9 @@
 .tutorial-card { width:680px; max-width:60%; }
 .large-text .tutorial-title { font-size:32px; }
 .large-text .tutorial-body { font-size:28px; }
+
+/* Legenda das cenas: mesma placa da abertura (fundo escuro, cantos arredondados, Outfit Medium), um pouco menor. */
+.caption { left:50%; right:auto; translate:-50% 0; bottom:7%; width:auto; max-width:800px; font-size:24px; color:rgb(245,241,232); background-color:rgba(12,14,18,.94); border-radius:8px; padding:8px 24px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Medium.ttf"); -unity-text-align:middle-center; white-space:normal; }
+.toast { color:rgb(245,241,232); background-color:rgba(12,14,18,.94); border-radius:8px; padding:8px 24px; font-size:22px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Medium.ttf"); }
+/* Aviso no meio da tela antes da primeira observação. */
+.explore-hint { position:absolute; top:46%; left:50%; translate:-50% 0; font-size:24px; color:rgb(245,241,232); background-color:rgba(12,14,18,.94); border-radius:8px; padding:8px 24px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Medium.ttf"); -unity-text-align:middle-center; }

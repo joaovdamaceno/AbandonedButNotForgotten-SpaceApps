@@ -29,8 +29,7 @@ MonoBehaviour:
     sequence: {fileID: 11400000, guid: d454a34e09f9e03f7b9a7061fdf881ac, type: 2}
     regionId: mars.origin
     referenceSeconds: 7.7
-    cutPoints:
-    - 3.4
+    cutPoints: []
   - stepId: M04
     sequence: {fileID: 11400000, guid: f7f1a6e977d7bea9aa4a054e9adea151, type: 2}
     regionId: mars.landing

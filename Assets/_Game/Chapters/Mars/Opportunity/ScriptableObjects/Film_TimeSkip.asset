@@ -46,7 +46,7 @@ MonoBehaviour:
     music: montage
     movementEase: 0
   - at: 6
-    duration: 5.5
+    duration: 7
     from: {x: -1074, y: -0.3899051, z: 25}
     to: {x: -1074, y: -0.3899051, z: 25}
     yaw: 30
@@ -75,8 +75,8 @@ MonoBehaviour:
     bodyKey: v15.storm.frequent
     music: storm
     movementEase: 0
-  - at: 11.5
-    duration: 6.5
+  - at: 13
+    duration: 5
     from: {x: -1074, y: -0.3899051, z: 25}
     to: {x: -1074, y: -0.3899051, z: 25}
     yaw: 30
@@ -132,7 +132,7 @@ MonoBehaviour:
     spiritSink: 0
     action: 0
     titleKey: 
-    bodyKey: v13.years.storm
+    bodyKey: v15.storm.dark
     music: montage
     movementEase: 0
   - at: 24.5
@@ -192,7 +192,7 @@ MonoBehaviour:
     spiritSink: 0.13
     action: 0
     titleKey: 
-    bodyKey: v15.spirit.legacy
+    bodyKey: v15.spirit.death
     music: 
     movementEase: 0
   - at: 41

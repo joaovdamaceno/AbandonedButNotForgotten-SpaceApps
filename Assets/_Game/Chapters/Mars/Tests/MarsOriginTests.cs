@@ -115,9 +115,9 @@ namespace Abandoned.SpaceApps.Tests
             var cues = JsonUtility.FromJson<CueTable>(File.ReadAllText(SubtitlesPath)).cues.ToDictionary(c => c.cueId);
             Assert.That(cues["MAR.C01"].en, Is.EqualTo("In 2003, NASA sent two robotic explorers to Mars: Spirit and Opportunity."));
             Assert.That(cues["MAR.C02"].en, Is.EqualTo("Their mission was to search the rocks for traces of a past with liquid water."));
-            Assert.That(cues["MAR.C03"].en, Is.EqualTo("Before landing, an orbiting probe, Mars Global Surveyor, studied Mars from above and detected hematite in Meridiani Planum."));
-            Assert.That(cues["MAR.C04"].en, Is.EqualTo("On Earth, hematite usually forms where water exists. If water was there, the rocks might still hold that story."));
-            Assert.That(cues["MAR.C05"].en, Is.EqualTo("Its twin, Spirit, went to Gusev Crater, a possible ancient lake."), "Gusev segue como 'possível', sem a segunda frase");
+            Assert.That(cues["MAR.C03"].en, Is.EqualTo("Mars Global Surveyor mapped the planet's surface, helping NASA pinpoint two promising landing sites."));
+            Assert.That(cues["MAR.C04"].en, Is.EqualTo("Meridiani Planum, rich in hematite, which only typically forms in liquid water."));
+            Assert.That(cues["MAR.C05"].en, Is.EqualTo("And Gusev Crater, a massive basin that once looked like an ancient lake."));
             Assert.That(texts["MAR.T01"].en, Is.EqualTo("2003"));
             Assert.That(texts["MAR.ORI.01"].en, Is.EqualTo("EARTH · MISSION PREPARATION"));
             Assert.That(texts["MAR.ORI.02"].en, Is.EqualTo("WHY MERIDIANI PLANUM?"));
@@ -134,9 +134,7 @@ namespace Abandoned.SpaceApps.Tests
             director.ApplyAt(LabStart + 1f);
             Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(new[] { "MAR.ORI.01" }));
             director.ApplyAt(LabStart + 8f);
-            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(new[] { "MAR.ORI.05" }), "o rover da hematita é o Opportunity");
-            director.ApplyAt(LabStart + 15f);
-            Assert.That(director.VisibleLabels.Select(l => l.TextKey), Does.Contain("MAR.ORI.02"));
+            Assert.That(director.VisibleLabels, Is.Empty, "a órbita em volta da Opportunity não tem letreiro");
             director.ApplyAt(MeridianiMarkedAt + 0.5f);
             Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(new[] { "MAR.ORI.04" }), "primeiro Meridiani Planum");
             director.ApplyAt(GusevMarkedAt + 0.5f);
@@ -174,8 +172,8 @@ namespace Abandoned.SpaceApps.Tests
         [Test]
         public void GlobeRotationNeverSnaps()
         {
-            var previous = Sample(GlobeStart).GlobeRotation;
-            foreach (var t in Times(GlobeStart + Step, TotalSeconds, Step))
+            var previous = Sample(MeridianiShotStart).GlobeRotation;
+            foreach (var t in Times(MeridianiShotStart + Step, TotalSeconds, Step))
             {
                 var now = Sample(t).GlobeRotation;
                 Assert.That(Quaternion.Angle(previous, now), Is.LessThan(12f), $"t={t}");
@@ -186,7 +184,7 @@ namespace Abandoned.SpaceApps.Tests
         [Test]
         public void OnlyTheRegionOfTheCurrentBlockIsActiveAndPlanetUsesTheNasaMap()
         {
-            foreach (var (t, region) in new[] { (1f, RegionSpace), (10f, RegionLab), (26f, RegionLab), (30f, RegionGlobe), (GlobeStart + 1f, RegionGlobe) })
+            foreach (var (t, region) in new[] { (1f, RegionSpace), (10f, RegionLab), (18f, RegionLab), (MeridianiShotStart + 0.5f, RegionGlobe), (26f, RegionGlobe), (30f, RegionGlobe), (GlobeStart + 1f, RegionGlobe) })
             {
                 director.ApplyAt(t);
                 for (var i = 0; i < director.Regions.Count; i++)
@@ -310,12 +308,12 @@ namespace Abandoned.SpaceApps.Tests
 
             Assert.That(events.Select(e => e.id), Is.EqualTo(new[]
             {
-                "mars.origin.space", "mars.origin.lab.wide", "mars.origin.lab.detail", "mars.origin.lab.meridiani",
+                "mars.origin.space", "mars.origin.lab.wide", "mars.origin.lab.detail",
                 "mars.origin.globe.meridiani", "mars.origin.globe.gusev",
             }));
             Assert.That(events[1].time, Is.EqualTo(LabStart).Within(Step + 1e-3f), "evento no mesmo relógio da coreografia");
-            Assert.That(events[4].time, Is.EqualTo(GlobeStart).Within(Step + 1e-3f), "globo começa junto com M03");
-            Assert.That(events[5].time, Is.EqualTo(GlobeStart + 3.4f).Within(Step + 1e-3f));
+            Assert.That(events[3].time, Is.EqualTo(MeridianiShotStart).Within(Step + 1e-3f), "globo entra com a fala de Meridiani");
+            Assert.That(events[4].time, Is.EqualTo(GlobeStart).Within(Step + 1e-3f), "o giro até Gusev começa com M03");
             Assert.That(cameraDirector.IsControlled, Is.False, "controle da câmera devolvido");
         }
     }
