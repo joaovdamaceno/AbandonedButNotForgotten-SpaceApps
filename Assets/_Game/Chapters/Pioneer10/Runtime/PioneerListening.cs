@@ -11,9 +11,9 @@ namespace Abandoned.SpaceApps
         Contact1 = 2,
         Contact2 = 3,
         Contact3 = 4,
-        /// <summary>37–45 s: "Segure E para ouvir". Não há zona nem frequência correta.</summary>
+        /// <summary>24–31 s: "Segure E para ouvir". Não há zona nem frequência correta.</summary>
         Attempt4 = 5,
-        /// <summary>45–52 s: os controles recolhem e há silêncio real.</summary>
+        /// <summary>31–40 s: os controles recolhem e há silêncio real.</summary>
         Breathe = 6,
         Done = 7,
     }
@@ -71,7 +71,7 @@ namespace Abandoned.SpaceApps
     }
 
     /// <summary>
-    /// PIO-011 · Estado PIO.Listening (52 s): escuta na Terra (equipe no ponto de vista da antena). Três contatos com zona
+    /// PIO-011 · Estado PIO.Listening (40 s): escuta na Terra (equipe no ponto de vista da antena). Três contatos com zona
     /// generosa de 30% da escala, resultados históricos DISTINTOS (sinal recebido em 3 MAR 2002, últimos dados de
     /// telemetria em 27 ABR 2002, portadora muito fraca sem dados novos em 23 JAN 2003) e uma quarta tentativa
     /// (7 FEV 2003) em que não há zona escondida nem frequência correta: nenhum sinal, sem culpar quem escuta, e 2,5 s de
@@ -615,8 +615,8 @@ namespace Abandoned.SpaceApps
             else
             {
                 errors.AddRange(sequence.Validate().ConvertAll(e => $"{owner}: {e}"));
-                if (Mathf.Abs(sequence.TotalDurationSeconds - 52f) > 0.01f)
-                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro pede 52 s.");
+                if (Mathf.Abs(sequence.TotalDurationSeconds - 40f) > 0.01f)
+                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro v2 retemporizado pede 40 s.");
 
                 var events = new System.Collections.Generic.HashSet<string>();
                 foreach (var shot in sequence.Shots)

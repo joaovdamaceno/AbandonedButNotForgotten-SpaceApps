@@ -19,6 +19,8 @@ namespace Abandoned.SpaceApps.EditorTools
         public const string PanelPrefabPath = ChapterFolder + "/UI/BeltPanel.prefab";
         public const string PanelLayoutPath = ChapterFolder + "/UI/BeltPanel.uxml";
         public const string SequencePath = ChapterFolder + "/Sequences/PIO_Belt.asset";
+        /// <summary>Roteiro v2, cena 2: a sequência de cinema do capítulo (50 s). PIO_Belt segue sendo a da atividade interativa.</summary>
+        public const string CinemaSequencePath = ChapterFolder + "/Sequences/PIO_BeltCinema.asset";
         const string PanelSettingsPath = "Assets/_Game/UI/Design/SpaceAppsPanelSettings.asset"; // UI-001 (consumido, não editado)
         const string BeltFolder = ArtFolder + "/Belt";
 
@@ -62,6 +64,13 @@ namespace Abandoned.SpaceApps.EditorTools
             glow.SetActive(false);
 
             var sequence = BuildSequence(context);
+            var cinema = BuildCinemaSequence(context);
+            var counter = context.Component<PioneerBeltCounter>(context.Child(root, "BeltCounter"));
+            var counterSo = new SerializedObject(counter);
+            counterSo.FindProperty("panel").objectReferenceValue = panel.GetComponent<BeltPanelView>();
+            counterSo.FindProperty("sequence").objectReferenceValue = cinema;
+            counterSo.FindProperty("nikeViewport").vector2Value = NikeViewport;
+            counterSo.ApplyModifiedPropertiesWithoutUndo();
             var investigation = context.Component<BeltInvestigation>(context.Child(root, "BeltInvestigation"));
             var so = new SerializedObject(investigation);
             so.FindProperty("sequence").objectReferenceValue = sequence;
@@ -90,6 +99,19 @@ namespace Abandoned.SpaceApps.EditorTools
                 if (!stage.TryGetAnchor(shot.RigId, out _))
                     errors.Add($"{BeltBuilderId}: plano {shot.ShotId} usa rig '{shot.RigId}', que não é anchor do palco.");
             }
+
+            var cinema = AssetDatabase.LoadAssetAtPath<SequenceDefinition>(CinemaSequencePath);
+            if (cinema == null || Mathf.Abs(cinema.TotalDurationSeconds - 50f) > 0.01f)
+                errors.Add($"{BeltBuilderId}: o cinema do cinturão deve durar 50 s ({CinemaSequencePath}).");
+            if (cinema != null)
+            {
+                errors.AddRange(cinema.Validate().Select(e => $"{BeltBuilderId}: {e}"));
+                foreach (var shot in cinema.Shots)
+                {
+                    if (!stage.TryGetAnchor(shot.RigId, out _))
+                        errors.Add($"{BeltBuilderId}: plano {shot.ShotId} usa rig '{shot.RigId}', que não é anchor do palco.");
+                }
+            }
         }
 
         static SequenceDefinition BuildSequence(SceneBuildContext context)
@@ -105,6 +127,72 @@ namespace Abandoned.SpaceApps.EditorTools
         }
 
         static ShotKeyframe Key(float t, Vector3 p, float fov) => new ShotKeyframe(t, p, Vector3.zero, fov);
+
+        static SequenceDefinition BuildCinemaSequence(SceneBuildContext context)
+        {
+            var fresh = CreateCinemaSequence();
+            fresh.name = "PIO_BeltCinema";
+            var asset = context.Asset(CinemaSequencePath, () => Object.Instantiate(fresh));
+            EditorUtility.CopySerialized(fresh, asset);
+            asset.name = "PIO_BeltCinema";
+            EditorUtility.SetDirty(asset);
+            Object.DestroyImmediate(fresh);
+            return asset;
+        }
+
+        /// <summary>
+        /// Posição (no eixo Z do rig, em metros) para a sonda manter o MESMO tamanho no quadro quando o campo de visão muda
+        /// (dolly zoom): d · tan(fov/2) é constante. O rig fica a <paramref name="baseMeters"/> da sonda com 30°.
+        /// </summary>
+        public static float DollyZ(float baseMeters, float fovDegrees) =>
+            baseMeters - baseMeters * Mathf.Tan(15f * Mathf.Deg2Rad) / Mathf.Tan(fovDegrees * 0.5f * Mathf.Deg2Rad);
+
+        /// <summary>
+        /// Roteiro v2, cena 2 (só cinema, 50 s, o tempo do roteiro): 0–8 a sonda cruza a órbita de Marte (data 15 JUL 1972); 8–19 teleobjetiva
+        /// de 10° com a parede de pedras compactada atrás da sonda; 19–30 dolly zoom (10° a 30° com a câmera se aproximando, a sonda do
+        /// mesmo tamanho) enquanto o contador de dias acelera até 2 DEZ 1972 e a parede se abre; 30–40 corte para o espaço vazio e a pedra
+        /// solitária (307 Nike); 40–50 a sonda sai para o escuro limpo (o contador chega a 15 FEV 1973). O contador e o rótulo vêm de
+        /// <see cref="PioneerBeltCounter"/>, pelo relógio desta sequência. O evento PIO.Belt.Reality baixa a música na revelação.
+        /// </summary>
+        public static SequenceDefinition CreateCinemaSequence()
+        {
+            var baseMeters = BeltFieldCamera.magnitude;
+            var dolly = new[] { (0f, 10f), (2.2f, 12.5f), (4.4f, 16f), (6.6f, 20f), (8.8f, 25f), (11f, 30f) };
+            var dollyKeys = new ShotKeyframe[dolly.Length];
+            for (var i = 0; i < dolly.Length; i++)
+                dollyKeys[i] = Key(dolly[i].Item1, new Vector3(0f, 0f, DollyZ(baseMeters, dolly[i].Item2)), dolly[i].Item2);
+
+            var shots = new[]
+            {
+                new ShotDefinition("PIO02.Mars", 8f, "PIO.Belt.Mars",
+                    new[] { Key(0f, new Vector3(0f, 0f, -10f), 30f), Key(8f, new Vector3(0f, 0f, 10f), 30f) },
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                new ShotDefinition("PIO02.Fear", 11f, "PIO.Belt.Field",
+                    new[] { Key(0f, new Vector3(0f, 0f, DollyZ(baseMeters, 10f)), 10f), Key(11f, new Vector3(0f, 0f, DollyZ(baseMeters, 10f) + 6f), 10f) },
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                new ShotDefinition("PIO02.Days", 11f, "PIO.Belt.Field", dollyKeys,
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f),
+                new ShotDefinition("PIO02.Nike", 10f, "PIO.Belt.Nike",
+                    new[] { Key(0f, Vector3.zero, 30f), Key(10f, new Vector3(0f, 0f, 3f), 30f) },
+                    easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
+                    events: new[] { new ShotEvent(0f, BeltInvestigation.EventReality) }),
+                new ShotDefinition("PIO02.Exit", 10f, "PIO.Belt",
+                    new[] { Key(0f, Vector3.zero, 30f), Key(10f, new Vector3(0f, 0f, -30f), 30f) },
+                    easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f),
+            };
+
+            var cues = new[]
+            {
+                new SubtitleCue("PIO.02.01", "PIO.02.01", 0f, 6f),
+                new SubtitleCue("PIO.02.02", "PIO.02.02", 6.5f, 12.5f),
+                new SubtitleCue("PIO.02.03", "PIO.02.03", 13f, 19f),
+                new SubtitleCue("PIO.02.04", "PIO.02.04", 30.5f, 37.5f),
+                new SubtitleCue("PIO.02.05", "PIO.02.05", 38f, 42f),
+                new SubtitleCue("PIO.02.06", "PIO.02.06", 42.5f, 49.5f),
+            };
+
+            return SequenceDefinition.Create("PIO_BeltCinema", shots, cues);
+        }
 
         /// <summary>
         /// 0–12 mapa, 12–27 fantasia (15 s), 27–40 espaço real, 40–58 registros. A trava em 50,5 s segura PIO.02.06

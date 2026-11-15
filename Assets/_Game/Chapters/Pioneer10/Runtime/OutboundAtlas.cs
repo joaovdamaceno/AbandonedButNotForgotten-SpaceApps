@@ -45,7 +45,7 @@ namespace Abandoned.SpaceApps
     }
 
     /// <summary>
-    /// PIO-010 · Estado PIO.Outbound (39 s): o caminho continua. Toca <c>PIO_Outbound</c> (diagrama orbital 2D com cartões de
+    /// PIO-010 · Estado PIO.Outbound (55 s): o caminho continua. Toca <c>PIO_Outbound</c> (diagrama orbital 2D com cartões de
     /// 1976 e 13 JUN 1983, síntese da economia de energia e gráfico de distâncias de 1998) e conduz o hold de 3 s que
     /// prioriza a comunicação. A sequência espera o hold (marco <see cref="EventPower"/>), sem concluir sozinha.
     /// <para>
@@ -101,6 +101,13 @@ namespace Abandoned.SpaceApps
         /// e sem pausar a sequência. Ligado pelo controlador do capítulo; o padrão (falso) é a versão interativa.
         /// </summary>
         public bool CinemaMode { get; set; }
+
+        /// <summary>
+        /// Roteiro v2 (cena 7 como "Os anos"): o painel do atlas fica escondido e o HUD de cinema (<see cref="PioneerYearsHud"/>) desenha o
+        /// ano, a linha do tempo, os instrumentos e o medidor de energia sobre a sonda em 3D. A lógica (fases, hold, conclusão) segue igual.
+        /// Ligado pelo controlador do capítulo; o padrão (falso) mostra o atlas.
+        /// </summary>
+        public bool YearsMode { get; set; }
 
         public bool IsAwaitingHold => awaitingHold;
         public bool HoldDone => holdDone;
@@ -364,8 +371,8 @@ namespace Abandoned.SpaceApps
             else
             {
                 errors.AddRange(sequence.Validate().ConvertAll(e => $"{owner}: {e}"));
-                if (Mathf.Abs(sequence.TotalDurationSeconds - 39f) > 0.01f)
-                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro pede 39 s.");
+                if (Mathf.Abs(sequence.TotalDurationSeconds - 55f) > 0.01f)
+                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro v2 retemporizado pede 55 s.");
 
                 var events = new System.Collections.Generic.HashSet<string>();
                 foreach (var shot in sequence.Shots)
@@ -408,7 +415,7 @@ namespace Abandoned.SpaceApps
         void PushView()
         {
             if (panel != null)
-                panel.Render(ViewState(), resolveText);
+                panel.Render(YearsMode ? new OutboundViewState { Phase = OutboundPhase.Idle } : ViewState(), resolveText);
         }
 
         /// <summary>Prévia de Editor: mostra uma situação com valores fixos, sem tocar a sequência.</summary>

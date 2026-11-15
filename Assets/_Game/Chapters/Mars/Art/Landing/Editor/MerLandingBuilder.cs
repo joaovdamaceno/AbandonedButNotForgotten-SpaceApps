@@ -32,6 +32,10 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
         public static readonly Vector3 SpiritStageOffset = new Vector3(4000f, 0f, 0f);
         public static readonly Vector3 SunDirection = new Vector3(0.3f, 0.55f, 0.78f).normalized;
 
+        /// <summary>Com o mapa importado importado (Art/Classic), o Opportunity pousa no terreno dele (bacia rasa); sem ele, na bacia da MAR-012.</summary>
+        public static MerLandingSite OpportunitySite =>
+            AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_Game/Chapters/Mars/Art/Classic/Export/ClassicEagle.prefab") != null ? MerLandingSite.MeridianiClassic : MerLandingSite.Meridiani;
+
         public static string SequencePath(string stepId) => SequenceFolder + "/MarsDualLanding_" + stepId + ".asset";
 
         public override string Id => "mars.landing";
@@ -101,8 +105,8 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
 
         static List<MarsLandingLabel> DefaultLabels() => new List<MarsLandingLabel>
         {
-            new MarsLandingLabel("MAR.L01", 0.4f, 18f, MarsLandingLabelAnchor.UpperHalf),
-            new MarsLandingLabel("MAR.L02", 0.4f, 20f, MarsLandingLabelAnchor.LowerHalf),
+            new MarsLandingLabel("MAR.L01", 0.4f, 18f, MarsLandingLabelAnchor.LeftHalf),
+            new MarsLandingLabel("MAR.L02", 0.4f, 20f, MarsLandingLabelAnchor.RightHalf),
             new MarsLandingLabel("MAR.T02", 1f, 17.5f, MarsLandingLabelAnchor.Separator),
             new MarsLandingLabel("MAR.L03", 22.2f, 27f, MarsLandingLabelAnchor.Full),
         };
@@ -115,7 +119,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             if (table == null)
                 throw new InvalidOperationException("MarsSubtitles.json inválido:" + ContractValidation.Describe(errors));
 
-            const MerLandingSite site = MerLandingSite.Meridiani;
+            var site = OpportunitySite;
             ShotDefinition Shot(string id, MerLandingCameraPath.Segment segment, float minClearance, IEnumerable<ShotEvent> events, bool continueFromPrevious = false)
             {
                 var (start, end) = MerLandingCameraPath.Window(segment);
@@ -149,7 +153,11 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
                     }, continueFromPrevious: true),
                     Shot("mars.landing.ramp", MerLandingCameraPath.Segment.Ramp, 0.4f, new[]
                     {
-                        new ShotEvent(0.2f, "mars.landing.rover.unfold"), new ShotEvent(1.7f, "mars.landing.handoff"),
+                        new ShotEvent(0.2f, "mars.landing.rover.unfold"),
+                    }, continueFromPrevious: true),
+                    Shot("mars.landing.egress", MerLandingCameraPath.Segment.Egress, 0.4f, new[]
+                    {
+                        new ShotEvent(0f, "mars.landing.egress.drive"), new ShotEvent(MerLandingCameraPath.Window(MerLandingCameraPath.Segment.Egress).end - MerLandingCameraPath.Window(MerLandingCameraPath.Segment.Egress).start - 0.2f, "mars.landing.handoff"),
                     }, continueFromPrevious: true),
                 }, MarsChapterFlow.BuildSequenceCues(table, "M06"));
 
@@ -355,9 +363,9 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
                 basePetal = SaveMesh("BasePetal", MerLandingGeometry.Prism(layoutBase, MerLandingLayout.PetalThicknessMeters)),
                 lobe = SaveMesh("AirbagLobe", MerLandingGeometry.Sphere(1f, 20, 12)),
                 groundSpirit = SaveMesh("GroundGusev", MerLandingGeometry.Ground(MerLandingSite.Gusev, 520f, false)),
-                groundOpportunity = SaveMesh("GroundMeridiani", MerLandingGeometry.Ground(MerLandingSite.Meridiani, 520f, false)),
+                groundOpportunity = SaveMesh("GroundMeridiani", MerLandingGeometry.Ground(OpportunitySite, 520f, false)),
                 colliderSpirit = SaveMesh("ColliderGusev", MerLandingGeometry.Ground(MerLandingSite.Gusev, 520f, true)),
-                colliderOpportunity = SaveMesh("ColliderMeridiani", MerLandingGeometry.Ground(MerLandingSite.Meridiani, 520f, true)),
+                colliderOpportunity = SaveMesh("ColliderMeridiani", MerLandingGeometry.Ground(OpportunitySite, 520f, true)),
             };
         }
 
@@ -436,7 +444,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
 
             var spirit = BuildStage(root.transform, "SpiritStage", MerLandingSite.Gusev, m, meshes, SpiritRoverPath);
             spirit.transform.localPosition = SpiritStageOffset;
-            var opportunity = BuildStage(root.transform, "OpportunityStage", MerLandingSite.Meridiani, m, meshes, OpportunityRoverPath);
+            var opportunity = BuildStage(root.transform, "OpportunityStage", OpportunitySite, m, meshes, OpportunityRoverPath);
             opportunity.transform.localPosition = Vector3.zero;
 
             var cameraObject = new GameObject("SpiritCamera");
@@ -478,7 +486,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             {
                 var flame = Child(capsule, "Retro_" + i);
                 var angle = i * 120f * Mathf.Deg2Rad;
-                flame.localPosition = new Vector3(Mathf.Cos(angle) * 2.15f, 0.7f, Mathf.Sin(angle) * 2.15f);
+                flame.localPosition = new Vector3(Mathf.Cos(angle) * 2.15f, 0.7f, Mathf.Sin(angle) * 2.15f) * MerLandingLayout.HardwareScale;
                 Surface(flame, meshes.flame, m.flame, false);
                 flame.gameObject.SetActive(false);
                 flames.Add(flame);
@@ -532,8 +540,15 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             Surface(tether, meshes.tether, m.tether, false);
             tether.gameObject.SetActive(false);
 
+            // Onde o rover para depois de sair do módulo (quadro do palco): o jogo continua daqui, sem corte.
+            var egress = Child(stage, "EgressStart");
+            MerLandingChoreography.RoverWorld(MerLandingChoreography.Sample(MerLandingChoreography.TotalSeconds, site), out var egressPosition, out var egressRotation, out _, site);
+            egress.localPosition = egressPosition;
+            egress.localRotation = egressRotation;
+
             var so = new SerializedObject(assembly);
             so.FindProperty("site").enumValueIndex = (int)site;
+            Set(so, "egressAnchor", egress);
             Set(so, "capsule", capsule);
             Set(so, "heatShield", shield);
             Set(so, "lander", lander);

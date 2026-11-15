@@ -33,6 +33,96 @@ Transform:
   - {fileID: 8511564059168280062}
   m_Father: {fileID: 4913624567188064843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &315665865427312926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3667863830925113338}
+  - component: {fileID: 1830378194610112358}
+  - component: {fileID: 3047897960377850143}
+  m_Layer: 0
+  m_Name: EarthCompare
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3667863830925113338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315665865427312926}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.12278781, y: 0.6963643, z: -0.12278781, w: 0.6963643}
+  m_LocalPosition: {x: -315.54355, y: -31.834702, z: 102.79251}
+  m_LocalScale: {x: 7.142857, y: 7.142857, z: 7.142857}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2319320945191257728}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1830378194610112358
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315665865427312926}
+  m_Mesh: {fileID: 4300000, guid: 69f8fa45f02f2b541886adbea86568a7, type: 2}
+--- !u!23 &3047897960377850143
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315665865427312926}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: db4e44e5b2967434ab014e6b279db315, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &533682448704688529
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +313,12 @@ MonoBehaviour:
   - {fileID: 19035562892291056}
   jupiter: {fileID: 3862147645969626797}
   aldebaranMarker: {fileID: 1043999019839922527}
+  beltField: {fileID: 7315527243401767347}
+  beltNike: {fileID: 293088581012597187}
+  mars: {fileID: 4753674823198511537}
+  earth: {fileID: 3667863830925113338}
+  moons: {fileID: 2092224739538038178}
+  trajectory: {fileID: 8043815387730271283}
   aldebaranDirection: {x: 0.2, y: 0.08, z: -1}
   aldebaranDistanceMeters: 1100
   sky: {fileID: 7815699858454342876}
@@ -238,7 +334,7 @@ MonoBehaviour:
     fillIntensity: 0.04
   - groupId: PIO.Light.Cruise
     keyEulerDegrees: {x: 14.44067, y: 214.50853, z: 0.00000044081375}
-    keyColor: {r: 1, g: 0.96, b: 0.9, a: 1}
+    keyColor: {r: 0.84, g: 0.9, b: 1, a: 1}
     keyIntensity: 1.25
     fillEulerDegrees: {x: 342.65393, y: 38.65981, z: -0.00000044722606}
     fillColor: {r: 0.45, g: 0.55, b: 0.75, a: 1}
@@ -259,18 +355,18 @@ MonoBehaviour:
     fillIntensity: 0.15
   - groupId: PIO.Light.FarSun
     keyEulerDegrees: {x: 8.489048, y: 185.71059, z: 0.000000053951947}
-    keyColor: {r: 0.95, g: 0.95, b: 1, a: 1}
+    keyColor: {r: 0.86, g: 0.92, b: 1, a: 1}
     keyIntensity: 0.75
     fillEulerDegrees: {x: 344.43518, y: 21.801414, z: -0.0000004431378}
     fillColor: {r: 0.35, g: 0.4, b: 0.55, a: 1}
     fillIntensity: 0.05
-  - groupId: PIO.Light.Night
+  - groupId: PIO.Light.EarthWarm
     keyEulerDegrees: {x: 38.232414, y: 23.198593, z: 0}
-    keyColor: {r: 0.55, g: 0.65, b: 0.9, a: 1}
-    keyIntensity: 0.35
+    keyColor: {r: 1, g: 0.74, b: 0.46, a: 1}
+    keyIntensity: 0.9
     fillEulerDegrees: {x: 18.541979, y: 206.56505, z: 0}
-    fillColor: {r: 0.25, g: 0.3, b: 0.45, a: 1}
-    fillIntensity: 0.08
+    fillColor: {r: 0.42, g: 0.3, b: 0.26, a: 1}
+    fillIntensity: 0.1
   - groupId: PIO.Light.FarewellRim
     keyEulerDegrees: {x: 11.762706, y: 231.34018, z: -0.00000043604362}
     keyColor: {r: 0.85, g: 0.9, b: 1, a: 1}
@@ -288,6 +384,11 @@ MonoBehaviour:
     lightGroupId: PIO.Light.ColdRim
     showJupiter: 0
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -303,9 +404,14 @@ MonoBehaviour:
     pose: {fileID: 428128763831314845}
     fieldOfViewDegrees: 50
     region: 1
-    lightGroupId: PIO.Light.Night
+    lightGroupId: PIO.Light.EarthWarm
     showJupiter: 0
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -324,6 +430,11 @@ MonoBehaviour:
     lightGroupId: PIO.Light.Cruise
     showJupiter: 0
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -342,6 +453,11 @@ MonoBehaviour:
     lightGroupId: PIO.Light.Cruise
     showJupiter: 0
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -360,6 +476,80 @@ MonoBehaviour:
     lightGroupId: PIO.Light.Cruise
     showJupiter: 0
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+  - anchorId: PIO.Belt.Mars
+    stateId: PIO.Belt
+    function: "Cena 2 \xB7 abertura: a sonda cruza a \xF3rbita de Marte; o planeta ao fundo, \xE0 direita (Marte ligado)"
+    pose: {fileID: 8404235741350736657}
+    fieldOfViewDegrees: 30
+    region: 0
+    lightGroupId: PIO.Light.Cruise
+    showJupiter: 0
+    showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 1
+    showMoons: 0
+    showTrajectory: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+  - anchorId: PIO.Belt.Field
+    stateId: PIO.Belt
+    function: "Cena 2 \xB7 teleobjetiva e dolly zoom: a sonda pequena na frente de uma parede de pedras que se abre (campo de pedras ligado)"
+    pose: {fileID: 4388716470386182402}
+    fieldOfViewDegrees: 30
+    region: 0
+    lightGroupId: PIO.Light.Cruise
+    showJupiter: 0
+    showAldebaranMarker: 0
+    showBeltField: 1
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+  - anchorId: PIO.Belt.Nike
+    stateId: PIO.Belt
+    function: "Cena 2 \xB7 a revela\xE7\xE3o: espa\xE7o vazio e uma \xFAnica pedra distante (307 Nike), a milh\xF5es de km"
+    pose: {fileID: 4582302373605989138}
+    fieldOfViewDegrees: 30
+    region: 0
+    lightGroupId: PIO.Light.Cruise
+    showJupiter: 0
+    showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 1
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -378,6 +568,11 @@ MonoBehaviour:
     lightGroupId: PIO.Light.Cruise
     showJupiter: 0
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -396,6 +591,11 @@ MonoBehaviour:
     lightGroupId: PIO.Light.JupiterAxis
     showJupiter: 1
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -414,6 +614,11 @@ MonoBehaviour:
     lightGroupId: PIO.Light.JupiterAxis
     showJupiter: 1
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: Photopolarimeter
     spinAlignTowards: PIO.Jupiter
     spinScale: 0
@@ -432,6 +637,11 @@ MonoBehaviour:
     lightGroupId: PIO.Light.JupiterAxis
     showJupiter: 1
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: Photopolarimeter
     spinAlignTowards: PIO.Jupiter
     spinScale: 1
@@ -450,6 +660,103 @@ MonoBehaviour:
     lightGroupId: PIO.Light.JupiterAxis
     showJupiter: 1
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+  - anchorId: PIO.Closest.Ganymede
+    stateId: PIO.Closest
+    function: "Cena 5a \xB7 Ganimedes cruza o quadro (as luas ligadas)"
+    pose: {fileID: 8576842091123120800}
+    fieldOfViewDegrees: 30
+    region: 0
+    lightGroupId: PIO.Light.JupiterAxis
+    showJupiter: 0
+    showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 1
+    showTrajectory: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+  - anchorId: PIO.Closest.Callisto
+    stateId: PIO.Closest
+    function: "Cena 5a \xB7 Calisto cruza o quadro (as luas ligadas)"
+    pose: {fileID: 1839392576852990535}
+    fieldOfViewDegrees: 30
+    region: 0
+    lightGroupId: PIO.Light.JupiterAxis
+    showJupiter: 0
+    showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 1
+    showTrajectory: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+  - anchorId: PIO.Closest.Europa
+    stateId: PIO.Closest
+    function: "Cena 5a \xB7 Europa cruza o quadro (as luas ligadas)"
+    pose: {fileID: 8360398824134227082}
+    fieldOfViewDegrees: 30
+    region: 0
+    lightGroupId: PIO.Light.JupiterAxis
+    showJupiter: 0
+    showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 1
+    showTrajectory: 0
+    spinAlignSocket: 
+    spinAlignTowards: 
+    spinScale: 1
+    uiFrameViewport:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+  - anchorId: PIO.Closest.Bend
+    stateId: PIO.Closest
+    function: "Cena 5d \xB7 plano alto: a trajet\xF3ria da sonda curva em volta de J\xFApiter (trajet\xF3ria ligada)"
+    pose: {fileID: 5071792076968916263}
+    fieldOfViewDegrees: 50
+    region: 0
+    lightGroupId: PIO.Light.JupiterAxis
+    showJupiter: 1
+    showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 1
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -468,6 +775,11 @@ MonoBehaviour:
     lightGroupId: PIO.Light.Plaque
     showJupiter: 1
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: Plaque
     spinAlignTowards: 
     spinScale: 0
@@ -486,6 +798,11 @@ MonoBehaviour:
     lightGroupId: PIO.Light.FarSun
     showJupiter: 0
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -501,9 +818,14 @@ MonoBehaviour:
     pose: {fileID: 1241571127381635050}
     fieldOfViewDegrees: 55
     region: 2
-    lightGroupId: PIO.Light.Night
+    lightGroupId: PIO.Light.EarthWarm
     showJupiter: 0
     showAldebaranMarker: 0
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -522,6 +844,11 @@ MonoBehaviour:
     lightGroupId: PIO.Light.FarewellRim
     showJupiter: 0
     showAldebaranMarker: 1
+    showBeltField: 0
+    showBeltNike: 0
+    showMars: 0
+    showMoons: 0
+    showTrajectory: 0
     spinAlignSocket: 
     spinAlignTowards: 
     spinScale: 1
@@ -688,6 +1015,96 @@ Transform:
   - {fileID: 2496330682222359881}
   m_Father: {fileID: 7110141134317143998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1250553542556936691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7633723030736114119}
+  - component: {fileID: 9186579394666913444}
+  - component: {fileID: 1937826972677181807}
+  m_Layer: 0
+  m_Name: Ganymede
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7633723030736114119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250553542556936691}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.015134436, y: 0.98106027, z: -0.08583164, w: -0.17298742}
+  m_LocalPosition: {x: 520, y: 20, z: 0}
+  m_LocalScale: {x: 4.4, y: 4.4, z: 4.4}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2092224739538038178}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &9186579394666913444
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250553542556936691}
+  m_Mesh: {fileID: 4300000, guid: 69f8fa45f02f2b541886adbea86568a7, type: 2}
+--- !u!23 &1937826972677181807
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250553542556936691}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: c843cbaca8087fc4cafcbc3b60090c8d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1307556064827176910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1435,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 384336331662269869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2493576098542547889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8404235741350736657}
+  m_Layer: 0
+  m_Name: "PIO.Belt.Mars \xB7 Cena 2 \xB7 abertura: a sonda cruza a \xF3rbita de"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8404235741350736657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2493576098542547889}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.008325911, y: 0.9828817, z: -0.045914628, w: -0.17823048}
+  m_LocalPosition: {x: 30, y: 8, z: 80}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3159713053257617231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,6 +1610,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10204, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &3857879612584217572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839392576852990535}
+  m_Layer: 0
+  m_Name: "PIO.Closest.Callisto \xB7 Cena 5a \xB7 Calisto cruza o quadro (as luas"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1839392576852990535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857879612584217572}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.03327795, y: 0, z: 0, w: 0.99944615}
+  m_LocalPosition: {x: 560, y: 21.6, z: 46}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4128811797072183029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,6 +1793,276 @@ Transform:
   m_Children: []
   m_Father: {fileID: 384336331662269869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4715872221146234827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4753674823198511537}
+  - component: {fileID: 2230153693109325573}
+  - component: {fileID: 5954902122773898898}
+  m_Layer: 0
+  m_Name: Mars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4753674823198511537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715872221146234827}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.018151179, y: 0.97941285, z: -0.10294044, w: -0.17269693}
+  m_LocalPosition: {x: -400.8143, y: -118.76788, z: -676.7886}
+  m_LocalScale: {x: 85, y: 85, z: 85}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2319320945191257728}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2230153693109325573
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715872221146234827}
+  m_Mesh: {fileID: 4300000, guid: 69f8fa45f02f2b541886adbea86568a7, type: 2}
+--- !u!23 &5954902122773898898
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715872221146234827}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5dbf59a774e293241841bd38f4ec26dc, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4880263673973482841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6336130689689912753}
+  - component: {fileID: 5993242055306143412}
+  - component: {fileID: 7715807686461999211}
+  m_Layer: 0
+  m_Name: Callisto
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6336130689689912753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4880263673973482841}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.015134436, y: 0.98106027, z: -0.08583164, w: -0.17298742}
+  m_LocalPosition: {x: 560, y: 20, z: 70}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2092224739538038178}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5993242055306143412
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4880263673973482841}
+  m_Mesh: {fileID: 4300000, guid: 69f8fa45f02f2b541886adbea86568a7, type: 2}
+--- !u!23 &7715807686461999211
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4880263673973482841}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: c4f4886297e09ca4eaa7618b9fb77580, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4898149179539597239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7276376424072537514}
+  - component: {fileID: 5110662415856125590}
+  - component: {fileID: 8920569593731244974}
+  m_Layer: 0
+  m_Name: Europa
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7276376424072537514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898149179539597239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.07547909, y: 0.4980974, z: -0.043577872, w: 0.86272997}
+  m_LocalPosition: {x: 600, y: 20, z: 140}
+  m_LocalScale: {x: 2.6, y: 2.6, z: 2.6}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2092224739538038178}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5110662415856125590
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898149179539597239}
+  m_Mesh: {fileID: 4300000, guid: 69f8fa45f02f2b541886adbea86568a7, type: 2}
+--- !u!23 &8920569593731244974
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898149179539597239}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f7a6213be680e7a4db19e641191952b2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5077752300449829783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +2311,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 354865172425825117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5869476505731556021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4582302373605989138}
+  m_Layer: 0
+  m_Name: "PIO.Belt.Nike \xB7 Cena 2 \xB7 a revela\xE7\xE3o: espa\xE7o vazio e uma \xFAnica"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4582302373605989138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5869476505731556021}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.012975718, y: -0.23744628, z: -0.0031720456, w: 0.9713088}
+  m_LocalPosition: {x: 46, y: 6, z: -60}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5869659370040144379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,6 +2504,161 @@ Transform:
   - {fileID: 8708992235111839291}
   m_Father: {fileID: 7110141134317143998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6162687790979159894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5071792076968916263}
+  m_Layer: 0
+  m_Name: "PIO.Closest.Bend \xB7 Cena 5d \xB7 plano alto: a trajet\xF3ria da sonda"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5071792076968916263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6162687790979159894}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5162738, y: -0.27707174, z: 0.18109907, w: 0.7898708}
+  m_LocalPosition: {x: -44.081177, y: 655, z: 100.64972}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6210509996251068907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092224739538038178}
+  m_Layer: 0
+  m_Name: GalileanMoons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2092224739538038178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210509996251068907}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7633723030736114119}
+  - {fileID: 6336130689689912753}
+  - {fileID: 7276376424072537514}
+  m_Father: {fileID: 2319320945191257728}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6637428258188706077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7315527243401767347}
+  - component: {fileID: 292423756081610478}
+  - component: {fileID: 1415435777257269921}
+  m_Layer: 0
+  m_Name: BeltField
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7315527243401767347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6637428258188706077}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2319320945191257728}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &292423756081610478
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6637428258188706077}
+  m_Mesh: {fileID: 4300000, guid: ae726865a0e03b84e8ae91dc35b58790, type: 2}
+--- !u!23 &1415435777257269921
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6637428258188706077}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 1b18ccf4cd1b9814c95dcc6991457258, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6712571648465384948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1767,6 +2702,13 @@ Transform:
   - {fileID: 7176797557390841779}
   - {fileID: 553531033452038761}
   - {fileID: 3840515966632898432}
+  - {fileID: 4388716470386182402}
+  - {fileID: 4582302373605989138}
+  - {fileID: 8404235741350736657}
+  - {fileID: 8576842091123120800}
+  - {fileID: 1839392576852990535}
+  - {fileID: 8360398824134227082}
+  - {fileID: 5071792076968916263}
   m_Father: {fileID: 7110141134317143998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6724439147850653092
@@ -1901,7 +2843,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 1, g: 0.96, b: 0.9, a: 1}
+  m_Color: {r: 0.84, g: 0.9, b: 1, a: 1}
   m_Intensity: 1.25
   m_Range: 10
   m_SpotAngle: 30
@@ -1988,6 +2930,12 @@ Transform:
   - {fileID: 8694489472082676239}
   - {fileID: 3862147645969626797}
   - {fileID: 7203569051149293541}
+  - {fileID: 7315527243401767347}
+  - {fileID: 293088581012597187}
+  - {fileID: 4753674823198511537}
+  - {fileID: 3667863830925113338}
+  - {fileID: 2092224739538038178}
+  - {fileID: 8043815387730271283}
   m_Father: {fileID: 4913624567188064843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7011923122317685900
@@ -2016,6 +2964,279 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.14521156, y: -0.424753, z: 0.06923218, w: 0.89090145}
   m_LocalPosition: {x: 6.2, y: 2.7, z: -4.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7106527921880818061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 293088581012597187}
+  - component: {fileID: 8022888852853069577}
+  - component: {fileID: 2068509639403881578}
+  m_Layer: 0
+  m_Name: BeltNike
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &293088581012597187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7106527921880818061}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -67.28818, y: 42.467785, z: 300.8821}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2319320945191257728}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8022888852853069577
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7106527921880818061}
+  m_Mesh: {fileID: 4300000, guid: 4e45e83a2238a2747a04f30068dd641a, type: 2}
+--- !u!23 &2068509639403881578
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7106527921880818061}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 1b18ccf4cd1b9814c95dcc6991457258, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7145929570288501887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8360398824134227082}
+  m_Layer: 0
+  m_Name: "PIO.Closest.Europa \xB7 Cena 5a \xB7 Europa cruza o quadro (as luas"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8360398824134227082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7145929570288501887}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.03327795, y: 0, z: 0, w: 0.99944615}
+  m_LocalPosition: {x: 600, y: 21.6, z: 116}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7461590462036517228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8043815387730271283}
+  - component: {fileID: 2940989979163496698}
+  - component: {fileID: 3547111988001052639}
+  m_Layer: 0
+  m_Name: JupiterTrajectory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8043815387730271283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461590462036517228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2319320945191257728}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2940989979163496698
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461590462036517228}
+  m_Mesh: {fileID: 4300000, guid: f80fcd147e4aae5439c1a925db286b9c, type: 2}
+--- !u!23 &3547111988001052639
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461590462036517228}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 718112587b7b54a499e9aa04ca732a76, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7535803481416620179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4388716470386182402}
+  m_Layer: 0
+  m_Name: "PIO.Belt.Field \xB7 Cena 2 \xB7 teleobjetiva e dolly zoom: a sonda"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4388716470386182402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535803481416620179}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.015565888, y: 0.98442644, z: -0.1218459, w: 0.12576109}
+  m_LocalPosition: {x: -20, y: 20, z: 77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384336331662269869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7843071450461074255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8576842091123120800}
+  m_Layer: 0
+  m_Name: "PIO.Closest.Ganymede \xB7 Cena 5a \xB7 Ganimedes cruza o quadro (as luas"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8576842091123120800
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7843071450461074255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.03327795, y: 0, z: 0, w: 0.99944615}
+  m_LocalPosition: {x: 520, y: 21.6, z: -24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -40,7 +40,7 @@ namespace Abandoned.SpaceApps
     }
 
     /// <summary>
-    /// PIO-012 · Estado PIO.Farewell (38 s): a comunicação acabou, mas a trajetória continua. Do match cut da antena
+    /// PIO-012 · Estado PIO.Farewell (40 s): a comunicação acabou, mas a trajetória continua. Do match cut da antena
     /// terrestre ao contorno do refletor, a placa em close, a direção geral de Aldebaran (um ponto avermelhado distante que
     /// NÃO ilumina a nave), a Pioneer diminuindo e o memorial em preto com "PIONEER 10 · 1972–2003 / Em viagem".
     /// <para>
@@ -443,7 +443,7 @@ namespace Abandoned.SpaceApps
         }
 
         /// <summary>
-        /// Erros de montagem (lista vazia = conforme): referências, sequência de 38 s com os cinco marcos, as quatro legendas por
+        /// Erros de montagem (lista vazia = conforme): referências, sequência de 40 s com os cinco marcos, as quatro legendas por
         /// janela, planos com rigs do palco que nunca se repetem em sequência, e o painel ligado ao UXML.
         /// </summary>
         public List<string> ValidateSetup()
@@ -455,8 +455,8 @@ namespace Abandoned.SpaceApps
             else
             {
                 errors.AddRange(sequence.Validate().ConvertAll(e => $"{owner}: {e}"));
-                if (Mathf.Abs(sequence.TotalDurationSeconds - 38f) > 0.01f)
-                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro pede 38 s.");
+                if (Mathf.Abs(sequence.TotalDurationSeconds - 40f) > 0.01f)
+                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro v2 retemporizado pede 40 s.");
 
                 var events = new HashSet<string>();
                 string previousRig = null;

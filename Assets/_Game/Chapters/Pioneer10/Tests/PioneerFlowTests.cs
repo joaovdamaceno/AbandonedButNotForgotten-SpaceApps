@@ -192,7 +192,7 @@ namespace Abandoned.SpaceApps.Tests
 
         static readonly Dictionary<string, string> SequenceAssets = new Dictionary<string, string>
         {
-            { "PIO.Launch", "PIO_Launch" }, { "PIO.Belt", "PIO_Belt" }, { "PIO.JupiterApproach", "PIO_JupiterApproach" }, { "PIO.Imaging", "PIO_Imaging" },
+            { "PIO.Launch", "PIO_Launch" }, { "PIO.Belt", "PIO_BeltCinema" }, { "PIO.JupiterApproach", "PIO_JupiterApproach" }, { "PIO.Imaging", "PIO_Imaging" },
             { "PIO.Closest", "PIO_Closest" }, { "PIO.Plaque", "PIO_Plaque" }, { "PIO.Outbound", "PIO_Outbound" }, { "PIO.Listening", "PIO_Listening" }, { "PIO.Farewell", "PIO_Farewell" },
         };
 
@@ -205,7 +205,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(chapter.Validate(), Is.Empty);
             Assert.That(chapter.ChapterId, Is.EqualTo("pioneer10"), "igual ao slot do dossiê");
             Assert.That(chapter.SceneName, Is.EqualTo("Pioneer10"));
-            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(415f));
+            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(417f));
 
             var order = new List<string>();
             var cursor = chapter.InitialStepId;
@@ -243,7 +243,7 @@ namespace Abandoned.SpaceApps.Tests
                 total += sequence.TotalDurationSeconds;
             }
 
-            Assert.That(total, Is.EqualTo(415f).Within(0.01f), "soma nominal do capítulo");
+            Assert.That(total, Is.EqualTo(417f).Within(0.01f), "soma nominal do capítulo");
             Assert.That(controller.JupiterSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.03.01", "PIO.03.02", "PIO.03.03", "PIO.03.04" }));
             Assert.That(controller.ClosestSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.09.01", "PIO.09.02", "PIO.09.03", "PIO.09.04", "PIO.09.05", "PIO.09.06", "PIO.09.07" }));
         }
@@ -424,10 +424,10 @@ namespace Abandoned.SpaceApps.Tests
             Run(10f);
             Assert.That(controller.CurrentState, Is.EqualTo("PIO.JupiterApproach"));
             Assert.That(completed, Does.Not.Contain("PIO.JupiterApproach"));
-            Run(20f);
+            Run(21f); // 31 s no total: a sequência tem 30 s
             Assert.That(completed, Does.Contain("PIO.JupiterApproach"));
             Assert.That(controller.CurrentState, Is.EqualTo("PIO.Imaging"));
-            Assert.That(controller.LastReport.activeSeconds[2] - 0f, Is.EqualTo(27f).Within(1.5f), "27 s de cinema, a duração nominal");
+            Assert.That(controller.LastReport.activeSeconds[2] - 0f, Is.EqualTo(30f).Within(1.5f), "30 s de cinema, a duração nominal");
             Assert.That(start, Is.LessThan(1f));
         }
 
@@ -458,7 +458,7 @@ namespace Abandoned.SpaceApps.Tests
 
             // Cena 7: a priorização da comunicação corre sozinha.
             SetE(false);
-            Run(30f);
+            Run(36f); // a priorização abre em 28 s e leva 3 s
             Assert.That(router.DescribeLeases(), Does.Not.Contain("PIO.Outbound.Power"));
             Assert.That(outbound.HoldDone || completed.Contains("PIO.Outbound") || controller.CurrentState == "PIO.Listening", Is.True);
         }
@@ -474,7 +474,7 @@ namespace Abandoned.SpaceApps.Tests
             listening.NoSignalHeard += () => silences++;
             OperateUntil(() => contacts.Count > 0);
             SetE(false);
-            Run(1f);
+            Run(0.2f); // o contato 2 chega sozinho no marco dele, poucos segundos depois
             Assert.That(contacts, Is.EqualTo(new[] { 1 }));
             Assert.That(router.DescribeLeases(), Does.Not.Contain("PIO.Listening"), "a única rodada terminou: sem botão e sem lease");
 
@@ -490,13 +490,13 @@ namespace Abandoned.SpaceApps.Tests
             BeginChapter();
             OperateUntil(() => controller.CurrentState == "PIO.Closest");
             SetE(false);
-            Run(20f);
-            Assert.That(controller.CurrentState, Is.EqualTo("PIO.Closest"), "20 s depois ainda é cinema: nada conclui por clique nem por tempo antes do fim da sequência");
+            Run(30f);
+            Assert.That(controller.CurrentState, Is.EqualTo("PIO.Closest"), "30 s depois ainda é cinema: nada conclui por clique nem por tempo antes do fim da sequência");
             Assert.That(completed, Does.Not.Contain("PIO.Closest"));
-            Run(25f);
+            Run(36f); // 66 s no total: a sequência tem 65 s
             Assert.That(completed, Does.Contain("PIO.Closest"));
             Assert.That(controller.CurrentState, Is.EqualTo("PIO.Plaque"));
-            Assert.That(controller.LastReport.activeSeconds[4], Is.EqualTo(40f).Within(1.5f), "40 s de cinema, a duração nominal");
+            Assert.That(controller.LastReport.activeSeconds[4], Is.EqualTo(65f).Within(1.5f), "65 s de cinema, a duração nominal");
         }
     }
 }

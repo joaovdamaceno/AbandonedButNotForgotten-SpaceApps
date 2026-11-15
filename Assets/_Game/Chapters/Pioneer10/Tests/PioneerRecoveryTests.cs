@@ -275,10 +275,10 @@ namespace Abandoned.SpaceApps.Tests
         public void TheRevealFollowsTheSubtitlesOfTheSequence()
         {
             var cues = imaging.Sequence.Cues.ToDictionary(c => c.TextKey);
-            Assert.That(cues["PIO.04.06"].StartSeconds, Is.EqualTo(48f), "a revelação começa em 48 s");
-            Assert.That(48f + HistoricalImageReveal.JupiterAtSeconds, Is.EqualTo(cues["PIO.04.07"].StartSeconds), "Júpiter com a legenda que fala de Io");
-            Assert.That(48f + HistoricalImageReveal.GanymedeAtSeconds, Is.EqualTo(cues["PIO.04.08"].StartSeconds), "Ganimedes com a legenda de Ganimedes");
-            Assert.That(48f + HistoricalImageReveal.GanymedeAtSeconds + HistoricalImageReveal.FadeSeconds, Is.LessThan(cues["PIO.04.09"].EndSeconds));
+            Assert.That(cues["PIO.04.06"].StartSeconds, Is.EqualTo(38f), "a revelação começa em 38 s");
+            Assert.That(38f + HistoricalImageReveal.JupiterAtSeconds, Is.EqualTo(cues["PIO.04.07"].StartSeconds), "Júpiter com a legenda que fala de Io");
+            Assert.That(38f + HistoricalImageReveal.GanymedeAtSeconds, Is.EqualTo(cues["PIO.04.08"].StartSeconds), "Ganimedes com a legenda de Ganimedes");
+            Assert.That(38f + HistoricalImageReveal.GanymedeAtSeconds + HistoricalImageReveal.FadeSeconds, Is.LessThan(cues["PIO.04.09"].EndSeconds));
         }
 
         [Test]

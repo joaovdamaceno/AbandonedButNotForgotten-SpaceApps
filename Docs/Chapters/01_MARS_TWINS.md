@@ -146,91 +146,232 @@ Setas alternam entre foto do vale feita pelo jogador e registro científico, E c
 
 SPIRIT · 2004–2010 / OPPORTUNITY · 2004–2018. Segurar título e revelar VOLTAR AO ARQUIVO / REPETIR CAPÍTULO. Anos de operação não são datas de encerramento oficial das buscas. Sem game over ou culpa do jogador.
 
-## Legendas finais PT/EN
+## Falas e textos exibidos no jogo
 
-Cues relativas à etapa; uma por vez, duas linhas no máximo. Resultados só aparecem após a ação concluir. Datas grandes não devem disputar leitura com uma nova instrução. As falas abaixo são texto autoral, não registros de comunicação dos rovers.
+Texto que aparece na tela hoje, na ordem em que aparece. Para mudar uma fala, edite o texto da chave no arquivo indicado em cada parte (campos `pt` e `en`); esta tabela é só o espelho do jogo e precisa ser atualizada junto.
 
-| Cue / etapa | Janela local | Português brasileiro | English |
+O capítulo de Marte aparece sempre em inglês (`GameHost`, lista `EnglishOnlyChapters`); a coluna em português fica como tradução.
+
+Os tempos das tabelas são do filme. Alguns trechos são mostrados mais devagar para dar tempo de leitura (`ChapterDirector`, mapas tempo real → filme): pouso 0–13,5 s → 0–7,5 s; anos seguintes 6–14 s → 6–13 s e 25,5–34,5 s → 24,5–32,5 s; último contato 7–15 s → 7–12 s; despedida 0–12,5 → 0–8, 12,5–18,5 → 8–11 e 18,5–27,5 → 11–16 s. Narração sem voz fica na tela pelo maior entre 4,5 s e um segundo a cada 15 caracteres.
+
+As falas com voz gravada estão em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Narration/{pt,en}/<chave>.wav`. Se o texto de uma delas mudar, o áudio da mesma chave deixa de corresponder: regrave-o ou apague o `.wav` (sem áudio, a fala aparece só como texto).
+
+### Abertura · Marte, laboratório e globo (M01–M03)
+
+- Falas (legenda embaixo): `Assets/_Game/Chapters/Mars/Data/MarsSubtitles.json`, lista `cues` (campos `pt`, `en`, `startSeconds`, `endSeconds`). Mudar só o texto basta salvar o arquivo; se mudar o tempo de uma fala, rode **Abandoned Space Apps → Marte → MAR-013 Reconstruir abertura (espaço, laboratório e globo)** para regravar as sequências.
+- Título "2003": mesmo arquivo, lista `texts`, chave `MAR.T01`.
+- Letreiros do laboratório e do globo: `Assets/_Game/Chapters/Mars/Art/Origin/MarsOriginTexts.json`.
+
+| Momento | Chave | Português | English |
 | --- | --- | --- | --- |
-| MAR.C01 / M01 | 0–8 | Marte já teve água? Para investigar, a NASA construiu duas geólogas robóticas: Spirit e Opportunity. | Did Mars once have water? NASA built two robotic geologists to investigate: Spirit and Opportunity. |
-| MAR.C02 / M02 | 0–4 | Spirit investigaria Gusev, um possível antigo lago. | Spirit would explore Gusev, a possible ancient lake. |
-| MAR.C03 / M02 | 4–8 | Opportunity iria a Meridiani: hematita vista da órbita. | Opportunity would visit Meridiani: hematite spotted from orbit. |
-| MAR.C04 / M02 | 8–12 | Esse mineral podia guardar pistas de água antiga. | This mineral could hold clues to ancient water. |
-| MAR.C05 / M03 | 0–5 | Em junho e julho de 2003, partiram separadamente. | In June and July 2003, they launched separately. |
-| MAR.C06 / M04 | 0–7 | Em janeiro de 2004, chegaram a lados opostos de Marte. | In January 2004, they reached opposite sides of Mars. |
-| MAR.C07 / M04 | 11–18 | O módulo protegia cada rover. Os airbags amorteceram a chegada. | Each rover rode inside a lander. Airbags cushioned the arrival. |
-| MAR.C08 / M05 | 0–4 | Opportunity parou dentro da pequena cratera Eagle. | Opportunity came to rest inside tiny Eagle Crater. |
-| MAR.C09 / M06 | 0–5 | Depois das verificações, chegou a hora de explorar. | After the checks, it was time to explore. |
-| MAR.C10 / M08 | 0–6 | No afloramento claro, pequenas esferas chamam a atenção. | Small spheres stand out in the pale rock outcrop. |
-| MAR.C11 / M09 | 0–6 | Estão soltas no chão e presas dentro da rocha. | Some lie loose on the ground; others are embedded in rock. |
-| MAR.C12 / M09 | resultado ≥4 s | As medições identificaram hematita: as famosas blueberries. | Measurements identified hematite: the famous blueberries. |
-| MAR.C13 / M10 | 0–7 | Mas uma pista não basta. Vamos examinar o interior da rocha. | One clue is not enough. Let's examine the rock beneath its surface. |
-| MAR.C14 / M12 | 0–7 | A RAT esmerilha a camada externa e revela material menos alterado. | The RAT grinds away the outer layer, revealing less altered material. |
-| MAR.C15 / M12 | 17–24 | A ferramenta prepara a amostra. Outros instrumentos fazem as medições. | The tool prepares the sample. Other instruments take the measurements. |
-| MAR.C16 / M13 | APXS 0–6 | O APXS encontrou muito enxofre, associado a sais de sulfato. | APXS found abundant sulfur, associated with sulfate salts. |
-| MAR.C17 / M13 | Mössbauer 6–12 | O Mössbauer identificou jarosita, um mineral ligado à ação da água. | Mössbauer identified jarosite, a mineral linked to water's action. |
-| MAR.C18 / M14 | 0–7 | Camadas, concreções e composição química contam a mesma história. | Layers, concretions and chemistry tell the same story. |
-| MAR.C19 / M14 | 7–14 | Evidências fortes: água líquida alterou estas rochas há muito tempo. | Strong evidence: liquid water altered these rocks long ago. |
-| MAR.C20 / M15 | 0–5 | Os 90 sóis terminaram. Em abril de 2004, ambas continuavam trabalhando. | Their 90 sols were complete. In April 2004, both kept working. |
-| MAR.C21 / M16 | 0–7 | 2005. O caminho reencontrou uma peça da chegada. | 2005. The journey crossed paths with a piece of the arrival. |
-| MAR.C22 / M17 | 0–7 | Este escudo enfrentou o calor da entrada e foi descartado na descida. | This shield faced the heat of entry, then separated during descent. |
-| MAR.C23 / M18 | 0–5 | E esta rocha metálica? De onde ela veio? | What about this metallic rock? Where did it come from? |
-| MAR.C24 / M19 | resultado ≥4 s | Ferro e níquel. Uma visitante de fora de Marte. | Iron and nickel. A visitor from beyond Mars. |
-| MAR.C25 / M20 | 0–8 | Heat Shield Rock: o primeiro meteorito identificado em outro planeta. | Heat Shield Rock: the first meteorite identified on another planet. |
-| MAR.C26 / M21 | 0–6 | Tempestades cobrem regiões imensas. Algumas acabam envolvendo todo o planeta. | Dust storms cover vast regions. Some eventually surround the whole planet. |
-| MAR.C27 / M21 | 6–14 | Em 2007, a poeira bloqueou a luz. Era hora de conservar energia. | In 2007, dust blocked the light. It was time to conserve energy. |
-| MAR.C28 / M21 | 14–20 | Atividades suspensas. Menos comunicações. A espera durou semanas. | Activities stopped. Communications were reduced. The wait lasted weeks. |
-| MAR.C29 / M21 | 20–25 | O céu clareou. A Opportunity voltou ao trabalho. | The sky cleared. Opportunity returned to work. |
-| MAR.C30 / M22 | 0–5 | Em 2005, Spirit escalou Husband Hill: uma primeira vez em outro planeta. | In 2005, Spirit climbed Husband Hill: a first on another planet. |
-| MAR.C31 / M22 | 5–11 | Em Comanche, carbonatos apontavam para água antiga menos ácida. | At Comanche, carbonates pointed to ancient, less acidic water. |
-| MAR.C32 / M22 | 11–17 | Uma roda travada revelou sílica: pistas de fontes termais ou vapor. | A stuck wheel exposed silica: clues to hot springs or steam. |
-| MAR.C33 / M22 | 17–22 | Em Home Plate, camadas guardavam evidências de explosões vulcânicas. | At Home Plate, layers held evidence of volcanic explosions. |
-| MAR.C34 / M22 | 22–27 | Mais de seis anos de trabalho. 7,73 quilômetros de descobertas. | More than six years of work. 7.73 kilometres of discoveries. |
-| MAR.C35 / M22 | 27–32 | Em Troy, atolou. Em 2010, virou uma estação de pesquisa fixa. | At Troy, it became stuck. In 2010, it became a stationary science platform. |
-| MAR.C36 / M22 | 32–39 | Mal inclinada para o inverno, provavelmente perdeu a luta contra o frio. | Poorly tilted for winter, it probably lost its struggle against the cold. |
-| MAR.C37 / M22 | 39–45 | Spirit não respondeu mais. A busca terminou em 2011. | Spirit never answered again. The search ended in 2011. |
-| MAR.C38 / M23 | 0–9 | Em 2018, a pergunta era outra: o que esculpiu Perseverance Valley? Água, lama ou vento? | In 2018, a new question: what carved Perseverance Valley? Water, debris flows or wind? |
-| MAR.C39 / M24 | 0–7 | Sua energia vem do Sol. Vamos registrar quanta luz consegue atravessar o céu. | Your power comes from the Sun. Let's record how much light reaches through the sky. |
-| MAR.C40 / M25 | 0–7 | Esta observação serve de referência para a próxima comparação. | This observation provides a reference for the next comparison. |
-| MAR.C41 / M26 | 0–7 | Registre o vale. Cada imagem pode guardar uma pergunta para o futuro. | Record the valley. Each image can hold a question for the future. |
-| MAR.C42 / M27 | 0–6 | A poeira voltou. Desta vez, a tempestade acabaria envolvendo Marte inteiro. | The dust returned. This time, the storm would grow to surround all of Mars. |
-| MAR.C43 / M28 | 0–7 | O Sol está mais fraco na imagem. A poeira impede a luz de chegar. | The Sun is fainter in the image. Dust is stopping its light from reaching us. |
-| MAR.C44 / M29 | 0–6 | Se esta for a última chance, que imagem devemos guardar? | If this is our last chance, which image should we keep? |
-| MAR.C45 / M31 | 0–6 | Em 10 de junho de 2018, chegou o último sinal. | On June 10, 2018, the last signal arrived. |
-| MAR.C46 / M31 | 6–12 | Projetada para 90 sóis, explorou Marte por quase quinze anos. | Built for 90 sols, it explored Mars for almost fifteen years. |
-| MAR.C47 / M31 | 12–18 | Percorreu 45,16 quilômetros: um recorde fora da Terra na época. | It travelled 45.16 kilometres: an off-Earth record at the time. |
-| MAR.C48 / M31 | 18–24 | Em fevereiro de 2019, após meses de tentativas, a missão foi encerrada. | In February 2019, after months of trying, the mission was declared complete. |
-| MAR.C49 / M31 | 24–30 | As gêmeas continuam em Marte. O que aprenderam chegou muito mais longe. | The twins remain on Mars. What they taught us travelled much farther. |
+| M01 · 0–6,3 s · título | `MAR.T01` | 2003 | 2003 |
+| M01 · 0–6,3 s · fala | `MAR.C01` | In 2003, NASA sent two robotic explorers to Mars: Spirit and Opportunity. | In 2003, NASA sent two robotic explorers to Mars: Spirit and Opportunity. |
+| M02 · 6,3–11,2 s · fala | `MAR.C02` | Their mission was to search the rocks for traces of a past with liquid water. | Their mission was to search the rocks for traces of a past with liquid water. |
+| M02 · 6,3–11,2 s · letreiro | `MAR.ORI.01` | EARTH · MISSION PREPARATION | EARTH · MISSION PREPARATION |
+| M02 · 11,2–19,4 s · fala | `MAR.C03` | Mars Global Surveyor mapped the planet's surface, helping NASA pinpoint two promising landing sites. | Mars Global Surveyor mapped the planet's surface, helping NASA pinpoint two promising landing sites. |
+| M02 · 19,4–27,1 s · fala | `MAR.C04` | Meridiani Planum, rich in hematite, which only typically forms in liquid water. | Meridiani Planum, rich in hematite, which only typically forms in liquid water. |
+| M02 · 19,7–34,8 s · letreiro | `MAR.ORI.04` | MERIDIANI PLANUM | MERIDIANI PLANUM |
+| M03 · 27,1–34,8 s · fala | `MAR.C05` | And Gusev Crater, a massive basin that once looked like an ancient lake. | And Gusev Crater, a massive basin that once looked like an ancient lake. |
+| M03 · 30,7–34,8 s · letreiro | `MAR.ORI.03` | GUSEV CRATER | GUSEV CRATER |
 
-## Textos de HUD, títulos e resultados
+### Pouso das duas sondas
 
-| Chave | PT | EN |
-| --- | --- | --- |
-| MAR.T01 | MARTE · DUAS GEÓLOGAS ROBÓTICAS | MARS · TWO ROBOTIC GEOLOGISTS |
-| MAR.T02 | 21 DIAS ENTRE OS POUSOS | 21 DAYS BETWEEN LANDINGS |
-| MAR.T03 | PRIMEIROS MESES · 2004 | FIRST MONTHS · 2004 |
-| MAR.T04 | ABRIL DE 2004 · MISSÃO PRIMÁRIA CONCLUÍDA | APRIL 2004 · PRIMARY MISSION COMPLETE |
-| MAR.T05 | 2005 · CAMPO DO ESCUDO | 2005 · HEAT-SHIELD SITE |
-| MAR.T06 | 2007 · CONSERVAR PARA CONTINUAR | 2007 · CONSERVE TO CONTINUE |
-| MAR.T07 | ENQUANTO ISSO · GUSEV | MEANWHILE · GUSEV |
-| MAR.T08 | JUNHO DE 2018 · PERSEVERANCE VALLEY | JUNE 2018 · PERSEVERANCE VALLEY |
-| MAR.T09 | ÚLTIMO CONTATO | LAST CONTACT |
-| MAR.O01 | Observe as esferas no afloramento | Observe the spheres in the outcrop |
-| MAR.O02 | Prepare e analise a rocha | Prepare and analyse the rock |
-| MAR.O03 | Examine o escudo descartado | Examine the discarded shield |
-| MAR.O04 | Investigue a rocha metálica | Investigate the metallic rock |
-| MAR.O05 | Conserve energia | Conserve power |
-| MAR.O06 | Compare o Sol através da poeira | Compare the Sun through the dust |
-| MAR.O07 | Registre o vale | Record the valley |
-| MAR.O08 | Prepare a transmissão | Prepare transmission |
-| MAR.HOLD | Segure E · {verbo} | Hold E · {verb} |
-| MAR.RESULT01 | Hematita · no solo e na rocha | Hematite · on the ground and in the rock |
-| MAR.RESULT02 | Enxofre abundante · jarosita | Abundant sulfur · jarosite |
-| MAR.RESULT03 | Evidências de água antiga | Evidence of ancient water |
-| MAR.RESULT04 | Ferro + níquel · meteorito | Iron + nickel · meteorite |
-| MAR.POWER | Geração solar · Wh/sol | Solar generation · Wh/sol |
-| MAR.COMMS | Sessões de comunicação reduzidas | Communication sessions reduced |
-| MAR.END | Voltar ao arquivo / Repetir capítulo | Return to archive / Replay chapter |
+Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_Landing.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`. Letreiros da tela dividida: mesmo arquivo de textos.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| tela dividida | `v15.split.spirit` | SPIRIT | SPIRIT |
+| tela dividida | `v15.split.spirit.place` | ↓ caindo na CRATERA GUSEV · 4 JAN 2004 | ↓ landing in GUSEV CRATER · 4 JAN 2004 |
+| tela dividida | `v15.split.opportunity` | OPPORTUNITY | OPPORTUNITY |
+| tela dividida | `v15.split.opportunity.place` | ↓ caindo em MERIDIANI PLANUM · 25 JAN 2004 | ↓ landing on MERIDIANI PLANUM · 25 JAN 2004 |
+| 13,5 s · fala | `v15.landing.opp` | Depois de uma semana de preparação, a Opportunity põe as rodas em Meridiani Planum. | After a week of preparing, Opportunity lands its wheels on Meridiani Planum. |
+
+### Saída do módulo
+
+Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_Activation.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| 0 s · título | `v10.sol7` | 31 JAN 2004 · PRIMEIRAS RODAS NO SOLO | 31 JAN 2004 · FIRST WHEELS ON THE SOIL |
+
+### Eagle · rocha das esferas
+
+Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| objetivo | `v10.goal.berries` | Procure por hematita nas rochas | Look for hematite in the rocks |
+| aviso no meio da tela, perto da rocha | `v17.hint.explore` | Segure E para explorar | Hold E to explore |
+| botão | `v13.interact.berries` | Observar rocha | Observe the rock |
+| observação | `v10.study.berries` | MICROSCOPIA · PEQUENAS ESFERAS | MICROSCOPY · SMALL SPHERES |
+| observação | `v10.berries.first` | A rocha e as pequenas esferas. Segure E para observar. | The rock and its small spheres. Hold E to observe. |
+| observação | `v10.result.berries` | Essas pequenas esferas são concreções ricas em hematita. Junto às camadas e à composição das rochas, ajudam a contar uma história de água antiga. | These small spheres are hematite-rich concretions. Together with rock layers and composition, they help tell a story of ancient water. |
+| narração depois da observação | `v14.berries.water` 🔊 | A hematita costuma se formar onde existe água. Estas esferas são uma pista de que água líquida pode ter passado por aqui. | Hematite usually forms where water exists. These spheres are a clue that liquid water may once have flowed here. |
+| narração depois da observação | `v14.berries.doubt` | Ainda assim, pistas na superfície não bastam. Para ter certeza, precisamos olhar dentro das rochas. | Still, surface clues aren't enough. To know for sure, we have to look inside the rocks. |
+| narração depois da observação | `route.outcrop` | Vá até a rocha McKittrick e olhe por dentro dela | Go to the McKittrick rock and look inside it |
+| objetivo | `objective.sample` | Examine a rocha McKittrick | Examine McKittrick |
+| botão | `v13.interact.rat` | Analisar a rocha | Analyze the rock |
+
+### RAT na McKittrick
+
+Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| braço | `rat.deploy.title` | Aproximando a ferramenta | Positioning the tool |
+| braço | `rat.deploy.body` | A camada externa esconde o interior da rocha. | The outer layer conceals the rock beneath. |
+| braço | `rat.identify.title` | Posicionando o braço | Positioning the arm |
+| braço | `rat.identify.body` | O braço se posiciona sobre a rocha. | The arm moves into place over the rock. |
+| braço | `rat.align.title` | Braço em posição | Arm in position |
+| braço | `rat.align.body` | A ferramenta encosta na superfície. | The tool meets the surface. |
+| abrasão (7 s) | `rat.abrade.title` | Revele o interior da rocha | Reveal the rock beneath |
+| abrasão (7 s) | `rat.abrade.body` | Segure E por 7 segundos para desgastar a superfície. Soltar pausa a ferramenta. | Hold E for 7 seconds to grind the surface. Releasing pauses the tool. |
+| abrasão (7 s) | `rat.hold` | Segure E · faltam {0} s | Hold E · {0} s left |
+| abrasão (7 s) | `rat.hold.active` | Desgastando · faltam {0} s | Grinding · {0} s left |
+| painel | `v15.goal.1` | OBJETIVO 1 DA MISSÃO · Determinar a distribuição e a composição de minerais, rochas e solos ao redor dos locais de pouso. | MISSION GOAL 1 · Determine the distribution and composition of minerals, rocks and soils surrounding the landing sites. |
+| análise | `v11.rat.retract` | Aguarde a retirada do instrumento | Waiting for the instrument to retract |
+| análise | `v11.rat.micro.title` | O que a superfície escondia | What lay beneath the surface |
+| análise | `v11.rat.micro.body` | Segure E: o Microscopic Imager (MI) fotografa a textura do interior da cavidade. | Hold E: the Microscopic Imager (MI) photographs the texture inside the cavity. |
+| análise | `v11.rat.composition.title` | Da imagem à composição | From an image to composition |
+| análise | `v11.rat.composition.body` | Segure E: o APXS mede os elementos químicos e o Mössbauer identifica os minerais de ferro da rocha exposta. | Hold E: the APXS measures the chemical elements and the Mössbauer identifies the iron minerals in the exposed rock. |
+| análise | `v11.rat.request` | Segure E · examinar a cavidade | Hold E · examine the cavity |
+| análise | `v11.rat.scanning` | Análise em andamento | Analysis in progress |
+| leituras (canto) | `rat.find.title` | LEITURAS DA MCKITTRICK | McKITTRICK READINGS |
+| leituras (canto) | `rat.find.mi` | MI · camadas finas e pequenos vazios deixados por cristais | MI · fine layers and small voids left by crystals |
+| leituras (canto) | `rat.find.apxs` | APXS · muito enxofre: sais de sulfato na rocha | APXS · abundant sulfur: sulfate salts in the rock |
+| leituras (canto) | `rat.find.mossbauer` | Mössbauer · jarosita, mineral de ferro que se forma na presença de água | Mössbauer · jarosite, an iron mineral that forms in the presence of water |
+| leituras (canto) | `rat.find.spheres` | Ao redor · esferas ricas em hematita, presas na rocha e soltas no solo | Around the site · hematite-rich spheres, embedded in the rock and loose in the soil |
+| leituras (canto) | `rat.find.done` | Rochas, solo e minerais ao redor do pouso registrados | Rocks, soil and minerals around the landing site recorded |
+| resultado | `rat.complete.title` | Duas pistas. Um passado diferente. | Two clues. A different past. |
+| resultado | `rat.complete.body` | A ciência começa quando cruzamos as observações. | Science begins when we connect observations. |
+
+### Descoberta
+
+Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_Discovery.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| 0 s · fala | `v13.discovery.evidence` 🔊 | Camadas, concreções e composição química apontam para um passado em que a água transformou estas rochas. | Layers, concretions and chemical composition point to a past in which water changed these rocks. |
+| 6,5 s · título | `v4.water` | EVIDÊNCIAS DE ÁGUA ANTIGA | EVIDENCE OF ANCIENT WATER |
+| 6,5 s · fala | `v14.discovery.bridge` 🔊 | Água confirmada. Mas a Opportunity ainda tinha energia, e Marte ainda tinha perguntas. | Water confirmed. But Opportunity still had energy, and Mars still had questions. |
+
+### 2005 · chegada ao escudo
+
+Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_HeatShieldArrival.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| 0 s · título | `v10.year2005` | 2005 · O QUE FICOU PARA TRÁS | 2005 · WHAT WE LEFT BEHIND |
+| 0 s · fala | `v13.hardware.arrival` 🔊 | 2005. Seguindo adiante, ela chegou ao local onde seu próprio escudo térmico caiu. Examiná-lo também é fazer ciência. | 2005. Moving on, it reached the place where its own heat shield fell. Examining it is science too. |
+
+### Escudo térmico e rocha metálica
+
+Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| objetivo | `v10.goal.shield` | Investigue o escudo: o que a entrada em Marte deixou nele? | Investigate the shield: what did entering Mars leave on it? |
+| botão | `v13.interact.shield` | Examinar o escudo | Inspect the shield |
+| observação | `v10.study.shield` | ENGENHARIA · ESCUDO TÉRMICO | ENGINEERING · HEAT SHIELD |
+| observação | `v10.study.help` | Nada para mirar: segure E até a barra encher para registrar a observação. | Nothing to aim: hold E until the bar fills to record the observation. |
+| observação | `v10.result.shield` | Esse metal veio da Terra. O escudo protegeu a entrada em Marte; seus danos guardam informações sobre a viagem. | This metal came from Earth. The shield protected entry to Mars; its damage preserves information about the journey. |
+| narração depois da observação | `v14.shield.odd` 🔊 | Ao lado do escudo, uma rocha escura e metálica. Ela não combina com o que vimos até aqui. | Beside the shield, a dark, metallic rock. It does not match anything we have seen so far. |
+| narração depois da observação | `v10.goal.meteorite` | Examine a rocha metálica: de onde ela veio? | Examine the metallic rock: where did it come from? |
+| botão | `v13.interact.meteorite` | Examinar o meteorito | Inspect the meteorite |
+| observação | `v10.study.meteorite` | ANÁLISE · UMA ROCHA METÁLICA | ANALYSIS · A METALLIC ROCK |
+| observação | `v10.result.meteorite` | Feito de ferro e níquel, o primeiro meteorito identificado em outro planeta. | Made of iron and nickel, the first meteorite identified on another planet. |
+
+### Meteorito
+
+Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_MeteoriteDiscovery.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| 0 s · título | `v10.meteorite.title` | HEAT SHIELD ROCK · UM VISITANTE | HEAT SHIELD ROCK · A VISITOR |
+| 0 s · fala | `v13.meteorite.result` 🔊 | Ferro e níquel. Ao lado do nosso escudo, o primeiro meteorito identificado em outro planeta. | Iron and nickel. Beside our shield lies the first meteorite identified on another planet. |
+
+### Os anos seguintes · tempestades e Spirit
+
+Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_TimeSkip.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| 0 s · título | `v10.year2005` | 2005 · O QUE FICOU PARA TRÁS | 2005 · WHAT WE LEFT BEHIND |
+| 0 s · fala | `v13.years.work` 🔊 | A missão de noventa sóis continuou. Rocha após rocha, a história de Marte ganhava novos detalhes. | The ninety-sol mission kept going. Rock by rock, the story of Mars gained new detail. |
+| 6 s · título | `v3.year2007` | 2007 | 2007 |
+| 6 s · fala | `v15.storm.frequent` | Uma tempestade de poeira começa a esconder o Sol. Tempestades assim são frequentes em Marte; algumas crescem até cobrir o planeta inteiro. | A dust storm begins to hide the Sun. Storms like this are frequent on Mars; some grow until they cover the entire planet. |
+| 13 s · fala | `v15.storm.dark` | Sem luz nos painéis solares, a Opportunity parou de dirigir e poupou energia. Por semanas, quase tudo ficou desligado. | With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off. |
+| 18 s · fala | `v15.storm.dark` | Sem luz nos painéis solares, a Opportunity parou de dirigir e poupou energia. Por semanas, quase tudo ficou desligado. | With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off. |
+| 24,5 s · título | `v15.spirit.title` | SPIRIT · 2010 | SPIRIT · 2010 |
+| 24,5 s · fala | `v15.spirit.death` | Em 2009, a Spirit atolou em areia fofa. Presa e mal inclinada para o Sol, não recebia luz suficiente no inverno marciano. | In 2009, Spirit became stuck in soft sand. Trapped and poorly tilted toward the Sun, it could not collect enough light in the Martian winter. |
+| 32,5 s · fala | `v17.spirit.signal` | O último sinal chegou em 22 de março de 2010; a NASA encerrou a busca por contato em 2011. | Its last signal arrived on March 22, 2010; NASA ended its attempts to regain contact in 2011. |
+| 41 s · fala | `v15.spirit.alone` | Agora só a Opportunity continuava em Marte. E seguiu em frente, por ela e pela irmã gêmea. | Now only Opportunity remained on Mars. And she kept going, for herself and for her twin. |
+| 48 s · título | `v3.year2018` | 2018 | 2018 |
+| 48 s · fala | `v13.years.valley` 🔊 | 2018. Após quase quinze anos, a Opportunity chegou a Perseverance Valley. O céu começava a escurecer. | 2018. After almost fifteen years, Opportunity reached Perseverance Valley. The sky was beginning to darken. |
+
+### 2018 · Perseverance Valley e a tempestade
+
+Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`. As duas primeiras falas são ditas ao chegar ao vale (`ChapterDirector.cs`).
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| narração ao chegar | `v14.sun.reason` 🔊 | Sua energia vem do Sol. Uma tempestade de poeira se aproxima, e é preciso medir quanta luz ainda chega. | Its power comes from the Sun. A dust storm is approaching, and we must measure how much light still arrives. |
+| narração ao chegar | `v15.storm.again` | Tempestades assim são frequentes em Marte. A Opportunity já sobreviveu a uma em 2007 — mas esta será maior. | Storms like this are frequent on Mars. Opportunity already survived one in 2007 — but this one will be bigger. |
+| objetivo | `v10.goal.sun.clear` | Meça a luz do Sol: ela alimenta os painéis | Measure the Sun's light: it powers the panels |
+| botão | `v13.interact.sun` | Observar o Sol | Observe the Sun |
+| observação | `v10.study.sunclear` | PANCAM · REFERÊNCIA SOLAR | PANCAM · SOLAR REFERENCE |
+| observação | `v10.study.solar.help` | Segure E para registrar a luz do Sol através da atmosfera. | Hold E to record the Sun’s light through the atmosphere. |
+| observação | `v10.result.sunclear` | Referência registrada. A Pancam observa o Sol para estimar quanto de sua luz atravessa a atmosfera. | Reference recorded. Pancam observes the Sun to estimate how much of its light passes through the atmosphere. |
+| narração depois da observação | `objective.panorama` | Registre uma imagem do vale: o que a Opportunity viu aqui? | Record an image of the valley: what did Opportunity see here? |
+| foto | `v13.interact.photo` | Fotografar a paisagem | Photograph the landscape |
+| foto | `photo.controls` | SEGURE E  fotografar     ESC  voltar | HOLD E  photograph     ESC  back |
+| foto | `photo.fragment` | Panorama registrado. A poeira está se aproximando. | Panorama recorded. Dust is approaching. |
+| objetivo | `v10.goal.sun.dust` | Compare o Sol através da poeira: quanta luz se perdeu? | Compare the Sun through the dust: how much light was lost? |
+| observação | `v10.study.sundust` | PANCAM · POEIRA NA ATMOSFERA | PANCAM · ATMOSPHERIC DUST |
+| observação | `v10.result.sundust` | Muito menos luz atravessa a atmosfera. A poeira aumenta a opacidade do céu e reduz a energia que chega aos painéis solares. | Much less light passes through the atmosphere. Dust increases the sky’s opacity and reduces the energy reaching the solar panels. |
+| narração depois da observação | `v14.send.reason` 🔊 | Se esta for a última chance, as imagens precisam chegar à Terra. | If this is the last chance, the images must reach Earth. |
+| narração depois da observação | `objective.send` | Envie uma imagem à Terra: é o que vai ficar | Send an image to Earth: it is what will remain |
+| envio | `v13.interact.uplink` | Enviar uma imagem | Send an image |
+| envio | `objective.choose` | Escolha uma imagem para enviar | Choose an image to send |
+| envio | `photo.choose` | O que você quer que permaneça? | What would you like to leave behind? |
+| envio | `photo.send` | Enviar para a Terra | Send to Earth |
+| envio | `objective.sending` | Transmitindo para a Terra | Transmitting to Earth |
+| envio | `photo.sending` | Enviando imagem | Sending image |
+
+### Último contato
+
+Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_CommunicationLost.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| 0 s · fala | `v13.last.power` 🔊 | A poeira encobre o Sol. Sem luz suficiente, os painéis deixam de sustentar as operações. | Dust hides the Sun. Without enough light, the solar panels can no longer sustain operations. |
+| 7 s · título | `v3.lastdate` | 10 JUN 2018 | 10 JUN 2018 |
+| 7 s · fala | `v16.last.contact` | 10 de junho de 2018. A Terra recebe o último contato da Opportunity. A Spirit já tinha silenciado em 22 de março de 2010, do outro lado de Marte. | June 10, 2018. Earth receives the last contact from Opportunity. Spirit had fallen silent on March 22, 2010, on the other side of Mars. |
+
+### Despedida
+
+Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_Farewell.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`.
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| 0 s · fala | `v16.farewell.legacy` | Projetadas para noventa sóis, as duas gêmeas foram muito além: a Spirit trabalhou por mais de seis anos e percorreu 7,73 km; subiu colinas e achou sílica e sulfatos: sinais de antigas fontes quentes e de água em Gusev. | Designed for ninety sols, the twins went much further: Spirit worked for more than six years and drove 7.73 km; it climbed hills and found silica and sulfates: signs of ancient hot springs and water at Gusev. |
+| 8 s · fala | `v17.farewell.opportunity` | A Opportunity explorou por quase quinze anos e percorreu 45,16 km, um recorde na época. | Opportunity explored for almost fifteen years and drove 45.16 km, a record at the time. |
+| 11 s · fala | `v16.farewell.end` | A NASA encerrou as tentativas de contato com a Spirit em 25 de maio de 2011 e, após meses sem resposta da Opportunity, encerrou a missão dela em 13 de fevereiro de 2019. | NASA ended its attempts to contact Spirit on May 25, 2011 and, after months without a reply from Opportunity, ended its mission on February 13, 2019. |
+| 16 s · fala | `v16.farewell.memory` | As rodas das duas ficaram em Marte, em lados opostos do planeta. Suas imagens e descobertas chegaram até nós. | Both rovers' wheels stayed on Mars, on opposite sides of the planet. Their images and discoveries reached us. |
+| 23 s · título | `v3.opportunity` | Spirit e Opportunity | Spirit and Opportunity |
+
+### Tela final
+
+Jogo: texto em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`. Título e anos: chaves abaixo (`MissionHUD.cs` só aponta para elas).
+
+| Momento | Chave | Português | English |
+| --- | --- | --- | --- |
+| tela final | `v3.opportunity` | Spirit e Opportunity | Spirit and Opportunity |
+| tela final | `pause.restart` | Recomeçar capítulo | Restart chapter |
+| tela final | `menu.credits` | Créditos e fontes | Credits & sources |
+| tela final | `pause.menu` | Menu inicial | Main menu |
+
+🔊 = a fala tem voz gravada.
 
 ## Caderno científico e conclusão
 

@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: PIO_BeltCinema
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: PIO_BeltCinema
+  shots:
+  - shotId: PIO02.Mars
+    durationSeconds: 8
+    rigId: PIO.Belt.Mars
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 8
+      positionMeters: {x: 0, y: 0, z: 10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    events: []
+  - shotId: PIO02.Fear
+    durationSeconds: 11
+    rigId: PIO.Belt.Field
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: -169.20209}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 10
+    - timeSeconds: 11
+      positionMeters: {x: 0, y: 0, z: -163.20209}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 10
+    events: []
+  - shotId: PIO02.Days
+    durationSeconds: 11
+    rigId: PIO.Belt.Field
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: -169.20209}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 10
+    - timeSeconds: 2.2
+      positionMeters: {x: 0, y: 0, z: -118.66747}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 12.5
+    - timeSeconds: 4.4
+      positionMeters: {x: 0, y: 0, z: -74.36535}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 16
+    - timeSeconds: 6.6
+      positionMeters: {x: 0, y: 0, z: -42.624302}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 20
+    - timeSeconds: 8.8
+      positionMeters: {x: 0, y: 0, z: -17.114897}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25
+    - timeSeconds: 11
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    events: []
+  - shotId: PIO02.Nike
+    durationSeconds: 10
+    rigId: PIO.Belt.Nike
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 10
+      positionMeters: {x: 0, y: 0, z: 3}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Belt.Reality
+  - shotId: PIO02.Exit
+    durationSeconds: 10
+    rigId: PIO.Belt
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    - timeSeconds: 10
+      positionMeters: {x: 0, y: 0, z: -30}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 30
+    events: []
+  cues:
+  - cueId: PIO.02.01
+    textKey: PIO.02.01
+    startSeconds: 0
+    endSeconds: 6
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.02.02
+    textKey: PIO.02.02
+    startSeconds: 6.5
+    endSeconds: 12.5
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.02.03
+    textKey: PIO.02.03
+    startSeconds: 13
+    endSeconds: 19
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.02.04
+    textKey: PIO.02.04
+    startSeconds: 30.5
+    endSeconds: 37.5
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.02.05
+    textKey: PIO.02.05
+    startSeconds: 38
+    endSeconds: 42
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.02.06
+    textKey: PIO.02.06
+    startSeconds: 42.5
+    endSeconds: 49.5
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []

@@ -1,0 +1,3554 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1289457276962808358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5237093633682798675}
+  - component: {fileID: 2510599380250402491}
+  - component: {fileID: 1011390007504802216}
+  m_Layer: 0
+  m_Name: "RAT \u2022 contact dust"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5237093633682798675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289457276962808358}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6830413151193218251}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &2510599380250402491
+ParticleSystem:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289457276962808358}
+  serializedVersion: 8
+  lengthInSec: 8
+  simulationSpeed: 1
+  stopAction: 0
+  cullingMode: 0
+  ringBufferMode: 0
+  ringBufferLoopRange: {x: 0, y: 1}
+  emitterVelocityMode: 1
+  looping: 1
+  prewarm: 0
+  playOnAwake: 1
+  useUnscaledTime: 0
+  autoRandomSeed: 1
+  startDelay:
+    serializedVersion: 3
+    minMaxState: 0
+    scalar: 0
+    minScalar: 0
+    maxCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    minCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  moveWithTransform: 1
+  moveWithCustomTransform: {fileID: 0}
+  scalingMode: 1
+  randomSeed: 0
+  InitialModule:
+    serializedVersion: 3
+    enabled: 1
+    startLifetime:
+      serializedVersion: 3
+      minMaxState: 3
+      scalar: 7
+      minScalar: 3
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    startSpeed:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0.24
+      minScalar: 5
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    startColor:
+      serializedVersion: 2
+      minMaxState: 0
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.81, g: 0.69, b: 0.5, a: 0.5}
+      maxGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+      minGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+    startSize:
+      serializedVersion: 3
+      minMaxState: 3
+      scalar: 0.0238
+      minScalar: 0.007
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    startSizeY:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    startSizeZ:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    startRotationX:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    startRotationY:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    startRotation:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    randomizeRotationDirection: 0
+    gravitySource: 0
+    maxNumParticles: 320
+    customEmitterVelocity: {x: 0, y: 0, z: 0}
+    size3D: 0
+    rotation3D: 0
+    gravityModifier:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  ShapeModule:
+    serializedVersion: 6
+    enabled: 1
+    type: 5
+    angle: 25
+    length: 5
+    boxThickness: {x: 0, y: 0, z: 0}
+    radiusThickness: 1
+    donutRadius: 0.2
+    m_Position: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Scale: {x: 0.08, y: 0.02, z: 0.08}
+    placementMode: 0
+    m_MeshMaterialIndex: 0
+    m_MeshNormalOffset: 0
+    m_MeshSpawn:
+      mode: 0
+      spread: 0
+      speed:
+        serializedVersion: 3
+        minMaxState: 0
+        scalar: 1
+        minScalar: 1
+        maxCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    m_Mesh: {fileID: 0}
+    m_MeshRenderer: {fileID: 0}
+    m_SkinnedMeshRenderer: {fileID: 0}
+    m_Sprite: {fileID: 0}
+    m_SpriteRenderer: {fileID: 0}
+    m_UseMeshMaterialIndex: 0
+    m_UseMeshColors: 1
+    alignToDirection: 0
+    m_Texture: {fileID: 0}
+    m_TextureClipChannel: 3
+    m_TextureClipThreshold: 0
+    m_TextureUVChannel: 0
+    m_TextureColorAffectsParticles: 1
+    m_TextureAlphaAffectsParticles: 1
+    m_TextureBilinearFiltering: 0
+    randomDirectionAmount: 0
+    sphericalDirectionAmount: 0
+    randomPositionAmount: 0
+    radius:
+      value: 1
+      mode: 0
+      spread: 0
+      speed:
+        serializedVersion: 3
+        minMaxState: 0
+        scalar: 1
+        minScalar: 1
+        maxCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    arc:
+      value: 360
+      mode: 0
+      spread: 0
+      speed:
+        serializedVersion: 3
+        minMaxState: 0
+        scalar: 1
+        minScalar: 1
+        maxCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        minCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+  EmissionModule:
+    enabled: 1
+    serializedVersion: 4
+    rateOverTime:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 10
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    rateOverDistance:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    m_BurstCount: 0
+    m_Bursts: []
+  SizeModule:
+    enabled: 0
+    curve:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    y:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    z:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    separateAxes: 0
+  RotationModule:
+    enabled: 0
+    x:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    y:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    curve:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0.7853982
+      minScalar: 0.7853982
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    separateAxes: 0
+  ColorModule:
+    enabled: 1
+    gradient:
+      serializedVersion: 2
+      minMaxState: 1
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 0}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0.7}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 13107
+        atime2: 45875
+        atime3: 65535
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 4
+      minGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+  UVModule:
+    serializedVersion: 2
+    enabled: 0
+    mode: 0
+    timeMode: 0
+    fps: 30
+    frameOverTime:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 0.9999
+      minScalar: 0.9999
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    startFrame:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    speedRange: {x: 0, y: 1}
+    tilesX: 1
+    tilesY: 1
+    animationType: 0
+    rowIndex: 0
+    cycles: 1
+    uvChannelMask: -1
+    rowMode: 1
+    sprites:
+    - sprite: {fileID: 0}
+    flipU: 0
+    flipV: 0
+  VelocityModule:
+    enabled: 0
+    x:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    y:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    z:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    orbitalX:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    orbitalY:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    orbitalZ:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    orbitalOffsetX:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    orbitalOffsetY:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    orbitalOffsetZ:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    radial:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    speedModifier:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    inWorldSpace: 0
+  InheritVelocityModule:
+    enabled: 0
+    m_Mode: 0
+    m_Curve:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  LifetimeByEmitterSpeedModule:
+    enabled: 0
+    m_Curve:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: -0.8
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0.2
+          inSlope: -0.8
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    m_Range: {x: 0, y: 1}
+  ForceModule:
+    enabled: 0
+    x:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    y:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    z:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    inWorldSpace: 0
+    randomizePerFrame: 0
+  ExternalForcesModule:
+    serializedVersion: 2
+    enabled: 0
+    multiplierCurve:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    influenceFilter: 0
+    influenceMask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    influenceList: []
+  ClampVelocityModule:
+    enabled: 0
+    x:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    y:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    z:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    magnitude:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    separateAxis: 0
+    inWorldSpace: 0
+    multiplyDragByParticleSize: 1
+    multiplyDragByParticleVelocity: 1
+    dampen: 0
+    drag:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  NoiseModule:
+    enabled: 0
+    strength:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    strengthY:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    strengthZ:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    separateAxes: 0
+    frequency: 0.5
+    damping: 1
+    octaves: 1
+    octaveMultiplier: 0.5
+    octaveScale: 2
+    quality: 1
+    scrollSpeed:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    remap:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: -1
+          inSlope: 0
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    remapY:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: -1
+          inSlope: 0
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    remapZ:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: -1
+          inSlope: 0
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    remapEnabled: 0
+    positionAmount:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    rotationAmount:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    sizeAmount:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  SizeBySpeedModule:
+    enabled: 0
+    curve:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    y:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    z:
+      serializedVersion: 3
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    range: {x: 0, y: 1}
+    separateAxes: 0
+  RotationBySpeedModule:
+    enabled: 0
+    x:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    y:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    curve:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0.7853982
+      minScalar: 0.7853982
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    separateAxes: 0
+    range: {x: 0, y: 1}
+  ColorBySpeedModule:
+    enabled: 0
+    gradient:
+      serializedVersion: 2
+      minMaxState: 1
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+      minGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+    range: {x: 0, y: 1}
+  CollisionModule:
+    enabled: 0
+    serializedVersion: 4
+    type: 0
+    collisionMode: 0
+    colliderForce: 0
+    multiplyColliderForceByParticleSize: 0
+    multiplyColliderForceByParticleSpeed: 0
+    multiplyColliderForceByCollisionAngle: 1
+    m_Planes: []
+    m_Dampen:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    m_Bounce:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    m_EnergyLossOnCollision:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    minKillSpeed: 0
+    maxKillSpeed: 10000
+    radiusScale: 1
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    maxCollisionShapes: 256
+    quality: 0
+    voxelSize: 0.5
+    collisionMessages: 0
+    collidesWithDynamic: 1
+    interiorCollisions: 0
+  TriggerModule:
+    enabled: 0
+    serializedVersion: 2
+    inside: 1
+    outside: 0
+    enter: 0
+    exit: 0
+    colliderQueryMode: 0
+    radiusScale: 1
+    primitives: []
+  SubModule:
+    serializedVersion: 2
+    enabled: 0
+    subEmitters:
+    - serializedVersion: 3
+      emitter: {fileID: 0}
+      type: 0
+      properties: 0
+      emitProbability: 1
+  LightsModule:
+    enabled: 0
+    ratio: 0
+    light: {fileID: 0}
+    randomDistribution: 1
+    color: 1
+    range: 1
+    intensity: 1
+    rangeCurve:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    intensityCurve:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    maxLights: 20
+  TrailModule:
+    enabled: 0
+    mode: 0
+    ratio: 1
+    lifetime:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    minVertexDistance: 0.2
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    ribbonCount: 1
+    shadowBias: 0.5
+    worldSpace: 0
+    dieWithParticles: 1
+    sizeAffectsWidth: 1
+    sizeAffectsLifetime: 0
+    inheritParticleColor: 1
+    generateLightingData: 0
+    splitSubEmitterRibbons: 0
+    attachRibbonsToTransform: 0
+    colorOverLifetime:
+      serializedVersion: 2
+      minMaxState: 0
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+      minGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+    widthOverTrail:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    colorOverTrail:
+      serializedVersion: 2
+      minMaxState: 0
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+      minGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+  CustomDataModule:
+    enabled: 0
+    mode0: 0
+    vectorComponentCount0: 4
+    color0:
+      serializedVersion: 2
+      minMaxState: 0
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+      minGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+    colorLabel0: Color
+    vector0_0:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    vectorLabel0_0: X
+    vector0_1:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    vectorLabel0_1: Y
+    vector0_2:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    vectorLabel0_2: Z
+    vector0_3:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    vectorLabel0_3: W
+    mode1: 0
+    vectorComponentCount1: 4
+    color1:
+      serializedVersion: 2
+      minMaxState: 0
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+      minGradient:
+        serializedVersion: 2
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 0}
+        key3: {r: 0, g: 0, b: 0, a: 0}
+        key4: {r: 0, g: 0, b: 0, a: 0}
+        key5: {r: 0, g: 0, b: 0, a: 0}
+        key6: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 0}
+        ctime0: 0
+        ctime1: 65535
+        ctime2: 0
+        ctime3: 0
+        ctime4: 0
+        ctime5: 0
+        ctime6: 0
+        ctime7: 0
+        atime0: 0
+        atime1: 65535
+        atime2: 0
+        atime3: 0
+        atime4: 0
+        atime5: 0
+        atime6: 0
+        atime7: 0
+        m_Mode: 0
+        m_ColorSpace: -1
+        m_NumColorKeys: 2
+        m_NumAlphaKeys: 2
+    colorLabel1: Color
+    vector1_0:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    vectorLabel1_0: X
+    vector1_1:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    vectorLabel1_1: Y
+    vector1_2:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    vectorLabel1_2: Z
+    vector1_3:
+      serializedVersion: 3
+      minMaxState: 0
+      scalar: 0
+      minScalar: 0
+      maxCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    vectorLabel1_3: W
+--- !u!199 &1011390007504802216
+ParticleSystemRenderer:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289457276962808358}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3343c6072548ea64588e109866c4faff, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_RenderMode: 0
+  m_MeshDistribution: 0
+  m_SortMode: 0
+  m_MinParticleSize: 0
+  m_MaxParticleSize: 0.5
+  m_CameraVelocityScale: 0
+  m_VelocityScale: 0
+  m_LengthScale: 2
+  m_SortingFudge: 0
+  m_NormalDirection: 1
+  m_ShadowBias: 0
+  m_RenderAlignment: 0
+  m_Pivot: {x: 0, y: 0, z: 0}
+  m_Flip: {x: 0, y: 0, z: 0}
+  m_EnableGPUInstancing: 1
+  m_ApplyActiveColorSpace: 1
+  m_AllowRoll: 1
+  m_FreeformStretching: 0
+  m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 0
+  m_VertexStreams: 00010304y
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304y
+  m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
+  m_MeshWeighting: 1
+  m_MeshWeighting1: 1
+  m_MeshWeighting2: 1
+  m_MeshWeighting3: 1
+--- !u!1 &4416001806404205928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6830413151193218251}
+  m_Layer: 0
+  m_Name: "McKittrick \u2022 instrument reference"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6830413151193218251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416001806404205928}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1142857, y: 0.939759, z: -0.2117647}
+  m_LocalScale: {x: 0.47619045, y: 1.2048193, z: 0.58823526}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5237093633682798675}
+  m_Father: {fileID: 1891640936361615035}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7466002206585041511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1891640936361615035}
+  - component: {fileID: 5007958860051648846}
+  - component: {fileID: 6833323991672968336}
+  - component: {fileID: 9031507251534076283}
+  - component: {fileID: 3564137867045387327}
+  m_Layer: 8
+  m_Name: McKittrickRock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1891640936361615035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466002206585041511}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.06975647, z: 0, w: 0.9975641}
+  m_LocalPosition: {x: 5, y: 3.2628176, z: 65}
+  m_LocalScale: {x: 2.1, y: 0.83, z: 1.7}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6830413151193218251}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 8, z: 0}
+--- !u!33 &5007958860051648846
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466002206585041511}
+  m_Mesh: {fileID: 4300000, guid: 5f0f0e05598354b479e8d28c2d0c4c4d, type: 2}
+--- !u!23 &6833323991672968336
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466002206585041511}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b53d49551d4709c47b9136d578a12cf3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &9031507251534076283
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466002206585041511}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5f0f0e05598354b479e8d28c2d0c4c4d, type: 2}
+--- !u!114 &3564137867045387327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466002206585041511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac17829cd9abe74c8ffeb87d0d583ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Abandoned.SpaceApps.Opportunity.AbrasionSurface
+  width: 0.94
+  depth: 0.72
+  maxCutDepth: 0.025
+  workFrame: {fileID: 6830413151193218251}
+  contactPoints:
+  - {x: -0.47, y: -0.1905639, z: -0.36}
+  - {x: -0.440625, y: -0.1905639, z: -0.36}
+  - {x: -0.41125, y: -0.1862437, z: -0.36}
+  - {x: -0.381875, y: -0.1862437, z: -0.36}
+  - {x: -0.3525, y: -0.1900126, z: -0.36}
+  - {x: -0.323125, y: -0.1900126, z: -0.36}
+  - {x: -0.29375, y: -0.1880932, z: -0.36}
+  - {x: -0.264375, y: -0.1880932, z: -0.36}
+  - {x: -0.235, y: -0.1840579, z: -0.36}
+  - {x: -0.205625, y: -0.1840579, z: -0.36}
+  - {x: -0.17625, y: -0.1869174, z: -0.36}
+  - {x: -0.146875, y: -0.1869174, z: -0.36}
+  - {x: -0.1175, y: -0.2532381, z: -0.36}
+  - {x: -0.088125, y: -0.2532381, z: -0.36}
+  - {x: -0.05875, y: -0.2532381, z: -0.36}
+  - {x: -0.029375, y: -0.3024994, z: -0.36}
+  - {x: 0, y: -0.2824994, z: -0.36}
+  - {x: 0.029375, y: -0.2816908, z: -0.36}
+  - {x: 0.05875, y: -0.1102956, z: -0.36}
+  - {x: 0.088125, y: -0.1024679, z: -0.36}
+  - {x: 0.1175, y: -0.09874915, z: -0.36}
+  - {x: 0.146875, y: -0.09739456, z: -0.36}
+  - {x: 0.17625, y: -0.09413179, z: -0.36}
+  - {x: 0.205625, y: -0.09282185, z: -0.36}
+  - {x: 0.235, y: -0.09324022, z: -0.36}
+  - {x: 0.264375, y: -0.09237404, z: -0.36}
+  - {x: 0.29375, y: -0.09170963, z: -0.36}
+  - {x: 0.323125, y: -0.09080155, z: -0.36}
+  - {x: 0.3525, y: -0.09222607, z: -0.36}
+  - {x: 0.381875, y: -0.09077966, z: -0.36}
+  - {x: 0.41125, y: -0.08725813, z: -0.36}
+  - {x: 0.440625, y: -0.08301478, z: -0.36}
+  - {x: 0.47, y: -0.08797034, z: -0.36}
+  - {x: -0.47, y: -0.2042484, z: -0.3375}
+  - {x: -0.440625, y: -0.1905639, z: -0.3375}
+  - {x: -0.41125, y: -0.1905639, z: -0.3375}
+  - {x: -0.381875, y: -0.1862437, z: -0.3375}
+  - {x: -0.3525, y: -0.1862437, z: -0.3375}
+  - {x: -0.323125, y: -0.1900126, z: -0.3375}
+  - {x: -0.29375, y: -0.1900126, z: -0.3375}
+  - {x: -0.264375, y: -0.1880932, z: -0.3375}
+  - {x: -0.235, y: -0.1880932, z: -0.3375}
+  - {x: -0.205625, y: -0.1840579, z: -0.3375}
+  - {x: -0.17625, y: -0.1840579, z: -0.3375}
+  - {x: -0.146875, y: -0.1869174, z: -0.3375}
+  - {x: -0.1175, y: -0.1869174, z: -0.3375}
+  - {x: -0.088125, y: -0.2532381, z: -0.3375}
+  - {x: -0.05875, y: -0.2332381, z: -0.3375}
+  - {x: -0.029375, y: -0.2124713, z: -0.3375}
+  - {x: 0, y: -0.2195056, z: -0.3375}
+  - {x: 0.029375, y: -0.1189873, z: -0.3375}
+  - {x: 0.05875, y: -0.1069818, z: -0.3375}
+  - {x: 0.088125, y: -0.1006466, z: -0.3375}
+  - {x: 0.1175, y: -0.09733274, z: -0.3375}
+  - {x: 0.146875, y: -0.09672719, z: -0.3375}
+  - {x: 0.17625, y: -0.09458202, z: -0.3375}
+  - {x: 0.205625, y: -0.09237755, z: -0.3375}
+  - {x: 0.235, y: -0.09043014, z: -0.3375}
+  - {x: 0.264375, y: -0.08864853, z: -0.3375}
+  - {x: 0.29375, y: -0.08623933, z: -0.3375}
+  - {x: 0.323125, y: -0.09214332, z: -0.3375}
+  - {x: 0.3525, y: -0.09022897, z: -0.3375}
+  - {x: 0.381875, y: -0.08930811, z: -0.3375}
+  - {x: 0.41125, y: -0.08454965, z: -0.3375}
+  - {x: 0.440625, y: -0.08270051, z: -0.3375}
+  - {x: 0.47, y: -0.08037113, z: -0.3375}
+  - {x: -0.47, y: -0.2042484, z: -0.315}
+  - {x: -0.440625, y: -0.2042484, z: -0.315}
+  - {x: -0.41125, y: -0.1905639, z: -0.315}
+  - {x: -0.381875, y: -0.1905639, z: -0.315}
+  - {x: -0.3525, y: -0.1862437, z: -0.315}
+  - {x: -0.323125, y: -0.1862437, z: -0.315}
+  - {x: -0.29375, y: -0.1900126, z: -0.315}
+  - {x: -0.264375, y: -0.1900126, z: -0.315}
+  - {x: -0.235, y: -0.1880932, z: -0.315}
+  - {x: -0.205625, y: -0.1880932, z: -0.315}
+  - {x: -0.17625, y: -0.1840579, z: -0.315}
+  - {x: -0.146875, y: -0.1840579, z: -0.315}
+  - {x: -0.1175, y: -0.1869174, z: -0.315}
+  - {x: -0.088125, y: -0.1669174, z: -0.315}
+  - {x: -0.05875, y: -0.1572796, z: -0.315}
+  - {x: -0.029375, y: -0.1676702, z: -0.315}
+  - {x: 0, y: -0.1443448, z: -0.315}
+  - {x: 0.029375, y: -0.1211125, z: -0.315}
+  - {x: 0.05875, y: -0.1092837, z: -0.315}
+  - {x: 0.088125, y: -0.1016064, z: -0.315}
+  - {x: 0.1175, y: -0.09615312, z: -0.315}
+  - {x: 0.146875, y: -0.09388384, z: -0.315}
+  - {x: 0.17625, y: -0.09327998, z: -0.315}
+  - {x: 0.205625, y: -0.09032247, z: -0.315}
+  - {x: 0.235, y: -0.08692026, z: -0.315}
+  - {x: 0.264375, y: -0.08328744, z: -0.315}
+  - {x: 0.29375, y: -0.07868258, z: -0.315}
+  - {x: 0.323125, y: -0.07907618, z: -0.315}
+  - {x: 0.3525, y: -0.07967362, z: -0.315}
+  - {x: 0.381875, y: -0.0804403, z: -0.315}
+  - {x: 0.41125, y: -0.08137906, z: -0.315}
+  - {x: 0.440625, y: -0.08069328, z: -0.315}
+  - {x: 0.47, y: -0.08250776, z: -0.315}
+  - {x: -0.47, y: -0.2136899, z: -0.2925}
+  - {x: -0.440625, y: -0.2042484, z: -0.2925}
+  - {x: -0.41125, y: -0.2042484, z: -0.2925}
+  - {x: -0.381875, y: -0.1905639, z: -0.2925}
+  - {x: -0.3525, y: -0.1905639, z: -0.2925}
+  - {x: -0.323125, y: -0.1862437, z: -0.2925}
+  - {x: -0.29375, y: -0.1862437, z: -0.2925}
+  - {x: -0.264375, y: -0.1900126, z: -0.2925}
+  - {x: -0.235, y: -0.1900126, z: -0.2925}
+  - {x: -0.205625, y: -0.1880932, z: -0.2925}
+  - {x: -0.17625, y: -0.1880932, z: -0.2925}
+  - {x: -0.146875, y: -0.1840579, z: -0.2925}
+  - {x: -0.1175, y: -0.1640579, z: -0.2925}
+  - {x: -0.088125, y: -0.1550749, z: -0.2925}
+  - {x: -0.05875, y: -0.1501091, z: -0.2925}
+  - {x: -0.029375, y: -0.1505044, z: -0.2925}
+  - {x: 0, y: -0.1436204, z: -0.2925}
+  - {x: 0.029375, y: -0.1225014, z: -0.2925}
+  - {x: 0.05875, y: -0.1108289, z: -0.2925}
+  - {x: 0.088125, y: -0.1014477, z: -0.2925}
+  - {x: 0.1175, y: -0.09566192, z: -0.2925}
+  - {x: 0.146875, y: -0.09262164, z: -0.2925}
+  - {x: 0.17625, y: -0.08983579, z: -0.2925}
+  - {x: 0.205625, y: -0.08711989, z: -0.2925}
+  - {x: 0.235, y: -0.08250732, z: -0.2925}
+  - {x: 0.264375, y: -0.0808573, z: -0.2925}
+  - {x: 0.29375, y: -0.07528894, z: -0.2925}
+  - {x: 0.323125, y: -0.07422054, z: -0.2925}
+  - {x: 0.3525, y: -0.07316141, z: -0.2925}
+  - {x: 0.381875, y: -0.07338272, z: -0.2925}
+  - {x: 0.41125, y: -0.07517207, z: -0.2925}
+  - {x: 0.440625, y: -0.07473005, z: -0.2925}
+  - {x: 0.47, y: -0.07811065, z: -0.2925}
+  - {x: -0.47, y: -0.2136899, z: -0.27}
+  - {x: -0.440625, y: -0.2136899, z: -0.27}
+  - {x: -0.41125, y: -0.2042484, z: -0.27}
+  - {x: -0.381875, y: -0.2042484, z: -0.27}
+  - {x: -0.3525, y: -0.1905639, z: -0.27}
+  - {x: -0.323125, y: -0.1905639, z: -0.27}
+  - {x: -0.29375, y: -0.1862437, z: -0.27}
+  - {x: -0.264375, y: -0.1862437, z: -0.27}
+  - {x: -0.235, y: -0.1900126, z: -0.27}
+  - {x: -0.205625, y: -0.1900126, z: -0.27}
+  - {x: -0.17625, y: -0.1880932, z: -0.27}
+  - {x: -0.146875, y: -0.1680932, z: -0.27}
+  - {x: -0.1175, y: -0.1558297, z: -0.27}
+  - {x: -0.088125, y: -0.1525599, z: -0.27}
+  - {x: -0.05875, y: -0.1512219, z: -0.27}
+  - {x: -0.029375, y: -0.1496645, z: -0.27}
+  - {x: 0, y: -0.1414618, z: -0.27}
+  - {x: 0.029375, y: -0.1251476, z: -0.27}
+  - {x: 0.05875, y: -0.1139734, z: -0.27}
+  - {x: 0.088125, y: -0.1008814, z: -0.27}
+  - {x: 0.1175, y: -0.0928941, z: -0.27}
+  - {x: 0.146875, y: -0.09169255, z: -0.27}
+  - {x: 0.17625, y: -0.08869985, z: -0.27}
+  - {x: 0.205625, y: -0.08682412, z: -0.27}
+  - {x: 0.235, y: -0.08412199, z: -0.27}
+  - {x: 0.264375, y: -0.0814565, z: -0.27}
+  - {x: 0.29375, y: -0.0780126, z: -0.27}
+  - {x: 0.323125, y: -0.07623213, z: -0.27}
+  - {x: 0.3525, y: -0.06982072, z: -0.27}
+  - {x: 0.381875, y: -0.06982235, z: -0.27}
+  - {x: 0.41125, y: -0.07159332, z: -0.27}
+  - {x: 0.440625, y: -0.07276451, z: -0.27}
+  - {x: 0.47, y: -0.0758387, z: -0.27}
+  - {x: -0.47, y: -0.220141, z: -0.2475}
+  - {x: -0.440625, y: -0.2136899, z: -0.2475}
+  - {x: -0.41125, y: -0.2136899, z: -0.2475}
+  - {x: -0.381875, y: -0.2042484, z: -0.2475}
+  - {x: -0.3525, y: -0.2042484, z: -0.2475}
+  - {x: -0.323125, y: -0.1905639, z: -0.2475}
+  - {x: -0.29375, y: -0.1905639, z: -0.2475}
+  - {x: -0.264375, y: -0.1862437, z: -0.2475}
+  - {x: -0.235, y: -0.1862437, z: -0.2475}
+  - {x: -0.205625, y: -0.1900126, z: -0.2475}
+  - {x: -0.17625, y: -0.1700126, z: -0.2475}
+  - {x: -0.146875, y: -0.1620816, z: -0.2475}
+  - {x: -0.1175, y: -0.1581319, z: -0.2475}
+  - {x: -0.088125, y: -0.1527354, z: -0.2475}
+  - {x: -0.05875, y: -0.1523504, z: -0.2475}
+  - {x: -0.029375, y: -0.1495547, z: -0.2475}
+  - {x: 0, y: -0.1461772, z: -0.2475}
+  - {x: 0.029375, y: -0.1299932, z: -0.2475}
+  - {x: 0.05875, y: -0.1209534, z: -0.2475}
+  - {x: 0.088125, y: -0.1041705, z: -0.2475}
+  - {x: 0.1175, y: -0.09890275, z: -0.2475}
+  - {x: 0.146875, y: -0.09931309, z: -0.2475}
+  - {x: 0.17625, y: -0.08990058, z: -0.2475}
+  - {x: 0.205625, y: -0.09080491, z: -0.2475}
+  - {x: 0.235, y: -0.08754309, z: -0.2475}
+  - {x: 0.264375, y: -0.08653022, z: -0.2475}
+  - {x: 0.29375, y: -0.08328917, z: -0.2475}
+  - {x: 0.323125, y: -0.07947191, z: -0.2475}
+  - {x: 0.3525, y: -0.07700143, z: -0.2475}
+  - {x: 0.381875, y: -0.0781119, z: -0.2475}
+  - {x: 0.41125, y: -0.07650187, z: -0.2475}
+  - {x: 0.440625, y: -0.07326575, z: -0.2475}
+  - {x: 0.47, y: -0.07331891, z: -0.2475}
+  - {x: -0.47, y: -0.220141, z: -0.225}
+  - {x: -0.440625, y: -0.220141, z: -0.225}
+  - {x: -0.41125, y: -0.2136899, z: -0.225}
+  - {x: -0.381875, y: -0.2136899, z: -0.225}
+  - {x: -0.3525, y: -0.2042484, z: -0.225}
+  - {x: -0.323125, y: -0.2042484, z: -0.225}
+  - {x: -0.29375, y: -0.1905639, z: -0.225}
+  - {x: -0.264375, y: -0.1905639, z: -0.225}
+  - {x: -0.235, y: -0.1862437, z: -0.225}
+  - {x: -0.205625, y: -0.1662437, z: -0.225}
+  - {x: -0.17625, y: -0.1631361, z: -0.225}
+  - {x: -0.146875, y: -0.1644078, z: -0.225}
+  - {x: -0.1175, y: -0.1574814, z: -0.225}
+  - {x: -0.088125, y: -0.1526813, z: -0.225}
+  - {x: -0.05875, y: -0.1485691, z: -0.225}
+  - {x: -0.029375, y: -0.1464695, z: -0.225}
+  - {x: 0, y: -0.1407713, z: -0.225}
+  - {x: 0.029375, y: -0.1328091, z: -0.225}
+  - {x: 0.05875, y: -0.1236896, z: -0.225}
+  - {x: 0.088125, y: -0.1145824, z: -0.225}
+  - {x: 0.1175, y: -0.1083317, z: -0.225}
+  - {x: 0.146875, y: -0.104214, z: -0.225}
+  - {x: 0.17625, y: -0.09665957, z: -0.225}
+  - {x: 0.205625, y: -0.08951813, z: -0.225}
+  - {x: 0.235, y: -0.08928249, z: -0.225}
+  - {x: 0.264375, y: -0.09029307, z: -0.225}
+  - {x: 0.29375, y: -0.08790776, z: -0.225}
+  - {x: 0.323125, y: -0.08279023, z: -0.225}
+  - {x: 0.3525, y: -0.07823245, z: -0.225}
+  - {x: 0.381875, y: -0.07478143, z: -0.225}
+  - {x: 0.41125, y: -0.0725998, z: -0.225}
+  - {x: 0.440625, y: -0.07276542, z: -0.225}
+  - {x: 0.47, y: -0.07658831, z: -0.225}
+  - {x: -0.47, y: -0.226669, z: -0.2025}
+  - {x: -0.440625, y: -0.220141, z: -0.2025}
+  - {x: -0.41125, y: -0.220141, z: -0.2025}
+  - {x: -0.381875, y: -0.2136899, z: -0.2025}
+  - {x: -0.3525, y: -0.2136899, z: -0.2025}
+  - {x: -0.323125, y: -0.2042484, z: -0.2025}
+  - {x: -0.29375, y: -0.2042484, z: -0.2025}
+  - {x: -0.264375, y: -0.1905639, z: -0.2025}
+  - {x: -0.235, y: -0.1705639, z: -0.2025}
+  - {x: -0.205625, y: -0.166566, z: -0.2025}
+  - {x: -0.17625, y: -0.1619492, z: -0.2025}
+  - {x: -0.146875, y: -0.1659468, z: -0.2025}
+  - {x: -0.1175, y: -0.1559335, z: -0.2025}
+  - {x: -0.088125, y: -0.1504418, z: -0.2025}
+  - {x: -0.05875, y: -0.1502731, z: -0.2025}
+  - {x: -0.029375, y: -0.1460984, z: -0.2025}
+  - {x: 0, y: -0.1400175, z: -0.2025}
+  - {x: 0.029375, y: -0.1335939, z: -0.2025}
+  - {x: 0.05875, y: -0.1231545, z: -0.2025}
+  - {x: 0.088125, y: -0.1136426, z: -0.2025}
+  - {x: 0.1175, y: -0.1104695, z: -0.2025}
+  - {x: 0.146875, y: -0.1057686, z: -0.2025}
+  - {x: 0.17625, y: -0.1001763, z: -0.2025}
+  - {x: 0.205625, y: -0.09419257, z: -0.2025}
+  - {x: 0.235, y: -0.08805479, z: -0.2025}
+  - {x: 0.264375, y: -0.08561304, z: -0.2025}
+  - {x: 0.29375, y: -0.08381535, z: -0.2025}
+  - {x: 0.323125, y: -0.08114579, z: -0.2025}
+  - {x: 0.3525, y: -0.08021109, z: -0.2025}
+  - {x: 0.381875, y: -0.08013642, z: -0.2025}
+  - {x: 0.41125, y: -0.08025448, z: -0.2025}
+  - {x: 0.440625, y: -0.07665744, z: -0.2025}
+  - {x: 0.47, y: -0.07567717, z: -0.2025}
+  - {x: -0.47, y: -0.226669, z: -0.18}
+  - {x: -0.440625, y: -0.226669, z: -0.18}
+  - {x: -0.41125, y: -0.220141, z: -0.18}
+  - {x: -0.381875, y: -0.220141, z: -0.18}
+  - {x: -0.3525, y: -0.2136899, z: -0.18}
+  - {x: -0.323125, y: -0.2136899, z: -0.18}
+  - {x: -0.29375, y: -0.2042484, z: -0.18}
+  - {x: -0.264375, y: -0.1842484, z: -0.18}
+  - {x: -0.235, y: -0.1745032, z: -0.18}
+  - {x: -0.205625, y: -0.170487, z: -0.18}
+  - {x: -0.17625, y: -0.1642121, z: -0.18}
+  - {x: -0.146875, y: -0.1608087, z: -0.18}
+  - {x: -0.1175, y: -0.1590922, z: -0.18}
+  - {x: -0.088125, y: -0.1508031, z: -0.18}
+  - {x: -0.05875, y: -0.1468033, z: -0.18}
+  - {x: -0.029375, y: -0.1426608, z: -0.18}
+  - {x: 0, y: -0.1387842, z: -0.18}
+  - {x: 0.029375, y: -0.1366198, z: -0.18}
+  - {x: 0.05875, y: -0.1244643, z: -0.18}
+  - {x: 0.088125, y: -0.11677, z: -0.18}
+  - {x: 0.1175, y: -0.1112048, z: -0.18}
+  - {x: 0.146875, y: -0.10893, z: -0.18}
+  - {x: 0.17625, y: -0.1035941, z: -0.18}
+  - {x: 0.205625, y: -0.0994211, z: -0.18}
+  - {x: 0.235, y: -0.09312365, z: -0.18}
+  - {x: 0.264375, y: -0.09150127, z: -0.18}
+  - {x: 0.29375, y: -0.08649976, z: -0.18}
+  - {x: 0.323125, y: -0.08275995, z: -0.18}
+  - {x: 0.3525, y: -0.0818248, z: -0.18}
+  - {x: 0.381875, y: -0.08095549, z: -0.18}
+  - {x: 0.41125, y: -0.08356662, z: -0.18}
+  - {x: 0.440625, y: -0.08473043, z: -0.18}
+  - {x: 0.47, y: -0.08084437, z: -0.18}
+  - {x: -0.47, y: -0.2220889, z: -0.1575}
+  - {x: -0.440625, y: -0.226669, z: -0.1575}
+  - {x: -0.41125, y: -0.226669, z: -0.1575}
+  - {x: -0.381875, y: -0.220141, z: -0.1575}
+  - {x: -0.3525, y: -0.220141, z: -0.1575}
+  - {x: -0.323125, y: -0.2136899, z: -0.1575}
+  - {x: -0.29375, y: -0.1936899, z: -0.1575}
+  - {x: -0.264375, y: -0.1840831, z: -0.1575}
+  - {x: -0.235, y: -0.1749625, z: -0.1575}
+  - {x: -0.205625, y: -0.1706174, z: -0.1575}
+  - {x: -0.17625, y: -0.166452, z: -0.1575}
+  - {x: -0.146875, y: -0.1622689, z: -0.1575}
+  - {x: -0.1175, y: -0.1606146, z: -0.1575}
+  - {x: -0.088125, y: -0.1482743, z: -0.1575}
+  - {x: -0.05875, y: -0.141741, z: -0.1575}
+  - {x: -0.029375, y: -0.1390908, z: -0.1575}
+  - {x: 0, y: -0.1373159, z: -0.1575}
+  - {x: 0.029375, y: -0.1345099, z: -0.1575}
+  - {x: 0.05875, y: -0.1207854, z: -0.1575}
+  - {x: 0.088125, y: -0.1145971, z: -0.1575}
+  - {x: 0.1175, y: -0.1117651, z: -0.1575}
+  - {x: 0.146875, y: -0.1130032, z: -0.1575}
+  - {x: 0.17625, y: -0.1084833, z: -0.1575}
+  - {x: 0.205625, y: -0.1039593, z: -0.1575}
+  - {x: 0.235, y: -0.09761826, z: -0.1575}
+  - {x: 0.264375, y: -0.09595204, z: -0.1575}
+  - {x: 0.29375, y: -0.09207853, z: -0.1575}
+  - {x: 0.323125, y: -0.0900608, z: -0.1575}
+  - {x: 0.3525, y: -0.09065697, z: -0.1575}
+  - {x: 0.381875, y: -0.09049348, z: -0.1575}
+  - {x: 0.41125, y: -0.08930006, z: -0.1575}
+  - {x: 0.440625, y: -0.08823817, z: -0.1575}
+  - {x: 0.47, y: -0.08555929, z: -0.1575}
+  - {x: -0.47, y: -0.2220889, z: -0.135}
+  - {x: -0.440625, y: -0.2220889, z: -0.135}
+  - {x: -0.41125, y: -0.226669, z: -0.135}
+  - {x: -0.381875, y: -0.226669, z: -0.135}
+  - {x: -0.3525, y: -0.220141, z: -0.135}
+  - {x: -0.323125, y: -0.200141, z: -0.135}
+  - {x: -0.29375, y: -0.1887318, z: -0.135}
+  - {x: -0.264375, y: -0.1828418, z: -0.135}
+  - {x: -0.235, y: -0.1799699, z: -0.135}
+  - {x: -0.205625, y: -0.174706, z: -0.135}
+  - {x: -0.17625, y: -0.1690427, z: -0.135}
+  - {x: -0.146875, y: -0.1647885, z: -0.135}
+  - {x: -0.1175, y: -0.1590136, z: -0.135}
+  - {x: -0.088125, y: -0.1458542, z: -0.135}
+  - {x: -0.05875, y: -0.1384018, z: -0.135}
+  - {x: -0.029375, y: -0.1334139, z: -0.135}
+  - {x: 0, y: -0.1325567, z: -0.135}
+  - {x: 0.029375, y: -0.1311972, z: -0.135}
+  - {x: 0.05875, y: -0.1221158, z: -0.135}
+  - {x: 0.088125, y: -0.1140972, z: -0.135}
+  - {x: 0.1175, y: -0.1132089, z: -0.135}
+  - {x: 0.146875, y: -0.1073532, z: -0.135}
+  - {x: 0.17625, y: -0.1018263, z: -0.135}
+  - {x: 0.205625, y: -0.1031649, z: -0.135}
+  - {x: 0.235, y: -0.1026427, z: -0.135}
+  - {x: 0.264375, y: -0.1030073, z: -0.135}
+  - {x: 0.29375, y: -0.103639, z: -0.135}
+  - {x: 0.323125, y: -0.1034544, z: -0.135}
+  - {x: 0.3525, y: -0.1019069, z: -0.135}
+  - {x: 0.381875, y: -0.09679616, z: -0.135}
+  - {x: 0.41125, y: -0.09337756, z: -0.135}
+  - {x: 0.440625, y: -0.09258785, z: -0.135}
+  - {x: 0.47, y: -0.08946123, z: -0.135}
+  - {x: -0.47, y: -0.2220889, z: -0.1125}
+  - {x: -0.440625, y: -0.2220889, z: -0.1125}
+  - {x: -0.41125, y: -0.2220889, z: -0.1125}
+  - {x: -0.381875, y: -0.226669, z: -0.1125}
+  - {x: -0.3525, y: -0.206669, z: -0.1125}
+  - {x: -0.323125, y: -0.1943808, z: -0.1125}
+  - {x: -0.29375, y: -0.1865992, z: -0.1125}
+  - {x: -0.264375, y: -0.1826659, z: -0.1125}
+  - {x: -0.235, y: -0.1812694, z: -0.1125}
+  - {x: -0.205625, y: -0.1759523, z: -0.1125}
+  - {x: -0.17625, y: -0.1682562, z: -0.1125}
+  - {x: -0.146875, y: -0.1667444, z: -0.1125}
+  - {x: -0.1175, y: -0.1501411, z: -0.1125}
+  - {x: -0.088125, y: -0.1408847, z: -0.1125}
+  - {x: -0.05875, y: -0.1352151, z: -0.1125}
+  - {x: -0.029375, y: -0.1350001, z: -0.1125}
+  - {x: 0, y: -0.1313541, z: -0.1125}
+  - {x: 0.029375, y: -0.1295465, z: -0.1125}
+  - {x: 0.05875, y: -0.120356, z: -0.1125}
+  - {x: 0.088125, y: -0.1177091, z: -0.1125}
+  - {x: 0.1175, y: -0.1106144, z: -0.1125}
+  - {x: 0.146875, y: -0.1091587, z: -0.1125}
+  - {x: 0.17625, y: -0.1013738, z: -0.1125}
+  - {x: 0.205625, y: -0.1022728, z: -0.1125}
+  - {x: 0.235, y: -0.1046295, z: -0.1125}
+  - {x: 0.264375, y: -0.1062768, z: -0.1125}
+  - {x: 0.29375, y: -0.1063522, z: -0.1125}
+  - {x: 0.323125, y: -0.1049677, z: -0.1125}
+  - {x: 0.3525, y: -0.1064311, z: -0.1125}
+  - {x: 0.381875, y: -0.1025209, z: -0.1125}
+  - {x: 0.41125, y: -0.1039493, z: -0.1125}
+  - {x: 0.440625, y: -0.1040141, z: -0.1125}
+  - {x: 0.47, y: -0.09317194, z: -0.1125}
+  - {x: -0.47, y: -0.2381064, z: -0.09}
+  - {x: -0.440625, y: -0.2220889, z: -0.09}
+  - {x: -0.41125, y: -0.2220889, z: -0.09}
+  - {x: -0.381875, y: -0.2020889, z: -0.09}
+  - {x: -0.3525, y: -0.2031845, z: -0.09}
+  - {x: -0.323125, y: -0.1896249, z: -0.09}
+  - {x: -0.29375, y: -0.182698, z: -0.09}
+  - {x: -0.264375, y: -0.1841806, z: -0.09}
+  - {x: -0.235, y: -0.1816016, z: -0.09}
+  - {x: -0.205625, y: -0.1764083, z: -0.09}
+  - {x: -0.17625, y: -0.1726656, z: -0.09}
+  - {x: -0.146875, y: -0.1611885, z: -0.09}
+  - {x: -0.1175, y: -0.1538817, z: -0.09}
+  - {x: -0.088125, y: -0.1439398, z: -0.09}
+  - {x: -0.05875, y: -0.1383895, z: -0.09}
+  - {x: -0.029375, y: -0.133831, z: -0.09}
+  - {x: 0, y: -0.1290693, z: -0.09}
+  - {x: 0.029375, y: -0.1251558, z: -0.09}
+  - {x: 0.05875, y: -0.1232123, z: -0.09}
+  - {x: 0.088125, y: -0.1119087, z: -0.09}
+  - {x: 0.1175, y: -0.1046892, z: -0.09}
+  - {x: 0.146875, y: -0.1027438, z: -0.09}
+  - {x: 0.17625, y: -0.1014268, z: -0.09}
+  - {x: 0.205625, y: -0.1034049, z: -0.09}
+  - {x: 0.235, y: -0.1044766, z: -0.09}
+  - {x: 0.264375, y: -0.106866, z: -0.09}
+  - {x: 0.29375, y: -0.1079635, z: -0.09}
+  - {x: 0.323125, y: -0.1101346, z: -0.09}
+  - {x: 0.3525, y: -0.1092673, z: -0.09}
+  - {x: 0.381875, y: -0.1072257, z: -0.09}
+  - {x: 0.41125, y: -0.1037113, z: -0.09}
+  - {x: 0.440625, y: -0.1045747, z: -0.09}
+  - {x: 0.47, y: -0.1039634, z: -0.09}
+  - {x: -0.47, y: -0.2381064, z: -0.0675}
+  - {x: -0.440625, y: -0.2381064, z: -0.0675}
+  - {x: -0.41125, y: -0.2213268, z: -0.0675}
+  - {x: -0.381875, y: -0.2013268, z: -0.0675}
+  - {x: -0.3525, y: -0.2033937, z: -0.0675}
+  - {x: -0.323125, y: -0.1946558, z: -0.0675}
+  - {x: -0.29375, y: -0.1911108, z: -0.0675}
+  - {x: -0.264375, y: -0.1888461, z: -0.0675}
+  - {x: -0.235, y: -0.1848197, z: -0.0675}
+  - {x: -0.205625, y: -0.1783339, z: -0.0675}
+  - {x: -0.17625, y: -0.1686298, z: -0.0675}
+  - {x: -0.146875, y: -0.1611032, z: -0.0675}
+  - {x: -0.1175, y: -0.1560254, z: -0.0675}
+  - {x: -0.088125, y: -0.1450565, z: -0.0675}
+  - {x: -0.05875, y: -0.1356857, z: -0.0675}
+  - {x: -0.029375, y: -0.1293749, z: -0.0675}
+  - {x: 0, y: -0.1292116, z: -0.0675}
+  - {x: 0.029375, y: -0.1259771, z: -0.0675}
+  - {x: 0.05875, y: -0.1226814, z: -0.0675}
+  - {x: 0.088125, y: -0.10995, z: -0.0675}
+  - {x: 0.1175, y: -0.1082827, z: -0.0675}
+  - {x: 0.146875, y: -0.1064361, z: -0.0675}
+  - {x: 0.17625, y: -0.1019928, z: -0.0675}
+  - {x: 0.205625, y: -0.1026205, z: -0.0675}
+  - {x: 0.235, y: -0.1058896, z: -0.0675}
+  - {x: 0.264375, y: -0.1052714, z: -0.0675}
+  - {x: 0.29375, y: -0.1052932, z: -0.0675}
+  - {x: 0.323125, y: -0.1056494, z: -0.0675}
+  - {x: 0.3525, y: -0.1054368, z: -0.0675}
+  - {x: 0.381875, y: -0.106543, z: -0.0675}
+  - {x: 0.41125, y: -0.1038159, z: -0.0675}
+  - {x: 0.440625, y: -0.1013028, z: -0.0675}
+  - {x: 0.47, y: -0.1016123, z: -0.0675}
+  - {x: -0.47, y: -0.2381064, z: -0.045}
+  - {x: -0.440625, y: -0.2181064, z: -0.045}
+  - {x: -0.41125, y: -0.2006513, z: -0.045}
+  - {x: -0.381875, y: -0.2026022, z: -0.045}
+  - {x: -0.3525, y: -0.2008002, z: -0.045}
+  - {x: -0.323125, y: -0.1954017, z: -0.045}
+  - {x: -0.29375, y: -0.1920007, z: -0.045}
+  - {x: -0.264375, y: -0.1891551, z: -0.045}
+  - {x: -0.235, y: -0.1863851, z: -0.045}
+  - {x: -0.205625, y: -0.1797106, z: -0.045}
+  - {x: -0.17625, y: -0.1694917, z: -0.045}
+  - {x: -0.146875, y: -0.163742, z: -0.045}
+  - {x: -0.1175, y: -0.1561682, z: -0.045}
+  - {x: -0.088125, y: -0.1464507, z: -0.045}
+  - {x: -0.05875, y: -0.1358155, z: -0.045}
+  - {x: -0.029375, y: -0.1314385, z: -0.045}
+  - {x: 0, y: -0.1313764, z: -0.045}
+  - {x: 0.029375, y: -0.1271544, z: -0.045}
+  - {x: 0.05875, y: -0.121124, z: -0.045}
+  - {x: 0.088125, y: -0.1160603, z: -0.045}
+  - {x: 0.1175, y: -0.1112695, z: -0.045}
+  - {x: 0.146875, y: -0.1057124, z: -0.045}
+  - {x: 0.17625, y: -0.09869693, z: -0.045}
+  - {x: 0.205625, y: -0.1008729, z: -0.045}
+  - {x: 0.235, y: -0.1019725, z: -0.045}
+  - {x: 0.264375, y: -0.1012442, z: -0.045}
+  - {x: 0.29375, y: -0.1015885, z: -0.045}
+  - {x: 0.323125, y: -0.1021336, z: -0.045}
+  - {x: 0.3525, y: -0.1018839, z: -0.045}
+  - {x: 0.381875, y: -0.104626, z: -0.045}
+  - {x: 0.41125, y: -0.1073079, z: -0.045}
+  - {x: 0.440625, y: -0.1059103, z: -0.045}
+  - {x: 0.47, y: -0.1063688, z: -0.045}
+  - {x: -0.47, y: -0.2405812, z: -0.0225}
+  - {x: -0.440625, y: -0.2010993, z: -0.0225}
+  - {x: -0.41125, y: -0.2004369, z: -0.0225}
+  - {x: -0.381875, y: -0.2041435, z: -0.0225}
+  - {x: -0.3525, y: -0.1960001, z: -0.0225}
+  - {x: -0.323125, y: -0.1903105, z: -0.0225}
+  - {x: -0.29375, y: -0.1864122, z: -0.0225}
+  - {x: -0.264375, y: -0.1882863, z: -0.0225}
+  - {x: -0.235, y: -0.1888102, z: -0.0225}
+  - {x: -0.205625, y: -0.1752504, z: -0.0225}
+  - {x: -0.17625, y: -0.1681303, z: -0.0225}
+  - {x: -0.146875, y: -0.1649951, z: -0.0225}
+  - {x: -0.1175, y: -0.1580792, z: -0.0225}
+  - {x: -0.088125, y: -0.1428293, z: -0.0225}
+  - {x: -0.05875, y: -0.1346354, z: -0.0225}
+  - {x: -0.029375, y: -0.1320892, z: -0.0225}
+  - {x: 0, y: -0.1323989, z: -0.0225}
+  - {x: 0.029375, y: -0.1264024, z: -0.0225}
+  - {x: 0.05875, y: -0.1216606, z: -0.0225}
+  - {x: 0.088125, y: -0.1164421, z: -0.0225}
+  - {x: 0.1175, y: -0.1132912, z: -0.0225}
+  - {x: 0.146875, y: -0.106022, z: -0.0225}
+  - {x: 0.17625, y: -0.1034526, z: -0.0225}
+  - {x: 0.205625, y: -0.1001346, z: -0.0225}
+  - {x: 0.235, y: -0.1003943, z: -0.0225}
+  - {x: 0.264375, y: -0.1009436, z: -0.0225}
+  - {x: 0.29375, y: -0.1061142, z: -0.0225}
+  - {x: 0.323125, y: -0.1066632, z: -0.0225}
+  - {x: 0.3525, y: -0.1047838, z: -0.0225}
+  - {x: 0.381875, y: -0.1024639, z: -0.0225}
+  - {x: 0.41125, y: -0.1029023, z: -0.0225}
+  - {x: 0.440625, y: -0.1048245, z: -0.0225}
+  - {x: 0.47, y: -0.1055546, z: -0.0225}
+  - {x: -0.47, y: -0.1991731, z: 0}
+  - {x: -0.440625, y: -0.1961237, z: 0}
+  - {x: -0.41125, y: -0.1983455, z: 0}
+  - {x: -0.381875, y: -0.2005241, z: 0}
+  - {x: -0.3525, y: -0.1962325, z: 0}
+  - {x: -0.323125, y: -0.1908411, z: 0}
+  - {x: -0.29375, y: -0.1924425, z: 0}
+  - {x: -0.264375, y: -0.1919268, z: 0}
+  - {x: -0.235, y: -0.184333, z: 0}
+  - {x: -0.205625, y: -0.1747333, z: 0}
+  - {x: -0.17625, y: -0.1687538, z: 0}
+  - {x: -0.146875, y: -0.1668636, z: 0}
+  - {x: -0.1175, y: -0.1594528, z: 0}
+  - {x: -0.088125, y: -0.1492477, z: 0}
+  - {x: -0.05875, y: -0.1369216, z: 0}
+  - {x: -0.029375, y: -0.1302986, z: 0}
+  - {x: 0, y: -0.131967, z: 0}
+  - {x: 0.029375, y: -0.1270279, z: 0}
+  - {x: 0.05875, y: -0.1171721, z: 0}
+  - {x: 0.088125, y: -0.1125358, z: 0}
+  - {x: 0.1175, y: -0.1098365, z: 0}
+  - {x: 0.146875, y: -0.1082164, z: 0}
+  - {x: 0.17625, y: -0.1034849, z: 0}
+  - {x: 0.205625, y: -0.1011655, z: 0}
+  - {x: 0.235, y: -0.1004314, z: 0}
+  - {x: 0.264375, y: -0.1015235, z: 0}
+  - {x: 0.29375, y: -0.10324, z: 0}
+  - {x: 0.323125, y: -0.1041098, z: 0}
+  - {x: 0.3525, y: -0.1034884, z: 0}
+  - {x: 0.381875, y: -0.1029867, z: 0}
+  - {x: 0.41125, y: -0.09999902, z: 0}
+  - {x: 0.440625, y: -0.09964867, z: 0}
+  - {x: 0.47, y: -0.09919815, z: 0}
+  - {x: -0.47, y: -0.1865446, z: 0.0225}
+  - {x: -0.440625, y: -0.1933252, z: 0.0225}
+  - {x: -0.41125, y: -0.1893301, z: 0.0225}
+  - {x: -0.381875, y: -0.1869952, z: 0.0225}
+  - {x: -0.3525, y: -0.1876453, z: 0.0225}
+  - {x: -0.323125, y: -0.188617, z: 0.0225}
+  - {x: -0.29375, y: -0.1866552, z: 0.0225}
+  - {x: -0.264375, y: -0.1871417, z: 0.0225}
+  - {x: -0.235, y: -0.1824392, z: 0.0225}
+  - {x: -0.205625, y: -0.1748829, z: 0.0225}
+  - {x: -0.17625, y: -0.1706802, z: 0.0225}
+  - {x: -0.146875, y: -0.1698443, z: 0.0225}
+  - {x: -0.1175, y: -0.1623151, z: 0.0225}
+  - {x: -0.088125, y: -0.1548866, z: 0.0225}
+  - {x: -0.05875, y: -0.1372449, z: 0.0225}
+  - {x: -0.029375, y: -0.1306208, z: 0.0225}
+  - {x: 0, y: -0.1309463, z: 0.0225}
+  - {x: 0.029375, y: -0.1223662, z: 0.0225}
+  - {x: 0.05875, y: -0.1183131, z: 0.0225}
+  - {x: 0.088125, y: -0.1155975, z: 0.0225}
+  - {x: 0.1175, y: -0.1127779, z: 0.0225}
+  - {x: 0.146875, y: -0.1062602, z: 0.0225}
+  - {x: 0.17625, y: -0.1028125, z: 0.0225}
+  - {x: 0.205625, y: -0.1001329, z: 0.0225}
+  - {x: 0.235, y: -0.1001299, z: 0.0225}
+  - {x: 0.264375, y: -0.10142, z: 0.0225}
+  - {x: 0.29375, y: -0.09970849, z: 0.0225}
+  - {x: 0.323125, y: -0.09822553, z: 0.0225}
+  - {x: 0.3525, y: -0.0963451, z: 0.0225}
+  - {x: 0.381875, y: -0.09541514, z: 0.0225}
+  - {x: 0.41125, y: -0.09416489, z: 0.0225}
+  - {x: 0.440625, y: -0.09510672, z: 0.0225}
+  - {x: 0.47, y: -0.09789599, z: 0.0225}
+  - {x: -0.47, y: -0.1898564, z: 0.045}
+  - {x: -0.440625, y: -0.1881376, z: 0.045}
+  - {x: -0.41125, y: -0.1813944, z: 0.045}
+  - {x: -0.381875, y: -0.1739847, z: 0.045}
+  - {x: -0.3525, y: -0.1751248, z: 0.045}
+  - {x: -0.323125, y: -0.1757846, z: 0.045}
+  - {x: -0.29375, y: -0.1792542, z: 0.045}
+  - {x: -0.264375, y: -0.1767213, z: 0.045}
+  - {x: -0.235, y: -0.1750074, z: 0.045}
+  - {x: -0.205625, y: -0.1726283, z: 0.045}
+  - {x: -0.17625, y: -0.1706562, z: 0.045}
+  - {x: -0.146875, y: -0.1654654, z: 0.045}
+  - {x: -0.1175, y: -0.1589384, z: 0.045}
+  - {x: -0.088125, y: -0.1522915, z: 0.045}
+  - {x: -0.05875, y: -0.1473466, z: 0.045}
+  - {x: -0.029375, y: -0.1366932, z: 0.045}
+  - {x: 0, y: -0.1357055, z: 0.045}
+  - {x: 0.029375, y: -0.1241583, z: 0.045}
+  - {x: 0.05875, y: -0.1198285, z: 0.045}
+  - {x: 0.088125, y: -0.116914, z: 0.045}
+  - {x: 0.1175, y: -0.1151497, z: 0.045}
+  - {x: 0.146875, y: -0.1059849, z: 0.045}
+  - {x: 0.17625, y: -0.1086878, z: 0.045}
+  - {x: 0.205625, y: -0.1017124, z: 0.045}
+  - {x: 0.235, y: -0.09599539, z: 0.045}
+  - {x: 0.264375, y: -0.09366649, z: 0.045}
+  - {x: 0.29375, y: -0.09303792, z: 0.045}
+  - {x: 0.323125, y: -0.09324032, z: 0.045}
+  - {x: 0.3525, y: -0.09327248, z: 0.045}
+  - {x: 0.381875, y: -0.09083264, z: 0.045}
+  - {x: 0.41125, y: -0.09054418, z: 0.045}
+  - {x: 0.440625, y: -0.09249048, z: 0.045}
+  - {x: 0.47, y: -0.09522395, z: 0.045}
+  - {x: -0.47, y: -0.1790385, z: 0.0675}
+  - {x: -0.440625, y: -0.1753956, z: 0.0675}
+  - {x: -0.41125, y: -0.1762737, z: 0.0675}
+  - {x: -0.381875, y: -0.1706173, z: 0.0675}
+  - {x: -0.3525, y: -0.1697527, z: 0.0675}
+  - {x: -0.323125, y: -0.1728243, z: 0.0675}
+  - {x: -0.29375, y: -0.1782217, z: 0.0675}
+  - {x: -0.264375, y: -0.1761169, z: 0.0675}
+  - {x: -0.235, y: -0.1757286, z: 0.0675}
+  - {x: -0.205625, y: -0.1697015, z: 0.0675}
+  - {x: -0.17625, y: -0.1674008, z: 0.0675}
+  - {x: -0.146875, y: -0.1618429, z: 0.0675}
+  - {x: -0.1175, y: -0.1551269, z: 0.0675}
+  - {x: -0.088125, y: -0.1562737, z: 0.0675}
+  - {x: -0.05875, y: -0.1520803, z: 0.0675}
+  - {x: -0.029375, y: -0.1392182, z: 0.0675}
+  - {x: 0, y: -0.1340257, z: 0.0675}
+  - {x: 0.029375, y: -0.1301363, z: 0.0675}
+  - {x: 0.05875, y: -0.1256352, z: 0.0675}
+  - {x: 0.088125, y: -0.1234019, z: 0.0675}
+  - {x: 0.1175, y: -0.1175425, z: 0.0675}
+  - {x: 0.146875, y: -0.1105605, z: 0.0675}
+  - {x: 0.17625, y: -0.103675, z: 0.0675}
+  - {x: 0.205625, y: -0.09994881, z: 0.0675}
+  - {x: 0.235, y: -0.09711205, z: 0.0675}
+  - {x: 0.264375, y: -0.09731469, z: 0.0675}
+  - {x: 0.29375, y: -0.09719876, z: 0.0675}
+  - {x: 0.323125, y: -0.09496345, z: 0.0675}
+  - {x: 0.3525, y: -0.09284946, z: 0.0675}
+  - {x: 0.381875, y: -0.08844967, z: 0.0675}
+  - {x: 0.41125, y: -0.08826886, z: 0.0675}
+  - {x: 0.440625, y: -0.08929496, z: 0.0675}
+  - {x: 0.47, y: -0.0881575, z: 0.0675}
+  - {x: -0.47, y: -0.1755486, z: 0.09}
+  - {x: -0.440625, y: -0.1714126, z: 0.09}
+  - {x: -0.41125, y: -0.1709048, z: 0.09}
+  - {x: -0.381875, y: -0.1678033, z: 0.09}
+  - {x: -0.3525, y: -0.1686905, z: 0.09}
+  - {x: -0.323125, y: -0.1680395, z: 0.09}
+  - {x: -0.29375, y: -0.1705735, z: 0.09}
+  - {x: -0.264375, y: -0.1726684, z: 0.09}
+  - {x: -0.235, y: -0.1717714, z: 0.09}
+  - {x: -0.205625, y: -0.1702424, z: 0.09}
+  - {x: -0.17625, y: -0.1665189, z: 0.09}
+  - {x: -0.146875, y: -0.1621523, z: 0.09}
+  - {x: -0.1175, y: -0.1549097, z: 0.09}
+  - {x: -0.088125, y: -0.1539687, z: 0.09}
+  - {x: -0.05875, y: -0.1536177, z: 0.09}
+  - {x: -0.029375, y: -0.1466618, z: 0.09}
+  - {x: 0, y: -0.1411041, z: 0.09}
+  - {x: 0.029375, y: -0.1315147, z: 0.09}
+  - {x: 0.05875, y: -0.1300431, z: 0.09}
+  - {x: 0.088125, y: -0.1261372, z: 0.09}
+  - {x: 0.1175, y: -0.1197898, z: 0.09}
+  - {x: 0.146875, y: -0.1133902, z: 0.09}
+  - {x: 0.17625, y: -0.1045565, z: 0.09}
+  - {x: 0.205625, y: -0.09848149, z: 0.09}
+  - {x: 0.235, y: -0.09916289, z: 0.09}
+  - {x: 0.264375, y: -0.1008201, z: 0.09}
+  - {x: 0.29375, y: -0.09997321, z: 0.09}
+  - {x: 0.323125, y: -0.09792531, z: 0.09}
+  - {x: 0.3525, y: -0.0908929, z: 0.09}
+  - {x: 0.381875, y: -0.08892799, z: 0.09}
+  - {x: 0.41125, y: -0.08818615, z: 0.09}
+  - {x: 0.440625, y: -0.0874443, z: 0.09}
+  - {x: 0.47, y: -0.0835385, z: 0.09}
+  - {x: -0.47, y: -0.172735, z: 0.1125}
+  - {x: -0.440625, y: -0.1730959, z: 0.1125}
+  - {x: -0.41125, y: -0.1665087, z: 0.1125}
+  - {x: -0.381875, y: -0.1642264, z: 0.1125}
+  - {x: -0.3525, y: -0.1620172, z: 0.1125}
+  - {x: -0.323125, y: -0.1633529, z: 0.1125}
+  - {x: -0.29375, y: -0.1669383, z: 0.1125}
+  - {x: -0.264375, y: -0.1713415, z: 0.1125}
+  - {x: -0.235, y: -0.1715882, z: 0.1125}
+  - {x: -0.205625, y: -0.1692074, z: 0.1125}
+  - {x: -0.17625, y: -0.1657183, z: 0.1125}
+  - {x: -0.146875, y: -0.1603212, z: 0.1125}
+  - {x: -0.1175, y: -0.154372, z: 0.1125}
+  - {x: -0.088125, y: -0.1523598, z: 0.1125}
+  - {x: -0.05875, y: -0.151099, z: 0.1125}
+  - {x: -0.029375, y: -0.148713, z: 0.1125}
+  - {x: 0, y: -0.1438482, z: 0.1125}
+  - {x: 0.029375, y: -0.1353478, z: 0.1125}
+  - {x: 0.05875, y: -0.1284973, z: 0.1125}
+  - {x: 0.088125, y: -0.1277739, z: 0.1125}
+  - {x: 0.1175, y: -0.1232033, z: 0.1125}
+  - {x: 0.146875, y: -0.1148971, z: 0.1125}
+  - {x: 0.17625, y: -0.1097765, z: 0.1125}
+  - {x: 0.205625, y: -0.1058558, z: 0.1125}
+  - {x: 0.235, y: -0.1049339, z: 0.1125}
+  - {x: 0.264375, y: -0.1029915, z: 0.1125}
+  - {x: 0.29375, y: -0.1032339, z: 0.1125}
+  - {x: 0.323125, y: -0.09801737, z: 0.1125}
+  - {x: 0.3525, y: -0.09074117, z: 0.1125}
+  - {x: 0.381875, y: -0.08503409, z: 0.1125}
+  - {x: 0.41125, y: -0.0838092, z: 0.1125}
+  - {x: 0.440625, y: -0.0833514, z: 0.1125}
+  - {x: 0.47, y: -0.08048316, z: 0.1125}
+  - {x: -0.47, y: -0.1706408, z: 0.135}
+  - {x: -0.440625, y: -0.1671204, z: 0.135}
+  - {x: -0.41125, y: -0.1622512, z: 0.135}
+  - {x: -0.381875, y: -0.1586776, z: 0.135}
+  - {x: -0.3525, y: -0.1606166, z: 0.135}
+  - {x: -0.323125, y: -0.1617405, z: 0.135}
+  - {x: -0.29375, y: -0.1655803, z: 0.135}
+  - {x: -0.264375, y: -0.1700732, z: 0.135}
+  - {x: -0.235, y: -0.1661707, z: 0.135}
+  - {x: -0.205625, y: -0.1637225, z: 0.135}
+  - {x: -0.17625, y: -0.1623144, z: 0.135}
+  - {x: -0.146875, y: -0.1598723, z: 0.135}
+  - {x: -0.1175, y: -0.1523234, z: 0.135}
+  - {x: -0.088125, y: -0.1507554, z: 0.135}
+  - {x: -0.05875, y: -0.1495437, z: 0.135}
+  - {x: -0.029375, y: -0.1458551, z: 0.135}
+  - {x: 0, y: -0.1419901, z: 0.135}
+  - {x: 0.029375, y: -0.1365331, z: 0.135}
+  - {x: 0.05875, y: -0.1298376, z: 0.135}
+  - {x: 0.088125, y: -0.126224, z: 0.135}
+  - {x: 0.1175, y: -0.1163312, z: 0.135}
+  - {x: 0.146875, y: -0.1100191, z: 0.135}
+  - {x: 0.17625, y: -0.1079444, z: 0.135}
+  - {x: 0.205625, y: -0.1050353, z: 0.135}
+  - {x: 0.235, y: -0.1067925, z: 0.135}
+  - {x: 0.264375, y: -0.1106702, z: 0.135}
+  - {x: 0.29375, y: -0.1061546, z: 0.135}
+  - {x: 0.323125, y: -0.1005689, z: 0.135}
+  - {x: 0.3525, y: -0.09442082, z: 0.135}
+  - {x: 0.381875, y: -0.08687867, z: 0.135}
+  - {x: 0.41125, y: -0.08296802, z: 0.135}
+  - {x: 0.440625, y: -0.07776903, z: 0.135}
+  - {x: 0.47, y: -0.07813509, z: 0.135}
+  - {x: -0.47, y: -0.1629685, z: 0.1575}
+  - {x: -0.440625, y: -0.1601551, z: 0.1575}
+  - {x: -0.41125, y: -0.1571691, z: 0.1575}
+  - {x: -0.381875, y: -0.1543125, z: 0.1575}
+  - {x: -0.3525, y: -0.1591428, z: 0.1575}
+  - {x: -0.323125, y: -0.1604204, z: 0.1575}
+  - {x: -0.29375, y: -0.1644947, z: 0.1575}
+  - {x: -0.264375, y: -0.1670598, z: 0.1575}
+  - {x: -0.235, y: -0.1599222, z: 0.1575}
+  - {x: -0.205625, y: -0.1584077, z: 0.1575}
+  - {x: -0.17625, y: -0.1564801, z: 0.1575}
+  - {x: -0.146875, y: -0.1558434, z: 0.1575}
+  - {x: -0.1175, y: -0.1521015, z: 0.1575}
+  - {x: -0.088125, y: -0.1507593, z: 0.1575}
+  - {x: -0.05875, y: -0.1492504, z: 0.1575}
+  - {x: -0.029375, y: -0.1451662, z: 0.1575}
+  - {x: 0, y: -0.1416372, z: 0.1575}
+  - {x: 0.029375, y: -0.1392209, z: 0.1575}
+  - {x: 0.05875, y: -0.1330625, z: 0.1575}
+  - {x: 0.088125, y: -0.1283893, z: 0.1575}
+  - {x: 0.1175, y: -0.1181128, z: 0.1575}
+  - {x: 0.146875, y: -0.1120641, z: 0.1575}
+  - {x: 0.17625, y: -0.1092173, z: 0.1575}
+  - {x: 0.205625, y: -0.1091199, z: 0.1575}
+  - {x: 0.235, y: -0.108481, z: 0.1575}
+  - {x: 0.264375, y: -0.1110342, z: 0.1575}
+  - {x: 0.29375, y: -0.1075345, z: 0.1575}
+  - {x: 0.323125, y: -0.1010032, z: 0.1575}
+  - {x: 0.3525, y: -0.09328298, z: 0.1575}
+  - {x: 0.381875, y: -0.0899136, z: 0.1575}
+  - {x: 0.41125, y: -0.08613794, z: 0.1575}
+  - {x: 0.440625, y: -0.08180681, z: 0.1575}
+  - {x: 0.47, y: -0.08212574, z: 0.1575}
+  - {x: -0.47, y: -0.1608603, z: 0.18}
+  - {x: -0.440625, y: -0.1556395, z: 0.18}
+  - {x: -0.41125, y: -0.1525152, z: 0.18}
+  - {x: -0.381875, y: -0.1532829, z: 0.18}
+  - {x: -0.3525, y: -0.1557628, z: 0.18}
+  - {x: -0.323125, y: -0.1589803, z: 0.18}
+  - {x: -0.29375, y: -0.1644629, z: 0.18}
+  - {x: -0.264375, y: -0.1641665, z: 0.18}
+  - {x: -0.235, y: -0.1537345, z: 0.18}
+  - {x: -0.205625, y: -0.1517916, z: 0.18}
+  - {x: -0.17625, y: -0.1532261, z: 0.18}
+  - {x: -0.146875, y: -0.1523217, z: 0.18}
+  - {x: -0.1175, y: -0.151552, z: 0.18}
+  - {x: -0.088125, y: -0.151702, z: 0.18}
+  - {x: -0.05875, y: -0.1491104, z: 0.18}
+  - {x: -0.029375, y: -0.1454301, z: 0.18}
+  - {x: 0, y: -0.140809, z: 0.18}
+  - {x: 0.029375, y: -0.1407172, z: 0.18}
+  - {x: 0.05875, y: -0.1370788, z: 0.18}
+  - {x: 0.088125, y: -0.1301678, z: 0.18}
+  - {x: 0.1175, y: -0.1168659, z: 0.18}
+  - {x: 0.146875, y: -0.1106627, z: 0.18}
+  - {x: 0.17625, y: -0.1071696, z: 0.18}
+  - {x: 0.205625, y: -0.1065624, z: 0.18}
+  - {x: 0.235, y: -0.1071972, z: 0.18}
+  - {x: 0.264375, y: -0.1072259, z: 0.18}
+  - {x: 0.29375, y: -0.09856278, z: 0.18}
+  - {x: 0.323125, y: -0.09615198, z: 0.18}
+  - {x: 0.3525, y: -0.09391537, z: 0.18}
+  - {x: 0.381875, y: -0.09160089, z: 0.18}
+  - {x: 0.41125, y: -0.09046307, z: 0.18}
+  - {x: 0.440625, y: -0.08552938, z: 0.18}
+  - {x: 0.47, y: -0.08127113, z: 0.18}
+  - {x: -0.47, y: -0.1627308, z: 0.2025}
+  - {x: -0.440625, y: -0.1614952, z: 0.2025}
+  - {x: -0.41125, y: -0.1554502, z: 0.2025}
+  - {x: -0.381875, y: -0.152797, z: 0.2025}
+  - {x: -0.3525, y: -0.1516123, z: 0.2025}
+  - {x: -0.323125, y: -0.1555393, z: 0.2025}
+  - {x: -0.29375, y: -0.1581101, z: 0.2025}
+  - {x: -0.264375, y: -0.1580554, z: 0.2025}
+  - {x: -0.235, y: -0.1565175, z: 0.2025}
+  - {x: -0.205625, y: -0.1533406, z: 0.2025}
+  - {x: -0.17625, y: -0.1503199, z: 0.2025}
+  - {x: -0.146875, y: -0.1381531, z: 0.2025}
+  - {x: -0.1175, y: -0.1393065, z: 0.2025}
+  - {x: -0.088125, y: -0.1394108, z: 0.2025}
+  - {x: -0.05875, y: -0.1405122, z: 0.2025}
+  - {x: -0.029375, y: -0.1350989, z: 0.2025}
+  - {x: 0, y: -0.1333134, z: 0.2025}
+  - {x: 0.029375, y: -0.1337088, z: 0.2025}
+  - {x: 0.05875, y: -0.1315438, z: 0.2025}
+  - {x: 0.088125, y: -0.12151, z: 0.2025}
+  - {x: 0.1175, y: -0.1116056, z: 0.2025}
+  - {x: 0.146875, y: -0.1081012, z: 0.2025}
+  - {x: 0.17625, y: -0.109082, z: 0.2025}
+  - {x: 0.205625, y: -0.1051399, z: 0.2025}
+  - {x: 0.235, y: -0.1021971, z: 0.2025}
+  - {x: 0.264375, y: -0.1008887, z: 0.2025}
+  - {x: 0.29375, y: -0.09582018, z: 0.2025}
+  - {x: 0.323125, y: -0.09292529, z: 0.2025}
+  - {x: 0.3525, y: -0.09363889, z: 0.2025}
+  - {x: 0.381875, y: -0.09155165, z: 0.2025}
+  - {x: 0.41125, y: -0.09007726, z: 0.2025}
+  - {x: 0.440625, y: -0.08703387, z: 0.2025}
+  - {x: 0.47, y: -0.0797126, z: 0.2025}
+  - {x: -0.47, y: -0.1670253, z: 0.225}
+  - {x: -0.440625, y: -0.1615237, z: 0.225}
+  - {x: -0.41125, y: -0.1570597, z: 0.225}
+  - {x: -0.381875, y: -0.1571751, z: 0.225}
+  - {x: -0.3525, y: -0.1537928, z: 0.225}
+  - {x: -0.323125, y: -0.1499851, z: 0.225}
+  - {x: -0.29375, y: -0.1517247, z: 0.225}
+  - {x: -0.264375, y: -0.1541513, z: 0.225}
+  - {x: -0.235, y: -0.1536438, z: 0.225}
+  - {x: -0.205625, y: -0.1515826, z: 0.225}
+  - {x: -0.17625, y: -0.147686, z: 0.225}
+  - {x: -0.146875, y: -0.1357469, z: 0.225}
+  - {x: -0.1175, y: -0.1324418, z: 0.225}
+  - {x: -0.088125, y: -0.1298321, z: 0.225}
+  - {x: -0.05875, y: -0.1273151, z: 0.225}
+  - {x: -0.029375, y: -0.1248224, z: 0.225}
+  - {x: 0, y: -0.1252485, z: 0.225}
+  - {x: 0.029375, y: -0.1250593, z: 0.225}
+  - {x: 0.05875, y: -0.1235379, z: 0.225}
+  - {x: 0.088125, y: -0.1181425, z: 0.225}
+  - {x: 0.1175, y: -0.1108263, z: 0.225}
+  - {x: 0.146875, y: -0.1062375, z: 0.225}
+  - {x: 0.17625, y: -0.1059327, z: 0.225}
+  - {x: 0.205625, y: -0.1016494, z: 0.225}
+  - {x: 0.235, y: -0.09598224, z: 0.225}
+  - {x: 0.264375, y: -0.09203419, z: 0.225}
+  - {x: 0.29375, y: -0.09156945, z: 0.225}
+  - {x: 0.323125, y: -0.09001476, z: 0.225}
+  - {x: 0.3525, y: -0.08781, z: 0.225}
+  - {x: 0.381875, y: -0.08891857, z: 0.225}
+  - {x: 0.41125, y: -0.08858565, z: 0.225}
+  - {x: 0.440625, y: -0.08533225, z: 0.225}
+  - {x: 0.47, y: -0.07944546, z: 0.225}
+  - {x: -0.47, y: -0.1625079, z: 0.2475}
+  - {x: -0.440625, y: -0.1638243, z: 0.2475}
+  - {x: -0.41125, y: -0.1604073, z: 0.2475}
+  - {x: -0.381875, y: -0.1582103, z: 0.2475}
+  - {x: -0.3525, y: -0.1521351, z: 0.2475}
+  - {x: -0.323125, y: -0.1501963, z: 0.2475}
+  - {x: -0.29375, y: -0.1523452, z: 0.2475}
+  - {x: -0.264375, y: -0.1505083, z: 0.2475}
+  - {x: -0.235, y: -0.1461951, z: 0.2475}
+  - {x: -0.205625, y: -0.1484224, z: 0.2475}
+  - {x: -0.17625, y: -0.1434283, z: 0.2475}
+  - {x: -0.146875, y: -0.1293339, z: 0.2475}
+  - {x: -0.1175, y: -0.1274394, z: 0.2475}
+  - {x: -0.088125, y: -0.1231995, z: 0.2475}
+  - {x: -0.05875, y: -0.1210947, z: 0.2475}
+  - {x: -0.029375, y: -0.1186546, z: 0.2475}
+  - {x: 0, y: -0.1177972, z: 0.2475}
+  - {x: 0.029375, y: -0.1168406, z: 0.2475}
+  - {x: 0.05875, y: -0.1139127, z: 0.2475}
+  - {x: 0.088125, y: -0.1096025, z: 0.2475}
+  - {x: 0.1175, y: -0.1049372, z: 0.2475}
+  - {x: 0.146875, y: -0.1018008, z: 0.2475}
+  - {x: 0.17625, y: -0.09833542, z: 0.2475}
+  - {x: 0.205625, y: -0.09072026, z: 0.2475}
+  - {x: 0.235, y: -0.08667358, z: 0.2475}
+  - {x: 0.264375, y: -0.08589209, z: 0.2475}
+  - {x: 0.29375, y: -0.08231412, z: 0.2475}
+  - {x: 0.323125, y: -0.08259331, z: 0.2475}
+  - {x: 0.3525, y: -0.08439391, z: 0.2475}
+  - {x: 0.381875, y: -0.08459209, z: 0.2475}
+  - {x: 0.41125, y: -0.08346452, z: 0.2475}
+  - {x: 0.440625, y: -0.07999042, z: 0.2475}
+  - {x: 0.47, y: -0.07857626, z: 0.2475}
+  - {x: -0.47, y: -0.1584567, z: 0.27}
+  - {x: -0.440625, y: -0.1564062, z: 0.27}
+  - {x: -0.41125, y: -0.1511473, z: 0.27}
+  - {x: -0.381875, y: -0.1507489, z: 0.27}
+  - {x: -0.3525, y: -0.1492003, z: 0.27}
+  - {x: -0.323125, y: -0.147331, z: 0.27}
+  - {x: -0.29375, y: -0.1458251, z: 0.27}
+  - {x: -0.264375, y: -0.1389451, z: 0.27}
+  - {x: -0.235, y: -0.1397892, z: 0.27}
+  - {x: -0.205625, y: -0.1394084, z: 0.27}
+  - {x: -0.17625, y: -0.1372092, z: 0.27}
+  - {x: -0.146875, y: -0.1248961, z: 0.27}
+  - {x: -0.1175, y: -0.121834, z: 0.27}
+  - {x: -0.088125, y: -0.115586, z: 0.27}
+  - {x: -0.05875, y: -0.113819, z: 0.27}
+  - {x: -0.029375, y: -0.1134217, z: 0.27}
+  - {x: 0, y: -0.1092612, z: 0.27}
+  - {x: 0.029375, y: -0.1056669, z: 0.27}
+  - {x: 0.05875, y: -0.1010115, z: 0.27}
+  - {x: 0.088125, y: -0.1008114, z: 0.27}
+  - {x: 0.1175, y: -0.1003753, z: 0.27}
+  - {x: 0.146875, y: -0.09843025, z: 0.27}
+  - {x: 0.17625, y: -0.09321094, z: 0.27}
+  - {x: 0.205625, y: -0.08560844, z: 0.27}
+  - {x: 0.235, y: -0.08130585, z: 0.27}
+  - {x: 0.264375, y: -0.08014538, z: 0.27}
+  - {x: 0.29375, y: -0.08161707, z: 0.27}
+  - {x: 0.323125, y: -0.08026719, z: 0.27}
+  - {x: 0.3525, y: -0.07816157, z: 0.27}
+  - {x: 0.381875, y: -0.07752122, z: 0.27}
+  - {x: 0.41125, y: -0.07681147, z: 0.27}
+  - {x: 0.440625, y: -0.0756449, z: 0.27}
+  - {x: 0.47, y: -0.07643568, z: 0.27}
+  - {x: -0.47, y: -0.1537545, z: 0.2925}
+  - {x: -0.440625, y: -0.1487713, z: 0.2925}
+  - {x: -0.41125, y: -0.1465183, z: 0.2925}
+  - {x: -0.381875, y: -0.1493809, z: 0.2925}
+  - {x: -0.3525, y: -0.1464988, z: 0.2925}
+  - {x: -0.323125, y: -0.1450348, z: 0.2925}
+  - {x: -0.29375, y: -0.139387, z: 0.2925}
+  - {x: -0.264375, y: -0.1362334, z: 0.2925}
+  - {x: -0.235, y: -0.1336728, z: 0.2925}
+  - {x: -0.205625, y: -0.1299413, z: 0.2925}
+  - {x: -0.17625, y: -0.1293021, z: 0.2925}
+  - {x: -0.146875, y: -0.1201733, z: 0.2925}
+  - {x: -0.1175, y: -0.1185406, z: 0.2925}
+  - {x: -0.088125, y: -0.1107602, z: 0.2925}
+  - {x: -0.05875, y: -0.1096562, z: 0.2925}
+  - {x: -0.029375, y: -0.1051932, z: 0.2925}
+  - {x: 0, y: -0.1025302, z: 0.2925}
+  - {x: 0.029375, y: -0.1028688, z: 0.2925}
+  - {x: 0.05875, y: -0.09781198, z: 0.2925}
+  - {x: 0.088125, y: -0.09161308, z: 0.2925}
+  - {x: 0.1175, y: -0.08930839, z: 0.2925}
+  - {x: 0.146875, y: -0.08776431, z: 0.2925}
+  - {x: 0.17625, y: -0.08630319, z: 0.2925}
+  - {x: 0.205625, y: -0.08340287, z: 0.2925}
+  - {x: 0.235, y: -0.07958549, z: 0.2925}
+  - {x: 0.264375, y: -0.07787169, z: 0.2925}
+  - {x: 0.29375, y: -0.08112377, z: 0.2925}
+  - {x: 0.323125, y: -0.07867928, z: 0.2925}
+  - {x: 0.3525, y: -0.07605846, z: 0.2925}
+  - {x: 0.381875, y: -0.07341908, z: 0.2925}
+  - {x: 0.41125, y: -0.06979032, z: 0.2925}
+  - {x: 0.440625, y: -0.07122121, z: 0.2925}
+  - {x: 0.47, y: -0.07288902, z: 0.2925}
+  - {x: -0.47, y: -0.1474824, z: 0.315}
+  - {x: -0.440625, y: -0.1438391, z: 0.315}
+  - {x: -0.41125, y: -0.1487244, z: 0.315}
+  - {x: -0.381875, y: -0.152203, z: 0.315}
+  - {x: -0.3525, y: -0.1475467, z: 0.315}
+  - {x: -0.323125, y: -0.1406662, z: 0.315}
+  - {x: -0.29375, y: -0.1400285, z: 0.315}
+  - {x: -0.264375, y: -0.1386843, z: 0.315}
+  - {x: -0.235, y: -0.1316339, z: 0.315}
+  - {x: -0.205625, y: -0.1241286, z: 0.315}
+  - {x: -0.17625, y: -0.1218803, z: 0.315}
+  - {x: -0.146875, y: -0.1178204, z: 0.315}
+  - {x: -0.1175, y: -0.1132152, z: 0.315}
+  - {x: -0.088125, y: -0.1073853, z: 0.315}
+  - {x: -0.05875, y: -0.1042504, z: 0.315}
+  - {x: -0.029375, y: -0.1004572, z: 0.315}
+  - {x: 0, y: -0.1005646, z: 0.315}
+  - {x: 0.029375, y: -0.09885571, z: 0.315}
+  - {x: 0.05875, y: -0.09589329, z: 0.315}
+  - {x: 0.088125, y: -0.09078187, z: 0.315}
+  - {x: 0.1175, y: -0.08755802, z: 0.315}
+  - {x: 0.146875, y: -0.0853834, z: 0.315}
+  - {x: 0.17625, y: -0.07928146, z: 0.315}
+  - {x: 0.205625, y: -0.07969205, z: 0.315}
+  - {x: 0.235, y: -0.07858249, z: 0.315}
+  - {x: 0.264375, y: -0.07757197, z: 0.315}
+  - {x: 0.29375, y: -0.07748436, z: 0.315}
+  - {x: 0.323125, y: -0.07896396, z: 0.315}
+  - {x: 0.3525, y: -0.07543247, z: 0.315}
+  - {x: 0.381875, y: -0.07359787, z: 0.315}
+  - {x: 0.41125, y: -0.072481, z: 0.315}
+  - {x: 0.440625, y: -0.07231891, z: 0.315}
+  - {x: 0.47, y: -0.06885257, z: 0.315}
+  - {x: -0.47, y: -0.1447817, z: 0.3375}
+  - {x: -0.440625, y: -0.1415041, z: 0.3375}
+  - {x: -0.41125, y: -0.150739, z: 0.3375}
+  - {x: -0.381875, y: -0.1491326, z: 0.3375}
+  - {x: -0.3525, y: -0.1452306, z: 0.3375}
+  - {x: -0.323125, y: -0.138248, z: 0.3375}
+  - {x: -0.29375, y: -0.1391162, z: 0.3375}
+  - {x: -0.264375, y: -0.1392405, z: 0.3375}
+  - {x: -0.235, y: -0.1317487, z: 0.3375}
+  - {x: -0.205625, y: -0.124404, z: 0.3375}
+  - {x: -0.17625, y: -0.1216757, z: 0.3375}
+  - {x: -0.146875, y: -0.1108954, z: 0.3375}
+  - {x: -0.1175, y: -0.1074762, z: 0.3375}
+  - {x: -0.088125, y: -0.1031175, z: 0.3375}
+  - {x: -0.05875, y: -0.1014499, z: 0.3375}
+  - {x: -0.029375, y: -0.104153, z: 0.3375}
+  - {x: 0, y: -0.1038336, z: 0.3375}
+  - {x: 0.029375, y: -0.1014274, z: 0.3375}
+  - {x: 0.05875, y: -0.09993354, z: 0.3375}
+  - {x: 0.088125, y: -0.09397032, z: 0.3375}
+  - {x: 0.1175, y: -0.0902991, z: 0.3375}
+  - {x: 0.146875, y: -0.08580799, z: 0.3375}
+  - {x: 0.17625, y: -0.08062455, z: 0.3375}
+  - {x: 0.205625, y: -0.07589584, z: 0.3375}
+  - {x: 0.235, y: -0.0764536, z: 0.3375}
+  - {x: 0.264375, y: -0.07455833, z: 0.3375}
+  - {x: 0.29375, y: -0.07284787, z: 0.3375}
+  - {x: 0.323125, y: -0.07340475, z: 0.3375}
+  - {x: 0.3525, y: -0.07312289, z: 0.3375}
+  - {x: 0.381875, y: -0.07333795, z: 0.3375}
+  - {x: 0.41125, y: -0.07328981, z: 0.3375}
+  - {x: 0.440625, y: -0.0713952, z: 0.3375}
+  - {x: 0.47, y: -0.06755354, z: 0.3375}
+  - {x: -0.47, y: -0.1455936, z: 0.36}
+  - {x: -0.440625, y: -0.1444703, z: 0.36}
+  - {x: -0.41125, y: -0.1450537, z: 0.36}
+  - {x: -0.381875, y: -0.146284, z: 0.36}
+  - {x: -0.3525, y: -0.145926, z: 0.36}
+  - {x: -0.323125, y: -0.141057, z: 0.36}
+  - {x: -0.29375, y: -0.1386016, z: 0.36}
+  - {x: -0.264375, y: -0.1343387, z: 0.36}
+  - {x: -0.235, y: -0.1254484, z: 0.36}
+  - {x: -0.205625, y: -0.1202893, z: 0.36}
+  - {x: -0.17625, y: -0.1182853, z: 0.36}
+  - {x: -0.146875, y: -0.1151926, z: 0.36}
+  - {x: -0.1175, y: -0.1081111, z: 0.36}
+  - {x: -0.088125, y: -0.09940386, z: 0.36}
+  - {x: -0.05875, y: -0.1002967, z: 0.36}
+  - {x: -0.029375, y: -0.1029114, z: 0.36}
+  - {x: 0, y: -0.1027031, z: 0.36}
+  - {x: 0.029375, y: -0.1007761, z: 0.36}
+  - {x: 0.05875, y: -0.09876727, z: 0.36}
+  - {x: 0.088125, y: -0.09614589, z: 0.36}
+  - {x: 0.1175, y: -0.087478, z: 0.36}
+  - {x: 0.146875, y: -0.07759579, z: 0.36}
+  - {x: 0.17625, y: -0.07089834, z: 0.36}
+  - {x: 0.205625, y: -0.071327, z: 0.36}
+  - {x: 0.235, y: -0.07217621, z: 0.36}
+  - {x: 0.264375, y: -0.07330829, z: 0.36}
+  - {x: 0.29375, y: -0.0720265, z: 0.36}
+  - {x: 0.323125, y: -0.06978262, z: 0.36}
+  - {x: 0.3525, y: -0.06817207, z: 0.36}
+  - {x: 0.381875, y: -0.06680109, z: 0.36}
+  - {x: 0.41125, y: -0.06912174, z: 0.36}
+  - {x: 0.440625, y: -0.06895675, z: 0.36}
+  - {x: 0.47, y: -0.06804196, z: 0.36}
+  cuttingsMaterial: {fileID: 2100000, guid: 4717cd53a6499f04b93633296f022b7e, type: 2}

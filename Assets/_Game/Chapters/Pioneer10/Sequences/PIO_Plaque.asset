@@ -15,7 +15,7 @@ MonoBehaviour:
   sequenceId: PIO_Plaque
   shots:
   - shotId: PIO05.Arrive
-    durationSeconds: 9
+    durationSeconds: 7.5
     rigId: PIO.Plaque
     lookAtTargetId: 
     easing: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
       positionMeters: {x: 0.3, y: 0, z: -0.5}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 36
-    - timeSeconds: 9
+    - timeSeconds: 7.5
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 36
@@ -34,7 +34,7 @@ MonoBehaviour:
     - timeSeconds: 0
       eventId: PIO.Plaque.Arrive
   - shotId: PIO05.Fit
-    durationSeconds: 29
+    durationSeconds: 20
     rigId: PIO.Plaque
     lookAtTargetId: 
     easing: 0
@@ -45,17 +45,17 @@ MonoBehaviour:
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 36
-    - timeSeconds: 29
+    - timeSeconds: 20
       positionMeters: {x: 0, y: 0, z: 0.1}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 36
     events:
     - timeSeconds: 0
       eventId: PIO.Plaque.Activity
-    - timeSeconds: 28.5
+    - timeSeconds: 19.9
       eventId: PIO.Plaque.Gate
   - shotId: PIO05.Reveal
-    durationSeconds: 9
+    durationSeconds: 5.5
     rigId: PIO.Plaque
     lookAtTargetId: 
     easing: 1
@@ -66,7 +66,7 @@ MonoBehaviour:
       positionMeters: {x: 0, y: 0, z: 0}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 36
-    - timeSeconds: 9
+    - timeSeconds: 5.5
       positionMeters: {x: 0, y: 0, z: -1.2}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 44
@@ -77,7 +77,7 @@ MonoBehaviour:
   - cueId: PIO.05.01
     textKey: PIO.05.01
     startSeconds: 0
-    endSeconds: 8
+    endSeconds: 7.3
     triggerId: 
     minimumReadSeconds: 0
     position: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.Pulsars
-    minimumReadSeconds: 4
+    minimumReadSeconds: 3.7
     position: 0
     priority: 0
   - cueId: PIO.05.04
@@ -103,7 +103,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.SolarSystem
-    minimumReadSeconds: 4
+    minimumReadSeconds: 3.9
     position: 0
     priority: 0
   - cueId: PIO.05.05
@@ -111,7 +111,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.PioneerScale
-    minimumReadSeconds: 4
+    minimumReadSeconds: 3.6
     position: 0
     priority: 0
   - cueId: PIO.05.06
@@ -119,13 +119,13 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Plaque.People
-    minimumReadSeconds: 4
+    minimumReadSeconds: 3.6
     position: 0
     priority: 0
   - cueId: PIO.05.07
     textKey: PIO.05.07
-    startSeconds: 38
-    endSeconds: 46
+    startSeconds: 27.7
+    endSeconds: 33
     triggerId: 
     minimumReadSeconds: 0
     position: 0

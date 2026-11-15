@@ -63,6 +63,13 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("PIO.JupiterApproach é só cinema (sem interação): conclui quando a sequência termina.")] SequenceDefinition jupiterSequence;
         [SerializeField] PioneerImaging imaging;
         [SerializeField, Tooltip("PIO.Closest (a máxima aproximação de Júpiter) é só cinema: conclui quando a sequência termina.")] SequenceDefinition closestSequence;
+        [SerializeField, Tooltip("PIO.Belt (roteiro v2, cena 2) é só cinema: a sequência de 54 s e o contador de dias.")] SequenceDefinition beltCinemaSequence;
+        [SerializeField] PioneerBeltCounter beltCounter;
+        [SerializeField, Tooltip("Cena 3: Júpiter nasce de um ponto e a Terra pequena entra para a comparação.")] PioneerJupiterReveal jupiterReveal;
+        [SerializeField, Tooltip("Cena 5: medidor de radiação, estática, velocidade e comparação de distâncias.")] PioneerClosestHud closestHud;
+        [SerializeField, Tooltip("Cena 7: ano, linha do tempo, instrumentos e medidor de energia dos RTG.")] PioneerYearsHud yearsHud;
+        [SerializeField, Tooltip("Cena 9: as seis estrelas das primeiras vezes.")] PioneerFirstsHud firstsHud;
+        [SerializeField, Tooltip("Fase 5: barras de cinema nos estados que são só cinema.")] PioneerLetterbox letterbox;
         [SerializeField] ImagingRecovery recovery;
         [SerializeField] HistoricalImageReveal reveal;
         [SerializeField] PioneerPlaqueActivity plaque;
@@ -99,6 +106,7 @@ namespace Abandoned.SpaceApps
         public bool IsInitialized => initialized;
         public SequenceDefinition JupiterSequence => jupiterSequence;
         public SequenceDefinition ClosestSequence => closestSequence;
+        public SequenceDefinition BeltCinemaSequence => beltCinemaSequence;
 
         /// <summary>Relatório do tempo ativo por estado desta execução (operador assistido, nunca resultado humano).</summary>
         public PioneerRunReport LastReport => report;
@@ -142,10 +150,17 @@ namespace Abandoned.SpaceApps
             launch.CinemaMode = true;
             plaque.CinemaMode = true;
             outbound.CinemaMode = true;
+            outbound.YearsMode = true;      // cena 7: o HUD dos anos substitui o painel do atlas
             imaging.ThreeStepMode = true;   // cena 4: a foto em três passos (sem radiação nem recuperação)
             listening.SingleRound = true;   // cena 8: uma única rodada de sintonia
             launch.Initialize(sequenceDirector, interactions, router, time);
             belt.Initialize(sequenceDirector, interactions, router, time, text);
+            beltCounter.Initialize(sequenceDirector, text);
+            jupiterReveal.Initialize(sequenceDirector);
+            closestHud.Initialize(sequenceDirector, text);
+            yearsHud.Initialize(sequenceDirector, text);
+            firstsHud.Initialize(sequenceDirector, text);
+            letterbox.Initialize(sequenceDirector, () => currentState, time);
             imaging.Initialize(sequenceDirector, interactions, router, time, text);
             recovery.Initialize(interactions, time, text);
             reveal.Initialize(time, text);
@@ -215,7 +230,7 @@ namespace Abandoned.SpaceApps
             switch (stepId)
             {
                 case "PIO.Launch": launch.Begin(); break;
-                case "PIO.Belt": BeginCinema(stepId, "PIO.Belt", belt.Sequence); break; // cinema: a arena de poeira interativa não é usada
+                case "PIO.Belt": BeginCinema(stepId, "PIO.Belt", beltCinemaSequence); break; // cinema: a arena de poeira interativa não é usada
                 case "PIO.JupiterApproach": BeginCinema(stepId, "PIO.JupiterApproach", jupiterSequence); break;
                 case "PIO.Imaging": imaging.Begin(); break;
                 case "PIO.Closest": BeginCinema(stepId, "PIO.Closest", closestSequence); break;
@@ -330,6 +345,16 @@ namespace Abandoned.SpaceApps
         /// <summary>Cancela a atividade do estado atual e tudo que ela deixou: legenda, música, efeitos, recuperação e fotos.</summary>
         void CancelActive()
         {
+            if (beltCounter != null)
+                beltCounter.Hide();
+            if (jupiterReveal != null)
+                jupiterReveal.Hide();
+            if (closestHud != null)
+                closestHud.Hide();
+            if (yearsHud != null)
+                yearsHud.Hide();
+            if (firstsHud != null)
+                firstsHud.Hide();
             if (cinemaState != null)
             {
                 cinemaState = null;
@@ -394,6 +419,13 @@ namespace Abandoned.SpaceApps
             Require(belt, nameof(belt));
             Require(jupiterSequence, nameof(jupiterSequence));
             Require(closestSequence, nameof(closestSequence));
+            Require(beltCinemaSequence, nameof(beltCinemaSequence));
+            Require(beltCounter, nameof(beltCounter));
+            Require(jupiterReveal, nameof(jupiterReveal));
+            Require(closestHud, nameof(closestHud));
+            Require(yearsHud, nameof(yearsHud));
+            Require(firstsHud, nameof(firstsHud));
+            Require(letterbox, nameof(letterbox));
             Require(imaging, nameof(imaging));
             Require(recovery, nameof(recovery));
             Require(reveal, nameof(reveal));
@@ -445,6 +477,8 @@ namespace Abandoned.SpaceApps
                 errors.AddRange(jupiterSequence.Validate().ConvertAll(e => $"{owner}: {e}"));
             if (closestSequence != null)
                 errors.AddRange(closestSequence.Validate().ConvertAll(e => $"{owner}: {e}"));
+            if (beltCinemaSequence != null)
+                errors.AddRange(beltCinemaSequence.Validate().ConvertAll(e => $"{owner}: {e}"));
             return errors;
         }
     }

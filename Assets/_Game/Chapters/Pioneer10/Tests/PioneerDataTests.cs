@@ -45,8 +45,8 @@ namespace Abandoned.SpaceApps.Tests
         {
             Assert.That(chapter.states.Select(s => s.id), Is.EqualTo(PioneerPresentation.StateIds), "mesmos IDs e ordem do palco da PIO-003");
             Assert.That(chapter.states.Select(s => s.order), Is.EqualTo(Enumerable.Range(1, 9)));
-            Assert.That(chapter.states.Select(s => s.nominalSeconds), Is.EqualTo(new[] { 40, 58, 27, 74, 40, 47, 39, 52, 38 }));
-            Assert.That(chapter.states.Sum(s => s.nominalSeconds), Is.EqualTo(415));
+            Assert.That(chapter.states.Select(s => s.nominalSeconds), Is.EqualTo(new[] { 40, 50, 30, 64, 65, 33, 55, 40, 40 }));
+            Assert.That(chapter.states.Sum(s => s.nominalSeconds), Is.EqualTo(417));
 
             var cursor = 0;
             foreach (var state in chapter.states)
@@ -56,7 +56,7 @@ namespace Abandoned.SpaceApps.Tests
                 Assert.That(cursor - state.globalStartSeconds, Is.EqualTo(state.nominalSeconds), state.id);
             }
 
-            Assert.That(cursor, Is.EqualTo(415));
+            Assert.That(cursor, Is.EqualTo(417));
         }
 
         [Test]
@@ -115,7 +115,7 @@ namespace Abandoned.SpaceApps.Tests
         [Test]
         public void TheIntegratedSequencesUseTheSameCuesAndWindowsAsTheData()
         {
-            var sequences = new[] { "PIO_Launch", "PIO_Belt", "PIO_Imaging" };
+            var sequences = new[] { "PIO_Launch", "PIO_BeltCinema", "PIO_Imaging" };
             foreach (var name in sequences)
             {
                 var sequence = AssetDatabase.LoadAssetAtPath<SequenceDefinition>($"Assets/_Game/Chapters/Pioneer10/Sequences/{name}.asset");

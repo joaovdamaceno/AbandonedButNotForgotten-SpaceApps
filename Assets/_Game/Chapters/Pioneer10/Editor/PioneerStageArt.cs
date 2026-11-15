@@ -216,6 +216,396 @@ namespace Abandoned.SpaceApps.EditorTools
         /// brilho vêm de uma paleta (<see cref="StarPalette"/>) via UV, para um único material e um único draw call.
         /// Tamanho angular em graus: legível de 720p a 1080p sem virar mancha.
         /// </summary>
+        /// <summary>
+        /// Uma pedra irregular (icosfera de 80 faces com vértices deslocados, sombreamento chapado), de raio ~<paramref name="radiusMeters"/>.
+        /// Determinística pela semente. Acrescenta ao mesmo <paramref name="vertices"/>/<paramref name="triangles"/> para juntar muitas pedras numa malha.
+        /// </summary>
+        public static void AppendRock(List<Vector3> vertices, List<Vector3> normals, List<int> triangles, Vector3 center, float radiusMeters, int seed)
+        {
+            var random = new System.Random(seed);
+            float Next() => (float)random.NextDouble();
+            var t = (1f + Mathf.Sqrt(5f)) * 0.5f;
+            var basis = new[]
+            {
+                new Vector3(-1, t, 0), new Vector3(1, t, 0), new Vector3(-1, -t, 0), new Vector3(1, -t, 0),
+                new Vector3(0, -1, t), new Vector3(0, 1, t), new Vector3(0, -1, -t), new Vector3(0, 1, -t),
+                new Vector3(t, 0, -1), new Vector3(t, 0, 1), new Vector3(-t, 0, -1), new Vector3(-t, 0, 1),
+            };
+            var faces = new[]
+            {
+                0, 11, 5, 0, 5, 1, 0, 1, 7, 0, 7, 10, 0, 10, 11, 1, 5, 9, 5, 11, 4, 11, 10, 2, 10, 7, 6, 7, 1, 8,
+                3, 9, 4, 3, 4, 2, 3, 2, 6, 3, 6, 8, 3, 8, 9, 4, 9, 5, 2, 4, 11, 6, 2, 10, 8, 6, 7, 9, 8, 1,
+            };
+            var stretch = new Vector3(0.7f + Next() * 0.6f, 0.7f + Next() * 0.6f, 0.7f + Next() * 0.6f);
+            var rotation = Quaternion.Euler(Next() * 360f, Next() * 360f, Next() * 360f);
+            var radii = new float[basis.Length];
+            for (var i = 0; i < radii.Length; i++)
+                radii[i] = 0.78f + Next() * 0.44f;
+
+            // Cada vértice da icosfera recebe um raio; as faces ficam planas (um normal por face).
+            Vector3 Corner(int i) => center + rotation * Vector3.Scale(basis[i].normalized * (radiusMeters * radii[i]), stretch);
+            for (var f = 0; f < faces.Length; f += 3)
+            {
+                var a = Corner(faces[f]);
+                var b = Corner(faces[f + 1]);
+                var c = Corner(faces[f + 2]);
+                var normal = Vector3.Cross(b - a, c - a).normalized;
+                if (Vector3.Dot(normal, a - center) < 0f)
+                {
+                    (b, c) = (c, b);
+                    normal = -normal;
+                }
+
+                var baseIndex = vertices.Count;
+                vertices.Add(a);
+                vertices.Add(b);
+                vertices.Add(c);
+                normals.Add(normal);
+                normals.Add(normal);
+                normals.Add(normal);
+                triangles.Add(baseIndex);
+                triangles.Add(baseIndex + 1);
+                triangles.Add(baseIndex + 2);
+            }
+        }
+
+        /// <summary>
+        /// Campo de pedras do cinturão (roteiro v2, cena 2): <paramref name="count"/> pedras num cilindro de raio
+        /// <paramref name="radiusMeters"/> ao redor do eixo <paramref name="axis"/> que sai da origem (a sonda), de
+        /// <paramref name="minDepth"/> a <paramref name="maxDepth"/> metros ATRÁS dela. Numa teleobjetiva isso vira uma parede
+        /// compacta; num plano aberto, as pedras ficam pequenas e longe umas das outras. Determinístico pela semente.
+        /// </summary>
+        public static void RockField(Mesh mesh, int count, int seed, Vector3 axis, float minDepth, float maxDepth, float cameraMeters, float halfConeDegrees, float minFraction, float maxFraction)
+        {
+            var random = new System.Random(seed);
+            float Next() => (float)random.NextDouble();
+            axis.Normalize();
+            var right = Vector3.Cross(Vector3.up, axis).normalized;
+            var up = Vector3.Cross(axis, right);
+            var vertices = new List<Vector3>();
+            var normals = new List<Vector3>();
+            var triangles = new List<int>();
+            for (var i = 0; i < count; i++)
+            {
+                var depth = Mathf.Lerp(minDepth, maxDepth, Next());
+                var angle = Next() * Mathf.PI * 2f;
+                // Cone da câmera teleobjetiva (cameraMeters atrás da sonda, meio ângulo halfConeDegrees): cada pedra tem o mesmo
+                // tamanho angular típico, qualquer que seja a profundidade (muitas pequenas, poucas grandes), e todas cabem no quadro.
+                var distance = cameraMeters + depth;
+                var radial = distance * Mathf.Tan(halfConeDegrees * Mathf.Deg2Rad) * Mathf.Sqrt(Next());
+                var size = distance * Mathf.Lerp(minFraction, maxFraction, Next() * Next());
+                var center = axis * depth + right * (Mathf.Cos(angle) * radial) + up * (Mathf.Sin(angle) * radial);
+                AppendRock(vertices, normals, triangles, center, size, seed * 7919 + i);
+            }
+
+            mesh.Clear();
+            mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+            mesh.SetVertices(vertices);
+            mesh.SetNormals(normals);
+            mesh.SetTriangles(triangles, 0);
+            mesh.RecalculateBounds();
+        }
+
+        // ---------- Superfícies de planeta (roteiro v2: a Lua e Marte; geradas por código, sem asset externo) ----------
+
+        /// <summary>smoothstep de shader: 0 abaixo de <paramref name="edge0"/>, 1 acima de <paramref name="edge1"/>.</summary>
+        static float Smooth(float edge0, float edge1, float x)
+        {
+            var t = Mathf.Clamp01((x - edge0) / (edge1 - edge0));
+            return t * t * (3f - 2f * t);
+        }
+
+        static float Hash(int x, int y, int seed)
+        {
+            unchecked
+            {
+                var h = (uint)(x * 374761393 + y * 668265263 + seed * 1274126177);
+                h = (h ^ (h >> 13)) * 1274126177u;
+                return ((h ^ (h >> 16)) & 0xFFFFFF) / (float)0x1000000;
+            }
+        }
+
+        /// <summary>Ruído de valor 0–1, periódico em <paramref name="period"/> células no eixo X (para a textura fechar a volta no planeta).</summary>
+        static float ValueNoise(float x, float y, int period, int seed)
+        {
+            var x0 = Mathf.FloorToInt(x);
+            var y0 = Mathf.FloorToInt(y);
+            var fx = x - x0;
+            var fy = y - y0;
+            fx = fx * fx * (3f - 2f * fx);
+            fy = fy * fy * (3f - 2f * fy);
+            float Cell(int cx, int cy) => Hash(((cx % period) + period) % period, cy, seed);
+            var a = Mathf.Lerp(Cell(x0, y0), Cell(x0 + 1, y0), fx);
+            var b = Mathf.Lerp(Cell(x0, y0 + 1), Cell(x0 + 1, y0 + 1), fx);
+            return Mathf.Lerp(a, b, fy);
+        }
+
+        /// <summary>Ruído fractal 0–1 fechando a volta no eixo X; <paramref name="baseCells"/> células na largura da imagem.</summary>
+        static float Fractal(float u, float v, int baseCells, int octaves, int seed)
+        {
+            var sum = 0f;
+            var amplitude = 0.5f;
+            var total = 0f;
+            var cells = baseCells;
+            for (var o = 0; o < octaves; o++)
+            {
+                sum += amplitude * ValueNoise(u * cells, v * cells * 0.5f, cells, seed + o * 31);
+                total += amplitude;
+                amplitude *= 0.5f;
+                cells *= 2;
+            }
+
+            return sum / total;
+        }
+
+        /// <summary>
+        /// Lua (equiretangular): terras claras, mares escuros de baixa frequência e crateras com borda clara. Cinza neutro (a Lua não
+        /// tem cor); o brilho médio fica perto de 0,5 para que a luz do palco a revele.
+        /// </summary>
+        public static Texture2D MoonSurface(int width, int height, int seed)
+        {
+            var pixels = new Color32[width * height];
+            var random = new System.Random(seed);
+            var craters = new List<Vector3>(); // u, v, raio (em v)
+            for (var i = 0; i < 260; i++)
+            {
+                var size = Mathf.Lerp(0.008f, 0.07f, Mathf.Pow((float)random.NextDouble(), 2.6f));
+                craters.Add(new Vector3((float)random.NextDouble(), 0.1f + (float)random.NextDouble() * 0.8f, size));
+            }
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var u = x / (float)width;
+                    var v = y / (float)height;
+                    var terrain = Fractal(u, v, 6, 5, seed);
+                    var mare = Smooth(0.52f, 0.62f, Fractal(u, v, 3, 3, seed + 977));
+                    var shade = Mathf.Lerp(0.58f, 0.34f, mare) + (terrain - 0.5f) * 0.28f;
+                    foreach (var crater in craters)
+                    {
+                        var du = Mathf.Abs(u - crater.x);
+                        du = Mathf.Min(du, 1f - du) * 2f; // a imagem é 2:1: u vale o dobro de v em ângulo
+                        var d = Mathf.Sqrt(du * du + (v - crater.y) * (v - crater.y)) / crater.z;
+                        if (d > 1.25f)
+                            continue;
+                        if (d < 0.92f)
+                            shade -= (1f - d) * 0.16f; // fundo mais escuro
+                        else
+                            shade += (1f - Mathf.Abs(d - 1.05f) / 0.2f) * 0.14f; // borda clara
+                    }
+
+                    var value = (byte)Mathf.RoundToInt(Mathf.Clamp01(shade) * 255f);
+                    pixels[y * width + x] = new Color32(value, value, (byte)Mathf.Max(0, value - 3), 255);
+                }
+            }
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false) { name = "PIO_MoonSurface" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
+        /// <summary>
+        /// Marte (equiretangular): deserto ocre-alaranjado, regiões escuras de baixa frequência (como Syrtis Major), crateras
+        /// suaves e calotas polares claras. Cores tiradas do aspecto geral do planeta, não de um mapa real.
+        /// </summary>
+        public static Texture2D MarsSurface(int width, int height, int seed)
+        {
+            var pixels = new Color32[width * height];
+            var desert = new Color(0.74f, 0.42f, 0.24f);
+            var dark = new Color(0.34f, 0.2f, 0.15f);
+            var light = new Color(0.86f, 0.62f, 0.42f);
+            var ice = new Color(0.93f, 0.92f, 0.9f);
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var u = x / (float)width;
+                    var v = y / (float)height;
+                    var region = Smooth(0.5f, 0.64f, Fractal(u, v, 3, 4, seed));
+                    var detail = Fractal(u, v, 12, 4, seed + 515);
+                    var color = Color.Lerp(desert, dark, region * 0.85f);
+                    color = Color.Lerp(color, light, Smooth(0.55f, 0.8f, detail) * (1f - region) * 0.7f);
+                    color *= 0.88f + detail * 0.24f;
+                    var latitude = Mathf.Abs(v - 0.5f) * 2f; // 0 no equador, 1 nos polos
+                    var cap = Smooth(0.86f, 0.93f, latitude + (Fractal(u, v, 8, 3, seed + 31) - 0.5f) * 0.12f);
+                    color = Color.Lerp(color, ice, cap);
+                    color.a = 1f; // as multiplicações acima também escalam o alfa
+                    pixels[y * width + x] = color;
+                }
+            }
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false) { name = "PIO_MarsSurface" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
+        /// <summary>
+        /// Terra (equiretangular): oceano azul, continentes verde-marrom de baixa frequência, nuvens brancas e calotas polares. Estilizada
+        /// (os continentes não são os reais): serve para a comparação de tamanho com Júpiter, onde ocupa poucas dezenas de pixels.
+        /// </summary>
+        public static Texture2D EarthSurface(int width, int height, int seed)
+        {
+            var pixels = new Color32[width * height];
+            var ocean = new Color(0.05f, 0.2f, 0.52f);
+            var deep = new Color(0.02f, 0.1f, 0.34f);
+            var green = new Color(0.22f, 0.42f, 0.18f);
+            var brown = new Color(0.52f, 0.42f, 0.26f);
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var u = x / (float)width;
+                    var v = y / (float)height;
+                    var land = Smooth(0.54f, 0.58f, Fractal(u, v, 3, 5, seed));
+                    var color = Color.Lerp(ocean, deep, Fractal(u, v, 6, 3, seed + 7) * 0.8f);
+                    var ground = Color.Lerp(green, brown, Smooth(0.45f, 0.7f, Fractal(u, v, 9, 3, seed + 19)));
+                    color = Color.Lerp(color, ground, land);
+                    var clouds = Smooth(0.5f, 0.72f, Fractal(u, v, 5, 5, seed + 101)) * 0.85f;
+                    color = Color.Lerp(color, Color.white, clouds);
+                    var latitude = Mathf.Abs(v - 0.5f) * 2f;
+                    color = Color.Lerp(color, Color.white, Smooth(0.84f, 0.9f, latitude));
+                    color.a = 1f;
+                    pixels[y * width + x] = color;
+                }
+            }
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false) { name = "PIO_EarthSurface" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
+        /// <summary>
+        /// Luas galileanas (equiretangular), estilizadas: <paramref name="kind"/> 0 Ganimedes (cinza-marrom com manchas escuras e crateras
+        /// de borda clara), 1 Calisto (escura e muito craterizada), 2 Europa (clara, creme, com fraturas marrom-avermelhadas).
+        /// Cores do aspecto geral de cada lua, não de mapas reais.
+        /// </summary>
+        public static Texture2D GalileanMoonSurface(int width, int height, int seed, int kind)
+        {
+            var pixels = new Color32[width * height];
+            Color baseColor, darkColor;
+            int craterCount;
+            switch (kind)
+            {
+                case 1:
+                    baseColor = new Color(0.36f, 0.31f, 0.27f);
+                    darkColor = new Color(0.2f, 0.18f, 0.16f);
+                    craterCount = 420;
+                    break;
+                case 2:
+                    baseColor = new Color(0.84f, 0.81f, 0.74f);
+                    darkColor = new Color(0.62f, 0.5f, 0.4f);
+                    craterCount = 24;
+                    break;
+                default:
+                    baseColor = new Color(0.55f, 0.5f, 0.44f);
+                    darkColor = new Color(0.32f, 0.29f, 0.26f);
+                    craterCount = 130;
+                    break;
+            }
+
+            var random = new System.Random(seed);
+            var craters = new List<Vector3>();
+            for (var i = 0; i < craterCount; i++)
+                craters.Add(new Vector3((float)random.NextDouble(), 0.08f + (float)random.NextDouble() * 0.84f, Mathf.Lerp(0.006f, kind == 2 ? 0.05f : 0.032f, Mathf.Pow((float)random.NextDouble(), 2.4f))));
+
+            for (var y = 0; y < height; y++)
+            {
+                for (var x = 0; x < width; x++)
+                {
+                    var u = x / (float)width;
+                    var v = y / (float)height;
+                    var patch = Smooth(0.5f, 0.64f, Fractal(u, v, 4, 4, seed));
+                    var color = Color.Lerp(baseColor, darkColor, patch * (kind == 2 ? 0.25f : 0.85f));
+                    color *= 0.9f + Fractal(u, v, 14, 4, seed + 37) * 0.2f;
+                    if (kind == 2)
+                    {
+                        // fraturas: cristas finas onde o ruído cruza 0,5
+                        var ridge = Mathf.Abs(Fractal(u, v, 5, 4, seed + 211) - 0.5f);
+                        color = Color.Lerp(new Color(0.55f, 0.33f, 0.22f), color, Smooth(0.0f, 0.035f, ridge));
+                    }
+
+                    var shade = 0f;
+                    foreach (var crater in craters)
+                    {
+                        var du = Mathf.Abs(u - crater.x);
+                        du = Mathf.Min(du, 1f - du) * 2f;
+                        var d = Mathf.Sqrt(du * du + (v - crater.y) * (v - crater.y)) / crater.z;
+                        if (d > 1.25f)
+                            continue;
+                        shade += d < 0.92f ? -(1f - d) * 0.09f : (1f - Mathf.Abs(d - 1.05f) / 0.2f) * 0.07f;
+                    }
+
+                    color = new Color(color.r + shade, color.g + shade, color.b + shade, 1f);
+                    pixels[y * width + x] = color;
+                }
+            }
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false) { name = "PIO_GalileanMoon" + kind };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
+        /// <summary>Ruído branco tileável em tons de cinza, com alfa variável (estática do medidor de radiação).</summary>
+        public static Texture2D StaticNoise(int size, int seed)
+        {
+            var random = new System.Random(seed);
+            var pixels = new Color32[size * size];
+            for (var i = 0; i < pixels.Length; i++)
+            {
+                var gray = (byte)random.Next(120, 256);
+                pixels[i] = new Color32(gray, gray, gray, (byte)random.Next(0, 200));
+            }
+
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false) { name = "PIO_StaticNoise" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
+        /// <summary>
+        /// Faixa plana (face para cima) seguindo <paramref name="points"/>, de largura <paramref name="width"/>, deitada no plano
+        /// horizontal (a trajetória vista de cima). Os vértices ficam em <paramref name="up"/> sobre o plano da linha.
+        /// </summary>
+        public static void Ribbon(Mesh mesh, IReadOnlyList<Vector3> points, float width)
+        {
+            var vertices = new List<Vector3>();
+            var normals = new List<Vector3>();
+            var uvs = new List<Vector2>();
+            var triangles = new List<int>();
+            for (var i = 0; i < points.Count; i++)
+            {
+                var previous = points[Mathf.Max(0, i - 1)];
+                var next = points[Mathf.Min(points.Count - 1, i + 1)];
+                var direction = (next - previous).normalized;
+                var side = Vector3.Cross(direction, Vector3.up).normalized * (width * 0.5f);
+                vertices.Add(points[i] - side);
+                vertices.Add(points[i] + side);
+                normals.Add(Vector3.up);
+                normals.Add(Vector3.up);
+                var along = i / (float)(points.Count - 1);
+                uvs.Add(new Vector2(0f, along));
+                uvs.Add(new Vector2(1f, along));
+            }
+
+            for (var i = 0; i < points.Count - 1; i++)
+            {
+                var a = i * 2;
+                triangles.AddRange(new[] { a, a + 1, a + 2, a + 1, a + 3, a + 2 }); // face voltada para cima (a câmera olha de cima)
+            }
+
+            mesh.Clear();
+            mesh.SetVertices(vertices);
+            mesh.SetNormals(normals);
+            mesh.SetUVs(0, uvs);
+            mesh.SetTriangles(triangles, 0);
+            mesh.RecalculateBounds();
+        }
+
         public static void BrightStars(Mesh mesh, int count, int seed, float minDegrees, float maxDegrees)
         {
             var vertices = new List<Vector3>();

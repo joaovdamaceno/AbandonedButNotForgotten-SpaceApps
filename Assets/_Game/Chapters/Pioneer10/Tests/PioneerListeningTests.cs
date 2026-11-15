@@ -126,8 +126,8 @@ namespace Abandoned.SpaceApps.Tests
             var sequence = listening.Sequence;
             Assert.That(sequence.Validate(), Is.Empty);
             Assert.That(director.Validate(sequence), Is.Empty);
-            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(52f).Within(1e-4f));
-            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 7f, 9f, 9f, 12f, 8f, 7f }), "ensinar 0–7, contatos 7–16/16–25/25–37, tentativa 37–45, respirar 45–52");
+            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(40f).Within(1e-4f));
+            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 6f, 5.5f, 5f, 7.5f, 7f, 9f }), "ensinar 0–7, contatos 7–16/16–25/25–37, tentativa 37–45, respirar 45–52");
             var bare = new GameObject("bare").AddComponent<PioneerListening>();
             Assert.That(bare.ValidateSetup(), Is.Not.Empty, "sem referências a montagem reclama");
             Object.DestroyImmediate(bare.gameObject);
@@ -287,7 +287,7 @@ namespace Abandoned.SpaceApps.Tests
             Press(keyboard.eKey);
             RunUntil(() => contacts.Count == 1, 30f);
             RunUntil(() => listening.Phase == ListeningPhase.Contact2);
-            Run(8f); // E continua mantido durante toda a rodada 2
+            Run(4f); // E continua mantido durante a rodada 2 (5 s)
             Assert.That(contacts, Is.EqualTo(new[] { 1 }), "o E mantido não conclui a rodada seguinte");
             Assert.That(listening.ListenProgress, Is.Zero);
             Assert.That(listening.ViewState().Hold, Is.EqualTo(ListeningHoldState.Rearm));
@@ -328,7 +328,7 @@ namespace Abandoned.SpaceApps.Tests
             Run(20f);
             Assert.That(listening.IsWaitingForPrevious, Is.True, "a rodada 1 não foi feita: o marco de 16 s espera");
             var waitingAt = director.TimeSeconds;
-            Assert.That(waitingAt, Is.EqualTo(16f).Within(0.2f));
+            Assert.That(waitingAt, Is.EqualTo(11.5f).Within(0.2f));
             Run(15f);
             Assert.That(director.TimeSeconds, Is.EqualTo(waitingAt).Within(1e-3f));
             Assert.That(listening.Phase, Is.EqualTo(ListeningPhase.Contact1));

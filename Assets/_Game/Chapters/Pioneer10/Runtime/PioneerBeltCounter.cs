@@ -1,0 +1,126 @@
+using System;
+using System.Globalization;
+using UnityEngine;
+
+namespace Abandoned.SpaceApps
+{
+    /// <summary>
+    /// Roteiro v2, cena 2 · O contador de dias do cinturão (só cinema). Lê o relógio da sequência <c>PIO_BeltCinema</c> (congelado na
+    /// pausa) e desenha no <see cref="BeltPanelView"/>: a data "15 JUL 1972" no começo; depois o contador "Dia n / 215" que acelera
+    /// até o Dia 140 (2 DEZ 1972), para por um instante com o rótulo da pedra solitária (307 Nike) e segue até o Dia 215
+    /// (15 FEV 1973). Os dias são datas reais (a travessia começa em 15/7/1972 e termina em 15/2/1973); a curva entre elas é
+    /// estilizada, e o texto de cada dia sai de chaves (sem frase literal).
+    /// </summary>
+    public sealed class PioneerBeltCounter : MonoBehaviour
+    {
+        /// <summary>Só a data, no começo (mostra "15 JUL 1972").</summary>
+        public const float DateOnlyEndSeconds = 6f;
+        /// <summary>O contador começa a acelerar (início do plano do dolly zoom).</summary>
+        public const float DaysStartSeconds = 19f;
+        /// <summary>Chega ao Dia 140 (2 DEZ 1972).</summary>
+        public const float DaysRampEndSeconds = 30f;
+        /// <summary>Fim da pausa em 140 e da revelação de 307 Nike; o contador segue até o Dia 215.</summary>
+        public const float HoldEndSeconds = 40f;
+        public const float ExitEndSeconds = 47f;
+        public const int StopDay = 140;
+        public const int FinalDay = 215;
+        /// <summary>Quanto o contador acelera: a taxa final é <c>e^k</c> vezes a inicial (k = 5: de ~0,4 a ~63 dias por segundo).</summary>
+        public const float Acceleration = 5f;
+
+        /// <summary>Primeiro dia da travessia: 15 de julho de 1972.</summary>
+        public static readonly DateTime StartDate = new DateTime(1972, 7, 15);
+
+        [SerializeField] BeltPanelView panel;
+        [SerializeField, Tooltip("Sequência que este contador acompanha (PIO_BeltCinema).")] SequenceDefinition sequence;
+        [SerializeField, Tooltip("Onde a pedra solitária aparece no quadro do anchor PIO.Belt.Nike (0–1, origem em cima à esquerda).")]
+        Vector2 nikeViewport = new Vector2(0.685f, 0.37f);
+
+        SequenceDirector director;
+        Func<string, string> text;
+
+        public Vector2 NikeViewport => nikeViewport;
+
+        public void Initialize(SequenceDirector sequenceDirector, Func<string, string> textResolver)
+        {
+            director = sequenceDirector;
+            text = textResolver;
+            Hide();
+        }
+
+        /// <summary>O dia do contador no instante <paramref name="seconds"/> da sequência (0 antes de acelerar).</summary>
+        public static int DayAt(float seconds)
+        {
+            if (seconds <= DaysStartSeconds)
+                return 0;
+            if (seconds < DaysRampEndSeconds)
+            {
+                var u = (seconds - DaysStartSeconds) / (DaysRampEndSeconds - DaysStartSeconds);
+                return Mathf.FloorToInt(StopDay * (Mathf.Exp(Acceleration * u) - 1f) / (Mathf.Exp(Acceleration) - 1f));
+            }
+
+            if (seconds < HoldEndSeconds)
+                return StopDay;
+            if (seconds < ExitEndSeconds)
+            {
+                var u = (seconds - HoldEndSeconds) / (ExitEndSeconds - HoldEndSeconds);
+                return StopDay + Mathf.FloorToInt((FinalDay - StopDay) * (u * u * (3f - 2f * u)));
+            }
+
+            return FinalDay;
+        }
+
+        /// <summary>A data do <paramref name="day"/>-ésimo dia ("2 DEZ 1972"); <paramref name="months"/> são os doze meses abreviados separados por espaço.</summary>
+        public static string DateText(int day, string months)
+        {
+            var date = StartDate.AddDays(day);
+            var names = (months ?? string.Empty).Split(' ');
+            var month = names.Length >= 12 ? names[date.Month - 1] : date.Month.ToString(CultureInfo.InvariantCulture);
+            return date.Day.ToString(CultureInfo.InvariantCulture) + " " + month + " " + date.Year.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public static bool DayCounterVisibleAt(float seconds) => seconds >= DaysStartSeconds;
+
+        public static bool DateOnlyVisibleAt(float seconds) => seconds < DateOnlyEndSeconds;
+
+        /// <summary>A pedra solitária (e seu rótulo) aparecem na pausa em 2 DEZ 1972.</summary>
+        public static bool NikeVisibleAt(float seconds) => seconds >= DaysRampEndSeconds && seconds < HoldEndSeconds;
+
+        void Update() => Tick();
+
+        void OnDisable() => Hide();
+
+        /// <summary>Atualiza o painel pelo relógio da sequência. Testes chamam direto.</summary>
+        public void Tick()
+        {
+            if (panel == null || director == null)
+                return;
+
+            if (!director.IsPlaying || director.Current != sequence)
+            {
+                Hide();
+                return;
+            }
+
+            var t = director.TimeSeconds;
+            var counter = DayCounterVisibleAt(t);
+            var dateOnly = DateOnlyVisibleAt(t);
+            var day = DayAt(t);
+            var months = Resolve(BeltPanelView.MonthsKey);
+            var dayText = counter ? Resolve(BeltPanelView.DayKey).Replace("{count}", day.ToString(CultureInfo.InvariantCulture)) : string.Empty;
+            var nike = NikeVisibleAt(t);
+            panel.SetCounter(counter || dateOnly, dayText, DateText(day, months), nike, nike ? Resolve(BeltPanelView.NearestKey) : string.Empty, nikeViewport);
+        }
+
+        public void Hide()
+        {
+            if (panel != null)
+                panel.SetCounter(false, string.Empty, string.Empty, false, string.Empty, nikeViewport);
+        }
+
+        string Resolve(string key)
+        {
+            var value = text != null ? text(key) : null;
+            return string.IsNullOrEmpty(value) ? key : value;
+        }
+    }
+}

@@ -370,3 +370,61 @@ O padrão das atividades é a versão interativa (os testes de cada uma seguem i
 O painel da foto ganhou o rótulo "Passo n/3" e prompts por passo (`PIO.UI.step`, `spin`, `switch_blue`, `combine`, PT-BR e EN) e esconde o cursor de fase na versão nova; as quatro legendas 04.02–04.05 foram reescritas para a história de três passos. O padrão das duas atividades continua sendo a versão antiga (os testes de cada uma seguem iguais) e o controlador liga os modos novos.
 
 **Limitações.** As durações não mudaram (74 s e 52 s; o roteiro quer 45 s e 40 s, ver `Docs/Chapters/PioneerV2/FASES.md`). A atividade de recuperação (`ImagingRecovery`) continua no código e nos testes, mas o capítulo não a inicia. O painel mostra oito faixas de imagem (quatro por cor), não duas imagens inteiras que se sobrepõem: a "montagem" de Júpiter é a existente. Quadros do painel renderizados com as chaves no lugar do texto (a captura não resolve idioma); Play Mode com a UI e teste humano não foram exercitados.
+
+## Roteiro v2, fase 4, parte 1 (PIO-021): o cinturão como cinema
+
+O estado `PIO.Belt` toca a sequência própria `PIO_BeltCinema` (54 s; `PIO_Belt`, de 58 s, segue como a da atividade interativa e dos testes dela).
+
+| Tempo | Plano | O que mostra |
+| --- | --- | --- |
+| 0–8 s | `PIO02.Mars` (anchor `PIO.Belt`) | A sonda cruza a órbita de Marte; só a data "15 JUL 1972" |
+| 8–19 s | `PIO02.Fear` (anchor `PIO.Belt.Field`) | Teleobjetiva de 10°: a parede de pedras compacta atrás da sonda |
+| 19–34 s | `PIO02.Days` (mesmo anchor) | Dolly zoom: o campo de visão abre de 10° a 30° e a câmera se aproxima (a distância vezes a tangente da metade do campo é constante, então a sonda não muda de tamanho) enquanto a parede se abre; o contador "Dia n / 215" acelera até o Dia 140 |
+| 34–44 s | `PIO02.Nike` (anchor `PIO.Belt.Nike`) | Corte para um céu vazio e uma pedra solitária; rótulo "307 Nike · o asteroide conhecido mais próximo" apontando para ela; evento `PIO.Belt.Reality` baixa a música; contador parado em 2 DEZ 1972 |
+| 44–54 s | `PIO02.Exit` (anchor `PIO.Belt`) | A sonda sai para o escuro limpo; o contador chega ao Dia 215 (15 FEV 1973) |
+
+- `PioneerBeltCounter` lê o relógio da sequência e desenha no `BeltPanelView` (`counter-root`): data só nos primeiros 6 s, depois "Dia n / 215" e a data; o texto vem das chaves `PIO.UI.belt_day`, `belt_months` e `belt_nearest`. Os dias são datas reais nos extremos; a curva entre eles é estilizada.
+- O campo de pedras (`BeltField`, 1400 pedras, uma malha e uma chamada de desenho, 20 faces por pedra) e a pedra solitária (`BeltNike`) só aparecem nos anchors com `showBeltField` / `showBeltNike`. O campo é gerado no cone da câmera da teleobjetiva, com tamanho angular parecido em qualquer profundidade; o gerador é determinístico pela semente.
+- A duração nominal do estado cai para 54 s e a do capítulo para 411 s (teto de leitura 417 s).
+
+**Limitações.** O campo é de baixa resolução, sem textura. A teleobjetiva é de 10° porque o contrato de planos aceita no mínimo 10° (o roteiro pedia uma lente mais fechada; mudar o contrato exige acordo com a R1). O contador e o rótulo foram verificados por testes de lógica e de layout, não por quadros de UI nem no Play Mode. A Lua e Marte (cena 1) ainda não estão no primeiro plano. Evidência em `QA/PIO-021/README.md`.
+
+## Roteiro v2, fase 4, parte 2 (PIO-022): Marte e a Lua em 3D
+
+- **Marte** (`PioneerPresentation.Mars`, anchor `PIO.Belt.Mars`, `showMars`): no plano de abertura do cinturão (`PIO02.Mars`, 8 s) uma esfera de 85 m de raio a 880 m da câmera, 9° à direita e 3° abaixo do centro do quadro, iluminada pela luz `PIO.Light.Cruise`; a sonda segue no centro e não é coberta. Só aparece nesse anchor.
+- **Superfícies procedurais** (`PioneerStageArt.MoonSurface` e `MarsSurface`, 1024×512, determinísticas pela semente, sem asset externo): a Lua tem terras claras, mares escuros e crateras com borda clara; Marte é ocre-alaranjado com regiões escuras e calotas polares claras. Texturas em `Art/Stage/Textures/PIO_MarsSurface.png` e `Art/Launch/Textures/PIO_MoonSurface.png`; a Lua substitui o disco cinza do gráfico Terra–Lua (`PIO01.C`).
+- **Limitações.** As superfícies são estilizadas, não mapas reais. O contador "11 horas depois" e um sobrevoo da Lua em 3D (cena 1) não foram feitos: exigem alongar o lançamento e mexem nos marcos de tempo dos testes dele, então ficam para a retemporização. Evidência em `QA/PIO-022/README.md`.
+
+## Roteiro v2, fase 4, parte 3 (PIO-023): o rei dos planetas
+
+- `PioneerJupiterReveal` (novo; `JupiterReveal` no capítulo) acompanha o relógio de `PIO_JupiterApproach`: nos primeiros 9 s (`PIO03.Grow`) a escala de Júpiter vai de 0,015 a 1 em crescimento exponencial (o olho vê uma taxa constante) enquanto o campo de visão abre de 70° a 36°; a câmera continua perto da sonda, que fica em silhueta no primeiro plano. Fora da sequência, `Hide` devolve a escala do palco (as cenas 4 e 5 usam o mesmo Júpiter).
+- A Terra de comparação (`PioneerPresentation.Earth`, 1/11,2 do diâmetro de Júpiter, razão real dos diâmetros equatoriais, textura procedural `PioneerStageArt.EarthSurface`) entra por fora do quadro à esquerda em 9,5 s, anda até o ponto previsto em 14 s e sai no corte para o fotopolarímetro (19 s). A posição vem de `PioneerStageBuilder.ViewportPoint` (um ponto do quadro, não coordenadas à mão).
+- O campo de visão do plano aberto passa de 44° a 36° (`ApproachOpenFov`) para Júpiter ocupar 70% ou mais da altura do quadro, como o roteiro pede.
+- **Limitações.** A Terra é estilizada. O crescimento é do próprio planeta, não uma viagem por distâncias reais. Faltam a Grande Mancha Vermelha cruzando, o brilho no limbo e o terminador marcado; a duração segue 27 s (o roteiro pede 30 s). Evidência em `QA/PIO-023/README.md`.
+
+## Roteiro v2, fase 4, parte 4 (PIO-024): o mais perto possível
+
+- **HUD de cinema** (`UI/CinemaHud.uxml/.uss`, `CinemaHudView`, builder `pioneer10.stage.hud`, prefab `UI/CinemaHud.prefab`, raiz `[R5] Pioneer Cinema HUD`): painel UI Toolkit com o tema da UI-001, sem frases literais (chaves `PIO.UI.rad_title`, `speed_label`, `dist_moon`, `dist_clouds`), reaproveitado pelas partes seguintes. Capturado por `Editor/PioneerHudCapture.cs` (`QA/PIO-024/hud/`).
+- `PioneerClosestHud` (driver preso ao relógio de `PIO_Closest`): medidor de radiação que sobe de 6 a 15 s (curva estilizada) com estática (ruído tileável que treme a 24 quadros por segundo, opacidade de 0,05 a 0,4) até 17 s; de 24 a 29 s o texto "Mais de 120.000 km/h" e as duas barras de distância (Terra–Lua 384.400 km; sonda–nuvens 130.000 km, 1/2,96 da primeira).
+- **Luas** (`PioneerPresentation.Moons`, anchors `PIO.Closest.Ganymede/Callisto/Europa`, `showMoons`): três esferas com texturas procedurais estilizadas e raios na razão real entre elas (4,4; 4,0 e 2,6 m, maiores que a razão com Júpiter para aparecerem); cada uma cruza o quadro por 2 s (os 6 s da legenda 09.01). O plano de chegada antigo saiu; a duração segue 40 s.
+- **Trajetória** (`PioneerPresentation.Trajectory`, anchor `PIO.Closest.Bend`, `showTrajectory`): faixa de luz que chega a 130 m do centro de Júpiter, curva ~38° na direção dele e segue, vista por uma câmera 620 m acima do plano da linha. Linha de composição, não cálculo orbital.
+- **Limitações.** Superfícies estilizadas; faltam as fotos reais das luas, Io com o "X", comandos falsos num painel, o mergulho rente às nuvens, linhas de campo gravitacional, a seta de Júpiter ao redor do Sol e o velocímetro subindo. Evidência em `QA/PIO-024/README.md`.
+
+## Roteiro v2, fase 4, parte 5 (PIO-025): os anos
+
+- `PioneerYearsHud` (driver preso ao relógio de `PIO_Outbound`) desenha no HUD de cinema (`CinemaHudView.SetYears`, seção "years" de `UI/CinemaHud.uxml`): o **ano em destaque** de 1974 a 1998, parado nos marcos reais (Saturno 1976, Urano 1979, Netuno 13 jun 1983, fim do acompanhamento de rotina 31 mar 1997, Voyager 1 em 1998); a **linha do tempo** (1973–1998, anos de marco mais altos e com número); cinco **ícones de instrumentos** (câmera, radiação, plasma, meteoroides, campo magnético) que apagam em turnos conforme a energia cai; e o **medidor de energia dos RTG** com só as duas marcas reais, 155 W no lançamento e ~140 W em Júpiter, e uma queda exponencial ESTILIZADA depois (o painel diz "curva estilizada").
+- `OutboundAtlas.YearsMode` (ligado pelo controlador) esconde o painel do atlas para a sonda em 3D aparecer; a lógica de fases, hold e conclusão não muda, e o padrão (falso) segue mostrando o atlas.
+- Dez textos novos (`PIO.UI.past_uranus`, `end_tracking`, `years_energy`, `years_launch`, `years_jupiter`, `inst_*`), 141 chaves.
+- **Limitações.** Os números do roteiro foram conferidos na web: 155 W e ~140 W aparecem em fontes; "~65 W em 2001" e as datas de desligamento (1980 a 1995) não foram confirmados (as fontes dão fevereiro de 1985 para a divisão de energia e 30 set 1995 para o fim da ciência de rotina), por isso o painel não os mostra; pendente de R7. Ícones geométricos, sem som de clique; o ano vai a 1998 (o roteiro vai a 2001). Evidência em `QA/PIO-025/README.md`.
+
+## Roteiro v2, fase 4, parte 6 (PIO-026): as seis primeiras vezes
+
+- `PioneerFirstsHud` (driver preso ao relógio de `PIO_Farewell`; `CinemaHudView.SetFirsts`, seção "firsts" de `UI/CinemaHud.uxml`): no plano `PIO08.Receding` (20–30 s) seis estrelas acendem ao redor da sonda, uma a cada 1,6 s, cada uma com um rótulo curto (`PIO.UI.first_1` a `first_6`); somem quando entra o memorial. As estrelas ficam numa elipse em volta do centro (a primeira no alto à esquerda, em sentido horário) e os rótulos, com no máximo 240 px, saem para fora dela.
+- **As seis** (cada uma com fonte): primeira missão aos planetas exteriores; primeira projetada para ir além de Marte; primeira a cruzar o cinturão de asteroides; primeira a sobrevoar Júpiter; primeira em rota para sair do Sistema Solar; primeira além das órbitas dos planetas · 1983. O "primeira a usar energia totalmente nuclear" do roteiro ficou de fora (a NASA só diz que usava RTGs).
+- Seis textos novos, 147 chaves. **Limitações:** estrelas simples (discos luminosos); sem o plano final com a placa refletindo Aldebaran e sem a constelação de Touro; os rótulos fazem o papel das legendas curtas. Evidência em `QA/PIO-026/README.md`.
+
+## Roteiro v2, fase 5 (PIO-027): barras de cinema e cor por grupo de luz
+
+- **Barras de cinema** (`PioneerLetterbox`, `CinemaHudView.SetLetterbox`, elementos `bar-top` e `bar-bottom` de `UI/CinemaHud.uxml`, desenhados abaixo de todo o resto do HUD): duas barras pretas de 7% da altura cada deslizam em 0,8 s nos sete estados que são só cinema (`PIO.Launch`, `Belt`, `JupiterApproach`, `Closest`, `Plaque`, `Outbound` e `Farewell`) e saem quando o estado acaba. Ficam recolhidas nas duas interações (`PIO.Imaging` e `PIO.Listening`) e no memorial da despedida (a partir de 30 s), que tem botões. As legendas (ordem 20) ficam acima das barras (ordem 12), então o texto cai sobre o preto. O avanço usa o tempo ativo do capítulo.
+- **Cor por grupo de luz** (`PioneerStageBuilder.LightGroups`): o novo `PIO.Light.EarthWarm` (luz principal âmbar, 0,9 de intensidade) substitui o frio `PIO.Light.Night` nos planos da Terra (plataforma de lançamento e antena da Deep Space Network); no espaço, `Cruise` e `FarSun` ficaram mais frios (branco-azulado) e `FarewellRim` e `ColdRim` já eram frios. Júpiter e a placa seguem quentes (iluminados pelo Sol).
+- **Limitações.** Deslize linear, sem easing; sem correção de cor por cena nem pós-processamento (perfil Web leve); as cenas 4 e 8 ficam sem barras inclusive nos trechos de cinema; os quadros do cinturão interativo em `Docs/Art/Pioneer10_Belt` mantêm a luz antiga. Evidência em `QA/PIO-027/README.md`.

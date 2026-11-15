@@ -1,0 +1,257 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e35f14f6948b2459a209433d3dd7cd, type: 3}
+  m_Name: Film_TimeSkip
+  m_EditorClassIdentifier: Assembly-CSharp::Abandoned.SpaceApps.Opportunity.FilmSequence
+  stage: 9
+  duration: 56
+  beats:
+  - at: 0
+    duration: 6
+    from: {x: -1103.33, y: 0.47139004, z: 0.44}
+    to: {x: -1103.33, y: 0.47139004, z: 0.44}
+    yaw: 0
+    endYaw: 0
+    mastFrom: 0
+    mastTo: 0
+    stormFrom: 0
+    stormTo: 0
+    wear: 0.16
+    powerFrom: 1
+    powerTo: 1
+    valley: 0
+    photograph: 0
+    assembly: 0
+    travel: 1
+    secondaryWork: 1
+    hardware: 0
+    captionDuration: 0
+    spirit: 0
+    spiritAt: {x: 0, y: 0, z: 0}
+    spiritYaw: 0
+    spiritTilt: 0
+    spiritSink: 0
+    action: 3
+    titleKey: v10.year2005
+    bodyKey: v13.years.work
+    music: montage
+    movementEase: 0
+  - at: 6
+    duration: 7
+    from: {x: -1074, y: -0.3899051, z: 25}
+    to: {x: -1074, y: -0.3899051, z: 25}
+    yaw: 30
+    endYaw: 30
+    mastFrom: 35
+    mastTo: 15
+    stormFrom: 0.08
+    stormTo: 0.52
+    wear: 0.18
+    powerFrom: 1
+    powerTo: 1
+    valley: 0
+    photograph: 0
+    assembly: 0
+    travel: 1
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 0
+    spiritAt: {x: 0, y: 0, z: 0}
+    spiritYaw: 0
+    spiritTilt: 0
+    spiritSink: 0
+    action: 0
+    titleKey: v3.year2007
+    bodyKey: v15.storm.frequent
+    music: storm
+    movementEase: 0
+  - at: 13
+    duration: 5
+    from: {x: -1074, y: -0.3899051, z: 25}
+    to: {x: -1074, y: -0.3899051, z: 25}
+    yaw: 30
+    endYaw: 30
+    mastFrom: 15
+    mastTo: 0
+    stormFrom: 0.52
+    stormTo: 0.9
+    wear: 0.26
+    powerFrom: 0.7
+    powerTo: 0.18
+    valley: 0
+    photograph: 0
+    assembly: 0
+    travel: 1
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 0
+    spiritAt: {x: 0, y: 0, z: 0}
+    spiritYaw: 0
+    spiritTilt: 0
+    spiritSink: 0
+    action: 0
+    titleKey: 
+    bodyKey: v15.storm.dark
+    music: 
+    movementEase: 0
+  - at: 18
+    duration: 6.5
+    from: {x: -1074, y: -0.3899051, z: 25}
+    to: {x: -1074, y: -0.3899051, z: 25}
+    yaw: 30
+    endYaw: 30
+    mastFrom: 0
+    mastTo: 0
+    stormFrom: 0.9
+    stormTo: 0.18
+    wear: 0.29
+    powerFrom: 0.18
+    powerTo: 1
+    valley: 0
+    photograph: 0
+    assembly: 0
+    travel: 1
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 0
+    spiritAt: {x: 0, y: 0, z: 0}
+    spiritYaw: 0
+    spiritTilt: 0
+    spiritSink: 0
+    action: 0
+    titleKey: 
+    bodyKey: v15.storm.dark
+    music: montage
+    movementEase: 0
+  - at: 24.5
+    duration: 8
+    from: {x: -1135, y: 9.84, z: 3}
+    to: {x: -1135, y: 9.84, z: 3}
+    yaw: 40
+    endYaw: 40
+    mastFrom: 0
+    mastTo: 0
+    stormFrom: 0.28
+    stormTo: 0.34
+    wear: 0.3
+    powerFrom: 1
+    powerTo: 1
+    valley: 0
+    photograph: 0
+    assembly: 0
+    travel: 1
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 1
+    spiritAt: {x: -1126, y: 2.8307931, z: 34}
+    spiritYaw: 205
+    spiritTilt: 7
+    spiritSink: 0.13
+    action: 0
+    titleKey: v15.spirit.title
+    bodyKey: v15.spirit.death
+    music: last
+    movementEase: 0
+  - at: 32.5
+    duration: 8.5
+    from: {x: -1135, y: 9.84, z: 3}
+    to: {x: -1135, y: 9.84, z: 3}
+    yaw: 40
+    endYaw: 40
+    mastFrom: 0
+    mastTo: 0
+    stormFrom: 0.34
+    stormTo: 0.3
+    wear: 0.3
+    powerFrom: 1
+    powerTo: 1
+    valley: 0
+    photograph: 0
+    assembly: 0
+    travel: 1
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 1
+    spiritAt: {x: -1126, y: 2.8307931, z: 34}
+    spiritYaw: 205
+    spiritTilt: 7
+    spiritSink: 0.13
+    action: 0
+    titleKey: 
+    bodyKey: v17.spirit.signal
+    music: 
+    movementEase: 0
+  - at: 41
+    duration: 7
+    from: {x: -1117, y: 0.8789389, z: 29}
+    to: {x: -1108, y: 0.35065043, z: 22}
+    yaw: 127.875
+    endYaw: 127.875
+    mastFrom: 0
+    mastTo: 0
+    stormFrom: 0.26
+    stormTo: 0.08
+    wear: 0.3
+    powerFrom: 1
+    powerTo: 1
+    valley: 0
+    photograph: 0
+    assembly: 0
+    travel: 1
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 0
+    spiritAt: {x: -1126, y: 2.8307931, z: 34}
+    spiritYaw: 205
+    spiritTilt: 7
+    spiritSink: 0.13
+    action: 1
+    titleKey: 
+    bodyKey: v15.spirit.alone
+    music: 
+    movementEase: 0
+  - at: 48
+    duration: 8
+    from: {x: 1073, y: 1.4631507, z: -66}
+    to: {x: 1073, y: 1.4631507, z: -57}
+    yaw: 0
+    endYaw: 0
+    mastFrom: 0
+    mastTo: 0
+    stormFrom: 0
+    stormTo: 0
+    wear: 0.48
+    powerFrom: 1
+    powerTo: 1
+    valley: 1
+    photograph: 0
+    assembly: 0
+    travel: 0
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 0
+    spiritAt: {x: 0, y: 0, z: 0}
+    spiritYaw: 0
+    spiritTilt: 0
+    spiritSink: 0
+    action: 1
+    titleKey: v3.year2018
+    bodyKey: v13.years.valley
+    music: valley
+    movementEase: 0

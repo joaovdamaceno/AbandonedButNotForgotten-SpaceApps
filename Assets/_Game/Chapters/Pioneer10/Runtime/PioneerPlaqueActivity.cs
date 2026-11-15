@@ -86,7 +86,7 @@ namespace Abandoned.SpaceApps
     }
 
     /// <summary>
-    /// PIO-009 · Estado PIO.Plaque (47 s): cinco peças da placa educativa e cinco contornos. Caminhos equivalentes e sem
+    /// PIO-009 · Estado PIO.Plaque (33 s): cinco peças da placa educativa e cinco contornos. Caminhos equivalentes e sem
     /// penalidade: clique peça→contorno, arrastar (snap de 96 px a 720p, decidido pelo painel), setas + E (setas percorrem as
     /// peças restantes, E seleciona, setas percorrem os contornos, E encaixa) e a ajuda de segurar E por 2 s, que encaixa a
     /// peça focada no contorno indicado (as cinco ≤ 30 s). O contorno correto da peça selecionada pulsa devagar; um contorno
@@ -111,8 +111,8 @@ namespace Abandoned.SpaceApps
         public const float AssistHoldSeconds = 2f;
         public const float MaxAssistedRunSeconds = 30f;
         /// <summary>Versão só de cinema: a primeira peça encaixa sozinha 1,5 s depois do início do encaixe, e as demais a cada 5,5 s (cada legenda dura 4 s).</summary>
-        public const float CinemaFirstPieceSeconds = 1.5f;
-        public const float CinemaPieceIntervalSeconds = 5.5f;
+        public const float CinemaFirstPieceSeconds = 0.4f;
+        public const float CinemaPieceIntervalSeconds = 4f;
         /// <summary>Pressionar e soltar o E dentro deste tempo é um toque (seleciona ou encaixa).</summary>
         public const float TapMaxSeconds = 0.35f;
         public const float RetrySeconds = 3f;
@@ -711,7 +711,7 @@ namespace Abandoned.SpaceApps
         }
 
         /// <summary>
-        /// Erros de montagem (lista vazia = conforme): referências, sequência de 47 s com os marcos, as sete legendas (cinco
+        /// Erros de montagem (lista vazia = conforme): referências, sequência de 33 s com os marcos, as sete legendas (cinco
         /// por gatilho), anchor do palco e painel ligado ao UXML.
         /// </summary>
         public List<string> ValidateSetup()
@@ -723,8 +723,8 @@ namespace Abandoned.SpaceApps
             else
             {
                 errors.AddRange(sequence.Validate().ConvertAll(e => $"{owner}: {e}"));
-                if (Mathf.Abs(sequence.TotalDurationSeconds - 47f) > 0.01f)
-                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro pede 47 s.");
+                if (Mathf.Abs(sequence.TotalDurationSeconds - 33f) > 0.01f)
+                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro v2 retemporizado pede 33 s.");
 
                 var events = new HashSet<string>();
                 foreach (var shot in sequence.Shots)

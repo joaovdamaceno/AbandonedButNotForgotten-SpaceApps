@@ -1,0 +1,14 @@
+.soil-root {position:absolute;left:0;right:0;top:0;bottom:0;background-color:rgb(4,7,11);color:rgb(233,230,218);}
+.soil-objective {position:absolute;left:30px;right:30px;top:20px;font-size:24px;}
+.soil-slot {position:absolute;left:20px;right:300px;top:70px;bottom:135px;align-items:center;justify-content:center;}
+.soil-frame {position:relative;background-color:black;flex-shrink:0;}
+.soil-image {position:absolute;left:0;right:0;top:0;bottom:0;}
+.soil-caption {position:absolute;left:0;right:0;bottom:0;font-size:15px;white-space:normal;background-color:rgba(0,0,0,.85);padding:7px;-unity-text-align:middle-center;}
+.soil-comparison {position:absolute;left:0;right:0;top:0;bottom:35px;flex-direction:row;}
+.soil-half {width:50%;height:100%;align-items:center;justify-content:center;}
+.soil-half Image {width:100%;height:85%;}.soil-half Label {font-size:18px;}
+.soil-instrument {position:absolute;right:25px;top:170px;width:255px;}.soil-instrument Label {white-space:normal;font-size:22px;margin-top:15px;}
+.soil-curve {width:255px;height:110px;background-color:rgb(9,19,25);margin-bottom:15px;}
+.soil-subtitles {position:absolute;left:20px;right:20px;bottom:25px;}.soil-restart {position:absolute;right:25px;bottom:135px;}
+.soil-cover {position:absolute;left:0;right:0;top:0;bottom:0;background-color:rgba(0,0,0,.9);align-items:center;justify-content:center;}
+.soil-root Button {min-height:42px;padding:8px 22px;background-color:rgb(22,44,50);color:rgb(233,230,218);}

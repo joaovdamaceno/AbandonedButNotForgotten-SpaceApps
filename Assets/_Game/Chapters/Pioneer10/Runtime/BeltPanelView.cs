@@ -16,10 +16,16 @@ namespace Abandoned.SpaceApps
         public const string MoveKey = "PIO.UI.move";
         public const string DustKey = "PIO.UI.dust";
         public const string HelpKey = "PIO.UI.help";
+        /// <summary>Roteiro v2, cena 2: "Dia {count} / 215", os meses abreviados numa só chave e o rótulo da pedra solitária.</summary>
+        public const string DayKey = "PIO.UI.belt_day";
+        public const string MonthsKey = "PIO.UI.belt_months";
+        public const string NearestKey = "PIO.UI.belt_nearest";
 
         [SerializeField] UIDocument document;
 
         VisualElement root, map, fantasy, record, probe, arrow, help, holdPlate, progressFill;
+        VisualElement counterPlate, nikeLine;
+        Label counterDay, counterDate, nikeLabel;
         VisualElement[] rocks, slots;
         Label sealLabel, moveLabel, dustLabel;
         Button helpButton, recordButton;
@@ -69,6 +75,11 @@ namespace Abandoned.SpaceApps
                 helpButton.clicked += OnHelp;
             if (recordButton != null)
                 recordButton.clicked += OnRecord;
+            counterPlate = tree.Q("counter");
+            counterDay = tree.Q<Label>("counter-day");
+            counterDate = tree.Q<Label>("counter-date");
+            nikeLine = tree.Q("nike-line");
+            nikeLabel = tree.Q<Label>("nike-label");
             lastSeal = lastMove = lastDust = lastHelp = null;
             lastPhase = (BeltPhase)(-1);
             lastDustCount = -1;
@@ -81,6 +92,40 @@ namespace Abandoned.SpaceApps
             if (recordButton != null)
                 recordButton.clicked -= OnRecord;
             root = null;
+        }
+
+        /// <summary>
+        /// Cena 2 (cinema): o cartão com o dia e a data (<paramref name="day"/> vazio = só a data) e, se pedido, o rótulo da pedra solitária
+        /// com uma linha fina que sai do ponto <paramref name="nikeViewport"/> (0–1, origem em cima à esquerda).
+        /// </summary>
+        public void SetCounter(bool visible, string day, string date, bool nikeVisible, string nikeText, Vector2 nikeViewport)
+        {
+            if (root == null)
+                Bind();
+            if (counterPlate == null)
+                return;
+
+            Show(counterPlate, visible);
+            if (visible)
+            {
+                Show(counterDay, !string.IsNullOrEmpty(day));
+                if (counterDay.text != day)
+                    counterDay.text = day ?? string.Empty;
+                if (counterDate.text != date)
+                    counterDate.text = date ?? string.Empty;
+            }
+
+            Show(nikeLine, nikeVisible);
+            Show(nikeLabel, nikeVisible);
+            if (!nikeVisible)
+                return;
+
+            if (nikeLabel.text != nikeText)
+                nikeLabel.text = nikeText ?? string.Empty;
+            nikeLine.style.left = Length.Percent(nikeViewport.x * 100f);
+            nikeLine.style.top = Length.Percent(nikeViewport.y * 100f + 1.5f);
+            nikeLabel.style.left = Length.Percent(nikeViewport.x * 100f - 9f);
+            nikeLabel.style.top = Length.Percent(nikeViewport.y * 100f + 7.5f);
         }
 
         void OnHelp() => HelpClicked?.Invoke();

@@ -15,7 +15,7 @@ namespace Abandoned.SpaceApps.EditorTools
     /// PIO-011 · Builder da escuta DSN (CORE-006, raiz <c>[R5] Pioneer Listening</c> na cena da Pioneer):
     /// <c>Art/DsnSilhouette.prefab</c> (modelo NASA da antena DSN de 70 m), <c>UI/ListeningPanel.prefab</c>
     /// (UIDocument + <see cref="ListeningPanelView"/>), <see cref="PioneerListening"/> ligada ao palco e a sequência
-    /// <c>Sequences/PIO_Listening.asset</c> (52 s).
+    /// <c>Sequences/PIO_Listening.asset</c> (40 s).
     /// <para>
     /// A antena é o modelo NASA "Deep Space Network 70-meter" (NASA/Brian E. Kumanchik; NASA/Christian A. Lopez), convertido por
     /// <c>Tools/convert_dsn70.py</c> (hierarquia azimute › elevação preservada, atlas 1024²) e montado aqui a partir de
@@ -239,8 +239,8 @@ namespace Abandoned.SpaceApps.EditorTools
             }
 
             errors.AddRange(sequence.Validate().Select(e => $"{ListeningBuilderId}: {e}"));
-            if (Mathf.Abs(sequence.TotalDurationSeconds - 52f) > 0.01f)
-                errors.Add($"{ListeningBuilderId}: PIO.Listening dura {sequence.TotalDurationSeconds} s; o roteiro pede 52 s.");
+            if (Mathf.Abs(sequence.TotalDurationSeconds - 40f) > 0.01f)
+                errors.Add($"{ListeningBuilderId}: PIO.Listening dura {sequence.TotalDurationSeconds} s; o roteiro v2 retemporizado pede 40 s.");
 
             var stage = context.Scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<PioneerPresentation>(true)).First();
             foreach (var shot in sequence.Shots)
@@ -280,40 +280,40 @@ namespace Abandoned.SpaceApps.EditorTools
             const string rig = PioneerListening.StateId;
             var shots = new[]
             {
-                new ShotDefinition("PIO07.Teach", 7f, rig,
-                    new[] { Key(0f, Vector3.zero, 55f), Key(7f, new Vector3(0f, 0.2f, 0.8f), 54f) },
+                new ShotDefinition("PIO07.Teach", 6f, rig,
+                    new[] { Key(0f, Vector3.zero, 55f), Key(6f, new Vector3(0f, 0.2f, 0.8f), 54f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerListening.EventTeach) }),
-                new ShotDefinition("PIO07.Contact1", 9f, rig,
-                    new[] { Key(0f, new Vector3(2f, 0.4f, 0.8f), 52f), Key(9f, new Vector3(2.4f, 0.6f, 1.4f), 51f) },
+                new ShotDefinition("PIO07.Contact1", 5.5f, rig,
+                    new[] { Key(0f, new Vector3(2f, 0.4f, 0.8f), 52f), Key(5.5f, new Vector3(2.4f, 0.6f, 1.4f), 51f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerListening.EventOpen1) }),
-                new ShotDefinition("PIO07.Contact2", 9f, rig,
-                    new[] { Key(0f, new Vector3(-2f, 0.2f, 1f), 56f), Key(9f, new Vector3(-2.6f, 0.3f, 1.6f), 57f) },
+                new ShotDefinition("PIO07.Contact2", 5f, rig,
+                    new[] { Key(0f, new Vector3(-2f, 0.2f, 1f), 56f), Key(5f, new Vector3(-2.6f, 0.3f, 1.6f), 57f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerListening.EventOpen2) }),
-                new ShotDefinition("PIO07.Contact3", 12f, rig,
-                    new[] { Key(0f, new Vector3(0f, -0.4f, 2.2f), 50f), Key(12f, new Vector3(0.4f, -0.6f, 3f), 49f) },
+                new ShotDefinition("PIO07.Contact3", 7.5f, rig,
+                    new[] { Key(0f, new Vector3(0f, -0.4f, 2.2f), 50f), Key(7.5f, new Vector3(0.4f, -0.6f, 3f), 49f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerListening.EventOpen3) }),
-                new ShotDefinition("PIO07.Attempt4", 8f, rig,
-                    new[] { Key(0f, new Vector3(1.2f, 0.8f, 3.6f), 58f), Key(8f, new Vector3(1.2f, 1f, 4.2f), 59f) },
+                new ShotDefinition("PIO07.Attempt4", 7f, rig,
+                    new[] { Key(0f, new Vector3(1.2f, 0.8f, 3.6f), 58f), Key(7f, new Vector3(1.2f, 1f, 4.2f), 59f) },
                     easing: ShotEasing.Linear, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerListening.EventOpen4) }),
-                new ShotDefinition("PIO07.Breathe", 7f, rig,
-                    new[] { Key(0f, new Vector3(0f, 1.4f, 5f), 60f), Key(7f, new Vector3(0f, 1.8f, 6f), 62f) },
+                new ShotDefinition("PIO07.Breathe", 9f, rig,
+                    new[] { Key(0f, new Vector3(0f, 1.4f, 5f), 60f), Key(9f, new Vector3(0f, 1.8f, 6f), 62f) },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerListening.EventBreathe) }),
             };
 
             var cues = new[]
             {
-                new SubtitleCue("PIO.07.01", "PIO.07.01", 0f, 7f),
-                SubtitleCue.Triggered("PIO.07.02", "PIO.07.02", PioneerListening.StateEventContact1, 5f),
-                SubtitleCue.Triggered("PIO.07.03", "PIO.07.03", PioneerListening.StateEventContact2, 5f),
-                SubtitleCue.Triggered("PIO.07.04", "PIO.07.04", PioneerListening.StateEventContact3, 7f),
-                new SubtitleCue("PIO.07.05", "PIO.07.05", 39f, 45f),
-                new SubtitleCue("PIO.07.06", "PIO.07.06", 48f, 52f),
+                new SubtitleCue("PIO.07.01", "PIO.07.01", 0f, 5.8f),
+                SubtitleCue.Triggered("PIO.07.02", "PIO.07.02", PioneerListening.StateEventContact1, 4.8f),
+                SubtitleCue.Triggered("PIO.07.03", "PIO.07.03", PioneerListening.StateEventContact2, 4.5f),
+                SubtitleCue.Triggered("PIO.07.04", "PIO.07.04", PioneerListening.StateEventContact3, 6.8f),
+                new SubtitleCue("PIO.07.05", "PIO.07.05", 24.5f, 29.5f),
+                new SubtitleCue("PIO.07.06", "PIO.07.06", 32f, 36f),
             };
 
             return SequenceDefinition.Create("PIO_Listening", shots, cues);

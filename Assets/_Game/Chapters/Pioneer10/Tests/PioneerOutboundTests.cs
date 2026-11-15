@@ -91,7 +91,7 @@ namespace Abandoned.SpaceApps.Tests
         {
             for (var t = 0f; t < 60f && !atlas.IsAwaitingHold; t += 1f / 30f)
                 Step(1f / 30f);
-            Assert.That(atlas.IsAwaitingHold, Is.True, "o marco de 24 s abre o hold");
+            Assert.That(atlas.IsAwaitingHold, Is.True, "o marco de 28 s abre o hold");
         }
 
         // ---------- Sequência e montagem ----------
@@ -103,11 +103,11 @@ namespace Abandoned.SpaceApps.Tests
             var sequence = atlas.Sequence;
             Assert.That(sequence.Validate(), Is.Empty);
             Assert.That(director.Validate(sequence), Is.Empty);
-            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(39f).Within(1e-4f));
-            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 12f, 12f, 15f }), "0–12, 12–24, 24–39 s");
+            Assert.That(sequence.TotalDurationSeconds, Is.EqualTo(55f).Within(1e-4f));
+            Assert.That(sequence.Shots.Select(s => s.DurationSeconds), Is.EqualTo(new[] { 14f, 14f, 27f }), "0–12, 12–24, 24–39 s");
             Assert.That(sequence.Cues.Select(c => (c.TextKey, c.StartSeconds, c.EndSeconds)), Is.EqualTo(new[]
             {
-                ("PIO.06.01", 0f, 8f), ("PIO.06.02", 8f, 16f), ("PIO.06.03", 17f, 24f), ("PIO.06.04", 25f, 33f), ("PIO.06.05", 33f, 39f),
+                ("PIO.06.01", 1f, 9.5f), ("PIO.06.02", 16f, 24f), ("PIO.06.03", 25f, 33f), ("PIO.06.04", 41.5f, 49f), ("PIO.06.05", 49.5f, 55f),
             }), "janelas do roteiro");
             var bare = new GameObject("bare").AddComponent<OutboundAtlas>();
             Assert.That(bare.ValidateSetup(), Is.Not.Empty, "sem referências a montagem reclama");
@@ -130,20 +130,20 @@ namespace Abandoned.SpaceApps.Tests
         [System.Serializable] sealed class Timing { public float startSeconds, endSeconds; }
 
         [Test]
-        public void ThePhasesFollowTheCardsAndTheSequenceWaitsForTheHoldAtTwentyFourSeconds()
+        public void ThePhasesFollowTheCardsAndTheSequenceWaitsForTheHoldAtTwentyEightSeconds()
         {
             atlas.Begin();
             Run(5f);
             Assert.That(atlas.Phase, Is.EqualTo(OutboundPhase.Saturn1976));
             Assert.That(atlas.ViewState().OrbitsCrossed, Is.EqualTo(2), "1976: distância orbital de Saturno (dois anéis)");
-            Run(8f);
+            Run(10f); // o cartão de 1983 abre em 14 s
             Assert.That(atlas.Phase, Is.EqualTo(OutboundPhase.Neptune1983));
             Assert.That(atlas.ViewState().OrbitsCrossed, Is.EqualTo(OutboundAtlas.OrbitRings), "1983: distância orbital de Netuno (quatro anéis)");
 
             RunUntilHold();
             Assert.That(atlas.Phase, Is.EqualTo(OutboundPhase.Power));
             var waitingAt = director.TimeSeconds;
-            Assert.That(waitingAt, Is.EqualTo(24f).Within(0.1f));
+            Assert.That(waitingAt, Is.EqualTo(28f).Within(0.1f));
             Run(6f);
             Assert.That(director.TimeSeconds, Is.EqualTo(waitingAt).Within(1e-4f), "o relógio espera o hold, sem avanço por inatividade");
             Assert.That(completed, Is.Zero);
@@ -172,7 +172,7 @@ namespace Abandoned.SpaceApps.Tests
 
             Run(2f);
             Assert.That(atlas.Phase, Is.EqualTo(OutboundPhase.Chart1998), "o gráfico entra depois do hold");
-            Run(20f);
+            Run(30f); // o terceiro plano tem 27 s
             Assert.That(completed, Is.EqualTo(1));
             Assert.That(powered, Is.EqualTo(1), "a economia é confirmada uma única vez");
             Assert.That(results.Select(r => r.Reason), Is.EqualTo(new[] { SequenceExitReason.Completed }));
@@ -244,7 +244,7 @@ namespace Abandoned.SpaceApps.Tests
             Press(keyboard.eKey);
             Run(OutboundAtlas.HoldSeconds + 0.1f);
             Release(keyboard.eKey);
-            Run(20f);
+            Run(30f);
             Assert.That((completed, powered), Is.EqualTo((1, 1)));
         }
 
