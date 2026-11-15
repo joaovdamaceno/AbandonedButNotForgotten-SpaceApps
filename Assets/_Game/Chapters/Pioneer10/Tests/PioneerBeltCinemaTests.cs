@@ -156,9 +156,9 @@ namespace Abandoned.SpaceApps.Tests
         [Test]
         public void TheNearestRockNoteAppearsOnlyInTheLastSecondsOfTheZoom()
         {
-            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.NoteStartSeconds - 0.1f), Is.False);
-            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.NoteStartSeconds), Is.True);
-            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.DaysRampEndSeconds - 0.1f), Is.True);
+            // Teste de jogo: a nota saiu (a legenda já diz que a pedra mais próxima ficou longe).
+            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.NoteStartSeconds), Is.False);
+            Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.DaysRampEndSeconds - 0.1f), Is.False);
             Assert.That(PioneerBeltCounter.NoteVisibleAt(PioneerBeltCounter.DaysRampEndSeconds), Is.False, "a revelação do 307 Nike assume o quadro");
         }
 

@@ -19,7 +19,8 @@ namespace Abandoned.SpaceApps
         public static readonly Rect MapFrame = new Rect(0.27f, 0.12f, 0.46f, 0.64f);
         /// <summary>A sonda sai da órbita de Marte (1,52 UA) e chega ao meio do cinturão (3 UA) no fim do mapa.</summary>
         public const float MapStartAu = 1.52f;
-        public const float MapEndAu = 3f;
+        /// <summary>A sonda para na BORDA do campo de asteroides (2,1 UA): a travessia só é mostrada depois, em primeira pessoa.</summary>
+        public const float MapEndAu = 2.02f;
 
         public static bool MapVisibleAt(float seconds) => seconds >= MapStartSeconds && seconds < MapEndSeconds;
 
@@ -36,11 +37,11 @@ namespace Abandoned.SpaceApps
             Mode = SystemMapElement.MapMode.Inner,
             ProbeAu = MapProbeAuAt(seconds),
             PathStartAu = MapStartAu,
-            PathEndAu = 4.4f,
+            PathEndAu = SystemMapElement.BeltInnerAu + 0.05f, // a linha à frente também acaba na borda do campo
             ShowPath = true,
-            PulseRing = 2,
+            PulseRing = SystemMapElement.BeltRing,
             Pulse01 = Mathf.Repeat(seconds, 1.6f) / 1.6f,
-            Labels = new[] { resolve("PIO.UI.map_earth"), resolve("PIO.UI.map_mars"), resolve("PIO.UI.map_belt"), resolve("PIO.UI.orbit_jupiter") },
+            Labels = new[] { resolve("PIO.UI.map_mercury"), resolve("PIO.UI.map_venus"), resolve("PIO.UI.map_earth"), resolve("PIO.UI.map_mars"), resolve("PIO.UI.map_belt"), resolve("PIO.UI.orbit_jupiter") },
             Title = resolve("PIO.UI.map_title_belt"),
             Footnote = resolve("PIO.UI.map_note"),
             ProbeLabel = resolve("PIO.UI.map_probe"),
@@ -115,7 +116,8 @@ namespace Abandoned.SpaceApps
         public const string NoteKey = "PIO.UI.belt_far";
         public const float NoteStartSeconds = 25f;
 
-        public static bool NoteVisibleAt(float seconds) => seconds >= NoteStartSeconds && seconds < DaysRampEndSeconds;
+        /// <summary>A nota "a pedra mais próxima ficou a milhões de quilômetros" saiu: a legenda PIO.02.04 já diz isso (teste de jogo).</summary>
+        public static bool NoteVisibleAt(float seconds) => false;
 
         public static bool DayCounterVisibleAt(float seconds) => seconds >= DaysStartSeconds;
 

@@ -121,17 +121,25 @@
     padding: 0;
 }
 
-.pio-hud__instruments {
+/* Coluna da direita com os instrumentos em cima e o medidor de energia embaixo, no mesmo bloco. */
+.pio-hud__side {
     position: absolute;
-    left: 3%;
-    top: 24%;
-    padding: var(--sa-space-3) var(--sa-space-4);
+    right: 3%;
+    top: 19%;
+    width: 22%;
+    flex-direction: column;
+}
+
+.pio-hud__instruments {
+    position: relative;
+    margin-bottom: var(--sa-space-2);
+    padding: var(--sa-space-2) var(--sa-space-4);
 }
 
 .pio-hud__inst {
     flex-direction: row;
     align-items: center;
-    margin-top: var(--sa-space-2);
+    margin-top: 2px;
 }
 
 .pio-hud__inst--off {
@@ -187,17 +195,14 @@
 }
 
 .pio-hud__energy {
-    position: absolute;
-    right: 3%;
-    top: 24%;
-    width: 22%;
-    padding: var(--sa-space-3) var(--sa-space-4);
+    position: relative;
+    padding: var(--sa-space-2) var(--sa-space-4);
 }
 
 .pio-hud__gauge {
     position: relative;
-    height: 230px;
-    margin-top: var(--sa-space-3);
+    height: 150px;
+    margin-top: var(--sa-space-5);
 }
 
 .pio-hud__vtrack {
@@ -244,7 +249,7 @@
 }
 
 .pio-hud__marklabel--launch {
-    top: -6px;
+    top: -22px; /* acima da marca: com o medidor mais baixo, as duas marcas ficam perto e os rótulos não podem se sobrepor */
 }
 
 .pio-hud__marklabel--jupiter {

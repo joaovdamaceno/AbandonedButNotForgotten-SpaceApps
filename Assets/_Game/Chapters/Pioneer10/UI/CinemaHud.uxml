@@ -40,6 +40,8 @@
                 <ui:Label name="year-note" picking-mode="Ignore" class="pio-hud__note" />
             </ui:VisualElement>
 
+            <!-- Coluna da direita: os instrumentos e o medidor de energia dos RTG, juntos (teste de jogo: a energia tinha um quadro enorme só para ela). -->
+            <ui:VisualElement name="side-column" picking-mode="Ignore" class="pio-hud__side">
             <ui:VisualElement name="instruments" picking-mode="Ignore" class="sa-plate pio-hud__instruments">
                 <ui:Label name="instruments-title" picking-mode="Ignore" class="pio-hud__title" />
                 <ui:VisualElement name="inst-0" picking-mode="Ignore" class="pio-hud__inst">
@@ -75,6 +77,7 @@
                     <ui:VisualElement picking-mode="Ignore" class="pio-hud__mark pio-hud__mark--jupiter" />
                     <ui:Label name="energy-jupiter" picking-mode="Ignore" class="pio-hud__marklabel pio-hud__marklabel--jupiter" />
                 </ui:VisualElement>
+            </ui:VisualElement>
             </ui:VisualElement>
 
             <ui:VisualElement name="timeline" picking-mode="Ignore" class="pio-hud__timeline">

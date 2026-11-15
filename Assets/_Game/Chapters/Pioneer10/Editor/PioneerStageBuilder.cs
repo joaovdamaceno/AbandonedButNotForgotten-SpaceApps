@@ -77,7 +77,7 @@ namespace Abandoned.SpaceApps.EditorTools
         sealed class StageAssets
         {
             public Mesh Sphere, SkySphere, LowSphere, StarMesh, BeltRocks, BeltNike, Trajectory, GlowQuad, PlaqueBox, SystemBelt;
-            public Material SystemSun, SystemSaturn, SystemUranus, SystemNeptune, SystemOrbit, SystemPath, SystemBeacon;
+            public Material SystemMercury, SystemVenus, SystemSun, SystemSaturn, SystemUranus, SystemNeptune, SystemOrbit, SystemPath, SystemBeacon;
             public Material Jupiter, Sky, Stars, Ground, Aldebaran, AldebaranHalo, BeltRock, Mars, Earth, Ganymede, Callisto, Europa, TrajectoryLine, PlaqueGold, PlaqueFace;
         }
 
@@ -125,6 +125,8 @@ namespace Abandoned.SpaceApps.EditorTools
             a.Europa = Lit(context, "PIO_Europa", Color.white, 0f, 0.1f, TextureAsset(context, "PIO_Europa.png", () => PioneerStageArt.GalileanMoonSurface(512, 256, 1610, 2), 512, true, TextureWrapMode.Repeat, TextureWrapMode.Clamp));
             a.TrajectoryLine = Unlit(context, "PIO_JupiterTrajectory", new Color(1f, 0.84f, 0.46f), null);
             a.SystemSun = Unlit(context, "PIO_SystemSun", new Color(1f, 0.84f, 0.42f), null);
+            a.SystemMercury = Lit(context, "PIO_SystemMercury", new Color(0.62f, 0.6f, 0.58f), 0f, 0.1f);
+            a.SystemVenus = Lit(context, "PIO_SystemVenus", new Color(0.9f, 0.8f, 0.55f), 0f, 0.1f);
             a.SystemSaturn = Lit(context, "PIO_SystemSaturn", new Color(0.86f, 0.78f, 0.58f), 0f, 0.1f);
             a.SystemUranus = Lit(context, "PIO_SystemUranus", new Color(0.62f, 0.85f, 0.9f), 0f, 0.1f);
             a.SystemNeptune = Lit(context, "PIO_SystemNeptune", new Color(0.28f, 0.42f, 0.92f), 0f, 0.1f);
@@ -663,10 +665,12 @@ namespace Abandoned.SpaceApps.EditorTools
         /// <summary>Raio (m) = escala × raiz da distância em UA: esquemático, para o interior do sistema não virar um ponto.</summary>
         public const float SystemMetersPerRootAu = 28f;
         public const float SystemPathAngleDegrees = -38f;
-        public static readonly string[] SystemPlanetNames = { "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
-        public static readonly float[] SystemPlanetAu = { 1f, 1.52f, 5.2f, 9.58f, 19.2f, 30.05f };
-        static readonly float[] SystemPlanetAngle = { 110f, 170f, 215f, 285f, 335f, 20f };
-        static readonly float[] SystemPlanetSize = { 3.4f, 2.6f, 9f, 8f, 5.2f, 5.2f };
+        public static readonly string[] SystemPlanetNames = { "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
+        /// <summary>Índices em <see cref="SystemPlanetNames"/>.</summary>
+        public const int SystemMercury = 0, SystemVenus = 1, SystemEarth = 2, SystemMars = 3, SystemJupiter = 4, SystemSaturn = 5, SystemUranus = 6, SystemNeptune = 7;
+        public static readonly float[] SystemPlanetAu = { 0.39f, 0.72f, 1f, 1.52f, 5.2f, 9.58f, 19.2f, 30.05f };
+        static readonly float[] SystemPlanetAngle = { 40f, 75f, 110f, 170f, 215f, 285f, 335f, 20f };
+        static readonly float[] SystemPlanetSize = { 1.6f, 3f, 3.4f, 2.6f, 9f, 8f, 5.2f, 5.2f };
         public const float SystemBeltInnerAu = 2.1f;
         public const float SystemBeltOuterAu = 3.3f;
 
@@ -723,7 +727,7 @@ namespace Abandoned.SpaceApps.EditorTools
             system.transform.localPosition = SystemCenter;
             var sun = Visual(Ensure(system.transform, "Sun"), a.Sphere, a.SystemSun);
             sun.transform.localScale = Vector3.one * 10f;
-            var materials = new[] { a.Earth, a.Mars, a.Jupiter, a.SystemSaturn, a.SystemUranus, a.SystemNeptune };
+            var materials = new[] { a.SystemMercury, a.SystemVenus, a.Earth, a.Mars, a.Jupiter, a.SystemSaturn, a.SystemUranus, a.SystemNeptune };
             for (var i = 0; i < SystemPlanetNames.Length; i++)
             {
                 var planet = Visual(Ensure(system.transform, "Planet_" + SystemPlanetNames[i]), a.Sphere, materials[i]);

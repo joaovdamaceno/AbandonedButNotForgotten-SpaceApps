@@ -65,6 +65,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("PIO.Closest (a máxima aproximação de Júpiter) é só cinema: conclui quando a sequência termina.")] SequenceDefinition closestSequence;
         [SerializeField, Tooltip("PIO.Belt (roteiro v2, cena 2) é só cinema: a sequência de 54 s e o contador de dias.")] SequenceDefinition beltCinemaSequence;
         [SerializeField] PioneerBeltCounter beltCounter;
+        [SerializeField, Tooltip("Cena 8: descrição do modelo oficial da NASA da antena.")] PioneerAntennaCredit antennaCredit;
         [SerializeField, Tooltip("Cena 9: a sonda segue devagar, sem parar, na direção de Aldebaran.")] PioneerFarewellDrift farewellDrift;
         [SerializeField, Tooltip("Cenas 2 e 7: a sonda no Sistema Solar esquemático em 3D.")] PioneerSystemTour systemTour;
         [SerializeField, Tooltip("Cena 5d: a sonda percorre a trajetória em volta de Júpiter em tempo acelerado.")] PioneerSlingshot slingshot;
@@ -163,6 +164,7 @@ namespace Abandoned.SpaceApps
             slingshot.Initialize(sequenceDirector);
             systemTour.Initialize(sequenceDirector, text);
             farewellDrift.Initialize(time);
+            antennaCredit.Initialize(sequenceDirector, text);
             closestHud.Initialize(sequenceDirector, text);
             yearsHud.Initialize(sequenceDirector, text);
             firstsHud.Initialize(sequenceDirector, text);
@@ -372,6 +374,8 @@ namespace Abandoned.SpaceApps
                 systemTour.Hide();
             if (farewellDrift != null)
                 farewellDrift.Hide();
+            if (antennaCredit != null)
+                antennaCredit.Hide();
             if (closestHud != null)
                 closestHud.Hide();
             if (yearsHud != null)
@@ -448,6 +452,7 @@ namespace Abandoned.SpaceApps
             Require(slingshot, nameof(slingshot));
             Require(systemTour, nameof(systemTour));
             Require(farewellDrift, nameof(farewellDrift));
+            Require(antennaCredit, nameof(antennaCredit));
             Require(closestHud, nameof(closestHud));
             Require(yearsHud, nameof(yearsHud));
             Require(firstsHud, nameof(firstsHud));

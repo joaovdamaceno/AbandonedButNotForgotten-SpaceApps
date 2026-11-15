@@ -297,8 +297,8 @@
     {
       "key": "PIO.06.06",
       "group": "narrative",
-      "pt": "1993: para poupar energia, a câmera que fotografou Júpiter foi desligada, e depois o detector de radiação.",
-      "en": "1993: to save power, the camera that had photographed Jupiter was switched off, followed by the radiation detector."
+      "pt": "Para poupar energia, a câmera que fotografou Júpiter foi desligada, e depois o detector de radiação.",
+      "en": "To save power, the camera that had photographed Jupiter was switched off, followed by the radiation detector."
     },
     {
       "key": "PIO.07.01",
@@ -761,6 +761,24 @@
       "group": "hud",
       "pt": "Esquema sem escala: só as órbitas, vistas de cima.",
       "en": "Schematic, not to scale: orbits only, seen from above."
+    },
+    {
+      "key": "PIO.UI.map_mercury",
+      "group": "hud",
+      "pt": "Mercúrio",
+      "en": "Mercury"
+    },
+    {
+      "key": "PIO.UI.map_venus",
+      "group": "hud",
+      "pt": "Vênus",
+      "en": "Venus"
+    },
+    {
+      "key": "PIO.UI.dsn_credit",
+      "group": "hud",
+      "pt": "Antena de 70 m da Deep Space Network · modelo 3D oficial da NASA (crédito: NASA/Brian E. Kumanchik, Christian A. Lopez)",
+      "en": "Deep Space Network 70 m antenna · official NASA 3D model (credit: NASA/Brian E. Kumanchik, Christian A. Lopez)"
     },
     {
       "key": "PIO.UI.scheme",

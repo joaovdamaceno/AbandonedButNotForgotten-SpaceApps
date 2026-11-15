@@ -922,8 +922,8 @@ MonoBehaviour:
     enStatus: derived
   - key: PIO.06.06
     group: narrative
-    ptText: "1993: para poupar energia, a c\xE2mera que fotografou J\xFApiter foi desligada, e depois o detector de radia\xE7\xE3o."
-    enText: '1993: to save power, the camera that had photographed Jupiter was switched off, followed by the radiation detector.'
+    ptText: "Para poupar energia, a c\xE2mera que fotografou J\xFApiter foi desligada, e depois o detector de radia\xE7\xE3o."
+    enText: To save power, the camera that had photographed Jupiter was switched off, followed by the radiation detector.
     ptStatus: derived
     enStatus: derived
   - key: PIO.07.01
@@ -1386,6 +1386,24 @@ MonoBehaviour:
     group: hud
     ptText: "Esquema sem escala: s\xF3 as \xF3rbitas, vistas de cima."
     enText: 'Schematic, not to scale: orbits only, seen from above.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_mercury
+    group: hud
+    ptText: "Merc\xFArio"
+    enText: Mercury
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_venus
+    group: hud
+    ptText: "V\xEAnus"
+    enText: Venus
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.dsn_credit
+    group: hud
+    ptText: "Antena de 70 m da Deep Space Network \xB7 modelo 3D oficial da NASA (cr\xE9dito: NASA/Brian E. Kumanchik, Christian A. Lopez)"
+    enText: "Deep Space Network 70 m antenna \xB7 official NASA 3D model (credit: NASA/Brian E. Kumanchik, Christian A. Lopez)"
     ptStatus: derived
     enStatus: derived
   - key: PIO.UI.scheme

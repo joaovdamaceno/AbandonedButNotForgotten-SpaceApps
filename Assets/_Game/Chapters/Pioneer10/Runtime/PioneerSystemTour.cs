@@ -25,6 +25,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("Órbitas na ordem: Terra, Marte, Júpiter, Saturno, Urano, Netuno.")] LineRenderer[] orbits = new LineRenderer[0];
         [SerializeField, Tooltip("Planetas na mesma ordem das órbitas.")] Transform[] planets = new Transform[0];
         [SerializeField, Tooltip("Um ponto sobre o cinturão, para o rótulo dele.")] Transform beltMarker;
+        [SerializeField, Tooltip("A linha dourada do caminho da sonda; o fim dela segue o trecho de cada cena.")] LineRenderer probePath;
 
         static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
         static readonly int Color0 = Shader.PropertyToID("_Color");
@@ -114,6 +115,8 @@ namespace Abandoned.SpaceApps
             }
 
             PulseOrbits(state);
+            if (probePath != null && probePath.positionCount >= 2 && state.PathEndAu > 0f)
+                probePath.SetPosition(1, Direction() * RadiusFor(state.PathEndAu)); // cena 2: acaba na borda do campo; cena 7: vai até Netuno e além
             shown = true;
             if (hud != null)
                 hud.SetSystemMap(true, WithOverlay(state, camera), OverlayFrame);
@@ -123,23 +126,25 @@ namespace Abandoned.SpaceApps
         {
             state.Overlay = true;
             var inner = state.Mode == SystemMapElement.MapMode.Inner;
-            // Ordem dos rótulos: interno = Terra, Marte, cinturão, Júpiter; externo = Júpiter, Saturno, Urano, Netuno.
-            var targets = new Transform[4];
+            // Ordem dos rótulos: interno = Mercúrio, Vênus, Terra, Marte, cinturão, Júpiter; externo = Júpiter, Saturno, Urano, Netuno.
+            var targets = new Transform[6];
             if (inner)
             {
                 targets[0] = PlanetAt(0);
                 targets[1] = PlanetAt(1);
-                targets[2] = beltMarker;
-                targets[3] = PlanetAt(2);
+                targets[2] = PlanetAt(2);
+                targets[3] = PlanetAt(3);
+                targets[4] = beltMarker;
+                targets[5] = PlanetAt(4);
             }
             else
             {
                 for (var i = 0; i < 4; i++)
-                    targets[i] = PlanetAt(2 + i);
+                    targets[i] = PlanetAt(4 + i);
             }
 
-            state.LabelViewport = new Vector2[4];
-            for (var i = 0; i < 4; i++)
+            state.LabelViewport = new Vector2[6];
+            for (var i = 0; i < 6; i++)
                 state.LabelViewport[i] = Viewport(camera, targets[i] != null ? targets[i].position : Vector3.zero);
             state.ProbeViewport = Viewport(camera, probe.position);
             return state;
@@ -169,8 +174,8 @@ namespace Abandoned.SpaceApps
                 if (orbits[i] == null)
                     continue;
 
-                // Índice da órbita no mapa: interno 0 Terra, 1 Marte, 2 cinturão (sem órbita), 3 Júpiter; externo 0 Júpiter … 3 Netuno.
-                var ring = inner ? (i == 0 ? 0 : i == 1 ? 1 : i == 2 ? 3 : -1) : (i >= 2 ? i - 2 : -1);
+                // Índice da órbita no mapa: interno 0 Mercúrio, 1 Vênus, 2 Terra, 3 Marte, 4 cinturão (sem órbita), 5 Júpiter; externo 0 Júpiter … 3 Netuno.
+                var ring = inner ? (i <= 3 ? i : i == 4 ? 5 : -1) : (i >= 4 ? i - 4 : -1);
                 var pulse = ring >= 0 && ring == state.PulseRing ? Mathf.Sin(Mathf.Clamp01(state.Pulse01) * Mathf.PI) : 0f;
                 var color = Color.Lerp(OrbitColor, PulseColor, pulse);
                 orbits[i].GetPropertyBlock(block);
