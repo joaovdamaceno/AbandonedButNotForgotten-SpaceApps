@@ -26,4 +26,20 @@ Servidor local: `python QA/SUR-011/serve_preview.py --root Builds/SUR011Web --po
 
 A passagem dos anos, epílogo Apollo e integração Boot/Dossier são outras tarefas. Não é teste de campanha completa, de duração com novatos ou de GPU integrada; não houve upload itch.io. A geometria e o tempo são uma reconstrução simplificada, documentada em `Docs/Production/SURVEYOR_ECLIPSE.md`. Sem asset externo novo, trilha ou vídeo. O integrador deve consumir os componentes e assets com os Core já existentes, sem instalar o host/diagnóstico de QA na distribuição.
 
-Resultado Web será registrado após a execução no navegador.
+## Resultado Web
+
+Build release `549dce8`: **17.200.212 bytes** no diretório de distribuição, três shaders requeridos presentes, hashes verificados por `Tools/build_release.py`. Relatório completo: `web-build-report.json`.
+
+Três execuções / dois reinícios no Chromium integrado, qualidades0/1, PT/EN e movimento reduzido: **aprovado**, sem erros de runtime. Mesmo observador e corpo, pausa preservada, contorno vermelho efetivamente renderizado (331 pixels vermelhos na imagem-fonte de640×480, zero pixels brancos estourados no instante medido), uma alocação e uma liberação da saída; fonte e saída liberadas ao desmontar. `web-runtime-metrics.json`, `web-console.json` e `Captures/web-eclipse.jpg` / `web-passed.jpg`.
+
+`Profiler.GetTotalAllocatedMemoryLong()` reportou **77.141.543 bytes após desmontagem**. Esse valor não é pico, capacidade do heapWASM nem memória total da aba; não comprova sozinho o orçamento de384MiB. Nenhuma medição deFPS é inferida desse diagnóstico.
+
+Console sem mensagens de nível erro. Dois avisos registrados: shaderFSR do pipeline base indisponível (pós-processamento está desligado nesta câmera; os shaders da TV, terreno e eclipse foram empacotados/renderizados) e API antiga de sincronização de persistentDataPath. A revisão desses serviços globais fica com seus donos.
+
+O primeiro diagnóstico encontrou um falso negativo após reiniciar porque usava o tempo final anterior antes de a nova ordem chegar. A ferramenta foi corrigida para aguardar a faseViewing e os três ciclos foram repetidos com sucesso; o relatório final é da ferramenta corrigida.
+
+## Ambiente e reprodutibilidade
+
+Ensaio Web no navegador integrado Chromium, Windows 11, ANGLE/D3D11, NVIDIA GeForce RTX 3050 6GB Laptop GPU. Este dispositivo não substitui a referência de GPU integrada. O servidor é local, sem limitação artificial de rede; nenhuma medição de primeira entrada a10Mbps ou FPS sustentado é reivindicada.
+
+O build preserva diferenças locais preexistentes: GraphicsSettings com intensidade linear/temperatura de cor habilitadas; Ultra com AA/crossfade deLOD desabilitados. Elas não fazem parte deste PR. As qualidades exercitadas foram Very Low e Low. O relatório e hashes identificam o artefato ensaiado; não é alegação de build de um checkout limpo.

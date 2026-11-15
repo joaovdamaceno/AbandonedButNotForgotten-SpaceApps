@@ -40,3 +40,5 @@ Materiais, shader e montagem novos de autoria do projeto, sem textura externa no
 Duas RenderTextures fixas de 640×480, uma câmera e uma luz principal. Nenhuma captura persistente de fotografia, vídeo ou chamada externa em runtime. O cartão tem dois triângulos. A confirmação é uma sonificação de interface, não som propagado no vácuo. O módulo não adiciona trilha musical: a direção de áudio global fornece a cama do capítulo.
 
 Validação e limitações reais: `QA/SUR-011/README.md`.
+
+Verificação da entrega: 13 testes Unity aprovados e Web release com três ciclos/dois reinícios, sem erro de runtime, em RTX3050. Artefato Web identificado pelo commit549dce8 e relatório emQA/SUR-011; não é validação de GPU integrada nem da campanha completa.
