@@ -193,7 +193,22 @@ namespace Abandoned.SpaceApps.Integration
                 focusPause.enabled = !value;
         }
 
-        void OnStateChanged(AppState state) => ArbitrateAudioListener();
+        void OnStateChanged(AppState state)
+        {
+            UnlockAudioFor(state, audioDirector);
+            ArbitrateAudioListener();
+        }
+
+        /// <summary>
+        /// No Web o AudioDirector só responde depois do <see cref="AudioDirector.Unlock"/>, que precisa vir de um gesto da pessoa (o clique em
+        /// Iniciar). Só o Surveyor chamava, então a Pioneer e os sons do shell ficavam mudos na build do itch.io; agora qualquer capítulo que
+        /// entra em Playing libera o áudio. Fora do Web o diretor já nasce liberado e a chamada não faz nada.
+        /// </summary>
+        public static void UnlockAudioFor(AppState state, AudioDirector audio)
+        {
+            if (state == AppState.Playing && audio != null)
+                audio.Unlock();
+        }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode) => ArbitrateAudioListener();
 
