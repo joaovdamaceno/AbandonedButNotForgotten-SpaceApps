@@ -11,14 +11,14 @@
     "IDs de gatilho de PIO.Imaging seguem o código já integrado (PioneerImaging). Os de PIO.Plaque foram CONFIRMADOS pela PIO-009 (PioneerPlaqueActivity dispara PIO.Plaque.Hydrogen, Pulsars, SolarSystem, PioneerScale e People na SequenceDirector). Os de PIO.Listening continuam PROPOSTOS aqui e devem ser confirmados por PIO-011."
   ],
   "timeBudget": {
-    "nominalSeconds": 375,
+    "nominalSeconds": 415,
     "approvalRangeSeconds": [300, 420],
     "excludes": "arquivo, carregamento e pausa",
     "readingStretch": [
       {"cueId": "PIO.07.06", "nominalSeconds": 4, "maxSeconds": 7, "note": "A animação pode alongar até 7 s sem cortar a legenda."},
       {"cueId": "PIO.04.09", "nominalSeconds": 5, "maxSeconds": 8, "note": "Mesmo critério se o idioma precisar de mais tempo."}
     ],
-    "maxWithStretchSeconds": 381,
+    "maxWithStretchSeconds": 421,
     "rule": "Nunca acelerar a leitura para preservar um número exato de segundos."
   },
   "states": [
@@ -49,19 +49,24 @@
       "interruption": {"afterStrip": 6, "gateId": "PIO.Imaging.Gate6", "recoveryGateId": "PIO.Imaging.GateRecovery"}
     },
     {
-      "id": "PIO.Plaque", "order": 5, "nominalSeconds": 47, "globalStartSeconds": 199, "globalEndSeconds": 246,
+      "id": "PIO.Closest", "order": 5, "nominalSeconds": 40, "globalStartSeconds": 199, "globalEndSeconds": 239,
+      "summary": "Roteiro v2, cena 5 (só cinema): as luas, a radiação, a máxima aproximação de Júpiter, a curva e a lição que mudou a Voyager.",
+      "requiredExit": "Sequência de 40 s terminada; nenhuma interação."
+    },
+    {
+      "id": "PIO.Plaque", "order": 6, "nominalSeconds": 47, "globalStartSeconds": 239, "globalEndSeconds": 286,
       "summary": "Encaixa cinco símbolos de uma mensagem.",
       "requiredExit": "Cinco partes identificadas, sem pontuação.",
       "pieces": ["hydrogen", "pulsars", "solarSystem", "pioneerScale", "people"]
     },
     {
-      "id": "PIO.Outbound", "order": 6, "nominalSeconds": 39, "globalStartSeconds": 246, "globalEndSeconds": 285,
+      "id": "PIO.Outbound", "order": 7, "nominalSeconds": 39, "globalStartSeconds": 286, "globalEndSeconds": 325,
       "summary": "Acompanha distância e redução de potência; prioriza a transmissão.",
       "requiredExit": "Economia confirmada, sem desligamento fatal por erro.",
       "hold": {"id": "PIO.Outbound.Power", "seconds": 3, "promptKey": "PIO.UI.power"}
     },
     {
-      "id": "PIO.Listening", "order": 7, "nominalSeconds": 52, "globalStartSeconds": 285, "globalEndSeconds": 337,
+      "id": "PIO.Listening", "order": 8, "nominalSeconds": 52, "globalStartSeconds": 325, "globalEndSeconds": 377,
       "summary": "Sintoniza três contatos e presencia uma quarta tentativa sem resposta.",
       "requiredExit": "Três contatos e a janela final de silêncio concluídos.",
       "contacts": [
@@ -73,7 +78,7 @@
       "silenceSeconds": 2.5
     },
     {
-      "id": "PIO.Farewell", "order": 8, "nominalSeconds": 38, "globalStartSeconds": 337, "globalEndSeconds": 375,
+      "id": "PIO.Farewell", "order": 9, "nominalSeconds": 38, "globalStartSeconds": 377, "globalEndSeconds": 415,
       "summary": "Entende que perder a comunicação não interrompe a trajetória.",
       "requiredExit": "Memorial e tela de conclusão (Voltar ao arquivo / Repetir).",
       "lastSecondsOffer": 2
@@ -93,9 +98,10 @@
     {"id": "PIO.02.05", "state": "PIO.Belt", "textKey": "PIO.02.05", "timing": {"kind": "window", "startSeconds": 34, "endSeconds": 40}},
     {"id": "PIO.02.06", "state": "PIO.Belt", "textKey": "PIO.02.06", "timing": {"kind": "window", "startSeconds": 51, "endSeconds": 58}, "gate": {"id": "PIO.Belt.Gate", "condition": "5/5 registros"}},
 
-    {"id": "PIO.03.01", "state": "PIO.JupiterApproach", "textKey": "PIO.03.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 8}},
-    {"id": "PIO.03.02", "state": "PIO.JupiterApproach", "textKey": "PIO.03.02", "timing": {"kind": "window", "startSeconds": 9, "endSeconds": 17}},
-    {"id": "PIO.03.03", "state": "PIO.JupiterApproach", "textKey": "PIO.03.03", "timing": {"kind": "window", "startSeconds": 18, "endSeconds": 26}},
+    {"id": "PIO.03.01", "state": "PIO.JupiterApproach", "textKey": "PIO.03.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 6}},
+    {"id": "PIO.03.02", "state": "PIO.JupiterApproach", "textKey": "PIO.03.02", "timing": {"kind": "window", "startSeconds": 7, "endSeconds": 13}},
+    {"id": "PIO.03.03", "state": "PIO.JupiterApproach", "textKey": "PIO.03.03", "timing": {"kind": "window", "startSeconds": 14, "endSeconds": 20}},
+    {"id": "PIO.03.04", "state": "PIO.JupiterApproach", "textKey": "PIO.03.04", "timing": {"kind": "window", "startSeconds": 21, "endSeconds": 26}},
 
     {"id": "PIO.04.01", "state": "PIO.Imaging", "textKey": "PIO.04.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 8}},
     {"id": "PIO.04.02", "state": "PIO.Imaging", "textKey": "PIO.04.02", "timing": {"kind": "window", "startSeconds": 8, "endSeconds": 16}},
@@ -106,6 +112,13 @@
     {"id": "PIO.04.07", "state": "PIO.Imaging", "textKey": "PIO.04.07", "timing": {"kind": "window", "startSeconds": 55, "endSeconds": 63}},
     {"id": "PIO.04.08", "state": "PIO.Imaging", "textKey": "PIO.04.08", "timing": {"kind": "window", "startSeconds": 63, "endSeconds": 69}},
     {"id": "PIO.04.09", "state": "PIO.Imaging", "textKey": "PIO.04.09", "timing": {"kind": "window", "startSeconds": 69, "endSeconds": 74}},
+    {"id": "PIO.09.01", "state": "PIO.Closest", "textKey": "PIO.09.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 5.75}},
+    {"id": "PIO.09.02", "state": "PIO.Closest", "textKey": "PIO.09.02", "timing": {"kind": "window", "startSeconds": 6, "endSeconds": 11.5}},
+    {"id": "PIO.09.03", "state": "PIO.Closest", "textKey": "PIO.09.03", "timing": {"kind": "window", "startSeconds": 11.75, "endSeconds": 18}},
+    {"id": "PIO.09.04", "state": "PIO.Closest", "textKey": "PIO.09.04", "timing": {"kind": "window", "startSeconds": 18.25, "endSeconds": 23.5}},
+    {"id": "PIO.09.05", "state": "PIO.Closest", "textKey": "PIO.09.05", "timing": {"kind": "window", "startSeconds": 23.75, "endSeconds": 28.5}},
+    {"id": "PIO.09.06", "state": "PIO.Closest", "textKey": "PIO.09.06", "timing": {"kind": "window", "startSeconds": 28.75, "endSeconds": 34.5}},
+    {"id": "PIO.09.07", "state": "PIO.Closest", "textKey": "PIO.09.07", "timing": {"kind": "window", "startSeconds": 34.75, "endSeconds": 40}},
 
     {"id": "PIO.05.01", "state": "PIO.Plaque", "textKey": "PIO.05.01", "timing": {"kind": "window", "startSeconds": 0, "endSeconds": 8}},
     {"id": "PIO.05.02", "state": "PIO.Plaque", "textKey": "PIO.05.02", "timing": {"kind": "trigger", "triggerId": "PIO.Plaque.Hydrogen", "afterEvent": "peça hidrogênio encaixada", "minimumReadSeconds": 4}},

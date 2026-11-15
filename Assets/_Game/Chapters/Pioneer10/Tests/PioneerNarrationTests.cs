@@ -102,18 +102,18 @@ namespace Abandoned.SpaceApps.Tests
         public void TheDataAssetMatchesTheJsonAndEveryCueHasItsTextInBothLanguages()
         {
             Assert.That(data.Validate(), Is.Empty);
-            Assert.That(data.States.Count, Is.EqualTo(8));
-            Assert.That(data.Cues.Count, Is.EqualTo(45));
-            Assert.That(data.Texts.Count, Is.EqualTo(112));
-            Assert.That(data.States.Sum(s => s.nominalSeconds), Is.EqualTo(375));
+            Assert.That(data.States.Count, Is.EqualTo(9));
+            Assert.That(data.Cues.Count, Is.EqualTo(53));
+            Assert.That(data.Texts.Count, Is.EqualTo(120));
+            Assert.That(data.States.Sum(s => s.nominalSeconds), Is.EqualTo(415));
             foreach (var cue in data.Cues)
             {
                 Assert.That(data.GetText(cue.textKey, "pt-BR"), Is.Not.Empty, cue.id);
                 Assert.That(data.GetText(cue.textKey, "en"), Is.Not.Empty, cue.id);
             }
 
-            Assert.That(data.GetText("PIO.01.01", "pt"), Is.EqualTo("Em 1972, uma pequena sonda partiu para os planetas exteriores."));
-            Assert.That(data.GetText("PIO.01.01", "en"), Is.EqualTo("In 1972, a small spacecraft set out for the outer planets."));
+            Assert.That(data.GetText("PIO.01.01", "pt"), Is.EqualTo("Pioneer quer dizer pioneira: quem vai primeiro. E o nome não é por acaso."));
+            Assert.That(data.GetText("PIO.01.01", "en"), Is.EqualTo("Pioneer: a word for those who go first. And the name was no accident."));
             Assert.That(data.GetText("PIO.UI.dust", "pt"), Does.Contain("{count}"));
             Assert.That(data.GetText("PIO.chave.inexistente", "pt"), Is.Empty, "chave desconhecida: a caixa some");
             Assert.That(data.GetText("PIO.01.01", "fr"), Is.Empty, "idioma sem dados: a caixa some");
@@ -141,7 +141,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(map.Validate(), Is.Empty);
             Assert.That(PioneerPresentation.StateIds.Select(id => { map.TryGetState(id, out var s); return s.musicCueId; }), Is.EqualTo(new[]
             {
-                "MUS_PIO_PARTIDA", "MUS_PIO_CUR", "MUS_PIO_CUR", "MUS_PIO_CUR", "MUS_PIO_DISTANCIA", "MUS_PIO_DISTANCIA", "MUS_PIO_ESCUTA", "MUS_PIO_ESCUTA",
+                "MUS_PIO_PARTIDA", "MUS_PIO_CUR", "MUS_PIO_CUR", "MUS_PIO_CUR", "MUS_PIO_CUR", "MUS_PIO_DISTANCIA", "MUS_PIO_DISTANCIA", "MUS_PIO_ESCUTA", "MUS_PIO_ESCUTA",
             }), "Partida, Curiosidade, Distância e Escuta nos estados da folha de cues");
             Assert.That(map.States.All(s => s.fadeSeconds >= 1.5f && s.fadeSeconds <= 2f), "crossfade de 1,5 a 2 s");
             Assert.That(map.Cues.All(c => c.clip == null), "o mapa não traz áudio: nenhuma faixa entra sem licença e crédito");

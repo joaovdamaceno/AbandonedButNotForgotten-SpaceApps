@@ -443,6 +443,8 @@ namespace Abandoned.SpaceApps.EditorTools
             var instrument = jupiterFlat * (CompartmentRadiusMeters + 0.06f) + Vector3.forward * -0.30f;
             var instrumentCamera = instrument + jupiterFlat * 1.1f + Vector3.forward * -0.9f + Vector3.Cross(Vector3.forward, jupiterFlat) * 0.35f;
             var approachCamera = -JupiterDirection * 11f + Vector3.up * 3.2f + jupiterRight * 3.5f;
+            // Máxima aproximação (cena 5): ~130 m do centro de Júpiter (raio 80 m), um pouco acima e ao lado do eixo de chegada.
+            var closestCamera = JupiterPosition - JupiterDirection * 130f + Vector3.up * 22f + jupiterRight * 24f;
             var aldebaran = AldebaranDirection.normalized;
             var farewellCamera = new Vector3(-5f, 3f, 8f);
             var farewellLook = farewellCamera + (aldebaran * 0.55f + (-farewellCamera).normalized * 0.45f).normalized * 60f;
@@ -480,6 +482,9 @@ namespace Abandoned.SpaceApps.EditorTools
                     AlignSocket = "Photopolarimeter", AlignTowards = PioneerPresentation.JupiterTargetId,
                     Position = imagingCamera, LookAt = OffsetLook(imagingCamera, JupiterPosition, 19f, -3f),
                     UiFrame = new Rect(0.53f, 0.12f, 0.43f, 0.76f) },
+                new AnchorSpec { Id = "PIO.Closest", State = "PIO.Closest", Function = "PIO05 (roteiro v2, cena 5) · a máxima aproximação: Júpiter enche o quadro, a poucas dezenas de metros do topo das nuvens (escala de composição)",
+                    Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.JupiterAxis", Fov = 55f, Jupiter = true,
+                    Position = closestCamera, LookAt = JupiterPosition + Vector3.down * 12f },
                 new AnchorSpec { Id = "PIO.Plaque", State = "PIO.Plaque", Function = "Placa presa aos suportes da antena; rotação visual suspensa só neste close",
                     Region = PioneerStageRegion.DeepSpace, Light = "PIO.Light.Plaque", Fov = 36f, Jupiter = true, SpinScale = 0f,
                     AlignSocket = "Plaque", Position = plaqueCamera, LookAt = plaqueAligned },

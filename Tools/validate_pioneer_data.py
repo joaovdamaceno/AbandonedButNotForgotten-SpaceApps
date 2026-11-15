@@ -3,7 +3,7 @@
 
 Confere Data/Chapters/Pioneer10.json e Data/Localization/Pioneer10.{pt-BR,en}.json:
   - JSON válido, schemaVersion e IDs únicos;
-  - oito estados com ordem explícita, soma nominal de 375 s e cadeia de tempos global sem buracos;
+  - nove estados com ordem explícita, soma nominal de 415 s e cadeia de tempos global sem buracos;
   - todo cue existe nas duas línguas; PT e EN têm as MESMAS chaves e os mesmos marcadores {count};
   - janelas de legenda dentro do estado, sem sobreposição (lacunas e velocidade de leitura são relatadas);
   - fatos com fontes existentes em 02_PIONEER_SOURCES.md, estados e divergências existentes, datas ISO válidas;
@@ -25,9 +25,9 @@ CHAPTER = ROOT / "Data" / "Chapters" / "Pioneer10.json"
 LOCALES = {"pt-BR": ROOT / "Data" / "Localization" / "Pioneer10.pt-BR.json", "en": ROOT / "Data" / "Localization" / "Pioneer10.en.json"}
 SOURCES = ROOT / "Docs" / "Chapters" / "02_PIONEER_SOURCES.md"
 
-EXPECTED_STATES = ["PIO.Launch", "PIO.Belt", "PIO.JupiterApproach", "PIO.Imaging", "PIO.Plaque", "PIO.Outbound", "PIO.Listening", "PIO.Farewell"]
-EXPECTED_NOMINAL = [40, 58, 27, 74, 47, 39, 52, 38]
-TOTAL_SECONDS = 375
+EXPECTED_STATES = ["PIO.Launch", "PIO.Belt", "PIO.JupiterApproach", "PIO.Imaging", "PIO.Closest", "PIO.Plaque", "PIO.Outbound", "PIO.Listening", "PIO.Farewell"]
+EXPECTED_NOMINAL = [40, 58, 27, 74, 40, 47, 39, 52, 38]
+TOTAL_SECONDS = 415
 MAX_CHARS_PER_SECOND = 22.0  # aviso (não erro): legenda de duas linhas, leitura revista na build real
 ID_PATTERN = re.compile(r"^[A-Za-z][A-Za-z0-9._-]{0,63}$")
 PLACEHOLDER = re.compile(r"\{[a-zA-Z]+\}")

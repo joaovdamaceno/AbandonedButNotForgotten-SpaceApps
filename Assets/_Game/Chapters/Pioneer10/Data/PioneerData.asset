@@ -25,17 +25,20 @@ MonoBehaviour:
   - id: PIO.Imaging
     order: 4
     nominalSeconds: 74
-  - id: PIO.Plaque
+  - id: PIO.Closest
     order: 5
+    nominalSeconds: 40
+  - id: PIO.Plaque
+    order: 6
     nominalSeconds: 47
   - id: PIO.Outbound
-    order: 6
+    order: 7
     nominalSeconds: 39
   - id: PIO.Listening
-    order: 7
+    order: 8
     nominalSeconds: 52
   - id: PIO.Farewell
-    order: 8
+    order: 9
     nominalSeconds: 38
   cues:
   - id: PIO.01.01
@@ -153,7 +156,7 @@ MonoBehaviour:
     textKey: PIO.03.01
     timing: 0
     startSeconds: 0
-    endSeconds: 8
+    endSeconds: 6
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -162,8 +165,8 @@ MonoBehaviour:
     state: PIO.JupiterApproach
     textKey: PIO.03.02
     timing: 0
-    startSeconds: 9
-    endSeconds: 17
+    startSeconds: 7
+    endSeconds: 13
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -172,7 +175,17 @@ MonoBehaviour:
     state: PIO.JupiterApproach
     textKey: PIO.03.03
     timing: 0
-    startSeconds: 18
+    startSeconds: 14
+    endSeconds: 20
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.03.04
+    state: PIO.JupiterApproach
+    textKey: PIO.03.04
+    timing: 0
+    startSeconds: 21
     endSeconds: 26
     triggerId: 
     minimumReadSeconds: 0
@@ -264,6 +277,76 @@ MonoBehaviour:
     timing: 0
     startSeconds: 69
     endSeconds: 74
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.01
+    state: PIO.Closest
+    textKey: PIO.09.01
+    timing: 0
+    startSeconds: 0
+    endSeconds: 5.75
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.02
+    state: PIO.Closest
+    textKey: PIO.09.02
+    timing: 0
+    startSeconds: 6
+    endSeconds: 11.5
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.03
+    state: PIO.Closest
+    textKey: PIO.09.03
+    timing: 0
+    startSeconds: 11.75
+    endSeconds: 18
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.04
+    state: PIO.Closest
+    textKey: PIO.09.04
+    timing: 0
+    startSeconds: 18.25
+    endSeconds: 23.5
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.05
+    state: PIO.Closest
+    textKey: PIO.09.05
+    timing: 0
+    startSeconds: 23.75
+    endSeconds: 28.5
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.06
+    state: PIO.Closest
+    textKey: PIO.09.06
+    timing: 0
+    startSeconds: 28.75
+    endSeconds: 34.5
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.07
+    state: PIO.Closest
+    textKey: PIO.09.07
+    timing: 0
+    startSeconds: 34.75
+    endSeconds: 40
     triggerId: 
     minimumReadSeconds: 0
     gateId: 
@@ -491,274 +574,322 @@ MonoBehaviour:
   texts:
   - key: PIO.01.01
     group: narrative
-    ptText: Em 1972, uma pequena sonda partiu para os planetas exteriores.
-    enText: In 1972, a small spacecraft set out for the outer planets.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Pioneer quer dizer pioneira: quem vai primeiro. E o nome n\xE3o \xE9 por acaso."
+    enText: 'Pioneer: a word for those who go first. And the name was no accident.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.01.02
     group: narrative
-    ptText: "Seu destino era J\xFApiter. Ningu\xE9m havia explorado aquele mundo de perto."
-    enText: Its destination was Jupiter. No one had explored that world up close.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Mar\xE7o de 1972. Uma pequena sonda, do tamanho de um carro, partiu rumo aos planetas exteriores."
+    enText: March 1972. A small probe, no bigger than a car, set out for the outer planets.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.01.03
     group: narrative
-    ptText: "Em menos de 11 horas, j\xE1 havia cruzado a \xF3rbita da Lua."
-    enText: "In less than 11 hours, it had crossed the Moon\u2019s orbit."
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Em menos de 11 horas, cruzou a \xF3rbita da Lua. Ao partir da Terra, era a m\xE1quina mais veloz j\xE1 lan\xE7ada."
+    enText: "Within eleven hours it crossed the Moon\u2019s orbit. Leaving Earth, it was the fastest machine ever launched."
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.01.04
     group: narrative
-    ptText: "Girar ajudava a manter a sonda est\xE1vel durante a viagem."
-    enText: Spinning helped keep the spacecraft stable during its journey.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Ela gira devagar, como um pi\xE3o. Esse giro ajuda a manter a sonda est\xE1vel na longa viagem."
+    enText: It spins slowly, like a top. That steady turning keeps the probe stable on its long journey.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.01.05
     group: narrative
-    ptText: Longe do Sol, seus geradores transformavam calor radioativo em eletricidade.
-    enText: Far from the Sun, its generators turned radioactive heat into electricity.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Longe do Sol, a luz \xE9 fraca. Por isso levava RTGs: geradores que transformam o calor do plut\xF4nio em energia."
+    enText: "Far from the Sun, sunlight is faint. So it carried RTGs: generators turning plutonium\u2019s heat into electricity."
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.02.01
     group: narrative
-    ptText: "Entre Marte e J\xFApiter, o cintur\xE3o de asteroides guardava uma d\xFAvida."
-    enText: Between Mars and Jupiter, the asteroid belt held an unanswered question.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Depois de Marte, havia um lugar onde ningu\xE9m tinha passado: o cintur\xE3o de asteroides."
+    enText: 'Mars fell behind. Ahead lay a place no one had ever crossed: the asteroid belt.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.02.02
     group: narrative
-    ptText: "Haveria part\xEDculas suficientes para danificar a sonda?"
-    enText: Would there be enough particles to damage the spacecraft?
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Ningu\xE9m sabia se dava para atravessar. Alguns temiam que uma colis\xE3o encerrasse a miss\xE3o."
+    enText: Nobody knew if anything could pass. Some feared a single collision would end the mission.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.02.03
     group: narrative
-    ptText: Imagine o medo de encontrar um caminho cheio de pedras...
-    enText: Imagine the fear of finding a path crowded with rocks...
-    ptStatus: approved
-    enStatus: approved
+    ptText: 'Imagine o medo: um caminho cheio de pedras, coladas umas nas outras...'
+    enText: 'Imagine the fear: a path crowded with rocks, packed close together...'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.02.04
     group: narrative
-    ptText: "Mas a travessia real n\xE3o foi um labirinto. Os asteroides estavam muito distantes."
-    enText: But the real crossing was not a maze. The asteroids were very far apart.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Na vida real, as pedras ficam muito longe umas das outras. A rota passava a milh\xF5es de km da mais pr\xF3xima."
+    enText: In real life, the rocks lie vast distances apart. The route passed millions of kilometres from the nearest.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.02.05
     group: narrative
-    ptText: "Os instrumentos procuravam algo menor: part\xEDculas de poeira."
-    enText: 'The instruments searched for something smaller: dust particles.'
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Os instrumentos procuravam algo bem menor: s\xF3 poeira fina tocou a sonda."
+    enText: 'The instruments listened for something far smaller: only fine dust brushed the probe.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.02.06
     group: narrative
-    ptText: "Ap\xF3s meses de medi\xE7\xF5es, a Pioneer saiu do cintur\xE3o sem danos."
-    enText: After months of measurements, Pioneer emerged from the belt undamaged.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Sete meses depois, a Pioneer saiu do outro lado, inteira. D\xE1 para atravessar o cintur\xE3o!"
+    enText: After seven months, Pioneer emerged on the far side, unharmed. The belt could be crossed.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.03.01
     group: narrative
-    ptText: "No fim de 1973, J\xFApiter come\xE7ou a encher o quadro."
-    enText: By late 1973, Jupiter began to fill the frame.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Novembro de 1973. J\xFApiter, o maior dos planetas, j\xE1 estava \xE0 vista."
+    enText: By November 1973, Jupiter, largest of the planets, was in sight.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.03.02
     group: narrative
-    ptText: Cada mensagem levava dezenas de minutos. A equipe precisava planejar antes.
-    enText: Each message took tens of minutes. The team had to plan ahead.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Um mundo t\xE3o grande que onze Terras caberiam lado a lado em seu di\xE2metro."
+    enText: A world so vast that eleven Earths could stand side by side across its face.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.03.03
     group: narrative
-    ptText: Para ver esse mundo, uma imagem teria de nascer aos poucos.
-    enText: To see this world, an image would have to emerge a little at a time.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "A Pioneer come\xE7ou a fotografar de longe, a 25 milh\xF5es de quil\xF4metros."
+    enText: Pioneer began taking pictures from 25 million kilometres away.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.03.04
+    group: narrative
+    ptText: "Mas um comando e sua resposta podiam levar at\xE9 uma hora e meia."
+    enText: Yet a command and its reply could take up to an hour and a half.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.04.01
     group: narrative
-    ptText: "A Pioneer n\xE3o tinha uma c\xE2mera como a de um celular."
-    enText: Pioneer did not have a camera like the one in a phone.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "A Pioneer n\xE3o tinha uma c\xE2mera como a do celular."
+    enText: Pioneer had no camera like the one in your phone.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.04.02
     group: narrative
-    ptText: "A rota\xE7\xE3o varria o planeta. Faixas estreitas formavam a imagem."
-    enText: Its spin scanned the planet. Narrow strips built the image.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "A cada volta, ela via s\xF3 uma linha fina de J\xFApiter, em apenas duas cores: vermelho e azul."
+    enText: 'With each turn, it saw just one thin line of Jupiter, in only two colours: red and blue.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.04.03
     group: narrative
-    ptText: O instrumento media luz vermelha e azul.
-    enText: The instrument measured red and blue light.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Primeiro a luz vermelha: a imagem come\xE7a a aparecer, uma linha de cada vez."
+    enText: Red light first, and the picture begins to appear, one line at a time.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.04.04
     group: narrative
-    ptText: "A radia\xE7\xE3o de J\xFApiter provocou comandos indevidos no instrumento."
-    enText: "Jupiter\u2019s radiation triggered unwanted commands in the instrument."
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Ent\xE3o a radia\xE7\xE3o de J\xFApiter disparou comandos indevidos no instrumento."
+    enText: "Then Jupiter\u2019s radiation triggered unwanted commands in the instrument."
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.04.05
     group: narrative
-    ptText: "A equipe enviou sequ\xEAncias de recupera\xE7\xE3o. A observa\xE7\xE3o continuou."
-    enText: The team sent recovery sequences. The observations continued.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "A equipe enviou sequ\xEAncias de recupera\xE7\xE3o, e a observa\xE7\xE3o continuou."
+    enText: The team sent recovery sequences, and the observing carried on.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.04.06
     group: narrative
-    ptText: "Na Terra, o processamento estimava tamb\xE9m o verde e compunha a imagem."
-    enText: On Earth, processing also estimated green and assembled the image.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "A Pioneer nunca viu o verde. Os computadores na Terra o estimaram, e J\xFApiter apareceu em cores."
+    enText: Pioneer never saw green. Computers on Earth worked it out, and Jupiter appeared in colour.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.04.07
     group: narrative
     ptText: "Algumas imagens se perderam, inclusive a de Io. Mas muito chegou at\xE9 n\xF3s."
-    enText: "Some images were lost, including Io\u2019s. But so much reached us."
-    ptStatus: approved
-    enStatus: approved
+    enText: "Some pictures were lost, Io\u2019s among them. But so much reached us."
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.04.08
     group: narrative
-    ptText: "Esta \xE9 Ganimedes, vista pela Pioneer 10 em 1973."
-    enText: This is Ganymede, seen by Pioneer 10 in 1973.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Esta \xE9 Ganimedes, vista pela Pioneer 10 em 1973: fotos de perto da maior lua do Sistema Solar."
+    enText: "This is Ganymede, seen by Pioneer 10 in 1973: close-ups of the Solar System\u2019s largest moon."
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.04.09
     group: narrative
-    ptText: "Luz, radia\xE7\xE3o e magnetismo: um mundo novo para estudar."
-    enText: 'Light, radiation and magnetism: a new world to study.'
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Eram imagens melhores que qualquer telesc\xF3pio da Terra podia oferecer."
+    enText: These pictures were sharper than anything a telescope on Earth could offer.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.01
+    group: narrative
+    ptText: "Mais perto, passou pelas grandes luas de J\xFApiter e fotografou Ganimedes de perto."
+    enText: "Closer it came, passing Jupiter\u2019s great moons and photographing Ganymede up close."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.02
+    group: narrative
+    ptText: "J\xFApiter \xE9 cercado por radia\xE7\xE3o milhares de vezes mais forte que a da Terra."
+    enText: "Jupiter is wrapped in radiation thousands of times stronger than Earth\u2019s."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.03
+    group: narrative
+    ptText: Absorveu mais de mil vezes a dose fatal a uma pessoa. Surgiram comandos indevidos; havia reservas.
+    enText: It absorbed over a thousand times a fatal human dose. Unwanted commands arose; backups were ready.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.04
+    group: narrative
+    ptText: "4 de dezembro de 1973: a Pioneer 10 foi a primeira a sobrevoar J\xFApiter."
+    enText: '4 December 1973: Pioneer 10 became the first to fly past Jupiter.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.05
+    group: narrative
+    ptText: "A cerca de 130.000 km das nuvens: tr\xEAs vezes mais perto que a Lua da Terra."
+    enText: 'About 130,000 km above the clouds: three times closer than the Moon to us.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.06
+    group: narrative
+    ptText: "A gravidade de J\xFApiter curvou seu caminho e deu o impulso para seguir al\xE9m dos planetas."
+    enText: "Jupiter\u2019s gravity bent its path and gave it the boost to travel beyond the planets."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.07
+    group: narrative
+    ptText: "Viu que a radia\xE7\xE3o de J\xFApiter era mais forte que o esperado, e isso mudou a Voyager."
+    enText: "It found Jupiter\u2019s radiation fiercer than expected, which shaped Voyager\u2019s design."
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.05.01
     group: narrative
-    ptText: "A sonda levava outra coisa: uma apresenta\xE7\xE3o de quem a construiu."
-    enText: 'The spacecraft carried something else: an introduction to its makers.'
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Depois de J\xFApiter, n\xE3o haveria volta: rumo \xE0s estrelas, a Pioneer levava uma carta numa placa de alum\xEDnio dourado."
+    enText: 'No return journey: Pioneer was bound for the stars, carrying a letter on a gold-coloured plaque.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.05.02
     group: narrative
-    ptText: "Hidrog\xEAnio: uma refer\xEAncia para medir tempo e tamanho."
-    enText: 'Hydrogen: a reference for measuring time and size.'
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Hidrog\xEAnio, o \xE1tomo mais comum do Universo: a nossa r\xE9gua."
+    enText: 'First, hydrogen, the commonest atom in the Universe: our ruler.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.05.03
     group: narrative
-    ptText: 'Pulsares: estrelas que ajudam a localizar o nosso Sol.'
-    enText: 'Pulsars: stars that help locate our Sun.'
-    ptStatus: approved
-    enStatus: approved
+    ptText: 'Pulsares: estrelas que piscam e mostram onde fica o Sol.'
+    enText: Then pulsars, blinking stars that show where the Sun lies.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.05.04
     group: narrative
-    ptText: "O terceiro planeta \xE9 a origem da viagem: a Terra."
-    enText: 'The third planet is where the journey began: Earth.'
-    ptStatus: approved
-    enStatus: approved
+    ptText: 'O Sistema Solar: a sonda saindo do terceiro planeta, a Terra.'
+    enText: 'The Solar System: Pioneer leaving the third planet, Earth.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.05.05
     group: narrative
-    ptText: "A pr\xF3pria Pioneer d\xE1 uma escala para os desenhos humanos."
-    enText: Pioneer itself provides a scale for the human figures.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Ao lado, o contorno da pr\xF3pria Pioneer, para dar escala."
+    enText: "Beside it, Pioneer\u2019s own outline, to show our size."
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.05.06
     group: narrative
-    ptText: "Pessoas: uma delas ergue a m\xE3o, como quem diz ol\xE1."
-    enText: 'People: one raises a hand, as if to say hello.'
-    ptStatus: approved
-    enStatus: approved
+    ptText: "E duas figuras. Uma delas acena: ol\xE1!"
+    enText: And before it, two figures. One of them is waving hello.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.05.07
     group: narrative
-    ptText: "Uma placa de alum\xEDnio dourado. Uma mensagem para um encontro que talvez nunca aconte\xE7a."
-    enText: A gold-colored aluminum plaque. A message for a meeting that may never happen.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Uma placa de alum\xEDnio dourado: uma carta para um encontro que talvez nunca aconte\xE7a."
+    enText: 'A gold-coloured aluminium plaque: a letter for an encounter that may never happen.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.06.01
     group: narrative
-    ptText: "A viagem n\xE3o terminou em J\xFApiter. Sua gravidade mudou o caminho da Pioneer."
-    enText: "The journey did not end at Jupiter. Its gravity changed Pioneer\u2019s path."
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Feita para durar 21 meses, a Pioneer continuou: passou a dist\xE2ncia de Saturno em 1976 e a de Urano em 1979."
+    enText: "Built to last twenty-one months, Pioneer carried on: it crossed the distance of Saturn\u2019s orbit in 1976 and Uranus\u2019s in 1979."
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.06.02
     group: narrative
-    ptText: "Em 1983, ela j\xE1 seguia al\xE9m das \xF3rbitas dos planetas."
-    enText: "By 1983, it was traveling beyond the planets\u2019 orbits."
-    ptStatus: approved
-    enStatus: approved
+    ptText: "13 de junho de 1983: cruzou a dist\xE2ncia da \xF3rbita de Netuno, com os instrumentos ainda funcionando normalmente."
+    enText: "13 June 1983: it crossed the distance of Neptune\u2019s orbit, its instruments still working normally."
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.06.03
     group: narrative
-    ptText: Com os anos, os geradores forneciam menos energia. Era preciso escolher o que manter ligado.
-    enText: As years passed, the generators supplied less power. The team had to choose what stayed on.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Ano ap\xF3s ano, os geradores enfraqueciam. Os instrumentos passaram a revezar-se e foram sendo desligados."
+    enText: Year by year the generators weakened. The instruments took turns, and one by one were switched off.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.06.04
     group: narrative
-    ptText: "Em 1998, a Voyager 1 se tornou a mais distante do Sol, seguindo outra dire\xE7\xE3o."
-    enText: In 1998, Voyager 1 became the farthest from the Sun, traveling in another direction.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Em 1998, a Voyager 1 a ultrapassou e se tornou a m\xE1quina humana mais distante, em outra dire\xE7\xE3o."
+    enText: In 1998, Voyager 1 overtook it to become the most distant human-made object, travelling in another direction.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.06.05
     group: narrative
     ptText: A Pioneer havia mostrado o caminho. Agora, a Terra escutava cada vez mais longe.
-    enText: Pioneer had shown the way. Now Earth was listening farther and farther away.
-    ptStatus: approved
-    enStatus: approved
+    enText: Pioneer had shown the way. Now Earth had to listen from ever farther away.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.07.01
     group: narrative
-    ptText: "A dist\xE2ncia aumentava. As antenas da Terra buscavam um sinal cada vez mais fraco."
-    enText: "The distance grew. Earth\u2019s antennas searched for an ever weaker signal."
-    ptStatus: approved
-    enStatus: approved
+    ptText: O sinal estava mais fraco que um sussurro. As antenas da Terra ainda conseguiriam ouvi-lo?
+    enText: "Its signal was now fainter than a whisper. Could Earth\u2019s antennas still hear it?"
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.07.02
     group: narrative
-    ptText: "Mar\xE7o de 2002. Trinta anos depois do lan\xE7amento, ela ainda respondia."
-    enText: March 2002. Thirty years after launch, it was still responding.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Mar\xE7o de 2002. Trinta anos depois do lan\xE7amento, a Pioneer ainda respondia."
+    enText: March 2002. Thirty years after launch, Pioneer was still answering.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.07.03
     group: narrative
     ptText: "Abril de 2002. Os \xFAltimos dados de seus instrumentos chegaram \xE0 Terra."
     enText: April 2002. The last data from its instruments reached Earth.
-    ptStatus: approved
-    enStatus: approved
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.07.04
     group: narrative
-    ptText: "Janeiro de 2003. Um \xFAltimo sinal levou 11 horas e 20 minutos para chegar."
-    enText: January 2003. A last signal took 11 hours and 20 minutes to arrive.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Janeiro de 2003. Um \xFAltimo sinal fraco, de 12 bilh\xF5es de quil\xF4metros, levou mais de 11 horas para chegar."
+    enText: January 2003. A last faint signal, from twelve billion kilometres away, took over eleven hours to reach us.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.07.05
     group: narrative
-    ptText: Fevereiro de 2003. Nenhum sinal detectado.
-    enText: February 2003. No signal detected.
-    ptStatus: approved
-    enStatus: approved
+    ptText: Fevereiro de 2003. A Terra escutou outra vez e nenhum sinal foi detectado.
+    enText: February 2003. Earth listened once more, and no signal was detected.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.07.06
     group: narrative
-    ptText: "Sem energia suficiente para nos alcan\xE7ar, a Pioneer ficou em sil\xEAncio."
-    enText: Without enough power to reach us, Pioneer fell silent.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Sem energia suficiente para nos alcan\xE7ar, a Pioneer 10 ficou em sil\xEAncio. Mas n\xE3o parou."
+    enText: Without enough power to reach us, Pioneer 10 fell silent. But it did not stop.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.08.01
     group: narrative
-    ptText: "O sil\xEAncio n\xE3o interrompeu a viagem."
-    enText: Silence did not stop the journey.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Ela segue em dire\xE7\xE3o \xE0 estrela vermelha Aldebaran: uma viagem de milh\xF5es de anos."
+    enText: 'It travels on, towards the red star Aldebaran: a journey measured in millions of years.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.08.02
     group: narrative
-    ptText: "A Pioneer segue na dire\xE7\xE3o de Aldebaran, uma estrela distante."
-    enText: Pioneer continues in the direction of Aldebaran, a distant star.
-    ptStatus: approved
-    enStatus: approved
+    ptText: Feita para durar 21 meses, funcionou por mais de 30 anos.
+    enText: Built to last twenty-one months, it lasted more than thirty years.
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.08.03
     group: narrative
-    ptText: "Estamos falando de milh\xF5es de anos. Um futuro que ningu\xE9m aqui ver\xE1."
-    enText: We are talking about millions of years. A future none of us here will see.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "E o nome n\xE3o foi por acaso: primeira aos planetas exteriores, primeira a cruzar o cintur\xE3o, primeira a sobrevoar J\xFApiter."
+    enText: 'And the name was no accident: first to the outer planets, first across the asteroid belt, first to fly past Jupiter.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.08.04
     group: narrative
-    ptText: Quem vai primeiro abre caminho para muitos.
-    enText: Those who go first open a path for many.
-    ptStatus: approved
-    enStatus: approved
+    ptText: "Pioneer quer dizer pioneira. Toda grande viagem come\xE7a com quem vai primeiro, e a Pioneer 10 foi primeiro, por todos n\xF3s."
+    enText: 'Pioneer: one who goes first. Every great journey begins with someone who goes first. Pioneer 10 went first, for us all.'
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.start
     group: hud
     ptText: "Pioneer 10 \xB7 Abrir caminho"
