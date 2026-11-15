@@ -149,6 +149,10 @@ namespace Abandoned.SpaceApps.EditorTools
         /// marco em 27,4 s); 27,5–33 recuo até a placa inteira. As legendas das peças (PIO.05.02–06) abrem por gatilho e ficam o
         /// tempo de ler a 16 caracteres por segundo no pior idioma (de 3,6 a 4 s). 33 s é o mínimo que a regra de leitura permite.
         /// </summary>
+        /// <summary>Chegada: a placa inteira enquanto a legenda apresenta a placa (PIO.05.01b e .01c); depois o zoom nas peças.</summary>
+        public const float ArriveSeconds = 17.5f;
+        public const float TotalSeconds = ArriveSeconds + 20f + 5.5f;
+
         public static SequenceDefinition CreateSequence()
         {
             const string rig = "PIO.Plaque.Board";
@@ -170,12 +174,13 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var shots = new[]
             {
-                new ShotDefinition("PIO05.Arrive", 7.5f, rig,
+                new ShotDefinition("PIO05.Arrive", ArriveSeconds, rig,
                     new[]
                     {
                         Key(0f, new Vector3(-0.6f, 0.5f, -1.8f), fov),
                         Key(3.8f, Vector3.zero, fov),
-                        Key(7.5f, PieceView(0), fov),
+                        Key(12f, Vector3.zero, fov),
+                        Key(ArriveSeconds, PieceView(0), fov),
                     },
                     easing: ShotEasing.EaseInOut, minGroundClearanceMeters: 0f,
                     events: new[] { new ShotEvent(0f, PioneerPlaqueActivity.EventArrive) }),
@@ -190,13 +195,15 @@ namespace Abandoned.SpaceApps.EditorTools
 
             var cues = new[]
             {
-                new SubtitleCue("PIO.05.01", "PIO.05.01", 0f, 7.3f),
+                new SubtitleCue("PIO.05.01", "PIO.05.01", 0f, 5.9f),
+                new SubtitleCue("PIO.05.01b", "PIO.05.01b", 6f, 11.7f),
+                new SubtitleCue("PIO.05.01c", "PIO.05.01c", 11.8f, 17.2f),
                 SubtitleCue.Triggered("PIO.05.02", "PIO.05.02", PioneerPlaqueActivity.TriggerIds[0], 4.0f),
                 SubtitleCue.Triggered("PIO.05.03", "PIO.05.03", PioneerPlaqueActivity.TriggerIds[1], 4.6f),
                 SubtitleCue.Triggered("PIO.05.04", "PIO.05.04", PioneerPlaqueActivity.TriggerIds[2], 4.5f),
                 SubtitleCue.Triggered("PIO.05.05", "PIO.05.05", PioneerPlaqueActivity.TriggerIds[3], 4.6f),
                 SubtitleCue.Triggered("PIO.05.06", "PIO.05.06", PioneerPlaqueActivity.TriggerIds[4], 3.6f),
-                new SubtitleCue("PIO.05.07", "PIO.05.07", 27.7f, 33f),
+                new SubtitleCue("PIO.05.07", "PIO.05.07", ArriveSeconds + 20.2f, TotalSeconds),
             };
 
             return SequenceDefinition.Create("PIO_Plaque", shots, cues);

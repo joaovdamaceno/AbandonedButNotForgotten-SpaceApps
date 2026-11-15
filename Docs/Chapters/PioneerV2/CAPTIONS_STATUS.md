@@ -41,6 +41,7 @@ Legenda: **A** = aplicada com o texto da lista · **M** = aplicada com mudança 
 | 5 | "radiation fiercer than expected… changed the design of Voyager" | A | PIO.09.07 |
 | 5 | "Its instruments had also measured Jupiter's magnetic field, its atmosphere…" | C: sem janela livre nos 65 s; voltaria na narração | — |
 | 6 | "Then Jupiter fell behind. No return journey…" | A | PIO.05.01 |
+| 6 | (novo) "And it carried a message for whoever might find it: a golden plaque, written without words." / "Only pictures and symbols, to tell any finder who we are and where we came from." | D: contexto antes dos símbolos; a placa agora é apresentada antes das cinco peças (chegada de 7,5 s para 17,5 s; estado de 33 s para 43 s) | PIO.05.01b, PIO.05.01c |
 | 6 | "And it carried a letter… hydrogen… pulsars… solar system… outline… two figures" | A/M (peça a peça, por gatilho) | PIO.05.02–06 |
 | 6 | "Made in just three weeks…" | C: "três semanas" fora das legendas (registro de fontes); fica "A gold-coloured aluminium plaque: a letter for…" | PIO.05.07 |
 | 7 | "Pioneer had been built to last twenty-one months. It simply carried on." | A | PIO.06.01 |

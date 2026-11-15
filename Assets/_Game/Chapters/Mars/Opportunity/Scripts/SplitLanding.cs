@@ -17,6 +17,12 @@ namespace Abandoned.SpaceApps.Opportunity
         public const float SplitHold = 12.6f, ExpandEnd = 15.2f;
         public ChapterDirector chapter;
         public Vector3 spiritOffset = new Vector3(105, 0, -70);
+        [Tooltip("Distância mínima (m) entre o ponto de pouso da Spirit e qualquer pedra: o módulo, os airbags e os quiques cabem nela.")]
+        public float rockClearance = 10f;
+        [Tooltip("Até onde (m) procurar areia livre em volta de spawn2004 + spiritOffset quando o ponto nominal tem pedra ou declive.")]
+        public float siteSearchRadius = 90f;
+        [Tooltip("Pedras decorativas ao redor do ponto de pouso da Spirit (entre 13 e 24 m, fora da zona livre).")]
+        public int sceneryRocks = 7;
 
         public bool Active { get; private set; }
         /// <summary>0 = two half-width views, 1 = Opportunity fills the screen.</summary>
@@ -34,6 +40,7 @@ namespace Abandoned.SpaceApps.Opportunity
         AirbagLanderRig rig;
         RoverPresentationRig fold;
         Vector3 origin;
+        readonly List<GameObject> sceneryClones = new List<GameObject>();
         int lastImpact = -1;
         readonly List<KeyValuePair<GameObject, int>> restoredLayers = new List<KeyValuePair<GameObject, int>>();
         bool built;
@@ -126,8 +133,10 @@ namespace Abandoned.SpaceApps.Opportunity
         public void Begin()
         {
             Build();
-            origin = chapter.spawn2004.position + spiritOffset;
+            var rocks = CollectRocks(chapter.spawn2004.position + spiritOffset);
+            origin = ChooseSandSite(chapter.spawn2004.position + spiritOffset, rocks);
             origin = chapter.rover.TerrainPoint(origin);
+            PlaceScenery(rocks);
             Active = true; Expand = 0; lastImpact = -1;
             restoredLayers.Clear();
             var study = chapter.investigation;
@@ -144,6 +153,7 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             foreach (var pair in restoredLayers) if (pair.Key) pair.Key.layer = pair.Value;
             restoredLayers.Clear();
+            ClearScenery();
             if (!built) { Active = false; return; }
             Active = false; Expand = 1;
             if (capsule) capsule.gameObject.SetActive(false);
@@ -162,6 +172,139 @@ namespace Abandoned.SpaceApps.Opportunity
             if (!Active) return;
             Expand = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(SplitHold, ExpandEnd, time));
             Apply(time, CompactLandingClock.SourceTime(time));
+        }
+
+
+        // ---------- Local de pouso da Spirit: sempre areia, nunca dentro de uma pedra ----------
+
+        static readonly string[] RockWords = { "rock", "outcrop", "mckittrick", "meteorite", "ledge", "boulder", "stone" };
+
+        struct RockInfo
+        {
+            public MeshRenderer Renderer;
+            public Bounds Bounds;
+        }
+
+        /// <summary>Pedras e afloramentos da cena perto do ponto nominal (por nome do objeto). Ignora o hardware da Spirit e peças minúsculas.</summary>
+        List<RockInfo> CollectRocks(Vector3 around)
+        {
+            var result = new List<RockInfo>();
+            float reach = siteSearchRadius + rockClearance + 40f;
+            foreach (var renderer in FindObjectsByType<MeshRenderer>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                var lower = renderer.gameObject.name.ToLowerInvariant();
+                if (lower.Contains("spirit")) continue;
+                var isRock = false;
+                foreach (var word in RockWords) isRock |= lower.Contains(word);
+                if (!isRock) continue;
+
+                var b = renderer.bounds;
+                if (Mathf.Max(b.size.x, Mathf.Max(b.size.y, b.size.z)) < .15f) continue;
+                if (Mathf.Abs(b.center.x - around.x) > reach || Mathf.Abs(b.center.z - around.z) > reach) continue;
+                result.Add(new RockInfo { Renderer = renderer, Bounds = b });
+            }
+
+            return result;
+        }
+
+        bool GroundAt(Vector3 p, out float y)
+        {
+            var ground = chapter.rover.eagleGround;
+            if (ground && ground.Raycast(new Ray(new Vector3(p.x, p.y + 60, p.z), Vector3.down), out var hit, 120)) { y = hit.point.y; return true; }
+            y = p.y; return false;
+        }
+
+        /// <summary>Chão contínuo e quase plano, sem pedra dentro de <see cref="rockClearance"/> (distância no plano até a caixa de cada pedra).</summary>
+        bool IsClearSand(Vector3 p, List<RockInfo> rocks)
+        {
+            if (!GroundAt(p, out var y0)) return false;
+            float low = y0, high = y0;
+            for (var i = 0; i < 8; i++)
+            {
+                var a = i * 45f * Mathf.Deg2Rad;
+                if (!GroundAt(p + new Vector3(Mathf.Cos(a), 0, Mathf.Sin(a)) * 7f, out var y)) return false;
+                low = Mathf.Min(low, y); high = Mathf.Max(high, y);
+            }
+
+            if (high - low > 1f) return false;
+            foreach (var rock in rocks)
+            {
+                var b = rock.Bounds;
+                var dx = Mathf.Max(Mathf.Max(b.min.x - p.x, 0f), p.x - b.max.x);
+                var dz = Mathf.Max(Mathf.Max(b.min.z - p.z, 0f), p.z - b.max.z);
+                if (dx * dx + dz * dz < rockClearance * rockClearance) return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>O ponto nominal se estiver limpo; senão o ponto limpo mais próximo dele, em anéis crescentes, longe do pouso da Opportunity.</summary>
+        Vector3 ChooseSandSite(Vector3 nominal, List<RockInfo> rocks)
+        {
+            var opportunity = chapter.spawn2004.position;
+            bool FarFromOpportunity(Vector3 p) => new Vector2(p.x - opportunity.x, p.z - opportunity.z).magnitude >= 60f;
+            if (FarFromOpportunity(nominal) && IsClearSand(nominal, rocks)) return nominal;
+
+            for (var radius = 8f; radius <= siteSearchRadius; radius += 6f)
+            {
+                var steps = Mathf.Max(8, Mathf.RoundToInt(2f * Mathf.PI * radius / 8f));
+                for (var i = 0; i < steps; i++)
+                {
+                    var a = i * 2f * Mathf.PI / steps;
+                    var candidate = nominal + new Vector3(Mathf.Cos(a), 0, Mathf.Sin(a)) * radius;
+                    if (FarFromOpportunity(candidate) && IsClearSand(candidate, rocks))
+                    {
+                        Debug.Log($"[SplitLanding] Spirit: ponto nominal com pedra/declive; pouso movido {radius:0} m para areia livre {candidate}.");
+                        return candidate;
+                    }
+                }
+            }
+
+            Debug.LogWarning("[SplitLanding] Spirit: nenhuma areia livre encontrada no raio de busca; mantendo o ponto nominal.");
+            return nominal;
+        }
+
+        /// <summary>Algumas pedras do próprio cenário copiadas (só para a câmera da Spirit) em volta do pouso, fora da zona livre e apoiadas no chão.</summary>
+        void PlaceScenery(List<RockInfo> rocks)
+        {
+            ClearScenery();
+            if (sceneryRocks <= 0) return;
+            var sources = new List<MeshRenderer>();
+            foreach (var rock in rocks)
+            {
+                var filter = rock.Renderer.GetComponent<MeshFilter>();
+                var size = Mathf.Max(rock.Bounds.size.x, Mathf.Max(rock.Bounds.size.y, rock.Bounds.size.z));
+                if (rock.Renderer.gameObject.activeInHierarchy && filter && filter.sharedMesh && size >= .5f && size <= 3.5f) sources.Add(rock.Renderer);
+            }
+
+            if (sources.Count == 0) return;
+            var random = new System.Random(2004);
+            for (var i = 0; i < sceneryRocks; i++)
+            {
+                var source = sources[random.Next(sources.Count)];
+                var angle = (i + (float)random.NextDouble() * .6f) * 2f * Mathf.PI / sceneryRocks;
+                var radius = Mathf.Lerp(13f, 24f, (float)random.NextDouble());
+                var spot = origin + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
+                if (!GroundAt(spot, out var groundY)) continue;
+
+                var copy = new GameObject("Spirit • scenery rock " + i);
+                copy.transform.SetParent(transform, false);
+                copy.AddComponent<MeshFilter>().sharedMesh = source.GetComponent<MeshFilter>().sharedMesh;
+                var meshRenderer = copy.AddComponent<MeshRenderer>();
+                meshRenderer.sharedMaterials = source.sharedMaterials;
+                copy.transform.SetPositionAndRotation(spot, Quaternion.AngleAxis((float)random.NextDouble() * 360f, Vector3.up) * source.transform.rotation);
+                copy.transform.localScale = source.transform.lossyScale;
+                var lift = (groundY - .06f) - meshRenderer.bounds.min.y;
+                copy.transform.position += Vector3.up * lift;
+                copy.layer = SpiritLayer;
+                sceneryClones.Add(copy);
+            }
+        }
+
+        void ClearScenery()
+        {
+            foreach (var clone in sceneryClones) if (clone) Destroy(clone);
+            sceneryClones.Clear();
         }
 
         void Apply(float time, float t)

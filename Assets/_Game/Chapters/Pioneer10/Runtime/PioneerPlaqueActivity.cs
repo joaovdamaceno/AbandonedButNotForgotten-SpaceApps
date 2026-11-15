@@ -113,6 +113,8 @@ namespace Abandoned.SpaceApps
         /// <summary>Versão só de cinema: a primeira peça encaixa sozinha 1,5 s depois do início do encaixe, e as demais a cada 5,5 s (cada legenda dura 4 s).</summary>
         public const float CinemaFirstPieceSeconds = 0.4f;
         public const float CinemaPieceIntervalSeconds = 4f;
+        /// <summary>Duração total da sequência da placa: chegada 17,5 s + encaixe 20 s + revelação 5,5 s.</summary>
+        public const float ExpectedSequenceSeconds = 43f;
         /// <summary>Pressionar e soltar o E dentro deste tempo é um toque (seleciona ou encaixa).</summary>
         public const float TapMaxSeconds = 0.35f;
         public const float RetrySeconds = 3f;
@@ -723,8 +725,8 @@ namespace Abandoned.SpaceApps
             else
             {
                 errors.AddRange(sequence.Validate().ConvertAll(e => $"{owner}: {e}"));
-                if (Mathf.Abs(sequence.TotalDurationSeconds - 33f) > 0.01f)
-                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro v2 retemporizado pede 33 s.");
+                if (Mathf.Abs(sequence.TotalDurationSeconds - ExpectedSequenceSeconds) > 0.01f)
+                    errors.Add($"{owner}: a sequência dura {sequence.TotalDurationSeconds} s; o roteiro v2 pede {ExpectedSequenceSeconds} s (placa apresentada em 17,5 s + 20 s de peças + 5,5 s de revelação).");
 
                 var events = new HashSet<string>();
                 foreach (var shot in sequence.Shots)

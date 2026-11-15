@@ -1,8 +1,8 @@
 # Legendas da Pioneer 10 em inglês: versão direta (PIO-037)
 
-Pedido do responsável (15/11/2026): as legendas em inglês soavam traduzidas do português. Foram reescritas com frases curtas, voz ativa, contrações e palavras do dia a dia, em **inglês americano** (kilometers, color, datas "June 13, 1983"). Fatos, números e chaves não mudaram; só o texto das 59 legendas de narração (`group: narrative`). HUD, instrumentos e cartões ficaram como estavam.
+Pedido do responsável (15/11/2026): as legendas em inglês soavam traduzidas do português. Foram reescritas com frases curtas, voz ativa, contrações e palavras do dia a dia, em **inglês americano** (kilometers, color, datas "June 13, 1983"). Fatos, números e chaves não mudaram; só o texto das 61 legendas de narração (`group: narrative`, já com as duas legendas de contexto da placa). HUD, instrumentos e cartões ficaram como estavam.
 
-57 legendas mudaram; as outras ficaram iguais (PIO.01.01, fixada por teste, e PIO.04.08, que já estava direta).
+59 legendas mudaram; as outras ficaram iguais (PIO.01.01, fixada por teste, e PIO.04.08, que já estava direta).
 
 Mudanças que não são só de estilo:
 
@@ -50,6 +50,8 @@ Status: continuam `derived` (a revisar pela R7).
 | PIO.09.09 | Jupiter is itself racing around the Sun, and the probe borrowed a little of that speed, rather like hitching a lift. | Jupiter is also moving around the Sun, and Pioneer borrowed a bit of that speed, like hitching a ride. |
 | PIO.09.10 | An image of Io was taken too, but it was lost to the radiation. | It also took a picture of Io, but the radiation destroyed it. |
 | PIO.05.01 | Then Jupiter fell behind. There would be no return journey: Pioneer was bound for the stars. | Jupiter fell behind. There was no way back: Pioneer was headed for the stars. |
+| PIO.05.01b | And it carried a message for whoever might find it: a golden plaque, written without words. | It carried a message for anyone who might find it: a golden plaque with no words. |
+| PIO.05.01c | Only pictures and symbols, to tell any finder who we are and where we came from. | Just pictures and symbols, showing who we are and where we came from. |
 | PIO.05.02 | First, hydrogen, the commonest atom in the Universe: our ruler. | Hydrogen, the Universe’s most common atom, is our yardstick. |
 | PIO.05.03 | Then a map of blinking stars, called pulsars, to show where the Sun lies. | Next, a map of pulsars, stars that blink, showing where the Sun is. |
 | PIO.05.04 | The Solar System follows, with Pioneer leaving the third planet: Earth. | Then our Solar System, showing Pioneer leaving the third planet, Earth. |

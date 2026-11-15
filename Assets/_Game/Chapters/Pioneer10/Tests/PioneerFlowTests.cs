@@ -205,7 +205,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(chapter.Validate(), Is.Empty);
             Assert.That(chapter.ChapterId, Is.EqualTo("pioneer10"), "igual ao slot do dossiê");
             Assert.That(chapter.SceneName, Is.EqualTo("Pioneer10"));
-            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(417f));
+            Assert.That(chapter.TargetDurationSeconds, Is.EqualTo(427f));
 
             var order = new List<string>();
             var cursor = chapter.InitialStepId;
@@ -243,7 +243,7 @@ namespace Abandoned.SpaceApps.Tests
                 total += sequence.TotalDurationSeconds;
             }
 
-            Assert.That(total, Is.EqualTo(417f).Within(0.01f), "soma nominal do capítulo");
+            Assert.That(total, Is.EqualTo(427f).Within(0.01f), "soma nominal do capítulo");
             Assert.That(controller.JupiterSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.03.01", "PIO.03.02", "PIO.03.03", "PIO.03.04" }));
             Assert.That(controller.ClosestSequence.Cues.Select(c => c.CueId), Is.EqualTo(new[] { "PIO.09.01", "PIO.09.08", "PIO.09.02", "PIO.09.03", "PIO.09.04", "PIO.09.05", "PIO.09.06", "PIO.09.09", "PIO.09.10", "PIO.09.07" }));
         }
@@ -450,7 +450,7 @@ namespace Abandoned.SpaceApps.Tests
             SetE(false);
             Run(1f);
             Assert.That(router.DescribeLeases(), Does.Not.Contain("PIO.Plaque"));
-            Run(10f); // o encaixe começa aos 9 s do estado; a primeira peça entra 1,5 s depois e a segunda só aos 16 s
+            Run(18f); // a apresentação da placa dura 17,5 s; a primeira peça entra 0,4 s depois do início do encaixe e a segunda só aos 21,9 s
             Assert.That(plaque.IsPlaced(0), Is.True, "a primeira peça já encaixou sozinha");
             Assert.That(plaque.IsPlaced(4), Is.False);
             OperateUntil(() => controller.CurrentState == "PIO.Outbound");

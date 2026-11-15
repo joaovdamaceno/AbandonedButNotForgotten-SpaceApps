@@ -27,6 +27,9 @@ namespace Abandoned.SpaceApps.Opportunity
             surface=stage>=ChapterStage.Landing&&stage<=ChapterStage.Transition;
             switch(stage)
             {
+                case ChapterStage.Intro:Cue("orbit");break;
+                case ChapterStage.Landing:Cue("descent");break;
+                case ChapterStage.Activation:Cue("arrival");break;
                 case ChapterStage.HeatShieldExploration:Cue("explore");break;
                 case ChapterStage.Exploration:Cue("explore");break;
                 case ChapterStage.RockAnalysis:Cue("science");break;

@@ -72,12 +72,16 @@
 |---|---|---|
 | 4:02 | 5 | Its instruments had also measured Jupiter's magnetic field, its atmosphere, even its weight, along with its moons'. |
 | 4:06 | 6 | Then Jupiter fell behind. There would be no return journey: Pioneer was bound for the stars. |
-| 4:10 | 6 | And it carried a letter for whoever might find it, a golden plaque. First, hydrogen, the commonest atom in the Universe: our ruler. |
+| 4:10 | 6 | And it carried a message for whoever might find it: a golden plaque, written without words. *(PIO.05.01b)* |
+| ↳ | 6 | Only pictures and symbols, to tell any finder who we are and where we came from. *(PIO.05.01c)* |
+| ↳ | 6 | First, hydrogen, the commonest atom in the Universe: our ruler. *(PIO.05.02)* |
 | 4:13 | 6 | Then a map of blinking stars, called pulsars, to show where the Sun lies. |
 | 4:16 | 6 | The Solar System follows, with Pioneer leaving the third planet: Earth. |
 | 4:18 | 6 | Beside it, the outline of Pioneer itself, so that our size can be judged. |
 | 4:20 | 6 | And before it, two figures. One of them is waving hello. |
 | 4:23 | 6 | Made in just three weeks, it is a letter for someone, millions of years from now. |
+
+*In the game the plaque scene now opens with its two context captions (about 10 s longer than this table assumes), so the times from 4:10 to 4:23 are a pacing guide only. The in-game last line reads: "A gold-coloured aluminium plaque: a letter for an encounter that may never happen."*
 | 4:26 | 7 | Pioneer had been built to last twenty-one months. It simply carried on. |
 | 4:31 | 7 | **1976:** Saturn's orbit. Here it found that Jupiter's magnetic "tail" reaches this far. |
 | 4:36 | 7 | **1979:** the orbit of Uranus. |
