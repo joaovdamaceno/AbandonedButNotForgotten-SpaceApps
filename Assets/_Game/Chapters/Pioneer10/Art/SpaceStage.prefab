@@ -508,7 +508,7 @@ MonoBehaviour:
     stateId: PIO.Launch
     function: "PIO01.A \xB7 contorno do refletor em contraluz fria"
     pose: {fileID: 6011160035381542145}
-    fieldOfViewDegrees: 34
+    fieldOfViewDegrees: 32
     region: 0
     lightGroupId: PIO.Light.ColdRim
     showJupiter: 0
@@ -580,7 +580,7 @@ MonoBehaviour:
     stateId: PIO.Launch
     function: "PIO01.D \xB7 sonda livre: eixo de rota\xE7\xE3o, antena e RTGs (primeiro hold)"
     pose: {fileID: 6867291953457433040}
-    fieldOfViewDegrees: 40
+    fieldOfViewDegrees: 34
     region: 0
     lightGroupId: PIO.Light.Cruise
     showJupiter: 0
@@ -1084,7 +1084,7 @@ Transform:
   m_GameObject: {fileID: 970811575270372417}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2, y: 2.7, z: -4.9}
+  m_LocalPosition: {x: 9.4, y: 4, z: -7.6}
   m_LocalScale: {x: 1200, y: 1200, z: 1200}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1420,8 +1420,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767495197503946229}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018345747, y: 0.9586842, z: -0.06356921, w: -0.27667132}
-  m_LocalPosition: {x: 3.4, y: 0.9, z: 5.6}
+  m_LocalRotation: {x: -0.018052917, y: 0.9607053, z: -0.06437906, w: -0.26939717}
+  m_LocalPosition: {x: 5.6, y: 1.5, z: 9.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2411,8 +2411,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5077752300449829783}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521156, y: -0.424753, z: 0.06923218, w: 0.89090145}
-  m_LocalPosition: {x: 6.2, y: 2.7, z: -4.9}
+  m_LocalRotation: {x: 0.1419366, y: -0.42184293, z: 0.067051, w: 0.8929763}
+  m_LocalPosition: {x: 9.4, y: 4, z: -7.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2451,7 +2451,7 @@ Camera:
     height: 1
   near clip plane: 0.08
   far clip plane: 1500
-  field of view: 40
+  field of view: 34
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -3060,7 +3060,7 @@ Transform:
   m_GameObject: {fileID: 6724439147850653092}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0038560797, y: 0.99437106, z: 0.03894262, w: 0.09846214}
-  m_LocalPosition: {x: 221.26703, y: 88.72681, z: -1080.2351}
+  m_LocalPosition: {x: 224.46703, y: 90.02681, z: -1082.935}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3287,8 +3287,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7011923122317685900}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521156, y: -0.424753, z: 0.06923218, w: 0.89090145}
-  m_LocalPosition: {x: 6.2, y: 2.7, z: -4.9}
+  m_LocalRotation: {x: 0.1419366, y: -0.42184293, z: 0.067051, w: 0.8929763}
+  m_LocalPosition: {x: 9.4, y: 4, z: -7.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

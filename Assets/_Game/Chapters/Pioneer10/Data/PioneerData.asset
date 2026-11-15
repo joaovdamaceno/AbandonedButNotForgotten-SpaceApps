@@ -1082,6 +1082,12 @@ MonoBehaviour:
     enText: The nearest known asteroid was millions of kilometres from the probe.
     ptStatus: derived
     enStatus: derived
+  - key: PIO.UI.earth_label
+    group: hud
+    ptText: Terra
+    enText: Earth
+    ptStatus: derived
+    enStatus: derived
   - key: PIO.UI.spin
     group: hud
     ptText: "Segure E \xB7 girar"

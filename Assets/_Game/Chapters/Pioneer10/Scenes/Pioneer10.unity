@@ -320,10 +320,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerJupiterReveal
   presentation: {fileID: 219729566}
+  hud: {fileID: 487529351}
   sequence: {fileID: 11400000, guid: 3e157969930e6a645b15cb1078e42d39, type: 2}
   earth: {fileID: 219729567}
   earthFrom: {x: -333.24078, y: -27.161524, z: 6.019207}
   earthTo: {x: -315.54355, y: -31.834702, z: 102.79251}
+  earthViewportFrom: {x: -0.12, y: 0.7}
+  earthViewportTo: {x: 0.2, y: 0.7}
 --- !u!1 &193808955
 GameObject:
   m_ObjectHideFlags: 0
