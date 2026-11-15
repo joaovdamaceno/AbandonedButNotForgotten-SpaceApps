@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: SurveyorEclipse
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: surveyor.seq.Eclipse
+  shots:
+  - shotId: surveyor.eclipse.raise
+    durationSeconds: 4
+    rigId: surveyor.eclipse.sky
+    lookAtTargetId:
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 1
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    - timeSeconds: 4
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    events: []
+  - shotId: surveyor.eclipse.observe
+    durationSeconds: 18
+    rigId: surveyor.eclipse.sky
+    lookAtTargetId:
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    - timeSeconds: 18
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    events: []
+  - shotId: surveyor.eclipse.return
+    durationSeconds: 4
+    rigId: surveyor.eclipse.ground
+    lookAtTargetId:
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 1
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    - timeSeconds: 4
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 25.3
+    events: []
+  cues:
+  - cueId: SUR-S20
+    textKey: SUR-S20
+    startSeconds: 2
+    endSeconds: 8
+    triggerId:
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: SUR-S21
+    textKey: SUR-S21
+    startSeconds: 8
+    endSeconds: 14
+    triggerId:
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []

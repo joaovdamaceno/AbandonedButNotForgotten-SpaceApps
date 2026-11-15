@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 00:11:09Z" end-time="2026-11-15 00:11:11Z" duration="2,8118264">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="856" result="Passed" start-time="2026-11-15 00:11:09Z" end-time="2026-11-15 00:11:11Z" duration="2.811826" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1849" name="Abandoned.SpaceApps.Surveyor.Eclipse.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Eclipse.Tests.dll" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 00:11:09Z" end-time="2026-11-15 00:11:11Z" duration="2.484597" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31568" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1850" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 00:11:09Z" end-time="2026-11-15 00:11:11Z" duration="2.480615" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1851" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 00:11:09Z" end-time="2026-11-15 00:11:11Z" duration="2.477073" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1852" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 00:11:09Z" end-time="2026-11-15 00:11:11Z" duration="2.473598" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1853" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 00:11:09Z" end-time="2026-11-15 00:11:11Z" duration="2.470128" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1854" name="EclipseTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 00:11:09Z" end-time="2026-11-15 00:11:11Z" duration="2.466049" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1835" name="EclipseIntegrationTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseIntegrationTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseIntegrationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 00:11:09Z" end-time="2026-11-15 00:11:11Z" duration="2.064098" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1836" name="RealSceneRendersBothQualitiesRestartsAndReleasesBuffers" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseIntegrationTests.RealSceneRendersBothQualitiesRestartsAndReleasesBuffers" methodname="RealSceneRendersBothQualitiesRestartsAndReleasesBuffers" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseIntegrationTests" runstate="Runnable" seed="1744748301" result="Passed" start-time="2026-11-15 00:10:55Z" end-time="2026-11-15 00:11:11Z" duration="16.010788" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="1837" name="EclipseTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.389798" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1847" name="DataAndBothLanguagesAreComplete" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.DataAndBothLanguagesAreComplete" methodname="DataAndBothLanguagesAreComplete" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="1305221482" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.199064" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1845" name="EightSecondsOfTotalityHaveNoSubtitles" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.EightSecondsOfTotalityHaveNoSubtitles" methodname="EightSecondsOfTotalityHaveNoSubtitles" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="376402468" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.007240" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1844" name="OpticalPositionAndBodyRemainFixedAndMirrorReturnsToRest" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.OpticalPositionAndBodyRemainFixedAndMirrorReturnsToRest" methodname="OpticalPositionAndBodyRemainFixedAndMirrorReturnsToRest" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="1330698724" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.090501" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1840" name="PauseDuringTransitDoesNotMoveMirrorOrSpendDelay" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.PauseDuringTransitDoesNotMoveMirrorOrSpendDelay" methodname="PauseDuringTransitDoesNotMoveMirrorOrSpendDelay" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="1603669280" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.008919" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1841" name="PauseFreezesCameraMirrorImageAndCueTogether" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.PauseFreezesCameraMirrorImageAndCueTogether" methodname="PauseFreezesCameraMirrorImageAndCueTogether" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="1855363611" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.012785" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1838" name="ReceivedCommandStartsTheOnlyTwentySixSecondClock" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.ReceivedCommandStartsTheOnlyTwentySixSecondClock" methodname="ReceivedCommandStartsTheOnlyTwentySixSecondClock" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="40696542" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.011436" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1846" name="ReducedMotionUsesStaticCropWithoutChangingTheClock" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.ReducedMotionUsesStaticCropWithoutChangingTheClock" methodname="ReducedMotionUsesStaticCropWithoutChangingTheClock" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="810523740" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.009728" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1839" name="ReleasingTheHoldPreservesPreparationWithoutSending" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.ReleasingTheHoldPreservesPreparationWithoutSending" methodname="ReleasingTheHoldPreservesPreparationWithoutSending" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="1111601819" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.010957" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1842" name="RestartInTransitCancelsStaleCommandAndRequiresFreshInput" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.RestartInTransitCancelsStaleCommandAndRequiresFreshInput" methodname="RestartInTransitCancelsStaleCommandAndRequiresFreshInput" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="367864217" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.008997" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1843" name="ReturnToArchiveCancelsCameraLeaseAndQueuedWork" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.ReturnToArchiveCancelsCameraLeaseAndQueuedWork" methodname="ReturnToArchiveCancelsCameraLeaseAndQueuedWork" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="1673657878" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.009320" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1848" name="ToggleModeUsesTheSharedHoldWithoutRequiringPhysicalHold" fullname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests.ToggleModeUsesTheSharedHoldWithoutRequiringPhysicalHold" methodname="ToggleModeUsesTheSharedHoldWithoutRequiringPhysicalHold" classname="Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests.EclipseTests" runstate="Runnable" seed="1630621167" result="Passed" start-time="2026-11-15 00:11:11Z" end-time="2026-11-15 00:11:11Z" duration="0.009543" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Damaceno/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

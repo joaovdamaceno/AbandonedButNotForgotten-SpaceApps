@@ -1,0 +1,7 @@
+{
+ "name":"Abandoned.SpaceApps.Surveyor.Eclipse.Tests",
+ "rootNamespace":"Abandoned.SpaceApps.Chapters.Surveyor.EclipseTests",
+ "references":["Abandoned.SpaceApps","Abandoned.SpaceApps.Editor","Unity.InputSystem","Unity.InputSystem.TestFramework","UnityEngine.TestRunner","UnityEditor.TestRunner"],
+ "includePlatforms":["Editor"],"overrideReferences":true,"precompiledReferences":["nunit.framework.dll"],
+ "autoReferenced":false,"defineConstraints":["UNITY_INCLUDE_TESTS"]
+}

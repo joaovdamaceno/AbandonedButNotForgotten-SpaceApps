@@ -1,0 +1,25 @@
+.eclipse-root { position:absolute; left:0; right:0; top:0; bottom:0; background-color:rgb(5,9,13); color:rgb(226,231,228); font-size:19px; }
+.eclipse-header { height:48px; flex-shrink:0; flex-direction:row; align-items:center; justify-content:space-between; padding:0 28px; border-bottom-width:1px; border-bottom-color:rgb(35,49,56); }
+.eclipse-tools { flex-direction:row; }
+.eclipse-header > Label { color:rgb(199,193,174); font-size:14px; }
+.eclipse-root Button { min-height:38px; background-color:rgb(20,36,43); color:rgb(213,230,225); border-color:rgb(67,89,92); border-width:1px; padding:6px 18px; margin:4px; -unity-text-align:middle-center; }
+.eclipse-root Button:hover { background-color:rgb(35,57,63); }
+.eclipse-root Button:focus { border-color:rgb(211,192,142); }
+.eclipse-root Button:disabled { opacity:.55; }
+.eclipse-slot { flex-grow:1; flex-shrink:1; min-height:0; align-items:center; justify-content:center; margin:8px 24px; }
+.eclipse-frame { background-color:black; position:relative; flex-shrink:0; }
+.eclipse-picture { position:absolute; left:0; right:0; top:0; bottom:0; -unity-background-scale-mode:stretch-to-fill; }
+.eclipse-date { position:absolute; left:18px; top:14px; font-size:19px; letter-spacing:3px; color:rgb(217,210,188); }
+.eclipse-bottom { flex-shrink:0; align-items:center; padding:0 24px 14px; min-height:98px; }
+.eclipse-bottom Label { white-space:normal; -unity-text-align:middle-center; }
+.eclipse-status { font-size:12px; color:rgb(117,142,148); margin:3px; }
+.eclipse-action { flex-direction:row; align-items:center; }
+#eclipse-prompt { margin-right:12px; color:rgb(207,190,145); }
+#eclipse-subtitles { align-self:stretch; }
+.eclipse-overlay { position:absolute; left:0; right:0; top:0; bottom:0; justify-content:center; align-items:center; background-color:rgba(2,5,8,.85); }
+.eclipse-card { width:540px; max-width:90%; padding:30px; background-color:rgb(11,20,27); border-color:rgb(56,75,81); border-width:1px; }
+.eclipse-card Label { white-space:normal; margin-bottom:18px; }
+.eclipse-card-title { font-size:28px; }
+.Narrow .eclipse-header { padding:0 12px; }
+.Narrow .eclipse-slot { margin:4px 12px; }
+.Narrow .eclipse-bottom { padding-bottom:8px; }
