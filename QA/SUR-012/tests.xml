@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Passed" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 01:37:20Z" end-time="2026-11-15 01:37:21Z" duration="1,2028654">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="884" result="Passed" start-time="2026-11-15 01:37:20Z" end-time="2026-11-15 01:37:21Z" duration="1.202865" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1937" name="Abandoned.SpaceApps.Surveyor.Night.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Night.Tests.dll" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-15 01:37:20Z" end-time="2026-11-15 01:37:21Z" duration="0.937081" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28688" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1938" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-15 01:37:20Z" end-time="2026-11-15 01:37:21Z" duration="0.933443" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1939" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-15 01:37:20Z" end-time="2026-11-15 01:37:21Z" duration="0.930308" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1940" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-15 01:37:20Z" end-time="2026-11-15 01:37:21Z" duration="0.926389" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1941" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-15 01:37:20Z" end-time="2026-11-15 01:37:21Z" duration="0.921655" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1942" name="NightTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-15 01:37:20Z" end-time="2026-11-15 01:37:21Z" duration="0.918395" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1924" name="NightSceneTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightSceneTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightSceneTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 01:37:20Z" end-time="2026-11-15 01:37:21Z" duration="0.807392" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1925" name="RealSceneShowsContactCalendarAndPauseWithoutMovingTheCamera" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightSceneTests.RealSceneShowsContactCalendarAndPauseWithoutMovingTheCamera" methodname="RealSceneShowsContactCalendarAndPauseWithoutMovingTheCamera" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightSceneTests" runstate="Runnable" seed="1906131794" result="Passed" start-time="2026-11-15 01:37:10Z" end-time="2026-11-15 01:37:21Z" duration="11.459104" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="TestFixture" id="1926" name="NightTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.102484" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1931" name="CompletionAndDisposalRespectTheNextConsumersLighting" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests.CompletionAndDisposalRespectTheNextConsumersLighting" methodname="CompletionAndDisposalRespectTheNextConsumersLighting" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" seed="737831842" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.038699" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1932" name="FourCuesHaveTheirCompleteReadingWindows" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests.FourCuesHaveTheirCompleteReadingWindows" methodname="FourCuesHaveTheirCompleteReadingWindows" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" seed="1053444232" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.007171" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-suite type="ParameterizedMethod" id="1935" name="FourLightChangesAndCalendarFinishInThirteenSeconds" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests.FourLightChangesAndCalendarFinishInThirteenSeconds" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.014817" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                    <properties />
+                    <test-case id="1933" name="FourLightChangesAndCalendarFinishInThirteenSeconds(False)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests.FourLightChangesAndCalendarFinishInThirteenSeconds(False)" methodname="FourLightChangesAndCalendarFinishInThirteenSeconds" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" seed="754814537" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.006389" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                    <test-case id="1934" name="FourLightChangesAndCalendarFinishInThirteenSeconds(True)" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests.FourLightChangesAndCalendarFinishInThirteenSeconds(True)" methodname="FourLightChangesAndCalendarFinishInThirteenSeconds" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" seed="2113782024" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.004601" asserts="0">
+                      <properties>
+                        <property name="retryIteration" value="0" />
+                        <property name="repeatIteration" value="0" />
+                      </properties>
+                    </test-case>
+                  </test-suite>
+                  <test-case id="1928" name="PauseBeforeTheEllipsePreservesCueAndLighting" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests.PauseBeforeTheEllipsePreservesCueAndLighting" methodname="PauseBeforeTheEllipsePreservesCueAndLighting" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" seed="1866137814" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.006211" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1929" name="RestartInTheEllipseRestoresInitialLightingAndNight" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests.RestartInTheEllipseRestoresInitialLightingAndNight" methodname="RestartInTheEllipseRestoresInitialLightingAndNight" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" seed="1532152103" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.007562" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1930" name="ReturnCancelsTheSequenceAndRestoresTheScene" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests.ReturnCancelsTheSequenceAndRestoresTheScene" methodname="ReturnCancelsTheSequenceAndRestoresTheScene" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" seed="237999017" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.004435" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1936" name="RuntimeThumbnailsAreReleasedWithoutLosingEvidenceMetadataOrArchive" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests.RuntimeThumbnailsAreReleasedWithoutLosingEvidenceMetadataOrArchive" methodname="RuntimeThumbnailsAreReleasedWithoutLosingEvidenceMetadataOrArchive" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" seed="838410858" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.010259" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="1927" name="ThirtySecondsCompleteBothStepsOnceWithoutMovingTheOpticalPoint" fullname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests.ThirtySecondsCompleteBothStepsOnceWithoutMovingTheOpticalPoint" methodname="ThirtySecondsCompleteBothStepsOnceWithoutMovingTheOpticalPoint" classname="Abandoned.SpaceApps.Chapters.Surveyor.NightTests.NightTests" runstate="Runnable" seed="1732033233" result="Passed" start-time="2026-11-15 01:37:21Z" end-time="2026-11-15 01:37:21Z" duration="0.005437" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Damaceno/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

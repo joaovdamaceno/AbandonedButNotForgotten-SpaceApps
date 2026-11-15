@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+ <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss"/><Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss"/>
+ <Style src="/Assets/_Game/Shared/Localization/SubtitleLayer.uss"/><Style src="NightPanel.uss"/>
+ <ui:VisualElement class="sa-root night-root">
+  <ui:VisualElement name="slot" class="night-slot"><ui:VisualElement name="frame" class="night-frame"><ui:Image name="picture" class="night-picture"/>
+   <ui:VisualElement name="hud" class="night-hud"><ui:Label name="temperature" class="sa-stamp"/><ui:Label name="contact"/><ui:Label name="count" class="sa-stamp"/></ui:VisualElement>
+   <ui:VisualElement name="calendar" class="night-calendar"><ui:Label name="stamp"/><ui:Label name="months" class="sa-stamp"/></ui:VisualElement>
+  </ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement name="subtitles" class="night-subtitles"/>
+  <ui:Button name="replay" class="night-replay"/>
+  <ui:VisualElement name="cover" class="night-cover"><ui:VisualElement class="night-card"><ui:Label name="title" class="night-title"/><ui:Label name="description"/><ui:Button name="begin"/></ui:VisualElement></ui:VisualElement>
+ </ui:VisualElement>
+</ui:UXML>

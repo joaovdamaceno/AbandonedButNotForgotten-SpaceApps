@@ -1,0 +1,19 @@
+.night-root { position:absolute; left:0; right:0; top:0; bottom:0; background-color:rgb(3,5,8); color:rgb(226,226,214); font-size:21px; }
+.night-slot { position:absolute; top:46px; left:20px; right:20px; bottom:120px; justify-content:center; align-items:center; }
+.night-frame { position:relative; background-color:black; flex-shrink:0; }
+.night-picture { position:absolute; left:0; top:0; right:0; bottom:0; }
+.night-hud { position:absolute; left:24px; right:24px; bottom:20px; }
+.night-root .sa-stamp { color:rgb(188,190,177); }
+#temperature { font-size:13px; color:rgb(166,169,164); }
+#contact { font-size:26px; margin-top:12px; }
+#count { font-size:14px; margin-top:8px; }
+.night-calendar { position:absolute; top:20px; left:24px; right:24px; }
+#stamp { font-size:58px; letter-spacing:3px; }
+#months { font-size:15px; letter-spacing:2px; margin-top:6px; }
+.night-subtitles { position:absolute; left:20px; right:20px; bottom:22px; }
+.night-cover { position:absolute; top:0; left:0; right:0; bottom:0; justify-content:center; align-items:center; background-color:rgba(0,0,0,.8); }
+.night-card { width:580px; max-width:90%; padding:30px; background-color:rgb(12,20,27); }
+.night-card Label { white-space:normal; margin-bottom:20px; }
+.night-title { font-size:30px; }
+.night-root Button { min-height:42px; background-color:rgb(26,42,48); color:rgb(233,231,215); border-width:1px; border-color:rgb(78,95,98); margin:4px; }
+.night-replay { position:absolute; align-self:center; bottom:35px; padding:8px 24px; }
