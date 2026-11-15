@@ -116,9 +116,9 @@ MonoBehaviour:
   turnAccelerationDegreesPerSecondSquared: 140
   alignDegreesPerSecond: 60
   gravityMetersPerSecondSquared: 3.71
-  followDistanceMeters: 5.5
-  pivotHeightMeters: 0.9
-  defaultPitchDegrees: 16
+  followDistanceMeters: 8
+  pivotHeightMeters: 1.1
+  defaultPitchDegrees: 18
   minPitchDegrees: 4
   maxPitchDegrees: 40
   followSmoothSeconds: 0.25

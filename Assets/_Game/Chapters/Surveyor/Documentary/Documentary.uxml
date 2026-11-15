@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <Style src="Documentary.uss" />
+  <ui:VisualElement name="documentary" class="sa-root">
+    <ui:VisualElement name="picture" picking-mode="Ignore"><ui:VisualElement name="glass" picking-mode="Ignore"/><ui:VisualElement name="drag-guide" picking-mode="Ignore"><ui:Label text="→" /></ui:VisualElement><ui:VisualElement name="tool-cursor" picking-mode="Ignore" /></ui:VisualElement>
+    <ui:VisualElement name="film-top" picking-mode="Ignore"/><ui:VisualElement name="film-bottom" picking-mode="Ignore"/>
+    <ui:VisualElement name="mission-heading" picking-mode="Ignore"><ui:Label name="date"/><ui:Label name="title"/></ui:VisualElement>
+    <ui:Button name="pause" text="P" />
+    <ui:VisualElement name="instrument-controls" picking-mode="Ignore"><ui:Label name="objective"/><ui:Label name="hint"/><ui:Label name="tool-state"/><ui:VisualElement name="work-progress" picking-mode="Ignore"><ui:VisualElement name="work-rail"><ui:VisualElement name="work-fill"/></ui:VisualElement><ui:Label name="work-label"/></ui:VisualElement><ui:Button name="action"/><ui:Button name="credits"/></ui:VisualElement>
+    <ui:VisualElement name="archive-photo" picking-mode="Ignore"/><ui:Label name="photo-credit" picking-mode="Ignore"/>
+    <ui:VisualElement name="subtitle-host" picking-mode="Ignore"/>
+    <ui:VisualElement name="credits-panel"><ui:Label name="credits-title"/><ui:ScrollView><ui:Label name="credits-body"/></ui:ScrollView><ui:Button name="credits-close"/></ui:VisualElement>
+  </ui:VisualElement>
+</ui:UXML>

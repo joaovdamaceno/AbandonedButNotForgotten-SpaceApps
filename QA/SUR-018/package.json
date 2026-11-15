@@ -1,0 +1,33 @@
+{
+  "buildBytes": 20201961,
+  "zipBytes": 20001745,
+  "zipSha256": "e744bae11a7d0a5d0a195325c7f2cf11b2bcca2bfdbcf431f3d38c83e428b3ee",
+  "files": [
+    {
+      "path": "Build/SurveyorWeb.data.br",
+      "bytes": 13162758,
+      "sha256": "831abf014678bf0da6dc840d5b00d7f8d25f38213c7039d1a09cecc1d5cde5de"
+    },
+    {
+      "path": "Build/SurveyorWeb.framework.js.br",
+      "bytes": 67570,
+      "sha256": "e7d8b59b9f8d80f46fe9c6cdd0491803e0c253641f7459703649f8f991d33025"
+    },
+    {
+      "path": "Build/SurveyorWeb.loader.js",
+      "bytes": 27914,
+      "sha256": "430d2e7bb456ba0a85117418a62d75e19a1179b98e273b3255d904b01d1dfe4a"
+    },
+    {
+      "path": "Build/SurveyorWeb.wasm.br",
+      "bytes": 6940433,
+      "sha256": "0e34cb8f7d9417648e0c60a01bb07168fec6b1b6e6a7c6dee752f5a6cbdc3f42"
+    },
+    {
+      "path": "index.html",
+      "bytes": 3286,
+      "sha256": "a140554e23641fc841df04dff66ca2b5aa809e29384984fdb9b7f5b6525704d3"
+    }
+  ],
+  "hosting": "Serve .br as Content-Encoding: br with correct wasm/JS/octet-stream MIME. Actual itch.io upload not tested."
+}

@@ -1,13 +1,14 @@
-# MAR-013 — Laboratório, mapa e lançamentos (M01–M03, 25 s)
+# MAR-013 (revisada) — Abertura: Marte, laboratório e globo (M01–M03, 34,8 s)
 
-`Prefabs/MarsPreparationStage.prefab` (laboratório, globo, lançamentos e `MarsOriginDirector`), `Timelines/MarsOrigin_M01/M02/M03.asset` (8/12/5 s) e `Art/Origin/`. Tudo procedural; nenhum asset externo.
+Abertura em inglês: **M01** (6,3 s) Marte no espaço com o título "2003"; **M02** (20,8 s) laboratório com os dois rovers lado a lado ("EARTH · MISSION PREPARATION"), a câmera girando devagar em volta da Opportunity ("THIS ROVER IS OPPORTUNITY") e a hematita em Meridiani Planum ("WHY MERIDIANI PLANUM?"); **M03** (7,7 s) globo que começa em Meridiani Planum, marcada, e gira até a Cratera Gusev, marcada ao chegar. Os nomes dos dois locais ficam presos aos marcadores. Não há lançamentos.
 
-## Decisões e desvios
-- **Sem `.playable`:** o projeto não tem o pacote Timeline; as sequências são `SequenceDefinition` (CORE-004) com keyframes de câmera densos. Câmera, globo, lançamentos e letreiros leem o mesmo tempo.
-- **Mapa:** globo estilizado com os dois destinos em lat/lon da NASA GISS Mars24, conferidas em 14/11/2026 (Spirit 175,48°L 14,57°S; Opportunity 354,47°L 1,95°S). **Não é o mapa de hematita do TES**: nenhuma imagem externa foi importada por falta de origem/licença verificadas. A mancha de hematita é um círculo de 7° em torno de Meridiani, ilustrativo.
-- **Lançamentos:** duas silhuetas genéricas (não afirmam o modelo exato do Delta II) e uma única chama reaproveitada; rótulos só com mês e ano (JUN/JUL 2003).
-- **Texto:** `Art/Origin/MarsOriginTexts.json`, chaves `MAR.ORI.*`; `MAR.T01` (título de M01) continua em `MarsSubtitles.json`.
-- Luz lateral e contraste: a luz com sombra é da cena; o prefab não tem luzes, câmeras, partículas nem colisores.
+Depois do globo, o capítulo segue na cena `Opportunity` (pouso das duas sondas, exploração, ciência, escudo térmico, 2018, tempestade e fim). A cena é carregada em segundo plano durante o laboratório e entra no último quadro do globo, sem tela preta (`Opportunity/Bridge/MarsFieldHandoff.cs`).
+
+- Planeta e globo usam o modelo NASA "Planet Mars" reamostrado (`Textures/Mars_Equirect.jpg`, ver `ArtSource/Mars/R-MAR-05/SOURCE.md`).
+- O fundo do laboratório é o modelo `Opportunity/Models/Generated/PreparationLabV12.glb` com os materiais `Opportunity/Materials/Laboratory • *.mat`.
+- Falas: `MAR.C01`–`C05` em `Data/MarsSubtitles.json`; títulos `MAR.ORI.*` em `Art/Origin/MarsOriginTexts.json`.
+- O campo `pt` espelha o inglês (pedido do responsável); sem tradução.
 
 ## Limitações
-Sem validação em WebGL nem em perfil baixo real; Unity 6000.6.8f1 (o projeto fixa 6.7f1). Julgamento visual (laboratório, globo) pendente de revisão por outra função. Integração na cena do capítulo fica para a MAR-018/MAR-009.
+- A textura equirretangular é calibrada a olho; os marcadores usam lat/lon da NASA GISS Mars24 e não medem posição.
+- Verificado no Editor (Unity 6000.6.8f1; o projeto fixa 6.7f1). Sem medição em WebGL nem em perfil baixo real.

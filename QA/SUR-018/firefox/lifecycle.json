@@ -1,0 +1,40 @@
+{
+  "browser": "firefox",
+  "restarts": 2,
+  "prologues": 3,
+  "metricsAfterRestart": [
+    {
+      "totalWASMHeapSize": 183959552,
+      "usedWASMHeapSize": 170298440,
+      "totalJSHeapSize": null,
+      "usedJSHeapSize": null,
+      "pageLoadTime": 4412,
+      "pageLoadTimeToFrame1": 4534,
+      "fps": 43.851444291609354,
+      "movingAverageFps": 43.851444291609354,
+      "assetLoadTime": 1776,
+      "webAssemblyStartupTime": 1874,
+      "codeDownloadTime": 170,
+      "gameStartupTime": 1449,
+      "numJankedFrames": 91
+    },
+    {
+      "totalWASMHeapSize": 183959552,
+      "usedWASMHeapSize": 170298440,
+      "totalJSHeapSize": null,
+      "usedJSHeapSize": null,
+      "pageLoadTime": 4412,
+      "pageLoadTimeToFrame1": 4534,
+      "fps": 79.83273141988215,
+      "movingAverageFps": 61.84208785574575,
+      "assetLoadTime": 1776,
+      "webAssemblyStartupTime": 1874,
+      "codeDownloadTime": 170,
+      "gameStartupTime": 1449,
+      "numJankedFrames": 116
+    }
+  ],
+  "tabReportedHidden": false,
+  "pageErrors": [],
+  "scope": "Two early UI restarts and a tab switch, not two complete chapters or proof of bounded long-term memory."
+}

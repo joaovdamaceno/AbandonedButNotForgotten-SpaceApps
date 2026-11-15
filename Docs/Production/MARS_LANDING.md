@@ -4,7 +4,7 @@
 
 ## Decisões e desvios
 - **Sem `.playable`:** o projeto não tem o pacote Timeline. As sequências são `SequenceDefinition` (CORE-004) com keyframes de câmera densos; câmera, atores, legendas e letreiros leem o mesmo tempo.
-- **Coreografia pura** (`MerLandingChoreography`): Spirit e Opportunity usam os mesmos movimentos; só o terreno muda (Eagle: bacia de ~2,9 m, aproximada; o modelo final é da MAR-012).
+- **Coreografia pura** (`MerLandingChoreography`): Spirit e Opportunity usam os mesmos movimentos; só o terreno muda (Eagle: bacia rasa de ~0,9 m do mapa importado, aproximada).
 - **Escala cinematográfica:** o hardware de pouso é maior que o real para o rover (1:1, MAR-011) caber dobrado; o rover guardado usa escala 0,42 e cresce ao se desdobrar (as asas do modelo são fixas). Tempo comprimido a 27 s.
 - Datas UTC: NASA GISS Mars24 (4 e 25/1/2004), JPL (desembarque em 31/1/2004). Letreiros por chave em `MarsLandingTexts.json`; `MAR.T02` é reutilizada de `MarsSubtitles.json`.
 - MAR-011 (#30) está fechada e integrada, mas sem o label `integrated`.

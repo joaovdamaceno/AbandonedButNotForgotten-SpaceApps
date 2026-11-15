@@ -35,7 +35,7 @@ Revisado em 14/11/2026 para o planejamento do novo projeto. Referências abaixo 
 | Hora do pouso: 00:04:17 ou 00:04:53 UTC. | S3-03 e S3-14 | Relatório usa 17; catálogo usa 53. Compatível com primeiro contato versus assentamento final, mas esta interpretação exige confirmação de evento no relatório. Em tela **00:04 UTC**, não resolver a divergência por suposição. |
 | Local: 2,94° S / 23,34° O ou aproximadamente 3° S / 23,41° O. | S3-03 e S3-01 | Diferenças de referência/refino. Publicar região e cratera; não misturar precisão de catálogos distintos. Cenário usa o contexto fotografado, não uma coordenada montada de duas fontes. |
 | Cratera de aproximadamente 200 m e veículo inclinado na encosta. | S3-03, S3-05 | Verificado; este relevo torna possível o campo de visão do eclipse. Não usar piso plano com estrela pintada no alto. |
-| A missão fez 6.326 imagens. | S3-01 e NASA Beyond Earth | Número adotado para total da missão. Outros textos distinguem categorias/intervalos e indicam 6.315; não somar categorias. O jogador faz só três registros e não produz o total histórico. |
+| A missão fez 6.326 imagens. | S3-01 e NASA Beyond Earth | Número adotado para total da missão. Outros textos distinguem categorias/intervalos e indicam 6.315; não somar categorias. A edição atual faz um registro da escavação e não reproduz o total histórico. |
 | Câmera tinha 25/100 mm, espelho móvel e modos 200/600 linhas. | S3-12 | Verificado em descrição técnica de um artigo de teste equivalente. Varredura do jogo é acelerada e monocromática por direção artística; não afirmar que toda imagem histórica tinha esse modo. |
 | Pá: alcance até aproximadamente 1,5 m, escavação de até 18 cm. | S3-01, S3-03 | Limites da capacidade, não profundidade atingida por cada passada. Animação mantém dimensões relativas. |
 | Quatro trincheiras, quatro testes de carga, treze de impacto. | S3-01 e NASA Beyond Earth | Resumo da missão; montagem editorial depois de três atividades representativas. Sem contador que inventa que o jogador repetiu todos. |
@@ -47,7 +47,7 @@ Revisado em 14/11/2026 para o planejamento do novo projeto. Referências abaixo 
 | Cerca de 180 m entre LM e Surveyor. | S3-08 descreve aproximadamente 600 pés | Valor aproximado e consistente com escala visual. Não interpretar foto em perspectiva como distância exata. |
 | Poeira da Apollo atingiu a Surveyor, mas sua cor também tinha outros mecanismos. | S3-11 | Material e padrões ajudam a estudar deslocamento de partículas; alteração de tinta por UV também foi discutida. Evitar nuvem marciana, barro na lente ou causalidade única “ficou marrom por causa da Apollo”. |
 | Câmera, pá e outras peças voltaram com Apollo 12. | S3-07–S3-10 | Verificado. O corpo não voltou. Final informa o que ficou e por que recuperar partes gera ciência. |
-| A câmera foi testemunha gravando a visita de 1969. | Contradiz a missão encerrada em 1967 | **Ficção editorial declarada antes da sequência.** Nenhum HUD de gravação operacional no plano. Fotografia real ao final separa reconstrução de registro. |
+| A câmera foi testemunha gravando a visita de 1969. | Contradiz a missão encerrada em 1967 | **Não apresentar assim.** SUR-018 usa planos externos de reconstrução com astronautas completos; nenhum HUD operacional da sonda no reencontro. A fotografia histórica é identificada separadamente. |
 | Câmera e pá estão ambas hoje expostas no Smithsonian. | Não verificado como conjunto | Não afirmar local/exposição atual da pá. Museu é opcional; se houver imagem, confirmar inventário da câmera de voo e licença específica. Artigo de teste S3-12 não é a câmera que foi à Lua. |
 
 ## Assets e uso permitido: pesquisar não equivale a baixar
@@ -61,6 +61,6 @@ Revisado em 14/11/2026 para o planejamento do novo projeto. Referências abaixo 
 
 ## Resolução editorial dos seis atos pedidos
 
-Todos os atos permanecem. O lançamento não precisa de foguete 3D; a correção continua interativa com zona ampla; o pouso tem suspense sem reflexo; o solo tem consequências visuais e explicação da ciência; a noite estabelece a missão encerrada; a visita homenageia equipamento abandonado e recuperação material. São retirados apenas números sem unidade/método reconciliados, a câmera “viva” em 1969 sem aviso e a sugestão de água no solo por analogia com areia úmida.
+Direção revista pelo proprietário em SUR-018: viagem e pouso são cinema, sem minigames de confirmação/correção; a ciência passa a operação direta assistida da pá, com deformação pelo contato. Noite e último contato precedem o salto de 31 meses. A recuperação é encenada externamente, com corpos completos, e segue para fotografia histórica identificada. Permanecem as restrições a números sem método e à sugestão de água por coesão. A observação é local, não garantia universal de segurança.
 
 O arquivo de roteiro é conteúdo proposto. Fatos conferidos não certificam uma build; nenhum teste de gameplay, duração humana, assets importados ou permissão individual foi realizado nesta entrega de planejamento.

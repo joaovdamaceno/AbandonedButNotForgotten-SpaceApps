@@ -7,7 +7,7 @@ namespace Abandoned.SpaceApps.EditorTools
     {
         public static void BuildFromCommandLine()
         {
-            try { SurveyorChapterBuilder.BuildMenu();WebBaselineBuilder.Build(new[]{SurveyorArchiveBuilder.Scene,SurveyorChapterBuilder.Scene},"Builds/SurveyorWeb","QA/SUR-015");EditorApplication.Exit(0); }
+            try { SurveyorChapterBuilder.BuildMenu();SurveyorDocumentaryAudit.Write("QA/SUR-019");WebBaselineBuilder.Build(new[]{SurveyorArchiveBuilder.Scene,SurveyorChapterBuilder.Scene},"Builds/SurveyorWeb","QA/SUR-019");EditorApplication.Exit(0); }
             catch(Exception e){Debug.LogException(e);EditorApplication.Exit(1);}
         }
     }

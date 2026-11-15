@@ -5,5 +5,8 @@ namespace Abandoned.SpaceApps
     {
         Gusev = 0,
         Meridiani = 1,
+
+        /// <summary>Mesmo local, sobre o terreno do mapa importado (bacia rasa, planície perto de 1 m). Usado quando o mapa importado está montado.</summary>
+        MeridianiClassic = 2,
     }
 }

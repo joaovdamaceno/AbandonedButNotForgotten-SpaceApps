@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47e1498211ba8d14aa928881c50318b2, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.ChapterDirector
   sessionClock: {fileID: 0}
   inputRouter: {fileID: 0}
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abaf88cb0af417244bfee9cb772feb2d, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SessionClock
 --- !u!114 &6103151938442227069
 MonoBehaviour:
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51e74f7e74fd8af439a9aab5c611e774, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.InputRouter
   defaultContext: 0
 --- !u!114 &2470759090286979174
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a082267a3ab8f4cac8caf4ef64dfa3, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.InteractionService
   router: {fileID: 0}
   holdMode: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfc8faa6dabc8194794d80033282eaa7, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorArchiveHost
   catalog: {fileID: 11400000, guid: b55a12f5070d3264e997c593f245ad6c, type: 2}
   screen: {fileID: 7263014230089206228}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59d3d2dfbbe53694ca5b4c5821012b51, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorReturnedCameraView
   data: {fileID: 11400000, guid: 84568bf522cb31b45b6c535262bd1dd7, type: 2}
 --- !u!1 &7714488085343782741
@@ -283,5 +283,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3080e17fe04b4ebcba99361f2f80e4ce, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.UI.DossierScreen

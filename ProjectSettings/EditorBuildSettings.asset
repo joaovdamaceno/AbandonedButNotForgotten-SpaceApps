@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Game/Scenes/Boot.unity
+    guid: 11ca0ced45b892c6588c884d442657ff
+  - enabled: 1
+    path: Assets/_Game/Chapters/Mars/Scenes/Mars.unity
+    guid: 56c971398730d011db2125c7e282ed85
+  - enabled: 1
+    path: Assets/_Game/Chapters/Mars/Opportunity/Scenes/Opportunity.unity
+    guid: e7f379416a0a6ed40934e9c6ee164c3d
   m_configObjects: {}

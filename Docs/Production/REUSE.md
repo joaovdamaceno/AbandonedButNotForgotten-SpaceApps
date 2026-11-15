@@ -1,5 +1,9 @@
 # Reuso e origem
 
+## SUR-018 — reconstrução documental
+
+Reutiliza Core/pausa/localização/evidências/áudio, o terreno e o modelo da equipe, com nova composição, roteiro, apresentação, escavação por contato e elenco completo. Corpos A7L e clipes são originais, gerados em Blender; não usam os antigos membros independentes. Modelo NASA do módulo lunar e mapa LROC possuem URLs/créditos em `SourceAssets/Surveyor3/Documentary/ASSET_CREDITS.md`. Fotografia Apollo 12 reaproveitada de SUR-013. O source e os previews antigos são preservados, sem simular que foram produzidos nesta revisão. Evidências e limitações reais: QA/SUR-018.
+
 O repositório anterior permanece preservado em https://github.com/joaovdamaceno/AbandonedButNotForgotten, entrega de referência4970a92. Este novo repositório começa com arquivos de planejamento criados agora. Não reescrever datas ou história Git para esconder material anterior.
 
 Soluções a estudar, sem importação automática: rastros projetados no terreno, entrada única para E, relógio narrativo, legenda vazia oculta, pausa responsiva, assentamento de rochas, perfil Web URP e troca explícita de plataforma antes do build. Roteiros e scripts anteriores precisam de adaptação; três capítulos não existem naquele projeto.
@@ -47,6 +51,7 @@ Soluções a estudar, sem importação automática: rastros projetados no terren
 | Faixas de Scott Buckley (CC BY 4.0: A Kind Of Hope, Descent, The Distant Sun, The Things That Keep Us Here, Extrapolation, Signal to Noise, Filaments), páginas lidas em 15/11/2026; `AudioDirector` (AUD-002) e `PioneerCueMap` (PIO-013), base `93e40ec` | R7/R5 / música da Pioneer (sem tarefa) | `Chapters/Pioneer10/Audio/Music/*.ogg`, `Data/Assets/PioneerMusic.json`, `Tools/convert_pioneer10_music.py`, `Editor/PioneerMusicImporter.cs`, `Tests/PioneerMusicTests.cs`, `Docs/Art/AUDIO_CUE_SHEET.md` (seção 6), `ASSET_CREDITS.md`, `DossierTexts.json` (`credits.line.pioneer_music`) | Áudio de terceiros recortado, normalizado e recodificado (originais não versionados, hash registrado); importador, script, catálogo e testes novos; mapa de estados da Pioneer trocou os quatro cues antigos pelos sete novos. Atribuição obrigatória registrada |
 
 Resultados de testes de outubro não aprovam a edição de novembro. Assets NASA e músicas mantêm licenças e atribuições, mesmo se o código for reescrito. Modelos entregues depois pela equipe passam por ART-001 e tarefas próprias; usar referência pública não significa que o arquivo já foi obtido.
+
 
 ## SUR-008 — observação e fotografias (14/11/2026)
 
@@ -102,3 +107,8 @@ Textura do solo reescrita sobre o princípio de UV/marcas de SUR-002; palma/dedo
 Reutiliza o modal existente do dossiê e a fotografia NASA AS12-48-7134 de SUR-013; sprite de capa aponta para a mesma textura. Novos dados/view/builder/teste de ficha opcional. Fontes S3-09/10/12/13 verificam retorno e distinção do exemplar de teste; sem imagem Smithsonian importada. Código anterior da Opportunity não foi usado.
 | Pedido de qualidade visual do responsável (teste em Play Mode, 15/11/2026) e a base `develop` com PIO-035 | R5 / PIO-036 | `Runtime/PioneerImaging.cs`, `SpinShotPanelView.cs`, `ImagingFrameSynth.cs`, `PioneerListening.cs`, `ListeningPanelView.cs`, `PioneerPresentation.cs`, `UI/SpinShotPanel.*`, `UI/ListeningPanel.uss`, `Editor/PioneerStageBuilder.cs`, `PioneerImagingBuilder.cs`, `PioneerMinigameCapture.cs`, textos em `Data/Localization/`, testes dos dois jogos | Jogo da foto em ponto de vista e sintonia sem E; imagens e ondas procedurais; fatos do instrumento só como referência (NSSDC, Science 1974, arXiv gr-qc/0208046, Planetary Society) | Nenhum asset externo | Testes de Pioneer (252/252) e quadros; Play Mode, teste humano e WebGL pendentes |
 | Textura de Júpiter 2K (Solar System Scope, CC BY 4.0) e efeitos sonoros sintetizados (`Tools/generate_pioneer10_sfx.py`) | Solar System Scope e equipe | CC BY 4.0 / obra original | Textura baixada sem edição, importada a 2048 px; efeitos gerados com ffmpeg (ruído e senoides); mapa do Sistema Solar, estilingue e ajustes do minigame são código novo desta tarefa |
+
+
+## SUR-019 — revisão da operação e encenação
+
+Reutiliza malhas NASA/equipe e traje próprio SUR-018. Substitui a condução da marcha pelos clipes por pose neutra + apoio mundial/IK, sem asset externo. TV, contato, contraste da escavação e assistência reescritos dentro do capítulo. Não reutiliza código da edição antiga da Opportunity. Fontes históricas mantidas; validação em QA/SUR-019.
