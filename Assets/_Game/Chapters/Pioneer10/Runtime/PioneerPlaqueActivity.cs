@@ -778,8 +778,9 @@ namespace Abandoned.SpaceApps
 
         void PushView()
         {
+            // Cena só de cinema: sem painel, sem peças, sem barra de E; a placa dourada em 3D e as legendas contam a história.
             if (panel != null)
-                panel.Render(ViewState(), resolveText);
+                panel.Render(CinemaMode ? new PlaqueViewState { Phase = PlaquePhase.Idle } : ViewState(), resolveText);
         }
 
         /// <summary>Prévia de Editor: mostra uma situação com valores fixos, sem tocar a sequência.</summary>

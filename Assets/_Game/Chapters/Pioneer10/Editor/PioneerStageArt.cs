@@ -696,6 +696,70 @@ namespace Abandoned.SpaceApps.EditorTools
             mesh.RecalculateBounds();
         }
 
+        /// <summary>
+        /// A placa dourada inteira numa textura (quadro de 300 × 450 da <see cref="PioneerPlaqueArt"/>, 2:3): alumínio anodizado dourado com a
+        /// moldura e as cinco peças gravadas em bronze escuro, cada uma num quadrado centrado no seu contorno. Determinística. As figuras
+        /// humanas são as silhuetas lisas da peça "Pessoas" (sem detalhes anatômicos).
+        /// </summary>
+        public static Texture2D PlaqueBoard(int width, int height)
+        {
+            var gold = new Color32(227, 181, 95, 255);
+            var goldEdge = new Color32(206, 160, 78, 255);
+            var ink = new Color32(76, 50, 14, 255);
+            var shapes = new List<PioneerPlaqueArt.Shape>[PioneerPlaqueArt.SlotRects.Length];
+            for (var i = 0; i < shapes.Length; i++)
+                shapes[i] = PioneerPlaqueArt.ShapesOf(i);
+
+            var pixels = new Color32[width * height];
+            const int samples = 2;
+            for (var py = 0; py < height; py++)
+            {
+                for (var px = 0; px < width; px++)
+                {
+                    var covered = 0;
+                    var frame = 0;
+                    for (var sy = 0; sy < samples; sy++)
+                    {
+                        for (var sx = 0; sx < samples; sx++)
+                        {
+                            var bx = (px + (sx + 0.5f) / samples) / width * PioneerPlaqueArt.BoardWidth;
+                            var byFromTop = (1f - (py + (sy + 0.5f) / samples) / height) * PioneerPlaqueArt.BoardHeight;
+                            var edge = Mathf.Min(Mathf.Min(bx, PioneerPlaqueArt.BoardWidth - bx), Mathf.Min(byFromTop, PioneerPlaqueArt.BoardHeight - byFromTop));
+                            if (edge > 3.2f && edge < 5.2f)
+                                frame++; // moldura fina
+                            for (var i = 0; i < shapes.Length; i++)
+                            {
+                                var rect = PioneerPlaqueArt.SlotRects[i];
+                                var side = Mathf.Min(rect.width, rect.height);
+                                var ox = rect.x + (rect.width - side) * 0.5f;
+                                var oy = rect.y + (rect.height - side) * 0.5f;
+                                var lx = (bx - ox) / side * 100f;
+                                var ly = (byFromTop - oy) / side * 100f;
+                                if (lx < 0f || lx > 100f || ly < 0f || ly > 100f)
+                                    continue;
+                                var hit = false;
+                                for (var k = 0; k < shapes[i].Count && !hit; k++)
+                                    hit = shapes[i][k].Inside(lx, ly);
+                                if (hit)
+                                    covered++;
+                                break;
+                            }
+                        }
+                    }
+
+                    var total = samples * samples;
+                    var inked = Mathf.Clamp01((covered + frame) / (float)total);
+                    var baseColor = Color32.Lerp(gold, goldEdge, 0.5f * Mathf.Abs(((px * 31 + py * 17) % 7) / 7f - 0.5f)); // grão sutil do anodizado
+                    pixels[py * width + px] = Color32.Lerp(baseColor, ink, inked);
+                }
+            }
+
+            var texture = new Texture2D(width, height, TextureFormat.RGBA32, false) { name = "PIO_PlaqueBoard" };
+            texture.SetPixels32(pixels);
+            texture.Apply(false);
+            return texture;
+        }
+
         public static void BrightStars(Mesh mesh, int count, int seed, float minDegrees, float maxDegrees)
         {
             var vertices = new List<Vector3>();
