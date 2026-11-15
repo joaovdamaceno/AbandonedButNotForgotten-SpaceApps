@@ -65,6 +65,7 @@ namespace Abandoned.SpaceApps.Integration.EditorTools
             so.FindProperty("catalog").objectReferenceValue = Load<ChapterCatalog>("Assets/_Game/Core/ChapterCatalog.asset");
             so.FindProperty("dossierPrefab").objectReferenceValue = Load<GameObject>("Assets/_Game/UI/Dossier/DossierScreen.prefab");
             so.FindProperty("missionHudPrefab").objectReferenceValue = Load<GameObject>("Assets/_Game/UI/Hud/MissionHUD.prefab");
+            so.FindProperty("subtitleLayerPrefab").objectReferenceValue = Load<GameObject>("Assets/_Game/Shared/Localization/SubtitleLayer.prefab");
             so.FindProperty("guidancePrefab").objectReferenceValue = Load<GameObject>("Assets/_Game/UI/Guidance/Guidance.prefab");
             so.FindProperty("pauseMenuPrefab").objectReferenceValue = Load<GameObject>("Assets/_Game/UI/Pause/PauseMenu.prefab");
             so.FindProperty("audioDirectorPrefab").objectReferenceValue = Load<GameObject>("Assets/_Game/Shared/Audio/AudioDirector.prefab");

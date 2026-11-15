@@ -72,9 +72,11 @@ namespace Abandoned.SpaceApps.Opportunity
             string[] followUp=null;
             if(Active&&Result&&chapter&&chapter.film)
             {
-                if(Study==FieldStudy.Berries)followUp=new[]{"v14.berries.water","v14.berries.doubt"};
-                else if(Study==FieldStudy.Shield)followUp=new[]{"v14.shield.odd"};
-                else if(Study==FieldStudy.SunDust)followUp=new[]{"v14.send.reason"};
+                // Depois de cada observação, a narração diz o que ela significa e para onde ir em seguida.
+                if(Study==FieldStudy.Berries)followUp=new[]{"v14.berries.water","v14.berries.doubt","route.outcrop"};
+                else if(Study==FieldStudy.Shield)followUp=new[]{"v14.shield.odd","v10.goal.meteorite"};
+                else if(Study==FieldStudy.SunClear)followUp=new[]{"objective.panorama"};
+                else if(Study==FieldStudy.SunDust)followUp=new[]{"v14.send.reason","objective.send"};
             }
             StopAllCoroutines();if(Capturing&&chapter&&chapter.hud)chapter.hud.HideForCapture(false);Capturing=false;
             if(Active&&!string.IsNullOrEmpty(previousCue))chapter.sound.Cue(previousCue);
@@ -96,13 +98,10 @@ namespace Abandoned.SpaceApps.Opportunity
             Capturing=true;chapter.sound.Photograph();chapter.feedback.Observe();
             chapter.hud.HideForCapture(true);yield return null;yield return new WaitForEndOfFrame();
             var frame=FrameCaptureUtility.Photograph();chapter.hud.HideForCapture(false);
-            if(Study==FieldStudy.Berries&&Sample==0)
-            {
-                if(BerryFirstFrame)Destroy(BerryFirstFrame);BerryFirstFrame=frame;
-                Sample=1;Dwell=0;AimX=0;AimY=0;acquired=false;Capturing=false;yield break;
-            }
+            // A rocha das esferas é uma única observação.
             int index=(int)Study;if(frames[index])Destroy(frames[index]);frames[index]=frame;
-            if(Study==FieldStudy.Berries)BerriesCompared=true;
+            // Depois das esferas, o próximo destino é a própria McKittrick (sem ponto de rota intermediário).
+            if(Study==FieldStudy.Berries){BerriesCompared=true;chapter.journey.CompleteTraverseForPreview();}
             if(Study==FieldStudy.Shield)ShieldExamined=true;
             if(Study==FieldStudy.Meteorite)MeteoriteIdentified=true;
             if(Study==FieldStudy.SunClear)ClearSunMeasured=true;

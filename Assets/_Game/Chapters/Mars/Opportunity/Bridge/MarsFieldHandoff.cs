@@ -16,13 +16,15 @@ namespace Abandoned.SpaceApps.Opportunity
     public sealed class MarsFieldHandoff : MonoBehaviour
     {
         public const string SceneName = "Opportunity";
-        const string PreloadStep = "M02";
+        const string PreloadStep = "M01";
+        const string LabStep = "M02";
         const string GlobeStep = "M03";
         const string HandoffStep = "M04";
         // A troca acontece um instante antes do fim do globo: a abertura congela no último quadro enquanto a cena ativa.
         const float HandoffLeadSeconds = 0.15f;
 
         AsyncOperation preload;
+        ThreadPriority savedPriority = ThreadPriority.Normal;
 
         MarsChapterBindings bindings;
         Abandoned.SpaceApps.ChapterDirector appDirector;
@@ -60,8 +62,11 @@ namespace Abandoned.SpaceApps.Opportunity
                 return;
 
             // A cena seguinte carrega em segundo plano durante o laboratório, para o pouso começar sem tela preta.
-            if (preload == null && (step == PreloadStep || step == GlobeStep))
+            if (preload == null && (step == PreloadStep || step == LabStep || step == GlobeStep))
             {
+                // Prioridade baixa: o carregamento usa pouco tempo por quadro e não trava o laboratório nem o giro do globo.
+                savedPriority = Application.backgroundLoadingPriority;
+                Application.backgroundLoadingPriority = ThreadPriority.Low;
                 preload = SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);
                 if (preload != null)
                     preload.allowSceneActivation = false;
@@ -114,6 +119,7 @@ namespace Abandoned.SpaceApps.Opportunity
 
             load.allowSceneActivation = true;
             yield return load;
+            Application.backgroundLoadingPriority = savedPriority;
 
             // A cena seguinte já está ativa: só agora a abertura sai, no mesmo quadro.
             Watch(FindAnyObjectByType<Abandoned.SpaceApps.ChapterDirector>());
@@ -195,6 +201,7 @@ namespace Abandoned.SpaceApps.Opportunity
             Time.timeScale = 1f;
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             UnityEngine.Cursor.visible = true;
+            Application.backgroundLoadingPriority = savedPriority;
             // Saída durante a abertura: a cena pré-carregada termina de ativar para poder ser descarregada.
             if (preload != null && !preload.isDone)
             {

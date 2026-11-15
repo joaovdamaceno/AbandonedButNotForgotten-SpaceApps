@@ -14,7 +14,7 @@ namespace Abandoned.SpaceApps.Opportunity
         VisualElement endActions,thermal,thermalFill,safeBand,rockHint;
         VisualElement pressureFill,grindFill,energyFill,cursor,featureA,featureB,energyBox,memoryChoices;
         Image remembrance,chosenImage;
-        Label objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,skip,photoCount,memoryTitle;
+        Label scienceFindings,objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,skip,photoCount,memoryTitle;
         VisualElement splitView,splitDivider,splitTopLabel,splitBottomLabel,letterTop,letterBottom;Label splitTopName,splitTopPlace,splitBottomName,splitBottomPlace,splitNote,fieldGoal,scienceGoal;
         float toastTime,objectiveAge;
         string toastKey,objectiveKey,activeLanguage,lastFilmTitle;
@@ -61,7 +61,7 @@ namespace Abandoned.SpaceApps.Opportunity
             cursor=Box(science,"tool-cursor");featureA=Box(science,"feature");Text(featureA,"01","feature-number");featureB=Box(science,"feature");Text(featureB,"02","feature-number");
             var instruction=Box(science,"science-instruction");scienceTitle=Text(instruction,"","objective");scienceBody=Text(instruction,"","science-body");scienceGoal=Text(instruction,"","goal-line");
             var tool=Box(science,"tool-readout");pressureFill=Box(Box(tool,"pressure-track"),"pressure-fill");safeBand=Box(pressureFill.parent,"safe-band");thermal=Box(tool,"thermal-cue");Text(thermal,"","small").name="thermal-label";thermalFill=Box(Box(thermal,"progress-track"),"thermal-fill");
-            scienceReadout=Text(tool,"","small");grindFill=Box(Box(tool,"progress-track"),"progress-fill");
+            scienceReadout=Text(tool,"","small");scienceFindings=Text(tool,"","small");scienceFindings.style.whiteSpace=WhiteSpace.Normal;scienceFindings.style.marginTop=8;grindFill=Box(Box(tool,"progress-track"),"progress-fill");
             photo=Box(root,"photo-view");photo.pickingMode=PickingMode.Ignore;Box(photo,"viewfinder");Text(photo,"PANCAM   /   MER-B","photo-id eyebrow");Text(photo,"","photo-help").name="photo-help";photoCount=Text(photo,"","photo-count small");
             memory=Box(root,"memory-screen");var memoryCard=Box(memory,"memory-card");Text(memoryCard,"","eyebrow").name="memory-eyebrow";
             memoryTitle=Text(memoryCard,"","display memory-title");chosenImage=new Image{scaleMode=ScaleMode.ScaleToFit};chosenImage.AddToClassList("chosen-image");memoryCard.Add(chosenImage);
@@ -141,10 +141,13 @@ namespace Abandoned.SpaceApps.Opportunity
             var split=chapter.split;bool visible=split&&split.LabelsVisible&&s_IsLanding();
             Show(splitView,visible);Show(letterTop,!(split&&split.Active&&split.Expand<1));Show(letterBottom,!(split&&split.Active&&split.Expand<1));
             if(!visible)return;
-            float h=split.OpportunityHeight,fade=Mathf.Clamp01(chapter.Elapsed/.9f)*(1-Mathf.InverseLerp(.15f,.55f,split.Expand));
+            // Lado a lado: Spirit à esquerda, Opportunity à direita, linha vertical entre as duas.
+            float w=split.OpportunityWidth,left=(1-w)*100,fade=Mathf.Clamp01(chapter.Elapsed/.9f)*(1-Mathf.InverseLerp(.15f,.55f,split.Expand));
             splitView.style.opacity=fade;
-            splitDivider.style.top=Length.Percent((1-h)*100);
-            splitTopLabel.style.top=Length.Percent(Mathf.Max(1f,(1-h)*100*.12f));splitBottomLabel.style.top=Length.Percent((1-h)*100+3f);splitNote.style.top=Length.Percent(Mathf.Max(0f,(1-h)*100-5.5f));splitNote.style.bottom=StyleKeyword.Auto;
+            var d=splitDivider.style;d.left=Length.Percent(left);d.right=StyleKeyword.Auto;d.top=0;d.bottom=0;d.width=4;d.height=StyleKeyword.Auto;d.marginTop=0;d.marginLeft=-2;
+            splitTopLabel.style.left=Length.Percent(2.5f);splitTopLabel.style.top=Length.Percent(5f);
+            splitBottomLabel.style.left=Length.Percent(left+2.5f);splitBottomLabel.style.top=Length.Percent(5f);
+            var n=splitNote.style;n.left=Length.Percent(2.5f);n.right=StyleKeyword.Auto;n.top=Length.Percent(15f);n.bottom=StyleKeyword.Auto;n.maxWidth=Length.Percent(Mathf.Max(10f,left-5f));n.unityTextAlign=TextAnchor.UpperLeft;
             splitTopName.text=Localization.Get("v15.split.spirit");splitTopPlace.text=Localization.Get("v15.split.spirit.place");
             splitBottomName.text=Localization.Get("v15.split.opportunity");splitBottomPlace.text=Localization.Get("v15.split.opportunity.place");
             splitNote.text=Localization.Get("v15.split.note");
@@ -210,9 +213,9 @@ namespace Abandoned.SpaceApps.Opportunity
         }
         void UpdateScience()
         {
-            var m=chapter.science;Show(scienceReadout.parent,m.Active&&(m.Phase==AbrasionPhase.Abrade||m.Phase==AbrasionPhase.Analyze));string phase=m.Active&&!(m.Phase==AbrasionPhase.Identify&&!m.ToolDeployed)?m.Phase.ToString().ToLowerInvariant():"deploy";
+            var m=chapter.science;Show(scienceReadout.parent,m.Active&&(m.Phase==AbrasionPhase.Abrade||m.Phase==AbrasionPhase.Analyze||m.Phase==AbrasionPhase.Complete));string phase=m.Active&&!(m.Phase==AbrasionPhase.Identify&&!m.ToolDeployed)?m.Phase.ToString().ToLowerInvariant():"deploy";
             scienceTitle.text=Localization.Get(m.Phase==AbrasionPhase.Analyze?(m.Observations==0?"v11.rat.micro.title":"v11.rat.composition.title"):"rat."+phase+".title");scienceBody.text=Localization.Get(m.Phase==AbrasionPhase.Analyze?(m.Observations==0?"v11.rat.micro.body":"v11.rat.composition.body"):"rat."+phase+".body");
-            scienceGoal.text=Localization.Get("v15.goal.2");
+            scienceGoal.text=Localization.Get("v15.goal.1");
             Show(cursor,false);
             bool analyze=m.Phase==AbrasionPhase.Analyze;Show(featureA,false);Show(featureB,false);
             if(analyze){Project(featureA,m.surface.WorldPoint(m.surface.Features[0]));Project(featureB,m.surface.WorldPoint(m.surface.Features[1]));featureA.style.opacity=m.Observed[0]?.25f:1;featureB.style.opacity=m.Observed[1]?.25f:1;}
@@ -223,6 +226,16 @@ namespace Abandoned.SpaceApps.Opportunity
             thermal.Q<Label>("thermal-label").text=Localization.Get("rat.temperature");
             string pressureKey=m.Cooling?"rat.cooldown":m.Pressure<m.PressureLow?"rat.low":m.Pressure>m.PressureHigh?"rat.high":"rat.pressure";
             scienceReadout.text=analyze?Localization.Get(!m.ToolStowed?"v11.rat.retract":m.AnalysisScanning?"v11.rat.scanning":"v11.rat.request"):string.Format(Localization.Get(m.Working?"rat.hold.active":"rat.hold"),Mathf.CeilToInt(m.RemainingSeconds));
+            // Leituras da cavidade, reveladas conforme cada instrumento termina (MI: textura; APXS: elementos; Mössbauer: minerais de ferro).
+            bool done=m.Phase==AbrasionPhase.Complete;int read=done?2:m.Phase==AbrasionPhase.Analyze?m.Observations:-1;
+            var findings=new System.Text.StringBuilder();
+            if(read>=0)findings.Append(Localization.Get("rat.find.title"));
+            if(read>=1)findings.Append('\n').Append(Localization.Get("rat.find.mi"));
+            if(read>=2||read==1&&m.ScanProgress>=.45f)findings.Append('\n').Append(Localization.Get("rat.find.apxs"));
+            if(read>=2||read==1&&m.ScanProgress>=.9f)findings.Append('\n').Append(Localization.Get("rat.find.mossbauer"));
+            if(read>=2)findings.Append('\n').Append(Localization.Get("rat.find.spheres"));
+            scienceFindings.text=findings.ToString();Show(scienceFindings,read>=0);
+            if(done){scienceReadout.text=Localization.Get("rat.find.done");grindFill.style.width=Length.Percent(100);}
             // Barra da abrasão no canto inferior direito, longe da rocha.
             var readout=scienceReadout.parent;readout.style.position=Position.Absolute;readout.style.right=32;readout.style.bottom=96;readout.style.left=StyleKeyword.Auto;readout.style.top=StyleKeyword.Auto;readout.style.width=300;
         }

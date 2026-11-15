@@ -1032,8 +1032,8 @@
   },
   {
    "key": "v10.berries.first",
-   "pt": "Amostra 1/2 · as pequenas esferas. Segure E para observar.",
-   "en": "Sample 1/2 · the small spheres. Hold E to observe."
+   "pt": "A rocha e as pequenas esferas. Segure E para observar.",
+   "en": "The rock and its small spheres. Hold E to observe."
   },
   {
    "key": "v10.berries.second",
@@ -1172,8 +1172,8 @@
   },
   {
    "key": "v11.rat.micro.body",
-   "pt": "A poeira se dissipa. O Microscopic Imager examina o interior da cavidade que você abriu.",
-   "en": "The dust settles. The Microscopic Imager examines the cavity you have just exposed."
+   "pt": "Segure E: o Microscopic Imager (MI) fotografa a textura do interior da cavidade.",
+   "en": "Hold E: the Microscopic Imager (MI) photographs the texture inside the cavity."
   },
   {
    "key": "v11.rat.composition.title",
@@ -1182,8 +1182,8 @@
   },
   {
    "key": "v11.rat.composition.body",
-   "pt": "Agora reunimos as leituras dos espectrômetros. Minerais e texturas são pistas complementares do passado destas rochas.",
-   "en": "Now we bring together the spectrometer readings. Minerals and textures offer complementary clues to the rocks’ past."
+   "pt": "Segure E: o APXS mede os elementos químicos e o Mössbauer identifica os minerais de ferro da rocha exposta.",
+   "en": "Hold E: the APXS measures the chemical elements and the Mössbauer identifies the iron minerals in the exposed rock."
   },
   {
    "key": "v11.rat.retract",
@@ -1198,7 +1198,7 @@
   {
    "key": "v11.rat.request",
    "pt": "Segure E · examinar a cavidade",
-   "en": "Hold E · examine this cavity"
+   "en": "Hold E · examine the cavity"
   },
   {
    "key": "v12.interact.rock",
@@ -1572,8 +1572,8 @@
   },
   {
    "key": "v13.interact.berries",
-   "pt": "Observar blueberries",
-   "en": "Observe blueberries"
+   "pt": "Observar rocha",
+   "en": "Observe the rock"
   },
   {
    "key": "v13.interact.rat",
@@ -2014,6 +2014,36 @@
    "key": "rat.hold.active",
    "pt": "Desgastando · faltam {0} s",
    "en": "Grinding · {0} s left"
+  },
+  {
+   "key": "rat.find.title",
+   "pt": "LEITURAS DA MCKITTRICK",
+   "en": "McKITTRICK READINGS"
+  },
+  {
+   "key": "rat.find.mi",
+   "pt": "MI · camadas finas e pequenos vazios deixados por cristais",
+   "en": "MI · fine layers and small voids left by crystals"
+  },
+  {
+   "key": "rat.find.apxs",
+   "pt": "APXS · muito enxofre: sais de sulfato na rocha",
+   "en": "APXS · abundant sulfur: sulfate salts in the rock"
+  },
+  {
+   "key": "rat.find.mossbauer",
+   "pt": "Mössbauer · jarosita, mineral de ferro que se forma na presença de água",
+   "en": "Mössbauer · jarosite, an iron mineral that forms in the presence of water"
+  },
+  {
+   "key": "rat.find.spheres",
+   "pt": "Ao redor · esferas ricas em hematita, presas na rocha e soltas no solo",
+   "en": "Around the site · hematite-rich spheres, embedded in the rock and loose in the soil"
+  },
+  {
+   "key": "rat.find.done",
+   "pt": "Rochas, solo e minerais ao redor do pouso registrados",
+   "en": "Rocks, soil and minerals around the landing site recorded"
   }
  ]
 }

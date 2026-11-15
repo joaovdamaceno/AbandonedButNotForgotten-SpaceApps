@@ -64,6 +64,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if (Transmitting && !TransmissionComplete)
             { Transmission = Mathf.Min(1, Transmission + Time.deltaTime / 6.5f); if (Transmission == 1) { TransmissionComplete = true; chapter.Progress.TransmitMemory(); chapter.sound.Confirm(); } }
         }
+        /// <summary>Encerra a rota: o próximo destino passa a ser a rocha da ciência.</summary>
         public void CompleteTraverseForPreview() => TraverseStep = traverse.Length;
     }
 }

@@ -22,6 +22,8 @@ namespace Abandoned.SpaceApps.Opportunity
         /// <summary>Segundos segurando E para concluir a abrasão.</summary>
         public const float HoldSeconds=7f;
         public bool Cutting=>Working&&Phase==AbrasionPhase.Abrade&&Active;
+        /// <summary>Segundos na fase atual (o resultado fica na tela um instante antes da descoberta).</summary>
+        public float PhaseSeconds=>phaseTime;
         public float RemainingSeconds=>Mathf.Max(0,HoldSeconds*(1-Progress));
         public float PressureLow=>load.Low;
         public float PressureHigh=>load.High;
@@ -84,17 +86,21 @@ namespace Abandoned.SpaceApps.Opportunity
                     Progress=Mathf.Clamp01(Progress+dt/HoldSeconds);
                     surface.GrindCircular(dt*32f/HoldSeconds,Pressure,load.Low,load.High);
                 }
-                if (Progress >= 1) { Phase = AbrasionPhase.Complete;Observations=2;Observed[0]=Observed[1]=true;surface.CommitCollision(); phaseTime = 0; withdrawal=0;withdrawalStart=toolDock.position;withdrawalRotation=toolDock.rotation;sound.Confirm(); }
+                // Abrasão concluída: o braço recolhe e a cavidade passa para a análise (MI, depois APXS e Mössbauer).
+                if (Progress >= 1) { Phase = AbrasionPhase.Analyze;Observations=0;Observed[0]=Observed[1]=false;ScanProgress=0;surface.CommitCollision(); phaseTime = 0; withdrawal=0;withdrawalStart=toolDock.position;withdrawalRotation=toolDock.rotation;sound.Confirm(); }
             }
             else if (Phase == AbrasionPhase.Analyze)
             {
                 Cursor=Vector2.zero;HoverFeature=ToolStowed?Observations:-1;
                 surface.SetInspection(Observations+1);
-                if(confirm&&ToolStowed&&!AnalysisScanning&&Observations<2){AnalysisScanning=true;ScanProgress=0;sound.Confirm();}
+                // Cada leitura avança só enquanto E está pressionado; soltar pausa.
+                bool scanning=operate&&ToolStowed&&Observations<2;
+                if(scanning&&!AnalysisScanning)sound.Confirm();
+                AnalysisScanning=scanning;
                 if(AnalysisScanning)
                 {
                     ScanProgress=Mathf.Clamp01(ScanProgress+dt/(Observations==0?2.2f:3.5f));
-                    if(ScanProgress>=1){if(sound.feedback)sound.feedback.Observe();Observed[Observations]=true;Observations++;AnalysisScanning=false;ScanProgress=0;sound.Confirm();if(Observations==2)Phase=AbrasionPhase.Complete;}
+                    if(ScanProgress>=1){if(sound.feedback)sound.feedback.Observe();Observed[Observations]=true;Observations++;AnalysisScanning=false;ScanProgress=0;sound.Confirm();if(Observations==2){Phase=AbrasionPhase.Complete;phaseTime=0;}}
                 }
             }
             if (Phase == AbrasionPhase.Align || Phase == AbrasionPhase.Abrade || Phase == AbrasionPhase.Identify)

@@ -24,6 +24,20 @@ namespace Abandoned.SpaceApps
         [SerializeField] Renderer gusevPulse;
         [SerializeField] Renderer meridianiPulse;
         [SerializeField] List<MarsLandingLabel> labels = new List<MarsLandingLabel>();
+        [Header("Laboratório (penumbra cinematográfica)")]
+        [SerializeField, Tooltip("Luz ambiente enquanto o laboratório está em cena; as luzes de estúdio sobre os rovers viram o destaque.")]
+        Color labAmbient = new Color(0.035f, 0.037f, 0.045f);
+        [SerializeField, Min(0f), Tooltip("Intensidade do sol da cena enquanto o laboratório está em cena.")]
+        float labSunIntensity = 0.25f;
+        [SerializeField, Range(0f, 1f), Tooltip("Fração da intensidade das luzes de estúdio do laboratório (poças de luz sobre os rovers).")]
+        float labLampScale = 0.55f;
+
+        bool labLit;
+        float savedSunIntensity;
+        Color savedAmbient;
+        UnityEngine.Rendering.AmbientMode savedAmbientMode;
+        Light[] labLamps;
+        float[] labLampIntensity;
 
         readonly List<MarsLandingLabel> visible = new List<MarsLandingLabel>();
         readonly Dictionary<Renderer, MaterialPropertyBlock> blocks = new Dictionary<Renderer, MaterialPropertyBlock>();
@@ -66,6 +80,7 @@ namespace Abandoned.SpaceApps
 
         void OnDisable()
         {
+            SetLabLighting(false);
             if (sequenceDirector != null)
                 sequenceDirector.Started -= OnStarted;
             if (cameraDirector != null)
@@ -100,6 +115,64 @@ namespace Abandoned.SpaceApps
                 ApplyAt(offset + sequenceDirector.TimeSeconds);
         }
 
+        Light sceneSun;
+
+        Light SceneSun()
+        {
+            if (sceneSun != null)
+                return sceneSun;
+            sceneSun = RenderSettings.sun;
+            if (sceneSun == null)
+                foreach (var light in FindObjectsByType<Light>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+                    if (light.type == LightType.Directional && light.gameObject.scene == gameObject.scene)
+                    {
+                        sceneSun = light;
+                        break;
+                    }
+            return sceneSun;
+        }
+
+        /// <summary>Penumbra só no laboratório: guarda a luz da região ao entrar e devolve ao sair (globo, cancelamento).</summary>
+        void SetLabLighting(bool lab)
+        {
+            var sun = SceneSun();
+            if (lab)
+            {
+                if (!labLit)
+                {
+                    savedAmbient = RenderSettings.ambientLight;
+                    savedAmbientMode = RenderSettings.ambientMode;
+                    savedSunIntensity = sun != null ? sun.intensity : 0f;
+                    var labRoot = regions.Length > MarsOriginChoreography.RegionLab ? regions[MarsOriginChoreography.RegionLab] : null;
+                    labLamps = labRoot != null ? labRoot.GetComponentsInChildren<Light>(true) : new Light[0];
+                    labLampIntensity = new float[labLamps.Length];
+                    for (var i = 0; i < labLamps.Length; i++)
+                    {
+                        labLampIntensity[i] = labLamps[i].intensity;
+                        labLamps[i].intensity *= labLampScale;
+                    }
+                }
+
+                // Reaplicado a cada quadro: a luz da região pode ser reposta ao começar a sequência.
+                if (sun != null)
+                    sun.intensity = labSunIntensity;
+                RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+                RenderSettings.ambientLight = labAmbient;
+            }
+            else if (labLit)
+            {
+                RenderSettings.ambientMode = savedAmbientMode;
+                RenderSettings.ambientLight = savedAmbient;
+                if (sun != null)
+                    sun.intensity = savedSunIntensity;
+                for (var i = 0; labLamps != null && i < labLamps.Length; i++)
+                    if (labLamps[i] != null)
+                        labLamps[i].intensity = labLampIntensity[i];
+            }
+
+            labLit = lab;
+        }
+
         public void ApplyAt(float timeSeconds)
         {
             timeSeconds = Mathf.Clamp(timeSeconds, 0f, MarsOriginChoreography.TotalSeconds);
@@ -118,6 +191,7 @@ namespace Abandoned.SpaceApps
             if (globe != null)
                 globe.localRotation = pose.GlobeRotation;
 
+            SetLabLighting(active == MarsOriginChoreography.RegionLab);
             Glow(gusevMarker, gusevPulse, pose.GusevGlow, pose.Pulse);
             Glow(meridianiMarker, meridianiPulse, pose.MeridianiGlow, pose.Pulse);
 

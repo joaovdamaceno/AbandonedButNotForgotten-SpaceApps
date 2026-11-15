@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Abandoned.SpaceApps.UI;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Abandoned.SpaceApps.Integration
         [SerializeField] ChapterCatalog catalog;
         [SerializeField] GameObject dossierPrefab;
         [SerializeField] GameObject missionHudPrefab;
+        [SerializeField, Tooltip("Camada de legenda própria (fora do HUD, que some nas cinemáticas).")] GameObject subtitleLayerPrefab;
         [SerializeField] GameObject guidancePrefab;
         [SerializeField] GameObject pauseMenuPrefab;
         [SerializeField] GameObject audioDirectorPrefab;
@@ -58,7 +60,13 @@ namespace Abandoned.SpaceApps.Integration
             if (textTables != null)
                 foreach (var table in textTables)
                     if (table != null)
+                    {
                         problems.AddRange(localization.AddTable(table.text, table.name));
+                        // Falas do roteiro (lista "cues") trazem o texto junto; registra para a legenda achar pela chave.
+                        var cueTexts = CueTexts(table.text);
+                        if (cueTexts != null)
+                            problems.AddRange(localization.AddTable(cueTexts, table.name + " (falas)"));
+                    }
             localization.ApplySettings(settings.Current);
             settings.Changed += data => localization.ApplySettings(data);
 
@@ -76,9 +84,18 @@ namespace Abandoned.SpaceApps.Integration
                         hud.AddTextTable(table);
             hud.Initialize(interactions, router, director, settings, null);
 
-            subtitles = new GameObject("Subtitles").AddComponent<SubtitlePresenter>();
-            subtitles.transform.SetParent(transform, false);
-            subtitles.Initialize(localization, null, hud.BottomColumn);
+            // O roteiro aparece também nas cinemáticas: a legenda tem camada própria; sem o prefab, cai na coluna do HUD.
+            if (subtitleLayerPrefab != null)
+            {
+                subtitles = Instantiate(subtitleLayerPrefab, transform).GetComponentInChildren<SubtitlePresenter>(true);
+                subtitles.Initialize(localization, null);
+            }
+            else
+            {
+                subtitles = new GameObject("Subtitles").AddComponent<SubtitlePresenter>();
+                subtitles.transform.SetParent(transform, false);
+                subtitles.Initialize(localization, null, hud.BottomColumn);
+            }
 
             if (guidancePrefab != null)
             {
@@ -160,6 +177,27 @@ namespace Abandoned.SpaceApps.Integration
                 Anchor = anchor,
                 AccentClass = "sa-chapter--mars",
             });
+        }
+
+        [Serializable] sealed class CueFile { public CueRow[] cues; }
+        [Serializable] sealed class CueRow { public string textKey, pt, en; }
+        [Serializable] sealed class TextFile { public TextRow[] texts; }
+        [Serializable] sealed class TextRow { public string key, pt, en; }
+
+        /// <summary>Tabela {texts} com o texto das falas de uma tabela {cues}; nulo se não houver falas.</summary>
+        static string CueTexts(string json)
+        {
+            CueFile file;
+            try { file = JsonUtility.FromJson<CueFile>(json); }
+            catch (ArgumentException) { return null; }
+            if (file?.cues == null || file.cues.Length == 0)
+                return null;
+
+            var rows = new List<TextRow>();
+            foreach (var cue in file.cues)
+                if (cue != null && !string.IsNullOrEmpty(cue.textKey) && !string.IsNullOrWhiteSpace(cue.pt) && !string.IsNullOrWhiteSpace(cue.en))
+                    rows.Add(new TextRow { key = cue.textKey, pt = cue.pt, en = cue.en });
+            return rows.Count == 0 ? null : JsonUtility.ToJson(new TextFile { texts = rows.ToArray() });
         }
 
         void OnMarsStepEnded(string stepId)

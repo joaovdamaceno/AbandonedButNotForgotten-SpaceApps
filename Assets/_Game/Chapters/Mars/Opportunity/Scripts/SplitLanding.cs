@@ -6,7 +6,7 @@ namespace Abandoned.SpaceApps.Opportunity
 {
     /// <summary>
     /// The twin landings. Spirit (Gusev Crater) and Opportunity (Meridiani Planum) descend at the same time in a
-    /// horizontal split screen (Spirit on top, Opportunity below); the lower view then grows to fill the screen
+    /// side-by-side split screen (Spirit on the left, Opportunity on the right); the right view then grows to fill the screen
     /// and play continues with Opportunity. Spirit's lander, capsule and rover are runtime copies of Opportunity's
     /// hardware placed elsewhere on the terrain and kept on their own layer, so each camera sees only its own site.
     /// The Spirit rover copy is also reused as a static prop in the opening laboratory and in the 2010 memorial.
@@ -19,13 +19,13 @@ namespace Abandoned.SpaceApps.Opportunity
         public Vector3 spiritOffset = new Vector3(105, 0, -70);
 
         public bool Active { get; private set; }
-        /// <summary>0 = two half-height views, 1 = Opportunity fills the screen.</summary>
+        /// <summary>0 = two half-width views, 1 = Opportunity fills the screen.</summary>
         public float Expand { get; private set; }
         public bool LabelsVisible => Active && Expand < .55f;
-        /// <summary>Opportunity's share of the screen height.</summary>
-        public float OpportunityHeight => Mathf.Lerp(.5f, 1f, Expand);
-        /// <summary>Lens scale that keeps the narrow strips from becoming extreme wide angles.</summary>
-        public float LensScale => Active ? Mathf.Lerp(.62f, 1f, Expand) : 1f;
+        /// <summary>Opportunity's share of the screen width.</summary>
+        public float OpportunityWidth => Mathf.Lerp(.5f, 1f, Expand);
+        /// <summary>Lens scale for the tall half-width views: a little wider so each lander still fits the frame.</summary>
+        public float LensScale => Active ? Mathf.Lerp(1.15f, 1f, Expand) : 1f;
 
         Camera spiritCamera;
         Transform capsule, shield, lander, airbagRoot, bridle, spiritRover;
@@ -167,11 +167,11 @@ namespace Abandoned.SpaceApps.Opportunity
         void Apply(float time, float t)
         {
             var main = chapter.cameras.view;
-            float h = OpportunityHeight;
-            main.rect = new Rect(0, 0, 1, h);
-            bool showSpirit = h < .999f;
+            float w = OpportunityWidth;
+            main.rect = new Rect(1 - w, 0, w, 1);
+            bool showSpirit = w < .999f;
             spiritCamera.enabled = showSpirit;
-            spiritCamera.rect = new Rect(0, h, 1, 1 - h);
+            spiritCamera.rect = new Rect(0, 0, 1 - w, 1);
             spiritCamera.depth = main.depth - 1;
             if (!showSpirit) return;
 

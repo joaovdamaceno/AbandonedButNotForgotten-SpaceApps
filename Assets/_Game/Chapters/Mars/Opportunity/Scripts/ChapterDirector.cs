@@ -8,6 +8,8 @@ namespace Abandoned.SpaceApps.Opportunity
     public sealed class ChapterDirector : MonoBehaviour
     {
         const float InteractHoldSeconds=.6f;
+        /// <summary>Tempo para ler as leituras da McKittrick antes da descoberta.</summary>
+        const float ResultHoldSeconds=5f;
         float interactHold;
         public ChapterData data;
         public RoverController rover;
@@ -142,7 +144,7 @@ namespace Abandoned.SpaceApps.Opportunity
                     break;
                 case ChapterStage.RockAnalysis:
                     cameras.Shake=science.Working?Mathf.Lerp(.035f,.11f,science.RemovalFeedback):0;
-                    if(science.Phase==AbrasionPhase.Complete&&science.Active){cameras.Shake=0;Progress.CompleteScience();Progress.Advance();}break;
+                    if(science.Phase==AbrasionPhase.Complete&&science.Active&&science.PhaseSeconds>=ResultHoldSeconds){cameras.Shake=0;Progress.CompleteScience();Progress.Advance();}break;
                 case ChapterStage.Discovery:
                     science.surface.SetInspection(Elapsed<6?1:2);
                     if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;

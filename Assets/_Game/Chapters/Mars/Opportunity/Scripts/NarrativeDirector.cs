@@ -20,7 +20,7 @@ namespace Abandoned.SpaceApps.Opportunity
             var clip=Resources.Load<AudioClip>("Narration/"+(GameSettings.English?"en":"pt")+"/"+key);
             if(clip){voice.clip=clip;voice.volume=1;voice.Play();}
         }
-        /// <summary>Plays AI narration lines one after another during free play (caption shown as a toast).</summary>
+        /// <summary>Plays narration lines one after another during free play (caption shown as a toast).</summary>
         Coroutine speaking;
         public void SpeakSequence(params string[] keys){if(speaking!=null)StopCoroutine(speaking);speaking=StartCoroutine(SpeakLines(keys));}
         System.Collections.IEnumerator SpeakLines(string[] keys)
