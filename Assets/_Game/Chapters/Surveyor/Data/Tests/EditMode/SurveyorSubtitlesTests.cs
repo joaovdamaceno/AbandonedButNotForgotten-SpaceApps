@@ -180,7 +180,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.Tests
             {
                 "Sequences/SurveyorLaunch.asset", "Sequences/SurveyorCruise.asset", "Sequences/SurveyorDescent.asset",
                 "Sequences/FirstImage.asset", "Sequences/SurveyorEclipse.asset", "Sequences/SurveyorNight.asset",
-                "Sequences/SurveyorTimePassage.asset",
+                "Sequences/SurveyorTimePassage.asset", "Sequences/SurveyorVisit.asset",
             };
             var found = new HashSet<string>();
             foreach (var file in files)
@@ -214,7 +214,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.Tests
             }
 
             var windowOrDescent = new[] { "SUR-S01", "SUR-S02", "SUR-S03", "SUR-S04", "SUR-S05", "SUR-S06", "SUR-S07", "SUR-S08", "SUR-S09",
-                "SUR-S10", "SUR-S20", "SUR-S21", "SUR-S22", "SUR-S23", "SUR-S24", "SUR-S25" };
+                "SUR-S10", "SUR-S20", "SUR-S21", "SUR-S22", "SUR-S23", "SUR-S24", "SUR-S25", "SUR-S26", "SUR-S27", "SUR-S28",
+                "SUR-S29", "SUR-S30", "SUR-S31" };
             Assert.That(found, Is.SupersetOf(windowOrDescent));
         }
 
