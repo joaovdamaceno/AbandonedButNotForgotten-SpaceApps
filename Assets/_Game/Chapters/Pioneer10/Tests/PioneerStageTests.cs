@@ -98,6 +98,24 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
+        public void TheInstrumentCloseUpKeepsTheInstrumentTowardJupiterForTheWholeShot()
+        {
+            // Sem SpinScale 0 a sonda girava 24°/s durante os 8 s do plano PIO03.Instrument e o fotopolarímetro saía do quadro
+            // (visto só no 3D: aos 3,5 s ele já estava do lado oposto).
+            var axis = presentation.ProbeSpin.forward;
+            var center = presentation.ProbeSpin.position;
+            presentation.ProbeSpin.Rotate(axis, 53f, Space.World);
+            presentation.ShowAnchor("PIO.JupiterApproach.Instrument");
+            presentation.TryGetSocket("Photopolarimeter", out var instrument);
+            float Misalignment() => Vector3.Angle(Vector3.ProjectOnPlane(instrument.position - center, axis),
+                Vector3.ProjectOnPlane(presentation.Jupiter.position - center, axis));
+            Assert.That(Misalignment(), Is.LessThan(0.5f));
+            Assert.That(presentation.EffectiveSpinDegreesPerSecond, Is.Zero);
+            presentation.Tick(8f);
+            Assert.That(Misalignment(), Is.LessThan(0.5f), "depois de 8 s o instrumento continua voltado a Júpiter");
+        }
+
+        [Test]
         public void ThePlaqueFacesTheCameraAndTheInstrumentFacesJupiterWhenTheirAnchorsOpen()
         {
             var axis = presentation.ProbeSpin.forward;
