@@ -55,8 +55,10 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 34%;
+    top: 32%;
     align-items: center;
+    /* Same end screen as every chapter: a quiet kicker line above the big title. */
+    flex-direction: column-reverse;
 }
 
 .pio-farewell__title {
@@ -64,13 +66,15 @@
     padding: 0 var(--sa-space-5);
     -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
     font-size: var(--sa-text-display);
+    letter-spacing: 8px;
     color: var(--sa-color-on-plate);
     -unity-text-align: middle-center;
     white-space: normal;
 }
 
 .pio-farewell__subtitle {
-    margin: var(--sa-space-3) 0 0 0;
+    margin: 0 0 var(--sa-space-3) 0;
+    letter-spacing: 4px;
     padding: 0 var(--sa-space-5);
     -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
     font-size: var(--sa-text-subtitle);
@@ -86,50 +90,111 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 110px;
-    flex-direction: row;
-    justify-content: center;
+    bottom: 90px;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Same buttons as the Surveyor 3 and Mars end menus: compact, flat, green primary ("Main menu") and a quiet secondary. */
 .pio-farewell__button {
     flex-direction: row;
     align-items: center;
-    min-height: 64px;
-    margin: 0 var(--sa-space-3);
-    padding: 0 var(--sa-space-5) 0 var(--sa-space-3);
-    border-width: 3px;
-    border-color: var(--sa-color-plate-edge);
-    border-radius: var(--sa-radius-md);
-    background-color: var(--sa-color-plate-strong);
+    justify-content: center;
+    min-width: 280px;
+    margin: 0 0 10px 0;
+    padding: 10px 18px;
+    border-width: 1px;
+    border-color: rgba(178, 193, 169, 0.4);
+    border-radius: 2px;
+    background-color: rgba(195, 202, 182, 0.07);
 }
 
+.pio-farewell__button:hover { background-color: rgba(195, 202, 182, 0.16); }
+
+/* The E keycap stays out of this menu so the buttons match the other chapters; focus is still shown by the outline. */
 .pio-farewell__keycap {
     display: none;
-    margin-right: var(--sa-space-3);
 }
 
 .pio-farewell__button-label {
     margin: 0;
     padding: 0;
     -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
-    font-size: var(--sa-text-hud);
-    color: var(--sa-color-on-plate);
+    font-size: 19px;
+    color: rgb(214, 219, 200);
     white-space: nowrap;
 }
 
-/* Foco: contorno grosso amarelo, tecla E visível e barra à esquerda (forma e cor, nunca só a cor). */
-.pio-farewell__button--focus {
+#return-button { background-color: rgb(67, 85, 61); border-color: rgb(196, 214, 168); }
+#return-button .pio-farewell__button-label { color: rgb(238, 241, 222); }
+#return-button:hover { background-color: rgb(78, 99, 71); }
+
+/* Keyboard focus: thicker yellow outline (shape and colour, never colour alone). */
+.pio-farewell__button--focus,
+#return-button.pio-farewell__button--focus {
     border-color: var(--sa-color-focus);
-    border-width: 5px;
-    border-left-width: 12px;
+    border-width: 3px;
+    padding: 8px 16px;
 }
 
-.pio-farewell__button--focus .pio-farewell__keycap { display: flex; }
+/* "Sources and credits": quiet text link under the buttons, and the same dark panel as the Surveyor 3 credits. */
+.pio-farewell__credits {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    color: rgb(196, 192, 177);
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: 16px;
+    margin: 6px 0 0 0;
+    padding: 6px 12px;
+}
+
+.pio-farewell__credits:hover { color: rgb(238, 241, 222); }
+
+.pio-farewell__credits-panel {
+    display: none;
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    top: 12%;
+    bottom: 12%;
+    padding: 28px;
+    background-color: rgb(12, 17, 19);
+    border-width: 1px;
+    border-color: rgb(90, 101, 94);
+}
+
+.pio-farewell__credits-scroll { flex-grow: 1; }
+
+.pio-farewell__credits-title {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: 26px;
+    color: rgb(232, 226, 213);
+    margin: 0 0 18px 0;
+    padding: 0;
+}
+
+.pio-farewell__credits-body {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: 17px;
+    color: rgb(208, 211, 197);
+    white-space: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.pio-farewell__credits-close {
+    margin: 16px 0 0 0;
+    padding: 9px;
+    color: rgb(228, 228, 210);
+    background-color: rgb(35, 44, 42);
+    border-width: 0;
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: 17px;
+}
 
 /* ---------- 4:3 (largura lógica < 1100 px, classe aplicada por ResponsiveLayoutClass) ---------- */
 
 .sa-layout--narrow .pio-farewell__title { font-size: 34px; }
 .sa-layout--narrow .pio-farewell__subtitle { font-size: 24px; }
-.sa-layout--narrow .pio-farewell__choices { flex-direction: column; align-items: center; bottom: 70px; }
-.sa-layout--narrow .pio-farewell__button { margin: var(--sa-space-2) 0; }
+.sa-layout--narrow .pio-farewell__choices { bottom: 70px; }
 .sa-layout--narrow .pio-farewell__guide { right: var(--sa-space-5); }

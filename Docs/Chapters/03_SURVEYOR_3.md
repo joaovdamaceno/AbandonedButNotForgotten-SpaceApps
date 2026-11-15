@@ -42,6 +42,6 @@ Avaliar se novatos conseguem começar com uma instrução, reconhecer progresso 
 
 ## Pouso e eclipse na SUR-020
 
-O retrofoguete é descartado e três verniers continuam a frenagem final. Jatos estreitos, sem fumaça atmosférica; grãos deslocados seguem arcos balísticos. O plano aberto inclui os dois ressaltos históricos, de aproximadamente 10 m e 3 m, e três contatos cada vez menores. Arcos usam 1,62 m/s²; tempos, impulso visual e vibração são encenação, sem reproduzir telemetria ou integrar a dinâmica real dos verniers. Fontes S3-01/03/04.
+O retrofoguete é descartado e três verniers continuam a frenagem final. Jatos estreitos, sem fumaça atmosférica; grãos deslocados seguem arcos balísticos. O plano aberto inclui os dois ressaltos históricos, de aproximadamente 10 m e 3 m, e três contatos cada vez menores. Arcos usam 1,62 m/s²; tempos, impulso visual e vibração são encenação, sem reproduzir telemetria ou integrar a dinâmica real dos verniers. A sonda também desliza encosta abaixo (cerca de 20 m e 11 m entre os toques, relato secundário; ver 03_SURVEYOR_SOURCES.md) e a câmera a acompanha com atraso de operador. Fontes S3-01/03/04.
 
 O eclipse mostra ingresso, ocultação e recuperação do Sol, com arco refratado irregular mais forte ao norte. A superfície escurece temporariamente e volta a clarear antes da elipse de dias para a noite lunar. Datas mudam na própria imagem; o eclipse de 24/04 não é apresentado como o fim da missão em 04/05. Fontes S3-05/06.
