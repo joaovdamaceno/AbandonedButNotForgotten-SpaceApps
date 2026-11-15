@@ -330,3 +330,19 @@ O contorno **correto** da peça selecionada pulsa devagar (1,4 s de período; co
 **Limitações.** A rota foi exercitada por um operador automatizado no EditMode (teclado de verdade, serviços reais do Core, `SceneManager` substituído por um carregador instantâneo); **Play Mode, a cena carregada de verdade pelo `SceneManager`, o navegador e a Build Settings não foram exercitados**. O operador usa o mesmo padrão de E em todos os estados (mantido 3,4 s, solto, toque): isso prova que cada atividade conclui sem penalidade, não que uma pessoa a conclui em 375 s. Evidências (galeria) não são registradas pelo controlador. O áudio real (clipes) continua pendente (AUD-002 liga só o `AudioDirector`).
 
 **Reconstruir:** Abandoned Space Apps → CORE-006 → Reconstruir todas as cenas, ou `-executeMethod Abandoned.SpaceApps.EditorTools.SpaceAppsSceneBuilder.BuildFromCommandLine -builders pioneer10.zchapter`.
+
+## Cena de teste jogável (só para o Editor)
+
+`Playtest/Pioneer10_Playtest.unity` joga o capítulo de ponta a ponta no **Play Mode do Editor**, enquanto o shell real (dossiê, Boot, INT-001) não existe. **Não é a integração** e a cena **não entra nas Build Settings**.
+
+| Arquivo | Papel |
+| --- | --- |
+| `Playtest/PioneerPlaytestHost.cs` | Cria os serviços REAIS do Core (`SessionClock`, `InputRouter`, `InteractionService`, `ChapterDirector`), carrega `Pioneer10.unity` em modo aditivo **pelo caminho** (sem Build Settings; só no Editor), chama `PioneerChapterController.Initialize` antes da primeira etapa e liga as legendas (UI-004: `LocalizationService` + `SubtitlePresenter` com `Pioneer10Texts.json`). Sem áudio (nenhum clipe existe) |
+| `Playtest/Pioneer10_Playtest.unity` | Cena mínima só com o anfitrião |
+| `Editor/PioneerPlaytestBuilder.cs` | Recria a cena (menu **Abandoned Space Apps → PIO → Criar cena de teste jogável**) |
+
+**Como jogar:** abra a cena e aperte Play. Teclas: setas/WASD e mouse, **E** (todas as ações), **P/Esc** pausa, **L** idioma (reinicia, para os painéis também trocarem), **R** reiniciar, **N** pular o estado atual. O painel no canto tem o estado, o tempo e botões para **saltar para um estado** (só para a frente; R recomeça). Pular e saltar são ferramentas de teste, não jogo.
+
+**O que a primeira rodada em Play Mode achou (e corrigi):** o prompt de E do Imaging ficava na chave (`PIO.UI.scan`) até a primeira faixa, porque o texto só era atualizado quando as faixas mudavam; o quadro do Outbound e o do Listening ficavam por baixo da legenda de base (agora o Outbound termina em 82% da altura e o Listening sobe para `bottom: 16%`, em vez dos 7% do `UiFrame` do anchor). O Launch, o Belt, o Imaging, o Outbound, o Listening e a Plaque foram vistos rodando; o Farewell foi alcançado, mas a captura dele não chegou a ser conferida.
+
+**Limites:** sem áudio, sem dossiê, sem a pausa e a legenda finais do shell. Não foi uma partida completa por uma pessoa (cada estado foi visto por saltos). O tempo e o ritmo reais de jogo ainda precisam de gente.

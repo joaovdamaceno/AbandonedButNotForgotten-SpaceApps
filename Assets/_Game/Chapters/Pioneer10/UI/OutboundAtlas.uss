@@ -14,7 +14,7 @@
     left: 6%;
     top: 8%;
     width: 88%;
-    height: 84%;
+    height: 74%; /* deixa a base livre para a legenda (UI-004) */
     padding: var(--sa-space-4);
     flex-direction: column;
 }
