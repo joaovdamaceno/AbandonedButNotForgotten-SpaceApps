@@ -24,7 +24,7 @@ namespace Abandoned.SpaceApps
         [SerializeField, Tooltip("Tabelas JSON de texto PT/EN (Pioneer10Texts.json).")] TextAsset[] textTables;
         [SerializeField, Tooltip("Prefab SubtitleLayer (UI-004).")] GameObject subtitleLayer;
         [SerializeField, Tooltip("Prefab AudioDirector (AUD-002) com o catálogo de cues da música da Pioneer.")] GameObject audioDirectorPrefab;
-        [SerializeField] string language = SettingsData.Portuguese;
+        [SerializeField, Tooltip("Idioma inicial da cena de teste: inglês, o idioma da lista completa de legendas (L troca).")] string language = SettingsData.English;
         [SerializeField, Tooltip("Mostra o painel de teste (estado, tempo, teclas).")] bool showOverlay = true;
 
         SessionClock clock;

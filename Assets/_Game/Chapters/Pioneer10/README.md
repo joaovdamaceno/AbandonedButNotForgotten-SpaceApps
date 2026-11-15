@@ -504,3 +504,17 @@ Lote pedido depois de a pessoa jogar a cena de teste (`Playtest/Pioneer10_Playte
 | Legenda sobre o minigame do rádio | `ListeningPanel.uss`: o quadro sobe (`bottom: 18%`), acima da faixa da legenda. |
 
 **Limitações.** Nenhuma faixa foi ouvida por pessoa (as duas trocadas também não); os efeitos sonoros são sintéticos e simples. A trajetória do estilingue é de composição, não cálculo orbital. O mapa não é à escala. A deriva da câmera do minigame congela com a sequência parada num marco (o giro do jogo continua). Os pulos do `PioneerPlaytestHost` só vão para a frente.
+
+### Segunda rodada de ajustes (15/11/2026)
+
+| Pedido | O que mudou |
+| --- | --- |
+| Estilingue em primeira pessoa | `PioneerSlingshot` agora move a **pose do anchor** `PIO.Closest.Bend` (a câmera é a da sonda, modelo escondido) pela trajetória em volta de Júpiter, devagar na chegada e cada vez mais rápido (`u^1,8`), com o campo de visão abrindo de 58° para 84°. Depois da passagem o olhar se volta para Júpiter, que fica encolhendo atrás. |
+| Linha amarela da Lua até a borda da tela | No gráfico Terra–Lua (`PioneerLaunchBuilder`) a linha e a sonda seguem a trajetória prolongada em linha reta (`ExtendedTrajectoryPoint`, `TrajectoryExtent = 1,9`) até sair do quadro. |
+| Sistema Solar com fundo diferente / "idealmente 3D" | O mapa 2D foi trocado por um **Sistema Solar 3D no palco** (`SolarSystem`: sol, seis planetas de tamanho exagerado, órbitas, cinturão de 420 pedras e a linha do caminho), ligado só pelos anchors `PIO.System.Belt` (cena 2, 8–19 s) e `PIO.System.Out` (cena 7). `PioneerSystemTour` anda com a sonda (ampliada 4×, com farol de brilho) sobre a linha, acende a órbita cruzada e pede ao HUD os rótulos, que ficam **sem fundo** sobre a imagem (`SystemMapElement` em modo sobreposição). Escala esquemática: raio = 28 m × raiz da distância em UA. |
+| Velocidade da sonda x dias do cinturão | O ponto de vista do cinturão (`PIO02.Days`) agora avança pela **mesma exponencial** do contador de dias (`DaysPovKeys`, `PioneerBeltCounter.Acceleration`): lento no começo e cada vez mais rápido no fim, junto com os dias; o FOV abre de 70° para 78°. |
+| Foto real de Júpiter sob a legenda | O quadro da revelação (`HistoricalImageReveal.uss`) agora vai de 7% a 77% da altura, acima da legenda. |
+| Legendas em inglês | **Parcial.** A cena de teste agora abre em inglês (tecla L alterna). A lista completa em inglês (`CAPTIONS_PIONEER10_EN_UK.md`, 81 legendas) **ainda não foi aplicada**: só 8 estão idênticas no jogo, 28 foram reescritas e 45 são novas, e várias cenas (fotos, placa, escuta) têm legendas ligadas a gatilhos, então reaplicar os textos e re-temporizar as cenas é uma tarefa própria. |
+
+**Limitações.** Os rótulos do mapa usam a projeção da câmera do anchor e podem encostar nos cartões do HUD em outras resoluções (conferi em 16:9). A sonda no mapa é o modelo real ampliado; com a escala do mapa ela aparece pequena. O estilingue continua sendo composição, não cálculo orbital.
+
