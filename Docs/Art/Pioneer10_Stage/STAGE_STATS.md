@@ -17,7 +17,7 @@ sem batching: não são números do profiler nem da build Web. Metas do roteiro:
 | `PIO.Imaging` | PIO.Imaging | DeepSpace | 46° | 7 | 15722 | 7 | 2 | 0 | 1.38 m |
 | `PIO.Plaque` | PIO.Plaque | DeepSpace | 36° | 9 | 16654 | 9 | 2 | 0 | 0.76 m |
 | `PIO.Outbound` | PIO.Outbound | DeepSpace | 40° | 10 | 13750 | 10 | 2 | 0 | 15.91 m |
-| `PIO.Listening` | PIO.Listening | GroundStation | 55° | 12 | 4268 | 12 | 2 | 0 | — |
+| `PIO.Listening` | PIO.Listening | GroundStation | 55° | 16 | 36560 | 16 | 2 | 0 | — |
 | `PIO.Farewell` | PIO.Farewell | DeepSpace | 45° | 11 | 13870 | 11 | 2 | 0 | 7.98 m |
 
 Maior coordenada de anchor: 536 m (limite 1000 m).
