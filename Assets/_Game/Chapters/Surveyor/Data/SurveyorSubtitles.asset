@@ -1,0 +1,565 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d5c7bb72cc4d149f227799ac5361df, type: 3}
+  m_Name: SurveyorSubtitles
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorSubtitles
+  schemaVersion: 1
+  chapterId: surveyor3
+  ptBrTable: {fileID: 4900000, guid: 1d26b73af895486b9333e737f03bd64f, type: 3}
+  enTable: {fileID: 4900000, guid: f75ec70a71b14ad7a8ab607ed55eafce, type: 3}
+  objectiveRegion: corner
+  cues:
+  - cueId: SUR-S01
+    textKey: SUR-S01
+    act: 1
+    stateId: LaunchTelemetry
+    sequenceId: surveyor.seq.Launch
+    anchor: 0
+    startSeconds: 0
+    endSeconds: 8
+    triggerId: 
+    minimumReadSeconds: 7
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S02
+    textKey: SUR-S02
+    act: 1
+    stateId: CentaurConfirm
+    sequenceId: surveyor.seq.Launch
+    anchor: 0
+    startSeconds: 17
+    endSeconds: 22
+    triggerId: 
+    minimumReadSeconds: 5
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys:
+    - SUR-S02.p1
+    - SUR-S02.p2
+    pageMinimumSeconds:
+    - 2
+    - 3
+  - cueId: SUR-S03
+    textKey: SUR-S03
+    act: 1
+    stateId: CentaurConfirm
+    sequenceId: surveyor.seq.Launch
+    anchor: 0
+    startSeconds: 22
+    endSeconds: 28
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S04
+    textKey: SUR-S04
+    act: 2
+    stateId: Cruise
+    sequenceId: surveyor.seq.Cruise
+    anchor: 0
+    startSeconds: 0
+    endSeconds: 6
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys:
+    - SUR-S04.p1
+    - SUR-S04.p2
+    pageMinimumSeconds:
+    - 2.5
+    - 3.5
+  - cueId: SUR-S05
+    textKey: SUR-S05
+    act: 2
+    stateId: Midcourse
+    sequenceId: surveyor.seq.Cruise
+    anchor: 0
+    startSeconds: 10
+    endSeconds: 16
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys:
+    - SUR-S05.p1
+    - SUR-S05.p2
+    pageMinimumSeconds:
+    - 2.5
+    - 3.5
+  - cueId: SUR-S06
+    textKey: SUR-S06
+    act: 2
+    stateId: Midcourse
+    sequenceId: surveyor.seq.Cruise
+    anchor: 0
+    startSeconds: 33
+    endSeconds: 37
+    triggerId: 
+    minimumReadSeconds: 4
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys:
+    - SUR-S06.p1
+    - SUR-S06.p2
+    pageMinimumSeconds:
+    - 2
+    - 2
+  - cueId: SUR-S07
+    textKey: SUR-S07
+    act: 3
+    stateId: Descent
+    sequenceId: surveyor.seq.Descent
+    anchor: 0
+    startSeconds: 11
+    endSeconds: 17
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 2
+    bindingStatus: built
+    pageKeys:
+    - SUR-S07.p1
+    - SUR-S07.p2
+    pageMinimumSeconds:
+    - 3.5
+    - 2.5
+  - cueId: SUR-S08
+    textKey: SUR-S08
+    act: 3
+    stateId: Cutoff
+    sequenceId: surveyor.seq.Descent
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.descent.team
+    minimumReadSeconds: 6
+    afterCueId: SUR-S07
+    priority: 1
+    bindingStatus: built
+    pageKeys:
+    - SUR-S08.p1
+    - SUR-S08.p2
+    pageMinimumSeconds:
+    - 3
+    - 3
+  - cueId: SUR-S09
+    textKey: SUR-S09
+    act: 3
+    stateId: Settled
+    sequenceId: surveyor.seq.Descent
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.descent.image
+    minimumReadSeconds: 5
+    afterCueId: SUR-S08
+    priority: 3
+    bindingStatus: built
+    pageKeys:
+    - SUR-S09.p1
+    - SUR-S09.p2
+    pageMinimumSeconds:
+    - 2
+    - 3
+  - cueId: SUR-S10
+    textKey: SUR-S10
+    act: 4
+    stateId: FirstImage
+    sequenceId: surveyor.seq.FirstImage
+    anchor: 0
+    startSeconds: 4
+    endSeconds: 10
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S11
+    textKey: SUR-S11
+    act: 4
+    stateId: Observe
+    sequenceId: surveyor.runtime.observation
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.observe.target
+    minimumReadSeconds: 5
+    afterCueId: SUR-S10
+    priority: 0
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S12
+    textKey: SUR-S12
+    act: 4
+    stateId: Observe
+    sequenceId: surveyor.runtime.observation
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.observe.target
+    minimumReadSeconds: 5
+    afterCueId: SUR-S11
+    priority: 0
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S13
+    textKey: SUR-S13
+    act: 4
+    stateId: Observe
+    sequenceId: surveyor.runtime.observation
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.observe.target
+    minimumReadSeconds: 5
+    afterCueId: SUR-S12
+    priority: 0
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S14
+    textKey: SUR-S14
+    act: 4
+    stateId: Sample
+    sequenceId: surveyor.runtime.scoop
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.scoop.prepared
+    minimumReadSeconds: 5
+    afterCueId: SUR-S13
+    priority: 0
+    bindingStatus: built
+    pageKeys:
+    - SUR-S14.p1
+    - SUR-S14.p2
+    pageMinimumSeconds:
+    - 3
+    - 2
+  - cueId: SUR-S15
+    textKey: SUR-S15
+    act: 4
+    stateId: Sample
+    sequenceId: surveyor.runtime.scoop
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.scoop.growing
+    minimumReadSeconds: 6
+    afterCueId: SUR-S14
+    priority: 1
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S16
+    textKey: SUR-S16
+    act: 4
+    stateId: Sample
+    sequenceId: surveyor.runtime.scoop
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.scoop.bearing
+    minimumReadSeconds: 5
+    afterCueId: SUR-S15
+    priority: 0
+    bindingStatus: proposed
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S17
+    textKey: SUR-S17
+    act: 4
+    stateId: Sample
+    sequenceId: surveyor.runtime.scoop
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.scoop.impact
+    minimumReadSeconds: 5
+    afterCueId: SUR-S16
+    priority: 0
+    bindingStatus: proposed
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S18
+    textKey: SUR-S18
+    act: 4
+    stateId: Sample
+    sequenceId: surveyor.runtime.scoop
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.scoop.result
+    minimumReadSeconds: 6
+    afterCueId: SUR-S17
+    priority: 0
+    bindingStatus: proposed
+    pageKeys:
+    - SUR-S18.p1
+    - SUR-S18.p2
+    pageMinimumSeconds:
+    - 2
+    - 4
+  - cueId: SUR-S19
+    textKey: SUR-S19
+    act: 4
+    stateId: Sample
+    sequenceId: surveyor.runtime.scoop
+    anchor: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.scoop.comparison
+    minimumReadSeconds: 6
+    afterCueId: SUR-S18
+    priority: 0
+    bindingStatus: proposed
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S20
+    textKey: SUR-S20
+    act: 4
+    stateId: Eclipse
+    sequenceId: surveyor.seq.Eclipse
+    anchor: 0
+    startSeconds: 2
+    endSeconds: 8
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S21
+    textKey: SUR-S21
+    act: 4
+    stateId: Eclipse
+    sequenceId: surveyor.seq.Eclipse
+    anchor: 0
+    startSeconds: 8
+    endSeconds: 14
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S22
+    textKey: SUR-S22
+    act: 4
+    stateId: Eclipse
+    sequenceId: surveyor.seq.Night
+    anchor: 0
+    startSeconds: 0
+    endSeconds: 5
+    triggerId: 
+    minimumReadSeconds: 5
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S23
+    textKey: SUR-S23
+    act: 5
+    stateId: LunarNight
+    sequenceId: surveyor.seq.Night
+    anchor: 0
+    startSeconds: 5
+    endSeconds: 11
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys:
+    - SUR-S23.p1
+    - SUR-S23.p2
+    pageMinimumSeconds:
+    - 3
+    - 3
+  - cueId: SUR-S24
+    textKey: SUR-S24
+    act: 5
+    stateId: LunarNight
+    sequenceId: surveyor.seq.Night
+    anchor: 0
+    startSeconds: 11
+    endSeconds: 17
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys:
+    - SUR-S24.p1
+    - SUR-S24.p2
+    pageMinimumSeconds:
+    - 2
+    - 4
+  - cueId: SUR-S25
+    textKey: SUR-S25
+    act: 5
+    stateId: TimePassage
+    sequenceId: surveyor.seq.TimePassage
+    anchor: 0
+    startSeconds: 1
+    endSeconds: 6
+    triggerId: 
+    minimumReadSeconds: 5
+    afterCueId: 
+    priority: 0
+    bindingStatus: built
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S26
+    textKey: SUR-S26
+    act: 6
+    stateId: ImaginedVisit
+    sequenceId: surveyor.seq.Visit
+    anchor: 0
+    startSeconds: 0
+    endSeconds: 5
+    triggerId: 
+    minimumReadSeconds: 5
+    afterCueId: 
+    priority: 0
+    bindingStatus: proposed
+    pageKeys:
+    - SUR-S26.p1
+    - SUR-S26.p2
+    pageMinimumSeconds:
+    - 2
+    - 3
+  - cueId: SUR-S27
+    textKey: SUR-S27
+    act: 6
+    stateId: ImaginedVisit
+    sequenceId: surveyor.seq.Visit
+    anchor: 0
+    startSeconds: 6
+    endSeconds: 12
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: proposed
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S28
+    textKey: SUR-S28
+    act: 6
+    stateId: ImaginedVisit
+    sequenceId: surveyor.seq.Visit
+    anchor: 0
+    startSeconds: 20
+    endSeconds: 26
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: proposed
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S29
+    textKey: SUR-S29
+    act: 6
+    stateId: HistoricalReceipt
+    sequenceId: surveyor.seq.Visit
+    anchor: 0
+    startSeconds: 32
+    endSeconds: 38
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: proposed
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S30
+    textKey: SUR-S30
+    act: 6
+    stateId: HistoricalReceipt
+    sequenceId: surveyor.seq.Visit
+    anchor: 0
+    startSeconds: 38
+    endSeconds: 43
+    triggerId: 
+    minimumReadSeconds: 5
+    afterCueId: 
+    priority: 0
+    bindingStatus: proposed
+    pageKeys: []
+    pageMinimumSeconds: []
+  - cueId: SUR-S31
+    textKey: SUR-S31
+    act: 6
+    stateId: End
+    sequenceId: surveyor.seq.Visit
+    anchor: 0
+    startSeconds: 44
+    endSeconds: 50
+    triggerId: 
+    minimumReadSeconds: 6
+    afterCueId: 
+    priority: 0
+    bindingStatus: proposed
+    pageKeys:
+    - SUR-S31.p1
+    - SUR-S31.p2
+    pageMinimumSeconds:
+    - 2
+    - 4
+  objectives:
+  - textKey: sur.objective.launch
+    act: 1
+    stateId: CentaurConfirm
+  - textKey: sur.objective.midcourse
+    act: 2
+    stateId: Midcourse
+  - textKey: sur.objective.cutoff
+    act: 3
+    stateId: Cutoff
+  - textKey: sur.objective.firstimage
+    act: 4
+    stateId: FirstImage
+  - textKey: sur.objective.observe
+    act: 4
+    stateId: Observe
+  - textKey: sur.objective.trench
+    act: 4
+    stateId: Sample
+  - textKey: sur.objective.bearing
+    act: 4
+    stateId: Sample
+  - textKey: sur.objective.impact
+    act: 4
+    stateId: Sample
+  - textKey: sur.objective.eclipse
+    act: 4
+    stateId: Eclipse
