@@ -266,7 +266,7 @@
 .large-text .tutorial-body { font-size:28px; }
 
 /* Legenda das cenas: mesma placa da abertura (fundo escuro, cantos arredondados, Outfit Medium), um pouco menor. */
-.caption { left:13%; right:13%; bottom:6.5%; width:auto; font-size:28px; color:rgb(238,235,220); background-color:rgba(4,6,7,.5); border-radius:8px; padding:8px 24px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Medium.ttf"); -unity-text-align:middle-center; white-space:normal; }
-.toast { color:rgb(238,235,220); background-color:rgba(4,6,7,.5); border-radius:8px; padding:8px 24px; font-size:22px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Medium.ttf"); }
+.caption { left:13%; right:13%; bottom:6.5%; width:auto; font-size:28px; color:rgb(238,235,220); background-color:rgba(4,6,7,.5); border-radius:8px; padding:8px 24px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Regular.ttf"); -unity-text-align:middle-center; white-space:normal; }
+.toast { color:rgb(238,235,220); background-color:rgba(4,6,7,.5); border-radius:8px; padding:8px 24px; font-size:22px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Regular.ttf"); }
 /* Aviso no meio da tela antes da primeira observação. */
-.explore-hint { position:absolute; top:46%; left:50%; translate:-50% 0; font-size:24px; color:rgb(238,235,220); background-color:rgba(4,6,7,.5); border-radius:8px; padding:8px 16px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Medium.ttf"); -unity-text-align:middle-center; }
+.explore-hint { position:absolute; top:46%; left:50%; translate:-50% 0; font-size:24px; color:rgb(238,235,220); background-color:rgba(4,6,7,.5); border-radius:8px; padding:8px 16px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Regular.ttf"); -unity-text-align:middle-center; }

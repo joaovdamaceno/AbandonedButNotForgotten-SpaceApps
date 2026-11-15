@@ -164,8 +164,8 @@ namespace Abandoned.SpaceApps.Opportunity
             float hud=Mathf.Pow(2,Mathf.Lerp(Mathf.Log(w/1920f,2),Mathf.Log(h/1080f,2),.5f)),plate=h/720f,k=plate/Mathf.Max(.01f,hud);
             foreach(var e in new VisualElement[]{caption,notification,exploreHint})
             {
-                var st=e.style;st.fontSize=28*k;st.paddingLeft=st.paddingRight=16*k;st.paddingTop=st.paddingBottom=8*k;
-                st.borderTopLeftRadius=st.borderTopRightRadius=st.borderBottomLeftRadius=st.borderBottomRightRadius=8*k;
+                var st=e.style;st.fontSize=24*k;st.paddingLeft=st.paddingRight=16*k;st.paddingTop=st.paddingBottom=8*k;
+                st.borderTopLeftRadius=st.borderTopRightRadius=st.borderBottomLeftRadius=st.borderBottomRightRadius=0;
             }
             // Legenda no formato do Surveyor 3: faixa a 13% das laterais e 6,5% da base, na largura toda.
             var c=caption.style;c.left=Length.Percent(13);c.right=Length.Percent(13);c.bottom=Length.Percent(6.5f);c.translate=new Translate(0,0);c.maxWidth=StyleKeyword.None;c.width=StyleKeyword.Auto;
