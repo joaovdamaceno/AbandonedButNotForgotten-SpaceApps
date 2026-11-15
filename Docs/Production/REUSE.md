@@ -1,5 +1,9 @@
 # Reuso e origem
 
+## SUR-018 — reconstrução documental
+
+Reutiliza Core/pausa/localização/evidências/áudio, o terreno e o modelo da equipe, com nova composição, roteiro, apresentação, escavação por contato e elenco completo. Corpos A7L e clipes são originais, gerados em Blender; não usam os antigos membros independentes. Modelo NASA do módulo lunar e mapa LROC possuem URLs/créditos em `SourceAssets/Surveyor3/Documentary/ASSET_CREDITS.md`. Fotografia Apollo 12 reaproveitada de SUR-013. O source e os previews antigos são preservados, sem simular que foram produzidos nesta revisão. Evidências e limitações reais: QA/SUR-018.
+
 O repositório anterior permanece preservado em https://github.com/joaovdamaceno/AbandonedButNotForgotten, entrega de referência4970a92. Este novo repositório começa com arquivos de planejamento criados agora. Não reescrever datas ou história Git para esconder material anterior.
 
 Soluções a estudar, sem importação automática: rastros projetados no terreno, entrada única para E, relógio narrativo, legenda vazia oculta, pausa responsiva, assentamento de rochas, perfil Web URP e troca explícita de plataforma antes do build. Roteiros e scripts anteriores precisam de adaptação; três capítulos não existem naquele projeto.

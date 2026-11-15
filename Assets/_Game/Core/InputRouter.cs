@@ -49,6 +49,10 @@ namespace Abandoned.SpaceApps
         InputAction helpAction;
         InputAction submitAction;
         InputAction navigateAction;
+        InputAction primaryAction;
+        InputAction pointerAction;
+        bool physicalPrimary, logicalPrimary, primarySuppressed;
+        Vector2 pointerPosition;
 
         bool actionsEnabled;
         Vector2 moveValue;
@@ -66,6 +70,11 @@ namespace Abandoned.SpaceApps
 
         /// <summary>E logicamente mantido: pressionado, entregue ao contexto atual e não suprimido pelo rearme.</summary>
         public bool InteractHeld => logicalInteract;
+        /// <summary>Primary pointer command, delivered only in Gameplay. It does not replace E.</summary>
+        public bool PrimaryHeld => logicalPrimary;
+        public Vector2 PointerPosition => pointerPosition;
+        public event Action PrimaryDown;
+        public event Action PrimaryUp;
 
         /// <summary>A tecla E está fisicamente pressionada, independentemente de contexto ou supressão.</summary>
         public bool IsInteractPhysicallyHeld => physicalInteract;
@@ -195,6 +204,8 @@ namespace Abandoned.SpaceApps
             physicalInteract = false;
             interactSuppressed = false;
             ReleaseLogicalInteract();
+            primarySuppressed = physicalPrimary;
+            ReleasePrimary();
             InputCleared?.Invoke();
         }
 
@@ -211,6 +222,8 @@ namespace Abandoned.SpaceApps
 
             // Uma tecla E já pressionada não pode iniciar nada no novo contexto: exige soltar e pressionar de novo.
             interactSuppressed = physicalInteract;
+            primarySuppressed = physicalPrimary;
+            ReleasePrimary();
             ContextChanged?.Invoke(context);
         }
 
@@ -261,6 +274,21 @@ namespace Abandoned.SpaceApps
         }
 
         internal void FeedPause() => PauseDown?.Invoke();
+
+        internal void FeedPointer(Vector2 position) => pointerPosition = position;
+        internal void FeedPrimary(bool pressed)
+        {
+            if (pressed == physicalPrimary) return;
+            physicalPrimary = pressed;
+            if (!pressed) { primarySuppressed = false; ReleasePrimary(); return; }
+            if (primarySuppressed || Context != InputContext.Gameplay) return;
+            logicalPrimary = true; PrimaryDown?.Invoke();
+        }
+        void ReleasePrimary()
+        {
+            if (!logicalPrimary) return;
+            logicalPrimary = false; PrimaryUp?.Invoke();
+        }
 
         internal void FeedHelp()
         {
@@ -318,6 +346,12 @@ namespace Abandoned.SpaceApps
             AddDirectionBindings(navigateAction);
             navigateAction.performed += ctx => FeedNavigate(ctx.ReadValue<Vector2>());
 
+            primaryAction = new InputAction("Primary", InputActionType.Button, "<Mouse>/leftButton");
+            primaryAction.performed += _ => FeedPrimary(true);
+            primaryAction.canceled += _ => FeedPrimary(false);
+            pointerAction = new InputAction("Pointer", InputActionType.PassThrough, "<Mouse>/position", expectedControlType: "Vector2");
+            pointerAction.performed += ctx => FeedPointer(ctx.ReadValue<Vector2>());
+
             foreach (var action in AllActions())
                 action.Enable();
         }
@@ -341,6 +375,8 @@ namespace Abandoned.SpaceApps
             yield return helpAction;
             yield return submitAction;
             yield return navigateAction;
+            yield return primaryAction;
+            yield return pointerAction;
         }
 
         void DisposeActions()
@@ -355,6 +391,7 @@ namespace Abandoned.SpaceApps
             }
 
             moveAction = lookAction = interactAction = pauseAction = helpAction = submitAction = navigateAction = null;
+            primaryAction = pointerAction = null;
         }
 
         sealed class ContextLease : IDisposable
