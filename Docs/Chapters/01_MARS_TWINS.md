@@ -265,7 +265,7 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
 | 0 s · título | `v10.year2005` | 2005 · O QUE FICOU PARA TRÁS | 2005 · WHAT WE LEFT BEHIND |
-| 0 s · fala | `v13.hardware.arrival` | 2005. Seguindo adiante, ela chegou ao local onde seu próprio escudo térmico caiu. Examiná-lo também é fazer ciência. | 2005. Moving on, it reached the place where its own heat shield fell. Examining it is science too. |
+| 0 s · fala | `v13.hardware.arrival` | 2005. Seguindo adiante, ela chegou ao local onde seu próprio escudo térmico caiu. Vamos examiná-lo. | 2005. Moving on, it reached the place where its own heat shield fell. Let's examine it. |
 
 ### Escudo térmico e rocha metálica
 
