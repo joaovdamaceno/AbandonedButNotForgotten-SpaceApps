@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1019585288
+--- !u!1 &306269942
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,8 +127,80 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1019585290}
-  - component: {fileID: 1019585289}
+  - component: {fileID: 306269944}
+  - component: {fileID: 306269943}
+  m_Layer: 0
+  m_Name: GameHost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &306269943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306269942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da6d62c05ea4a408eff8167b65b26f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Integration.GameHost
+  catalog: {fileID: 11400000, guid: 44368367d31843cd9b4042d2a389c971, type: 2}
+  dossierPrefab: {fileID: 7101140012233445501, guid: 60721fc3373348b3b97410179be7facb, type: 3}
+  missionHudPrefab: {fileID: 7202250023344556601, guid: b5bdfced214e470ba82c602ea7c4f589, type: 3}
+  subtitleLayerPrefab: {fileID: 7244861671956817000, guid: 32581dfc2fe278d4e9eab8b09ae9858c, type: 3}
+  guidancePrefab: {fileID: 6160500000000000001, guid: 458058aa0ce141809743fb7e15b7b50c, type: 3}
+  pauseMenuPrefab: {fileID: 4236198122076929086, guid: 621137bed2854234d8d623fc7cca8b3b, type: 3}
+  audioDirectorPrefab: {fileID: 5035134642687206556, guid: 77e91f02888bdd548b4081b3de3f492e, type: 3}
+  audioCatalog: {fileID: 11400000, guid: ea250b4ed3b69b64fb41bdc8d6acf9ff, type: 2}
+  textTables:
+  - {fileID: 4900000, guid: 9a2fee67c8ab41b9a1fafedd0605e971, type: 3}
+  - {fileID: 4900000, guid: b6cf8c2ca2ce464bac18f54a4916d238, type: 3}
+  - {fileID: 4900000, guid: 6484e0de8f3d4bde9863fd7c6af311ec, type: 3}
+  - {fileID: 4900000, guid: d482325b72e446a5b53efbb488df7fed, type: 3}
+  - {fileID: 4900000, guid: 4820731cebc44941b1fc9d1f99c8afd8, type: 3}
+  - {fileID: 4900000, guid: 4613fcc487a342ec853dd5d5dc8dc075, type: 3}
+  - {fileID: 4900000, guid: e2d6862cf50189214a576f735b1b3e2a, type: 3}
+  - {fileID: 4900000, guid: 71408b3c1a1f7dc3cb5aee9b187f877b, type: 3}
+  - {fileID: 4900000, guid: 80f8a4fd0029d849394e5c4e78af7a50, type: 3}
+  - {fileID: 4900000, guid: a793adf49a554eecba3c39d583752e19, type: 3}
+  - {fileID: 4900000, guid: 3477f656265548ea92e91e397c78d7e1, type: 3}
+  - {fileID: 4900000, guid: 4ea2f66aeaaa4f0abbbb18cab2fb776d, type: 3}
+  - {fileID: 4900000, guid: 4c58510be0384e32a90c469ff61a1689, type: 3}
+  - {fileID: 4900000, guid: 5df3c72520314252a7a55ba138f34c77, type: 3}
+  - {fileID: 4900000, guid: d71d38f5efcab16b6161a00b4c372ca3, type: 3}
+  - {fileID: 4900000, guid: ef1ab1e4bf3bf1d49b158ad4a9089a98, type: 3}
+  - {fileID: 4900000, guid: 54d9b2b2d77ae1a448f1078ae7981be0, type: 3}
+  bootCamera: {fileID: 1072790598}
+--- !u!4 &306269944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306269942}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1072790597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1072790600}
+  - component: {fileID: 1072790598}
+  - component: {fileID: 1072790599}
   m_Layer: 0
   m_Name: Boot Camera
   m_TagString: Untagged
@@ -136,13 +208,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!20 &1019585289
+--- !u!20 &1072790598
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1019585288}
+  m_GameObject: {fileID: 1072790597}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
@@ -187,82 +259,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &1019585290
-Transform:
+--- !u!81 &1072790599
+AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1019585288}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1482482292
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1482482294}
-  - component: {fileID: 1482482293}
-  m_Layer: 0
-  m_Name: GameHost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1482482293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482482292}
+  m_GameObject: {fileID: 1072790597}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da6d62c05ea4a408eff8167b65b26f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Integration.GameHost
-  catalog: {fileID: 11400000, guid: 44368367d31843cd9b4042d2a389c971, type: 2}
-  dossierPrefab: {fileID: 7101140012233445501, guid: 60721fc3373348b3b97410179be7facb, type: 3}
-  missionHudPrefab: {fileID: 7202250023344556601, guid: b5bdfced214e470ba82c602ea7c4f589, type: 3}
-  subtitleLayerPrefab: {fileID: 7244861671956817000, guid: 32581dfc2fe278d4e9eab8b09ae9858c, type: 3}
-  guidancePrefab: {fileID: 6160500000000000001, guid: 458058aa0ce141809743fb7e15b7b50c, type: 3}
-  pauseMenuPrefab: {fileID: 4236198122076929086, guid: 621137bed2854234d8d623fc7cca8b3b, type: 3}
-  audioDirectorPrefab: {fileID: 5035134642687206556, guid: 77e91f02888bdd548b4081b3de3f492e, type: 3}
-  audioCatalog: {fileID: 11400000, guid: ea250b4ed3b69b64fb41bdc8d6acf9ff, type: 2}
-  textTables:
-  - {fileID: 4900000, guid: 9a2fee67c8ab41b9a1fafedd0605e971, type: 3}
-  - {fileID: 4900000, guid: b6cf8c2ca2ce464bac18f54a4916d238, type: 3}
-  - {fileID: 4900000, guid: 6484e0de8f3d4bde9863fd7c6af311ec, type: 3}
-  - {fileID: 4900000, guid: d482325b72e446a5b53efbb488df7fed, type: 3}
-  - {fileID: 4900000, guid: 4820731cebc44941b1fc9d1f99c8afd8, type: 3}
-  - {fileID: 4900000, guid: 4613fcc487a342ec853dd5d5dc8dc075, type: 3}
-  - {fileID: 4900000, guid: e2d6862cf50189214a576f735b1b3e2a, type: 3}
-  - {fileID: 4900000, guid: 71408b3c1a1f7dc3cb5aee9b187f877b, type: 3}
-  - {fileID: 4900000, guid: 80f8a4fd0029d849394e5c4e78af7a50, type: 3}
-  - {fileID: 4900000, guid: a793adf49a554eecba3c39d583752e19, type: 3}
-  - {fileID: 4900000, guid: 3477f656265548ea92e91e397c78d7e1, type: 3}
-  - {fileID: 4900000, guid: 4ea2f66aeaaa4f0abbbb18cab2fb776d, type: 3}
-  - {fileID: 4900000, guid: 4c58510be0384e32a90c469ff61a1689, type: 3}
-  - {fileID: 4900000, guid: 5df3c72520314252a7a55ba138f34c77, type: 3}
-  - {fileID: 4900000, guid: d71d38f5efcab16b6161a00b4c372ca3, type: 3}
-  - {fileID: 4900000, guid: 54d9b2b2d77ae1a448f1078ae7981be0, type: 3}
---- !u!4 &1482482294
+--- !u!4 &1072790600
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1482482292}
+  m_GameObject: {fileID: 1072790597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -275,5 +286,5 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1482482294}
-  - {fileID: 1019585290}
+  - {fileID: 1072790600}
+  - {fileID: 306269944}
