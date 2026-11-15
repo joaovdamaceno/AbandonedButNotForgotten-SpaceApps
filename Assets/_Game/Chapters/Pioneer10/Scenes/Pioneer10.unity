@@ -327,6 +327,79 @@ MonoBehaviour:
   earthTo: {x: -315.54355, y: -31.834702, z: 102.79251}
   earthViewportFrom: {x: -0.12, y: 0.7}
   earthViewportTo: {x: 0.2, y: 0.7}
+--- !u!1001 &142780916
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 807110335}
+    m_Modifications:
+    - target: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386940980767313271, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+      propertyPath: m_Name
+      value: SpinShotPanel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+--- !u!4 &142780917 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5650051308099438691, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+  m_PrefabInstance: {fileID: 142780916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &142780918 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2733661761194607277, guid: 1da9a4f4d41259243a614da1097c3ba5, type: 3}
+  m_PrefabInstance: {fileID: 142780916}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c894a4d4c5c3b74c98116d73d9c428c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SpinShotPanelView
 --- !u!1 &193808955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1259,7 @@ MonoBehaviour:
   sequence: {fileID: 11400000, guid: a3bc7632814478549942d957a96a692b, type: 2}
   presentation: {fileID: 219729566}
   panel: {fileID: 479463838}
+  spinPanel: {fileID: 142780918}
 --- !u!1 &632809205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,6 +1658,7 @@ Transform:
   m_Children:
   - {fileID: 479463839}
   - {fileID: 627316118}
+  - {fileID: 142780917}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &836318372

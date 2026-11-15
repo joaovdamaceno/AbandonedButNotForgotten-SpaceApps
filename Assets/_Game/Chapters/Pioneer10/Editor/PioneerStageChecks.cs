@@ -50,7 +50,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 {
                     var clearance = ProbeClearance(presentation.ProbeSpin, profile, position);
                     report.ProbeClearance[anchor.anchorId] = clearance;
-                    if (clearance < ProbeClearanceMeters)
+                    if (clearance < ProbeClearanceMeters && !anchor.hideProbe) // câmera dentro da sonda de propósito: o modelo some (cena 4, ponto de vista)
                         report.Errors.Add($"anchor '{anchor.anchorId}': câmera a {clearance:0.00} m da sonda girando (mínimo {ProbeClearanceMeters} m).");
 
                     if (presentation.Jupiter != null)

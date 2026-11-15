@@ -468,7 +468,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(literals, Is.EqualTo(new[] { "E" }), "textos por chave; só a tecla E é literal");
             var css = File.ReadAllText("Assets/_Game/Chapters/Pioneer10/UI/ListeningPanel.uss");
             Assert.That(css, Does.Not.Contain("animation"), "sem animação por USS: nada pisca");
-            Assert.That(css, Does.Contain("bottom: 7%;").And.Contain("height: 33%;"), "quadro embaixo à direita, como o UiFrame do anchor");
+            Assert.That(css, Does.Contain("bottom: 5%;").And.Contain("height: 44%;"), "quadro embaixo à direita, como o UiFrame do anchor");
             // A antena é o modelo NASA convertido (PIO-011): só o atlas derivado entra em Assets; o GLB original fica em ArtSource,
             // fora do pacote, e o manifesto da conversão prova a origem pelo SHA-256 do arquivo guardado.
             var imported = Directory.GetFiles("Assets/_Game/Chapters/Pioneer10/Art/Dsn", "*.*", SearchOption.AllDirectories).Where(f => !f.EndsWith(".meta")).Select(Path.GetFileName).ToList();
