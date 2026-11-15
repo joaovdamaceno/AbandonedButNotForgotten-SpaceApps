@@ -346,3 +346,16 @@ Recebido em 15/11/2026 um roteiro de 9 cenas e legendas em inglês britânico (c
 Total nominal: **415 s (6:55)**, 421 s com o alongamento de leitura de dois cues. As chaves do estado novo são `PIO.09.xx` (as dos demais estados não mudaram); o mapa de áudio ganhou `PIO.Closest` com a música `MUS_PIO_CUR` continuando, sem reiniciar.
 
 **Limitações da fase 1.** As cenas de cinema que o roteiro descreve (Lua e Marte, dolly zoom do cinturão, luas de Júpiter em 3D, linha da trajetória, medidor de radiação, montagem dos anos, as seis estrelas) **não existem ainda**: as legendas novas acompanham as imagens que já havia, e o `PIO.Closest` usa só Júpiter, o fotopolarímetro e a sonda saindo. Cinturão, placa e cartão de energia ainda têm interação, e o roteiro as quer como cinema; a foto é de oito faixas, e não de três passos. As legendas foram escritas com as formulações do registro de fontes, e algumas frases do roteiro foram trocadas (lista em `FASES.md`); precisam de revisão da R7, inclusive o inglês. Textos de arquivo (cartões e HUD) não foram reescritos.
+
+## Roteiro v2, fase 2 (PIO-019): só duas interações
+
+O roteiro v2 tem só duas interações (a foto e a sintonia de rádio); o lançamento, o cinturão, a placa e os anos viram cinema.
+
+| Estado | Como corre agora |
+| --- | --- |
+| `PIO.Launch` | `PioneerLaunchActivity.CinemaMode`: no marco dos geradores (32,5 s) a demonstração roda sozinha por `HoldSeconds` (3 s), sem lease de painel, sem candidato de E e sem pausar a sequência |
+| `PIO.Belt` | O controlador toca só a sequência `PIO_Belt` (`BeginCinema`), como o estado de Júpiter: sem a arena de poeira e sem painel; a atividade `BeltInvestigation` continua no código e nos testes, mas o capítulo não a inicia |
+| `PIO.Plaque` | `PioneerPlaqueActivity.CinemaMode`: as cinco peças encaixam sozinhas (a primeira 1,5 s depois do início do encaixe, as demais a cada 5,5 s), cada uma com a legenda de 4 s; o painel esconde as instruções de escolher peça e de E |
+| `PIO.Outbound` | `OutboundAtlas.CinemaMode`: a priorização da comunicação corre sozinha em 3 s; o painel esconde o prompt de E |
+
+O padrão das atividades é a versão interativa (os testes de cada uma seguem iguais); o controlador liga `CinemaMode` ao inicializar. **Limitações:** as durações dos estados não mudaram (a retemporização para os tempos do roteiro fica para a fase 4); no cinturão a fantasia de 15 s agora é só a legenda "Imagine o medo..." sobre o plano 3D da sonda, sem a arena nem o selo; a placa e o cartão de energia ainda são os painéis 2D da atividade, não cinema 3D.
