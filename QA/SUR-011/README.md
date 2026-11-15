@@ -43,3 +43,7 @@ O primeiro diagnóstico encontrou um falso negativo após reiniciar porque usava
 Ensaio Web no navegador integrado Chromium, Windows 11, ANGLE/D3D11, NVIDIA GeForce RTX 3050 6GB Laptop GPU. Este dispositivo não substitui a referência de GPU integrada. O servidor é local, sem limitação artificial de rede; nenhuma medição de primeira entrada a10Mbps ou FPS sustentado é reivindicada.
 
 O build preserva diferenças locais preexistentes: GraphicsSettings com intensidade linear/temperatura de cor habilitadas; Ultra com AA/crossfade deLOD desabilitados. Elas não fazem parte deste PR. As qualidades exercitadas foram Very Low e Low. O relatório e hashes identificam o artefato ensaiado; não é alegação de build de um checkout limpo.
+
+## Compatibilidade com develop
+
+A entrega UI-006 (`122ab44`) foi integrada na branch em`1a05c2e`. Ela adiciona componentes de pausa/foco que esta prévia não instancia e não modifica os Core ou assets referenciados pelo eclipse. A suíte de13 testes foi reexecutada nessa base integrada, com todos aprovados. O build Web ensaiado continua identificado por`549dce8`; os componentes de gameplay, câmera, dados e shader da SUR-011 não mudaram na integração.
