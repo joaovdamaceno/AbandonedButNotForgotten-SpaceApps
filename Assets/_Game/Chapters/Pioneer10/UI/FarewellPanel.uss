@@ -137,6 +137,61 @@
     padding: 8px 16px;
 }
 
+/* "Sources and credits": quiet text link under the buttons, and the same dark panel as the Surveyor 3 credits. */
+.pio-farewell__credits {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    color: rgb(196, 192, 177);
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: 16px;
+    margin: 6px 0 0 0;
+    padding: 6px 12px;
+}
+
+.pio-farewell__credits:hover { color: rgb(238, 241, 222); }
+
+.pio-farewell__credits-panel {
+    display: none;
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    top: 12%;
+    bottom: 12%;
+    padding: 28px;
+    background-color: rgb(12, 17, 19);
+    border-width: 1px;
+    border-color: rgb(90, 101, 94);
+}
+
+.pio-farewell__credits-scroll { flex-grow: 1; }
+
+.pio-farewell__credits-title {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Bold.ttf");
+    font-size: 26px;
+    color: rgb(232, 226, 213);
+    margin: 0 0 18px 0;
+    padding: 0;
+}
+
+.pio-farewell__credits-body {
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: 17px;
+    color: rgb(208, 211, 197);
+    white-space: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.pio-farewell__credits-close {
+    margin: 16px 0 0 0;
+    padding: 9px;
+    color: rgb(228, 228, 210);
+    background-color: rgb(35, 44, 42);
+    border-width: 0;
+    -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-SemiBold.ttf");
+    font-size: 17px;
+}
+
 /* ---------- 4:3 (largura lógica < 1100 px, classe aplicada por ResponsiveLayoutClass) ---------- */
 
 .sa-layout--narrow .pio-farewell__title { font-size: 34px; }

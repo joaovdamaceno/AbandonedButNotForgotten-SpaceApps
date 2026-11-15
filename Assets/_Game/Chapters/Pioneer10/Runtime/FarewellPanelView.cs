@@ -18,6 +18,7 @@ namespace Abandoned.SpaceApps
         public const string EndingKey = PioneerFarewellActivity.EndingKey;
         public const string ReturnKey = PioneerFarewellActivity.ReturnKey;
         public const string ReplayKey = PioneerFarewellActivity.ReplayKey;
+        public const string CreditsKey = "PIO.UI.credits", CreditsTitleKey = "PIO.UI.credits.title", CreditsBodyKey = "PIO.UI.credits.body", CreditsCloseKey = "PIO.UI.credits.close";
         /// <summary>A chave do memorial junta o título e a linha de situação com " / "; o painel as desenha em duas linhas.</summary>
         public const string EndingSeparator = " / ";
 
@@ -26,14 +27,17 @@ namespace Abandoned.SpaceApps
         /// <summary>O memorial não é mais preto total: no máximo este tanto de escuro, para a sonda seguindo devagar para Aldebaran aparecer por trás do texto.</summary>
         public const float MemorialDimMax = 0.55f;
 
-        VisualElement root, guide, black, memorial, choices, returnButton, replayButton;
-        Label guideLabel, titleLabel, subtitleLabel, returnLabel, replayLabel;
-        string lastGuide, lastTitle, lastSubtitle, lastReturn, lastReplay;
+        VisualElement root, guide, black, memorial, choices, returnButton, replayButton, creditsPanel;
+        Label guideLabel, titleLabel, subtitleLabel, returnLabel, replayLabel, creditsTitle, creditsBody;
+        Button creditsButton, creditsClose;
+        string lastGuide, lastTitle, lastSubtitle, lastReturn, lastReplay, lastCredits, lastCreditsTitle, lastCreditsBody, lastCreditsClose;
         FarewellPhase lastPhase = (FarewellPhase)(-1);
 
         public event Action ReturnClicked;
         public event Action ReplayClicked;
 
+        /// <summary>O painel de fontes e creditos esta aberto: E/Enter nao podem escolher por tras dele.</summary>
+        public bool CreditsOpen => creditsPanel != null && creditsPanel.style.display == DisplayStyle.Flex;
         public bool IsBound => root != null;
         public VisualElement Root => root;
 
@@ -71,7 +75,16 @@ namespace Abandoned.SpaceApps
                 returnButton.RegisterCallback<ClickEvent>(_ => ReturnClicked?.Invoke());
             if (replayButton != null)
                 replayButton.RegisterCallback<ClickEvent>(_ => ReplayClicked?.Invoke());
-            lastGuide = lastTitle = lastSubtitle = lastReturn = lastReplay = null;
+            creditsButton = root.Q<Button>("credits-button");
+            creditsPanel = root.Q("credits-panel");
+            creditsTitle = root.Q<Label>("credits-title");
+            creditsBody = root.Q<Label>("credits-body");
+            creditsClose = root.Q<Button>("credits-close");
+            if (creditsButton != null && creditsPanel != null)
+                creditsButton.clicked += () => creditsPanel.style.display = DisplayStyle.Flex;
+            if (creditsClose != null && creditsPanel != null)
+                creditsClose.clicked += () => creditsPanel.style.display = DisplayStyle.None;
+            lastGuide = lastTitle = lastSubtitle = lastReturn = lastReplay = lastCredits = lastCreditsTitle = lastCreditsBody = lastCreditsClose = null;
             lastPhase = (FarewellPhase)(-1);
         }
 
@@ -133,7 +146,13 @@ namespace Abandoned.SpaceApps
             {
                 SetText(returnLabel, ReturnKey, text, ref lastReturn);
                 SetText(replayLabel, ReplayKey, text, ref lastReplay);
+                SetText(creditsButton, CreditsKey, text, ref lastCredits);
+                SetText(creditsTitle, CreditsTitleKey, text, ref lastCreditsTitle);
+                SetText(creditsBody, CreditsBodyKey, text, ref lastCreditsBody);
+                SetText(creditsClose, CreditsCloseKey, text, ref lastCreditsClose);
             }
+            else if (creditsPanel != null)
+                creditsPanel.style.display = DisplayStyle.None;
         }
 
         /// <summary>
@@ -166,6 +185,7 @@ namespace Abandoned.SpaceApps
             {
                 "farewell-root", "guide", "guide-label", "black", "memorial", "ending-title", "ending-subtitle", "choices",
                 "return-button", "return-label", "replay-button", "replay-label",
+                "credits-button", "credits-panel", "credits-title", "credits-body", "credits-close",
             })
             {
                 if (tree.Q(name) == null)

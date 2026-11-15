@@ -273,7 +273,7 @@ namespace Abandoned.SpaceApps
         }
 
         /// <summary>Ativa o botão em foco (E, Enter ou clique). Idempotente: só a primeira escolha vale.</summary>
-        public bool ActivateFocused() => Choose(focus == 0 ? FarewellChoice.ReturnToArchive : FarewellChoice.Replay);
+        public bool ActivateFocused() => !(panel != null && panel.CreditsOpen) && Choose(focus == 0 ? FarewellChoice.ReturnToArchive : FarewellChoice.Replay);
 
         public bool Choose(FarewellChoice choice)
         {

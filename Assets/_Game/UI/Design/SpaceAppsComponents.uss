@@ -261,7 +261,7 @@
 .sa-folder__actions {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .sa-folder__duration {

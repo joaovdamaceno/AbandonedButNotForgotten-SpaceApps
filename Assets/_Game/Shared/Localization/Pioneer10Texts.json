@@ -991,6 +991,30 @@
       "en": "Restart chapter"
     },
     {
+      "key": "PIO.UI.credits",
+      "group": "hud",
+      "pt": "Fontes e créditos",
+      "en": "Sources and credits"
+    },
+    {
+      "key": "PIO.UI.credits.title",
+      "group": "hud",
+      "pt": "Fontes da missão e créditos",
+      "en": "Mission sources and credits"
+    },
+    {
+      "key": "PIO.UI.credits.close",
+      "group": "hud",
+      "pt": "Fechar",
+      "en": "Close"
+    },
+    {
+      "key": "PIO.UI.credits.body",
+      "group": "hud",
+      "pt": "Sonda Pioneer 10: modelo 3D da NASA (NASA/JPL, Eyes on the Solar System), fornecido pela equipe e adaptado para este projeto.\nAntena de 70 m da Deep Space Network: modelo 3D oficial da NASA (NASA/Brian E. Kumanchik, Christian A. Lopez).\nFotografias de Júpiter e Ganimedes, 1973 (AC73-9341 e AC73-9279): NASA.\nPlaca da Pioneer: adaptação educativa, não a reprodução fiel da gravura original (NASA).\nMúsica (Scott Buckley, CC BY 4.0, www.scottbuckley.com.au): “A Kind Of Hope”; “Descent”; “The Distant Sun”; “The Things That Keep Us Here”; “Extrapolation”; “Signal to Noise”; “Filaments”. Trechos recortados e normalizados.\nTextura de Júpiter: Solar System Scope (www.solarsystemscope.com/textures), CC BY 4.0.\nTipografia: Outfit (Copyright 2021 The Outfit Project Authors) e IBM Plex Mono (Copyright 2017 IBM Corp.), ambas sob a SIL Open Font License 1.1.\n\nAs cenas são reconstruções artísticas, não filmagens. Os textos históricos seguem fontes oficiais; a lista completa de fontes e de recursos está em SCIENCE_SOURCES.md e ASSET_CREDITS.md, no repositório do projeto.\n\nAbandoned, But Not Forgotten é uma produção educativa independente, criada para o NASA Space Apps. Sem afiliação ou endosso da NASA.",
+      "en": "Pioneer 10 probe: NASA 3D model (NASA/JPL, Eyes on the Solar System), supplied by the team and adapted for this project.\nDeep Space Network 70 m antenna: official NASA 3D model (NASA/Brian E. Kumanchik, Christian A. Lopez).\nJupiter and Ganymede photographs, 1973 (AC73-9341 and AC73-9279): NASA.\nPioneer plaque: educational adaptation, not a faithful reproduction of the original engraving (NASA).\nMusic (Scott Buckley, CC BY 4.0, www.scottbuckley.com.au): “A Kind Of Hope”; “Descent”; “The Distant Sun”; “The Things That Keep Us Here”; “Extrapolation”; “Signal to Noise”; “Filaments”. Excerpts trimmed and loudness-normalised.\nJupiter texture: Solar System Scope (www.solarsystemscope.com/textures), CC BY 4.0.\nTypography: Outfit (Copyright 2021 The Outfit Project Authors) and IBM Plex Mono (Copyright 2017 IBM Corp.), both under the SIL Open Font License 1.1.\n\nThe scenes are artistic reconstructions, not footage. Historical texts follow official sources; the full list of sources and assets is in SCIENCE_SOURCES.md and ASSET_CREDITS.md in the project repository.\n\nAbandoned, But Not Forgotten is an independent educational production made for NASA Space Apps. It is not affiliated with or endorsed by NASA."
+    },
+    {
       "key": "PIO.UI.aldebaran",
       "group": "hud",
       "pt": "Direção de Aldebaran",
