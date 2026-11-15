@@ -150,7 +150,7 @@ SPIRIT · 2004–2010 / OPPORTUNITY · 2004–2018. Segurar título e revelar VO
 
 Texto que aparece na tela hoje, na ordem em que aparece. Para mudar uma fala, edite o texto da chave no arquivo indicado em cada parte (campos `pt` e `en`); esta tabela é só o espelho do jogo e precisa ser atualizada junto.
 
-O capítulo de Marte aparece sempre em inglês (`GameHost`, lista `EnglishOnlyChapters`); a coluna em português fica como tradução.
+O jogo começa em inglês em todas as sondas; o português aparece quando a pessoa escolhe esse idioma no menu.
 
 Os tempos das tabelas são do filme. Alguns trechos são mostrados mais devagar para dar tempo de leitura (`ChapterDirector`, mapas tempo real → filme): pouso 0–13,5 s → 0–7,5 s; anos seguintes 6–14 s → 6–13 s e 25,5–34,5 s → 24,5–32,5 s; último contato 7–15 s → 7–12 s; despedida 0–12,5 → 0–8, 12,5–18,5 → 8–11 e 18,5–27,5 → 11–16 s. Falas de orientação ficam na tela pelo maior entre 4,5 s e um segundo a cada 15 caracteres.
 
@@ -165,14 +165,14 @@ Não há narração em áudio: todas as falas aparecem como legenda.
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
 | M01 · 0–6,3 s · título | `MAR.T01` | 2003 | 2003 |
-| M01 · 0–6,3 s · fala | `MAR.C01` | In 2003, NASA sent two robotic explorers to Mars: Spirit and Opportunity. | In 2003, NASA sent two robotic explorers to Mars: Spirit and Opportunity. |
-| M02 · 6,3–11,2 s · fala | `MAR.C02` | Their mission was to search the rocks for traces of a past with liquid water. | Their mission was to search the rocks for traces of a past with liquid water. |
-| M02 · 6,3–11,2 s · letreiro | `MAR.ORI.01` | EARTH · MISSION PREPARATION | EARTH · MISSION PREPARATION |
-| M02 · 11,2–19,4 s · fala | `MAR.C03` | Mars Global Surveyor mapped the planet's surface, helping NASA pinpoint two promising landing sites. | Mars Global Surveyor mapped the planet's surface, helping NASA pinpoint two promising landing sites. |
-| M02 · 19,4–27,1 s · fala | `MAR.C04` | Meridiani Planum, rich in hematite, which only typically forms in liquid water. | Meridiani Planum, rich in hematite, which only typically forms in liquid water. |
+| M01 · 0–6,3 s · fala | `MAR.C01` | Em 2003, a NASA enviou dois exploradores robóticos a Marte: Spirit e Opportunity. | In 2003, NASA sent two robotic explorers to Mars: Spirit and Opportunity. |
+| M02 · 6,3–11,2 s · fala | `MAR.C02` | A missão deles era procurar nas rochas sinais de um passado com água líquida. | Their mission was to search the rocks for traces of a past with liquid water. |
+| M02 · 6,3–11,2 s · letreiro | `MAR.ORI.01` | TERRA · PREPARAÇÃO DA MISSÃO | EARTH · MISSION PREPARATION |
+| M02 · 11,2–19,4 s · fala | `MAR.C03` | A Mars Global Surveyor mapeou a superfície do planeta e ajudou a NASA a escolher dois locais de pouso promissores. | Mars Global Surveyor mapped the planet's surface, helping NASA pinpoint two promising landing sites. |
+| M02 · 19,4–27,1 s · fala | `MAR.C04` | Meridiani Planum, rica em hematita, que normalmente só se forma em água líquida. | Meridiani Planum, rich in hematite, which only typically forms in liquid water. |
 | M02 · 19,7–34,8 s · letreiro | `MAR.ORI.04` | MERIDIANI PLANUM | MERIDIANI PLANUM |
-| M03 · 27,1–34,8 s · fala | `MAR.C05` | And Gusev Crater, a massive basin that once looked like an ancient lake. | And Gusev Crater, a massive basin that once looked like an ancient lake. |
-| M03 · 30,7–34,8 s · letreiro | `MAR.ORI.03` | GUSEV CRATER | GUSEV CRATER |
+| M03 · 27,1–34,8 s · fala | `MAR.C05` | E a Cratera Gusev, uma enorme bacia que um dia pareceu um antigo lago. | And Gusev Crater, a massive basin that once looked like an ancient lake. |
+| M03 · 30,7–34,8 s · letreiro | `MAR.ORI.03` | CRATERA GUSEV | GUSEV CRATER |
 
 ### Pouso das duas sondas
 
