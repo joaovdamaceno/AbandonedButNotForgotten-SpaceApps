@@ -15,7 +15,7 @@ MonoBehaviour:
   sequenceId: sur.doc.Reunion
   shots:
   - shotId: sur.doc.reunion.place
-    durationSeconds: 13
+    durationSeconds: 10
     rigId: world
     lookAtTargetId: sur.touchdown
     easing: 1
@@ -23,33 +23,16 @@ MonoBehaviour:
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 8, y: 4.5739756, z: -9}
+      positionMeters: {x: 8, y: 3.873626, z: -8}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 44
-    - timeSeconds: 13
-      positionMeters: {x: 7.5, y: 4.2577915, z: -8.4}
+      fieldOfViewDegrees: 42
+    - timeSeconds: 10
+      positionMeters: {x: 7.5, y: 3.6463692, z: -7.6}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 44
+      fieldOfViewDegrees: 42
     events: []
   - shotId: sur.doc.reunion.human
-    durationSeconds: 13
-    rigId: world
-    lookAtTargetId: sur.touchdown
-    easing: 1
-    minGroundClearanceMeters: 0.18
-    continueFromPreviousShot: 0
-    keyframes:
-    - timeSeconds: 0
-      positionMeters: {x: -4, y: 0.3049028, z: -3}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 44
-    - timeSeconds: 13
-      positionMeters: {x: -3.8, y: 0.3842705, z: -2.8}
-      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 44
-    events: []
-  - shotId: sur.doc.reunion.inspection
-    durationSeconds: 13
+    durationSeconds: 6
     rigId: world
     lookAtTargetId: sur.optical
     easing: 1
@@ -57,16 +40,33 @@ MonoBehaviour:
     continueFromPreviousShot: 0
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 1.2196152, y: 1.7436038, z: -0.65044594}
+      positionMeters: {x: -3, y: 1.3713315, z: 0.1}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 44
-    - timeSeconds: 13
-      positionMeters: {x: 1.1196152, y: 1.7436038, z: -0.5504459}
+      fieldOfViewDegrees: 40
+    - timeSeconds: 6
+      positionMeters: {x: -2.8, y: 1.3089509, z: 0.2}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
-      fieldOfViewDegrees: 44
+      fieldOfViewDegrees: 40
+    events: []
+  - shotId: sur.doc.reunion.inspection
+    durationSeconds: 16
+    rigId: world
+    lookAtTargetId: sur.optical
+    easing: 1
+    minGroundClearanceMeters: 0.18
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: -1.2303848, y: 1.8936038, z: -0.20044589}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 46
+    - timeSeconds: 16
+      positionMeters: {x: -1.3303847, y: 1.8936038, z: -0.25044596}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 46
     events: []
   - shotId: sur.doc.reunion.return
-    durationSeconds: 16
+    durationSeconds: 12
     rigId: world
     lookAtTargetId: sur.touchdown
     easing: 1
@@ -77,7 +77,7 @@ MonoBehaviour:
       positionMeters: {x: 4, y: 2.9731636, z: 5}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 45
-    - timeSeconds: 16
+    - timeSeconds: 12
       positionMeters: {x: 4.5, y: 3.2765245, z: 6}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 45
@@ -93,24 +93,24 @@ MonoBehaviour:
     priority: 0
   - cueId: sur.doc.reunion.2
     textKey: sur.doc.reunion.2
-    startSeconds: 10
-    endSeconds: 20
+    startSeconds: 9
+    endSeconds: 17
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: sur.doc.reunion.3
     textKey: sur.doc.reunion.3
-    startSeconds: 24
-    endSeconds: 35
+    startSeconds: 19
+    endSeconds: 28
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: sur.doc.reunion.4
     textKey: sur.doc.reunion.4
-    startSeconds: 39
-    endSeconds: 50
+    startSeconds: 31
+    endSeconds: 42
     triggerId: 
     minimumReadSeconds: 0
     position: 0

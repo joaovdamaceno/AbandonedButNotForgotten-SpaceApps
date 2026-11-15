@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Failed(Child)" total="10" passed="9" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 14:26:05Z" end-time="2026-11-15 14:26:08Z" duration="3,156515">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="1075" result="Failed" site="Child" start-time="2026-11-15 14:26:05Z" end-time="2026-11-15 14:26:08Z" duration="3.156515" total="10" passed="9" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1640" name="Abandoned.SpaceApps.Core.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Core.Tests.dll" runstate="Runnable" testcasecount="586" result="Passed" start-time="2026-11-15 14:25:26Z" end-time="2026-11-15 14:25:26Z" duration="0.511177" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35216" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1641" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="586" result="Passed" start-time="2026-11-15 14:25:26Z" end-time="2026-11-15 14:25:26Z" duration="0.491777" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1642" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="586" result="Passed" start-time="2026-11-15 14:25:26Z" end-time="2026-11-15 14:25:26Z" duration="0.454057" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1643" name="Tests" fullname="Abandoned.SpaceApps.Tests" runstate="Runnable" testcasecount="586" result="Passed" start-time="2026-11-15 14:25:26Z" end-time="2026-11-15 14:25:26Z" duration="0.434146" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1359" name="PrimaryInstrumentDeviceTests" fullname="Abandoned.SpaceApps.Tests.PrimaryInstrumentDeviceTests" classname="Abandoned.SpaceApps.Tests.PrimaryInstrumentDeviceTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 14:25:26Z" end-time="2026-11-15 14:25:26Z" duration="0.356091" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1360" name="ActualMouseBindingIsScopedAndDoesNotCancelKeyboardContact" fullname="Abandoned.SpaceApps.Tests.PrimaryInstrumentDeviceTests.ActualMouseBindingIsScopedAndDoesNotCancelKeyboardContact" methodname="ActualMouseBindingIsScopedAndDoesNotCancelKeyboardContact" classname="Abandoned.SpaceApps.Tests.PrimaryInstrumentDeviceTests" runstate="Runnable" seed="148074101" result="Passed" start-time="2026-11-15 14:25:26Z" end-time="2026-11-15 14:25:26Z" duration="0.321247" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1361" name="PrimaryInstrumentInputTests" fullname="Abandoned.SpaceApps.Tests.PrimaryInstrumentInputTests" classname="Abandoned.SpaceApps.Tests.PrimaryInstrumentInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 14:25:26Z" end-time="2026-11-15 14:25:26Z" duration="0.011393" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1362" name="MouseIsGameplayOnlyAndMustBeReleasedAcrossContextAndFocusChanges" fullname="Abandoned.SpaceApps.Tests.PrimaryInstrumentInputTests.MouseIsGameplayOnlyAndMustBeReleasedAcrossContextAndFocusChanges" methodname="MouseIsGameplayOnlyAndMustBeReleasedAcrossContextAndFocusChanges" classname="Abandoned.SpaceApps.Tests.PrimaryInstrumentInputTests" runstate="Runnable" seed="202745654" result="Passed" start-time="2026-11-15 14:25:26Z" end-time="2026-11-15 14:25:26Z" duration="0.002243" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1363" name="PointerPositionIsImmediateEvenInMenusAndEHasNoMouseSideEffects" fullname="Abandoned.SpaceApps.Tests.PrimaryInstrumentInputTests.PointerPositionIsImmediateEvenInMenusAndEHasNoMouseSideEffects" methodname="PointerPositionIsImmediateEvenInMenusAndEHasNoMouseSideEffects" classname="Abandoned.SpaceApps.Tests.PrimaryInstrumentInputTests" runstate="Runnable" seed="1650740079" result="Passed" start-time="2026-11-15 14:25:26Z" end-time="2026-11-15 14:25:26Z" duration="0.005033" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1941" name="Abandoned.SpaceApps.Surveyor.Chapter.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Chapter.Tests.dll" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 14:26:06Z" end-time="2026-11-15 14:26:08Z" duration="2.660853" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35216" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1942" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 14:26:06Z" end-time="2026-11-15 14:26:08Z" duration="2.658679" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1943" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 14:26:06Z" end-time="2026-11-15 14:26:08Z" duration="2.657132" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestSuite" id="1944" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 14:26:06Z" end-time="2026-11-15 14:26:08Z" duration="2.655414" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="TestSuite" id="1945" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-15 14:26:06Z" end-time="2026-11-15 14:26:08Z" duration="2.653800" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-suite type="TestSuite" id="1947" name="ChapterTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-15 14:26:06Z" end-time="2026-11-15 14:26:08Z" duration="1.823318" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <failure>
+                  <message><![CDATA[One or more child tests had errors]]></message>
+                </failure>
+                <test-suite type="TestFixture" id="1934" name="SurveyorChapterTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-15 14:26:06Z" end-time="2026-11-15 14:26:08Z" duration="1.816321" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <failure>
+                    <message><![CDATA[One or more child tests had errors]]></message>
+                  </failure>
+                  <test-case id="1935" name="AstronautFacesTravelAndItsStanceFootStaysPlanted" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests.AstronautFacesTravelAndItsStanceFootStaysPlanted" methodname="AstronautFacesTravelAndItsStanceFootStaysPlanted" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" runstate="Runnable" seed="729720" result="Passed" start-time="2026-11-15 14:25:26Z" end-time="2026-11-15 14:25:27Z" duration="0.728397" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1938" name="DocumentaryJourneyDeformsPlayerGroundAndShowsCompleteActors" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests.DocumentaryJourneyDeformsPlayerGroundAndShowsCompleteActors" methodname="DocumentaryJourneyDeformsPlayerGroundAndShowsCompleteActors" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" runstate="Runnable" seed="123177787" result="Failed" label="Error" start-time="2026-11-15 14:25:27Z" end-time="2026-11-15 14:25:43Z" duration="15.880774" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    </properties>
+                    <failure>
+                      <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                      <stack-trace><![CDATA[  at Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests+<DocumentaryJourneyDeformsPlayerGroundAndShowsCompleteActors>d__5.MoveNext () [0x003e4] in C:\Users\Damaceno\UnityProjects\AbandonedButNotForgotten\Assets\_Game\Chapters\Surveyor\Chapter\Tests\SurveyorChapterTests.cs:106 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@ee3fe9477490\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:52 ]]></stack-trace>
+                    </failure>
+                    <output><![CDATA[SURVEYOR_DOC_STEP Prologue active=0.00
+SURVEYOR_DOC_STEP Arrival active=23.00
+SURVEYOR_DOC_STEP Activation active=54.00
+SURVEYOR_DOC_STEP Science active=70.00
+SURVEYOR_DOC_CUT_READY
+]]></output>
+                  </test-case>
+                  <test-case id="1936" name="PickupStartsAtItsMountAndSeekingBackRestoresTheScoop" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests.PickupStartsAtItsMountAndSeekingBackRestoresTheScoop" methodname="PickupStartsAtItsMountAndSeekingBackRestoresTheScoop" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" runstate="Runnable" seed="1122491869" result="Passed" start-time="2026-11-15 14:25:43Z" end-time="2026-11-15 14:25:43Z" duration="0.277011" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1940" name="PilotSamplesCompleteBodyMotionWithoutClaimingPlayerProgress" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests.PilotSamplesCompleteBodyMotionWithoutClaimingPlayerProgress" methodname="PilotSamplesCompleteBodyMotionWithoutClaimingPlayerProgress" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" runstate="Runnable" seed="705664883" result="Passed" start-time="2026-11-15 14:25:43Z" end-time="2026-11-15 14:25:55Z" duration="11.601804" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    </properties>
+                    <output><![CDATA[SURVEYOR_DOC_STEP Prologue active=0.00
+]]></output>
+                  </test-case>
+                  <test-case id="1937" name="PressureFindsRealSupportWhenThePlayerExcavatedItsPreferredPoint" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests.PressureFindsRealSupportWhenThePlayerExcavatedItsPreferredPoint" methodname="PressureFindsRealSupportWhenThePlayerExcavatedItsPreferredPoint" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" runstate="Runnable" seed="2143532163" result="Passed" start-time="2026-11-15 14:25:55Z" end-time="2026-11-15 14:25:57Z" duration="2.544650" asserts="0">
+                    <properties />
+                  </test-case>
+                  <test-case id="1939" name="RestartRecreatesSoilAndFocusStopsTheTool" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests.RestartRecreatesSoilAndFocusStopsTheTool" methodname="RestartRecreatesSoilAndFocusStopsTheTool" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" runstate="Runnable" seed="987739517" result="Passed" start-time="2026-11-15 14:25:57Z" end-time="2026-11-15 14:26:08Z" duration="10.169634" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[SURVEYOR_DOC_STEP Prologue active=0.00
+SURVEYOR_DOC_STEP Arrival active=23.00
+SURVEYOR_DOC_STEP Activation active=54.05
+SURVEYOR_DOC_STEP Science active=70.05
+SURVEYOR_ARCHIVE_READY
+SURVEYOR_DOC_STEP Prologue active=0.00
+SURVEYOR_DOC_STEP Arrival active=23.00
+SURVEYOR_DOC_STEP Activation active=54.05
+SURVEYOR_DOC_STEP Science active=70.05
+SURVEYOR_ARCHIVE_READY
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+              <test-suite type="TestSuite" id="1946" name="Tests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 14:26:08Z" end-time="2026-11-15 14:26:08Z" duration="0.821251" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1930" name="SurveyorSoilFrameRateTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorSoilFrameRateTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorSoilFrameRateTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 14:26:08Z" end-time="2026-11-15 14:26:08Z" duration="0.820085" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1931" name="SameStrokeRemovesEquivalentMaterialAt60And144Hz" fullname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorSoilFrameRateTests.SameStrokeRemovesEquivalentMaterialAt60And144Hz" methodname="SameStrokeRemovesEquivalentMaterialAt60And144Hz" classname="Abandoned.SpaceApps.Chapters.Surveyor.Tests.SurveyorSoilFrameRateTests" runstate="Runnable" seed="1825225844" result="Passed" start-time="2026-11-15 14:26:08Z" end-time="2026-11-15 14:26:08Z" duration="0.817914" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Damaceno/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

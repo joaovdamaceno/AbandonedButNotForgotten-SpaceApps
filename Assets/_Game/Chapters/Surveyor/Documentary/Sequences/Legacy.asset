@@ -15,7 +15,7 @@ MonoBehaviour:
   sequenceId: sur.doc.Legacy
   shots:
   - shotId: sur.doc.legacy.photo
-    durationSeconds: 10
+    durationSeconds: 8
     rigId: world
     lookAtTargetId: sur.touchdown
     easing: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
       positionMeters: {x: 4.5, y: 3.2765245, z: 6}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 45
-    - timeSeconds: 10
+    - timeSeconds: 8
       positionMeters: {x: 4.5, y: 3.2765245, z: 6}
       eulerAnglesDegrees: {x: 0, y: 0, z: 0}
       fieldOfViewDegrees: 45
@@ -52,15 +52,15 @@ MonoBehaviour:
   - cueId: sur.doc.legacy.1
     textKey: sur.doc.legacy.1
     startSeconds: 0
-    endSeconds: 9
+    endSeconds: 8
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: sur.doc.legacy.2
     textKey: sur.doc.legacy.2
-    startSeconds: 10
-    endSeconds: 15
+    startSeconds: 8
+    endSeconds: 13
     triggerId: 
     minimumReadSeconds: 0
     position: 0

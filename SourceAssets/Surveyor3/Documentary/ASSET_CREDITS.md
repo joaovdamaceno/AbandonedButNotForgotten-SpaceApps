@@ -11,3 +11,5 @@
 | Música e mecanismos | Composições temporárias/sons próprios SUR-009…015, SourceAssets/Surveyor3/Score | Cues e resposta a carga/contato reorganizados; sem gravação comercial. Som mecânico externo é recurso cinematográfico. |
 
 Sem compra, modelo Smithsonian redistribuído, música comercial ou dependência externa durante a partida. Código e reconstruções novos pertencem à produção do jogo, sem implicar revisão da NASA. Reproduzir modelos com Blender 5.2: build_models.py e prepare_hardware.py. Preservar originais fora de Assets e manter este crédito junto das conversões.
+
+SUR-019 reutiliza essas malhas e a pose neutra. A marcha e os gestos publicados passam a ser avaliados por SurveyorApolloCast: orientação obtida dos ossos do pé, apoios em espaço do mundo e IK. Os antigos clipes Walk/Inspect continuam no fonte, mas não conduzem a nova marcha. Sem download de animação ou atribuição a captura de movimento. TV, contato e contraste da terra escavada são tratamentos artísticos do jogo.

@@ -1,6 +1,6 @@
 # Surveyor 3 — documentário jogável
 
-SUR-018, direção aprovada pelo proprietário em 15/11/2026. Substitui a telemetria interativa, o centro óptico fixo durante todo o filme e o reencontro representado por botas/luva independentes. O histórico SUR-001…017 e seus previews permanecem no Git; não são a edição publicada.
+SUR-019, revisão pedida após jogar SUR-018. Encurta a operação, torna o monitor evidente sem explicá-lo na tela e corrige a marcha. O histórico anterior e seus previews permanecem no Git; não são a edição publicada.
 
 ## História
 
@@ -8,32 +8,34 @@ Mostrar por que a máquina foi à Lua, o que investigou e por que astronautas vo
 
 | Etapa | Referência | Função |
 |---|---:|---|
-| Prologue | 25 s | Conhecer o chão antes dos astronautas |
-| Arrival | 35 s | Retroestágio, separação, verniers e contatos |
-| Activation | 20 s | Máquina inteira → instrumento |
-| Science | 150–180 s de referência | Arrastar, aprofundar, pressionar, fotografar |
-| Findings | 20 s | Efeito visível e significado científico |
-| Night | 45 s | Eclipse, noite e último contato |
-| Reunion | 55 s | 31 meses depois: pessoas e máquina |
-| Legacy | 15 s | Fotografia histórica e o que ficou |
+| Prologue | 23 s | Motivo da investigação antes das pessoas |
+| Arrival | 31 s | Descida, descarte do retroestágio e contatos |
+| Activation | 16 s | Máquina inteira → câmera usada pela equipe |
+| Science | Sem espera mínima | Corte curto, pressão de 1,6 s e fotografia |
+| Findings | 18 s | Registro do jogador e uso dos ensaios |
+| Night | 38 s | Eclipse, elipse de dias, noite e último contato |
+| Reunion | 44 s | Aproximação orientada, inspeção e recuperação |
+| Legacy | 13 s | Fotografia histórica e estrutura que ficou |
 | End | Fora do relógio | Retorno voluntário ao arquivo |
 
-Meta humana 5–7 minutos, sem cronômetro de falha ou ciência concluída automaticamente. Não preencher duração com esperas artificiais.
+A montagem soma 183 s, contra 215 s da SUR-018. O pedido de reduzir a demora permite terminar abaixo dos cinco minutos com assistência; não preencher a meta anterior de 5–7 com espera. Estimativa do dossiê: 270 s. Medir duração/compreensão em primeiras partidas humanas. Sem cronômetro de falha.
 
 ## Operação e apresentação
 
-Mouse aponta; clique e arrasto colocam a pá em contato. Soltar levanta. E com WASD é alternativa. Deformação depende do caminho percorrido; manter a ferramenta parada não cava. Passagens sucessivas aprofundam a mesma região. A retirada sobe antes de recolher. Um teste curto de pressão compara outra resposta. A fotografia registra a geometria desta partida.
+Mouse aponta; clique e arrasto colocam a pá em contato. Soltar levanta. Segurar E oferece um corte assistido sem exigir WASD: o braço se move de verdade e o solo muda pelo contato/traçado, nunca por temporizador de conclusão. E + WASD permite ajustar. Exigir aproximadamente uma passada e parte da volta; retirar para cima antes de recolher. Um novo hold pressiona a borda e a foto registra a geometria desta partida.
+
+Seta na área alcançável, progresso da atividade, solo exposto mais escuro, grãos, cursor de contato, estado textual e resposta mecânica dão feedback. Mostrar o botão de pressão apenas com o corte pronto. Percentual é andamento do jogo, não dado da missão. Pressão usa o apoio real da ferramenta, inclusive quando a vala cruza o ponto preferencial.
 
 É controle direto assistido, simplificação aprovada da operação real. O atraso representativo de rádio pode ser explicado no arquivo; não atrasar mouse, interface ou pausa. Entrada por InputRouter, tempo por SessionClock, progresso por ChapterDirector.
 
 Planos externos mostram a sonda e corpos completos. A câmera de instrumento permanece no conjunto óptico. A visita externa de 1969 é reconstrução documental, distinta da fotografia NASA; não sugerir que a câmera inativa gravou a recuperação.
 
-Filme externo em cor contida e granulação leve. Instrumento 4:3 dominante, monocromático, scanlines/vinheta/ruído discretos e opção reduzida. Legendas e comandos nítidos após o filtro. Sem VHS, vento lunar ou narração de IA. Sons mecânicos externos são linguagem cinematográfica.
+Filme externo em cor contida e granulação leve. Instrumento 4:3 com moldura de TV, curvatura/overscan, vidro, varredura e brilho monocromático suave. Sem rótulo de efeito; intensidade reduzida nas configurações. Legendas e comandos nítidos após o filtro. Sem VHS, vento lunar ou voz de IA. Sons externos são linguagem cinematográfica.
 
-Astronautas usam malha inteira, esqueleto, clipes e correção de contatos. Pés apoiados; mãos alcançam peças; objetos passam entre suportes explícitos. Nenhum membro isolado aparece por temporizador. Revisão exige movimento contínuo, não apenas capturas.
+Astronautas usam a malha inteira existente e pose neutra, com marcha procedural. Identificar a frente pelos ossos do pé, aplicar rumo após amostrar a pose e fixar o apoio no mundo enquanto o corpo avança. Braços oscilam suavemente; transições para inspeção e carga são graduais. Peças começam a retirada no próprio suporte. Nenhum membro isolado. Testar rumo/apoio e revisar movimento contínuo.
 
 ## Produção e aceitação
 
-SurveyorChapterBuilder continua dono da cena e delega a montagem a DocumentaryBuilder. Composição, filme, elenco, pá, superfície e apresentação são componentes separados. Entrada pública: SurveyorArchive.unity; capítulo: SurveyorChapter.unity. Modelos/conversão e créditos em SourceAssets/Surveyor3/Documentary; validação em QA/SUR-018.
+SurveyorChapterBuilder continua dono da cena e delega a montagem a DocumentaryBuilder. Composição, filme, elenco, pá, superfície e apresentação são componentes separados. Entrada pública: SurveyorArchive.unity; capítulo: SurveyorChapter.unity. Modelos/conversão e créditos em SourceAssets/Surveyor3/Documentary; validação atual em QA/SUR-019.
 
-Quatro de cinco novatos devem concluir em 300–420 s e entender missão, ensaios do solo, diferença 1967/1969 e retorno das peças. Automação prova fluxo, pausa/foco, descarte e regressões. Arte, compreensão e GPU integrada precisam de avaliação própria identificada. Orçamento inicial do capítulo isolado: 25 MB; medir o pacote conjunto na integração.
+Avaliar se novatos conseguem começar com uma instrução, reconhecer progresso e explicar missão, ensaios, diferença 1967/1969 e recuperação das peças. Registrar tempos sem preencher duração por espera. Automação prova fluxo, pausa/foco, descarte e regressões. Arte, compreensão e GPU integrada precisam de avaliação humana identificada. Orçamento isolado: 25 MB; medir o conjunto na integração.

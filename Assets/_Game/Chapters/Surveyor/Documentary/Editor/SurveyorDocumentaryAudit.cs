@@ -17,7 +17,7 @@ namespace Abandoned.SpaceApps.EditorTools
             public int dependencyCount;
         }
 
-        public static void Write()
+        public static void Write(string folder = "QA/SUR-018")
         {
             var scenes = new[] { SurveyorArchiveBuilder.Scene, SurveyorChapterBuilder.Scene };
             var paths = AssetDatabase.GetDependencies(scenes, true).OrderBy(p => p).ToArray();
@@ -29,8 +29,8 @@ namespace Abandoned.SpaceApps.EditorTools
                 legacyActors = paths.Where(p => p.Contains("/Sequences/Visit/")
                     && !p.Contains("/Sequences/Visit/Archive/")).ToArray()
             };
-            Directory.CreateDirectory("QA/SUR-018");
-            File.WriteAllText("QA/SUR-018/asset-dependencies.json", JsonUtility.ToJson(report, true));
+            Directory.CreateDirectory(folder);
+            File.WriteAllText(folder + "/asset-dependencies.json", JsonUtility.ToJson(report, true));
             if (report.videos.Length > 0 || report.legacyActors.Length > 0)
                 throw new InvalidOperationException("Published Surveyor scenes reference retired video/actor assets. See asset-dependencies.json.");
         }

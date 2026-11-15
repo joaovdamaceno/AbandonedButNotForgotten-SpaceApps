@@ -42,11 +42,11 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             }
             else spacecraft.position = settledPosition;
             touchdownTarget.position = spacecraft.position + Vector3.up * 1.1f;
-            float dusk = stage == "Night" ? Mathf.SmoothStep(0f, 1f, (seconds - 19f) / 18f) : 0f;
+            float dusk = stage == "Night" ? Mathf.SmoothStep(0f, 1f, (seconds - 17f) / 15f) : 0f;
             sunlight.intensity = Mathf.Lerp(sunIntensity, .025f, dusk);
             sunlight.color = Color.Lerp(new Color(1f, .94f, .83f), new Color(.54f, .61f, .80f), dusk);
             eclipse.Evaluate(seconds);
-            cast.Evaluate(stage == "Legacy" || stage == "End" ? 55f : seconds, reunion);
+            cast.Evaluate(stage == "Legacy" || stage == "End" ? SurveyorApolloCast.EndPoseSeconds : seconds, reunion);
         }
     }
 }

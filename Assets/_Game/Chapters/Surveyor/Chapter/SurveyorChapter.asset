@@ -18,7 +18,7 @@ MonoBehaviour:
   questionKey: sur.chapter.question
   cover: {fileID: 21300000, guid: ec5ffec62e1c72c4681b9361707e4fad, type: 2}
   sceneName: SurveyorChapter
-  targetDurationSeconds: 375
+  targetDurationSeconds: 270
   initialSequenceId: sur.doc.Prologue
   steps:
   - stepId: Prologue

@@ -8,6 +8,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         [SerializeField] MeshFilter surface;
         Mesh mesh;
         Vector3[] baseline, vertices;
+        Color32[] exposure;
         float[] removed, vertexArea;
         float dirtySeconds;
         bool dirty;
@@ -22,6 +23,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             mesh = Instantiate(surface.sharedMesh); mesh.name = "Player lunar excavation";
             surface.sharedMesh = mesh; baseline = mesh.vertices; vertices = (Vector3[])baseline.Clone();
             removed = new float[vertices.Length]; vertexArea = new float[vertices.Length]; mesh.MarkDynamic();
+            exposure = new Color32[vertices.Length]; mesh.colors32 = exposure;
             var indices = mesh.triangles;
             for (int i = 0; i < indices.Length; i += 3)
             {
@@ -56,13 +58,14 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 float along = Mathf.Clamp01(Vector2.Dot(p - a, delta) / delta.sqrMagnitude);
                 float d = Vector2.Distance(p, a + delta * along);
                 // Flat bottom matches the 9 cm bucket; a V-shaped brush would collide with its own uncut sides.
-                float target = Mathf.Min(depth, removed[i] + distance * .16f * (1f - Mathf.SmoothStep(0f, 1f, (d - .047f) / .028f)));
+                float target = Mathf.Min(depth, removed[i] + distance * .32f * (1f - Mathf.SmoothStep(0f, 1f, (d - .047f) / .028f)));
                 float amount = Mathf.Max(0f, target - removed[i]);
                 if (amount > 0f) { removed[i] += amount; volume += amount * vertexArea[i]; DeepestMeters = Mathf.Max(DeepestMeters, removed[i]); }
                 // A low berm follows each real stroke; fixed perimeter remains untouched.
                 float berm = .010f * Mathf.Exp(-Mathf.Pow((d - .075f) / .018f, 2f)) * Mathf.Clamp01(depth / .08f);
                 float edge = Mathf.Clamp01((.49f - Mathf.Abs(p.x)) / .1f) * Mathf.Clamp01((.30f - Mathf.Abs(p.y)) / .07f);
                 vertices[i].y = baseline[i].y - removed[i] + (removed[i] < .001f ? berm * edge : 0f);
+                exposure[i] = new Color32((byte)(Mathf.Clamp01(removed[i] / .025f) * 255f), 0, 0, 255);
             }
             if (volume > 0f) { RemovedCubicMeters += volume; TravelMeters += distance; dirty = true; }
             return volume;
@@ -76,6 +79,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 if (d > .055f) continue;
                 float amount = Mathf.Min(.018f, strength) * (1f - d / .055f);
                 removed[i] = Mathf.Max(removed[i], amount); vertices[i].y = baseline[i].y - removed[i];
+                exposure[i] = new Color32((byte)(Mathf.Clamp01(removed[i] / .025f) * 255f), 0, 0, 255);
             }
             dirty = true;
         }
@@ -83,7 +87,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         {
             dirtySeconds += activeDeltaSeconds;
             if (!dirty || dirtySeconds < .05f) return;
-            dirty = false; dirtySeconds = 0f; mesh.vertices = vertices; mesh.RecalculateNormals(); mesh.RecalculateBounds();
+            dirty = false; dirtySeconds = 0f; mesh.vertices = vertices; mesh.colors32 = exposure; mesh.RecalculateNormals(); mesh.RecalculateBounds();
         }
         void OnDestroy() { if (mesh != null) Destroy(mesh); }
     }
