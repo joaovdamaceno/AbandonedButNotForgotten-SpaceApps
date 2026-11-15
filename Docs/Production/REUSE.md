@@ -89,3 +89,8 @@ Reutiliza cenário/modelo da equipe SUR-002, alvo de render SUR-007, contratos C
 
 | Pedido de qualidade visual do responsável (teste em Play Mode, 15/11/2026) e a base `develop` com PIO-032 | R5 / PIO-033 | `Editor/PioneerStageArt.cs`, `PioneerStageBuilder.cs`, `PioneerPlaqueBuilder.cs`, `Runtime/PioneerPresentation.cs`, `PioneerPlaqueActivity.cs`, `Tests/PioneerPlaqueCinemaTests.cs` | Placa dourada 3D com gravuras procedurais (mesmas formas do painel) e câmeras de zoom por peça; nenhum código ou asset externo | Nenhum asset externo | Testes de Pioneer (229/229) e quadros; Play Mode, teste humano e WebGL pendentes |
 | Pedido de qualidade visual do responsável (teste em Play Mode, 15/11/2026) e a base `develop` com PIO-033 | R5 / PIO-034 | `Editor/PioneerStageBuilder.cs`, `PioneerLaunchBuilder.cs`, `PioneerChapterBuilder.cs`, `PioneerHudCapture.cs`, `Runtime/PioneerJupiterReveal.cs`, `CinemaHudView.cs`, `PioneerChapterController.cs`, `UI/CinemaHud.uxml`, textos em `Data/Localization/`, testes de câmera e da Terra | Câmeras mais abertas na abertura e rótulo "Terra" no HUD; nenhum código ou asset externo | Nenhum asset externo | Testes de Pioneer (234/234) e quadros; Play Mode, teste humano e WebGL pendentes |
+
+## SUR-016 — acabamento próprio
+
+Textura do solo reescrita sobre o princípio de UV/marcas de SUR-002; palma/dedos/cuff reconstruídos com Draft de SUR-002/013. Sem assets externos, novas câmeras ou shaders. Rotina e materiais ficam no capítulo Surveyor; figuras comparáveis e limites em QA/SUR-016.
+

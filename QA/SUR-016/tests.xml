@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 07:33:52Z" end-time="2026-11-15 07:33:55Z" duration="3,2318745">
+  <test-suite type="TestSuite" id="1000" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="1035" result="Passed" start-time="2026-11-15 07:33:52Z" end-time="2026-11-15 07:33:55Z" duration="3.231875" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1891" name="Abandoned.SpaceApps.Surveyor.Chapter.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Surveyor.Chapter.Tests.dll" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 07:33:52Z" end-time="2026-11-15 07:33:55Z" duration="2.848629" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="13184" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1892" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 07:33:52Z" end-time="2026-11-15 07:33:55Z" duration="2.846529" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1893" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 07:33:52Z" end-time="2026-11-15 07:33:55Z" duration="2.845028" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1894" name="Chapters" fullname="Abandoned.SpaceApps.Chapters" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 07:33:52Z" end-time="2026-11-15 07:33:55Z" duration="2.843589" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1895" name="Surveyor" fullname="Abandoned.SpaceApps.Chapters.Surveyor" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 07:33:52Z" end-time="2026-11-15 07:33:55Z" duration="2.842405" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestSuite" id="1896" name="ChapterTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 07:33:52Z" end-time="2026-11-15 07:33:55Z" duration="2.841258" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="TestFixture" id="1888" name="SurveyorChapterTests" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 07:33:52Z" end-time="2026-11-15 07:33:55Z" duration="2.837569" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="1889" name="DossierToMemorialUsesEveryRealOperationAndReturnsWithoutLeaking" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests.DossierToMemorialUsesEveryRealOperationAndReturnsWithoutLeaking" methodname="DossierToMemorialUsesEveryRealOperationAndReturnsWithoutLeaking" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" runstate="Runnable" seed="1019588957" result="Passed" start-time="2026-11-15 07:33:25Z" end-time="2026-11-15 07:33:43Z" duration="17.313862" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    </properties>
+                    <output><![CDATA[SURVEYOR_STEP Launch active=0.00
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+INJECTION_OK FlightAndSurface owner=SurveyorArchive clock=SurveyorArchive
+SURVEYOR_STEP Cruise active=28.00
+SURVEYOR_STEP Descent active=62.75
+SURVEYOR_STEP FirstImage active=102.80
+SURVEYOR_STEP Observe active=118.35
+SURVEYOR_STEP Sample active=149.65
+SURVEYOR_STEP Eclipse active=202.45
+SURVEYOR_STEP LunarNight active=231.15
+SURVEYOR_STEP TimePassage active=248.15
+SURVEYOR_STEP ImaginedVisit active=261.15
+SURVEYOR_STEP HistoricalReceipt active=293.15
+SURVEYOR_STEP End active=305.15
+SURVEYOR_COMPLETE active=311.20
+SURVEYOR_ARCHIVE_READY
+]]></output>
+                  </test-case>
+                  <test-case id="1890" name="RestartAndFocusCancelPendingScanAndSoilWithoutLateCallbacks" fullname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests.RestartAndFocusCancelPendingScanAndSoilWithoutLateCallbacks" methodname="RestartAndFocusCancelPendingScanAndSoilWithoutLateCallbacks" classname="Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests.SurveyorChapterTests" runstate="Runnable" seed="747446589" result="Passed" start-time="2026-11-15 07:33:43Z" end-time="2026-11-15 07:33:55Z" duration="12.021703" asserts="0">
+                    <properties>
+                      <property name="_JOINTYPE" value="UnityCombinatorial" />
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[SURVEYOR_STEP Launch active=0.00
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+SURVEYOR_STEP Cruise active=28.00
+SURVEYOR_STEP Launch active=0.00
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+SURVEYOR_STEP Cruise active=28.05
+SURVEYOR_STEP Descent active=62.85
+SURVEYOR_STEP FirstImage active=102.90
+SURVEYOR_STEP Launch active=0.00
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+[ChapterDirector] Begin('surveyor3') ignorado no estado Playing.
+SURVEYOR_STEP Cruise active=28.05
+SURVEYOR_STEP Descent active=62.85
+SURVEYOR_STEP FirstImage active=102.90
+SURVEYOR_STEP Observe active=118.45
+SURVEYOR_STEP Sample active=149.75
+SURVEYOR_ARCHIVE_READY
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Damaceno/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

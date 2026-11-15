@@ -92,7 +92,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             descentView.StartRequested+=Begin;descentView.PauseRequested+=PauseGame;descentView.ResumeRequested+=Resume;descentView.RestartRequested+=Restart;descentView.ReturnRequested+=Return;descentView.LanguageRequested+=Language;
             televisionView.StartRequested+=Begin;televisionView.PauseRequested+=PauseGame;televisionView.ResumeRequested+=Resume;televisionView.RestartRequested+=Restart;televisionView.ReturnRequested+=Return;televisionView.LanguageRequested+=Language;
             observationView.PauseRequested+=PauseGame;observationView.ResumeRequested+=Resume;observationView.RestartRequested+=Restart;observationView.ReturnRequested+=Return;observationView.LanguageRequested+=Language;
-            foreach(var panel in panels)foreach(var name in new[]{"pause-button","mute-button","language-button"}){var control=panel.rootVisualElement.Q(name);if(control!=null)control.style.visibility=Visibility.Hidden;}
+            foreach(var panel in panels)foreach(var name in new[]{"pause-button","mute-button","language-button","pause","language","mute","pause-overlay"}){var control=panel.rootVisualElement.Q(name);if(control!=null)control.style.visibility=Visibility.Hidden;}
             var send=story.rootVisualElement.Q<Button>("story-send");send.RegisterCallback<PointerDownEvent>(e=>{if(e.button!=0)return;if(Eclipse.BeginConfirmation())send.CapturePointer(e.pointerId);e.StopPropagation();});send.RegisterCallback<PointerUpEvent>(e=>{Eclipse.ReleaseConfirmation();if(send.HasPointerCapture(e.pointerId))send.ReleasePointer(e.pointerId);e.StopPropagation();});send.RegisterCallback<PointerCaptureOutEvent>(e=>Eclipse.ReleaseConfirmation());story.rootVisualElement.Q<Button>("story-return").clicked+=FinalReturn;
         }
         public void Begin(){music.Unlock();owner.Begin(chapter);}public void Restart()=>owner.RestartChapter();public void Return()=>owner.ReturnToDossier();
@@ -125,7 +125,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         {
             if(!initialized)return;string step=owner.CurrentStepId;bool dossier=standalone&&owner.State==AppState.Dossier;
             for(int i=0;i<panels.Length;i++)Show(panels[i].rootVisualElement,(owner.State==AppState.Playing&&step==PanelSteps[i])||(i==0&&dossier));
-            bool storyActive=step=="Eclipse"||step=="LunarNight"||step=="TimePassage"||step=="ImaginedVisit"||step=="HistoricalReceipt"||step=="End"||Visit.AwaitingReturn;var root=story.rootVisualElement;Show(root,storyActive);overlay.rootVisualElement.style.display=owner.State==AppState.Playing||Visit.AwaitingReturn?DisplayStyle.Flex:DisplayStyle.None;
+            bool storyActive=step=="Eclipse"||step=="LunarNight"||step=="TimePassage"||step=="ImaginedVisit"||step=="HistoricalReceipt"||step=="End"||Visit.AwaitingReturn;var root=story.rootVisualElement;Show(root,storyActive);overlay.rootVisualElement.style.display=owner.State==AppState.Playing&&!owner.IsPaused||Visit.AwaitingReturn?DisplayStyle.Flex:DisplayStyle.None;
             var notice=overlay.rootVisualElement.Q("chapter-subtitles");bool centered=Visit.Running&&Visit.TimeSeconds<5;notice.style.top=centered?new StyleLength(0f):new StyleLength(StyleKeyword.Auto);notice.style.justifyContent=centered?Justify.Center:Justify.FlexEnd;if(!storyActive)return;
             var image=root.Q<Image>("story-picture");bool eclipseColor=step=="Eclipse"&&Eclipse.Phase==EclipsePhase.Viewing&&Eclipse.SequenceTime>=4&&Eclipse.SequenceTime<22;
             image.image=Visit.ShowArchive?ending.HistoricalPhoto:Visit.ShowWorld||eclipseColor?viewport.Texture:output.Texture;image.scaleMode=ScaleMode.ScaleToFit;
@@ -137,7 +137,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             var total=root.Q<Label>("story-total");Show(total,step=="LunarNight"&&Night.TransmissionEnded||step=="TimePassage");total.text=Localization.Get(step=="TimePassage"?"sur.night.months":"sur.night.total");
             var send=root.Q<Button>("story-send");Show(send,step=="Eclipse"&&Eclipse.Phase==EclipsePhase.AwaitingOrder);send.text=Localization.Get("sur.eclipse.send");send.SetEnabled(Eclipse.CanConfirm);
             var back=root.Q<Button>("story-return");Show(back,Visit.AwaitingReturn);back.text=Localization.Get("sur.visit.return");back.SetEnabled(Visit.CanClickReturn);
-            overlay.rootVisualElement.style.display=owner.State==AppState.Playing||Visit.AwaitingReturn?DisplayStyle.Flex:DisplayStyle.None;
+            overlay.rootVisualElement.style.display=owner.State==AppState.Playing&&!owner.IsPaused||Visit.AwaitingReturn?DisplayStyle.Flex:DisplayStyle.None;
             float width=Mathf.Min(root.resolvedStyle.width-40,(root.resolvedStyle.height-170)*4/3);var frame=root.Q("story-frame");if(float.IsFinite(width)&&width>0){frame.style.width=width;frame.style.height=width*.75f;}
         }
         void ChapterDirector.ISceneLoader.Load(string name,Action done,Action<string> failed){if(name==gameObject.scene.name)done();else failed("Open SurveyorChapter or SurveyorArchive.");}
