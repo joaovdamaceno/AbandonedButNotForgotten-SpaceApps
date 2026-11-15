@@ -16,7 +16,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
             {
                 var dir = Environment.GetEnvironmentVariable("MARSORIGIN_CAPTURE_DIR");
                 var times = new List<float>();
-                foreach (var part in (Environment.GetEnvironmentVariable("MARSORIGIN_TIMES") ?? "1,6,9,13,18,21,24").Split(','))
+                foreach (var part in (Environment.GetEnvironmentVariable("MARSORIGIN_TIMES") ?? "2,5,8,14,22,30,36,39").Split(','))
                     times.Add(float.Parse(part, System.Globalization.CultureInfo.InvariantCulture));
 
                 Directory.CreateDirectory(dir);
@@ -29,7 +29,7 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
                 sequenceDirector.Initialize(cameraDirector, null, null);
                 director.Initialize(sequenceDirector, cameraDirector);
                 var sequences = new[] { "M01", "M02", "M03" };
-                var offsets = new[] { 0f, MarsOriginChoreography.MapStart, MarsOriginChoreography.LaunchStart };
+                var offsets = new[] { 0f, MarsOriginChoreography.LabStart, MarsOriginChoreography.GlobeStart };
                 var rt = new RenderTexture(1280, 720, 24, RenderTextureFormat.ARGB32);
                 var texture = new Texture2D(1280, 720, TextureFormat.RGB24, false);
                 foreach (var t in times)

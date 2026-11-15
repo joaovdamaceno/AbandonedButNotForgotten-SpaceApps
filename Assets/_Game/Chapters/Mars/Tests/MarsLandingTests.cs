@@ -12,7 +12,7 @@ using static Abandoned.SpaceApps.MerLandingChoreography;
 namespace Abandoned.SpaceApps.Tests
 {
     /// <summary>
-    /// MAR-014: pouso paralelo M04–M06. Prova comportamento (não o gosto visual): durações 18/4/5 s, datas e 21 dias, rover e pétalas
+    /// MAR-014: pouso paralelo M04–M06. Prova comportamento (não o gosto visual): durações 18/4/9,5 s, datas e 21 dias, rover e pétalas
     /// escondidos, escudo que não some, dois impactos na elipse, câmeras acima do terreno e sem snap, split com duas câmeras e
     /// depois uma, eventos no mesmo relógio da coreografia, pausa e entrega da câmera de condução.
     /// </summary>
@@ -37,6 +37,8 @@ namespace Abandoned.SpaceApps.Tests
         SequenceDirector sequenceDirector;
         Camera mainCamera;
 
+        static MerLandingSite OppSite => Abandoned.SpaceApps.Chapters.Mars.EditorTools.MerLandingBuilder.OpportunitySite;
+
         [SetUp]
         public void SetUp()
         {
@@ -52,7 +54,7 @@ namespace Abandoned.SpaceApps.Tests
             var host = Track(new GameObject("directors"));
             mainCamera = Track(new GameObject("main camera")).AddComponent<Camera>();
             cameraDirector = host.AddComponent<CameraDirector>();
-            cameraDirector.GroundProbe = p => MerLandingChoreography.Ground(MerLandingSite.Meridiani, p.x, p.z);
+            cameraDirector.GroundProbe = p => MerLandingChoreography.Ground(OppSite, p.x, p.z);
             cameraDirector.Initialize(mainCamera);
             sequenceDirector = host.AddComponent<SequenceDirector>();
             sequenceDirector.Initialize(cameraDirector, null, null);
@@ -92,7 +94,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(data.Validate(), Is.Empty, ContractValidation.Describe(data.Validate()));
             Assert.That(split.TotalDurationSeconds, Is.EqualTo(18f).Within(1e-4f), "M04 = 18 s");
             Assert.That(eagle.TotalDurationSeconds, Is.EqualTo(4f).Within(1e-4f), "M05 = 4 s");
-            Assert.That(verification.TotalDurationSeconds, Is.EqualTo(5f).Within(1e-4f), "M06 = 5 s");
+            Assert.That(verification.TotalDurationSeconds, Is.EqualTo(9.5f).Within(1e-4f), "M06 = 9,5 s (verificações, pétalas e saída do rover)");
             Assert.That(split.Shots.Count, Is.EqualTo(3), "três planos");
             Assert.That(split.Shots.Select(s => s.DurationSeconds), Is.All.EqualTo(6f).Within(1e-4f), "de seis segundos");
             Assert.That(split.SequenceId, Is.EqualTo("mars.seq.M04"));
@@ -146,8 +148,8 @@ namespace Abandoned.SpaceApps.Tests
             }
 
             director.ApplyAt(10f);
-            Assert.That(director.VisibleLabels.Single(l => l.TextKey == "MAR.L01").Anchor, Is.EqualTo(MarsLandingLabelAnchor.UpperHalf), "Spirit acima");
-            Assert.That(director.VisibleLabels.Single(l => l.TextKey == "MAR.L02").Anchor, Is.EqualTo(MarsLandingLabelAnchor.LowerHalf), "Opportunity abaixo");
+            Assert.That(director.VisibleLabels.Single(l => l.TextKey == "MAR.L01").Anchor, Is.EqualTo(MarsLandingLabelAnchor.LeftHalf), "Spirit à esquerda");
+            Assert.That(director.VisibleLabels.Single(l => l.TextKey == "MAR.L02").Anchor, Is.EqualTo(MarsLandingLabelAnchor.RightHalf), "Opportunity à direita");
             director.ApplyAt(23f);
             Assert.That(director.VisibleLabels.Select(l => l.TextKey), Is.EqualTo(new[] { "MAR.L03" }), "M06 mostra só o marco de 31 JAN");
 
@@ -205,7 +207,7 @@ namespace Abandoned.SpaceApps.Tests
             foreach (var t in Times(0f, TotalSeconds, 0.25f))
             {
                 var a = Sample(t, MerLandingSite.Gusev);
-                var b = Sample(t, MerLandingSite.Meridiani);
+                var b = Sample(t, OppSite);
                 Assert.That(a.Capsule.Position.x, Is.EqualTo(b.Capsule.Position.x).Within(1e-4f), $"t={t}");
                 Assert.That(a.Capsule.Position.z, Is.EqualTo(b.Capsule.Position.z).Within(1e-4f));
                 Assert.That(a.Lander.Position.x, Is.EqualTo(b.Lander.Position.x).Within(1e-4f));
@@ -213,12 +215,12 @@ namespace Abandoned.SpaceApps.Tests
                 Assert.That(a.AirbagInflation, Is.EqualTo(b.AirbagInflation));
                 Assert.That(a.PetalOpen, Is.EqualTo(b.PetalOpen));
                 var heightA = a.Lander.Position.y - ContactGround(MerLandingSite.Gusev, a.Lander.Position.x, a.Lander.Position.z);
-                var heightB = b.Lander.Position.y - ContactGround(MerLandingSite.Meridiani, b.Lander.Position.x, b.Lander.Position.z);
+                var heightB = b.Lander.Position.y - ContactGround(OppSite, b.Lander.Position.x, b.Lander.Position.z);
                 Assert.That(heightA, Is.EqualTo(heightB).Within(1e-3f), $"t={t}: mesma altura sobre o chão local");
             }
 
             Assert.That(spirit.Site, Is.EqualTo(MerLandingSite.Gusev));
-            Assert.That(opportunity.Site, Is.EqualTo(MerLandingSite.Meridiani));
+            Assert.That(opportunity.Site, Is.EqualTo(OppSite));
             Assert.That(Vector3.Distance(spirit.transform.position, opportunity.transform.position), Is.GreaterThan(1500f), "palcos distantes: uma câmera nunca vê o outro");
         }
 
@@ -305,7 +307,7 @@ namespace Abandoned.SpaceApps.Tests
         [Test]
         public void HeatShieldIsNeverHiddenFallsAwayFromTheModuleAndRestsOnTheGround()
         {
-            foreach (var site in new[] { MerLandingSite.Gusev, MerLandingSite.Meridiani })
+            foreach (var site in new[] { MerLandingSite.Gusev, OppSite })
             {
                 var assembly = site == MerLandingSite.Gusev ? spirit : opportunity;
                 var previous = Vector3.zero;
@@ -336,7 +338,7 @@ namespace Abandoned.SpaceApps.Tests
                         {
                             landed = true;
                             restPosition = position;
-                            Assert.That(position.y, Is.EqualTo(ContactGround(site, position.x, position.z) + 0.55f).Within(0.01f), "repouso sobre o chão");
+                            Assert.That(position.y, Is.EqualTo(ContactGround(site, position.x, position.z) + 0.55f * MerLandingLayout.HardwareScale).Within(0.01f), "repouso sobre o chão");
                         }
 
                         Assert.That(position, Is.EqualTo(restPosition), $"{site} t={t}: escudo no solo não se move");
@@ -350,7 +352,7 @@ namespace Abandoned.SpaceApps.Tests
         [Test]
         public void NoActorEverTeleportsOrSpinsFasterThanTheChoreographyAllows()
         {
-            foreach (var site in new[] { MerLandingSite.Gusev, MerLandingSite.Meridiani })
+            foreach (var site in new[] { MerLandingSite.Gusev, OppSite })
             {
                 var previous = Sample(0f, site);
                 foreach (var t in Times(0.02f, TotalSeconds, 0.02f))
@@ -410,14 +412,14 @@ namespace Abandoned.SpaceApps.Tests
 
             foreach (var t in Times(TCut, TStop, 0.05f))
             {
-                var p = Sample(t, MerLandingSite.Meridiani).Lander.Position;
+                var p = Sample(t, OppSite).Lander.Position;
                 Assert.That(InsideEllipse(new Vector2(p.x, p.z)), Is.True, $"t={t}: módulo fora da elipse");
             }
 
             bool Grounded(float t)
             {
-                var pose = Sample(t, MerLandingSite.Meridiani);
-                var rest = ContactGround(MerLandingSite.Meridiani, pose.Lander.Position.x, pose.Lander.Position.z) + TumbleLiftReference(t);
+                var pose = Sample(t, OppSite);
+                var rest = ContactGround(OppSite, pose.Lander.Position.x, pose.Lander.Position.z) + TumbleLiftReference(t);
                 return Mathf.Abs(pose.Lander.Position.y - rest) < 0.02f;
             }
 
@@ -425,15 +427,15 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(Grounded(TImpact2), Is.True, "toca o chão no segundo impacto");
             Assert.That(Grounded(0.5f * (TImpact1 + TImpact2)), Is.False, "entre os impactos está no ar (quique)");
             Assert.That(Grounded(0.5f * (TCut + TImpact1)), Is.False, "entre o corte e o primeiro impacto cai");
-            var apex = Sample(0.5f * (TImpact1 + TImpact2), MerLandingSite.Meridiani).Lander.Position.y
-                - ContactGround(MerLandingSite.Meridiani, Sample(0.5f * (TImpact1 + TImpact2), MerLandingSite.Meridiani).Lander.Position.x, Sample(0.5f * (TImpact1 + TImpact2), MerLandingSite.Meridiani).Lander.Position.z)
+            var apex = Sample(0.5f * (TImpact1 + TImpact2), OppSite).Lander.Position.y
+                - ContactGround(OppSite, Sample(0.5f * (TImpact1 + TImpact2), OppSite).Lander.Position.x, Sample(0.5f * (TImpact1 + TImpact2), OppSite).Lander.Position.z)
                 - TumbleLiftReference(0.5f * (TImpact1 + TImpact2));
             Assert.That(apex, Is.EqualTo(FirstBounceApexMeters).Within(0.05f), "altura do quique explícita");
 
-            var stopPose = Sample(TStop, MerLandingSite.Meridiani).Lander;
+            var stopPose = Sample(TStop, OppSite).Lander;
             foreach (var t in Times(TStop, TDeflateStart - 0.1f, 0.25f))
             {
-                var pose = Sample(t, MerLandingSite.Meridiani).Lander;
+                var pose = Sample(t, OppSite).Lander;
                 Assert.That(pose.Position, Is.EqualTo(stopPose.Position), $"t={t}: parado");
                 Assert.That(Quaternion.Angle(pose.Rotation, stopPose.Rotation), Is.LessThan(0.01f), $"t={t}: parado e de pé");
             }
@@ -445,7 +447,7 @@ namespace Abandoned.SpaceApps.Tests
 
         static float TumbleLiftReference(float t)
         {
-            var pose = Sample(t, MerLandingSite.Meridiani);
+            var pose = Sample(t, OppSite);
             // Raio de contato = altura do baricentro sobre o chão quando há contato.
             var settle = Smooth((t - TImpact2) / (TStop - TImpact2));
             var inflated = Mathf.Lerp(MerLandingLayout.TumbleContactRadius(), MerLandingLayout.RestCenterHeightInflated, settle);
@@ -462,8 +464,8 @@ namespace Abandoned.SpaceApps.Tests
                 {
                     var center = opportunity.LobeCenter(i);
                     var bottom = center.y - opportunity.Lobes[i].lossyScale.y * 0.5f;
-                    var ground = MerLandingChoreography.Ground(MerLandingSite.Meridiani, center.x, center.z);
-                    Assert.That(bottom, Is.GreaterThanOrEqualTo(ground - 0.7f), $"t={t}: lobo {i} enterrado");
+                    var ground = MerLandingChoreography.Ground(OppSite, center.x, center.z);
+                    Assert.That(bottom, Is.GreaterThanOrEqualTo(ground - 0.7f * MerLandingLayout.HardwareScale), $"t={t}: lobo {i} enterrado");
                 }
             }
         }
@@ -551,7 +553,7 @@ namespace Abandoned.SpaceApps.Tests
                     foreach (var t in Times(0f, shot.DurationSeconds, 0.02f))
                     {
                         CameraDirector.SampleKeyframes(shot, t, out var position, out _, out _);
-                        var ground = MerLandingChoreography.Ground(MerLandingSite.Meridiani, position.x, position.z);
+                        var ground = MerLandingChoreography.Ground(OppSite, position.x, position.z);
                         Assert.That(position.y, Is.GreaterThanOrEqualTo(ground + shot.MinGroundClearanceMeters - 0.02f),
                             $"{shot.ShotId} t={t}: câmera a {position.y - ground:0.00} m do terreno");
                     }
@@ -569,7 +571,7 @@ namespace Abandoned.SpaceApps.Tests
             {
                 var origin = new Vector3(xz.x, 50f, xz.y);
                 Assert.That(ground.Raycast(new Ray(origin, Vector3.down), out var hit, 200f), Is.True);
-                Assert.That(hit.point.y, Is.EqualTo(MerLandingChoreography.Ground(MerLandingSite.Meridiani, xz.x, xz.y)).Within(0.45f), $"({xz.x},{xz.y})");
+                Assert.That(hit.point.y, Is.EqualTo(MerLandingChoreography.Ground(OppSite, xz.x, xz.y)).Within(0.45f), $"({xz.x},{xz.y})");
             }
         }
 
@@ -584,7 +586,7 @@ namespace Abandoned.SpaceApps.Tests
                     for (var t = Step; t <= shot.DurationSeconds + 1e-4f; t += Step)
                     {
                         CameraDirector.SampleKeyframes(shot, t, out var p1, out var r1, out _);
-                        Assert.That(Vector3.Distance(p0, p1), Is.LessThan(3.2f), $"{shot.ShotId} t={t}: câmera pulou");
+                        Assert.That(Vector3.Distance(p0, p1), Is.LessThan(3.2f * MerLandingLayout.HardwareScale / 1.6f), $"{shot.ShotId} t={t}: câmera pulou");
                         Assert.That(Quaternion.Angle(r0, r1), Is.LessThan(6f), $"{shot.ShotId} t={t}: câmera girou de uma vez");
                         p0 = p1;
                         r0 = r1;
@@ -639,9 +641,11 @@ namespace Abandoned.SpaceApps.Tests
             mainCamera.enabled = true;
             director.ApplyAt(5f);
             Assert.That(director.RenderedCameraCount, Is.EqualTo(2), "split: duas renderizações");
-            Assert.That(mainCamera.rect, Is.EqualTo(new Rect(0f, 0f, 1f, 0.5f)), "Opportunity embaixo");
-            Assert.That(director.SpiritCamera.rect.y, Is.EqualTo(0.5f).Within(1e-4f));
-            Assert.That(director.SpiritCamera.rect.yMax, Is.EqualTo(1f).Within(1e-4f), "Spirit acima");
+            Assert.That(mainCamera.rect, Is.EqualTo(new Rect(0.5f, 0f, 0.5f, 1f)), "Opportunity à direita");
+            Assert.That(director.SpiritCamera.rect.x, Is.EqualTo(0f).Within(1e-4f), "Spirit à esquerda");
+            Assert.That(director.SpiritCamera.rect.xMax, Is.EqualTo(0.5f).Within(1e-4f));
+            Assert.That(director.IsSplitScreen, Is.True, "a UI desenha a linha divisória");
+            Assert.That(director.DividerX, Is.EqualTo(0.5f).Within(1e-4f), "linha no meio");
 
             foreach (var t in new[] { 0f, 9f, 17.99f, 18.5f, 20f, 21.9f })
             {
@@ -660,10 +664,10 @@ namespace Abandoned.SpaceApps.Tests
             foreach (var t in Times(17f, 23f, Step))
             {
                 director.ApplyAt(t);
-                var height = director.OpportunityHeight;
+                var height = director.OpportunityWidth;
                 Assert.That(height, Is.GreaterThanOrEqualTo(previous - 1e-5f), $"t={t}");
-                Assert.That(height - previous, Is.LessThan(0.035f), $"t={t}: a metade inferior cresce sem snap");
-                Assert.That(mainCamera.rect.yMax + director.SpiritCamera.rect.height, Is.EqualTo(1f + 0f).Within(0.0002f).Or.EqualTo(mainCamera.rect.yMax + 0.0001f).Within(0.0003f));
+                Assert.That(height - previous, Is.LessThan(0.035f), $"t={t}: a metade da direita cresce sem snap");
+                Assert.That(director.SpiritCamera.rect.xMax, Is.EqualTo(mainCamera.rect.x).Within(0.0003f), "as duas metades se encostam na linha");
                 previous = height;
             }
 
@@ -671,7 +675,7 @@ namespace Abandoned.SpaceApps.Tests
         }
 
         [Test]
-        public void HorizontalFieldOfViewIsConstantWhileTheLowerHalfGrows()
+        public void HorizontalFieldOfViewIsConstantWhileTheRightHalfGrows()
         {
             var shot = eagle.Shots[0];
             float Horizontal(float t)
@@ -732,9 +736,9 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(spirit.gameObject.activeSelf, Is.False);
             director.ApplyAt(2f);
             Assert.That(spirit.gameObject.activeSelf, Is.True, "reinício recria o palco do Spirit");
-            Assert.That(mainCamera.rect.height, Is.EqualTo(0.5f).Within(1e-4f));
+            Assert.That(mainCamera.rect.width, Is.EqualTo(0.5f).Within(1e-4f));
             Assert.That(director.VisibleLabels.Select(l => l.TextKey), Does.Contain("MAR.L01"));
-            var again = Sample(2f, MerLandingSite.Meridiani);
+            var again = Sample(2f, OppSite);
             Assert.That(opportunity.Lander.localPosition, Is.EqualTo(again.Lander.Position), "mesmo estado depois de voltar no tempo");
 
             director.Release();
@@ -761,7 +765,7 @@ namespace Abandoned.SpaceApps.Tests
                     var landerBefore = opportunity.Lander.localPosition;
                     var cameraBefore = mainCamera.transform.position;
                     var spiritBefore = director.SpiritCamera.transform.position;
-                    var heightBefore = mainCamera.rect.height;
+                    var widthBefore = mainCamera.rect.width;
                     sequenceDirector.Pause();
                     for (var i = 0; i < 40; i++)
                     {
@@ -772,7 +776,7 @@ namespace Abandoned.SpaceApps.Tests
                     Assert.That(opportunity.Lander.localPosition, Is.EqualTo(landerBefore), "pausa congela o módulo");
                     Assert.That(mainCamera.transform.position, Is.EqualTo(cameraBefore), "e a câmera principal");
                     Assert.That(director.SpiritCamera.transform.position, Is.EqualTo(spiritBefore), "e a câmera do Spirit");
-                    Assert.That(mainCamera.rect.height, Is.EqualTo(heightBefore));
+                    Assert.That(mainCamera.rect.width, Is.EqualTo(widthBefore));
                     sequenceDirector.Resume();
                 }
             }

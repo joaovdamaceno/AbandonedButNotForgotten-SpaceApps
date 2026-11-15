@@ -169,7 +169,7 @@ namespace Abandoned.SpaceApps
 
             switch (step)
             {
-                case "M07": PlaceRover(eagleRoverStart); break;
+                case "M07": PlaceRover(RoverStartAfterLanding()); break;
                 case "M16": PlaceRover(shieldAnchors.ApproachStart); break;
                 case "M21": PlaceRover(victoriaAnchors.RoverStart); break;
                 case "M24": PlaceRover(valleyAnchors.RoverStart); break;
@@ -182,10 +182,60 @@ namespace Abandoned.SpaceApps
             }
         }
 
+        /// <summary>
+        /// Onde o jogo começa: o ponto em que o rover parou ao sair do módulo (a cinemática M06 o leva até lá),
+        /// sem teleportar. Sem pouso montado, vale a âncora de rota do terreno.
+        /// </summary>
+        Transform RoverStartAfterLanding()
+        {
+            var anchor = landingDirector != null && landingDirector.Opportunity != null ? landingDirector.Opportunity.EgressAnchor : null;
+            return anchor != null ? anchor : eagleRoverStart;
+        }
+
+        /// <summary>
+        /// Onde fica o que o jogador precisa alcançar na etapa (para a seta do HUD): afloramento das esferas, rocha McKittrick, escudo, rocha
+        /// metálica, mirante. Nulo quando a ação acontece onde o rover já está (tutorial, tempestade, Sol, antena, escolha da memória).
+        /// </summary>
+        public Transform ObjectiveAnchor(string stepId)
+        {
+            switch (stepId)
+            {
+                case "M08":
+                case "M09": return blueberries != null ? blueberries.OutcropAnchor : null;
+                case "M10":
+                case "M11":
+                case "M12":
+                case "M13": return rat != null ? rat.transform : null;
+                case "M16":
+                case "M17": return shieldAnchors != null ? shieldAnchors.ShieldStation : null;
+                case "M18":
+                case "M19": return shieldAnchors != null ? shieldAnchors.MeteoriteStation : null;
+                case "M24": return valleyAnchors != null ? valleyAnchors.Overlook : null;
+                default: return null;
+            }
+        }
+
         void PlaceRover(Transform start)
         {
-            if (start != null)
-                rover.PlaceAt(start.position, start.rotation);
+            if (start == null)
+                return;
+
+            // Apoia no terreno real: o chão que a coreografia do pouso aproxima pode diferir alguns decímetros do mapa.
+            var position = start.position;
+            var hits = Physics.RaycastAll(position + Vector3.up * 3f, Vector3.down, 8f, ~0, QueryTriggerInteraction.Ignore);
+            var best = float.NegativeInfinity;
+            foreach (var hit in hits)
+            {
+                if (hit.collider.transform.IsChildOf(rover.transform) || hit.collider.transform.IsChildOf(rover.transform.parent))
+                    continue;
+
+                best = Mathf.Max(best, hit.point.y);
+            }
+
+            if (!float.IsNegativeInfinity(best))
+                position.y = best + 0.02f;
+
+            rover.PlaceAt(position, start.rotation);
         }
 
         /// <summary>Volta ao início do capítulo: cancela a sequência, devolve câmera/exposição, esquece a memória e esconde o rover.</summary>

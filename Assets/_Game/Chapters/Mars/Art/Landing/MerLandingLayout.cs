@@ -5,28 +5,31 @@ namespace Abandoned.SpaceApps
 {
     /// <summary>
     /// Geometria do conjunto de pouso (metros), compartilhada pelo builder, pelo componente e pelos testes.
-    /// Escala cinematográfica: o hardware de pouso é desenhado maior que o real para que o rover (escala 1:1, modelo da MAR-011)
-    /// caiba dobrado dentro das pétalas; o rover guardado usa <see cref="StowedRoverScale"/> e cresce ao se desdobrar.
+    /// Escala cinematográfica: o hardware de pouso é desenhado <see cref="HardwareScale"/> vezes maior que o do desenho original para que o
+    /// rover (escala 1:1, modelo da MAR-011) caiba dobrado dentro das pétalas sem precisar encolher: o rover tem o mesmo tamanho do jogo
+    /// do começo ao fim e só desdobra as articulações.
     /// Quadro do módulo: origem no baricentro do tetraedro, +Y para cima, frente do rover em +Z.
     /// </summary>
     public static class MerLandingLayout
     {
-        public const float HullEdgeMeters = 3.9f;
-        public const float PetalThicknessMeters = 0.12f;
+        /// <summary>Fator de tamanho do hardware em relação ao desenho original (era 1/0,42 para o rover guardado caber).</summary>
+        public const float HardwareScale = 2.4f;
+        public const float HullEdgeMeters = 3.9f * HardwareScale;
+        public const float PetalThicknessMeters = 0.12f * HardwareScale;
         public const float PetalOpenDegrees = 105f;
-        public const float LobeRadiusMeters = 1.25f;
-        public const float CoreRadiusMeters = 1.6f;
-        public const float StowedRoverScale = 0.42f;
+        public const float LobeRadiusMeters = 1.25f * HardwareScale;
+        public const float CoreRadiusMeters = 1.6f * HardwareScale;
+        public const float StowedRoverScale = 1f;
         public const float RoverBaseClearanceMeters = 0f;
 
         // Aeroshell (quadro da cápsula: y = 0 no plano de junção; escudo abaixo, casco traseiro acima).
-        public const float CapsuleRadiusMeters = 2.6f;
-        public const float ShieldSagMeters = 0.55f;
-        public const float BackshellHeightMeters = 4.2f;
-        public const float BackshellCapRadiusMeters = 0.5f;
-        public const float LanderBaseInCapsuleMeters = 0.35f;
-        public const float ParachuteAnchorHeightMeters = 26f;
-        public const float ParachuteRadiusMeters = 12f;
+        public const float CapsuleRadiusMeters = 2.6f * HardwareScale;
+        public const float ShieldSagMeters = 0.55f * HardwareScale;
+        public const float BackshellHeightMeters = 4.2f * HardwareScale;
+        public const float BackshellCapRadiusMeters = 0.5f * HardwareScale;
+        public const float LanderBaseInCapsuleMeters = 0.35f * HardwareScale;
+        public const float ParachuteAnchorHeightMeters = 26f * HardwareScale;
+        public const float ParachuteRadiusMeters = 12f * HardwareScale;
 
         public static readonly float InRadius = HullEdgeMeters / (2f * Mathf.Sqrt(3f));
         public static readonly float CircumRadius = 2f * InRadius;
@@ -102,13 +105,13 @@ namespace Abandoned.SpaceApps
                 if (Vector3.Dot(normal, centroid) < 0f)
                     normal = -normal;
 
-                var lift = normal * 0.5f;
+                var lift = normal * 0.5f * HardwareScale;
                 result.Add(new Lobe { Center = centroid + lift, Face = f });
                 for (var i = 0; i < 3; i++)
                 {
-                    result.Add(new Lobe { Center = centroid + (v[i] - centroid).normalized * 1.55f + lift, Face = f });
+                    result.Add(new Lobe { Center = centroid + (v[i] - centroid).normalized * 1.55f * HardwareScale + lift, Face = f });
                     var mid = (v[i] + v[(i + 1) % 3]) * 0.5f;
-                    result.Add(new Lobe { Center = centroid + (mid - centroid).normalized * 1.0f + lift, Face = f });
+                    result.Add(new Lobe { Center = centroid + (mid - centroid).normalized * 1.0f * HardwareScale + lift, Face = f });
                 }
             }
 
@@ -126,7 +129,7 @@ namespace Abandoned.SpaceApps
         }
 
         /// <summary>Altura do baricentro sobre o chão com o módulo apoiado nos lobos da base (inflado).</summary>
-        public static float RestCenterHeightInflated => CentroidHeight + 0.5f + LobeRadiusMeters;
+        public static float RestCenterHeightInflated => CentroidHeight + 0.5f * HardwareScale + LobeRadiusMeters;
 
         /// <summary>Altura do baricentro com os airbags vazios e o módulo apoiado na pétala-base.</summary>
         public static float RestCenterHeightDeflated => CentroidHeight + PetalThicknessMeters;

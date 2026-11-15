@@ -5,11 +5,11 @@ using UnityEngine;
 namespace Abandoned.SpaceApps
 {
     /// <summary>
-    /// Pouso paralelo de M04–M06: Spirit em cima, Opportunity embaixo, depois Opportunity cresce e fica sozinha. Lê o MESMO relógio
+    /// Pouso paralelo de M04–M06: Spirit à esquerda, Opportunity à direita (com uma linha dividindo), depois Opportunity cresce e fica sozinha. Lê o MESMO relógio
     /// do <see cref="SequenceDirector"/> (tempo local da sequência + deslocamento), então pausa, salto e reinício movem câmera,
     /// atores e letreiros juntos. A câmera principal continua sendo do <see cref="CameraDirector"/>; esta classe só dirige a
     /// câmera secundária do Spirit (os mesmos planos, outro palco), os retângulos de viewport e a visibilidade dos letreiros.
-    /// Orçamento Web: duas renderizações durante M04 e M05 (até a metade inferior ocupar a tela) e uma depois; o palco do
+    /// Orçamento Web: duas renderizações durante M04 e M05 (até a metade da direita ocupar a tela) e uma depois; o palco do
     /// Spirit é desativado ao fim do split (descarte).
     /// </summary>
     public sealed class MarsDualLandingDirector : MonoBehaviour
@@ -40,8 +40,14 @@ namespace Abandoned.SpaceApps
         /// <summary>Muda quando o conjunto de letreiros visíveis muda (UI mostra pelas chaves).</summary>
         public event Action<IReadOnlyList<MarsLandingLabel>> LabelsChanged;
 
-        /// <summary>Quanto da tela a metade inferior (Opportunity) ocupa: 0,5 no split, 1 depois de M05.</summary>
-        public float OpportunityHeight { get; private set; } = 1f;
+        /// <summary>Quanto da largura da tela a metade da direita (Opportunity) ocupa: 0,5 no split, 1 depois de M05.</summary>
+        public float OpportunityWidth { get; private set; } = 1f;
+
+        /// <summary>Posição horizontal (0–1) da linha que divide as duas metades; só vale enquanto <see cref="IsSplitScreen"/>.</summary>
+        public float DividerX => 1f - OpportunityWidth;
+
+        /// <summary>Verdadeiro enquanto as duas metades aparecem lado a lado (a UI desenha a linha divisória).</summary>
+        public bool IsSplitScreen => spiritCamera != null && spiritCamera.enabled;
 
         public int RenderedCameraCount
         {
@@ -152,17 +158,17 @@ namespace Abandoned.SpaceApps
         void ApplyViewports(float time)
         {
             var growth = MerLandingChoreography.Smooth((time - data.SplitSeconds) / data.EagleSeconds);
-            OpportunityHeight = Mathf.Lerp(0.5f, 1f, growth);
+            OpportunityWidth = Mathf.Lerp(0.5f, 1f, growth);
             var main = cameraDirector != null ? cameraDirector.TargetCamera : null;
             if (main != null)
-                main.rect = new Rect(0f, 0f, 1f, OpportunityHeight);
+                main.rect = new Rect(1f - OpportunityWidth, 0f, OpportunityWidth, 1f);
 
             if (spiritCamera == null)
                 return;
 
-            var spiritHeight = 1f - OpportunityHeight;
-            spiritCamera.rect = new Rect(0f, OpportunityHeight, 1f, Mathf.Max(0.0001f, spiritHeight));
-            spiritCamera.enabled = spiritHeight > 0.0005f && !released;
+            var spiritWidth = 1f - OpportunityWidth;
+            spiritCamera.rect = new Rect(0f, 0f, Mathf.Max(0.0001f, spiritWidth), 1f);
+            spiritCamera.enabled = spiritWidth > 0.0005f && !released;
         }
 
         void ApplySpiritCamera(float time)
@@ -242,7 +248,7 @@ namespace Abandoned.SpaceApps
             if (main != null)
                 main.rect = new Rect(0f, 0f, 1f, 1f);
 
-            OpportunityHeight = 1f;
+            OpportunityWidth = 1f;
         }
 
         void RefreshLabels(float time)

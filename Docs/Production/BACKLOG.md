@@ -35,7 +35,7 @@
 | [MAR-010](../Tasks/MAR-010.md) | Validar primeira experiência deMarte e regressões visuais | R3 | P0 | 0.75 | MAR-009, QA-001 |
 | [MAR-011](../Tasks/MAR-011.md) | Auditar modeloNASA e preparar rig/material compartilhado dos gêmeos | R4 | P0 | 0.75 | ART-001, CORE-001 |
 | [MAR-012](../Tasks/MAR-012.md) | Construir Eagle orgânica com percurso e rocha assentados | R4 | P0 | 1.5 | ART-001, MAR-011 |
-| [MAR-013](../Tasks/MAR-013.md) | Autorar laboratório, mapa e lançamentos curtos com propósito | R4 | P0 | 1.5 | CORE-004, MAR-011 |
+| [MAR-013](../Tasks/MAR-013.md) | Autorar laboratório, mapa e abertura curta com propósito | R4 | P0 | 1.5 | CORE-004, MAR-011 |
 | [MAR-014](../Tasks/MAR-014.md) | Criar pouso split com continuidade deescudo, módulo eairbags | R4 | P0 | 2 | CORE-004, MAR-011 |
 | [MAR-015](../Tasks/MAR-015.md) | Assentar campo do escudo e meteorito usando imagens reais | R4 | P0 | 1 | ART-001 |
 | [MAR-016](../Tasks/MAR-016.md) | Criar Victoria e vale com dois estados de poeira eficientes | R4 | P0 | 1.25 | ART-001 |

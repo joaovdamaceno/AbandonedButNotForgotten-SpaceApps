@@ -21,5 +21,8 @@ namespace Abandoned.SpaceApps
         public float AirbagDeflation;
         public float PetalOpen;
         public float RoverUnfold;
+
+        /// <summary>0–1: o rover desce a pétala dianteira e dirige até o chão (saída do módulo).</summary>
+        public float RoverDrive;
     }
 }

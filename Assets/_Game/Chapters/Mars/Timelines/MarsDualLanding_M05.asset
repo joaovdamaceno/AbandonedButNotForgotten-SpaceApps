@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
-  m_Name: MarsDualLanding_M05
+  m_Name: 
   m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
   sequenceId: mars.seq.M05
   shots:
@@ -23,72 +23,72 @@ MonoBehaviour:
     continueFromPreviousShot: 1
     keyframes:
     - timeSeconds: 0
-      positionMeters: {x: 6, y: 2.0292041, z: -46}
-      eulerAnglesDegrees: {x: 2.9242296, y: 352.5686, z: -0.000000013357607}
-      fieldOfViewDegrees: 20
+      positionMeters: {x: 14.400001, y: 4.818845, z: -110.4}
+      eulerAnglesDegrees: {x: 0.7785739, y: 352.5686, z: 0}
+      fieldOfViewDegrees: 70.39124
     - timeSeconds: 0.25
-      positionMeters: {x: 6.067383, y: 2.1074893, z: -45.77539}
-      eulerAnglesDegrees: {x: 3.0346262, y: 352.44965, z: -0.000000013358947}
-      fieldOfViewDegrees: 20.22
+      positionMeters: {x: 14.561719, y: 5.0123916, z: -109.86094}
+      eulerAnglesDegrees: {x: 0.88222456, y: 352.44965, z: -0.000000013341794}
+      fieldOfViewDegrees: 69.78961
     - timeSeconds: 0.5
-      positionMeters: {x: 6.2578125, y: 2.3287306, z: -45.140625}
-      eulerAnglesDegrees: {x: 3.3520124, y: 352.10742, z: 0}
-      fieldOfViewDegrees: 20.840923
+      positionMeters: {x: 15.01875, y: 5.554362, z: -108.3375}
+      eulerAnglesDegrees: {x: 1.1777239, y: 352.10742, z: -0.0000000066715167}
+      fieldOfViewDegrees: 68.13707
     - timeSeconds: 0.75
-      positionMeters: {x: 6.553711, y: 2.6725051, z: -44.154297}
-      eulerAnglesDegrees: {x: 3.8614821, y: 351.55737, z: -0.000000026741134}
-      fieldOfViewDegrees: 21.80328
+      positionMeters: {x: 15.728907, y: 6.396572, z: -105.970314}
+      eulerAnglesDegrees: {x: 1.6525152, y: 351.55737, z: -0.000000013345762}
+      fieldOfViewDegrees: 65.702095
     - timeSeconds: 1
-      positionMeters: {x: 6.9375, y: 3.118391, z: -42.875}
-      eulerAnglesDegrees: {x: 4.553265, y: 350.80878, z: 0.000000026764896}
-      fieldOfViewDegrees: 23.046846
+      positionMeters: {x: 16.650002, y: 7.447558, z: -102.9}
+      eulerAnglesDegrees: {x: 2.2753375, y: 350.80878, z: 0}
+      fieldOfViewDegrees: 62.766052
     - timeSeconds: 1.25
-      positionMeters: {x: 7.3916016, y: 3.6459658, z: -41.36133}
-      eulerAnglesDegrees: {x: 5.419853, y: 349.86774, z: -0.000000053600484}
-      fieldOfViewDegrees: 24.511145
+      positionMeters: {x: 17.739845, y: 8.7036915, z: -99.26719}
+      eulerAnglesDegrees: {x: 3.064051, y: 349.86774, z: 0}
+      fieldOfViewDegrees: 59.58409
     - timeSeconds: 1.5
-      positionMeters: {x: 7.8984375, y: 4.2348075, z: -39.671875}
-      eulerAnglesDegrees: {x: 6.4531775, y: 348.74, z: 0.000000053701097}
-      fieldOfViewDegrees: 26.135925
+      positionMeters: {x: 18.956251, y: 10.131452, z: -95.2125}
+      eulerAnglesDegrees: {x: 4.0217414, y: 348.74, z: -0.00000008023886}
+      fieldOfViewDegrees: 56.36328
     - timeSeconds: 1.75
-      positionMeters: {x: 8.44043, y: 4.864494, z: -37.865234}
-      eulerAnglesDegrees: {x: 7.6415806, y: 347.4338, z: 0.00000010767795}
-      fieldOfViewDegrees: 27.861637
+      positionMeters: {x: 20.257032, y: 11.682175, z: -90.876564}
+      eulerAnglesDegrees: {x: 5.14075, y: 347.4338, z: -0.000000053576354}
+      fieldOfViewDegrees: 53.256374
     - timeSeconds: 2
-      positionMeters: {x: 9, y: 5.514602, z: -36}
-      eulerAnglesDegrees: {x: 8.966473, y: 345.96375, z: 0}
-      fieldOfViewDegrees: 29.62989
+      positionMeters: {x: 21.6, y: 13.221139, z: -86.4}
+      eulerAnglesDegrees: {x: 6.352795, y: 345.96375, z: -0.000000053690542}
+      fieldOfViewDegrees: 50.36631
     - timeSeconds: 2.25
-      positionMeters: {x: 9.55957, y: 6.1647105, z: -34.134766}
-      eulerAnglesDegrees: {x: 10.398797, y: 344.3549, z: -0.00000032551154}
-      fieldOfViewDegrees: 31.383825
+      positionMeters: {x: 22.94297, y: 14.742169, z: -81.92344}
+      eulerAnglesDegrees: {x: 7.656123, y: 344.3549, z: 0.00000021536324}
+      fieldOfViewDegrees: 47.756195
     - timeSeconds: 2.5
-      positionMeters: {x: 10.1015625, y: 6.7943964, z: -32.328125}
-      eulerAnglesDegrees: {x: 11.895817, y: 342.64755, z: -0.00000021812791}
-      fieldOfViewDegrees: 33.068413
+      positionMeters: {x: 24.243752, y: 16.276068, z: -77.5875}
+      eulerAnglesDegrees: {x: 9.065732, y: 342.64755, z: 0.0000003242151}
+      fieldOfViewDegrees: 45.460545
     - timeSeconds: 2.75
-      positionMeters: {x: 10.608398, y: 7.3832383, z: -30.638672}
-      eulerAnglesDegrees: {x: 13.398991, y: 340.902, z: 0.00000021941591}
-      fieldOfViewDegrees: 34.63055
+      positionMeters: {x: 25.460157, y: 17.664633, z: -73.532814}
+      eulerAnglesDegrees: {x: 10.454776, y: 340.90198, z: 0}
+      fieldOfViewDegrees: 43.49558
     - timeSeconds: 3
-      positionMeters: {x: 11.0625, y: 7.9108133, z: -29.125}
-      eulerAnglesDegrees: {x: 14.833904, y: 339.2018, z: 0.00000044160456}
-      fieldOfViewDegrees: 36.018986
+      positionMeters: {x: 26.550001, y: 18.952496, z: -69.9}
+      eulerAnglesDegrees: {x: 11.8189945, y: 339.2018, z: 0}
+      fieldOfViewDegrees: 41.86769
     - timeSeconds: 3.25
-      positionMeters: {x: 11.446289, y: 8.356699, z: -27.845703}
-      eulerAnglesDegrees: {x: 16.11295, y: 337.65433, z: -0.00000022217108}
-      fieldOfViewDegrees: 37.183983
+      positionMeters: {x: 27.471094, y: 20.00537, z: -66.82969}
+      eulerAnglesDegrees: {x: 13.013551, y: 337.65433, z: 0}
+      fieldOfViewDegrees: 40.580067
     - timeSeconds: 3.5
-      positionMeters: {x: 11.7421875, y: 8.700474, z: -26.859375}
-      eulerAnglesDegrees: {x: 17.140705, y: 336.38635, z: 0}
-      fieldOfViewDegrees: 38.076797
+      positionMeters: {x: 28.181252, y: 20.852676, z: -64.4625}
+      eulerAnglesDegrees: {x: 14.004415, y: 336.38635, z: 0.00000021998193}
+      fieldOfViewDegrees: 39.638004
     - timeSeconds: 3.75
-      positionMeters: {x: 11.932617, y: 8.921715, z: -26.22461}
-      eulerAnglesDegrees: {x: 17.821152, y: 335.5337, z: 0.0000008968054}
-      fieldOfViewDegrees: 38.648857
+      positionMeters: {x: 28.638283, y: 21.388617, z: -62.939064}
+      eulerAnglesDegrees: {x: 14.655078, y: 335.5337, z: 0.00000022062099}
+      fieldOfViewDegrees: 39.05363
     - timeSeconds: 4
-      positionMeters: {x: 12, y: 9, z: -26}
-      eulerAnglesDegrees: {x: 18.065453, y: 335.22485, z: 0}
+      positionMeters: {x: 28.800001, y: 21.58715, z: -62.4}
+      eulerAnglesDegrees: {x: 14.895984, y: 335.22485, z: 0}
       fieldOfViewDegrees: 38.8508
     events:
     - timeSeconds: 0

@@ -142,12 +142,13 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(ActiveRegions(), Is.EqualTo(1), "só a abertura ativa");
             Assert.That(bindings.Regions.Single(r => r.roots[0].activeSelf).regionId, Is.EqualTo(MarsChapterBindings.RegionOrigin));
             Assert.That(bindings.Rover.gameObject.activeSelf, Is.False);
-            Assert.That(bindings.EaglePlaceholder, Is.True, "Eagle ainda é piso provisório identificado (MAR-012 pendente)");
+            var eaglePrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_Game/Chapters/Mars/Prefabs/EagleEnvironment.prefab");
+            Assert.That(bindings.EaglePlaceholder, Is.EqualTo(eaglePrefab == null), "ambiente real da MAR-012 quando o prefab existe; senão, piso provisório identificado");
             Assert.That(bindings.Rover.GetComponentsInChildren<Renderer>(true).Length, Is.GreaterThan(10), "o modelo da MAR-011 está no VisualRoot");
 
             var sums = MarsChapterFlow.CreateDefaultBindings().Sum(b => b.ReferenceSeconds);
-            Assert.That(sums, Is.EqualTo(360f).Within(0.01f), "orçamento de 360 s");
-            Assert.That(bindings.Bindings.Chapter.TargetDurationSeconds, Is.EqualTo(360f));
+            Assert.That(sums, Is.EqualTo(374.3f).Within(0.01f), "orçamento de 374,3 s");
+            Assert.That(bindings.Bindings.Chapter.TargetDurationSeconds, Is.EqualTo(374.3f).Within(0.01f));
             Assert.That(bindings.Bindings.Chapter.SceneName, Is.EqualTo("Mars"));
         }
 
@@ -311,7 +312,7 @@ namespace Abandoned.SpaceApps.Tests
             try
             {
                 EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
-                var floor = FindByName("Eagle · PLACEHOLDER (MAR-012 pendente)");
+                var floor = FindByName("Eagle · PLACEHOLDER (MAR-012 pendente)") ?? FindByName("EagleEnvironment");
                 Assert.That(floor, Is.Not.Null);
                 floor.transform.position = new Vector3(3f, 0.25f, -2f);
                 var rover = UnityEngine.Object.FindFirstObjectByType<MarsRoverController>(FindObjectsInactive.Include).transform;
@@ -322,7 +323,7 @@ namespace Abandoned.SpaceApps.Tests
                 Assert.That(result.Succeeded, Is.True, result.ToString());
 
                 EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
-                var floorAfter = FindByName("Eagle · PLACEHOLDER (MAR-012 pendente)");
+                var floorAfter = FindByName("Eagle · PLACEHOLDER (MAR-012 pendente)") ?? FindByName("EagleEnvironment");
                 Assert.That(floorAfter.transform.position, Is.EqualTo(new Vector3(3f, 0.25f, -2f)), "a pose do piso foi preservada");
                 Assert.That(UnityEngine.Object.FindFirstObjectByType<MarsRoverController>(FindObjectsInactive.Include).transform.position, Is.EqualTo(new Vector3(1f, 0.4f, 7f)), "e a do rover");
                 var after = UnityEngine.Object.FindFirstObjectByType<MarsChapterBindings>(FindObjectsInactive.Include);

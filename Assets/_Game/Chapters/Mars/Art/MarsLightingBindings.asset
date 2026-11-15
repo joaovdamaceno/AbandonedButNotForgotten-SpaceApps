@@ -20,16 +20,16 @@ MonoBehaviour:
     ambientColor: {r: 0.22, g: 0.22, b: 0.25, a: 1}
     backgroundColor: {r: 0.015, g: 0.015, b: 0.02, a: 1}
   - regionId: mars.landing
-    sunIntensity: 1.4
-    sunColor: {r: 1, g: 0.92, b: 0.82, a: 1}
-    sunEulerDegrees: {x: 50, y: -30, z: 0}
-    ambientColor: {r: 0.36, g: 0.29, b: 0.25, a: 1}
+    sunIntensity: 2.1
+    sunColor: {r: 1, g: 0.79, b: 0.57, a: 1}
+    sunEulerDegrees: {x: 24, y: 323, z: 0}
+    ambientColor: {r: 0.38, g: 0.34, b: 0.32, a: 1}
     backgroundColor: {r: 0.62, g: 0.47, b: 0.37, a: 1}
   - regionId: mars.eagle
-    sunIntensity: 1.5
-    sunColor: {r: 1, g: 0.92, b: 0.82, a: 1}
-    sunEulerDegrees: {x: 45, y: 200, z: 0}
-    ambientColor: {r: 0.34, g: 0.27, b: 0.23, a: 1}
+    sunIntensity: 2.1
+    sunColor: {r: 1, g: 0.79, b: 0.57, a: 1}
+    sunEulerDegrees: {x: 24, y: 323, z: 0}
+    ambientColor: {r: 0.38, g: 0.34, b: 0.32, a: 1}
     backgroundColor: {r: 0.66, g: 0.5, b: 0.4, a: 1}
   - regionId: mars.shield
     sunIntensity: 1.5
