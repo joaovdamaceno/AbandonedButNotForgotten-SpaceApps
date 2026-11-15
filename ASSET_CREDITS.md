@@ -109,3 +109,8 @@ Para cada importação registrar: nome, autor/instituição, URL específica, da
 ### SUR-016 — materiais e luva
 
 Regolito 1024 e malha de luva em `Assets/_Game/Chapters/Surveyor/Materials/Polish/`: geração procedural própria, adaptando UV/marcas/Draft já existentes de SUR-002/013. Não são dados topográficos ou modelo NASA. Nenhum novo recurso externo.
+
+
+### SUR-017 — câmera recuperada no arquivo
+
+`Art/ReturnedCameraArchive/ReturnedCameraCover.asset` e `Data/ReturnedCameraCard.asset` referenciam a imagem NASA AS12-48-7134 já creditada na SUR-013, sem nova cópia ou download. Os textos são próprios e as fontes/identidades estão no README da pasta. Nenhuma imagem Smithsonian é redistribuída; A19761264000 é explicitamente artigo de teste.

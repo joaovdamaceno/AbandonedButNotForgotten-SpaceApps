@@ -16,7 +16,7 @@ MonoBehaviour:
   titleKey: sur.chapter.title
   descriptionKey: sur.chapter.description
   questionKey: sur.chapter.question
-  cover: {fileID: 0}
+  cover: {fileID: 21300000, guid: ec5ffec62e1c72c4681b9361707e4fad, type: 2}
   sceneName: SurveyorChapter
   targetDurationSeconds: 360
   initialSequenceId: surveyor.seq.Launch

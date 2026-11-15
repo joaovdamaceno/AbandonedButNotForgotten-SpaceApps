@@ -104,7 +104,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests
                 float dt=Mathf.Min(.05f,seconds);h.Clock.Tick(dt);float active=h.Clock.ActiveDeltaSeconds;h.Service.Tick(active);queue.Tick();h.Launch.Tick(active);h.Cruise.Tick(active);h.Descent.Tick(active);h.Television.Tick(active);h.Observation.Tick(active);h.Scoop.Tick(active);h.Soil.Tick(active);h.Eclipse.Tick(active);h.Night.Tick(active);h.Visit.Tick(active);pages.Tick(active);seconds-=dt;
             }h.Clock.Tick(0);
         }
-        public static IEnumerator Capture(string name)
+        public static IEnumerator Capture(string name,string folder="QA/SUR-015")
         {
             var documents=Object.FindObjectsByType<UIDocument>(FindObjectsInactive.Include);var originals=new Dictionary<UIDocument,PanelSettings>();var clones=new Dictionary<PanelSettings,PanelSettings>();var target=new RenderTexture(1280,720,0);target.Create();
             foreach(var doc in documents)
@@ -113,7 +113,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests
             }
             var saved=RenderTexture.active;RenderTexture.active=target;GL.Clear(true,true,Color.black);RenderTexture.active=saved;
             for(int i=0;i<12;i++)yield return null;
-            var image=new Texture2D(1280,720,TextureFormat.RGB24,false);saved=RenderTexture.active;RenderTexture.active=target;image.ReadPixels(new Rect(0,0,1280,720),0,0);image.Apply();RenderTexture.active=saved;Directory.CreateDirectory("QA/SUR-015");File.WriteAllBytes("QA/SUR-015/"+name+".png",image.EncodeToPNG());Object.Destroy(image);
+            var image=new Texture2D(1280,720,TextureFormat.RGB24,false);saved=RenderTexture.active;RenderTexture.active=target;image.ReadPixels(new Rect(0,0,1280,720),0,0);image.Apply();RenderTexture.active=saved;Directory.CreateDirectory(folder);File.WriteAllBytes(folder+"/"+name+".png",image.EncodeToPNG());Object.Destroy(image);
             foreach(var pair in originals)if(pair.Key!=null)pair.Key.panelSettings=pair.Value;target.Release();Object.Destroy(target);foreach(var p in clones.Values)Object.Destroy(p);yield return null;
         }
         [UnityTearDown]public IEnumerator Cleanup(){if(Application.isPlaying)yield return new ExitPlayMode();}

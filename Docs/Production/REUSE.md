@@ -94,3 +94,8 @@ Reutiliza cenário/modelo da equipe SUR-002, alvo de render SUR-007, contratos C
 
 Textura do solo reescrita sobre o princípio de UV/marcas de SUR-002; palma/dedos/cuff reconstruídos com Draft de SUR-002/013. Sem assets externos, novas câmeras ou shaders. Rotina e materiais ficam no capítulo Surveyor; figuras comparáveis e limites em QA/SUR-016.
 
+
+
+## SUR-017 — câmera no arquivo
+
+Reutiliza o modal existente do dossiê e a fotografia NASA AS12-48-7134 de SUR-013; sprite de capa aponta para a mesma textura. Novos dados/view/builder/teste de ficha opcional. Fontes S3-09/10/12/13 verificam retorno e distinção do exemplar de teste; sem imagem Smithsonian importada. Código anterior da Opportunity não foi usado.
