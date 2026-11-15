@@ -28,7 +28,7 @@ namespace Abandoned.SpaceApps.Opportunity
             foreach(var key in keys)
             {
                 spoken=null;Speak(key);
-                var clip=voice?voice.clip:null;float seconds=GameSettings.Voice&&clip&&voice.isPlaying?clip.length:4.5f;
+                var clip=voice?voice.clip:null;float seconds=GameSettings.Voice&&clip&&voice.isPlaying?clip.length:Mathf.Max(4.5f,Localization.Get(key).Length/15f); // sem voz: tempo de leitura
                 chapter.hud.Toast(key,seconds+.6f);
                 yield return new WaitForSeconds(seconds+.5f);
             }
@@ -45,9 +45,9 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             get
             {
-                if(current&&current.stage==ChapterStage.CommunicationLost)return Mathf.InverseLerp(10.7f,12,chapter.Elapsed);
+                if(current&&current.stage==ChapterStage.CommunicationLost)return Mathf.InverseLerp(10.7f,12,chapter.FilmTime);
                 if(!current||current.stage!=ChapterStage.Farewell)return 0;
-                float t=chapter.Elapsed;
+                float t=chapter.FilmTime;
                 if(t<.7f)return 1;
                 if(t<1.6f)return 1-Mathf.InverseLerp(.7f,1.6f,t);
                 return Mathf.InverseLerp(15.3f,16,t);
@@ -58,7 +58,7 @@ namespace Abandoned.SpaceApps.Opportunity
         public string TitleKey=>beat?.titleKey;
         public string BodyKey=>beat?.bodyKey;
         public bool ToolOperating=>beat!=null&&beat.action==FilmAction.Work&&BeatTime/BeatLength>.28f&&BeatTime/BeatLength<.62f;
-        public float BeatTime=>beat==null?0:chapter.Elapsed-beat.at;
+        public float BeatTime=>beat==null?0:chapter.FilmTime-beat.at;
         public float BeatLength=>beat?.duration??1;
         public float CaptionOpacity
         {
@@ -69,7 +69,7 @@ namespace Abandoned.SpaceApps.Opportunity
                 for(int i=beatIndex-1;i>=0&&current.beats[i].bodyKey==beat.bodyKey;i--)begin=current.beats[i].at;
                 for(int i=beatIndex+1;i<current.beats.Length&&current.beats[i].bodyKey==beat.bodyKey;i++)end=current.beats[i].at+current.beats[i].duration;
                 if(beat.captionDuration>0)end=Mathf.Min(end,beat.at+beat.captionDuration);
-                return Mathf.Clamp01((chapter.Elapsed-begin)/.35f)*Mathf.Clamp01((end-chapter.Elapsed)/.45f);
+                return Mathf.Clamp01((chapter.FilmTime-begin)/.35f)*Mathf.Clamp01((end-chapter.FilmTime)/.45f);
             }
         }
         /// <summary>Start and end of the first and last beat whose caption is one of <paramref name="keys"/>.</summary>

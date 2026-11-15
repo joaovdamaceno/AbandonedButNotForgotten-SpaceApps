@@ -68,7 +68,7 @@ namespace Abandoned.SpaceApps.Integration
                             problems.AddRange(localization.AddTable(cueTexts, table.name + " (falas)"));
                     }
             localization.ApplySettings(settings.Current);
-            settings.Changed += data => localization.ApplySettings(data);
+            settings.Changed += data => ApplyLanguage();
 
             if (audioDirectorPrefab != null)
             {
@@ -118,8 +118,22 @@ namespace Abandoned.SpaceApps.Integration
             director.OpenDossier();
         }
 
+        /// <summary>Capítulos que sempre aparecem em inglês, independentemente do idioma escolhido (os outros seguem as configurações).</summary>
+        static readonly string[] EnglishOnlyChapters = { "mars" };
+        string runningChapter;
+
+        void ApplyLanguage()
+        {
+            if (runningChapter != null && System.Array.IndexOf(EnglishOnlyChapters, runningChapter) >= 0)
+                localization.SetLanguage(SettingsData.English);
+            else
+                localization.ApplySettings(settings.Current);
+        }
+
         void OnChapterStarted(string chapterId)
         {
+            runningChapter = chapterId;
+            ApplyLanguage();
             if (chapterId != "mars")
                 return;
 
@@ -210,6 +224,8 @@ namespace Abandoned.SpaceApps.Integration
 
         void OnChapterUnloading(string chapterId)
         {
+            runningChapter = null;
+            ApplyLanguage();
             if (mars == null)
                 return;
 

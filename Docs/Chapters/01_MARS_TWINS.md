@@ -150,6 +150,10 @@ SPIRIT · 2004–2010 / OPPORTUNITY · 2004–2018. Segurar título e revelar VO
 
 Texto que aparece na tela hoje, na ordem em que aparece. Para mudar uma fala, edite o texto da chave no arquivo indicado em cada parte (campos `pt` e `en`); esta tabela é só o espelho do jogo e precisa ser atualizada junto.
 
+O capítulo de Marte aparece sempre em inglês (`GameHost`, lista `EnglishOnlyChapters`); a coluna em português fica como tradução.
+
+Os tempos das tabelas são do filme. Alguns trechos são mostrados mais devagar para dar tempo de leitura (`ChapterDirector`, mapas tempo real → filme): pouso 0–13,5 s → 0–7,5 s; anos seguintes 6–14 s → 6–13 s e 25,5–34,5 s → 24,5–32,5 s; último contato 7–15 s → 7–12 s; despedida 0–12,5 → 0–8, 12,5–18,5 → 8–11 e 18,5–27,5 → 11–16 s. Narração sem voz fica na tela pelo maior entre 4,5 s e um segundo a cada 15 caracteres.
+
 As falas com voz gravada estão em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Narration/{pt,en}/<chave>.wav`. Se o texto de uma delas mudar, o áudio da mesma chave deixa de corresponder: regrave-o ou apague o `.wav` (sem áudio, a fala aparece só como texto).
 
 ### Abertura · Marte, laboratório e globo (M01–M03)
@@ -171,8 +175,6 @@ As falas com voz gravada estão em `Assets/_Game/Chapters/Mars/Opportunity/Resou
 | M03 · 30,7–34,8 s · letreiro | `MAR.ORI.03` | GUSEV CRATER | GUSEV CRATER |
 
 ### Pouso das duas sondas
-
-O pouso dura 24 s: a queda até o impacto dos airbags (7,5 s do filme) é mostrada em 13,5 s (`ChapterDirector.LandingFallExtraSeconds`); os tempos abaixo são do filme.
 
 Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mars/Opportunity/ScriptableObjects/Film_Landing.asset` (`titleKey`/`bodyKey` de cada trecho); o texto está em `Assets/_Game/Chapters/Mars/Opportunity/Resources/Localization.json`. Letreiros da tela dividida: mesmo arquivo de textos.
 
@@ -301,8 +303,8 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 | 13 s · fala | `v15.storm.dark` | Sem luz nos painéis solares, a Opportunity parou de dirigir e poupou energia. Por semanas, quase tudo ficou desligado. | With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off. |
 | 18 s · fala | `v15.storm.dark` | Sem luz nos painéis solares, a Opportunity parou de dirigir e poupou energia. Por semanas, quase tudo ficou desligado. | With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off. |
 | 24,5 s · título | `v15.spirit.title` | SPIRIT · 2010 | SPIRIT · 2010 |
-| 24,5 s · fala | `v15.spirit.death` | Em 2009, a Spirit atolou em areia fofa. Presa e mal inclinada para o Sol, não recebia luz suficiente no inverno marciano. O último sinal chegou em 22 de março de 2010; a NASA encerrou a busca por contato em 2011. | In 2009, Spirit became stuck in soft sand. Trapped and poorly tilted toward the Sun, it could not collect enough light in the Martian winter. Its last signal arrived on March 22, 2010; NASA ended its attempts to regain contact in 2011. |
-| 32,5 s · fala | `v15.spirit.death` | Em 2009, a Spirit atolou em areia fofa. Presa e mal inclinada para o Sol, não recebia luz suficiente no inverno marciano. O último sinal chegou em 22 de março de 2010; a NASA encerrou a busca por contato em 2011. | In 2009, Spirit became stuck in soft sand. Trapped and poorly tilted toward the Sun, it could not collect enough light in the Martian winter. Its last signal arrived on March 22, 2010; NASA ended its attempts to regain contact in 2011. |
+| 24,5 s · fala | `v15.spirit.death` | Em 2009, a Spirit atolou em areia fofa. Presa e mal inclinada para o Sol, não recebia luz suficiente no inverno marciano. | In 2009, Spirit became stuck in soft sand. Trapped and poorly tilted toward the Sun, it could not collect enough light in the Martian winter. |
+| 32,5 s · fala | `v17.spirit.signal` | O último sinal chegou em 22 de março de 2010; a NASA encerrou a busca por contato em 2011. | Its last signal arrived on March 22, 2010; NASA ended its attempts to regain contact in 2011. |
 | 41 s · fala | `v15.spirit.alone` | Agora só a Opportunity continuava em Marte. E seguiu em frente, por ela e pela irmã gêmea. | Now only Opportunity remained on Mars. And she kept going, for herself and for her twin. |
 | 48 s · título | `v3.year2018` | 2018 | 2018 |
 | 48 s · fala | `v13.years.valley` 🔊 | 2018. Após quase quinze anos, a Opportunity chegou a Perseverance Valley. O céu começava a escurecer. | 2018. After almost fifteen years, Opportunity reached Perseverance Valley. The sky was beginning to darken. |
@@ -352,8 +354,9 @@ Cinemática: a ordem e o tempo de cada fala estão em `Assets/_Game/Chapters/Mar
 
 | Momento | Chave | Português | English |
 | --- | --- | --- | --- |
-| 0 s · fala | `v16.farewell.legacy` | Projetadas para noventa sóis, as duas gêmeas foram muito além: a Spirit trabalhou por mais de seis anos e percorreu 7,73 km; subiu colinas e achou sílica e sulfatos: sinais de antigas fontes quentes e de água em Gusev. A Opportunity explorou por quase quinze anos e percorreu 45,16 km, um recorde na época. | Designed for ninety sols, the twins went much further: Spirit worked for more than six years and drove 7.73 km; it climbed hills and found silica and sulfates: signs of ancient hot springs and water at Gusev. Opportunity explored for almost fifteen years and drove 45.16 km, a record at the time. |
-| 8 s · fala | `v16.farewell.end` | A NASA encerrou as tentativas de contato com a Spirit em 25 de maio de 2011 e, após meses sem resposta da Opportunity, encerrou a missão dela em 13 de fevereiro de 2019. | NASA ended its attempts to contact Spirit on May 25, 2011 and, after months without a reply from Opportunity, ended its mission on February 13, 2019. |
+| 0 s · fala | `v16.farewell.legacy` | Projetadas para noventa sóis, as duas gêmeas foram muito além: a Spirit trabalhou por mais de seis anos e percorreu 7,73 km; subiu colinas e achou sílica e sulfatos: sinais de antigas fontes quentes e de água em Gusev. | Designed for ninety sols, the twins went much further: Spirit worked for more than six years and drove 7.73 km; it climbed hills and found silica and sulfates: signs of ancient hot springs and water at Gusev. |
+| 8 s · fala | `v17.farewell.opportunity` | A Opportunity explorou por quase quinze anos e percorreu 45,16 km, um recorde na época. | Opportunity explored for almost fifteen years and drove 45.16 km, a record at the time. |
+| 11 s · fala | `v16.farewell.end` | A NASA encerrou as tentativas de contato com a Spirit em 25 de maio de 2011 e, após meses sem resposta da Opportunity, encerrou a missão dela em 13 de fevereiro de 2019. | NASA ended its attempts to contact Spirit on May 25, 2011 and, after months without a reply from Opportunity, ended its mission on February 13, 2019. |
 | 16 s · fala | `v16.farewell.memory` | As rodas das duas ficaram em Marte, em lados opostos do planeta. Suas imagens e descobertas chegaram até nós. | Both rovers' wheels stayed on Mars, on opposite sides of the planet. Their images and discoveries reached us. |
 | 23 s · título | `v3.opportunity` | Spirit e Opportunity | Spirit and Opportunity |
 

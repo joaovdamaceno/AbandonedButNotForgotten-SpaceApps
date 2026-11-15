@@ -23,7 +23,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(!active||Vector3.Distance(camera,previousCamera)>25)
                 foreach(var p in new[]{nearGrains,nearVeils,groundDrift}){p.Clear();p.Play();}
             active=true;previousCamera=camera;
-            float time=chapter.Elapsed;
+            float time=chapter.FilmTime;
             float broad=Mathf.PerlinNoise(time*.24f+4,19),fine=Mathf.PerlinNoise(time*.71f+8,5);
             float irregular=Mathf.SmoothStep(0,1,Mathf.InverseLerp(.25f,.74f,broad*.7f+fine*.3f));
             float hit=chapter.Stage==ChapterStage.TimeSkip?Mathf.Exp(-Mathf.Pow((time-chapter.film.YearsStormStart-2.8f)/1.5f,2)):chapter.Stage==ChapterStage.CommunicationLost?Mathf.Exp(-Mathf.Pow((time-5)/1.8f,2)):0;

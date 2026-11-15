@@ -33,13 +33,27 @@ namespace Abandoned.SpaceApps.Opportunity
         public ChapterProgress Progress { get; } = new ChapterProgress();
         public ChapterStage Stage => Progress.Stage;
         public float Elapsed { get; private set; }
-        /// <summary>Segundos a mais na queda das duas sondas (até o impacto dos airbags, aos 7,5 s do filme do pouso).</summary>
-        public const float LandingFallExtraSeconds = 6f;
-        const float LandingFallEndSeconds = 7.5f;
-        /// <summary>Tempo do filme da etapa: no pouso, a queda é desacelerada para durar mais; nas outras etapas, igual a <see cref="Elapsed"/>.</summary>
-        public float FilmTime => Stage != ChapterStage.Landing ? Elapsed
-            : Elapsed < LandingFallEndSeconds + LandingFallExtraSeconds ? Elapsed * LandingFallEndSeconds / (LandingFallEndSeconds + LandingFallExtraSeconds)
-            : Elapsed - LandingFallExtraSeconds;
+        // Trechos alongados de algumas cinemáticas (pares tempo real → tempo do filme). Depois do último par, o filme segue em velocidade normal.
+        // Pouso: a queda até o impacto dos airbags (7,5 s do filme) dura 13,5 s. Os demais dão tempo de leitura às falas em inglês.
+        static readonly float[] LandingReal = { 0f, 13.5f }, LandingFilm = { 0f, 7.5f };
+        static readonly float[] TimeSkipReal = { 0f, 6f, 14f, 25.5f, 34.5f }, TimeSkipFilm = { 0f, 6f, 13f, 24.5f, 32.5f };
+        static readonly float[] LastContactReal = { 0f, 7f, 15f }, LastContactFilm = { 0f, 7f, 12f };
+        static readonly float[] FarewellReal = { 0f, 12.5f, 18.5f, 27.5f }, FarewellFilm = { 0f, 8f, 11f, 16f };
+        static float MapTime(float real, float[] r, float[] f)
+        {
+            for (int i = 1; i < r.Length; i++)
+                if (real <= r[i]) return Mathf.Lerp(f[i - 1], f[i], Mathf.InverseLerp(r[i - 1], r[i], real));
+            return f[f.Length - 1] + real - r[r.Length - 1];
+        }
+        /// <summary>Tempo do filme da etapa (igual a <see cref="Elapsed"/>, exceto nos trechos alongados). Câmera, atores e legendas leem este tempo.</summary>
+        public float FilmTime => Stage switch
+        {
+            ChapterStage.Landing => MapTime(Elapsed, LandingReal, LandingFilm),
+            ChapterStage.TimeSkip => MapTime(Elapsed, TimeSkipReal, TimeSkipFilm),
+            ChapterStage.CommunicationLost => MapTime(Elapsed, LastContactReal, LastContactFilm),
+            ChapterStage.Farewell => MapTime(Elapsed, FarewellReal, FarewellFilm),
+            _ => Elapsed
+        };
         public bool Paused { get; private set; }
         public Vector3 FinalPosition {get; private set;}
         public float FinalYaw {get; private set;}
@@ -160,14 +174,14 @@ namespace Abandoned.SpaceApps.Opportunity
                     if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.HeatShieldArrival:case ChapterStage.MeteoriteDiscovery:if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.HeatShieldExploration:if(investigation.MeteoriteIdentified&&!investigation.Active){Progress.CompleteHardware();Progress.Advance();}break;
-                case ChapterStage.TimeSkip:if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
+                case ChapterStage.TimeSkip:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.FinalExploration:environment.SetStorm(.02f);if(journey.PanoramaCount>0)Progress.Advance();break;
                 case ChapterStage.DustStorm:
                     environment.SetStorm(Mathf.Lerp(.20f,.84f,Mathf.SmoothStep(0,1,Mathf.Clamp01(Elapsed/38))));rover.Power=Mathf.Max(.5f,Energy);
                     // Transmission keeps the player's heading; only the instrument/camera reacts.
                     if(journey.TransmissionComplete)Progress.Advance();break;
-                case ChapterStage.CommunicationLost:rover.Power=film.Power;if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
-                case ChapterStage.Farewell:if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
+                case ChapterStage.CommunicationLost:rover.Power=film.Power;if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
+                case ChapterStage.Farewell:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.Transition:
                     if(Elapsed>6.8f&&environment.OnSurface)environment.Region(true,true);
                     if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
@@ -176,7 +190,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(GameInput.Press(Key.Tab)&&!journey.photography.Active)hud.ToggleJournal();
         }
         public void CompleteCinematic(){if(film.HasSequence)film.Evaluate(film.SequenceDuration);PlayerPrefs.SetInt("ll.seen."+Stage,1);cameras.Shake=0;Progress.Advance();}
-        public void SeekFilm(float time){Elapsed=time;film.Evaluate(time);}
+        public void SeekFilm(float time){Elapsed=time;film.Evaluate(FilmTime);}
         public void Pause(bool pause){Paused=pause;Time.timeScale=pause?0:1;cameras.Paused=pause;sound.Pause(pause);hud.ShowPause(pause);SetCursor();}
         public void SetCursor()
         {

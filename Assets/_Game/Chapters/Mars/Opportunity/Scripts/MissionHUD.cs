@@ -266,9 +266,9 @@ namespace Abandoned.SpaceApps.Opportunity
             story.text="";
             filmVeil.style.opacity=film.PictureBlack;
             skip.text=chapter.CanSkip&&!memorialTitle?Localization.Get("controls.skip"):"";
-            bool memory=chapter.Stage==ChapterStage.Farewell&&chapter.Elapsed>=16&&chapter.Elapsed<23&&chapter.journey.photography.SelectedFrame;
+            bool memory=chapter.Stage==ChapterStage.Farewell&&chapter.FilmTime>=16&&chapter.FilmTime<23&&chapter.journey.photography.SelectedFrame;
             remembrance.image=chapter.journey.photography.SelectedFrame;Show(remembrance,memory);Show(heading.parent,!memory&&!string.IsNullOrEmpty(film.TitleKey));
-            remembrance.style.opacity=memory?Mathf.Clamp01((chapter.Elapsed-16)/.65f)*Mathf.Clamp01((23-chapter.Elapsed)/.65f):0;
+            remembrance.style.opacity=memory?Mathf.Clamp01((chapter.FilmTime-16)/.65f)*Mathf.Clamp01((23-chapter.FilmTime)/.65f):0;
             heading.parent.style.opacity=Mathf.Clamp01(local/.65f)*(memorialTitle?1:Mathf.Clamp01((film.BeatLength-local)/.5f));
             caption.style.opacity=film.CaptionOpacity;caption.BringToFront();skip.BringToFront();
         }

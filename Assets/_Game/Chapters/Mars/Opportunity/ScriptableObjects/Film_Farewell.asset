@@ -46,7 +46,37 @@ MonoBehaviour:
     music: farewell
     movementEase: 0
   - at: 8
-    duration: 8
+    duration: 3
+    from: {x: 1100, y: 0.20033628, z: -20}
+    to: {x: 1100, y: 0.20033628, z: -20}
+    yaw: 0
+    endYaw: 0
+    mastFrom: 0
+    mastTo: 0
+    stormFrom: 0.96
+    stormTo: 0.96
+    wear: 0.6
+    powerFrom: 0
+    powerTo: 0
+    valley: 1
+    photograph: 0
+    assembly: 0
+    travel: 0
+    secondaryWork: 0
+    hardware: 0
+    captionDuration: 0
+    spirit: 0
+    spiritAt: {x: 0, y: 0, z: 0}
+    spiritYaw: 0
+    spiritTilt: 0
+    spiritSink: 0
+    action: 0
+    titleKey: 
+    bodyKey: v17.farewell.opportunity
+    music: 
+    movementEase: 0
+  - at: 11
+    duration: 5
     from: {x: 1100, y: 0.20033628, z: -20}
     to: {x: 1100, y: 0.20033628, z: -20}
     yaw: 0

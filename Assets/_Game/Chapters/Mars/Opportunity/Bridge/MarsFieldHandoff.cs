@@ -88,9 +88,8 @@ namespace Abandoned.SpaceApps.Opportunity
 
         IEnumerator Begin()
         {
-            var settings = new SettingsStore();
-            settings.Load();
-            GameSettings.English = settings.Current.languageCode == SettingsData.English;
+            // O capítulo de Marte aparece sempre em inglês (os outros capítulos seguem o idioma escolhido).
+            GameSettings.English = true;
 
             // Anota o que é da abertura antes de a cena seguinte criar a interface dela.
             var openingLayers = new List<VisualElement>();
