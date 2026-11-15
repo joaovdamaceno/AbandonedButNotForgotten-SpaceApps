@@ -51,7 +51,6 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             Active = true; Phase = AbrasionPhase.Identify; Cursor = new Vector2(-.25f, .18f);
             withdrawal=deployment=0;
-            rover.GetComponentInChildren<InstrumentArm>().specimen=surface.GetComponent<Collider>();
             load.Reset();Working=false;ToolRPM=RemovalFeedback=0;Progress = Alignment = phaseTime = 0; Observations = 0;
             Observed[0] = Observed[1] = false; AnalysisScanning=false;ScanProgress=0;HoverFeature = -1; surface.ResetSurface();
         }
@@ -105,7 +104,7 @@ namespace Abandoned.SpaceApps.Opportunity
             }
             if (Phase == AbrasionPhase.Align || Phase == AbrasionPhase.Abrade || Phase == AbrasionPhase.Identify)
             {
-                var desired = surface.WorldPoint(SurfaceCursor) + surface.transform.up * (Phase == AbrasionPhase.Abrade ? .035f : .2f);
+                var desired = surface.WorldPoint(SurfaceCursor) + surface.transform.up * (Phase == AbrasionPhase.Abrade ? 0f : .1f);
                 deployment=Mathf.Min(2.8f,deployment+dt);
                 if(deployment<2.8f)
                 {
