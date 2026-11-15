@@ -104,3 +104,8 @@ Para cada importação registrar: nome, autor/instituição, URL específica, da
 
 - **Departure, Science, Return**: composição/síntese procedural produzida nesta implementação, sem samples, gravações comerciais ou melodia de terceiros. Fonte e receita em `SourceAssets/Surveyor3/Score/score.py` e `score.json`; WAVs em `Assets/_Game/Chapters/Surveyor/Chapter/Audio/`. Uso interno no projeto; a equipe deve aplicar sua licença de distribuição ao código e à composição originais. Não se atribui execução humana ou autoria de terceiros.
 - Reutiliza as fontes Outfit / IBM Plex Mono e as fotografias NASA AS12-48-7110 e AS12-48-7134 já creditadas acima. Nenhum novo recurso externo visual foi importado pela integração. Download de faixas alternativas não teve sucesso; elas não estão no projeto.
+
+
+### SUR-016 — materiais e luva
+
+Regolito 1024 e malha de luva em `Assets/_Game/Chapters/Surveyor/Materials/Polish/`: geração procedural própria, adaptando UV/marcas/Draft já existentes de SUR-002/013. Não são dados topográficos ou modelo NASA. Nenhum novo recurso externo.

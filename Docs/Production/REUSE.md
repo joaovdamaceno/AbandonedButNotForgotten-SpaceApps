@@ -87,3 +87,8 @@ Reutiliza cenário/modelo da equipe SUR-002, alvo de render SUR-007, contratos C
 - Novos: host de composição, arquivo isolado, relay de legendas acessíveis, poses ópticas de FirstImage, score procedural e cenas montadas. Modificada a aproximação da câmera de solo para transição de dois segundos antes da fotografia inicial, mantendo o centro óptico.
 - Música temporária original: `SourceAssets/Surveyor3/Score`; sem gravações externas. Ferramentas Python Playwright e navegadores de QA ficam ignorados fora da distribuição.
 
+
+
+## SUR-016 — acabamento próprio
+
+Textura do solo reescrita sobre o princípio de UV/marcas de SUR-002; palma/dedos/cuff reconstruídos com Draft de SUR-002/013. Sem assets externos, novas câmeras ou shaders. Rotina e materiais ficam no capítulo Surveyor; figuras comparáveis e limites em QA/SUR-016.
