@@ -10,7 +10,7 @@ from urllib.parse import urlsplit
 
 STYLE = """<style>
 html,body { margin:0; background:#080c13; }
-#unity-container.unity-desktop { position:relative; left:auto; top:auto; transform:none; margin:0 auto; width:min(100%,1280px); }
+#unity-container.unity-desktop { position:relative; left:auto; top:auto; transform:none; margin:0 auto; width:min(100%,1280px,calc((100vh - 38px)*16/9)); }
 #unity-fullscreen-container { width:100%!important; height:auto!important; }
 #unity-canvas { position:relative!important; display:block; width:100%!important; height:auto!important; aspect-ratio:16/9; }
 #unity-footer { position:relative!important; height:38px; background:#eee9dd; }
