@@ -31,6 +31,14 @@ namespace Abandoned.SpaceApps.Opportunity
         public bool DustSunMeasured { get; private set; }
         public bool Result { get; private set; }
         bool resultReleased;float resultHold;
+        /// <summary>Segurando E por este tempo (depois de soltar) guarda o resultado e fecha a observação.</summary>
+        public const float ResultHoldSeconds=.6f;
+        /// <summary>0–1: quanto do E já foi segurado para guardar o resultado (a barra do prompt usa este valor).</summary>
+        public float ResultProgress=>Result?Mathf.Clamp01(resultHold/ResultHoldSeconds):0;
+        /// <summary>O E que registrou a observação já foi solto: só então segurar de novo conta para guardar o resultado.</summary>
+        public bool ResultArmed=>resultReleased;
+        /// <summary>Quantas observações já foram registradas (nunca diminui); o HUD usa a mudança para confirmar a conclusão.</summary>
+        public int Completions { get; private set; }
         public int Sample { get; private set; }
         public float Dwell { get; private set; }
         public float AimX { get; private set; }
@@ -87,7 +95,7 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             if(!Active||chapter.Paused||Capturing||InputBlockedThisFrame)return;
             // O resultado fecha segurando E de novo (depois de soltar).
-            if(Result){if(!hold)resultReleased=true;resultHold=resultReleased&&hold?resultHold+dt:0;if(resultHold>=.6f)Close();return;}
+            if(Result){if(!hold)resultReleased=true;resultHold=resultReleased&&hold?resultHold+dt:0;if(resultHold>=ResultHoldSeconds)Close();return;}
             if(Stable&&!acquired){acquired=true;chapter.sound.Confirm();}
             Dwell=Mathf.MoveTowards(Dwell,hold?1:0,dt/(hold?2.2f:3.5f));
             if(Dwell>=1)StartCoroutine(CaptureSample());
@@ -105,7 +113,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(Study==FieldStudy.Meteorite)MeteoriteIdentified=true;
             if(Study==FieldStudy.SunClear)ClearSunMeasured=true;
             if(Study==FieldStudy.SunDust)DustSunMeasured=true;
-            Result=true;resultReleased=false;resultHold=0;Capturing=false;chapter.sound.Confirm();chapter.hud.ObjectiveChanged();
+            Result=true;resultReleased=false;resultHold=0;Capturing=false;Completions++;chapter.sound.Confirm();chapter.hud.ObjectiveChanged();
         }
         public void CameraPose(out Vector3 position,out Quaternion rotation,out float fov)
         {
