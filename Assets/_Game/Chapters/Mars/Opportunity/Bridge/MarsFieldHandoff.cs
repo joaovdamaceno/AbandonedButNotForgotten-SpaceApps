@@ -229,11 +229,13 @@ namespace Abandoned.SpaceApps.Opportunity
             store.Load();
             var data = store.Current;
             GameSettings.English = data.languageCode != Abandoned.SpaceApps.SettingsData.Portuguese;
-            // Os padrões do jogo (1, 0,8, 0,9, 0,9) correspondem aos padrões da cena (0,8, 0,65, 0,65, 0,6).
-            GameSettings.Master = .8f * data.masterVolume;
-            GameSettings.Music = .65f / .8f * data.musicVolume;
-            GameSettings.Effects = .65f / .9f * data.sfxVolume;
-            GameSettings.Interface = .6f / .9f * data.uiVolume;
+            // Geral e música seguem direto os do aplicativo (1 e 0,8): os ganhos dos cues de música da cena foram calibrados para esse
+            // padrão, de modo que Marte fique no mesmo nível da Pioneer e do Surveyor. Efeitos e interface mantêm o nível que Marte já tinha
+            // com o geral de 0,8 da cena (0,8 x 0,65 e 0,8 x 0,6 nos padrões), agora com o geral em 1.
+            GameSettings.Master = data.masterVolume;
+            GameSettings.Music = data.musicVolume;
+            GameSettings.Effects = .8f * .65f / .9f * data.sfxVolume;
+            GameSettings.Interface = .8f * .6f / .9f * data.uiVolume;
             GameSettings.Sensitivity = data.lookSensitivity;
             GameSettings.ReducedMotion = data.reducedMotion;
         }

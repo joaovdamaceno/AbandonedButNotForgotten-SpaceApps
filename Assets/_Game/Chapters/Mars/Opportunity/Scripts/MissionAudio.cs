@@ -67,8 +67,8 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             AudioListener.volume=GameSettings.Master;if(paused)return;fade=Mathf.Min(1,fade+Time.unscaledDeltaTime/fadeSeconds);
             gain=Mathf.MoveTowards(gain,gainTarget,Time.unscaledDeltaTime*.18f);
-            if(current)current.volume=Mathf.Sin(fade*Mathf.PI*.5f)*GameSettings.Music*.5f*gain*CinematicEnvelope*Focus;
-            if(fading){fading.volume=Mathf.Cos(fade*Mathf.PI*.5f)*GameSettings.Music*.5f*oldGain*CinematicEnvelope*Focus;if(fade==1){fading.Stop();fading=null;}}
+            if(current)current.volume=Mathf.Sin(fade*Mathf.PI*.5f)*GameSettings.Music*gain*CinematicEnvelope*Focus;
+            if(fading){fading.volume=Mathf.Cos(fade*Mathf.PI*.5f)*GameSettings.Music*oldGain*CinematicEnvelope*Focus;if(fade==1){fading.Stop();fading=null;}}
             wind.volume=Mathf.Lerp(wind.volume,windLevel*GameSettings.Effects*CinematicEnvelope,Time.unscaledDeltaTime*2);drive.volume=Mathf.Lerp(drive.volume,driveLevel*GameSettings.Effects*CinematicEnvelope,Time.unscaledDeltaTime*6);abrasion.volume=Mathf.Lerp(abrasion.volume,toolLevel*GameSettings.Effects*CinematicEnvelope,Time.unscaledDeltaTime*6);
         }
     }
