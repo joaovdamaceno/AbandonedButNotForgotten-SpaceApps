@@ -1,0 +1,54 @@
+{
+  "browser": "159.0.8154.6",
+  "headless": true,
+  "graphics": "software SwiftShader; not a performance benchmark",
+  "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+  "duration_seconds": 136.28,
+  "voice_starts": [
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING sur.doc.intro.1 seconds=3.46\n",
+      "elapsed_seconds": 20.27
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING PIO.01.01 seconds=4.86\n",
+      "elapsed_seconds": 44.02
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING PIO.01.02 seconds=8.04\n",
+      "elapsed_seconds": 52.55
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING MAR.C01 seconds=7.10\n",
+      "elapsed_seconds": 75.73
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING MAR.C02 seconds=5.00\n",
+      "elapsed_seconds": 83.62
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING MAR.C03 seconds=7.54\n",
+      "elapsed_seconds": 107.06
+    }
+  ],
+  "page_errors": [],
+  "console_errors": [],
+  "audio_context_states": [
+    "running"
+  ],
+  "source_code_revision": "ac37672",
+  "subtitle_language": "pt",
+  "voice_language": "en",
+  "scope": "First narration in all three chapters; pause and return through the dossier. Not a complete gameplay or listening review.",
+  "confirmed_chapters": {
+    "surveyor3": "sur.doc.intro.1",
+    "pioneer10": "PIO.01.01",
+    "mars": "MAR.C01"
+  },
+  "result": "Passed"
+}

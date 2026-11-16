@@ -45,9 +45,28 @@ Iniciar ficou ativo. Esse teste usa SwiftShader, portanto não valida FPS/GPU.
 Registro preservado em `browser-smoke-initial.json`; arquivo de bloqueio do
 gate em `release-preflight.txt`.
 
+Repetição na build final, código `ac37672`: **aprovada** para o escopo do smoke.
+`browser-smoke.json` registra seis inícios de fala entre os três capítulos,
+voz inglesa com legendas em português, AudioContext ativo e nenhum erro
+JavaScript/console. Pausa e retorno pelo dossiê foram usados entre as missões.
+Três quadros de evidência: `surveyor-pt-en-voice.png`, `pioneer-pt-en-voice.png`
+e `mars-pt-en-voice.png`. A observação foi de quadros e estados de reprodução,
+não de escuta. O teste não percorre os capítulos inteiros.
+`web-runtime-probe.json` registra a segunda compilação bem-sucedida, duração,
+tamanho (231.590.438 bytes, Development sem compressão) e hashes dos arquivos.
+
 Uma repetição dos testes teve falha de inicialização do serviço de licença
 da Unity. Somente os processos daquela tentativa foram encerrados; a repetição
 seguinte recompilou e aprovou os 54 testes EditMode e os dois PlayMode.
+
+## Preservação do workspace
+
+Alterações locais anteriores em configurações do Editor/material e PackageManager
+foram preservadas nos dois stashes `Preserve local ... before narration ...` e
+em `QA/Local/ChapterNarration/BeforeUpdate`. Não se reaplicaram configurações
+antigas sobre a develop atualizada. `Deliverables/` permaneceu intocado e fora
+do commit. As alterações automáticas de serialização do céu/URP durante os
+testes foram copiadas para a pasta local de QA e revertidas; não fazem parte do PR.
 
 ## Ainda exige revisão humana
 
