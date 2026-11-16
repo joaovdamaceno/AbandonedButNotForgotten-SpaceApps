@@ -18,7 +18,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 0f78db83bbaffc4478818333ab9f2e3f, type: 3}
     loop: 1
-    volume: 0.29
+    volume: 0.68
     pitchVariation: 0
     maxSeconds: 0
   - id: sur.doc.science
@@ -26,7 +26,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: df76750a8ac7fa8459701bc609482eb0, type: 3}
     loop: 1
-    volume: 0.18
+    volume: 0.42
     pitchVariation: 0
     maxSeconds: 0
   - id: sur.doc.return
@@ -34,6 +34,6 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 80e49f26ad232804e90a40f36e5f97b5, type: 3}
     loop: 1
-    volume: 0.34
+    volume: 0.80
     pitchVariation: 0
     maxSeconds: 0

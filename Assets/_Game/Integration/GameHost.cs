@@ -193,7 +193,25 @@ namespace Abandoned.SpaceApps.Integration
                 focusPause.enabled = !value;
         }
 
-        void OnStateChanged(AppState state) => ArbitrateAudioListener();
+        void OnStateChanged(AppState state)
+        {
+            // A cena de Marte (já pré-carregada durante a abertura) ainda escreve o "geral" dela em AudioListener.volume até ser descarregada;
+            // ao chegar no menu principal o volume global volta a 1 de vez.
+            if (state == AppState.Dossier)
+                AudioListener.volume = 1f;
+            ArbitrateAudioListener();
+        }
+
+        /// <summary>
+        /// Saída de um capítulo para o menu principal: nada continua tocando. O AudioDirector do shell (música, loops, efeitos, pausa de áudio e
+        /// ducking) volta ao estado inicial na hora, e o volume global do AudioListener (que Marte altera para o "geral" dele) volta a 1.
+        /// O áudio da cena do capítulo some junto com a cena descarregada.
+        /// </summary>
+        void StopChapterAudio()
+        {
+            audioDirector?.ResetState();
+            AudioListener.volume = 1f;
+        }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode) => ArbitrateAudioListener();
 
@@ -372,6 +390,7 @@ namespace Abandoned.SpaceApps.Integration
         void OnChapterUnloading(string chapterId)
         {
             runningChapter = null;
+            StopChapterAudio();
             ApplyLanguage();
             stepStamp = titleStamp = null;
             HandBackAudioListener();

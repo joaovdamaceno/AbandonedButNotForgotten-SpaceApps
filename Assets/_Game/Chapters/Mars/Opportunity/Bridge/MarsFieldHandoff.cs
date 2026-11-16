@@ -115,6 +115,12 @@ namespace Abandoned.SpaceApps.Opportunity
             var shellSettings = new Abandoned.SpaceApps.SettingsStore();
             shellSettings.Load();
             GameSettings.English = shellSettings.Current.languageCode != Abandoned.SpaceApps.SettingsData.Portuguese;
+            // Os volumes de Marte seguem os do aplicativo (pausa/configurações do shell): antes liam PlayerPrefs próprios (geral 0,8, música 0,65),
+            // então o controle de música não valia em Marte e o capítulo ficava bem mais baixo que os outros.
+            GameSettings.Master = shellSettings.Current.masterVolume;
+            GameSettings.Music = shellSettings.Current.musicVolume;
+            GameSettings.Effects = shellSettings.Current.sfxVolume;
+            GameSettings.Interface = shellSettings.Current.uiVolume;
 
             // Anota o que é da abertura antes de a cena seguinte criar a interface dela.
             var openingLayers = new List<VisualElement>();
