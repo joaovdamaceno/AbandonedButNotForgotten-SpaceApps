@@ -86,7 +86,11 @@ Para cada importação registrar: nome, autor/instituição, URL específica, da
   `NASA dublagem spirit and  oportunity.wav`; fonte é o arquivo enviado pelo
   usuário, sem URL pública. SHA-256 e intervalos em `Data/Narration/*.json`.
   WAVs originais preservados fora da distribuição em `QA/Local/ChapterNarration`.
-- **Derivados usados:** 112 clipes em
+- **Complementos fornecidos em 15/11/2026:** `dublagem complementar piooner.wav`
+  e `dublagem complementar opportunity.wav`, mesma autoria/permissão. Originais
+  preservados em QA/Local; quatro cortes adicionais têm origem e SHA-256 por
+  linha em `Data/Narration`. Sem URL pública ou nova licença externa.
+- **Derivados usados:** 116 clipes em
   `Assets/_Game/Chapters/{Surveyor,Pioneer10,Mars}/Narration/Clips/`.
   Edições, cortes, normalização, limitações e referências de cena descritos em
   `Docs/Production/NARRATION_EN.md`. Sem mudança de velocidade ou tom.

@@ -420,22 +420,30 @@
     {
       "key": "PIO.05.01b",
       "subtitle_en": "It carried a message for anyone who might find it: a golden plaque with no words.",
-      "alignment_score": 0.25,
-      "status": "not_recorded_or_needs_review",
-      "source_in_seconds": null,
-      "source_out_seconds": null,
-      "asr_excerpt": "Pioneer. A word for those who go first. And the name was no",
-      "clip": null
+      "alignment_score": null,
+      "status": "matched",
+      "source_in_seconds": 0.0,
+      "source_out_seconds": 4.58,
+      "asr_excerpt": "It carried the message for anyone who might find it. A golden plague with no words,",
+      "clip": "Assets/_Game/Chapters/Pioneer10/Narration/Clips/PIO.05.01b.ogg",
+      "source_file": "dublagem complementar piooner.wav",
+      "source_sha256": "6fc93860a5ef725fa7d798f3f8c0b4c4aa71d541bde94ab97b6bab4cf9707f2b",
+      "review_note": "Human supplemental recording; phrase boundary reviewed against word times. Preserve natural speed; ASR proper-name/article variants are not subtitle edits.",
+      "duration_seconds": 4.58
     },
     {
       "key": "PIO.05.01c",
       "subtitle_en": "Just pictures and symbols, showing who we are and where we came from.",
-      "alignment_score": 0.154,
-      "status": "not_recorded_or_needs_review",
-      "source_in_seconds": null,
-      "source_out_seconds": null,
-      "asr_excerpt": "Pioneer. A word for those who go first. And",
-      "clip": null
+      "alignment_score": null,
+      "status": "matched",
+      "source_in_seconds": 4.78,
+      "source_out_seconds": 8.75,
+      "asr_excerpt": "just pictures and symbols, showing who we are and where we came from.",
+      "clip": "Assets/_Game/Chapters/Pioneer10/Narration/Clips/PIO.05.01c.ogg",
+      "source_file": "dublagem complementar piooner.wav",
+      "source_sha256": "6fc93860a5ef725fa7d798f3f8c0b4c4aa71d541bde94ab97b6bab4cf9707f2b",
+      "review_note": "Human supplemental recording; phrase boundary reviewed against word times. Preserve natural speed; ASR proper-name/article variants are not subtitle edits.",
+      "duration_seconds": 3.97
     },
     {
       "key": "PIO.05.02",

@@ -129,9 +129,11 @@ trocar o contrato de entrada ou de progresso dos capítulos.
 
 Áudio de `narracao.zip`, gravado e fornecido pelo proprietário `joaovdamaceno`
 para o jogo; fonte e hashes em `Data/Narration`, permissão em ASSET_CREDITS.
-112 cortes mono normalizados em velocidade natural; sem clonagem/síntese de voz.
+116 cortes mono normalizados em velocidade natural; sem clonagem/síntese de voz.
 Transcrição local é hipótese de ASR com erros documentados, não autoria de texto.
-Edições e quatro lacunas explícitas em `Docs/Production/NARRATION_EN.md`.
+Edições e preenchimento das quatro lacunas por gravações complementares do
+proprietário em `Docs/Production/NARRATION_EN.md`. As 112 falas anteriores
+permanecem byte a byte; somente os quatro novos OGG foram exportados.
 Evidência de testes efetivamente executados em `QA/NAR-001`; revisão de escuta
 e partidas integrais humanas não foram declaradas concluídas.
 

@@ -41,7 +41,8 @@ def main():
             'total_bytes':sum(x['bytes'] for x in results),'total_speech_seconds':round(sum(x['duration_seconds'] for x in results),3)}
     out=ROOT/'QA/NAR-001';out.mkdir(exist_ok=True,parents=True)
     (out/'audio-validation.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
-    (out/'MISSING_RECORDINGS_EN.txt').write_text('\n\n'.join(x['chapter']+' / '+x['key']+'\n'+x['subtitle_en'] for x in missing)+'\n',encoding='utf-8')
+    missing_text='\n\n'.join(x['chapter']+' / '+x['key']+'\n'+x['subtitle_en'] for x in missing) if missing else 'No missing recordings in the frozen NAR-001 subtitle manifest.'
+    (out/'MISSING_RECORDINGS_EN.txt').write_text(missing_text+'\n',encoding='utf-8')
     print('Decoded',len(results),'speech clips;',round(report['total_bytes']/1048576,2),'MiB;',report['total_speech_seconds'],'seconds;',len(missing),'unrecorded subtitle keys.')
 
 

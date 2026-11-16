@@ -175,12 +175,16 @@
     {
       "key": "v13.years.work",
       "subtitle_en": "The ninety-sol mission kept going. Rock by rock, the story of Mars gained new detail.",
-      "alignment_score": 0.188,
-      "status": "not_recorded_or_needs_review",
-      "source_in_seconds": null,
-      "source_out_seconds": null,
-      "asr_excerpt": "the other side of Mars.",
-      "clip": null
+      "alignment_score": null,
+      "status": "matched",
+      "source_in_seconds": 0.27,
+      "source_out_seconds": 6.65,
+      "asr_excerpt": "The Ninety -sol mission kept going. Rock by rock, the story of Mars gained a new detail.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v13.years.work.ogg",
+      "source_file": "dublagem complementar opportunity.wav",
+      "source_sha256": "7d29f2ee193af5b7addacbe003cc983c290ca1e18ef96eac816e79eff58dc0c5",
+      "review_note": "Human supplemental recording; phrase boundary reviewed against word times. Preserve natural speed; ASR proper-name/article variants are not subtitle edits.",
+      "duration_seconds": 6.38
     },
     {
       "key": "v15.storm.frequent",
@@ -196,12 +200,16 @@
     {
       "key": "v15.storm.dark",
       "subtitle_en": "With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off.",
-      "alignment_score": 0.15,
-      "status": "not_recorded_or_needs_review",
-      "source_in_seconds": null,
-      "source_out_seconds": null,
-      "asr_excerpt": "Without enough light, the solar panels",
-      "clip": null
+      "alignment_score": null,
+      "status": "matched",
+      "source_in_seconds": 6.97,
+      "source_out_seconds": 16.32,
+      "asr_excerpt": "With little light on its solar panels, opportunities stopped driving and saved energy. For weeks, almost everything stayed switched off.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v15.storm.dark.ogg",
+      "source_file": "dublagem complementar opportunity.wav",
+      "source_sha256": "7d29f2ee193af5b7addacbe003cc983c290ca1e18ef96eac816e79eff58dc0c5",
+      "review_note": "Human supplemental recording; phrase boundary reviewed against word times. Preserve natural speed; ASR proper-name/article variants are not subtitle edits.",
+      "duration_seconds": 9.35
     },
     {
       "key": "v15.spirit.death",

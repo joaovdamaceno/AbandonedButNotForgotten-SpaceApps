@@ -12,7 +12,7 @@ Planejamento de produção para **14–15 de novembro de 2026**, com sete pessoa
 
 Os três capítulos possuem gravações em inglês vinculadas às legendas PT/EN.
 Para experimentar, abrir `Assets/_Game/Scenes/Boot.unity` na Unity e selecionar
-a missão. Instalação/reconstrução, fontes e quatro falas ainda sem gravação:
+a missão. Instalação/reconstrução e fontes das 116 falas, incluindo os complementos:
 [narração inglesa](Docs/Production/NARRATION_EN.md).
 Resultados de validação: [QA/NAR-001](QA/NAR-001/README.md).
 

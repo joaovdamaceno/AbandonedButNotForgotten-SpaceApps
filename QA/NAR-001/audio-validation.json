@@ -562,6 +562,24 @@
     },
     {
       "chapter": "pioneer",
+      "key": "PIO.05.01b",
+      "duration_seconds": 4.58,
+      "rms_dbfs": -17.6,
+      "peak_dbfs": -2.94,
+      "bytes": 45805,
+      "sha256": "675436d54dd87b5861cc1e0781177e47ca63335e86067c0dc513387e4775f035"
+    },
+    {
+      "chapter": "pioneer",
+      "key": "PIO.05.01c",
+      "duration_seconds": 3.97,
+      "rms_dbfs": -17.68,
+      "peak_dbfs": -3.25,
+      "bytes": 38152,
+      "sha256": "b26ddcc3c85a5dd5858d7d7cb7b20695625e8a0f7a389a7fcd72da4cc1faac44"
+    },
+    {
+      "chapter": "pioneer",
       "key": "PIO.05.02",
       "duration_seconds": 4.62,
       "rms_dbfs": -19.08,
@@ -886,12 +904,30 @@
     },
     {
       "chapter": "mars",
+      "key": "v13.years.work",
+      "duration_seconds": 6.38,
+      "rms_dbfs": -17.86,
+      "peak_dbfs": -3.13,
+      "bytes": 58259,
+      "sha256": "30f0a1da36a53ce2909f39117468075d6b7e6c4134fcbd42827ee16d23df6883"
+    },
+    {
+      "chapter": "mars",
       "key": "v15.storm.frequent",
       "duration_seconds": 10.38,
       "rms_dbfs": -17.88,
       "peak_dbfs": -2.76,
       "bytes": 91596,
       "sha256": "cf27922d3be5a002020ad4f8ee3e39359361f52edf145af4d4b5f79685945c64"
+    },
+    {
+      "chapter": "mars",
+      "key": "v15.storm.dark",
+      "duration_seconds": 9.35,
+      "rms_dbfs": -18.15,
+      "peak_dbfs": -2.93,
+      "bytes": 83818,
+      "sha256": "40379a57076c89a4a1ea400fc24c20e9231f2e805c3a2c9a918d71050dda65f9"
     },
     {
       "chapter": "mars",
@@ -1011,28 +1047,7 @@
       "sha256": "59d502ff18e26eeaf96774788fbf9c283410b53e5acd32cb0da68384d18bbb62"
     }
   ],
-  "missing_recordings": [
-    {
-      "chapter": "pioneer",
-      "key": "PIO.05.01b",
-      "subtitle_en": "It carried a message for anyone who might find it: a golden plaque with no words."
-    },
-    {
-      "chapter": "pioneer",
-      "key": "PIO.05.01c",
-      "subtitle_en": "Just pictures and symbols, showing who we are and where we came from."
-    },
-    {
-      "chapter": "mars",
-      "key": "v13.years.work",
-      "subtitle_en": "The ninety-sol mission kept going. Rock by rock, the story of Mars gained new detail."
-    },
-    {
-      "chapter": "mars",
-      "key": "v15.storm.dark",
-      "subtitle_en": "With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off."
-    }
-  ],
-  "total_bytes": 6007838,
-  "total_speech_seconds": 617.078
+  "missing_recordings": [],
+  "total_bytes": 6233872,
+  "total_speech_seconds": 641.358
 }

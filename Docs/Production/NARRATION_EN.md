@@ -1,7 +1,7 @@
 # NAR-001 — narração humana em inglês
 
 Pedido: issue #223. Base de implementação: `develop` em `5b67617`.
-Branch `NAR-001`; integração em develop depende da autorização do proprietário.
+Branch `NAR-001`; o proprietário autorizou o merge após validar os complementos.
 Durante a tarefa, `origin/develop` avançou para `faef090` e foi incorporada à
 branch pelo merge `b5f050a`. Foram preservados os novos comandos/HUD de Marte
 e a remoção do antigo TTS; o adaptador usa exclusivamente as gravações humanas.
@@ -11,10 +11,10 @@ e a remoção do antigo TTS; o adaptador usa exclusivamente as gravações human
 | Capítulo | Falas | Catálogo configurado |
 | --- | ---: | --- |
 | Surveyor 3 | 25 | `Assets/_Game/Chapters/Surveyor/Narration/EnglishNarration.asset` |
-| Pioneer 10 | 59 | `Assets/_Game/Chapters/Pioneer10/Narration/EnglishNarration.asset` |
-| Spirit & Opportunity | 28 | `Assets/_Game/Chapters/Mars/Narration/EnglishNarration.asset` |
+| Pioneer 10 | 61 | `Assets/_Game/Chapters/Pioneer10/Narration/EnglishNarration.asset` |
+| Spirit & Opportunity | 30 | `Assets/_Game/Chapters/Mars/Narration/EnglishNarration.asset` |
 
-Os 112 OGG ocupam 5,73 MiB de arquivos-fonte e contêm 617,078 segundos
+Os 116 OGG ocupam aproximadamente 5,95 MiB de arquivos-fonte e contêm 641,358 segundos
 somados de voz. Isso não representa a duração da campanha nem o tamanho final
 da build: a Unity recodifica o áudio conforme a plataforma.
 
@@ -60,12 +60,22 @@ Edições pontuais registradas em `Data/Narration/edits.json`:
 - A frase gravada sobre fazer a última imagem chegar à Terra foi preservada
   na chave `nar.mars.last.image`, apresentada ao começar a tempestade final.
 
-## Trechos sem gravação
+## Gravações complementares
 
-Quatro legendas do roteiro atualizado não foram localizadas nos WAV:
-`PIO.05.01b`, `PIO.05.01c`, `v13.years.work` e `v15.storm.dark`.
-Permanecem como legendas sem voz. Não foram apagadas nem preenchidas por IA.
-Texto pronto para gravação: [MISSING_RECORDINGS_EN.txt](../../QA/NAR-001/MISSING_RECORDINGS_EN.txt).
+O proprietário forneceu `dublagem complementar piooner.wav` (8,75 s) e
+`dublagem complementar opportunity.wav` (16,934308 s) em 15/11/2026.
+Foram transcritos localmente e separados em `PIO.05.01b`, `PIO.05.01c`,
+`v13.years.work` e `v15.storm.dark`. As quatro lacunas do manifesto congelado
+foram preenchidas. A fala opcional da data de 1983 não está nesses complementos;
+mantém-se o corte documentado acima, começando no ano.
+
+As novas falas usam o mesmo tratamento das anteriores. Cada linha complementar
+registra seu próprio `source_file`, `source_sha256`, intervalo e hipótese de ASR
+em `Data/Narration`. Os originais permanecem fora de Assets e do Git; as 112
+falas anteriores continuam idênticas byte a byte. Os instantes de cada arquivo
+são independentes: o alinhador não trata tempos de origens distintas como sobrepostos.
+O relatório [MISSING_RECORDINGS_EN.txt](../../QA/NAR-001/MISSING_RECORDINGS_EN.txt)
+informa que não há lacunas nessa revisão do roteiro.
 
 ## Funcionamento e reconstrução
 
@@ -109,7 +119,9 @@ configurado em cada uma; ela não altera a arte de outro capítulo.
 Para recortar novamente, é necessário restaurar os WAV originais na pasta local,
 usar Python 3 e FFmpeg (`FFMPEG` ou PATH), e executar
 `python Tools/prepare_chapter_narration.py --export`. Os manifestos revisados são
-a fonte dos cortes. Para refazer o alinhamento, também são necessários os JSON
+a fonte dos cortes. `--chapter pioneer --keys PIO.05.01b PIO.05.01c` permite
+exportar só um complemento, respeitando a origem de cada linha. Para refazer
+o alinhamento, também são necessários os JSON
 de ASR locais; isso não é necessário para abrir ou distribuir o jogo.
 `python Tools/validate_chapter_narration.py` requer NumPy e decodifica todos os
 clipes, medindo sinal, clipping, duração e hash.

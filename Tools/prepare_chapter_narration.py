@@ -5,6 +5,7 @@ in Data/Narration before exporting naturally paced, mono Vorbis speech clips.
 No speech synthesis, speed changes, or transcription service uploads.
 """
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -112,11 +113,15 @@ def analyze(chapter):
         if row['key'] in edits:
             row.update(edits[row['key']])
             if row['status']=='matched':row['clip']=f'{DESTINATIONS[chapter]}/Clips/{row["key"]}.ogg'
-    matched=sorted([x for x in rows if x['status']=='matched'],key=lambda x:x['source_in_seconds'])
-    for previous,current in zip(matched,matched[1:]):
-        if previous['source_out_seconds']>current['source_in_seconds']:
-            mid=round((previous['source_out_seconds']+current['source_in_seconds'])/2,3)
-            previous['source_out_seconds']=mid;current['source_in_seconds']=mid
+    matched=[x for x in rows if x['status']=='matched']
+    # Supplemental recordings have their own zero-based source clock.
+    # Only resolve overlaps within the same physical recording.
+    for source_name in sorted({x.get('source_file',asr['source_file']) for x in matched}):
+        group=sorted([x for x in matched if x.get('source_file',asr['source_file'])==source_name],key=lambda x:x['source_in_seconds'])
+        for previous,current in zip(group,group[1:]):
+            if previous['source_out_seconds']>current['source_in_seconds']:
+                mid=round((previous['source_out_seconds']+current['source_in_seconds'])/2,3)
+                previous['source_out_seconds']=mid;current['source_in_seconds']=mid
     result={'chapter':chapter,'source_file':asr['source_file'],'source_sha256':asr['source_sha256'],
             'language':'en','processing':'Natural speed, mono 32 kHz, high-pass 70 Hz, chapter-level loudness normalization, Vorbis q4.',
             'alignment':'Local small.en ASR with word times + token alignment against current develop text; review required.',
@@ -125,7 +130,7 @@ def analyze(chapter):
     (OUT/f'{chapter}.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     print(chapter,len(matched),'matched of',len(rows))
     for row in rows:
-        if row['status']!='matched' or row['alignment_score']<.75:
+        if row['status']!='matched' or row['alignment_score'] is None or row['alignment_score']<.75:
             print(row['status'],row['key'],row['alignment_score'],row['asr_excerpt'])
 
 
@@ -134,10 +139,11 @@ def ffmpeg(args):
                           check=True,capture_output=True,text=True,encoding='utf-8',errors='replace')
 
 
-def export(chapter):
-    data=read(f'Data/Narration/{chapter}.json')
-    source=LOCAL/'Originals'/data['source_file']
-    master=LOCAL/f'{chapter}_master.wav'
+def normalized_master(chapter, source_name, source_hash, supplemental=False):
+    source=LOCAL/'Originals'/source_name
+    if hashlib.sha256(source.read_bytes()).hexdigest()!=source_hash:
+        raise ValueError('Original recording hash differs: '+source_name)
+    master=LOCAL/(f'{chapter}_{source_hash[:12]}_master.wav' if supplemental else f'{chapter}_master.wav')
     if not master.exists():
         # Explicit averaging precedes normalization: an implicit stereo downmix
         # after limiting can add 3 dB to these dual-mono voice recordings.
@@ -148,9 +154,21 @@ def export(chapter):
               f'measured_TP={stats["input_tp"]}:measured_LRA={stats["input_lra"]}:'
               f'measured_thresh={stats["input_thresh"]}:offset={stats["target_offset"]}')
         ffmpeg(['-i',source,'-af',mono+','+loud,'-ac','1','-ar','32000','-c:a','pcm_f32le',master])
-        (LOCAL/f'{chapter}_normalization.json').write_text(json.dumps(stats,indent=2),encoding='utf-8')
-    for row in data['lines']:
-        if row['status']!='matched':continue
+        master.with_suffix('.normalization.json').write_text(json.dumps(stats,indent=2),encoding='utf-8')
+    return master
+
+
+def export(chapter, keys=None):
+    data=read(f'Data/Narration/{chapter}.json')
+    selected=[row for row in data['lines'] if row['status']=='matched' and (keys is None or row['key'] in keys)]
+    if keys and set(keys)!={row['key'] for row in selected}:
+        raise ValueError('Unknown or unmatched export keys: '+str(set(keys)-{row['key'] for row in selected}))
+    masters={}
+    for row in selected:
+        name=row.get('source_file',data['source_file'])
+        digest=row.get('source_sha256',data['source_sha256'])
+        if name not in masters:masters[name]=normalized_master(chapter,name,digest,name!=data['source_file'])
+        master=masters[name]
         dest=ROOT/row['clip'];dest.parent.mkdir(parents=True,exist_ok=True)
         a,b=row['source_in_seconds'],row['source_out_seconds']
         ranges=row.get('retained_ranges_seconds',[[a,b]])
@@ -166,11 +184,14 @@ def export(chapter):
             ffmpeg(['-i',master,'-filter_complex',graph,'-map','[a]','-ac','1','-ar','32000','-c:a','libvorbis','-q:a','4','-map_metadata','-1',dest])
         row['duration_seconds']=round(length,3)
     (OUT/f'{chapter}.json').write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
-    print('Exported',chapter,flush=True)
+    print('Exported',chapter,len(selected),'clips',flush=True)
 
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--export',action='store_true');parser.add_argument('--chapter',choices=DESTINATIONS)
+    parser.add_argument('--keys',nargs='+',help='Export only these reviewed subtitle keys; requires --export and --chapter.')
     args=parser.parse_args()
+    if args.keys and (not args.export or not args.chapter):parser.error('--keys requires --export and --chapter')
     for chapter in ([args.chapter] if args.chapter else DESTINATIONS):
-        (export if args.export else analyze)(chapter)
+        if args.export:export(chapter,args.keys)
+        else:analyze(chapter)

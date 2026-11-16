@@ -1,8 +1,8 @@
 # NAR-001 — evidências
 
-- `audio-validation.json`: 112 arquivos integralmente decodificados; duração
+- `audio-validation.json`: 116 arquivos integralmente decodificados; duração
   compatível com os cortes revisados, sinal não vazio, amostras finitas e
-  sem clipping digital. 5,73 MiB de OGG; 617,078 s de voz somada.
+  sem clipping digital. 5,95 MiB de OGG; 641,358 s de voz somada.
 - `installation.json`: três catálogos e quatro cenas reais validados.
   `installation-initial.json` preserva a primeira passagem de ajuste de tempos.
 - `editmode-results.xml`: **54/54 aprovados**, filtro de narração, localização,
@@ -12,8 +12,28 @@
   Carrega Boot e abre os três capítulos com legendas em português, aciona
   seus players, verifica pausa e liberação ao voltar ao arquivo. A repetição
   após incorporar `faef090` também passou.
-- `MISSING_RECORDINGS_EN.txt`: quatro falas presentes nas legendas atuais,
-  ausentes nas gravações fornecidas; seguem sem dublagem.
+- `MISSING_RECORDINGS_EN.txt`: nenhuma lacuna no manifesto congelado, após
+  a inclusão das quatro gravações complementares fornecidas pelo proprietário.
+
+## Complementos
+
+`supplement-editmode-results.xml`: **14/14 aprovados**, catálogo com 25 falas
+Surveyor, 61 Pioneer e 30 Marte, importação Web e referências nas quatro cenas.
+`supplement-playmode-results.xml`: **1/1 aprovado**, com reprodução real dos
+quatro novos clipes até o fim, pitch 1 e acionamento observado no AudioSource.
+Não foi apenas uma chamada a Play: o teste esperou cada gravação terminar.
+Os 112 OGG anteriores mantêm seus SHA-256; apenas quatro clipes foram exportados.
+
+| Chave | Origem complementar | Intervalo (s) | Clipe (s) |
+| --- | --- | --- | ---: |
+| PIO.05.01b | dublagem complementar piooner.wav | 0–4,58 | 4,58 |
+| PIO.05.01c | dublagem complementar piooner.wav | 4,78–8,75 | 3,97 |
+| v13.years.work | dublagem complementar opportunity.wav | 0,27–6,65 | 6,38 |
+| v15.storm.dark | dublagem complementar opportunity.wav | 6,97–16,32 | 9,35 |
+
+Sem mudança no player de runtime nem atualização de develop durante a edição
+dos complementos. Na etapa final, o proprietário autorizou integrar o PR #232,
+resolvendo apenas os conflitos necessários com a base da equipe.
 
 Ambiente: Windows, Unity 6000.6.7f1. Os logs locais registraram
 `NAR_AUDIO_PLAYING` para `PIO.01.01`, `MAR.C01`, `v18.landing.descent` e
@@ -22,6 +42,10 @@ Uma primeira tentativa PlayMode sem gráficos falhou em criação de RenderTextu
 o teste foi repetido com gráficos e passou. Não se ocultou essa falha por filtro.
 
 ## Build Web
+
+Os relatórios Web abaixo correspondem à revisão `ac37672`, anterior aos quatro
+complementos. A inclusão dos complementos foi validada por importação e
+reprodução na Unity; não se repetiu o empacotamento Web nesta alteração de áudio.
 
 A pré-verificação release herdada de CORE-006 bloqueou a tentativa antes de
 compilar. Ela rejeita pacotes já presentes na base (`gltfast 6.20.0`,

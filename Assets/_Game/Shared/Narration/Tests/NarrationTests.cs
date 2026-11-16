@@ -96,7 +96,7 @@ namespace Abandoned.SpaceApps.Tests
             var map=new NarrationTimeMap();map.AddWindow(8f,12.5f,0f);map.AddWindow(11f,6f,0f);
             Assert.That(map.DurationSeconds,Is.EqualTo(18.5f));Assert.That(map.ToAuthored(18.5f),Is.EqualTo(11f));
         }
-        [TestCase("surveyor",25)] [TestCase("pioneer",59)] [TestCase("mars",28)]
+        [TestCase("surveyor",25)] [TestCase("pioneer",61)] [TestCase("mars",30)]
         public void InstalledCatalogsHaveRealMonoClipsAndWebImportSettings(string chapter,int count)
         {
             var asset=AssetDatabase.LoadAssetAtPath<NarrationCatalog>(NarrationSetup.CatalogPath(chapter));
