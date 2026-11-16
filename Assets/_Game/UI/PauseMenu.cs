@@ -6,17 +6,19 @@ using UnityEngine.UIElements;
 namespace Abandoned.SpaceApps.UI
 {
     /// <summary>
-    /// Pausa centralizada (UI-006): botão sempre visível durante o capítulo, menu centralizado com Continuar,
-    /// Preferências, tela cheia opcional, Reiniciar e Voltar ao arquivo. P e o botão abrem a pausa; Esc também, quando o
-    /// navegador não o consome. Quem decide o que pausa é o <see cref="PauseController"/>; este componente só apresenta.
+    /// Pausa centralizada (UI-006): botão sempre visível durante o capítulo e menu centralizado com Continuar, Reiniciar
+    /// e Voltar ao arquivo. P e o botão abrem a pausa; Esc também, quando o navegador não o consome. Quem decide o que
+    /// pausa é o <see cref="PauseController"/>; este componente só apresenta. O menu não tem aba de preferências: o que a
+    /// pessoa já salvou (volumes, idioma, qualidade) continua valendo, aplicado ao ligar.
     /// <para>
     /// Instalação (R1, INT-001): instancie o prefab <c>PauseMenu</c> no aplicativo e chame <see cref="Initialize"/> com o
     /// <c>ChapterDirector</c>, o <c>InputRouter</c>, o <c>SettingsStore</c> e, se houver, o <c>MissionHUD</c> (o botão vai
     /// para <c>RightColumn</c>, acima do medidor de energia). Passe <see cref="Controller"/> ao <c>FocusPause</c>.
     /// </para>
     /// <para>
-    /// Tela cheia e captura do cursor são opcionais: nada depende deles e o cursor nunca é capturado aqui. A tela cheia
-    /// só muda por clique (o navegador exige gesto).
+    /// Só um item fica destacado por vez: o do teclado (↑ ↓) ou o que o mouse acabou de tocar. O destaque é a classe
+    /// <c>sa-pausemenu__focus</c>; o CSS não usa <c>:hover</c> nem <c>:focus</c> nos itens, senão o item do mouse e o do
+    /// teclado ficariam amarelos ao mesmo tempo.
     /// </para>
     /// </summary>
     [DisallowMultipleComponent]
@@ -24,12 +26,6 @@ namespace Abandoned.SpaceApps.UI
     public sealed class PauseMenu : MonoBehaviour
     {
         const string FocusClass = "sa-pausemenu__focus";
-
-        enum View
-        {
-            Main = 0,
-            Settings = 1,
-        }
 
         enum Confirmation
         {
@@ -46,24 +42,21 @@ namespace Abandoned.SpaceApps.UI
         }
 
         [SerializeField] UIDocument document;
-        [SerializeField, Tooltip("PauseTexts.json: textos PT/EN da pausa e das preferências.")] TextAsset uiTexts;
+        [SerializeField, Tooltip("PauseTexts.json: textos PT/EN da pausa.")] TextAsset uiTexts;
 
         readonly Dictionary<VisualElement, Entry> entries = new Dictionary<VisualElement, Entry>();
         readonly List<VisualElement> mainFocusables = new List<VisualElement>();
-        readonly List<VisualElement> settingsFocusables = new List<VisualElement>();
 
         ChapterDirector director;
         InputRouter router;
         SettingsStore settings;
         MissionHUD hud;
         PauseController controller;
-        SettingsPanel panel;
         DossierTextCatalog texts;
         string language = SettingsData.English;
 
         bool bound;
         bool open;
-        View view;
         Confirmation confirmation;
         int focusIndex;
 
@@ -71,21 +64,15 @@ namespace Abandoned.SpaceApps.UI
         VisualElement corner;
         VisualElement pauseButton;
         VisualElement overlay;
-        VisualElement mainView;
-        VisualElement settingsView;
-        ScrollView settingsScroll;
         Label buttonLabel;
         Label buttonKey;
         Label title;
         Label subtitle;
         Label hint;
         Label navigation;
-        Label settingsTitle;
         Entry resume;
-        Entry openSettings;
         Entry restart;
         Entry toDossier;
-        Entry back;
 
         public bool IsBound => bound;
 
@@ -185,16 +172,12 @@ namespace Abandoned.SpaceApps.UI
             corner = Require<VisualElement>("pause-corner");
             pauseButton = Require<VisualElement>("pause-button");
             overlay = Require<VisualElement>("pause-overlay");
-            mainView = Require<VisualElement>("view-main");
-            settingsView = Require<VisualElement>("view-settings");
-            settingsScroll = Require<ScrollView>("settings-scroll");
             buttonLabel = Require<Label>("pause-button-label");
             buttonKey = Require<Label>("pause-button-key");
             title = Require<Label>("pause-title");
             subtitle = Require<Label>("pause-subtitle");
             hint = Require<Label>("pause-hint");
             navigation = Require<Label>("pause-navigation");
-            settingsTitle = Require<Label>("settings-title");
 
             if (settings == null)
             {
@@ -208,17 +191,14 @@ namespace Abandoned.SpaceApps.UI
             SettingsPanel.ApplyEngineSettings(settings.Current);
 
             controller = new PauseController(director, router);
-            panel = new SettingsPanel(settingsScroll.contentContainer, settings, texts);
 
             entries.Clear();
             resume = Wire("btn-resume", () => controller.Continue());
-            openSettings = Wire("btn-settings", () => ShowView(View.Settings));
             restart = Wire("btn-restart", () => Confirmable(Confirmation.Restart, () => director.RestartChapter()));
             toDossier = Wire("btn-dossier", () => Confirmable(Confirmation.Dossier, () => director.ReturnToDossier()));
-            back = Wire("btn-back", () => ShowView(View.Main));
 
             mainFocusables.Clear();
-            mainFocusables.AddRange(new[] { resume.Element, openSettings.Element, restart.Element, toDossier.Element });
+            mainFocusables.AddRange(new[] { resume.Element, restart.Element, toDossier.Element });
 
             pauseButton.AddManipulator(new Clickable(() => controller.RequestPause()));
             overlay.pickingMode = PickingMode.Position; // o fundo captura cliques: nada atrás reage com o menu aberto
@@ -255,8 +235,6 @@ namespace Abandoned.SpaceApps.UI
                 router.SubmitDown -= OnSubmit;
             }
 
-            panel?.Dispose();
-            panel = null;
             controller?.Dispose();
             controller = null;
             if (pauseButton != null && corner != null)
@@ -284,6 +262,8 @@ namespace Abandoned.SpaceApps.UI
             var element = Require<VisualElement>(elementName);
             var entry = new Entry { Element = element, Label = element.Q<Label>(), Action = action };
             element.AddManipulator(new Clickable(action));
+            // O mouse move o destaque para o item tocado: assim existe um só item amarelo, nunca dois.
+            element.RegisterCallback<PointerEnterEvent>(_ => FocusElement(element));
             entries[element] = entry;
             return entry;
         }
@@ -294,13 +274,6 @@ namespace Abandoned.SpaceApps.UI
         {
             if (!bound)
                 return;
-
-            // Esc/P dentro das preferências voltam ao menu; só no menu principal eles retomam.
-            if (open && view == View.Settings)
-            {
-                ShowView(View.Main);
-                return;
-            }
 
             controller.KeyToggle();
         }
@@ -340,9 +313,7 @@ namespace Abandoned.SpaceApps.UI
         {
             open = true;
             confirmation = Confirmation.None;
-            view = View.Main;
             overlay.style.display = DisplayStyle.Flex;
-            ApplyView();
             RefreshTexts();
             SetFocus(0);
         }
@@ -354,31 +325,8 @@ namespace Abandoned.SpaceApps.UI
 
             open = false;
             confirmation = Confirmation.None;
-            view = View.Main;
             overlay.style.display = DisplayStyle.None;
             ClearFocusMarks();
-            ApplyView();
-        }
-
-        void ShowView(View next)
-        {
-            view = next;
-            confirmation = Confirmation.None;
-            if (next == View.Settings)
-                panel.Refresh();
-
-            ApplyView();
-            RefreshTexts();
-            SetFocus(0);
-        }
-
-        void ApplyView()
-        {
-            mainView.style.display = view == View.Main ? DisplayStyle.Flex : DisplayStyle.None;
-            settingsView.style.display = view == View.Settings ? DisplayStyle.Flex : DisplayStyle.None;
-            settingsFocusables.Clear();
-            settingsFocusables.AddRange(panel.Focusables);
-            settingsFocusables.Add(back.Element);
         }
 
         // ---------- Ações ----------
@@ -398,18 +346,12 @@ namespace Abandoned.SpaceApps.UI
 
         // ---------- Teclado (via InputRouter; nenhuma tecla é lida aqui) ----------
 
-        List<VisualElement> Current => view == View.Main ? mainFocusables : settingsFocusables;
-
         void OnNavigate(Vector2Int direction)
         {
-            if (!open)
+            if (!open || direction.y == 0 || mainFocusables.Count == 0)
                 return;
 
-            var list = Current;
-            if (direction.y != 0 && list.Count > 0)
-                SetFocus((focusIndex - direction.y + list.Count) % list.Count);
-            else if (direction.x != 0 && view == View.Settings && focusIndex < list.Count)
-                panel.TryAdjust(list[focusIndex], direction.x);
+            SetFocus((focusIndex - direction.y + mainFocusables.Count) % mainFocusables.Count);
         }
 
         void OnSubmit()
@@ -417,37 +359,38 @@ namespace Abandoned.SpaceApps.UI
             if (!open)
                 return;
 
-            var list = Current;
-            if (focusIndex < 0 || focusIndex >= list.Count)
+            if (focusIndex < 0 || focusIndex >= mainFocusables.Count)
                 return;
 
-            var element = list[focusIndex];
-            if (entries.TryGetValue(element, out var entry))
+            if (entries.TryGetValue(mainFocusables[focusIndex], out var entry))
                 entry.Action();
-            else if (view == View.Settings)
-                panel.TryActivate(element);
+        }
+
+        void FocusElement(VisualElement element)
+        {
+            if (!open)
+                return;
+
+            var index = mainFocusables.IndexOf(element);
+            if (index >= 0 && index != focusIndex)
+                SetFocus(index);
         }
 
         void SetFocus(int index)
         {
             ClearFocusMarks();
-            var list = Current;
-            if (list.Count == 0)
+            if (mainFocusables.Count == 0)
                 return;
 
-            focusIndex = Mathf.Clamp(index, 0, list.Count - 1);
-            var element = list[focusIndex];
+            focusIndex = Mathf.Clamp(index, 0, mainFocusables.Count - 1);
+            var element = mainFocusables[focusIndex];
             element.AddToClassList(FocusClass);
             element.Focus();
-            if (view == View.Settings && settingsScroll.contentContainer.Contains(element))
-                settingsScroll.ScrollTo(element);
         }
 
         void ClearFocusMarks()
         {
             foreach (var element in mainFocusables)
-                element.RemoveFromClassList(FocusClass);
-            foreach (var element in settingsFocusables)
                 element.RemoveFromClassList(FocusClass);
         }
 
@@ -465,13 +408,10 @@ namespace Abandoned.SpaceApps.UI
             hint.text = controller.AwaitingClick ? T(PauseKeys.ResumeHint) : string.Empty;
             hint.style.display = controller.AwaitingClick ? DisplayStyle.Flex : DisplayStyle.None;
             navigation.text = T(PauseKeys.Navigation);
-            settingsTitle.text = T(PauseKeys.SettingsTitle);
 
             resume.Label.text = T(PauseKeys.Resume);
-            openSettings.Label.text = T(PauseKeys.Settings);
             restart.Label.text = T(confirmation == Confirmation.Restart ? PauseKeys.RestartConfirm : PauseKeys.Restart);
             toDossier.Label.text = T(confirmation == Confirmation.Dossier ? PauseKeys.DossierConfirm : PauseKeys.Dossier);
-            back.Label.text = T(PauseKeys.Back);
         }
 
         string T(string key) => texts.Get(key, language, key);

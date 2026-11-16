@@ -3,7 +3,7 @@
 | Arquivo | O que faz |
 | --- | --- |
 | `../PauseController.cs` | Regras: quem pode pausar, P/Esc/botão, perda de foco, retomada deliberada (`Continue`). Sem interface. |
-| `../PauseMenu.cs` | Botão de pausa + menu centralizado (Continuar, Preferências, tela cheia opcional, Reiniciar, Voltar ao arquivo). |
+| `../PauseMenu.cs` | Botão de pausa + menu centralizado (Continuar, Reiniciar, Voltar ao arquivo; sem aba de preferências). |
 | `../SettingsPanel.cs` | Volumes (geral, música, efeitos, interface), idioma, sensibilidade, movimento reduzido e qualidade, via `SettingsStore`. |
 | `../PauseKeys.cs`, `PauseTexts.json` | Textos PT/EN; nenhuma frase em C#. |
 | `../../Presentation/FocusPause.cs` | Foco do navegador: solta teclas, pausa, congela o áudio até a retomada. |
@@ -23,21 +23,21 @@
 
 ## Comportamento
 
-- P, Esc (se o navegador não o consumir) e o botão pausam. P/Esc retomam uma pausa aberta pelo menu; dentro das
-  Preferências voltam ao menu.
+- P, Esc (se o navegador não o consumir) e o botão pausam. P/Esc retomam uma pausa aberta pelo menu.
 - Perda de foco: `InputRouter.NotifyFocusLost()` solta E/WASD, o capítulo pausa e o áudio congela. Voltar ao foco **não** retoma;
   só o clique em Continuar. P/Esc são ignorados nesse estado.
 - Retomar não reaplica nada: o `InputRouter` zera o movimento ao trocar de contexto e só aceita E depois de soltar.
 - Reiniciar e Voltar ao arquivo pedem um segundo clique. O `ChapterDirector` zera relógio, pausas, evidências e contextos.
 - Tela cheia é um botão (gesto do navegador); a captura do cursor não é usada e é liberada na perda de foco se alguém a tiver ligado.
-- Preferências gravam a cada mudança no `SettingsStore`; o `AudioDirector`, o `LocalizationService` e a câmera reagem a `Changed`.
-  A qualidade é aplicada pelo painel (`SettingsPanel.ApplyEngineSettings`).
+- O menu não mostra preferências (a aba saiu: só enchia linguiça). O que já estava salvo no `SettingsStore` continua valendo e a qualidade é
+  aplicada ao ligar (`SettingsPanel.ApplyEngineSettings`). `SettingsPanel` continua no projeto, com seus testes, sem tela que o use.
+- Um só item destacado: o do teclado (↑ ↓) ou o que o mouse tocou (`PointerEnterEvent` move o destaque). O CSS dos itens não usa `:hover` nem `:focus`.
 
 ## Verificação manual (pendente de uma pessoa com o Editor e o navegador)
 
 Nada abaixo foi executado por quem escreveu o código.
 
-- Prévia em 960×600, 1280×720, 1152×720 (16:10) e 4:3: o cartão fica centralizado e a lista de preferências rola dentro dele.
+- Prévia em 960×600, 1280×720, 1152×720 (16:10) e 4:3: o cartão fica centralizado.
 - Build Web (iframe do itch.io): fullscreen, redimensionar, trocar de aba real, Esc e P.
 - Manter W e E, trocar de aba, voltar: nada se move e nenhuma ferramenta liga; só Continuar retoma.
 - Mudar idioma/volume, recarregar a página: valores mantidos. Reiniciar capítulo: sem estado do anterior.

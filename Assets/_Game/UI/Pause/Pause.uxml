@@ -21,9 +21,6 @@
                     <ui:VisualElement name="btn-resume" focusable="true" class="sa-pausemenu__action sa-pausemenu__action--primary">
                         <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="btn-settings" focusable="true" class="sa-pausemenu__action">
-                        <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
-                    </ui:VisualElement>
                     <ui:VisualElement name="btn-restart" focusable="true" class="sa-pausemenu__action">
                         <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
                     </ui:VisualElement>
@@ -31,13 +28,6 @@
                         <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
                     </ui:VisualElement>
                     <ui:Label name="pause-hint" picking-mode="Ignore" class="sa-text sa-pausemenu__hint" />
-                </ui:VisualElement>
-                <ui:VisualElement name="view-settings" class="sa-pausemenu__view">
-                    <ui:Label name="settings-title" picking-mode="Ignore" class="sa-text sa-font-semibold sa-pausemenu__section" />
-                    <ui:ScrollView name="settings-scroll" class="sa-pausemenu__scroll" />
-                    <ui:VisualElement name="btn-back" focusable="true" class="sa-pausemenu__action">
-                        <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
-                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:Label name="pause-navigation" picking-mode="Ignore" class="sa-stamp sa-pausemenu__navigation" />
             </ui:VisualElement>

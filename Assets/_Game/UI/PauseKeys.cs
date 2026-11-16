@@ -13,8 +13,6 @@ namespace Abandoned.SpaceApps.UI
         public const string SubtitleFocus = "pause.subtitle.focus";
         public const string Resume = "pause.resume";
         public const string ResumeHint = "pause.resume.hint";
-        public const string Settings = "pause.settings";
-        public const string Back = "pause.back";
         public const string Restart = "pause.restart";
         public const string RestartConfirm = "pause.restart.confirm";
         public const string Dossier = "pause.dossier";
@@ -44,7 +42,7 @@ namespace Abandoned.SpaceApps.UI
         /// <summary>Todas as chaves, para o teste de conteúdo.</summary>
         public static readonly string[] All =
         {
-            Button, KeyHint, Title, SubtitleMenu, SubtitleFocus, Resume, ResumeHint, Settings, Back,
+            Button, KeyHint, Title, SubtitleMenu, SubtitleFocus, Resume, ResumeHint,
             Restart, RestartConfirm, Dossier, DossierConfirm, Navigation,
             SettingsTitle, VolumeMaster, VolumeMusic, VolumeSfx, VolumeUi, Language, LanguagePt, LanguageEn, Sensitivity,
             ReducedMotion, Fullscreen, Quality, QualityValue, On, Off, Previous, Next, Reset, Saved,

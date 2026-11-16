@@ -90,8 +90,7 @@
     border-left-color: var(--sa-accent-hud);
 }
 
-.sa-pausemenu__action:hover,
-.sa-pausemenu__action:focus,
+/* Um só destaque: a classe de foco é posta por código (teclado ou mouse). Sem :hover/:focus aqui, dois itens ficavam amarelos. */
 .sa-pausemenu__focus {
     border-color: var(--sa-color-focus);
     border-width: 3px;
@@ -106,18 +105,6 @@
     font-size: var(--sa-text-label);
     color: var(--sa-color-warn);
     margin-top: var(--sa-space-2);
-}
-
-.sa-pausemenu__section {
-    font-size: var(--sa-text-label);
-    color: var(--sa-color-on-plate);
-    margin-bottom: var(--sa-space-2);
-}
-
-.sa-pausemenu__scroll {
-    flex-shrink: 1;
-    max-height: 420px;
-    margin-bottom: var(--sa-space-3);
 }
 
 .sa-pausemenu__navigation {
