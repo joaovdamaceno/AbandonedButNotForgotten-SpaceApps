@@ -266,8 +266,6 @@
 /* Legenda das cenas: mesma placa da abertura (fundo escuro, cantos arredondados, Outfit Medium), um pouco menor. */
 .caption { left:13%; right:13%; bottom:6.5%; width:auto; font-size:28px; color:rgb(238,235,220); background-color:rgba(4,6,7,.5); border-radius:8px; padding:8px 24px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Regular.ttf"); -unity-text-align:middle-center; white-space:normal; }
 .toast { color:rgb(238,235,220); background-color:rgba(4,6,7,.5); border-radius:8px; padding:8px 24px; font-size:22px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Regular.ttf"); }
-/* Aviso no meio da tela antes da primeira observação. */
-.explore-hint { position:absolute; top:46%; left:50%; translate:-50% 0; font-size:24px; color:rgb(238,235,220); background-color:rgba(4,6,7,.5); border-radius:8px; padding:8px 16px; -unity-font-definition:url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Regular.ttf"); -unity-text-align:middle-center; }
 
 /* Comandos no topo, ao lado da ajuda do H: uma linha por comando; teclas desenhadas como botões de teclado. */
 .guide-stack { position:absolute; top:10%; right:4%; max-width:46%; flex-direction:column; align-items:flex-end; }
@@ -300,3 +298,31 @@
 .solar .eyebrow { font-size:44px; letter-spacing:8px; -unity-font-style:bold; color:rgb(255,140,86); -unity-text-align:middle-center; margin-bottom:10px; white-space:nowrap; }
 .solar .energy-track { width:100%; height:6px; background-color:rgba(255,190,160,.18); }
 .large-text .solar .eyebrow { font-size:50px; }
+
+/* Prompt de segurar E (Spirit and Opportunity): tecla desenhada como botão, barra com o progresso real da ação e confirmação de conclusão.
+   Um só componente (HoldPrompt) para esferas de hematita, RAT, escudo, meteorito, Sol e fotografia da paisagem. */
+.hold-prompt { flex-direction:row; align-items:center; min-width:360px; max-width:520px; padding:10px 20px 12px 12px; background-color:rgba(4,6,7,.62); border-left-width:3px; border-left-color:rgb(240,200,146); }
+.hold-prompt--corner { position:absolute; left:6%; bottom:3.5%; }
+.hold-prompt--hint { position:relative; align-self:flex-end; margin-bottom:8px; }
+.hold-key { width:52px; height:52px; margin-right:16px; flex-shrink:0; -unity-text-align:middle-center; font-size:30px; -unity-font-style:bold; color:rgb(250,243,225); background-color:rgba(32,38,40,.95); border-width:1px; border-bottom-width:5px; border-color:rgb(240,200,146); border-radius:8px; }
+.hold-body { flex-grow:1; flex-shrink:1; }
+.hold-line { flex-direction:row; align-items:center; margin-bottom:8px; }
+.hold-word { font-size:15px; letter-spacing:3px; color:rgb(240,200,146); margin-right:10px; flex-shrink:0; }
+.hold-text { font-size:22px; color:rgb(250,243,225); white-space:normal; flex-shrink:1; }
+.hold-track { height:8px; background-color:rgba(255,255,255,.16); border-radius:4px; }
+.hold-fill { width:0; height:100%; background-color:rgb(240,200,146); border-radius:4px; }
+.hold-check { display:none; width:26px; height:26px; margin-right:10px; flex-shrink:0; align-items:center; justify-content:center; background-color:rgb(120,200,160); border-radius:13px; }
+.hold-check-mark { width:7px; height:13px; margin-top:-3px; border-right-width:3px; border-bottom-width:3px; border-color:rgb(8,20,16); rotate:45deg; }
+/* Segurando: a tecla afunda e acende. Esperando: o instrumento ainda não pode avançar. Concluído: tudo em verde com o visto. */
+.hold-prompt--holding .hold-key { translate:0 3px; border-bottom-width:2px; background-color:rgba(240,200,146,.28); }
+.hold-prompt--waiting { opacity:.55; }
+.hold-prompt--done { border-left-color:rgb(120,200,160); }
+.hold-prompt--done .hold-key { border-color:rgb(120,200,160); }
+.hold-prompt--done .hold-fill { background-color:rgb(120,200,160); }
+.hold-prompt--done .hold-word { display:none; }
+.hold-prompt--done .hold-check { display:flex; }
+.large-text .hold-text { font-size:26px; }
+.large-text .hold-word { font-size:17px; }
+/* Texto da análise da RAT na coluna da direita, acima das leituras, para o prompt ocupar o canto inferior esquerdo sem sobreposição. */
+.rat-analysis { left:auto; bottom:auto; right:32px; top:22%; width:420px; max-width:420px; padding-left:19px; border-left-width:2px; border-left-color:rgba(185,219,209,.7); }
+.rat-analysis .science-body, .rat-analysis .goal-line { max-width:100%; }

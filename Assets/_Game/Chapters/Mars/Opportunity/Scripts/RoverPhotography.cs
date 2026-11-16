@@ -13,6 +13,8 @@ namespace Abandoned.SpaceApps.Opportunity
         public float Flash { get; private set; }
         public List<Texture2D> Frames { get; } = new List<Texture2D>();
         public int CaptureVersion { get; private set; }
+        /// <summary>Quantas fotos foram feitas (nunca diminui, nem ao reiniciar); o HUD usa a mudança para confirmar a conclusão.</summary>
+        public int Captured { get; private set; }
         public int Station { get; private set; } = -1;
         int openedFrame=-1;
         /// <summary>Segundos segurando E para fotografar; o enquadramento já vem pronto.</summary>
@@ -38,7 +40,7 @@ namespace Abandoned.SpaceApps.Opportunity
                 var texture = FrameCaptureUtility.Photograph(chapter.cameras.view);
                 // Preserve the first view of the valley and the two most recent views.
                 if (Frames.Count >= MaximumFrames) { Destroy(Frames[1]); Frames.RemoveAt(1); }
-                Frames.Add(texture); CaptureVersion++;
+                Frames.Add(texture); CaptureVersion++; Captured++;
                 Flash = 1; chapter.sound.Photograph(); chapter.journey.VisitPhoto(Station);
                 if (Station < 0) chapter.hud.Toast("photo.saved");
                 Active = false;chapter.rover.Controllable = chapter.Stage == ChapterStage.HeatShieldExploration || chapter.Stage == ChapterStage.Exploration || chapter.journey.FinalAct;chapter.SetCursor();
