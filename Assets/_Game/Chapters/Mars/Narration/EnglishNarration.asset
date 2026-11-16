@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce9e6f52dd656f43b381acb73222da1, type: 3}
+  m_Name: EnglishNarration
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.NarrationCatalog
+  chapterId: mars
+  lines:
+  - textKey: MAR.C01
+    clip: {fileID: 8300000, guid: 8528c852565458e42996cb86daf69090, type: 3}
+  - textKey: MAR.C02
+    clip: {fileID: 8300000, guid: b704590949cd3b04da0a61a5b6494234, type: 3}
+  - textKey: MAR.C03
+    clip: {fileID: 8300000, guid: c0e24523742d7e34fa7c0bcc81908066, type: 3}
+  - textKey: MAR.C04
+    clip: {fileID: 8300000, guid: c4de7ed21025d0e47b76b1337018c8db, type: 3}
+  - textKey: MAR.C05
+    clip: {fileID: 8300000, guid: f0425cefae56e304dbad0ba7d5d4feaf, type: 3}
+  - textKey: v18.landing.descent
+    clip: {fileID: 8300000, guid: b834004b27665f54ea46dfd0380fc025, type: 3}
+  - textKey: v15.landing.opp
+    clip: {fileID: 8300000, guid: 6ead03487983875479ebfa64dfcb788f, type: 3}
+  - textKey: v14.berries.water
+    clip: {fileID: 8300000, guid: d099871202b82124fbedbe0de03faa3b, type: 3}
+  - textKey: v14.berries.doubt
+    clip: {fileID: 8300000, guid: b4f1239c681449c4e9275e7b52e3f6e8, type: 3}
+  - textKey: route.outcrop
+    clip: {fileID: 8300000, guid: 1dcbdcf855b9e8f468e1ecf84976e35d, type: 3}
+  - textKey: v13.discovery.evidence
+    clip: {fileID: 8300000, guid: 7c0908430fd88bc498988c419729e0c7, type: 3}
+  - textKey: v14.discovery.bridge
+    clip: {fileID: 8300000, guid: 6e23af2f8c360294997ceb8371776c4a, type: 3}
+  - textKey: v13.hardware.arrival
+    clip: {fileID: 8300000, guid: 8084fe7a4945f7540925f547eb3eda8b, type: 3}
+  - textKey: v13.meteorite.result
+    clip: {fileID: 8300000, guid: 19b0fe4cec9d4f34fafc017befff1f1d, type: 3}
+  - textKey: v15.storm.frequent
+    clip: {fileID: 8300000, guid: 17d71f07f674f164496a6f3c87728622, type: 3}
+  - textKey: v15.spirit.death
+    clip: {fileID: 8300000, guid: 564c84763a3bf934682af1edda8a20dc, type: 3}
+  - textKey: v17.spirit.signal
+    clip: {fileID: 8300000, guid: 5570da81d5094454dacc8482268680cc, type: 3}
+  - textKey: v15.spirit.alone
+    clip: {fileID: 8300000, guid: 11703fc7f8b145944a9c68b125b8d321, type: 3}
+  - textKey: v13.years.valley
+    clip: {fileID: 8300000, guid: 8ee6c03029f923442877bd99a077260f, type: 3}
+  - textKey: v14.sun.reason
+    clip: {fileID: 8300000, guid: 0dc47b5eaf439a34ca43cb87e8b0fb1f, type: 3}
+  - textKey: v15.storm.again
+    clip: {fileID: 8300000, guid: 7c91c5f121c65c34a863ed39b35e4ff1, type: 3}
+  - textKey: nar.mars.last.image
+    clip: {fileID: 8300000, guid: b69506dffdc33c341a98702c518ebc9b, type: 3}
+  - textKey: v13.last.power
+    clip: {fileID: 8300000, guid: e2a276a364a655644be57dde8a262a7a, type: 3}
+  - textKey: v16.last.contact
+    clip: {fileID: 8300000, guid: 85cb6ffeacca7ff479dcadccfed32e1d, type: 3}
+  - textKey: v16.farewell.legacy
+    clip: {fileID: 8300000, guid: 5875dd9d0fd4d6845836a2e00fbcd8e7, type: 3}
+  - textKey: v17.farewell.opportunity
+    clip: {fileID: 8300000, guid: 2ff39b4105f74bf40b3a752f4b2c533c, type: 3}
+  - textKey: v16.farewell.end
+    clip: {fileID: 8300000, guid: 1b49bfa1d923ad84387fcc56e66c7025, type: 3}
+  - textKey: v16.farewell.memory
+    clip: {fileID: 8300000, guid: 47596282f506ce140a4b7bffccfe3061, type: 3}

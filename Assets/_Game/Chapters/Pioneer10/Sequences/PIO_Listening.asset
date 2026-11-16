@@ -158,7 +158,7 @@ MonoBehaviour:
     startSeconds: 0
     endSeconds: 0
     triggerId: PIO.Listening.Contact3
-    minimumReadSeconds: 6.8
+    minimumReadSeconds: 8.599999
     position: 0
     priority: 0
   - cueId: PIO.07.05
@@ -172,7 +172,7 @@ MonoBehaviour:
   - cueId: PIO.07.06
     textKey: PIO.07.06
     startSeconds: 32
-    endSeconds: 36
+    endSeconds: 37.87
     triggerId: 
     minimumReadSeconds: 0
     position: 0

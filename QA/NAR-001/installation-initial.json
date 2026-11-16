@@ -1,0 +1,24 @@
+{
+    "baseCommit": "5b67617",
+    "clips": 112,
+    "catalogs": 3,
+    "scenes": 4,
+    "adjustedSequences": [
+        "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Closest.asset",
+        "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Launch.asset",
+        "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Imaging.asset",
+        "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Farewell.asset",
+        "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Plaque.asset",
+        "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Belt.asset",
+        "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_JupiterApproach.asset",
+        "Assets/_Game/Chapters/Pioneer10/Sequences/PIO_Listening.asset",
+        "Assets/_Game/Chapters/Mars/Timelines/MarsOrigin_M01.asset",
+        "Assets/_Game/Chapters/Mars/Timelines/MarsOrigin_M02.asset"
+    ],
+    "missing": [
+        "pioneer: PIO.05.01b",
+        "pioneer: PIO.05.01c",
+        "mars: v13.years.work",
+        "mars: v15.storm.dark"
+    ]
+}

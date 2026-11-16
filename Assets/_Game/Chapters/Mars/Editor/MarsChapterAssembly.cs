@@ -207,6 +207,8 @@ namespace Abandoned.SpaceApps.Chapters.Mars.EditorTools
 
             // ---- Bindings ----
             var bindings = context.Component<MarsChapterBindings>(context.Root);
+            NarrationSetup.Attach(context.Root, "mars");
+            NarrationSetup.FitChapter("mars");
             var so = new SerializedObject(bindings);
             SetRef(so, "bindings", asset);
             SetRef(so, "sceneCamera", camera);

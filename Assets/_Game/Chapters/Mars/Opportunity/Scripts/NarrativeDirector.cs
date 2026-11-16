@@ -10,16 +10,20 @@ namespace Abandoned.SpaceApps.Opportunity
         public AbrasionSurface montageSurface;
         public ParticleSystem montageDust;
         float filmCut;
-        // AI-generated narration (Piper TTS), stored as Resources/Narration/{pt|en}/<bodyKey>.wav. Missing clips are silently skipped.
-        AudioSource voice;string spoken;
+        [SerializeField] Abandoned.SpaceApps.NarrationPlayer narration;
+        Abandoned.SpaceApps.NarrationTimeMap narrationClock;
+        string spoken;
+        public Abandoned.SpaceApps.NarrationPlayer Narration => narration;
+        public bool HasPendingNarration => speaking != null || (narration != null && narration.IsBusy);
         void Speak(string key)
         {
             if(key==spoken)return;spoken=key;
-            if(!voice){voice=gameObject.AddComponent<AudioSource>();voice.playOnAwake=false;voice.spatialBlend=0;}
-            voice.Stop();if(string.IsNullOrEmpty(key)||!GameSettings.Voice)return;
-            var clip=Resources.Load<AudioClip>("Narration/"+(GameSettings.English?"en":"pt")+"/"+key);
-            if(clip){voice.clip=clip;voice.volume=1;voice.Play();}
+            if (narration == null) return;
+            narration.SetMuted(!GameSettings.Voice);
+            narration.Present(key);
         }
+        public void PresentToast(string key) { if (narration != null && narration.Catalog != null && narration.Catalog.Duration(key) > 0f) Speak(key); }
+        public float SpeechDuration(string key) => narration != null && narration.Catalog != null ? narration.Catalog.Duration(key) : 0f;
         /// <summary>Plays narration lines one after another during free play (caption shown as a toast).</summary>
         Coroutine speaking;
         public void SpeakSequence(params string[] keys){if(speaking!=null)StopCoroutine(speaking);speaking=StartCoroutine(SpeakLines(keys));}
@@ -28,16 +32,34 @@ namespace Abandoned.SpaceApps.Opportunity
             foreach(var key in keys)
             {
                 spoken=null;Speak(key);
-                var clip=voice?voice.clip:null;float seconds=GameSettings.Voice&&clip&&voice.isPlaying?clip.length:Mathf.Max(4.5f,Localization.Get(key).Length/15f); // sem voz: tempo de leitura
+                float seconds=Mathf.Max(SpeechDuration(key),Mathf.Max(4.5f,Localization.Get(key).Length/15f));
                 chapter.hud.Toast(key,seconds+.6f);
-                yield return new WaitForSeconds(seconds+.5f);
+                float active=0f;
+                while(active<seconds+.5f){if(!chapter.Paused)active+=Time.deltaTime;yield return null;}
             }
+            speaking=null;
         }
         void Update()
         {
-            if(!voice)return;
-            if(!GameSettings.Voice&&voice.isPlaying)voice.Stop();
-            if(chapter&&chapter.Paused)voice.Pause();else voice.UnPause();
+            if(narration==null)return;
+            narration.SetMuted(!GameSettings.Voice);
+            narration.SetPaused(chapter&&chapter.Paused);
+            narration.Tick(chapter&&!chapter.Paused?Time.deltaTime:0f);
+            if(chapter&&chapter.sound)chapter.sound.NarrationActive=narration.IsBusy;
+        }
+        public float ToAuthoredTime(float actualSeconds) => narrationClock != null ? narrationClock.ToAuthored(actualSeconds) : ChapterDirector.UnnarratedFilmTime(chapter.Stage, actualSeconds);
+        void FitNarrationClock(ChapterStage stage)
+        {
+            narrationClock=null;if(!current||current.beats==null||current.beats.Length==0)return;
+            narrationClock=new Abandoned.SpaceApps.NarrationTimeMap();
+            for(int i=0;i<current.beats.Length;)
+            {
+                var first=current.beats[i];int last=i;
+                while(last+1<current.beats.Length&&current.beats[last+1].bodyKey==first.bodyKey)last++;
+                float end=last+1<current.beats.Length?current.beats[last+1].at:current.duration;
+                float baseline=ChapterDirector.UnnarratedRealTime(stage,end)-ChapterDirector.UnnarratedRealTime(stage,first.at);
+                narrationClock.AddWindow(end,baseline,SpeechDuration(first.bodyKey));i=last+1;
+            }
         }
         public float YearsStormStart {get{foreach(var sequence in sequences)if(sequence.stage==ChapterStage.TimeSkip)foreach(var b in sequence.beats)if(b.bodyKey=="v7.years.approach")return b.at;return 15;}}
         public bool MemorialActive=>(current&&current.stage==ChapterStage.Farewell)||chapter.Stage==ChapterStage.ChapterEnd;
@@ -95,6 +117,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(montageDust)montageDust.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
             chapter.rover.CinematicControl=false;chapter.rover.tool.localPosition=toolRest;chapter.rover.tool.localRotation=toolRotation;
             foreach(var s in sequences)if(s.stage==stage){current=s;break;}
+            FitNarrationClock(stage);
             if(stage==ChapterStage.Activation||stage==ChapterStage.Discovery)chapter.sound.Radio(true);
             if(stage==ChapterStage.ChapterEnd){chapter.environment.Memorial=true;chapter.sound.QuietEnvironment=true;}
             if(current){chapter.rover.CinematicControl=stage!=ChapterStage.Intro&&stage!=ChapterStage.Landing;Evaluate(0);}

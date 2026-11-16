@@ -144,6 +144,26 @@ Diferenças em relação à proposta original: `Priority` explícito; `BeginHold
 
 `Assets/_Game/Core/Contracts/Examples/` (assembly `Abandoned.SpaceApps.ContractExamples`, `defineConstraints: UNITY_EDITOR`: **não entra no player**). `ContractExampleFlow` mostra os três passos com as interfaces: solicitar interação, apresentar evidência, concluir etapa. A cena `ContractExample.unity` (fora das Build Settings) roda o fluxo com E simulado por 2 s; recriar pelo menu **CORE-002 → Criar cena de exemplo dos contratos**. Os `Mock*` implementam a semântica acima para testes e **não substituem** as implementações de CORE-003 e CORE-005; as mesmas regras devem ser reproduzidas por elas.
 
+## Narração inglesa (NAR-001)
+
+`Shared/Narration/NarrationCatalog` associa IDs de legenda a gravações humanas.
+`NarrationPlayer` é o único proprietário de voz por cena e acompanha a chave
+narrativa que `SubtitlePresenter` publica por `BodyKeyChanged`/`CurrentBodyKey`.
+A atualização de idioma não muda essa chave; inglês é a única dublagem.
+O player usa pausa/foco separados e o playhead real do áudio; libera a voz ao
+descarregar o capítulo. Não cria entrada, relógio ou progressão paralelos.
+
+Os hosts recebem as dependências existentes (SessionClock/AudioDirector/
+ChapterDirector). Opportunity adapta seu relógio ativo e amplia janelas com
+`NarrationTimeMap`, usado também por câmeras/atores para manter continuidade.
+O assembly Opportunity passa a referenciar `Abandoned.SpaceApps` em uma direção;
+o core não referencia Opportunity. O assembly Editor referencia os dois para
+instalar as referências nas cenas reais. Sem nova dependência de pacote.
+
+Builders próprios anexam os catálogos; `NarrationSetup.InstallAndValidate`
+configura/valida as quatro cenas e ajusta as janelas sem acelerar gravações.
+Detalhes e lacunas reais em `Docs/Production/NARRATION_EN.md`.
+
 ## Contratos de entrega e testes
 
 Cada prefab consumidor precisa de um `ValidateSetup()` no Editor ou validação equivalente: referências, materiais, chaves de texto e eventos terminais. Builders determinísticos geram/reconstroem apenas a área de sua tarefa; não apagar configurações de colega. PR com teste do estado anterior/seguinte, repetição de E, pausa/foco e reinício quando pertinentes.

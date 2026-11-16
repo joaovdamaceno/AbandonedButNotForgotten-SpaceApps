@@ -107,7 +107,7 @@ namespace Abandoned.SpaceApps.Opportunity
             Show(journal,value);if(value)Show(pause,false);}
         public void HideForCapture(bool hidden)=>root.style.visibility=hidden?Visibility.Hidden:Visibility.Visible;
         public void ObjectiveChanged(){objectiveAge=0;}
-        public void Toast(string key,float seconds=4.5f){toastKey=key;toastTime=seconds;}
+        public void Toast(string key,float seconds=4.5f){toastKey=key;toastTime=Mathf.Max(seconds,chapter&&chapter.film?chapter.film.SpeechDuration(key)+.25f:0f);if(chapter&&chapter.film)chapter.film.PresentToast(key);}
         void Update()
         {
             if(chapter==null||root==null||chapter.journey==null)return;

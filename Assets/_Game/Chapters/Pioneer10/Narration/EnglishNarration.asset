@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce9e6f52dd656f43b381acb73222da1, type: 3}
+  m_Name: EnglishNarration
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.NarrationCatalog
+  chapterId: pioneer10
+  lines:
+  - textKey: PIO.01.01
+    clip: {fileID: 8300000, guid: 55095eda7d58931478d766b3f110e89d, type: 3}
+  - textKey: PIO.01.02
+    clip: {fileID: 8300000, guid: 13e8b082762378c48980791e9676db80, type: 3}
+  - textKey: PIO.01.03
+    clip: {fileID: 8300000, guid: 9ce7625f00633c64a91243fb7ef3d4d2, type: 3}
+  - textKey: PIO.01.04
+    clip: {fileID: 8300000, guid: b7bf6096d3fc1c24bbe248da167f5c4b, type: 3}
+  - textKey: PIO.01.05
+    clip: {fileID: 8300000, guid: b28043b7e2713ab4ba15e1b401f7925a, type: 3}
+  - textKey: PIO.01.06
+    clip: {fileID: 8300000, guid: b5ceb290b05f447448155c92f33c22fe, type: 3}
+  - textKey: PIO.02.01
+    clip: {fileID: 8300000, guid: 88e2f66bf6987094ab9b4468bfbc3a8f, type: 3}
+  - textKey: PIO.02.02
+    clip: {fileID: 8300000, guid: 2ff30fd3f5e9e554494f4dd7e87a1e33, type: 3}
+  - textKey: PIO.02.03
+    clip: {fileID: 8300000, guid: 6aa33bef2a3a2bb498e044fd8033a1e8, type: 3}
+  - textKey: PIO.02.04
+    clip: {fileID: 8300000, guid: aabae5a846288304caaeaf48bb8aaa93, type: 3}
+  - textKey: PIO.02.05
+    clip: {fileID: 8300000, guid: bbb3b1fe962c76a459f56441e3ad68db, type: 3}
+  - textKey: PIO.02.06
+    clip: {fileID: 8300000, guid: 8b8d32d98164cef49963f0e9e876cbe0, type: 3}
+  - textKey: PIO.02.07
+    clip: {fileID: 8300000, guid: acf8057dad7a6614ab2735417f1b3186, type: 3}
+  - textKey: PIO.03.01
+    clip: {fileID: 8300000, guid: 84b0ac7e7dcbd8a49b0877c63a10a142, type: 3}
+  - textKey: PIO.03.02
+    clip: {fileID: 8300000, guid: 6378b861dcb0d9b4599cd70c6a43dff7, type: 3}
+  - textKey: PIO.03.03
+    clip: {fileID: 8300000, guid: 2c402b5d228180e41bbc9a403b57757e, type: 3}
+  - textKey: PIO.03.04
+    clip: {fileID: 8300000, guid: a76c3a7d62522eb46b173aaa73be1ca9, type: 3}
+  - textKey: PIO.04.01
+    clip: {fileID: 8300000, guid: 449d8ddf90d72e745afd9ac4cb85c3c7, type: 3}
+  - textKey: PIO.04.02
+    clip: {fileID: 8300000, guid: 3b65f60e6ba00044a85579aeab991339, type: 3}
+  - textKey: PIO.04.03
+    clip: {fileID: 8300000, guid: 06f0227298489e64fb666e4c0a13d3ef, type: 3}
+  - textKey: PIO.04.04
+    clip: {fileID: 8300000, guid: 30e4875fdc464774185d30b6c8a9c73b, type: 3}
+  - textKey: PIO.04.05
+    clip: {fileID: 8300000, guid: 6a13c5f9088f17f4abdfb27b56c24eee, type: 3}
+  - textKey: PIO.04.06
+    clip: {fileID: 8300000, guid: 281ab94ef789d0641bf1670d07a2ee54, type: 3}
+  - textKey: PIO.04.07
+    clip: {fileID: 8300000, guid: 9c506c9d775de814e94e098858bdf657, type: 3}
+  - textKey: PIO.04.08
+    clip: {fileID: 8300000, guid: 6123f73098ca37d4caa076f4227eb43b, type: 3}
+  - textKey: PIO.04.09
+    clip: {fileID: 8300000, guid: 69798077deac27e4bbbe70dce744b88b, type: 3}
+  - textKey: PIO.09.01
+    clip: {fileID: 8300000, guid: 9b883b64698887c4c885d8b516ccd31d, type: 3}
+  - textKey: PIO.09.02
+    clip: {fileID: 8300000, guid: e6ea904187bad14408a38637aeaefa40, type: 3}
+  - textKey: PIO.09.03
+    clip: {fileID: 8300000, guid: 2ecdc3f115448c6438b51cde67e6b413, type: 3}
+  - textKey: PIO.09.04
+    clip: {fileID: 8300000, guid: 16e44e2e4ce21474d9d264e8b0c49e0b, type: 3}
+  - textKey: PIO.09.05
+    clip: {fileID: 8300000, guid: e780392d691801f4ebc8e534d2854c16, type: 3}
+  - textKey: PIO.09.06
+    clip: {fileID: 8300000, guid: e08a3a60c0758b74dacc2d329cb74c82, type: 3}
+  - textKey: PIO.09.07
+    clip: {fileID: 8300000, guid: 03b1629853c6f1648a5fe14e81591c31, type: 3}
+  - textKey: PIO.09.08
+    clip: {fileID: 8300000, guid: 730cdb594547751428b00d1a5ef4fd0f, type: 3}
+  - textKey: PIO.09.09
+    clip: {fileID: 8300000, guid: ac79379cf6a542b4faef36c5c1886568, type: 3}
+  - textKey: PIO.09.10
+    clip: {fileID: 8300000, guid: 27b5ee76a153db94c8d60711d6170829, type: 3}
+  - textKey: PIO.05.01
+    clip: {fileID: 8300000, guid: 69361eba35f39e34ab4827973ad485c4, type: 3}
+  - textKey: PIO.05.02
+    clip: {fileID: 8300000, guid: 892c7c2aadb44be4b8179d3e62b681da, type: 3}
+  - textKey: PIO.05.03
+    clip: {fileID: 8300000, guid: f5ed31c9195ecae468f3c0079b319213, type: 3}
+  - textKey: PIO.05.04
+    clip: {fileID: 8300000, guid: 0c64fcef26fc3454ea38a511c0aff2fa, type: 3}
+  - textKey: PIO.05.05
+    clip: {fileID: 8300000, guid: 2a1b8f20bf645f941ad6400323c5c327, type: 3}
+  - textKey: PIO.05.06
+    clip: {fileID: 8300000, guid: 8da9f323691f0254897efce26653c51d, type: 3}
+  - textKey: PIO.05.07
+    clip: {fileID: 8300000, guid: 83f5a766bf8947d4da8348638c86d8c4, type: 3}
+  - textKey: PIO.06.01
+    clip: {fileID: 8300000, guid: 65e0ef720e880894bb8225d650256d40, type: 3}
+  - textKey: PIO.06.02
+    clip: {fileID: 8300000, guid: 37d424cafed6ca640984c7e4afe4c882, type: 3}
+  - textKey: PIO.06.03
+    clip: {fileID: 8300000, guid: eb0880176d51aaf44884ae1726619664, type: 3}
+  - textKey: PIO.06.04
+    clip: {fileID: 8300000, guid: 5297c5fac7cbbc84ebdaf447453feb28, type: 3}
+  - textKey: PIO.06.05
+    clip: {fileID: 8300000, guid: fc1ba68e23dc43844ac44c2cceb943cb, type: 3}
+  - textKey: PIO.06.06
+    clip: {fileID: 8300000, guid: d3bb5946c0a318d49a37407c46d50249, type: 3}
+  - textKey: PIO.07.01
+    clip: {fileID: 8300000, guid: 6f64db24b7b3a2f45850237d7da83d7b, type: 3}
+  - textKey: PIO.07.02
+    clip: {fileID: 8300000, guid: d665043beab350c438719144df27dc77, type: 3}
+  - textKey: PIO.07.03
+    clip: {fileID: 8300000, guid: 7590a25bcf3fbb64a8f0b2cedafea08d, type: 3}
+  - textKey: PIO.07.04
+    clip: {fileID: 8300000, guid: 45b0b2b1a8502944ca8b14fe10d1435c, type: 3}
+  - textKey: PIO.07.05
+    clip: {fileID: 8300000, guid: 0bd1c2779256ce64d918e79030b124b2, type: 3}
+  - textKey: PIO.07.06
+    clip: {fileID: 8300000, guid: a6b904ceade857b43894b10db3f5838a, type: 3}
+  - textKey: PIO.08.01
+    clip: {fileID: 8300000, guid: 6808dfbb971ccd44cb88051a73f1c2e1, type: 3}
+  - textKey: PIO.08.02
+    clip: {fileID: 8300000, guid: 1168f8e45699314438a9986d789e76ef, type: 3}
+  - textKey: PIO.08.03
+    clip: {fileID: 8300000, guid: 335ce8501a2202c4283df8d3752a7c58, type: 3}
+  - textKey: PIO.08.04
+    clip: {fileID: 8300000, guid: 419061a8192f8fb408d24a3291a223ff, type: 3}

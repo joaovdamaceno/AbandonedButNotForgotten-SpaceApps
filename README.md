@@ -8,6 +8,14 @@ Planejamento de produção para **14–15 de novembro de 2026**, com sete pessoa
 
 **Este repositório começa com documentação, contratos e tarefas. O novo jogo ainda precisa ser implementado.** O projeto Unity anterior permanece preservado no repositório privado AbandonedButNotForgotten. Não transferimos seus resultados de teste para esta edição.
 
+## Narração humana (NAR-001)
+
+Os três capítulos possuem gravações em inglês vinculadas às legendas PT/EN.
+Para experimentar, abrir `Assets/_Game/Scenes/Boot.unity` na Unity e selecionar
+a missão. Instalação/reconstrução, fontes e quatro falas ainda sem gravação:
+[narração inglesa](Docs/Production/NARRATION_EN.md).
+Resultados de validação: [QA/NAR-001](QA/NAR-001/README.md).
+
 ## Por onde começar
 
 - **Repositório público:** https://github.com/joaovdamaceno/AbandonedButNotForgotten-SpaceApps

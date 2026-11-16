@@ -49,13 +49,22 @@ namespace Abandoned.SpaceApps.Opportunity
             return f[f.Length - 1] + real - r[r.Length - 1];
         }
         /// <summary>Tempo do filme da etapa (igual a <see cref="Elapsed"/>, exceto nos trechos alongados). Câmera, atores e legendas leem este tempo.</summary>
-        public float FilmTime => Stage switch
+        public float FilmTime => film != null ? film.ToAuthoredTime(Elapsed) : UnnarratedFilmTime(Stage,Elapsed);
+        public static float UnnarratedFilmTime(ChapterStage stage,float seconds) => stage switch
         {
-            ChapterStage.Landing => MapTime(Elapsed, LandingReal, LandingFilm),
-            ChapterStage.TimeSkip => MapTime(Elapsed, TimeSkipReal, TimeSkipFilm),
-            ChapterStage.CommunicationLost => MapTime(Elapsed, LastContactReal, LastContactFilm),
-            ChapterStage.Farewell => MapTime(Elapsed, FarewellReal, FarewellFilm),
-            _ => Elapsed
+            ChapterStage.Landing => MapTime(seconds, LandingReal, LandingFilm),
+            ChapterStage.TimeSkip => MapTime(seconds, TimeSkipReal, TimeSkipFilm),
+            ChapterStage.CommunicationLost => MapTime(seconds, LastContactReal, LastContactFilm),
+            ChapterStage.Farewell => MapTime(seconds, FarewellReal, FarewellFilm),
+            _ => seconds
+        };
+        public static float UnnarratedRealTime(ChapterStage stage,float seconds) => stage switch
+        {
+            ChapterStage.Landing => MapTime(seconds, LandingFilm, LandingReal),
+            ChapterStage.TimeSkip => MapTime(seconds, TimeSkipFilm, TimeSkipReal),
+            ChapterStage.CommunicationLost => MapTime(seconds, LastContactFilm, LastContactReal),
+            ChapterStage.Farewell => MapTime(seconds, FarewellFilm, FarewellReal),
+            _ => seconds
         };
         public bool Paused { get; private set; }
         public Vector3 FinalPosition {get; private set;}
@@ -126,6 +135,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(stage==ChapterStage.ChapterEnd)PlayerPrefs.Save();
             sound.Enter(stage);film.Enter(stage);cameras.Enter(stage);SetCursor();hud.RefreshText();hud.ObjectiveChanged();
             if(stage==ChapterStage.FinalExploration)film.SpeakSequence("v14.sun.reason","v15.storm.again");
+            if(stage==ChapterStage.DustStorm)film.SpeakSequence("nar.mars.last.image");
             Debug.Log("[Opportunity] Stage: "+stage);
         }
         public void BeginRockAnalysis()
@@ -162,11 +172,11 @@ namespace Abandoned.SpaceApps.Opportunity
             if((Stage==ChapterStage.Exploration||journey.FinalAct)&&!investigation.Active&&!investigation.NeedSun&&GameInput.Press(Key.F))journey.photography.Toggle();
             switch(Stage)
             {
-                case ChapterStage.Intro:if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
+                case ChapterStage.Intro:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.Landing:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.Activation:
                     lander.GetComponent<AirbagLanderRig>()?.Pose(1,1);
-                    if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
+                    if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.Exploration:
                     break;
                 case ChapterStage.RockAnalysis:
@@ -174,8 +184,8 @@ namespace Abandoned.SpaceApps.Opportunity
                     if(science.Phase==AbrasionPhase.Complete&&science.Active&&science.PhaseSeconds>=ResultHoldSeconds){cameras.Shake=0;Progress.CompleteScience();Progress.Advance();}break;
                 case ChapterStage.Discovery:
                     science.surface.SetInspection(Elapsed<6?1:2);
-                    if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
-                case ChapterStage.HeatShieldArrival:case ChapterStage.MeteoriteDiscovery:if(Elapsed>=film.SequenceDuration)CompleteCinematic();break;
+                    if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
+                case ChapterStage.HeatShieldArrival:case ChapterStage.MeteoriteDiscovery:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.HeatShieldExploration:if(investigation.MeteoriteIdentified&&!investigation.Active){Progress.CompleteHardware();Progress.Advance();}break;
                 case ChapterStage.TimeSkip:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.FinalExploration:environment.SetStorm(.02f);if(journey.PanoramaCount>0)Progress.Advance();break;

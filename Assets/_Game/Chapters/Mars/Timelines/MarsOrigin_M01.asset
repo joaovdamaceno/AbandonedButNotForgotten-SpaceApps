@@ -15,7 +15,7 @@ MonoBehaviour:
   sequenceId: mars.seq.M01
   shots:
   - shotId: mars.origin.space
-    durationSeconds: 6.3
+    durationSeconds: 7.2999997
     rigId: mars.origin
     lookAtTargetId: 
     easing: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
       positionMeters: {x: 295.9992, y: 0.300161, z: 12.401932}
       eulerAnglesDegrees: {x: 1.2074109, y: 150.55487, z: -0.00000002668635}
       fieldOfViewDegrees: 30
-    - timeSeconds: 6.3
+    - timeSeconds: 7.2999997
       positionMeters: {x: 296, y: 0.3, z: 12.4}
       eulerAnglesDegrees: {x: 1.206948, y: 150.55458, z: 0}
       fieldOfViewDegrees: 30
@@ -137,7 +137,7 @@ MonoBehaviour:
   - cueId: MAR.C01
     textKey: MAR.C01
     startSeconds: 0
-    endSeconds: 6.3
+    endSeconds: 7.2999997
     triggerId: 
     minimumReadSeconds: 0
     position: 0

@@ -12,6 +12,8 @@ namespace Abandoned.SpaceApps.Opportunity
         AudioSource current,fading;float fade,fadeSeconds=2,gain=1,gainTarget=1,oldGain=1,windLevel,driveLevel,toolLevel;bool surface,paused;
         public float CinematicEnvelope{get;set;}=1;public bool QuietEnvironment{get;set;}
         public float Focus{get;set;}=1;
+        public bool NarrationActive {get;set;}
+        float speechGain=1f;
         public string CurrentCue{get;private set;}
         public static float CalmPresence(float time)
         {float p=Mathf.Repeat(time+3,38);return Mathf.SmoothStep(0,1,Mathf.InverseLerp(5,10,p))*(1-Mathf.SmoothStep(0,1,Mathf.InverseLerp(17,24,p)));}
@@ -67,8 +69,9 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             AudioListener.volume=GameSettings.Master;if(paused)return;fade=Mathf.Min(1,fade+Time.unscaledDeltaTime/fadeSeconds);
             gain=Mathf.MoveTowards(gain,gainTarget,Time.unscaledDeltaTime*.18f);
-            if(current)current.volume=Mathf.Sin(fade*Mathf.PI*.5f)*GameSettings.Music*.5f*gain*CinematicEnvelope*Focus;
-            if(fading){fading.volume=Mathf.Cos(fade*Mathf.PI*.5f)*GameSettings.Music*.5f*oldGain*CinematicEnvelope*Focus;if(fade==1){fading.Stop();fading=null;}}
+            speechGain=Mathf.MoveTowards(speechGain,NarrationActive?.5f:1f,Time.unscaledDeltaTime*2f);
+            if(current)current.volume=Mathf.Sin(fade*Mathf.PI*.5f)*GameSettings.Music*.5f*gain*CinematicEnvelope*Focus*speechGain;
+            if(fading){fading.volume=Mathf.Cos(fade*Mathf.PI*.5f)*GameSettings.Music*.5f*oldGain*CinematicEnvelope*Focus*speechGain;if(fade==1){fading.Stop();fading=null;}}
             wind.volume=Mathf.Lerp(wind.volume,windLevel*GameSettings.Effects*CinematicEnvelope,Time.unscaledDeltaTime*2);drive.volume=Mathf.Lerp(drive.volume,driveLevel*GameSettings.Effects*CinematicEnvelope,Time.unscaledDeltaTime*6);abrasion.volume=Mathf.Lerp(abrasion.volume,toolLevel*GameSettings.Effects*CinematicEnvelope,Time.unscaledDeltaTime*6);
         }
     }

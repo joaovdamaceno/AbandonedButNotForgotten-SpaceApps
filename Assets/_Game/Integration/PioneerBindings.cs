@@ -42,6 +42,12 @@ namespace Abandoned.SpaceApps.Integration
             Initialize();
             // A legenda se liga à sequência ANTES da primeira etapa: o controlador já foi inicializado, mas a primeira etapa só vem depois.
             shell.Subtitles.Bind(controller.Sequences);
+            var voice = controller.GetComponent<NarrationPlayer>();
+            if (voice != null)
+            {
+                voice.Initialize(shell.Clock, shell.Audio, shell.Director);
+                voice.Bind(shell.Subtitles);
+            }
             shell.Hud.Initialize(shell.Interactions, shell.Router, shell.Director, shell.Settings, controller.Presentation.CameraDirector);
             return true;
         }
@@ -67,6 +73,7 @@ namespace Abandoned.SpaceApps.Integration
                 return;
 
             controller.Teardown();
+            controller.GetComponent<NarrationPlayer>()?.Stop();
             shell.Subtitles.Bind(null);
             shell.Hud.ClearObjective();
             shell.Hud.Initialize(shell.Interactions, shell.Router, shell.Director, shell.Settings, null);

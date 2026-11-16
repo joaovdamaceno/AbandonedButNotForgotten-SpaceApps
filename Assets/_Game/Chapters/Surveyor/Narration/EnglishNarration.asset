@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce9e6f52dd656f43b381acb73222da1, type: 3}
+  m_Name: EnglishNarration
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.NarrationCatalog
+  chapterId: surveyor3
+  lines:
+  - textKey: sur.doc.intro.1
+    clip: {fileID: 8300000, guid: 6492bf1e0d098ae4bbb1a8217be1575a, type: 3}
+  - textKey: sur.doc.intro.2
+    clip: {fileID: 8300000, guid: 150bc0d7b730772418f959d225875888, type: 3}
+  - textKey: sur.doc.intro.3
+    clip: {fileID: 8300000, guid: 68d442652c6e6e648bfbf18ab391ab1f, type: 3}
+  - textKey: sur.doc.arrival.1
+    clip: {fileID: 8300000, guid: fff4e806483d69b43b67c07a4c93599c, type: 3}
+  - textKey: sur.doc.arrival.2
+    clip: {fileID: 8300000, guid: b6691be2d5a5c9a48bcf6524c704daae, type: 3}
+  - textKey: sur.doc.arrival.3
+    clip: {fileID: 8300000, guid: 11a4e8e95feca854488fcfe8f1ddaada, type: 3}
+  - textKey: sur.doc.activation.1
+    clip: {fileID: 8300000, guid: 7842308f4d3bab84f8dd18fd46ae5d65, type: 3}
+  - textKey: sur.doc.activation.2
+    clip: {fileID: 8300000, guid: a39639e2ee88eae43b024dd425cae31b, type: 3}
+  - textKey: sur.doc.science.question
+    clip: {fileID: 8300000, guid: 57dbaaa94ab016e43a515a34ce4f06d3, type: 3}
+  - textKey: sur.doc.science.press
+    clip: {fileID: 8300000, guid: c50c91384f5175048b3021a105aa2ece, type: 3}
+  - textKey: sur.doc.science.edge
+    clip: {fileID: 8300000, guid: ca61ec000c815674db5b34554ef2da76, type: 3}
+  - textKey: sur.doc.science.result
+    clip: {fileID: 8300000, guid: c3380bd9b5ea14840a52c9cfff811c11, type: 3}
+  - textKey: sur.doc.findings.1
+    clip: {fileID: 8300000, guid: 5287948407cc63c4fb936cd99d4d254b, type: 3}
+  - textKey: sur.doc.findings.2
+    clip: {fileID: 8300000, guid: 0e3301c7d60b0f44a8cf7907a2d26b09, type: 3}
+  - textKey: sur.doc.night.1
+    clip: {fileID: 8300000, guid: 0a64d5f1a5a00b64cb291b2afb1e0907, type: 3}
+  - textKey: sur.doc.night.2
+    clip: {fileID: 8300000, guid: adfb4f8d22f09a04b87763f065a7a00e, type: 3}
+  - textKey: sur.doc.night.3
+    clip: {fileID: 8300000, guid: 87313ba03fe429849b904ffbc6f14b0d, type: 3}
+  - textKey: sur.doc.night.4
+    clip: {fileID: 8300000, guid: bd5721b32897a34438473b9941eff37c, type: 3}
+  - textKey: sur.doc.reunion.1
+    clip: {fileID: 8300000, guid: 6bac59402c6b39e4589ace7424d1d6fe, type: 3}
+  - textKey: sur.doc.reunion.2
+    clip: {fileID: 8300000, guid: 1eba1466fc4d85143b63bfc748ca71aa, type: 3}
+  - textKey: sur.doc.reunion.3
+    clip: {fileID: 8300000, guid: b9a38e11cfd4c8545b81bdfcbddcba29, type: 3}
+  - textKey: sur.doc.reunion.4
+    clip: {fileID: 8300000, guid: 2fff6cdda0698f046b07045cc0216842, type: 3}
+  - textKey: sur.doc.legacy.1
+    clip: {fileID: 8300000, guid: 0a948ea1bc7109d4888baf94b0caaac6, type: 3}
+  - textKey: sur.doc.legacy.2
+    clip: {fileID: 8300000, guid: 1e6540d95745fba4295d383790d0e9b3, type: 3}
+  - textKey: sur.doc.arrival.4
+    clip: {fileID: 8300000, guid: 0597f5c65d8488c44801a235c88247b6, type: 3}

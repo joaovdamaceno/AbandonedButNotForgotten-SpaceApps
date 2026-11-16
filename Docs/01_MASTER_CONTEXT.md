@@ -16,6 +16,11 @@ Três capítulos independentes de 5–7 minutos **cada**, cronometrados depois d
 
 Legendas são o canal narrativo padrão, sem voz de IA. PT e EN têm dados próprios e tempo de leitura; nada de texto embutido nos scripts. Uma ideia por legenda, normalmente até duas linhas. Texto de objetivo permanece legível durante a ação; legendas vazias não desenham fundo. Datas e localizações só quando mudam o entendimento. Arte dirigida por imagens NASA, iluminação e composição; filme em tempo real, sem vídeos pré-renderizados. Música com licença documentada, temas e transições claros, vento discreto e sons de máquina afetivos.
 
+NAR-001 acrescenta a gravação humana do proprietário, somente em inglês,
+sincronizada aos IDs existentes. As legendas continuam PT/EN. Não recriar
+narração sintética nem preencher falas ausentes com IA; consultar
+`Docs/Production/NARRATION_EN.md` para catálogos, reconstrução e lacunas.
+
 ## Stack e orçamento
 
 Unity 6000.6.7f1 / URP17.6.0 / WebGL2 desktop / itch.io. InputSystem, Timeline e glTFast apenas se usados na implementação. Editor e pacotes serão fixados pelo CORE-001. A versão anterior é referência opcional; sua build aprovada não prova o novo projeto.

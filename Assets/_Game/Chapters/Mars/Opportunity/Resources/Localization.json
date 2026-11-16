@@ -112,8 +112,8 @@
   },
   {
    "key": "v14.settings.voice",
-   "pt": "Narração por voz (IA)",
-   "en": "Voice narration (AI)"
+   "pt": "Narração em inglês",
+   "en": "English narration"
   },
   {
    "key": "settings.subtitles",
@@ -2034,11 +2034,16 @@
    "key": "mars.still.waiting",
    "pt": "Ainda esperando em Marte",
    "en": "Still waiting on Mars"
-    },
-   {
+  },
+  {
    "key": "v18.landing.descent",
    "pt": "Cada rover atravessou a atmosfera protegido por um escudo térmico. Quando o paraquedas abriu, o escudo caiu, e os airbags amorteceram o pouso.",
    "en": "Each rover crossed the atmosphere behind a heat shield. Once the parachute opened, the shield dropped away, and airbags cushioned the landing."
+  },
+  {
+   "key": "nar.mars.last.image",
+   "pt": "Se esta for a última oportunidade, as imagens precisam chegar à Terra.",
+   "en": "If this is the last chance, the images must reach Earth."
   }
  ]
 }

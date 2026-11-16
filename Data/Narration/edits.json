@@ -1,0 +1,20 @@
+{
+  "surveyor": {
+    "sur.doc.night.3": {"status":"matched", "source_in_seconds":77.78, "source_out_seconds":83.49, "review_note":"Include the complete spoken May 4 date; token alignment omitted the ordinal."}
+  },
+  "pioneer": {
+    "PIO.01.02": {"status":"matched", "source_in_seconds":5.3, "source_out_seconds":13.34, "review_note":"Include the terminal word try, recognized as dry."},
+    "PIO.01.04": {"status":"matched", "source_in_seconds":16.7, "source_out_seconds":21.92, "review_note":"Spin and pointing paragraph verified by surrounding words; ASR misrecognized spin as being."},
+    "PIO.05.02": {"status":"matched", "source_in_seconds":184.14, "source_out_seconds":188.76, "review_note":"Complete hydrogen / measuring-stick paragraph. Current subtitle uses the equivalent yardstick."},
+    "PIO.06.02": {"status":"matched", "source_in_seconds":215.38, "source_out_seconds":220.56, "review_note":"Recorded day recognized as June 20; omit spoken month/day, retaining 1983 and the passage. Correct June 13 remains in the historical subtitle; do not fabricate a replacement date."},
+    "PIO.09.04": {"status":"matched", "source_in_seconds":142.78, "source_out_seconds":147.6, "review_note":"Retain Closest at the start of closest approach."},
+    "PIO.09.05": {"status":"matched", "source_in_seconds":147.94, "source_out_seconds":154.5, "review_note":"Retain It passed before the distance."},
+    "PIO.08.04": {"status":"matched", "source_in_seconds":287.52, "source_out_seconds":296.28, "review_note":"Include Pioneer at the beginning; the source contains someone who goes first instead of means going first."}
+  },
+  "mars": {
+    "MAR.C04": {"status":"matched", "source_in_seconds":22.93, "source_out_seconds":29.27, "retained_ranges_seconds":[[22.93,26.65],[27.13,29.27]], "review_note":"Remove only, which wrongly implies hematite requires water. Preserve typically forms in liquid water; update both subtitle languages without the exclusivity claim."},
+    "v13.discovery.evidence": {"status":"matched", "source_in_seconds":73.86, "source_out_seconds":79.54, "review_note":"Include existed at the end of the sentence."},
+    "v14.discovery.bridge": {"status":"matched", "source_in_seconds":79.54, "source_out_seconds":87.0},
+    "v16.farewell.legacy": {"status":"matched", "source_in_seconds":205.15, "source_out_seconds":224.13, "retained_ranges_seconds":[[205.15,215.19],[215.37,224.13]], "review_note":"Include Gusev and remove the duplicated kilometers; no speech-speed change."}
+  }
+}
