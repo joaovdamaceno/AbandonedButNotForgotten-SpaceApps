@@ -29,6 +29,8 @@ namespace Abandoned.SpaceApps.Opportunity
         MarsChapterBindings bindings;
         Abandoned.SpaceApps.ChapterDirector appDirector;
         ChapterDirector field;
+        Abandoned.SpaceApps.UI.PauseMenu shellPause;
+        int pauseChangedFrame = -1;
         Scene openingScene;
         readonly List<Behaviour> disabled = new List<Behaviour>();
         readonly List<VisualElement> hiddenUi = new List<VisualElement>();
@@ -112,9 +114,7 @@ namespace Abandoned.SpaceApps.Opportunity
         IEnumerator Begin()
         {
             // INT-001: Marte segue o idioma escolhido no dossiê, como os outros capítulos (inglês na primeira abertura).
-            var shellSettings = new Abandoned.SpaceApps.SettingsStore();
-            shellSettings.Load();
-            GameSettings.English = shellSettings.Current.languageCode != Abandoned.SpaceApps.SettingsData.Portuguese;
+            ApplyShellSettings();
 
             // Anota o que é da abertura antes de a cena seguinte criar a interface dela.
             var openingLayers = new List<VisualElement>();
@@ -125,7 +125,8 @@ namespace Abandoned.SpaceApps.Opportunity
                 // Camadas soltas no painel (letreiros da abertura) também saem, não só a raiz do documento.
                 var layers = root.panel != null ? root.panel.visualTree.Children() : new[] { root };
                 foreach (var layer in layers)
-                    if (!openingLayers.Contains(layer) && layer.resolvedStyle.display != DisplayStyle.None)
+                    // O menu de pausa do jogo continua: ele também serve à cena da Opportunity.
+                    if (!openingLayers.Contains(layer) && layer.resolvedStyle.display != DisplayStyle.None && layer.Q("pause-root") == null)
                         openingLayers.Add(layer);
             }
 
@@ -182,6 +183,66 @@ namespace Abandoned.SpaceApps.Opportunity
 
             field.ExitRequested += Finish;
             field.RestartRequested += Restart;
+
+            // P, Esc e o botão de pausa da cena abrem o menu de pausa do jogo (o mesmo da abertura).
+            shellPause = FindAnyObjectByType<Abandoned.SpaceApps.UI.PauseMenu>(FindObjectsInactive.Include);
+            if (shellPause != null && shellPause.Controller != null && appDirector != null)
+            {
+                field.PauseMenuHandler = OnFieldPauseKey;
+                appDirector.PausedChanged += OnAppPausedChanged;
+                if (appDirector.IsPaused) OnAppPausedChanged(true);
+            }
+            else
+                Debug.LogWarning("[Marte] Menu de pausa do jogo não encontrado; a cena da Opportunity usa o próprio menu.");
+        }
+
+        /// <summary>Pausa pela cena: só pede a pausa; com o menu aberto, P/Esc chegam ao menu pelo InputRouter.</summary>
+        void OnFieldPauseKey()
+        {
+            if (shellPause == null || appDirector == null || appDirector.IsPaused || Time.frameCount == pauseChangedFrame) return;
+            shellPause.Controller.RequestPause();
+        }
+
+        /// <summary>O menu do jogo pausa ou retoma: a cena acompanha e a entrada do menu liga só enquanto ele está aberto.</summary>
+        void OnAppPausedChanged(bool paused)
+        {
+            pauseChangedFrame = Time.frameCount;
+            if (field == null) return;
+            var router = FindAnyObjectByType<InputRouter>();
+            if (paused)
+            {
+                field.Pause(true);
+                if (router != null) router.Enable();
+            }
+            else
+            {
+                if (router != null) router.Disable();
+                ApplyShellSettings();
+                field.Pause(false);
+            }
+        }
+
+        /// <summary>Idioma, volumes, sensibilidade e movimento reduzido escolhidos no menu do jogo valem também na cena da Opportunity.</summary>
+        static void ApplyShellSettings()
+        {
+            var store = new Abandoned.SpaceApps.SettingsStore();
+            store.Load();
+            var data = store.Current;
+            GameSettings.English = data.languageCode != Abandoned.SpaceApps.SettingsData.Portuguese;
+            // Os padrões do jogo (1, 0,8, 0,9, 0,9) correspondem aos padrões da cena (0,8, 0,65, 0,65, 0,6).
+            GameSettings.Master = .8f * data.masterVolume;
+            GameSettings.Music = .65f / .8f * data.musicVolume;
+            GameSettings.Effects = .65f / .9f * data.sfxVolume;
+            GameSettings.Interface = .6f / .9f * data.uiVolume;
+            GameSettings.Sensitivity = data.lookSensitivity;
+            GameSettings.ReducedMotion = data.reducedMotion;
+        }
+
+        void ReleasePauseMenu()
+        {
+            if (field != null) field.PauseMenuHandler = null;
+            if (appDirector != null) appDirector.PausedChanged -= OnAppPausedChanged;
+            shellPause = null;
         }
 
         void Watch(Abandoned.SpaceApps.ChapterDirector director)
@@ -210,6 +271,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if (ended || appDirector == null) return;
             field.ExitRequested -= Finish;
             field.RestartRequested -= Restart;
+            ReleasePauseMenu();
             appDirector.RestartChapter();
         }
 
@@ -218,6 +280,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if (ended) return;
             if (field != null) { field.ExitRequested -= Finish; field.RestartRequested -= Restart; }
             ended = true;
+            ReleasePauseMenu();
             StartCoroutine(Close(returnToArchive: true));
         }
 
@@ -226,6 +289,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if (!ended)
             {
                 ended = true;
+                ReleasePauseMenu();
                 StartCoroutine(Close(returnToArchive: false));
             }
         }
