@@ -66,7 +66,6 @@ namespace Abandoned.SpaceApps.Opportunity
         public Transform ActiveTarget => journey.CurrentTarget;
         public float TargetDistance => Vector3.Distance(rover.transform.position, ActiveTarget.position);
         public bool Cinematic => Stage != ChapterStage.HeatShieldExploration && Stage != ChapterStage.ChapterEnd && Stage != ChapterStage.Exploration && Stage != ChapterStage.FinalExploration && Stage != ChapterStage.DustStorm && Stage != ChapterStage.RockAnalysis;
-        public bool CanSkip => Cinematic && Elapsed > 1;
         Coroutine parking;
         void Start()
         {
@@ -159,7 +158,6 @@ namespace Abandoned.SpaceApps.Opportunity
             // Interações começam segurando E (sem clique ou mira).
             interactHold=GameInput.ActionHeld?interactHold+Time.deltaTime:0;
             if(interactions&&interactHold>=InteractHoldSeconds){interactHold=float.NegativeInfinity;interactions.TryExecute();}
-            if(CanSkip&&GameInput.Press(Key.Space)){CompleteCinematic();return;}
             if((Stage==ChapterStage.Exploration||journey.FinalAct)&&!investigation.Active&&!investigation.NeedSun&&GameInput.Press(Key.F))journey.photography.Toggle();
             switch(Stage)
             {

@@ -196,11 +196,23 @@ namespace Abandoned.SpaceApps.Integration
 
         void OnStateChanged(AppState state)
         {
+            UnlockAudioFor(state, audioDirector);
             // A cena de Marte (já pré-carregada durante a abertura) ainda escreve o "geral" dela em AudioListener.volume até ser descarregada;
             // ao chegar no menu principal o volume global volta a 1 de vez.
             if (state == AppState.Dossier)
                 AudioListener.volume = 1f;
             ArbitrateAudioListener();
+        }
+
+        /// <summary>
+        /// No Web o AudioDirector só responde depois do <see cref="AudioDirector.Unlock"/>, que precisa vir de um gesto da pessoa (o clique em
+        /// Iniciar). Só o Surveyor chamava, então a Pioneer e os sons do shell ficavam mudos na build do itch.io; agora qualquer capítulo que
+        /// entra em Playing libera o áudio. Fora do Web o diretor já nasce liberado e a chamada não faz nada.
+        /// </summary>
+        public static void UnlockAudioFor(AppState state, AudioDirector audio)
+        {
+            if (state == AppState.Playing && audio != null)
+                audio.Unlock();
         }
 
         /// <summary>
