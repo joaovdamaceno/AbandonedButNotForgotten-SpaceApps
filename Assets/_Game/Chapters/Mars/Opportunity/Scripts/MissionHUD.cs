@@ -22,7 +22,7 @@ namespace Abandoned.SpaceApps.Opportunity
         VisualElement field,fieldFill,fieldReticle,fieldPictures,fieldCenter,framingFill;Label fieldTitle,fieldBody,fieldStatus,comparisonA,comparisonB;Image fieldA,fieldB,archiveImage;Label archiveCredit;
         readonly System.Collections.Generic.Dictionary<FieldStudy,Image> studyAlbum=new System.Collections.Generic.Dictionary<FieldStudy,Image>();
         // Painel de comandos no topo, ao lado da ajuda do H: uma linha por comando, teclas desenhadas como botões.
-        VisualElement guideStack,commandPanel;Label primaryCommand;string[] commandRows;string commandLanguage;float commandIntroSeconds;
+        VisualElement pauseCorner,guideStack,commandPanel;Label primaryCommand;string[] commandRows;string commandLanguage;float commandIntroSeconds;
         // O painel fica na tela nos primeiros segundos de controle do capítulo e volta só quando a pessoa fica parada (a mesma hora da ajuda do H).
         const float CommandIntroSeconds=7f;
         // Prompt único de "segurar E" e o que o HUD já viu de cada ação (para confirmar a conclusão quando o contador muda).
@@ -85,7 +85,7 @@ namespace Abandoned.SpaceApps.Opportunity
             tutorialTitle=Text(tutorialPanel,"","tutorial-title");tutorialBody=Text(tutorialPanel,"","tutorial-body");
             guideStack=Box(root,"guide-stack");guideStack.pickingMode=PickingMode.Ignore;assistance=Box(guideStack,"assistance-card");assistance.name="assistance-card";assistance.pickingMode=PickingMode.Ignore;assistanceText=Text(assistance,"","assistance-text");commandPanel=Box(guideStack,"command-panel");commandPanel.name="command-panel";commandPanel.pickingMode=PickingMode.Ignore;
             holdPrompt=new HoldPrompt();holdPrompt.Place(HoldPrompt.Placement.Corner,guideStack);holdSeen=false;
-            var pauseButton=Button(flight,"v13.pause.short",()=>chapter.Pause(true),"flight-pause");pauseButton.pickingMode=PickingMode.Position;
+            var pauseButton=Button(flight,"v13.pause.short",()=>{if(!chapter.Paused)chapter.RequestPauseMenu();},"flight-pause");pauseCorner=pauseButton;pauseButton.pickingMode=PickingMode.Position;
             pause=Box(root,"modal-backdrop");pause.name="pause-modal";var pc=Box(pause,"modal-card");Text(pc,"OPPORTUNITY","eyebrow");Text(pc,"","display modal-title").name="pause-title";Button(pc,"pause.resume",()=>chapter.Pause(false),"primary");Button(pc,"menu.settings",()=>Open(settings));Button(pc,"v14.controls.button",()=>Open(controls));Button(pc,"pause.restart",chapter.RestartChapter);Button(pc,"v13.tutorial.repeat",()=>{chapter.RestartChapter();chapter.tutorial.RestartTutorial();});Button(pc,"pause.menu",chapter.Leave);
             settings=Box(root,"modal-backdrop");var sc=Box(settings,"settings-card");Text(sc,"","display modal-title").name="settings-title";
             var scroll=new ScrollView();sc.Add(scroll);var language=new DropdownField("Idioma / Language",new System.Collections.Generic.List<string>{"Português (Brasil)","English"},GameSettings.English?1:0);
@@ -132,12 +132,14 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             if(chapter==null||root==null||chapter.journey==null)return;
             if(activeLanguage!=GameSettings.English.ToString())RefreshText();
-            if(GameInput.Press(Key.P)&&chapter.Stage!=ChapterStage.ChapterEnd)chapter.Pause(!chapter.Paused);
+            if(GameInput.Press(Key.P)&&chapter.Stage!=ChapterStage.ChapterEnd)chapter.RequestPauseMenu();
             var s=chapter.Stage;var j=chapter.journey;var p=j.photography;var fieldStudy=chapter.investigation;bool drive=s==ChapterStage.Exploration||s==ChapterStage.HeatShieldExploration||j.FinalAct;
             endActions.style.opacity=Mathf.Clamp01((chapter.Elapsed-2)/1.5f);endActions.pickingMode=s==ChapterStage.ChapterEnd&&chapter.Elapsed>2?PickingMode.Position:PickingMode.Ignore;foreach(var button in endActions.Children())button.SetEnabled(chapter.Elapsed>2);
             Show(end,s==ChapterStage.ChapterEnd);Show(flight,drive&&!fieldStudy.Active&&!p.Active);Show(field,fieldStudy.Active);if(fieldStudy.Active)UpdateField();Show(science,s==ChapterStage.RockAnalysis);Show(cinema,chapter.Cinematic);Show(photo,p.Active);
             UpdateSplit();ApplyPlateScale();
             if(drive)UpdateFlight();if(s==ChapterStage.RockAnalysis)UpdateScience();if(chapter.Cinematic)UpdateCinema();
+            // Dentro do jogo o "P · Pause" é o do menu do jogo (mesmo lugar e desenho); o da cena some.
+            pauseCorner.style.display=chapter.PauseMenuHandler!=null?DisplayStyle.None:DisplayStyle.Flex;
             var tutor=chapter.tutorial;bool offer=tutor&&tutor.HelpOffered&&!chapter.Paused&&!chapter.Cinematic&&s!=ChapterStage.ChapterEnd;
             var hold=HoldFor();UpdateCommands(drive&&!fieldStudy.Active&&!p.Active,s==ChapterStage.RockAnalysis,hold);UpdateHoldPrompt(hold);
             // Onde o prompt toma o lugar das dicas de orientação (alto à direita), o cartão de ajuda também sai.

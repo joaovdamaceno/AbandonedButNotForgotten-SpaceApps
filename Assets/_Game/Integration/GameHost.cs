@@ -132,7 +132,8 @@ namespace Abandoned.SpaceApps.Integration
             }
 
             pause = Instantiate(pauseMenuPrefab, transform).GetComponentInChildren<PauseMenu>(true);
-            pause.Initialize(director, router, settings, hud);
+            // O botão "P · Pause" fica no canto do próprio menu, visível em todo capítulo (o HUD do jogo some nas partes de filme).
+            pause.Initialize(director, router, settings);
             focusPause = gameObject.AddComponent<FocusPause>();
             focusPause.Initialize(pause.Controller, director, audioDirector);
 
