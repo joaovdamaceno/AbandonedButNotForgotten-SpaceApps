@@ -126,6 +126,7 @@ namespace Abandoned.SpaceApps
         }
         public void SetMuted(bool value)
         { if (muted == value) return; muted = value; if (value) Stop(); }
+        public void SetVolume(float value) => volume = Mathf.Clamp01(value);
         public void Stop() { ReleaseClip(); presentedKey = null; }
         void ReleaseClip()
         {

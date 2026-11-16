@@ -35,7 +35,7 @@ namespace Abandoned.SpaceApps.Opportunity
                 float seconds=Mathf.Max(SpeechDuration(key),Mathf.Max(4.5f,Localization.Get(key).Length/15f));
                 chapter.hud.Toast(key,seconds+.6f);
                 float active=0f;
-                while(active<seconds+.5f){if(!chapter.Paused)active+=Time.deltaTime;yield return null;}
+                while(active<seconds+.5f||(narration!=null&&narration.IsBusy&&narration.CurrentKey==key)){if(!chapter.Paused)active+=Time.deltaTime;yield return null;}
             }
             speaking=null;
         }
@@ -43,6 +43,7 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             if(narration==null)return;
             narration.SetMuted(!GameSettings.Voice);
+            narration.SetVolume(GameSettings.Master);
             narration.SetPaused(chapter&&chapter.Paused);
             narration.Tick(chapter&&!chapter.Paused?Time.deltaTime:0f);
             if(chapter&&chapter.sound)chapter.sound.NarrationActive=narration.IsBusy;

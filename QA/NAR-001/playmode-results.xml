@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 00:23:40Z" end-time="2026-11-16 00:23:48Z" duration="7,7673472">
-  <test-suite type="TestSuite" id="1016" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 00:23:40Z" end-time="2026-11-16 00:23:48Z" duration="7.767347" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 01:02:20Z" end-time="2026-11-16 01:02:30Z" duration="10,0107922">
+  <test-suite type="TestSuite" id="1016" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 01:02:20Z" end-time="2026-11-16 01:02:30Z" duration="10.010792" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="PlayMode" />
     </properties>
-    <test-suite type="Assembly" id="1009" name="Abandoned.SpaceApps.Integration.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Integration.Tests.dll" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 00:23:40Z" end-time="2026-11-16 00:23:48Z" duration="7.746032" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1009" name="Abandoned.SpaceApps.Integration.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Integration.Tests.dll" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 01:02:20Z" end-time="2026-11-16 01:02:30Z" duration="9.981140" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="24424" />
+        <property name="_PID" value="13620" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="PlayMode" />
         <property name="EditorOnly" value="False" />
       </properties>
-      <test-suite type="TestSuite" id="1010" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 00:23:40Z" end-time="2026-11-16 00:23:48Z" duration="7.744362" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1010" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 01:02:20Z" end-time="2026-11-16 01:02:30Z" duration="9.978314" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1011" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 00:23:40Z" end-time="2026-11-16 00:23:48Z" duration="7.743310" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1011" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 01:02:20Z" end-time="2026-11-16 01:02:30Z" duration="9.976279" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestSuite" id="1012" name="Tests" fullname="Abandoned.SpaceApps.Tests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 00:23:40Z" end-time="2026-11-16 00:23:48Z" duration="7.742274" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestSuite" id="1012" name="Tests" fullname="Abandoned.SpaceApps.Tests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 01:02:20Z" end-time="2026-11-16 01:02:30Z" duration="9.974150" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-suite type="TestFixture" id="1006" name="NarrationLifecycleTests" fullname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" classname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 00:23:40Z" end-time="2026-11-16 00:23:48Z" duration="7.739636" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="TestFixture" id="1006" name="NarrationLifecycleTests" fullname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" classname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 01:02:20Z" end-time="2026-11-16 01:02:30Z" duration="9.969476" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1008" name="AllThreeChaptersStartEnglishSpeechPauseAndReleaseItOnReturnToTheDossier" fullname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests.AllThreeChaptersStartEnglishSpeechPauseAndReleaseItOnReturnToTheDossier" methodname="AllThreeChaptersStartEnglishSpeechPauseAndReleaseItOnReturnToTheDossier" classname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" runstate="Runnable" seed="1370435943" result="Passed" start-time="2026-11-16 00:23:40Z" end-time="2026-11-16 00:23:48Z" duration="7.654594" asserts="0">
+              <test-case id="1008" name="AllThreeChaptersStartEnglishSpeechPauseAndReleaseItOnReturnToTheDossier" fullname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests.AllThreeChaptersStartEnglishSpeechPauseAndReleaseItOnReturnToTheDossier" methodname="AllThreeChaptersStartEnglishSpeechPauseAndReleaseItOnReturnToTheDossier" classname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" runstate="Runnable" seed="1142151801" result="Passed" start-time="2026-11-16 01:02:20Z" end-time="2026-11-16 01:02:30Z" duration="9.876802" asserts="0">
                 <properties>
                   <property name="_JOINTYPE" value="UnityCombinatorial" />
                   <property name="retryIteration" value="0" />
@@ -36,7 +36,7 @@ SURVEYOR_DOC_STEP Prologue active=0.00
 NAR_AUDIO_PLAYING sur.doc.intro.1 seconds=3.46
 ]]></output>
               </test-case>
-              <test-case id="1007" name="DisablingTheChapterReleasesItsSpeechSource" fullname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests.DisablingTheChapterReleasesItsSpeechSource" methodname="DisablingTheChapterReleasesItsSpeechSource" classname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" runstate="Runnable" seed="1659061903" result="Passed" start-time="2026-11-16 00:23:48Z" end-time="2026-11-16 00:23:48Z" duration="0.055280" asserts="0">
+              <test-case id="1007" name="DisablingTheChapterReleasesItsSpeechSource" fullname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests.DisablingTheChapterReleasesItsSpeechSource" methodname="DisablingTheChapterReleasesItsSpeechSource" classname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" runstate="Runnable" seed="1020520375" result="Passed" start-time="2026-11-16 01:02:30Z" end-time="2026-11-16 01:02:30Z" duration="0.055839" asserts="0">
                 <properties>
                   <property name="_JOINTYPE" value="UnityCombinatorial" />
                   <property name="retryIteration" value="0" />

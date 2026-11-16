@@ -1,0 +1,105 @@
+{
+  "browser": "159.0.8154.6",
+  "headless": true,
+  "graphics": "software SwiftShader; not a performance benchmark",
+  "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/159.0.8154.6 Safari/537.36",
+  "duration_seconds": 900.09,
+  "voice_starts": [
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING PIO.01.01 seconds=4.86\n",
+      "elapsed_seconds": 190.99
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING PIO.01.02 seconds=8.04\n",
+      "elapsed_seconds": 199.28
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING PIO.01.03 seconds=2.56\n",
+      "elapsed_seconds": 210.28
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING PIO.01.06 seconds=2.94\n",
+      "elapsed_seconds": 214.58
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING PIO.01.04 seconds=5.22\n",
+      "elapsed_seconds": 218.62
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING PIO.01.05 seconds=5.92\n",
+      "elapsed_seconds": 225.33
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING PIO.02.01 seconds=5.32\n",
+      "elapsed_seconds": 232.33
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING PIO.02.02 seconds=4.08\n",
+      "elapsed_seconds": 238.83
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING sur.doc.intro.1 seconds=3.46\n",
+      "elapsed_seconds": 482.17
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING sur.doc.intro.2 seconds=4.02\n",
+      "elapsed_seconds": 510.66
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING sur.doc.intro.3 seconds=5.40\n",
+      "elapsed_seconds": 543.56
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING MAR.C01 seconds=7.10\n",
+      "elapsed_seconds": 720.77
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING MAR.C02 seconds=5.00\n",
+      "elapsed_seconds": 728.83
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING MAR.C03 seconds=7.54\n",
+      "elapsed_seconds": 760.31
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING MAR.C04 seconds=5.85\n",
+      "elapsed_seconds": 810.99
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING MAR.C05 seconds=5.48\n",
+      "elapsed_seconds": 818.99
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING v18.landing.descent seconds=9.96\n",
+      "elapsed_seconds": 827.33
+    },
+    {
+      "type": "log",
+      "text": "NAR_AUDIO_PLAYING v15.landing.opp seconds=6.16\n",
+      "elapsed_seconds": 856.14
+    }
+  ],
+  "page_errors": [],
+  "console_errors": [],
+  "audio_context_states": [
+    "running"
+  ],
+  "tested_snapshot": "First diagnostic build from c09fa13; final integrated build will be tested separately."
+}

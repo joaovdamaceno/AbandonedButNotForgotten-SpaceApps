@@ -17,7 +17,9 @@ namespace Abandoned.SpaceApps.Opportunity
 
         AudioSource source;
         Func<bool> isPaused;
+        Func<bool> isNarrating;
         float level, musicVolume, fadeOutSeconds;
+        float narrationGain = 1f;
         bool fadingOut;
 
         /// <summary>Volume linear final para um nível de fade e o ajuste de música/geral do aplicativo.</summary>
@@ -26,11 +28,12 @@ namespace Abandoned.SpaceApps.Opportunity
         public bool IsPlaying => source != null && source.isPlaying;
         public float Level => level;
 
-        public void Begin(AudioClip clip, float master, float music, Func<bool> pausedQuery)
+        public void Begin(AudioClip clip, float master, float music, Func<bool> pausedQuery, Func<bool> narrationQuery = null)
         {
             if (clip == null || source != null)
                 return;
             isPaused = pausedQuery;
+            isNarrating = narrationQuery;
             musicVolume = Mathf.Clamp01(master) * Mathf.Clamp01(music);
             source = gameObject.AddComponent<AudioSource>();
             source.clip = clip;
@@ -62,7 +65,8 @@ namespace Abandoned.SpaceApps.Opportunity
             level = fadingOut
                 ? Mathf.MoveTowards(level, 0f, Time.unscaledDeltaTime / fadeOutSeconds)
                 : Mathf.MoveTowards(level, 1f, Time.unscaledDeltaTime / FadeInSeconds);
-            source.volume = Volume(level, 1f, musicVolume);
+            narrationGain = Mathf.MoveTowards(narrationGain, isNarrating != null && isNarrating() ? .5f : 1f, Time.unscaledDeltaTime * 3f);
+            source.volume = Volume(level, 1f, musicVolume) * narrationGain;
             if (fadingOut && level <= 0f)
             {
                 source.Stop();

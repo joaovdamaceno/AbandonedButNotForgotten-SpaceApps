@@ -140,7 +140,9 @@ namespace Abandoned.SpaceApps.Opportunity
             UpdateCommands(drive&&!fieldStudy.Active&&!p.Active,s==ChapterStage.RockAnalysis);
             Show(assistance,offer);assistance.EnableInClassList("strong",tutor&&tutor.StrongHelp);if(offer)assistanceText.text=Localization.Get(tutor.HelpBodyKey);
             photoCount.text=j.FinalAct?Localization.Get(j.PanoramaCount>0?"v13.photo.recorded":"v13.photo.required"):$"{p.Frames.Count}   ·   PANORAMIC CAMERA";
-            toastTime=Mathf.Max(0,toastTime-Time.unscaledDeltaTime);notification.text=Localization.Get(toastKey);notification.style.opacity=p.Active||chapter.investigation.Active||chapter.Cinematic?0:Mathf.Clamp01(toastTime);
+            toastTime=Mathf.Max(0,toastTime-Time.unscaledDeltaTime);
+            if(chapter.film.Narration!=null&&chapter.film.Narration.IsBusy&&chapter.film.Narration.CurrentKey==toastKey)toastTime=Mathf.Max(toastTime,1f);
+            notification.text=Localization.Get(toastKey);notification.style.opacity=p.Active||chapter.investigation.Active||chapter.Cinematic?0:Mathf.Clamp01(toastTime);
             photoFlash.style.opacity=drive&&!GameSettings.ReducedMotion?p.Flash*.18f:0;
             float t=chapter.Elapsed,alpha=0;
             if(s==ChapterStage.Intro)alpha=Mathf.Clamp01(1-t/1.2f)+Mathf.InverseLerp(chapter.film.SequenceDuration-.8f,chapter.film.SequenceDuration,t);

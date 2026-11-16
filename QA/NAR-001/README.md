@@ -5,12 +5,13 @@
   sem clipping digital. 5,73 MiB de OGG; 617,078 s de voz somada.
 - `installation.json`: três catálogos e quatro cenas reais validados.
   `installation-initial.json` preserva a primeira passagem de ajuste de tempos.
-- `editmode-results.xml`: **50/50 aprovados**, filtro de narração, localização
-  e SequenceDirector. Inclui pausa/foco, PT/EN, cancelamento, reentrada,
+- `editmode-results.xml`: **54/54 aprovados**, filtro de narração, localização,
+  SequenceDirector e MarsOpeningTrackTests. Inclui pausa/foco, PT/EN, cancelamento, reentrada,
   descarte, importação e ajuste idempotente de janelas.
 - `playmode-results.xml`: **2/2 aprovados**, com renderização habilitada.
   Carrega Boot e abre os três capítulos com legendas em português, aciona
-  seus players, verifica pausa e liberação ao voltar ao arquivo.
+  seus players, verifica pausa e liberação ao voltar ao arquivo. A repetição
+  após incorporar `faef090` também passou.
 - `MISSING_RECORDINGS_EN.txt`: quatro falas presentes nas legendas atuais,
   ausentes nas gravações fornecidas; seguem sem dublagem.
 
@@ -33,6 +34,20 @@ separada `BuildWebRuntimeProbe` compila apenas para diagnóstico de runtime,
 com as mesmas cinco cenas habilitadas e as configurações atuais. Um sucesso
 nessa rotina não aprova uma release nem substitui o gate CORE.
 O resultado efetivo da tentativa é registrado em `web-runtime-probe.json`.
+
+A primeira build de diagnóstico compilou com sucesso, sem compressão e em
+modo Development (231.579.653 bytes informados pelo BuildReport). Não é uma
+medida de tamanho de release. O teste inicial em Chromium headless registrou
+voz real nos três capítulos, inclusive `v18.landing.descent` e
+`v15.landing.opp` na troca de cena de Marte, sem exceções JavaScript ou erros
+de console. Antes do primeiro clique o AudioContext estava suspenso; após
+Iniciar ficou ativo. Esse teste usa SwiftShader, portanto não valida FPS/GPU.
+Registro preservado em `browser-smoke-initial.json`; arquivo de bloqueio do
+gate em `release-preflight.txt`.
+
+Uma repetição dos testes teve falha de inicialização do serviço de licença
+da Unity. Somente os processos daquela tentativa foram encerrados; a repetição
+seguinte recompilou e aprovou os 54 testes EditMode e os dois PlayMode.
 
 ## Ainda exige revisão humana
 

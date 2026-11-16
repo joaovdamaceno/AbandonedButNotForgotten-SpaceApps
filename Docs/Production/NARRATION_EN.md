@@ -2,6 +2,9 @@
 
 Pedido: issue #223. Base de implementação: `develop` em `5b67617`.
 Branch `NAR-001`; integração em develop depende da autorização do proprietário.
+Durante a tarefa, `origin/develop` avançou para `faef090` e foi incorporada à
+branch pelo merge `b5f050a`. Foram preservados os novos comandos/HUD de Marte
+e a remoção do antigo TTS; o adaptador usa exclusivamente as gravações humanas.
 
 ## Conteúdo integrado
 
@@ -79,7 +82,9 @@ existente da Opportunity usa um adaptador para seu tempo ativo, respeitando
 a pausa do capítulo. `NarrationTimeMap` amplia janelas narrativas quando a
 gravação natural requer mais tempo, mantendo câmera e atores no mesmo tempo
 autorado. As sequências compartilhadas também têm janelas de legenda ajustadas.
-O áudio permanece em pitch 1. A operação científica da Surveyor deixa as falas
+O áudio permanece em pitch 1. A música própria da abertura de Marte também
+recebe atenuação suave enquanto sua voz está ativa; no campo, a voz respeita
+o volume geral da configuração legada. A operação científica da Surveyor deixa as falas
 de cada etapa terminarem antes de apresentar a explicação seguinte.
 
 Nota de integração: o controlador Pioneer atual reinicializa sua etapa ao

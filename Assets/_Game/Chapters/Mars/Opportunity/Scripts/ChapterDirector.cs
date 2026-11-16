@@ -188,11 +188,11 @@ namespace Abandoned.SpaceApps.Opportunity
                 case ChapterStage.HeatShieldArrival:case ChapterStage.MeteoriteDiscovery:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.HeatShieldExploration:if(investigation.MeteoriteIdentified&&!investigation.Active){Progress.CompleteHardware();Progress.Advance();}break;
                 case ChapterStage.TimeSkip:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
-                case ChapterStage.FinalExploration:environment.SetStorm(.02f);if(journey.PanoramaCount>0)Progress.Advance();break;
+                case ChapterStage.FinalExploration:environment.SetStorm(.02f);if(journey.PanoramaCount>0&&!film.HasPendingNarration)Progress.Advance();break;
                 case ChapterStage.DustStorm:
                     environment.SetStorm(Mathf.Lerp(.20f,.84f,Mathf.SmoothStep(0,1,Mathf.Clamp01(Elapsed/38))));rover.Power=Mathf.Max(.5f,Energy);
                     // Sem tela de transmissão: ao fechar a comparação do Sol sob poeira, a energia cai e o contato se perde.
-                    if(investigation.DustSunMeasured&&!investigation.Active){Progress.CompleteSolarComparison();Progress.Advance();}break;
+                    if(investigation.DustSunMeasured&&!investigation.Active&&!film.HasPendingNarration){Progress.CompleteSolarComparison();Progress.Advance();}break;
                 case ChapterStage.CommunicationLost:rover.Power=film.Power;if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.Farewell:if(FilmTime>=film.SequenceDuration)CompleteCinematic();break;
                 case ChapterStage.Transition:
