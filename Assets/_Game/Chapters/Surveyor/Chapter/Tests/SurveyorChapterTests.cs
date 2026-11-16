@@ -237,6 +237,110 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.ChapterTests
             finally { Object.DestroyImmediate(instance); }
         }
         [Test]
+        public void WalkingArmsSwingAgainstEachOtherSmoothly()
+        {
+            var instance = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath));
+            try
+            {
+                var cast = instance.GetComponentInChildren<SurveyorApolloCast>(true);
+                var forward = new System.Collections.Generic.List<float>[] { new System.Collections.Generic.List<float>(), new System.Collections.Generic.List<float>() };
+                var last = new Vector3[2]; float worst = 0f;
+                for (float t = 3f; t < 7f; t += 1f / 60f)
+                {
+                    cast.Evaluate(t, true);
+                    var root = cast.Astronauts[0].transform.position; var facing = cast.FacingDirection(0).normalized;
+                    for (int arm = 0; arm < 2; arm++)
+                    {
+                        var local = cast.HandPosition(0, arm) - root;
+                        forward[arm].Add(Vector3.Dot(local, facing));
+                        if (t > 3f) worst = Mathf.Max(worst, Vector3.Distance(local, last[arm]));
+                        last[arm] = local;
+                    }
+                }
+                for (int arm = 0; arm < 2; arm++)
+                    Assert.That(Mathf.Max(forward[arm].ToArray()) - Mathf.Min(forward[arm].ToArray()), Is.GreaterThan(.2f), "Arm " + arm + " must visibly swing while walking.");
+                float mean0 = 0f, mean1 = 0f;
+                for (int i = 0; i < forward[0].Count; i++) { mean0 += forward[0][i]; mean1 += forward[1][i]; }
+                mean0 /= forward[0].Count; mean1 /= forward[0].Count;
+                float together = 0f;
+                for (int i = 0; i < forward[0].Count; i++) together += (forward[0][i] - mean0) * (forward[1][i] - mean1);
+                Assert.That(together, Is.LessThan(0f), "The arms swing in opposition.");
+                Assert.That(worst, Is.LessThan(.04f), "A hand moved more than 4 cm between 60 Hz frames.");
+            }
+            finally { Object.DestroyImmediate(instance); }
+        }
+        [Test]
+        public void HandReachesTheScoopBeforeTakingItAndCarriesItAwayWithoutAJump()
+        {
+            var instance = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath));
+            try
+            {
+                var cast = instance.GetComponentInChildren<SurveyorApolloCast>(true);
+                var native = instance.transform.Find("ScoopRig").Find(SurveyorScoop.ScoopToolPath).GetChild(0);
+                var carried = instance.transform.Find("Recovered scoop");
+                cast.Evaluate(SurveyorApolloCast.ScoopPickupSeconds - .01f, true);
+                var bucketCenter = native.TransformPoint(native.GetComponent<MeshFilter>().sharedMesh.bounds.center);
+                float reach = Vector3.Distance(cast.HandPosition(SurveyorApolloCast.ScoopActor, 1), bucketCenter);
+                Assert.That(reach, Is.InRange(.06f, .25f), "The hand is beside the bucket when it takes it: close enough to hold it, not pulling it from a distance and not inside it.");
+                Vector3 Scoop() => carried.gameObject.activeSelf ? carried.position : native.position;
+                var last = Scoop(); float worst = 0f;
+                for (float t = SurveyorApolloCast.ScoopPickupSeconds; t < SurveyorApolloCast.ScoopPickupSeconds + 4f; t += 1f / 60f)
+                {
+                    cast.Evaluate(t, true); worst = Mathf.Max(worst, Vector3.Distance(Scoop(), last)); last = Scoop();
+                }
+                Assert.That(worst, Is.LessThan(.03f), "The scoop moved more than 3 cm in one 60 Hz frame.");
+                Assert.That(carried.gameObject.activeSelf, Is.True);
+                var held = carried.TransformPoint(carried.GetComponent<MeshFilter>().sharedMesh.bounds.center);
+                Assert.That(Vector3.Distance(cast.HandPosition(SurveyorApolloCast.ScoopActor, 1), held), Is.InRange(.06f, .25f), "The carried bucket stays at the hand.");
+                Assert.That(DistanceToSegment(held, cast.ElbowPosition(SurveyorApolloCast.ScoopActor, 1), cast.HandPosition(SurveyorApolloCast.ScoopActor, 1)), Is.GreaterThan(.06f), "The bucket must not sit inside the astronaut's forearm.");
+            }
+            finally { Object.DestroyImmediate(instance); }
+        }
+        static float DistanceToSegment(Vector3 point, Vector3 from, Vector3 to)
+        {
+            var line = to - from; float along = Mathf.Clamp01(Vector3.Dot(point - from, line) / line.sqrMagnitude);
+            return Vector3.Distance(point, from + line * along);
+        }
+        [Test]
+        public void HandClosesAroundTheCameraHousingFromOutsideItAndNeverThroughIt()
+        {
+            var instance = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath));
+            try
+            {
+                var cast = instance.GetComponentInChildren<SurveyorApolloCast>(true);
+                foreach (float t in new[] { 13f, 26.9f, 27.5f, 29f, 33f, 40f, 44f })
+                {
+                    cast.Evaluate(t, true);
+                    var housing = System.Array.Find(instance.transform.Find("Recovered camera assembly").GetComponentsInChildren<Renderer>(true), r => r.name.Contains("CameraHousing"));
+                    if (t < SurveyorApolloCast.CameraPickupSeconds) housing = System.Array.Find(instance.transform.Find("Surveyor").GetComponentsInChildren<Renderer>(true), r => r.name.Contains("CameraHousing") && !r.transform.IsChildOf(instance.transform.Find("Recovered camera assembly")));
+                    var bounds = housing.bounds; float radius = .5f * Mathf.Min(bounds.size.x, bounds.size.z);
+                    float wristToAxis = Vector3.Cross(housing.transform.up, cast.HandPosition(0, 0) - bounds.center).magnitude;
+                    Assert.That(wristToAxis, Is.GreaterThan(radius + .02f), "Wrist inside the camera housing at " + t + " s.");
+                    Assert.That(Vector3.Distance(cast.HandPosition(0, 0), bounds.center), Is.LessThan(.45f), "Hand far from the camera at " + t + " s.");
+                }
+            }
+            finally { Object.DestroyImmediate(instance); }
+        }
+        [Test]
+        public void DuskDarkensTheFillLightAndDaylightRestoresIt()
+        {
+            var ambient = RenderSettings.ambientLight; float reflection = RenderSettings.reflectionIntensity;
+            var instance = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath));
+            try
+            {
+                var film = instance.GetComponent<SurveyorDocumentaryFilm>();
+                film.Evaluate("Night", 10f); var day = RenderSettings.ambientLight; float dayReflection = RenderSettings.reflectionIntensity;
+                film.Evaluate("Night", 32f);
+                Assert.That(RenderSettings.ambientLight.maxColorComponent, Is.LessThan(day.maxColorComponent * .6f), "The probe must fall into the dark with the sun, not glow on ambient fill.");
+                Assert.That(RenderSettings.reflectionIntensity, Is.LessThan(dayReflection * .4f));
+                film.Evaluate("Night", 25f);
+                Assert.That(RenderSettings.ambientLight.maxColorComponent, Is.InRange(day.maxColorComponent * SurveyorDocumentaryFilm.DuskAmbientScale, day.maxColorComponent), "Dusk is gradual.");
+                film.Evaluate("Reunion", 1f);
+                Assert.That(RenderSettings.ambientLight.maxColorComponent, Is.EqualTo(day.maxColorComponent).Within(.0005f), "Daylight returns for the reunion.");
+            }
+            finally { Object.DestroyImmediate(instance); RenderSettings.ambientLight = ambient; RenderSettings.reflectionIntensity = reflection; }
+        }
+        [Test]
         public void PressureFindsRealSupportWhenThePlayerExcavatedItsPreferredPoint()
         {
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(SurveyorDocumentaryBuilder.PrefabPath);

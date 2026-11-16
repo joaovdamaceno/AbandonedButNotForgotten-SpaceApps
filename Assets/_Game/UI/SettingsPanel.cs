@@ -145,7 +145,6 @@ namespace Abandoned.SpaceApps.UI
             AddVolume(PauseKeys.VolumeMusic, s => s.musicVolume, (s, v) => s.musicVolume = v);
             AddVolume(PauseKeys.VolumeSfx, s => s.sfxVolume, (s, v) => s.sfxVolume = v);
             AddVolume(PauseKeys.VolumeUi, s => s.uiVolume, (s, v) => s.uiVolume = v);
-            AddLanguage();
             AddSensitivity();
             AddReducedMotion();
             AddQuality();
@@ -230,31 +229,6 @@ namespace Abandoned.SpaceApps.UI
                     label.text = T(PauseKeys.Sensitivity);
                     slider.SetValueWithoutNotify(data.lookSensitivity);
                     value.text = FormatSensitivity(data.lookSensitivity, data.languageCode);
-                },
-            });
-        }
-
-        void AddLanguage()
-        {
-            var element = NewRow(out var label, out var unused);
-            var line = new VisualElement { pickingMode = PickingMode.Ignore };
-            line.AddToClassList("sa-settings__line");
-            var portuguese = NewChoice(() => SetLanguage(SettingsData.Portuguese));
-            var english = NewChoice(() => SetLanguage(SettingsData.English));
-            line.Add(portuguese);
-            line.Add(english);
-            element.Add(line);
-
-            Register(new Row
-            {
-                Element = element,
-                Adjust = direction => SetLanguage(direction > 0 ? SettingsData.English : SettingsData.Portuguese),
-                Activate = () => SetLanguage(OtherLanguage(data.languageCode)),
-                Refresh = () =>
-                {
-                    label.text = T(PauseKeys.Language);
-                    SetChoice(portuguese, T(PauseKeys.LanguagePt), data.languageCode == SettingsData.Portuguese);
-                    SetChoice(english, T(PauseKeys.LanguageEn), data.languageCode == SettingsData.English);
                 },
             });
         }

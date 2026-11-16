@@ -132,7 +132,8 @@ namespace Abandoned.SpaceApps.Integration
             }
 
             pause = Instantiate(pauseMenuPrefab, transform).GetComponentInChildren<PauseMenu>(true);
-            pause.Initialize(director, router, settings, hud);
+            // O botão "P · Pause" fica no canto do próprio menu, visível em todo capítulo (o HUD do jogo some nas partes de filme).
+            pause.Initialize(director, router, settings);
             focusPause = gameObject.AddComponent<FocusPause>();
             focusPause.Initialize(pause.Controller, director, audioDirector);
 
@@ -193,7 +194,37 @@ namespace Abandoned.SpaceApps.Integration
                 focusPause.enabled = !value;
         }
 
-        void OnStateChanged(AppState state) => ArbitrateAudioListener();
+        void OnStateChanged(AppState state)
+        {
+            UnlockAudioFor(state, audioDirector);
+            // A cena de Marte (já pré-carregada durante a abertura) ainda escreve o "geral" dela em AudioListener.volume até ser descarregada;
+            // ao chegar no menu principal o volume global volta a 1 de vez.
+            if (state == AppState.Dossier)
+                AudioListener.volume = 1f;
+            ArbitrateAudioListener();
+        }
+
+        /// <summary>
+        /// No Web o AudioDirector só responde depois do <see cref="AudioDirector.Unlock"/>, que precisa vir de um gesto da pessoa (o clique em
+        /// Iniciar). Só o Surveyor chamava, então a Pioneer e os sons do shell ficavam mudos na build do itch.io; agora qualquer capítulo que
+        /// entra em Playing libera o áudio. Fora do Web o diretor já nasce liberado e a chamada não faz nada.
+        /// </summary>
+        public static void UnlockAudioFor(AppState state, AudioDirector audio)
+        {
+            if (state == AppState.Playing && audio != null)
+                audio.Unlock();
+        }
+
+        /// <summary>
+        /// Saída de um capítulo para o menu principal: nada continua tocando. O AudioDirector do shell (música, loops, efeitos, pausa de áudio e
+        /// ducking) volta ao estado inicial na hora, e o volume global do AudioListener (que Marte altera para o "geral" dele) volta a 1.
+        /// O áudio da cena do capítulo some junto com a cena descarregada.
+        /// </summary>
+        void StopChapterAudio()
+        {
+            audioDirector?.ResetState();
+            AudioListener.volume = 1f;
+        }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode) => ArbitrateAudioListener();
 
@@ -378,6 +409,7 @@ namespace Abandoned.SpaceApps.Integration
         void OnChapterUnloading(string chapterId)
         {
             runningChapter = null;
+            StopChapterAudio();
             ApplyLanguage();
             stepStamp = titleStamp = null;
             HandBackAudioListener();

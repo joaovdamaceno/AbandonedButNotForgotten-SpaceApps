@@ -130,7 +130,7 @@ namespace Abandoned.SpaceApps.UI
         /// <summary>Disparado depois de cada mudança de estado visível.</summary>
         public event Action Changed;
 
-        public static bool IsSupportedLanguage(string code) => code == Portuguese || code == English;
+        public static bool IsSupportedLanguage(string code) => code == English; // o jogo só tem inglês
 
         public bool HasFolder(string slotId) => slotId != null && folders.ContainsKey(slotId);
 

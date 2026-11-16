@@ -41,6 +41,17 @@ Ambiente: Windows, Unity 6000.6.7f1. Os logs locais registraram
 Uma primeira tentativa PlayMode sem gráficos falhou em criação de RenderTexture;
 o teste foi repetido com gráficos e passou. Não se ocultou essa falha por filtro.
 
+Integração final autorizada contra `06f99ab`: preservados os novos menus,
+interações, animações e áudio da equipe. A interface atual dessa base é somente
+em inglês; os testes anteriores com legendas PT são registros da revisão
+anterior. A narração segue os mesmos IDs e continua independente dos dados PT
+preservados. Relatórios após resolver conflitos usam o prefixo `merge-`.
+`merge-editmode-results.xml`: **54/54 aprovados**. `merge-playmode-results.xml`:
+**3/3 aprovados**, incluindo abertura dos três capítulos, pausa/saída e os
+quatro complementos reproduzidos até o fim. A fórmula de música combina a
+calibração nova da equipe com o ducking da voz; no campo, o master da narração
+é aplicado apenas pelo AudioListener, evitando atenuação duplicada.
+
 ## Build Web
 
 Os relatórios Web abaixo correspondem à revisão `ac37672`, anterior aos quatro

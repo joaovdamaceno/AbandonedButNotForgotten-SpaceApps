@@ -35,8 +35,7 @@ namespace Abandoned.SpaceApps
         public void Sanitize()
         {
             version = CurrentVersion;
-            if (languageCode != Portuguese && languageCode != English)
-                languageCode = English;
+            languageCode = English; // o jogo só tem inglês: um arquivo salvo com "pt" volta para inglês
 
             masterVolume = Clamp(masterVolume, 0f, 1f, 1f);
             musicVolume = Clamp(musicVolume, 0f, 1f, 0.8f);

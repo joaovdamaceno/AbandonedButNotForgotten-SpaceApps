@@ -5,6 +5,8 @@ Branch `NAR-001`; o proprietário autorizou o merge após validar os complemento
 Durante a tarefa, `origin/develop` avançou para `faef090` e foi incorporada à
 branch pelo merge `b5f050a`. Foram preservados os novos comandos/HUD de Marte
 e a remoção do antigo TTS; o adaptador usa exclusivamente as gravações humanas.
+Após os complementos e a autorização de merge, a integração final usou
+`06f99ab`, preservando os novos menus, animações e desbloqueio de áudio da equipe.
 
 ## Conteúdo integrado
 
@@ -18,7 +20,10 @@ Os 116 OGG ocupam aproximadamente 5,95 MiB de arquivos-fonte e contêm 641,358 s
 somados de voz. Isso não representa a duração da campanha nem o tamanho final
 da build: a Unity recodifica o áudio conforme a plataforma.
 
-O áudio é sempre inglês. A escolha PT/EN muda as legendas, não troca a voz.
+O áudio é sempre inglês e segue IDs, independentemente dos textos localizados.
+Na integração final, a develop da equipe (`06f99ab`) passou a exibir somente
+inglês e removeu o seletor de idioma. Essa decisão foi preservada; os dados PT
+existentes e a independência entre catálogo de voz e texto não foram removidos.
 Não há síntese de fala ou serviço de transcrição durante a partida.
 
 Foram configuradas e salvas as cenas reais `SurveyorChapter`, `Pioneer10`,
@@ -94,7 +99,8 @@ gravação natural requer mais tempo, mantendo câmera e atores no mesmo tempo
 autorado. As sequências compartilhadas também têm janelas de legenda ajustadas.
 O áudio permanece em pitch 1. A música própria da abertura de Marte também
 recebe atenuação suave enquanto sua voz está ativa; no campo, a voz respeita
-o volume geral da configuração legada. A operação científica da Surveyor deixa as falas
+o volume geral pelo AudioListener da configuração legada, aplicado uma única
+vez. A operação científica da Surveyor deixa as falas
 de cada etapa terminarem antes de apresentar a explicação seguinte.
 
 Nota de integração: o controlador Pioneer atual reinicializa sua etapa ao

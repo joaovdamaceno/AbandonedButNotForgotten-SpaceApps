@@ -95909,62 +95909,62 @@ MonoBehaviour:
   cues:
   - id: orbit
     clip: {fileID: 8300000, guid: 8cebf89e32212354d87130104185fd0a, type: 3}
-    gain: 0.62
+    gain: 0.64
     fade: 4
     loop: 1
   - id: descent
     clip: {fileID: 8300000, guid: b59016811ad39f147a22db464a178d16, type: 3}
-    gain: 0.55
+    gain: 0.84
     fade: 4
     loop: 1
   - id: impact
     clip: {fileID: 8300000, guid: b59016811ad39f147a22db464a178d16, type: 3}
-    gain: 0.48
+    gain: 0.72
     fade: 1.2
     loop: 1
   - id: arrival
     clip: {fileID: 8300000, guid: b59016811ad39f147a22db464a178d16, type: 3}
-    gain: 0.48
+    gain: 0.72
     fade: 4
     loop: 1
   - id: explore
     clip: {fileID: 8300000, guid: b59016811ad39f147a22db464a178d16, type: 3}
-    gain: 0.38
+    gain: 0.57
     fade: 4
     loop: 1
   - id: science
     clip: {fileID: 8300000, guid: b59016811ad39f147a22db464a178d16, type: 3}
-    gain: 0.28
+    gain: 0.43
     fade: 4
     loop: 1
   - id: discovery
     clip: {fileID: 8300000, guid: 8cebf89e32212354d87130104185fd0a, type: 3}
-    gain: 0.62
+    gain: 0.64
     fade: 4
     loop: 1
   - id: montage
     clip: {fileID: 8300000, guid: b59016811ad39f147a22db464a178d16, type: 3}
-    gain: 0.53
+    gain: 0.8
     fade: 4
     loop: 1
   - id: valley
     clip: {fileID: 8300000, guid: b59016811ad39f147a22db464a178d16, type: 3}
-    gain: 0.36
+    gain: 0.55
     fade: 4
     loop: 1
   - id: storm
     clip: {fileID: 8300000, guid: 280c65b0a18e03e4f979ad94d83255d2, type: 3}
-    gain: 0.2
+    gain: 0.3
     fade: 4
     loop: 1
   - id: last
     clip: {fileID: 8300000, guid: 280c65b0a18e03e4f979ad94d83255d2, type: 3}
-    gain: 0.08
+    gain: 0.12
     fade: 5
     loop: 1
   - id: farewell
     clip: {fileID: 8300000, guid: 8cebf89e32212354d87130104185fd0a, type: 3}
-    gain: 0.62
+    gain: 0.64
     fade: 4
     loop: 1
 --- !u!1 &1221024914

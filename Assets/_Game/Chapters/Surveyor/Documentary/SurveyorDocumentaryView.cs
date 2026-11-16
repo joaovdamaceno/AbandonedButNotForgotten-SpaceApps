@@ -68,6 +68,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             action.style.display = string.IsNullOrEmpty(actionText) ? DisplayStyle.None : DisplayStyle.Flex;
             root.Q("mission-heading").style.display = string.IsNullOrEmpty(titleText) && string.IsNullOrEmpty(dateText) ? DisplayStyle.None : DisplayStyle.Flex;
         }
+        public void SetPauseLabel(string value) { var button = root.Q<Button>("pause"); if (button != null && button.text != value) button.text = value; }
         public void SetDate(string value) { if (date.text != value) date.text = value; }
         public void SetHistory(bool visible, string caption)
         { photo.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None; credit.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None; credit.text = caption; }

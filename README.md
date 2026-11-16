@@ -6,17 +6,14 @@ Planejamento de produção para **14–15 de novembro de 2026**, com sete pessoa
 2. Pioneer 10 — o caminho para os planetas exteriores.
 3. Surveyor 3 — ver, tocar e preparar o caminho para pessoas.
 
-**Este repositório começa com documentação, contratos e tarefas. O novo jogo ainda precisa ser implementado.** O projeto Unity anterior permanece preservado no repositório privado AbandonedButNotForgotten. Não transferimos seus resultados de teste para esta edição.
+**Este repositório começa com documentação, contratos e tarefas. O novo jogo ainda precisa ser implementado.** 
 
 ## Narração humana (NAR-001)
 
-Os três capítulos possuem gravações em inglês vinculadas às legendas PT/EN.
-Para experimentar, abrir `Assets/_Game/Scenes/Boot.unity` na Unity e selecionar
-a missão. Instalação/reconstrução e fontes das 116 falas, incluindo os complementos:
-[narração inglesa](Docs/Production/NARRATION_EN.md).
-Resultados de validação: [QA/NAR-001](QA/NAR-001/README.md).
-
-## Por onde começar
+Os três capítulos possuem 116 falas gravadas em inglês, vinculadas às legendas.
+Abrir `Assets/_Game/Scenes/Boot.unity` e selecionar uma missão.
+Instalação, fontes e complementos: [narração inglesa](Docs/Production/NARRATION_EN.md).
+Resultados: [QA/NAR-001](QA/NAR-001/README.md).
 
 - **Repositório público:** https://github.com/joaovdamaceno/AbandonedButNotForgotten-SpaceApps
 - **Kanban privado:** https://github.com/users/joaovdamaceno/projects/1

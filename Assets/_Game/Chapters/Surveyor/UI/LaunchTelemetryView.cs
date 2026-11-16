@@ -17,7 +17,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         Button startButton,resumeButton,pauseRestart,pauseReturn;
         readonly Dictionary<string,Label> labels=new Dictionary<string,Label>();
         LaunchDiagram map,entryMap,ring;
-        string language=SettingsData.Portuguese;
+        string language=SettingsData.English;
         HoldMode mode;
         bool muted,reducedMotion;
         public Func<string,string> TextResolver { get; set; }
@@ -37,7 +37,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             entry=root.Q("entry");flight=root.Q("flight");plate=root.Q("subtitle-plate");overlay=root.Q("pause-overlay");
             ringElement=root.Q("hold-ring");
             confirm=root.Q<Button>("confirm-button");restart=root.Q<Button>("restart-button");back=root.Q<Button>("return-button");
-            languageButton=root.Q<Button>("language-button");muteButton=root.Q<Button>("mute-button");pauseButton=root.Q<Button>("pause-button");
+            languageButton=root.Q<Button>("language-button");if(languageButton!=null)languageButton.style.display=DisplayStyle.None;muteButton=root.Q<Button>("mute-button");pauseButton=root.Q<Button>("pause-button");
             startButton=root.Q<Button>("start-button");resumeButton=root.Q<Button>("resume-button");
             pauseRestart=root.Q<Button>("pause-restart-button");pauseReturn=root.Q<Button>("pause-return-button");
             startButton.clicked+=Start;resumeButton.clicked+=Resume;pauseRestart.clicked+=Restart;pauseReturn.clicked+=Return;

@@ -1032,8 +1032,8 @@
   },
   {
    "key": "v10.result.sundust",
-   "pt": "Muito menos luz atravessa a atmosfera. A poeira aumenta a opacidade do céu e reduz a energia que chega aos painéis solares.",
-   "en": "Much less light passes through the atmosphere. Dust increases the sky’s opacity and reduces the energy reaching the solar panels."
+   "pt": "O Sol está levemente encoberto pela poeira. A poeira aumenta a opacidade do céu e reduz a energia que chega aos painéis solares.",
+   "en": "The Sun is slightly obscured by dust. Dust increases the sky’s opacity and reduces the energy reaching the solar panels."
   },
   {
    "key": "v10.controls.observe",
@@ -2001,11 +2001,6 @@
    "en": "Spirit 2004 — 2010   ·   Opportunity 2004 — 2018"
   },
   {
-   "key": "v17.hint.explore",
-   "pt": "Segure E para explorar",
-   "en": "Hold E to explore"
-  },
-  {
    "key": "v17.spirit.signal",
    "pt": "O último sinal chegou em 22 de março de 2010; a NASA encerrou a busca por contato em 2011.",
    "en": "Its last signal arrived on March 22, 2010; NASA ended its attempts to regain contact in 2011."
@@ -2124,6 +2119,31 @@
    "key": "cmd.examine",
    "pt": "Examinar a cavidade",
    "en": "Examine the cavity"
+  },
+  {
+   "key": "v18.hold.done",
+   "pt": "Concluído",
+   "en": "Done"
+  },
+  {
+   "key": "v18.done.observation",
+   "pt": "Observação registrada",
+   "en": "Observation recorded"
+  },
+  {
+   "key": "v18.done.photo",
+   "pt": "Foto registrada",
+   "en": "Photo recorded"
+  },
+  {
+   "key": "v18.done.grind",
+   "pt": "Superfície desgastada",
+   "en": "Surface ground"
+  },
+  {
+   "key": "v18.done.reading",
+   "pt": "Leitura registrada",
+   "en": "Reading recorded"
   },
   {
    "key": "nar.mars.last.image",

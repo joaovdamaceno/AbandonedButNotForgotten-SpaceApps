@@ -11,7 +11,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         Button start,pause,language,confirm,resume,restart,back,restartPaused,backPaused;
         readonly Dictionary<string,Label> labels=new Dictionary<string,Label>();
         SurveyorDescent flow;SurveyorCommandDelay queue;SurveyorCommandInteraction action;SurveyorLaunchTexts texts;
-        Diagram diagram;string locale="pt";HoldMode mode;bool reducedMotion;
+        Diagram diagram;string locale="en";HoldMode mode;bool reducedMotion;
         public Func<string,string> TextResolver{get;set;}
         public bool DrawLocalSubtitles{get;set;}=true;
         public event Action StartRequested,PauseRequested,ResumeRequested,RestartRequested,ReturnRequested,LanguageRequested;
@@ -23,7 +23,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             labels.Clear();root.Query<Label>().ForEach(l=>{if(!string.IsNullOrEmpty(l.name))labels[l.name]=l;});
             entry=root.Q("entry");flight=root.Q("flight");overlay=root.Q("pause-overlay");plate=root.Q("subtitle-plate");landing=root.Q("landing-stamp");
             preparation=root.Q("preparation");radio=root.Q("radio");diagramHost=root.Q("diagram");
-            start=root.Q<Button>("start");pause=root.Q<Button>("pause");language=root.Q<Button>("language");confirm=root.Q<Button>("confirm");
+            start=root.Q<Button>("start");pause=root.Q<Button>("pause");language=root.Q<Button>("language");if(language!=null)language.style.display=DisplayStyle.None;confirm=root.Q<Button>("confirm");
             resume=root.Q<Button>("resume");restart=root.Q<Button>("restart");back=root.Q<Button>("return");restartPaused=root.Q<Button>("restart-paused");backPaused=root.Q<Button>("return-paused");
             start.clicked+=Start;pause.clicked+=Pause;language.clicked+=Language;resume.clicked+=Resume;restart.clicked+=Restart;restartPaused.clicked+=Restart;back.clicked+=Return;backPaused.clicked+=Return;
             confirm.RegisterCallback<PointerDownEvent>(OnDown);confirm.RegisterCallback<PointerUpEvent>(OnUp);confirm.RegisterCallback<PointerCaptureOutEvent>(OnCaptureOut);

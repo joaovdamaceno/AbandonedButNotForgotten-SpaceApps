@@ -43,7 +43,8 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             if(narration==null)return;
             narration.SetMuted(!GameSettings.Voice);
-            narration.SetVolume(GameSettings.Master);
+            // MissionAudio applies the master through AudioListener.volume.
+            narration.SetVolume(1f);
             narration.SetPaused(chapter&&chapter.Paused);
             narration.Tick(chapter&&!chapter.Paused?Time.deltaTime:0f);
             if(chapter&&chapter.sound)chapter.sound.NarrationActive=narration.IsBusy;

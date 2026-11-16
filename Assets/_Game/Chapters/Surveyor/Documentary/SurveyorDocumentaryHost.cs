@@ -260,6 +260,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             }
             else if (step == "End") button = localization.Get("sur.doc.return");
             view.SetText(localization.Get(date), localization.Get(title), objective, hint, status, button);
+            view.SetPauseLabel(localization.Get("sur.doc.pause"));
             view.SetEnded(step == "End", localization.Get("sur.doc.credits.button"), localization.Get("sur.doc.credits.title"), localization.Get("sur.doc.credits.body"), localization.Get("sur.doc.credits.close"), localization.Get("sur.doc.restart"));
         }
         void Unload(string id)

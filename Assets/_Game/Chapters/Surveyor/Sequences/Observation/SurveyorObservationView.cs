@@ -11,7 +11,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         Button primary, assist, lens, proceed, resume, restart, back, endReturn, language, pauseButton;
         readonly Button[] gallery=new Button[3];
         SurveyorObservation flow; SurveyorCommandDelay queue; SurveyorCommandInteraction action;
-        SurveyorTelevisionOutput output; SurveyorLaunchTexts texts; string locale="pt"; bool toggle;
+        SurveyorTelevisionOutput output; SurveyorLaunchTexts texts; string locale="en"; bool toggle;
         int shownCount=-1;string shownPrimary;
         public VisualElement Root => root;
         public Func<string,string> TextResolver { get; set; }
@@ -27,7 +27,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             progress=root.Q<Label>("obs-progress");caption=root.Q<Label>("obs-subtitle");resultName=root.Q<Label>("obs-result-name");resultText=root.Q<Label>("obs-result-text");
             count=root.Q<Label>("obs-count");direction=root.Q<Label>("obs-direction");
             primary=root.Q<Button>("obs-primary");assist=root.Q<Button>("obs-assist");lens=root.Q<Button>("obs-lens");proceed=root.Q<Button>("obs-continue");
-            resume=root.Q<Button>("obs-resume");restart=root.Q<Button>("obs-restart");back=root.Q<Button>("obs-return");endReturn=root.Q<Button>("obs-end-return");language=root.Q<Button>("obs-language");pauseButton=root.Q<Button>("obs-pause-button");
+            resume=root.Q<Button>("obs-resume");restart=root.Q<Button>("obs-restart");back=root.Q<Button>("obs-return");endReturn=root.Q<Button>("obs-end-return");language=root.Q<Button>("obs-language");if(language!=null)language.style.display=DisplayStyle.None;pauseButton=root.Q<Button>("obs-pause-button");
             assist.clicked+=Assist;lens.clicked+=Lens;resume.clicked+=Resume;restart.clicked+=Restart;back.clicked+=Return;language.clicked+=Language;pauseButton.clicked+=Pause;
             endReturn.clicked+=Return;screen.RegisterCallback<PointerEnterEvent>(PointerEnter);screen.RegisterCallback<PointerLeaveEvent>(PointerLeave);
             primary.RegisterCallback<PointerDownEvent>(Down);primary.RegisterCallback<PointerUpEvent>(Up);primary.RegisterCallback<PointerCaptureOutEvent>(CaptureOut);

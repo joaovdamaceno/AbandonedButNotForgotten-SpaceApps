@@ -219,11 +219,10 @@ namespace Abandoned.SpaceApps.Tests
             var hostElement = new VisualElement();
             using (var panel = new UI.SettingsPanel(hostElement, store, texts))
             {
-                Assert.That(panel.Focusables.Count, Is.EqualTo(10), "4 volumes, idioma, sensibilidade, movimento, qualidade, tela cheia, restaurar");
+                Assert.That(panel.Focusables.Count, Is.EqualTo(9), "4 volumes, sensibilidade, movimento, qualidade, tela cheia, restaurar (o jogo só tem inglês: sem linha de idioma)");
                 Assert.That(panel.TryAdjust(panel.Focusables[1], 1), Is.True); // música
-                Assert.That(panel.TryAdjust(panel.Focusables[4], 1), Is.True); // idioma
-                Assert.That(panel.TryAdjust(panel.Focusables[5], 1), Is.True); // sensibilidade
-                Assert.That(panel.TryActivate(panel.Focusables[6]), Is.True);  // movimento reduzido
+                Assert.That(panel.TryAdjust(panel.Focusables[4], 1), Is.True); // sensibilidade
+                Assert.That(panel.TryActivate(panel.Focusables[5]), Is.True);  // movimento reduzido
                 Assert.That(panel.TryActivate(panel.Focusables[0]), Is.False, "volume não tem ação de Enter");
             }
 
@@ -243,7 +242,7 @@ namespace Abandoned.SpaceApps.Tests
             store.Load();
             store.Apply(s => { s.musicVolume = 0.1f; s.languageCode = "en"; s.reducedMotion = true; });
             using (var panel = new UI.SettingsPanel(new VisualElement(), store, LoadTexts()))
-                Assert.That(panel.TryActivate(panel.Focusables[9]), Is.True);
+                Assert.That(panel.TryActivate(panel.Focusables[8]), Is.True);
 
             var data = store.Current;
             Assert.That(data.musicVolume, Is.EqualTo(0.8f).Within(0.0001f));
@@ -275,12 +274,33 @@ namespace Abandoned.SpaceApps.Tests
             foreach (var name in new[]
             {
                 "pause-root", "pause-corner", "pause-button", "pause-button-label", "pause-button-key", "pause-overlay",
-                "pause-title", "pause-subtitle", "view-main", "btn-resume", "btn-settings", "btn-restart",
-                "btn-dossier", "pause-hint", "view-settings", "settings-title", "btn-back", "pause-navigation",
+                "pause-title", "pause-subtitle", "view-main", "btn-resume", "btn-restart",
+                "btn-dossier", "pause-hint", "pause-navigation",
             })
                 Assert.That(tree.Q<VisualElement>(name) != null, Is.True, name);
+        }
 
-            Assert.That(tree.Q<ScrollView>("settings-scroll") != null, Is.True, "settings-scroll");
+        [Test]
+        public void TheMenuHasNoPreferencesTab()
+        {
+            var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath);
+            var tree = uxml.CloneTree();
+            foreach (var name in new[] { "btn-settings", "view-settings", "settings-scroll", "settings-title", "btn-back" })
+                Assert.That(tree.Q<VisualElement>(name), Is.Null, $"{name} saiu do menu");
+
+            Assert.That(tree.Query<VisualElement>(className: "sa-pausemenu__action").ToList().Count, Is.EqualTo(3),
+                "Continuar, Reiniciar capítulo e Voltar ao arquivo");
+        }
+
+        [Test]
+        public void OnlyTheFocusClassHighlightsAMenuItem()
+        {
+            // Mouse e teclado dividem uma única marca (classe de foco). Se o CSS voltasse a pintar :hover/:focus nos itens,
+            // o item do mouse e o do teclado ficariam amarelos juntos.
+            var text = System.IO.File.ReadAllText("Assets/_Game/UI/Pause/Pause.uss");
+            Assert.That(text, Does.Not.Contain(".sa-pausemenu__action:hover"));
+            Assert.That(text, Does.Not.Contain(".sa-pausemenu__action:focus"));
+            Assert.That(text, Does.Contain(".sa-pausemenu__focus {"));
         }
 
         [Test]
