@@ -13,7 +13,7 @@ namespace Abandoned.SpaceApps.Opportunity
         VisualElement root,flight,cinema,science,pause,settings,controls,credits,journal,end,fade,marker,photo,photoFlash;
         VisualElement endActions,thermal,thermalFill,safeBand,rockHint;
         VisualElement pressureFill,grindFill,energyFill,cursor,featureA,featureB,energyBox;
-        Label exploreHint,scienceFindings,objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,skip,photoCount;
+        Label scienceFindings,objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,skip,photoCount;
         VisualElement splitView,splitDivider,splitTopLabel,splitBottomLabel,letterTop,letterBottom;Label splitTopName,splitTopPlace,splitBottomName,splitBottomPlace,splitNote,fieldGoal,scienceGoal;
         float toastTime,objectiveAge;
         string toastKey,objectiveKey,activeLanguage,lastFilmTitle;
@@ -22,9 +22,14 @@ namespace Abandoned.SpaceApps.Opportunity
         VisualElement field,fieldFill,fieldReticle,fieldPictures,fieldCenter,framingFill;Label fieldTitle,fieldBody,fieldStatus,comparisonA,comparisonB;Image fieldA,fieldB,archiveImage;Label archiveCredit;
         readonly System.Collections.Generic.Dictionary<FieldStudy,Image> studyAlbum=new System.Collections.Generic.Dictionary<FieldStudy,Image>();
         // Painel de comandos no topo, ao lado da ajuda do H: uma linha por comando, teclas desenhadas como botões.
-        VisualElement guideStack,commandPanel;Label primaryCommand;string[] commandRows;string commandLanguage;float commandIntroSeconds;
+        VisualElement pauseCorner,guideStack,commandPanel;Label primaryCommand;string[] commandRows;string commandLanguage;float commandIntroSeconds;
         // O painel fica na tela nos primeiros segundos de controle do capítulo e volta só quando a pessoa fica parada (a mesma hora da ajuda do H).
         const float CommandIntroSeconds=7f;
+        // Prompt único de "segurar E" e o que o HUD já viu de cada ação (para confirmar a conclusão quando o contador muda).
+        HoldPrompt holdPrompt;bool holdSeen;AbrasionPhase lastRatPhase;int lastRatReadings,lastObservations,lastPhotos;
+        static readonly System.Collections.Generic.Dictionary<string[],string[]> rowsWithoutHold=new System.Collections.Generic.Dictionary<string[],string[]>();
+        /// <summary>O que o prompt de segurar E mostra neste quadro: a ação ativa, o rótulo e o progresso REAL dela.</summary>
+        struct HoldContext{public bool Active,Hint,Waiting;public string Label;public float Progress;}
         static readonly string[] DriveRows={"W A S D / ↑ ← ↓ →|cmd.move","Shift|cmd.fast","Mouse|cmd.look","hold E|cmd.interact","H|cmd.help","P|cmd.pause"};
         static readonly string[] SampleRows={"hold E|cmd.sample|primary","W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","H|cmd.help","P|cmd.pause"};
         static readonly string[] PhotoRows={"hold E|cmd.photo|primary","W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","H|cmd.help","P|cmd.pause"};
@@ -70,7 +75,7 @@ namespace Abandoned.SpaceApps.Opportunity
             splitNote=Text(splitView,"","split-note");foreach(var part in splitView.Children())part.pickingMode=PickingMode.Ignore;
             science=Box(root,"science");science.pickingMode=PickingMode.Ignore;Text(science,"RAT   /   MCKITTRICK","science-id eyebrow");
             cursor=Box(science,"tool-cursor");featureA=Box(science,"feature");Text(featureA,"01","feature-number");featureB=Box(science,"feature");Text(featureB,"02","feature-number");
-            var instruction=Box(science,"science-instruction");scienceTitle=Text(instruction,"","objective");scienceBody=Text(instruction,"","science-body");scienceGoal=Text(instruction,"","goal-line");
+            var instruction=Box(science,"science-instruction rat-analysis");scienceTitle=Text(instruction,"","objective");scienceBody=Text(instruction,"","science-body");scienceGoal=Text(instruction,"","goal-line");
             var tool=Box(science,"tool-readout");pressureFill=Box(Box(tool,"pressure-track"),"pressure-fill");safeBand=Box(pressureFill.parent,"safe-band");thermal=Box(tool,"thermal-cue");Text(thermal,"","small").name="thermal-label";thermalFill=Box(Box(thermal,"progress-track"),"thermal-fill");
             scienceReadout=Text(tool,"","small");scienceFindings=Text(tool,"","small");scienceFindings.style.whiteSpace=WhiteSpace.Normal;scienceFindings.style.marginTop=8;grindFill=Box(Box(tool,"progress-track"),"progress-fill");
             photo=Box(root,"photo-view");photo.pickingMode=PickingMode.Ignore;Box(photo,"viewfinder");Text(photo,"PANORAMIC CAMERA   /   MER-B","photo-id eyebrow");Text(photo,"","photo-help").name="photo-help";photo.Q<Label>("photo-help").style.display=DisplayStyle.None;photoCount=Text(photo,"","photo-count small");
@@ -79,7 +84,8 @@ namespace Abandoned.SpaceApps.Opportunity
             tutorialPanel=Box(flight,"tutorial-card");tutorialPanel.name="tutorial-card";
             tutorialTitle=Text(tutorialPanel,"","tutorial-title");tutorialBody=Text(tutorialPanel,"","tutorial-body");
             guideStack=Box(root,"guide-stack");guideStack.pickingMode=PickingMode.Ignore;assistance=Box(guideStack,"assistance-card");assistance.name="assistance-card";assistance.pickingMode=PickingMode.Ignore;assistanceText=Text(assistance,"","assistance-text");commandPanel=Box(guideStack,"command-panel");commandPanel.name="command-panel";commandPanel.pickingMode=PickingMode.Ignore;
-            var pauseButton=Button(flight,"v13.pause.short",()=>chapter.Pause(true),"flight-pause");pauseButton.pickingMode=PickingMode.Position;
+            holdPrompt=new HoldPrompt();holdPrompt.Place(HoldPrompt.Placement.Corner,guideStack);holdSeen=false;
+            var pauseButton=Button(flight,"v13.pause.short",()=>{if(!chapter.Paused)chapter.RequestPauseMenu();},"flight-pause");pauseCorner=pauseButton;pauseButton.pickingMode=PickingMode.Position;
             pause=Box(root,"modal-backdrop");pause.name="pause-modal";var pc=Box(pause,"modal-card");Text(pc,"OPPORTUNITY","eyebrow");Text(pc,"","display modal-title").name="pause-title";Button(pc,"pause.resume",()=>chapter.Pause(false),"primary");Button(pc,"menu.settings",()=>Open(settings));Button(pc,"v14.controls.button",()=>Open(controls));Button(pc,"pause.restart",chapter.RestartChapter);Button(pc,"v13.tutorial.repeat",()=>{chapter.RestartChapter();chapter.tutorial.RestartTutorial();});Button(pc,"pause.menu",chapter.Leave);
             settings=Box(root,"modal-backdrop");var sc=Box(settings,"settings-card");Text(sc,"","display modal-title").name="settings-title";
             var scroll=new ScrollView();sc.Add(scroll);var language=new DropdownField("Idioma / Language",new System.Collections.Generic.List<string>{"Português (Brasil)","English"},GameSettings.English?1:0);
@@ -96,7 +102,7 @@ namespace Abandoned.SpaceApps.Opportunity
             AddPhoto(js,ratPhoto,"McKittrick · NASA/JPL");AddPhoto(js,routeMap,"45,16 km · NASA/JPL-Caltech/MSSS");AddPhoto(js,panorama,"Perseverance Valley · NASA/JPL-Caltech/Cornell/ASU");AddPhoto(js,chapter.investigation.berryArchive,"Berry Bowl · NASA/JPL-Caltech/Cornell");AddPhoto(js,chapter.investigation.shieldArchive,"Escudo térmico / Heat shield · NASA/JPL/Cornell");AddPhoto(js,chapter.investigation.solarArchive,"Panoramic camera · NASA/JPL-Caltech/Cornell/ASU");foreach(FieldStudy kind in new[]{FieldStudy.Berries,FieldStudy.Shield,FieldStudy.Meteorite,FieldStudy.SunClear,FieldStudy.SunDust}){var card=Box(js,"study-album-card");var image=new Image{scaleMode=ScaleMode.ScaleToFit};image.AddToClassList("journal-image");card.Add(image);Text(card,Localization.Get("v10.study."+kind.ToString().ToLowerInvariant()),"small");studyAlbum.Add(kind,image);}
             Button(jc,"back",ToggleJournal);
             end=Box(root,"end-screen");var endWords=Box(end,"cinematic-words memorial-title");var endKicker=Text(endWords,"","end-kicker");endKicker.name="end-label";var endTitle=Text(endWords,"","cinematic-heading end-name");endTitle.name="end-title";endTitle.style.fontSize=56;endTitle.style.letterSpacing=6;Text(endWords,"","cinematic-story end-subtitle").name="end-subtitle";endActions=Box(end,"end-actions");Button(endActions,"end.menu",chapter.Leave,"primary end-button");Button(endActions,"end.restart",chapter.RestartChapter,"end-button");Button(endActions,"end.credits",()=>Open(credits),"end-link");
-            exploreHint=Text(root,"","explore-hint");exploreHint.pickingMode=PickingMode.Ignore;notification=Text(root,"","toast");notification.pickingMode=PickingMode.Ignore;photoFlash=Box(root,"photo-flash");photoFlash.pickingMode=PickingMode.Ignore;fade=Box(root,"fade");fade.pickingMode=PickingMode.Ignore;
+            notification=Text(root,"","toast");notification.pickingMode=PickingMode.Ignore;photoFlash=Box(root,"photo-flash");photoFlash.pickingMode=PickingMode.Ignore;fade=Box(root,"fade");fade.pickingMode=PickingMode.Ignore;
             foreach(var e in new[]{pause,settings,controls,credits,journal,end,tutorialPanel,assistance,rockHint,splitView})Show(e,false);RefreshText();
         }
         void Slider(VisualElement p,string key,float value,float min,float max,System.Action<float> setter)
@@ -126,18 +132,18 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             if(chapter==null||root==null||chapter.journey==null)return;
             if(activeLanguage!=GameSettings.English.ToString())RefreshText();
-            if(GameInput.Press(Key.P)&&chapter.Stage!=ChapterStage.ChapterEnd)chapter.Pause(!chapter.Paused);
+            if(GameInput.Press(Key.P)&&chapter.Stage!=ChapterStage.ChapterEnd)chapter.RequestPauseMenu();
             var s=chapter.Stage;var j=chapter.journey;var p=j.photography;var fieldStudy=chapter.investigation;bool drive=s==ChapterStage.Exploration||s==ChapterStage.HeatShieldExploration||j.FinalAct;
             endActions.style.opacity=Mathf.Clamp01((chapter.Elapsed-2)/1.5f);endActions.pickingMode=s==ChapterStage.ChapterEnd&&chapter.Elapsed>2?PickingMode.Position:PickingMode.Ignore;foreach(var button in endActions.Children())button.SetEnabled(chapter.Elapsed>2);
             Show(end,s==ChapterStage.ChapterEnd);Show(flight,drive&&!fieldStudy.Active&&!p.Active);Show(field,fieldStudy.Active);if(fieldStudy.Active)UpdateField();Show(science,s==ChapterStage.RockAnalysis);Show(cinema,chapter.Cinematic);Show(photo,p.Active);
             UpdateSplit();ApplyPlateScale();
-            // Antes da primeira observação: perto da rocha das esferas, um aviso no meio da tela.
-            var act=chapter.interactions?chapter.interactions.Current:default;
-            bool explore=act.Valid&&act.Available&&act.Id=="berries"&&!fieldStudy.Active&&!chapter.Paused;
-            if(explore)exploreHint.text=Localization.Get("v17.hint.explore");Show(exploreHint,explore);
             if(drive)UpdateFlight();if(s==ChapterStage.RockAnalysis)UpdateScience();if(chapter.Cinematic)UpdateCinema();
+            // Dentro do jogo o "P · Pause" é o do menu do jogo (mesmo lugar e desenho); o da cena some.
+            pauseCorner.style.display=chapter.PauseMenuHandler!=null?DisplayStyle.None:DisplayStyle.Flex;
             var tutor=chapter.tutorial;bool offer=tutor&&tutor.HelpOffered&&!chapter.Paused&&!chapter.Cinematic&&s!=ChapterStage.ChapterEnd;
-            UpdateCommands(drive&&!fieldStudy.Active&&!p.Active,s==ChapterStage.RockAnalysis);
+            var hold=HoldFor();UpdateCommands(drive&&!fieldStudy.Active&&!p.Active,s==ChapterStage.RockAnalysis,hold);UpdateHoldPrompt(hold);
+            // Onde o prompt toma o lugar das dicas de orientação (alto à direita), o cartão de ajuda também sai.
+            offer&=!(hold.Active&&hold.Hint);
             Show(assistance,offer);assistance.EnableInClassList("strong",tutor&&tutor.StrongHelp);if(offer)assistanceText.text=Localization.Get(tutor.HelpBodyKey);
             photoCount.text=j.FinalAct?Localization.Get(j.PanoramaCount>0?"v13.photo.recorded":"v13.photo.required"):$"{p.Frames.Count}   ·   PANORAMIC CAMERA";
             toastTime=Mathf.Max(0,toastTime-Time.unscaledDeltaTime);notification.text=Localization.Get(toastKey);notification.style.opacity=p.Active||chapter.investigation.Active||chapter.Cinematic?0:Mathf.Clamp01(toastTime);
@@ -170,7 +176,7 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             float w=Mathf.Max(1,Screen.width),h=Mathf.Max(1,Screen.height);
             float hud=Mathf.Pow(2,Mathf.Lerp(Mathf.Log(w/1920f,2),Mathf.Log(h/1080f,2),.5f)),plate=h/720f,k=plate/Mathf.Max(.01f,hud);
-            foreach(var e in new VisualElement[]{caption,notification,exploreHint})
+            foreach(var e in new VisualElement[]{caption,notification})
             {
                 var st=e.style;st.fontSize=24*k;st.paddingLeft=st.paddingRight=16*k;st.paddingTop=st.paddingBottom=8*k;
                 st.borderTopLeftRadius=st.borderTopRightRadius=st.borderBottomLeftRadius=st.borderBottomRightRadius=0;
@@ -218,7 +224,7 @@ namespace Abandoned.SpaceApps.Opportunity
 
         }
         /// <summary>Escolhe os comandos do momento e atualiza o painel (só reconstrói quando o conjunto ou o idioma muda).</summary>
-        void UpdateCommands(bool drive,bool rat)
+        void UpdateCommands(bool drive,bool rat,HoldContext hold)
         {
             var j=chapter.journey;var study=chapter.investigation;var m=chapter.science;
             string[] rows=null;string primary=null;bool dim=false;
@@ -239,6 +245,8 @@ namespace Abandoned.SpaceApps.Opportunity
                 else if(chapter.Stage==ChapterStage.Exploration&&j.ReadyForScience&&chapter.TargetDistance<3.4f)rows=SampleRows;
                 else if(j.FinalAct&&j.NearbyStation>=0)rows=PhotoRows;
             }
+            // O prompt de segurar E já mostra o comando principal: o painel não repete a linha do E (e some onde o prompt toma o lugar das dicas).
+            if(rows!=null&&hold.Active)rows=hold.Hint?null:WithoutHold(rows);
             if(chapter.Stage==ChapterStage.Landing)commandIntroSeconds=0;
             bool intro=commandIntroSeconds<CommandIntroSeconds;
             if(rows!=null&&intro)commandIntroSeconds+=Time.deltaTime;
@@ -248,6 +256,71 @@ namespace Abandoned.SpaceApps.Opportunity
             if(rows==null)return;
             if(rows!=commandRows||commandLanguage!=activeLanguage)BuildCommands(rows);
             if(primaryCommand!=null){if(primary!=null)primaryCommand.text=primary;primaryCommand.parent.EnableInClassList("cmd-waiting",dim);}
+        }
+        /// <summary>A ação de segurar E em andamento, com o progresso que a própria ação mede (a barra nunca anda por conta própria).</summary>
+        HoldContext HoldFor()
+        {
+            var c=default(HoldContext);
+            if(chapter.Paused||chapter.Cinematic||chapter.Stage==ChapterStage.ChapterEnd)return c;
+            var study=chapter.investigation;var m=chapter.science;var camera=chapter.journey.photography;
+            if(chapter.Stage==ChapterStage.RockAnalysis)
+            {
+                // Desgaste (7 s segurando E) e depois as leituras MI, APXS e Mössbauer: cada fase informa o próprio progresso.
+                c.Active=true;
+                if(m.Phase==AbrasionPhase.Complete)c.Active=false;
+                else if(m.Phase==AbrasionPhase.Analyze)
+                {
+                    c.Label=Localization.Get(!m.ToolStowed?"v11.rat.retract":m.AnalysisScanning?"v11.rat.scanning":"cmd.examine");
+                    c.Waiting=!m.ToolStowed;c.Progress=m.AnalysisProgress;
+                }
+                else
+                {
+                    c.Label=string.Format(Localization.Get(m.Working?"cmd.grinding":"cmd.grind"),Mathf.CeilToInt(m.RemainingSeconds));
+                    c.Waiting=!m.Active||m.Phase!=AbrasionPhase.Abrade;c.Progress=m.Progress;
+                }
+            }
+            else if(study.Active)
+            {
+                // Esferas de hematita no alto à direita (no lugar das dicas); escudo, meteorito e Sol no canto inferior esquerdo.
+                c.Active=true;c.Hint=study.Study==FieldStudy.Berries;
+                if(study.Capturing){c.Label=Localization.Get("v11.capture");c.Progress=1;}
+                else if(study.Result){c.Label=Localization.Get("cmd.continue");c.Progress=study.ResultProgress;c.Waiting=!study.ResultArmed;}
+                else{c.Label=Localization.Get("cmd.observe");c.Progress=study.Dwell;}
+            }
+            else if(camera.Active){c.Active=true;c.Label=Localization.Get("cmd.photograph");c.Progress=camera.HoldProgress;}
+            return c;
+        }
+        void UpdateHoldPrompt(HoldContext hold)
+        {
+            if(holdPrompt==null)return;
+            DetectCompletions();
+            if(chapter.Paused||chapter.Cinematic||chapter.Stage==ChapterStage.ChapterEnd){holdPrompt.Cancel();return;}
+            // Sem ação ativa o prompt só termina a confirmação de conclusão: fica onde estava.
+            if(hold.Active)holdPrompt.Place(hold.Hint?HoldPrompt.Placement.Hint:HoldPrompt.Placement.Corner,guideStack);
+            bool holding=hold.Active&&!hold.Waiting&&hold.Progress>.001f&&GameInput.ActionHeld;
+            holdPrompt.Apply(hold.Active,hold.Label,hold.Progress,holding,hold.Waiting,Time.unscaledDeltaTime);
+        }
+        /// <summary>Compara os contadores das ações com o quadro anterior: quando um avança, a ação terminou e o prompt confirma.</summary>
+        void DetectCompletions()
+        {
+            var study=chapter.investigation;var m=chapter.science;var camera=chapter.journey.photography;
+            int readings=m.Active?m.Observations:0;
+            if(!holdSeen){holdSeen=true;lastObservations=study.Completions;lastPhotos=camera.Captured;lastRatPhase=m.Phase;lastRatReadings=readings;return;}
+            if(study.Completions!=lastObservations){lastObservations=study.Completions;holdPrompt.Complete(Localization.Get("v18.done.observation"));}
+            if(camera.Captured!=lastPhotos){lastPhotos=camera.Captured;holdPrompt.Complete(Localization.Get("v18.done.photo"));}
+            if(m.Active&&lastRatPhase==AbrasionPhase.Abrade&&m.Phase==AbrasionPhase.Analyze)holdPrompt.Complete(Localization.Get("v18.done.grind"));
+            else if(readings>lastRatReadings)holdPrompt.Complete(Localization.Get("v18.done.reading"));
+            lastRatPhase=m.Phase;lastRatReadings=readings;
+        }
+        static string[] WithoutHold(string[] rows)
+        {
+            if(!rowsWithoutHold.TryGetValue(rows,out var kept))
+            {
+                var list=new System.Collections.Generic.List<string>();
+                foreach(var row in rows)if(!row.StartsWith("hold E"))list.Add(row);
+                kept=list.Count>0?list.ToArray():null;rowsWithoutHold[rows]=kept;
+            }
+            return kept;
         }
         void BuildCommands(string[] rows)
         {
@@ -277,9 +350,12 @@ namespace Abandoned.SpaceApps.Opportunity
         {
             var s=chapter.investigation;fieldTitle.text=Localization.Get(s.TitleKey);fieldBody.text=Localization.Get(s.BodyKey);
             // Hold-only observation: no reticle or framing meter, just the progress of the hold.
-            Show(fieldReticle,false);Show(fieldCenter,false);Show(framingFill.parent,false);Show(fieldFill.parent,!s.Result);fieldFill.style.width=Length.Percent(s.Dwell*100);
+            Show(fieldReticle,false);Show(fieldCenter,false);Show(framingFill.parent,false);
+            // A barra de progresso agora é a do prompt de segurar E (HoldPrompt); a trilha fina antiga fica escondida para não duplicar.
+            Show(fieldFill.parent,false);fieldFill.style.width=Length.Percent(s.Dwell*100);
             string goalKey=GoalFor(s.Study);fieldGoal.text=goalKey!=null?Localization.Get(goalKey):"";Show(fieldGoal,goalKey!=null&&!s.Capturing);
-            fieldBody.style.width=Length.Percent(s.Result?88:48);
+            // Na rocha das esferas o prompt ocupa o alto à direita; o texto do resultado deixa essa faixa livre.
+            fieldBody.style.width=Length.Percent(s.Result?(s.Study==FieldStudy.Berries?60:88):48);
             fieldStatus.text=Localization.Get(s.Capturing?"v11.capture":s.Result?"v10.controls.return":"v11.guide.hold");
             bool compare=s.Result&&s.Study==FieldStudy.SunDust&&s.ClearSunFrame&&s.DustSunFrame;
             fieldA.image=compare?s.ClearSunFrame:s.ResultImage;fieldB.image=compare?s.DustSunFrame:s.Solar?null:s.Archive;
@@ -296,7 +372,7 @@ namespace Abandoned.SpaceApps.Opportunity
             bool analyze=m.Phase==AbrasionPhase.Analyze;Show(featureA,false);Show(featureB,false);
             if(analyze){Project(featureA,m.surface.WorldPoint(m.surface.Features[0]));Project(featureB,m.surface.WorldPoint(m.surface.Features[1]));featureA.style.opacity=m.Observed[0]?.25f:1;featureB.style.opacity=m.Observed[1]?.25f:1;}
             Show(pressureFill.parent,false);pressureFill.style.width=Length.Percent(m.Pressure*100);pressureFill.style.backgroundColor=m.Pressure>=m.PressureLow&&m.Pressure<=m.PressureHigh?new Color(.55f,.82f,.72f):new Color(.97f,.59f,.3f);
-            grindFill.style.width=Length.Percent((analyze?m.AnalysisProgress:m.Progress)*100);
+            grindFill.style.width=Length.Percent((analyze?m.AnalysisProgress:m.Progress)*100);Show(grindFill.parent,false);
             safeBand.style.left=Length.Percent(m.PressureLow*100);safeBand.style.width=Length.Percent((m.PressureHigh-m.PressureLow)*100);
             Show(thermal,false);thermalFill.style.width=Length.Percent(m.Temperature*100);
             thermal.Q<Label>("thermal-label").text=Localization.Get("rat.temperature");
