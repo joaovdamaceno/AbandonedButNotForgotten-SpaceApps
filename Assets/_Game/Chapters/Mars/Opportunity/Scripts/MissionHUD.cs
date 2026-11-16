@@ -13,7 +13,7 @@ namespace Abandoned.SpaceApps.Opportunity
         VisualElement root,flight,cinema,science,pause,settings,controls,credits,journal,end,fade,marker,photo,photoFlash;
         VisualElement endActions,thermal,thermalFill,safeBand,rockHint;
         VisualElement pressureFill,grindFill,energyFill,cursor,featureA,featureB,energyBox;
-        Label scienceFindings,objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,skip,photoCount;
+        Label scienceFindings,objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,photoCount;
         VisualElement splitView,splitDivider,splitTopLabel,splitBottomLabel,letterTop,letterBottom;Label splitTopName,splitTopPlace,splitBottomName,splitBottomPlace,splitNote,fieldGoal,scienceGoal;
         float toastTime,objectiveAge;
         string toastKey,objectiveKey,activeLanguage,lastFilmTitle;
@@ -67,7 +67,7 @@ namespace Abandoned.SpaceApps.Opportunity
             cinema=Box(root,"cinema");cinema.pickingMode=PickingMode.Ignore;
             filmVeil=Box(cinema,"film-veil");filmVeil.pickingMode=PickingMode.Ignore;
             letterTop=Box(cinema,"letterbox top");letterBottom=Box(cinema,"letterbox bottom");var words=Box(cinema,"cinematic-words");
-            heading=Text(words,"","display cinematic-heading");story=Text(words,"","cinematic-story");caption=Text(cinema,"","caption");skip=Text(cinema,"","skip");
+            heading=Text(words,"","display cinematic-heading");story=Text(words,"","cinematic-story");caption=Text(cinema,"","caption");
             orbitEvidence=new Image{scaleMode=ScaleMode.ScaleToFit};orbitEvidence.AddToClassList("orbital-evidence");cinema.Add(orbitEvidence);orbitCredit=Text(cinema,"","orbital-credit");
             splitView=Box(root,"split-view");splitView.pickingMode=PickingMode.Ignore;splitDivider=Box(splitView,"split-divider");
             splitTopLabel=Box(splitView,"split-label");splitTopName=Text(splitTopLabel,"","split-name");splitTopPlace=Text(splitTopLabel,"","split-place");
@@ -403,10 +403,9 @@ namespace Abandoned.SpaceApps.Opportunity
             // Fim do módulo: "Still waiting on Mars" menor, abaixo de "Spirit and Opportunity" (como "Em viagem" na tela final da Pioneer).
             story.text=memorialTitle?Localization.Get("mars.still.waiting"):"";
             filmVeil.style.opacity=film.PictureBlack;
-            skip.text=chapter.CanSkip&&!memorialTitle?Localization.Get("controls.skip"):"";
             Show(heading.parent,!string.IsNullOrEmpty(film.TitleKey));
             heading.parent.style.opacity=Mathf.Clamp01(local/.65f)*(memorialTitle?1:Mathf.Clamp01((film.BeatLength-local)/.5f));
-            caption.style.opacity=film.CaptionOpacity;caption.BringToFront();skip.BringToFront();
+            caption.style.opacity=film.CaptionOpacity;caption.BringToFront();
         }
         static void Quit(){PlayerPrefs.Save();Application.Quit();}
     }
