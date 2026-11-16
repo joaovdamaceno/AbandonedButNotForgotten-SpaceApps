@@ -168,6 +168,8 @@ namespace Abandoned.SpaceApps.EditorTools
             so.FindProperty("listening").objectReferenceValue = Only<PioneerListening>();
             so.FindProperty("farewell").objectReferenceValue = Only<PioneerFarewellActivity>();
             so.ApplyModifiedPropertiesWithoutUndo();
+            NarrationSetup.Attach(controller.gameObject, "pioneer");
+            NarrationSetup.FitChapter("pioneer");
         }
 
         public override void Validate(SceneBuildContext context, List<string> errors)

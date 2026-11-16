@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 01:42:25Z" end-time="2026-11-16 01:42:56Z" duration="30,7706119">
+  <test-suite type="TestSuite" id="1018" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 01:42:25Z" end-time="2026-11-16 01:42:56Z" duration="30.770612" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1011" name="Abandoned.SpaceApps.Integration.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Integration.Tests.dll" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 01:42:25Z" end-time="2026-11-16 01:42:56Z" duration="30.751829" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="8872" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1012" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 01:42:25Z" end-time="2026-11-16 01:42:56Z" duration="30.749739" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1013" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 01:42:25Z" end-time="2026-11-16 01:42:56Z" duration="30.748210" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1014" name="Tests" fullname="Abandoned.SpaceApps.Tests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 01:42:25Z" end-time="2026-11-16 01:42:56Z" duration="30.746878" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1006" name="NarrationLifecycleTests" fullname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" classname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 01:42:25Z" end-time="2026-11-16 01:42:31Z" duration="6.065781" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1008" name="AllThreeChaptersStartEnglishSpeechPauseAndReleaseItOnReturnToTheDossier" fullname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests.AllThreeChaptersStartEnglishSpeechPauseAndReleaseItOnReturnToTheDossier" methodname="AllThreeChaptersStartEnglishSpeechPauseAndReleaseItOnReturnToTheDossier" classname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" runstate="Runnable" seed="619972821" result="Passed" start-time="2026-11-16 01:42:25Z" end-time="2026-11-16 01:42:31Z" duration="5.983558" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[NAR_AUDIO_PLAYING PIO.01.01 seconds=4.86
+NAR_AUDIO_PLAYING MAR.C01 seconds=7.10
+[SplitLanding] Spirit: ponto nominal com pedra/declive; pouso movido 20 m para areia livre (106.14, 0.04, -76.14).
+[Opportunity] Stage: Landing
+NAR_AUDIO_PLAYING v18.landing.descent seconds=9.96
+SURVEYOR_DOC_STEP Prologue active=0.00
+NAR_AUDIO_PLAYING sur.doc.intro.1 seconds=3.46
+]]></output>
+              </test-case>
+              <test-case id="1007" name="DisablingTheChapterReleasesItsSpeechSource" fullname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests.DisablingTheChapterReleasesItsSpeechSource" methodname="DisablingTheChapterReleasesItsSpeechSource" classname="Abandoned.SpaceApps.Tests.NarrationLifecycleTests" runstate="Runnable" seed="892199688" result="Passed" start-time="2026-11-16 01:42:31Z" end-time="2026-11-16 01:42:31Z" duration="0.054315" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1009" name="SupplementalNarrationTests" fullname="Abandoned.SpaceApps.Tests.SupplementalNarrationTests" classname="Abandoned.SpaceApps.Tests.SupplementalNarrationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-16 01:42:31Z" end-time="2026-11-16 01:42:56Z" duration="24.678047" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1010" name="FourRecordedSupplementsStartAndFinishAtNaturalSpeed" fullname="Abandoned.SpaceApps.Tests.SupplementalNarrationTests.FourRecordedSupplementsStartAndFinishAtNaturalSpeed" methodname="FourRecordedSupplementsStartAndFinishAtNaturalSpeed" classname="Abandoned.SpaceApps.Tests.SupplementalNarrationTests" runstate="Runnable" seed="1199096680" result="Passed" start-time="2026-11-16 01:42:31Z" end-time="2026-11-16 01:42:56Z" duration="24.662874" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[NAR_AUDIO_PLAYING PIO.05.01b seconds=4.58
+NAR_AUDIO_PLAYING PIO.05.01c seconds=3.97
+NAR_AUDIO_PLAYING v13.years.work seconds=6.38
+NAR_AUDIO_PLAYING v15.storm.dark seconds=9.35
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Damaceno/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

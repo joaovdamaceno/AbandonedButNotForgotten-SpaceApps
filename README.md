@@ -8,6 +8,13 @@ Planejamento de produção para **14–15 de novembro de 2026**, com sete pessoa
 
 **Este repositório começa com documentação, contratos e tarefas. O novo jogo ainda precisa ser implementado.** 
 
+## Narração humana (NAR-001)
+
+Os três capítulos possuem 116 falas gravadas em inglês, vinculadas às legendas.
+Abrir `Assets/_Game/Scenes/Boot.unity` e selecionar uma missão.
+Instalação, fontes e complementos: [narração inglesa](Docs/Production/NARRATION_EN.md).
+Resultados: [QA/NAR-001](QA/NAR-001/README.md).
+
 - **Repositório público:** https://github.com/joaovdamaceno/AbandonedButNotForgotten-SpaceApps
 - **Kanban privado:** https://github.com/users/joaovdamaceno/projects/1
 - **Para revisar o jogo sem ler tarefas:** [gameplay completa](Docs/02_GAMEPLAY_REVIEW.md).

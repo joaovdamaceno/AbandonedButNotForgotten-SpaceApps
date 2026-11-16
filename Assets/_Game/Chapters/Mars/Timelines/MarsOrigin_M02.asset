@@ -257,7 +257,7 @@ MonoBehaviour:
     - timeSeconds: 0
       eventId: mars.origin.lab.detail
   - shotId: mars.origin.globe.meridiani
-    durationSeconds: 7.7
+    durationSeconds: 7.999999
     rigId: mars.origin
     lookAtTargetId: 
     easing: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
       positionMeters: {x: 598.9999, y: 0.40003198, z: -8.400255}
       eulerAnglesDegrees: {x: 2.7073543, y: 6.789592, z: 0}
       fieldOfViewDegrees: 30
-    - timeSeconds: 7.7
+    - timeSeconds: 7.999999
       positionMeters: {x: 599, y: 0.4, z: -8.4}
       eulerAnglesDegrees: {x: 2.7072237, y: 6.7889743, z: -0.000000013355118}
       fieldOfViewDegrees: 30
@@ -399,23 +399,23 @@ MonoBehaviour:
   - cueId: MAR.C02
     textKey: MAR.C02
     startSeconds: 0
-    endSeconds: 4.9
+    endSeconds: 5.2
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: MAR.C03
     textKey: MAR.C03
-    startSeconds: 4.9
-    endSeconds: 13.1
+    startSeconds: 5.2
+    endSeconds: 13.4
     triggerId: 
     minimumReadSeconds: 0
     position: 0
     priority: 0
   - cueId: MAR.C04
     textKey: MAR.C04
-    startSeconds: 13.1
-    endSeconds: 20.8
+    startSeconds: 13.4
+    endSeconds: 21.099998
     triggerId: 
     minimumReadSeconds: 0
     position: 0

@@ -76,6 +76,28 @@ Para cada importação registrar: nome, autor/instituição, URL específica, da
 
 Áudio: somente original ou licenciado para distribuição/streaming previstos. Registrar alterações de duração, mix e loop; incluir atribuição no jogo e no pacote. Licença da gravação e composição precisam ser verificadas separadamente. A equipe pode reutilizar trechos já licenciados do projeto anterior após revisar seus créditos.
 
+## NAR-001 — voz humana fornecida para os três capítulos
+
+- **Narração inglesa:** gravação de `joaovdamaceno`, fornecida pelo proprietário
+  em `narracao.zip` para integração e distribuição no jogo. Não é voz de IA nem
+  gravação NASA. Não se presume licença CC0/domínio público ou autorização para
+  reutilizações externas ao projeto.
+- **Originais:** `NASA dublagem surveyor.wav`, `NASA dublagem piooner.wav` e
+  `NASA dublagem spirit and  oportunity.wav`; fonte é o arquivo enviado pelo
+  usuário, sem URL pública. SHA-256 e intervalos em `Data/Narration/*.json`.
+  WAVs originais preservados fora da distribuição em `QA/Local/ChapterNarration`.
+- **Complementos fornecidos em 15/11/2026:** `dublagem complementar piooner.wav`
+  e `dublagem complementar opportunity.wav`, mesma autoria/permissão. Originais
+  preservados em QA/Local; quatro cortes adicionais têm origem e SHA-256 por
+  linha em `Data/Narration`. Sem URL pública ou nova licença externa.
+- **Derivados usados:** 116 clipes em
+  `Assets/_Game/Chapters/{Surveyor,Pioneer10,Mars}/Narration/Clips/`.
+  Edições, cortes, normalização, limitações e referências de cena descritos em
+  `Docs/Production/NARRATION_EN.md`. Sem mudança de velocidade ou tom.
+- **Ferramentas locais:** FFmpeg e faster-whisper/small.en para processamento e
+  transcrição. Não são serviços chamados pelo jogo nem assets de runtime;
+  executáveis, modelos, caches e arquivos de sessão não entram na distribuição.
+
 ## SUR-002 — recursos efetivamente incorporados
 
 - **Fotos históricas da Pioneer 10 (PIO-007):** Ganimedes (`Pioneer_10_Ganymede_2679_AC73-9279.jpg`, SHA-256 `ddee488aadd1007a1162f6d979971add063111260f696d7140eda9c38e1f53fe`) e a montagem de Júpiter (`668761main_ac73-9341.jpg`, SHA-256 `a4d9e5c428849cd4cd956d048e9f25f11f488ec23f98bfb97bd2fb40f8829e0b`), baixadas em 14/11/2026 das páginas oficiais da NASA. Crédito exibido: **NASA**, sem sugerir endosso e sem logotipo (P-S18). As páginas não trazem licença própria. Procedência, datas, alterações e limites em `ArtSource/Pioneer10/PIO-007/SOURCE.md` e `Data/Assets/PioneerHistoricalImages.json`; a revisão lado a lado da R7 está pendente.

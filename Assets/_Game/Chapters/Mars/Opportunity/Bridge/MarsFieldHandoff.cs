@@ -108,7 +108,9 @@ namespace Abandoned.SpaceApps.Opportunity
             shellSettings.Load();
             openingMusic = gameObject.AddComponent<MarsOpeningMusic>();
             var app = FindAnyObjectByType<Abandoned.SpaceApps.ChapterDirector>();
-            openingMusic.Begin(clip, shellSettings.Current.masterVolume, shellSettings.Current.musicVolume, () => app != null && app.IsPaused);
+            var openingVoice = bindings.GetComponent<NarrationPlayer>();
+            openingMusic.Begin(clip, shellSettings.Current.masterVolume, shellSettings.Current.musicVolume,
+                () => app != null && app.IsPaused, () => openingVoice != null && openingVoice.IsBusy);
         }
 
         IEnumerator Begin()

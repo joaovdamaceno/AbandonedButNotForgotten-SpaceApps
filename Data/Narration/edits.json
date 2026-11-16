@@ -1,0 +1,135 @@
+{
+  "surveyor": {
+    "sur.doc.night.3": {
+      "status": "matched",
+      "source_in_seconds": 77.78,
+      "source_out_seconds": 83.49,
+      "review_note": "Include the complete spoken May 4 date; token alignment omitted the ordinal."
+    }
+  },
+  "pioneer": {
+    "PIO.01.02": {
+      "status": "matched",
+      "source_in_seconds": 5.3,
+      "source_out_seconds": 13.34,
+      "review_note": "Include the terminal word try, recognized as dry."
+    },
+    "PIO.01.04": {
+      "status": "matched",
+      "source_in_seconds": 16.7,
+      "source_out_seconds": 21.92,
+      "review_note": "Spin and pointing paragraph verified by surrounding words; ASR misrecognized spin as being."
+    },
+    "PIO.05.02": {
+      "status": "matched",
+      "source_in_seconds": 184.14,
+      "source_out_seconds": 188.76,
+      "review_note": "Complete hydrogen / measuring-stick paragraph. Current subtitle uses the equivalent yardstick."
+    },
+    "PIO.06.02": {
+      "status": "matched",
+      "source_in_seconds": 215.38,
+      "source_out_seconds": 220.56,
+      "review_note": "Recorded day recognized as June 20; omit spoken month/day, retaining 1983 and the passage. Correct June 13 remains in the historical subtitle; do not fabricate a replacement date."
+    },
+    "PIO.09.04": {
+      "status": "matched",
+      "source_in_seconds": 142.78,
+      "source_out_seconds": 147.6,
+      "review_note": "Retain Closest at the start of closest approach."
+    },
+    "PIO.09.05": {
+      "status": "matched",
+      "source_in_seconds": 147.94,
+      "source_out_seconds": 154.5,
+      "review_note": "Retain It passed before the distance."
+    },
+    "PIO.08.04": {
+      "status": "matched",
+      "source_in_seconds": 287.52,
+      "source_out_seconds": 296.28,
+      "review_note": "Include Pioneer at the beginning; the source contains someone who goes first instead of means going first."
+    },
+    "PIO.05.01b": {
+      "status": "matched",
+      "source_file": "dublagem complementar piooner.wav",
+      "source_sha256": "6fc93860a5ef725fa7d798f3f8c0b4c4aa71d541bde94ab97b6bab4cf9707f2b",
+      "source_in_seconds": 0.0,
+      "source_out_seconds": 4.58,
+      "asr_excerpt": "It carried the message for anyone who might find it. A golden plague with no words,",
+      "review_note": "Human supplemental recording; phrase boundary reviewed against word times. Preserve natural speed; ASR proper-name/article variants are not subtitle edits."
+    },
+    "PIO.05.01c": {
+      "status": "matched",
+      "source_file": "dublagem complementar piooner.wav",
+      "source_sha256": "6fc93860a5ef725fa7d798f3f8c0b4c4aa71d541bde94ab97b6bab4cf9707f2b",
+      "source_in_seconds": 4.78,
+      "source_out_seconds": 8.75,
+      "asr_excerpt": "just pictures and symbols, showing who we are and where we came from.",
+      "review_note": "Human supplemental recording; phrase boundary reviewed against word times. Preserve natural speed; ASR proper-name/article variants are not subtitle edits."
+    }
+  },
+  "mars": {
+    "MAR.C04": {
+      "status": "matched",
+      "source_in_seconds": 22.93,
+      "source_out_seconds": 29.27,
+      "retained_ranges_seconds": [
+        [
+          22.93,
+          26.65
+        ],
+        [
+          27.13,
+          29.27
+        ]
+      ],
+      "review_note": "Remove only, which wrongly implies hematite requires water. Preserve typically forms in liquid water; update both subtitle languages without the exclusivity claim."
+    },
+    "v13.discovery.evidence": {
+      "status": "matched",
+      "source_in_seconds": 73.86,
+      "source_out_seconds": 79.54,
+      "review_note": "Include existed at the end of the sentence."
+    },
+    "v14.discovery.bridge": {
+      "status": "matched",
+      "source_in_seconds": 79.54,
+      "source_out_seconds": 87.0
+    },
+    "v16.farewell.legacy": {
+      "status": "matched",
+      "source_in_seconds": 205.15,
+      "source_out_seconds": 224.13,
+      "retained_ranges_seconds": [
+        [
+          205.15,
+          215.19
+        ],
+        [
+          215.37,
+          224.13
+        ]
+      ],
+      "review_note": "Include Gusev and remove the duplicated kilometers; no speech-speed change."
+    },
+    "v13.years.work": {
+      "status": "matched",
+      "source_file": "dublagem complementar opportunity.wav",
+      "source_sha256": "7d29f2ee193af5b7addacbe003cc983c290ca1e18ef96eac816e79eff58dc0c5",
+      "source_in_seconds": 0.27,
+      "source_out_seconds": 6.65,
+      "asr_excerpt": "The Ninety -sol mission kept going. Rock by rock, the story of Mars gained a new detail.",
+      "review_note": "Human supplemental recording; phrase boundary reviewed against word times. Preserve natural speed; ASR proper-name/article variants are not subtitle edits."
+    },
+    "v15.storm.dark": {
+      "status": "matched",
+      "source_file": "dublagem complementar opportunity.wav",
+      "source_sha256": "7d29f2ee193af5b7addacbe003cc983c290ca1e18ef96eac816e79eff58dc0c5",
+      "source_in_seconds": 6.97,
+      "source_out_seconds": 16.32,
+      "asr_excerpt": "With little light on its solar panels, opportunities stopped driving and saved energy. For weeks, almost everything stayed switched off.",
+      "review_note": "Human supplemental recording; phrase boundary reviewed against word times. Preserve natural speed; ASR proper-name/article variants are not subtitle edits."
+    }
+  }
+}

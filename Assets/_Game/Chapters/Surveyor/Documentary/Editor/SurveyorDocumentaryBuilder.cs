@@ -70,6 +70,7 @@ namespace Abandoned.SpaceApps.EditorTools
                 for (int i = root.transform.childCount - 1; i >= 0; i--) Object.DestroyImmediate(root.transform.GetChild(i).gameObject);
                 Get<ChapterDirector>(root); Get<SessionClock>(root); Get<InputRouter>(root); Get<InteractionService>(root); Get<SequenceDirector>(root); Get<CameraDirector>(root);
                 Get<SubtitlePresenter>(root); Get<FocusPause>(root); Get<AudioDirector>(root);
+                NarrationSetup.Attach(root, "surveyor");
                 var host = Get<SurveyorDocumentaryHost>(root); var film = Get<SurveyorDocumentaryFilm>(root); var view = Get<SurveyorDocumentaryView>(root); var scoop = Get<SurveyorDirectScoop>(root);
                 var site = Nested(root, "LunarSite", SurveyorSiteBuilder.ArtPath + "/LunarSite.prefab");
                 foreach (var r in site.GetComponentsInChildren<MeshRenderer>()) if (r.name.Contains("Chunk") || r.sharedMaterial.name.Contains("Regolith")) r.sharedMaterial = ground;

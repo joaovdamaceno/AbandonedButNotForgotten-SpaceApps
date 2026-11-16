@@ -1,0 +1,369 @@
+{
+  "chapter": "mars",
+  "source_file": "NASA dublagem spirit and  oportunity.wav",
+  "source_sha256": "bd1638723774e3423fa0e0cac4a40256f3b415089df254d57be5974c2beb836e",
+  "language": "en",
+  "processing": "Natural speed, mono 32 kHz, high-pass 70 Hz, chapter-level loudness normalization, Vorbis q4.",
+  "alignment": "Local small.en ASR with word times + token alignment against current develop text; review required.",
+  "lines": [
+    {
+      "key": "MAR.C01",
+      "subtitle_en": "In 2003, NASA sent two robotic explorers to Mars: Spirit and Opportunity.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 0.16,
+      "source_out_seconds": 7.26,
+      "asr_excerpt": "In 2003, NASA sent two robotic explorers to Mars. Spirit and Opportunity.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/MAR.C01.ogg",
+      "duration_seconds": 7.1
+    },
+    {
+      "key": "MAR.C02",
+      "subtitle_en": "Their mission was to search the rocks for traces of a past with liquid water.",
+      "alignment_score": 0.933,
+      "status": "matched",
+      "source_in_seconds": 8.51,
+      "source_out_seconds": 13.51,
+      "asr_excerpt": "Their mission was to search the rocks for traces of a pass with liquid water.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/MAR.C02.ogg",
+      "duration_seconds": 5.0
+    },
+    {
+      "key": "MAR.C03",
+      "subtitle_en": "Mars Global Surveyor mapped the planet's surface, helping NASA pinpoint two promising landing sites.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 14.67,
+      "source_out_seconds": 22.21,
+      "asr_excerpt": "Mars Global Surveyor mapped the planet's surface, helping NASA pinpoint two promising landing sites.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/MAR.C03.ogg",
+      "duration_seconds": 7.54
+    },
+    {
+      "key": "MAR.C04",
+      "subtitle_en": "Meridiani Planum, rich in hematite, which typically forms in liquid water.",
+      "alignment_score": 0.917,
+      "status": "matched",
+      "source_in_seconds": 22.93,
+      "source_out_seconds": 29.27,
+      "asr_excerpt": "Meridiani Planum, rich in hematite, which only typically forms in liquid water,",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/MAR.C04.ogg",
+      "retained_ranges_seconds": [
+        [
+          22.93,
+          26.65
+        ],
+        [
+          27.13,
+          29.27
+        ]
+      ],
+      "review_note": "Remove only, which wrongly implies hematite requires water. Preserve typically forms in liquid water; update both subtitle languages without the exclusivity claim.",
+      "duration_seconds": 5.854
+    },
+    {
+      "key": "MAR.C05",
+      "subtitle_en": "And Gusev Crater, a massive basin that once looked like an ancient lake.",
+      "alignment_score": 0.769,
+      "status": "matched",
+      "source_in_seconds": 30.05,
+      "source_out_seconds": 35.53,
+      "asr_excerpt": "a gazev crater, a massive basin once looked like an ancient lake.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/MAR.C05.ogg",
+      "duration_seconds": 5.48
+    },
+    {
+      "key": "v18.landing.descent",
+      "subtitle_en": "Each rover crossed the atmosphere behind a heat shield. Once the parachute opened, the shield dropped away, and airbags cushioned the landing.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 36.62,
+      "source_out_seconds": 46.58,
+      "asr_excerpt": "Each rover crossed the atmosphere behind a heat shield. Once the parachute opened, the shield dropped away, and airbags cushioned the landing.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v18.landing.descent.ogg",
+      "duration_seconds": 9.96
+    },
+    {
+      "key": "v15.landing.opp",
+      "subtitle_en": "After a week of preparing, Opportunity lands its wheels on Meridiani Planum.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 47.89,
+      "source_out_seconds": 54.05,
+      "asr_excerpt": "After a week of preparing, Opportunity lands its wheels on Meridiani Planum.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v15.landing.opp.ogg",
+      "duration_seconds": 6.16
+    },
+    {
+      "key": "v14.berries.water",
+      "subtitle_en": "Hematite usually forms where water exists. These spheres are a clue that liquid water may once have flowed here.",
+      "alignment_score": 0.737,
+      "status": "matched",
+      "source_in_seconds": 54.44,
+      "source_out_seconds": 62.0,
+      "asr_excerpt": "Hematite usually forms where water exists. These fears are a clue that water flowed here.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v14.berries.water.ogg",
+      "duration_seconds": 7.56
+    },
+    {
+      "key": "v14.berries.doubt",
+      "subtitle_en": "Still, surface clues aren't enough. To know for sure, we have to look inside the rocks.",
+      "alignment_score": 0.938,
+      "status": "matched",
+      "source_in_seconds": 62.62,
+      "source_out_seconds": 68.9,
+      "asr_excerpt": "Still, surface clues aren't enough. To know for sure, we need to look inside the rocks.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v14.berries.doubt.ogg",
+      "duration_seconds": 6.28
+    },
+    {
+      "key": "route.outcrop",
+      "subtitle_en": "Go to the McKittrick rock and look inside it",
+      "alignment_score": 0.889,
+      "status": "matched",
+      "source_in_seconds": 69.48,
+      "source_out_seconds": 73.02,
+      "asr_excerpt": "Go to the mechatric rock and look inside it.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/route.outcrop.ogg",
+      "duration_seconds": 3.54
+    },
+    {
+      "key": "v13.discovery.evidence",
+      "subtitle_en": "Layers, concretions and chemical composition point to a past in which water changed these rocks.",
+      "alignment_score": 0.733,
+      "status": "matched",
+      "source_in_seconds": 73.86,
+      "source_out_seconds": 79.54,
+      "asr_excerpt": "Layers, concretions and chemical composition point to a pass in which water",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v13.discovery.evidence.ogg",
+      "review_note": "Include existed at the end of the sentence.",
+      "duration_seconds": 5.68
+    },
+    {
+      "key": "v14.discovery.bridge",
+      "subtitle_en": "Water confirmed. But Opportunity still had energy, and Mars still had questions.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 79.54,
+      "source_out_seconds": 87.0,
+      "asr_excerpt": "Water confirmed, but Opportunity still had energy, and Mars still had questions.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v14.discovery.bridge.ogg",
+      "duration_seconds": 7.46
+    },
+    {
+      "key": "v13.hardware.arrival",
+      "subtitle_en": "2005. Moving on, it reached the place where its own heat shield fell. Let's examine it.",
+      "alignment_score": 0.938,
+      "status": "matched",
+      "source_in_seconds": 88.36,
+      "source_out_seconds": 96.92,
+      "asr_excerpt": "2005, moving on, it reached a place where its own heat shield fell. Let's examine it.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v13.hardware.arrival.ogg",
+      "duration_seconds": 8.56
+    },
+    {
+      "key": "v13.meteorite.result",
+      "subtitle_en": "Iron and nickel. Beside our shield lies the first meteorite identified on another planet.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 97.78,
+      "source_out_seconds": 104.54,
+      "asr_excerpt": "Iron and nickel. Beside our shield lies the first meteorite identified on another planet.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v13.meteorite.result.ogg",
+      "duration_seconds": 6.76
+    },
+    {
+      "key": "v13.years.work",
+      "subtitle_en": "The ninety-sol mission kept going. Rock by rock, the story of Mars gained new detail.",
+      "alignment_score": null,
+      "status": "matched",
+      "source_in_seconds": 0.27,
+      "source_out_seconds": 6.65,
+      "asr_excerpt": "The Ninety -sol mission kept going. Rock by rock, the story of Mars gained a new detail.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v13.years.work.ogg",
+      "source_file": "dublagem complementar opportunity.wav",
+      "source_sha256": "7d29f2ee193af5b7addacbe003cc983c290ca1e18ef96eac816e79eff58dc0c5",
+      "review_note": "Human supplemental recording; phrase boundary reviewed against word times. Preserve natural speed; ASR proper-name/article variants are not subtitle edits.",
+      "duration_seconds": 6.38
+    },
+    {
+      "key": "v15.storm.frequent",
+      "subtitle_en": "A dust storm begins to hide the Sun. Storms like this are frequent on Mars; some grow until they cover the entire planet.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 105.58,
+      "source_out_seconds": 115.96,
+      "asr_excerpt": "A dust storm begins to hide the sun. Storms like this are frequent on Mars. Some grow until they cover the entire planet.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v15.storm.frequent.ogg",
+      "duration_seconds": 10.38
+    },
+    {
+      "key": "v15.storm.dark",
+      "subtitle_en": "With little light on its solar panels, Opportunity stopped driving and saved energy. For weeks, almost everything stayed switched off.",
+      "alignment_score": null,
+      "status": "matched",
+      "source_in_seconds": 6.97,
+      "source_out_seconds": 16.32,
+      "asr_excerpt": "With little light on its solar panels, opportunities stopped driving and saved energy. For weeks, almost everything stayed switched off.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v15.storm.dark.ogg",
+      "source_file": "dublagem complementar opportunity.wav",
+      "source_sha256": "7d29f2ee193af5b7addacbe003cc983c290ca1e18ef96eac816e79eff58dc0c5",
+      "review_note": "Human supplemental recording; phrase boundary reviewed against word times. Preserve natural speed; ASR proper-name/article variants are not subtitle edits.",
+      "duration_seconds": 9.35
+    },
+    {
+      "key": "v15.spirit.death",
+      "subtitle_en": "In 2009, Spirit became stuck in soft sand. Trapped and poorly tilted toward the Sun, it could not collect enough light in the Martian winter.",
+      "alignment_score": 0.72,
+      "status": "matched",
+      "source_in_seconds": 117.4,
+      "source_out_seconds": 127.88,
+      "asr_excerpt": "In 2009, Spirit became stuck in soft sand trapped and poorly tilted to let enough light in the Martian winter.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v15.spirit.death.ogg",
+      "duration_seconds": 10.48
+    },
+    {
+      "key": "v17.spirit.signal",
+      "subtitle_en": "Its last signal arrived on March 22, 2010; NASA ended its attempts to regain contact in 2011.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 128.58,
+      "source_out_seconds": 138.48,
+      "asr_excerpt": "Its last signal arrived on March 22, 2010. NASA ended its attempts to regain contact in 2011.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v17.spirit.signal.ogg",
+      "duration_seconds": 9.9
+    },
+    {
+      "key": "v15.spirit.alone",
+      "subtitle_en": "Now only Opportunity remained on Mars. And she kept going, for herself and for her twin.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 139.67,
+      "source_out_seconds": 146.39,
+      "asr_excerpt": "Now, only Opportunity remained on Mars, and she kept going, for herself and for her twin.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v15.spirit.alone.ogg",
+      "duration_seconds": 6.72
+    },
+    {
+      "key": "v13.years.valley",
+      "subtitle_en": "2018. After almost fifteen years, Opportunity reached Perseverance Valley. The sky was beginning to darken.",
+      "alignment_score": 0.933,
+      "status": "matched",
+      "source_in_seconds": 147.84,
+      "source_out_seconds": 156.08,
+      "asr_excerpt": "2018, after almost 15 years, Opportunity reached Perseverance Valley. The sky was beginning to darken.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v13.years.valley.ogg",
+      "duration_seconds": 8.24
+    },
+    {
+      "key": "v14.sun.reason",
+      "subtitle_en": "Its power comes from the Sun. A dust storm is approaching, and we must measure how much light still arrives.",
+      "alignment_score": 0.905,
+      "status": "matched",
+      "source_in_seconds": 157.64,
+      "source_out_seconds": 165.02,
+      "asr_excerpt": "Its power comes from the sun. A dust storm is approaching, and we need to measure how much light still arrives.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v14.sun.reason.ogg",
+      "duration_seconds": 7.38
+    },
+    {
+      "key": "v15.storm.again",
+      "subtitle_en": "Storms like this are frequent on Mars. Opportunity already survived one in 2007 — but this one will be bigger.",
+      "alignment_score": 0.947,
+      "status": "matched",
+      "source_in_seconds": 166.14,
+      "source_out_seconds": 174.62,
+      "asr_excerpt": "Storms like these are frequent on Mars. Opportunity already survived one in 2007, but this one will be bigger.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v15.storm.again.ogg",
+      "duration_seconds": 8.48
+    },
+    {
+      "key": "nar.mars.last.image",
+      "subtitle_en": "If this is the last chance, the images must reach Earth.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 175.64,
+      "source_out_seconds": 179.52,
+      "asr_excerpt": "If this is the last chance, the images must reach Earth.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/nar.mars.last.image.ogg",
+      "duration_seconds": 3.88
+    },
+    {
+      "key": "v13.last.power",
+      "subtitle_en": "Dust hides the Sun. Without enough light, the solar panels can no longer sustain operations.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 181.04,
+      "source_out_seconds": 187.81,
+      "asr_excerpt": "Dust hides the sun. Without enough light, the solar panels can no longer sustain operations.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v13.last.power.ogg",
+      "duration_seconds": 6.77
+    },
+    {
+      "key": "v16.last.contact",
+      "subtitle_en": "June 10, 2018. Earth receives the last contact from Opportunity. Spirit had fallen silent on March 22, 2010, on the other side of Mars.",
+      "alignment_score": 0.958,
+      "status": "matched",
+      "source_in_seconds": 187.81,
+      "source_out_seconds": 203.98,
+      "asr_excerpt": "June 10, 2018 Earth receives the last contacts from Opportunity. Spirit had fallen silent on March 22, 2010, on the other side of Mars.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v16.last.contact.ogg",
+      "duration_seconds": 16.17
+    },
+    {
+      "key": "v16.farewell.legacy",
+      "subtitle_en": "Designed for ninety sols, the twins went much further: Spirit worked for more than six years and drove 7.73 km; it climbed hills and found silica and sulfates: signs of ancient hot springs and water at Gusev.",
+      "alignment_score": 0.842,
+      "status": "matched",
+      "source_in_seconds": 205.15,
+      "source_out_seconds": 224.13,
+      "asr_excerpt": "Designed for 90 souls, the twins went much further. Spirit worked for more than 6 years and drove 7 .73 kilometers. kilometers. It climbed the hills and found silica and sulfates, signs of ancient hot springs and water",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v16.farewell.legacy.ogg",
+      "retained_ranges_seconds": [
+        [
+          205.15,
+          215.19
+        ],
+        [
+          215.37,
+          224.13
+        ]
+      ],
+      "review_note": "Include Gusev and remove the duplicated kilometers; no speech-speed change.",
+      "duration_seconds": 18.794
+    },
+    {
+      "key": "v17.farewell.opportunity",
+      "subtitle_en": "Opportunity explored for almost fifteen years and drove 45.16 km, a record at the time.",
+      "alignment_score": 0.812,
+      "status": "matched",
+      "source_in_seconds": 224.77,
+      "source_out_seconds": 231.89,
+      "asr_excerpt": "Opportunity explored for almost 15 years and drove 45 .16 kilometers, a record at a time.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v17.farewell.opportunity.ogg",
+      "duration_seconds": 7.12
+    },
+    {
+      "key": "v16.farewell.end",
+      "subtitle_en": "NASA ended its attempts to contact Spirit on May 25, 2011 and, after months without a reply from Opportunity, ended its mission on February 13, 2019.",
+      "alignment_score": 1.0,
+      "status": "matched",
+      "source_in_seconds": 232.8,
+      "source_out_seconds": 245.62,
+      "asr_excerpt": "NASA ended its attempts to contact Spirit on May 25, 2011, and after months without a reply from opportunity, ended its mission on February 13, 2019.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v16.farewell.end.ogg",
+      "duration_seconds": 12.82
+    },
+    {
+      "key": "v16.farewell.memory",
+      "subtitle_en": "Both rovers' wheels stayed on Mars, on opposite sides of the planet. Their images and discoveries reached us.",
+      "alignment_score": 0.944,
+      "status": "matched",
+      "source_in_seconds": 246.62,
+      "source_out_seconds": 255.46,
+      "asr_excerpt": "Both rover's wheels stayed on Mars. On opposite sides of the planet, their images and discoveries reached us.",
+      "clip": "Assets/_Game/Chapters/Mars/Narration/Clips/v16.farewell.memory.ogg",
+      "duration_seconds": 8.84
+    }
+  ]
+}

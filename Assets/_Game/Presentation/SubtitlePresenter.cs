@@ -48,6 +48,10 @@ namespace Abandoned.SpaceApps
         VisualElement layer;
         string stampKey;
         int counter;
+        string currentBodyKey;
+        public string CurrentBodyKey => currentBodyKey;
+        /// <summary>NAR-001: only the visible narrative key changes; translating a cue does not restart its recording.</summary>
+        public event Action<string> BodyKeyChanged;
 
         public bool IsBound => layer != null;
         public VisualElement Layer => layer;
@@ -101,6 +105,7 @@ namespace Abandoned.SpaceApps
 
         void Unbind()
         {
+            PublishBodyKey(null);
             UnbindDirector();
             if (localization != null)
                 localization.LanguageChanged -= OnLanguageChanged;
@@ -290,6 +295,14 @@ namespace Abandoned.SpaceApps
 
             plate.TextKey = key;
             plate.Stamped = stamped;
+            if (position == SubtitlePosition.Bottom)
+                PublishBodyKey(string.IsNullOrWhiteSpace(body) ? null : key);
+        }
+
+        void PublishBodyKey(string key)
+        {
+            if (currentBodyKey == key) return;
+            currentBodyKey = key; BodyKeyChanged?.Invoke(key);
         }
 
         void OnDestroy() => Unbind();

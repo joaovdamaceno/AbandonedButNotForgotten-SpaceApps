@@ -108,6 +108,8 @@ namespace Abandoned.SpaceApps
                 if (subtitles == null)
                     subtitles = Instantiate(subtitleLayer, transform).GetComponent<SubtitlePresenter>();
                 subtitles.Initialize(localization, controller.Sequences);
+                var englishVoice = controller.GetComponent<NarrationPlayer>();
+                if (englishVoice != null) { englishVoice.Initialize(clock, audioDirector, director); englishVoice.Bind(subtitles); }
             }
 
             note = restartingForLanguage ? "Idioma trocado." : string.Empty;

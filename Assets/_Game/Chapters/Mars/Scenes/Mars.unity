@@ -2109,6 +2109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2008715809}
   - component: {fileID: 2008715808}
+  - component: {fileID: 2008715810}
   m_Layer: 0
   m_Name: '[R3 MAR-009] Mars'
   m_TagString: Untagged
@@ -2203,6 +2204,20 @@ Transform:
   - {fileID: 120448179}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2008715810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008715807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42091aaf2f053d54a92644dccb621f6a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.NarrationPlayer
+  catalog: {fileID: 11400000, guid: a0e576569b9a78645b409b8909a3afef, type: 2}
+  volume: 1
 --- !u!1 &2011043119
 GameObject:
   m_ObjectHideFlags: 0

@@ -206,13 +206,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6743725419371174462, guid: 154289ddc0e11354bb52a2183983c50f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1591336152}
   m_SourcePrefab: {fileID: 100100000, guid: 154289ddc0e11354bb52a2183983c50f, type: 3}
 --- !u!4 &1591336150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7837078712251247447, guid: 154289ddc0e11354bb52a2183983c50f, type: 3}
   m_PrefabInstance: {fileID: 1591336149}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1591336151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6743725419371174462, guid: 154289ddc0e11354bb52a2183983c50f, type: 3}
+  m_PrefabInstance: {fileID: 1591336149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1591336152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591336151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42091aaf2f053d54a92644dccb621f6a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.NarrationPlayer
+  catalog: {fileID: 11400000, guid: 5707af87b99e76f40bb64fb35421bc78, type: 2}
+  volume: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

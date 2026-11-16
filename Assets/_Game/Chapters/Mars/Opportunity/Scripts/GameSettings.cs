@@ -11,6 +11,8 @@ namespace Abandoned.SpaceApps.Opportunity
         public static bool Invert { get => PlayerPrefs.GetInt("ll.invert", 0) != 0; set => PlayerPrefs.SetInt("ll.invert", value ? 1 : 0); }
         public static bool ReducedMotion { get => PlayerPrefs.GetInt("ll.motion", 0) != 0; set => PlayerPrefs.SetInt("ll.motion", value ? 1 : 0); }
         public static bool Subtitles { get => PlayerPrefs.GetInt("ll.subtitles", 1) != 0; set => PlayerPrefs.SetInt("ll.subtitles", value ? 1 : 0); }
+        // Human English recordings have their own preference; the retired synthetic-voice toggle does not mute them.
+        public static bool Voice { get => PlayerPrefs.GetInt("ll.voice.en.human", 1) != 0; set => PlayerPrefs.SetInt("ll.voice.en.human", value ? 1 : 0); }
         public static float Sensitivity { get => PlayerPrefs.GetFloat("ll.sensitivity", 1); set => PlayerPrefs.SetFloat("ll.sensitivity", value); }
         public static float Master { get => PlayerPrefs.GetFloat("ll.master", .8f); set => PlayerPrefs.SetFloat("ll.master", value); }
         public static float Music { get => PlayerPrefs.GetFloat("ll.music", .65f); set => PlayerPrefs.SetFloat("ll.music", value); }

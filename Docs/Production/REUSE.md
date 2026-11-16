@@ -114,6 +114,29 @@ Reutiliza o modal existente do dossiê e a fotografia NASA AS12-48-7134 de SUR-0
 Reutiliza malhas NASA/equipe e traje próprio SUR-018. Substitui a condução da marcha pelos clipes por pose neutra + apoio mundial/IK, sem asset externo. TV, contato, contraste da escavação e assistência reescritos dentro do capítulo. Não reutiliza código da edição antiga da Opportunity. Fontes históricas mantidas; validação em QA/SUR-019.
 
 
+## NAR-001 — gravação humana e sincronização
+
+Base `develop` em `5b67617`, issue #223. Reutiliza os apresentadores de legenda,
+SequenceDirector, AudioDirector, SessionClock, hosts e builders já integrados
+neste novo projeto. O adaptador da Opportunity substitui a busca antiga por
+Piper/TTS pela voz humana, preservando o tempo comum de câmera e atores.
+Não importa arquivos da edição anterior nem altera autoria/datas históricas.
+
+Novos: catálogo/player de narração, mapa de tempo, instalador das quatro cenas,
+testes de comportamento e ferramentas de alinhamento/exportação. A extensão do
+SubtitlePresenter é aditiva: publica a chave narrativa já apresentada, sem
+trocar o contrato de entrada ou de progresso dos capítulos.
+
+Áudio de `narracao.zip`, gravado e fornecido pelo proprietário `joaovdamaceno`
+para o jogo; fonte e hashes em `Data/Narration`, permissão em ASSET_CREDITS.
+116 cortes mono normalizados em velocidade natural; sem clonagem/síntese de voz.
+Transcrição local é hipótese de ASR com erros documentados, não autoria de texto.
+Edições e preenchimento das quatro lacunas por gravações complementares do
+proprietário em `Docs/Production/NARRATION_EN.md`. As 112 falas anteriores
+permanecem byte a byte; somente os quatro novos OGG foram exportados.
+Evidência de testes efetivamente executados em `QA/NAR-001`; revisão de escuta
+e partidas integrais humanas não foram declaradas concluídas.
+
 ## SUR-020 — operação e continuidade física
 
 Reutiliza a malha Apollo A7L própria da SUR-018, o modelo Surveyor da equipe, o retroestágio e todos os áudios/fontes já creditados. Corrige alvos anatômicos e alcance dos braços, posições de recuperação e transferência da câmera. Acrescenta malha procedural de jato e shader aditivo próprios; grãos de contato reutilizam a malha de solo. Reescreve o pouso com arcos lunares e refina o shader de eclipse existente. Sem assets externos novos, download de plugins ou código da campanha antiga. Evidências: QA/SUR-020.

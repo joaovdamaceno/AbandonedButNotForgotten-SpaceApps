@@ -26,6 +26,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         readonly LocalizationService localization = new LocalizationService();
         ChapterDirector owner; SessionClock clock; InputRouter input; InteractionService interactions; SettingsStore settings;
         AudioDirector music; SubtitlePresenter subtitles;
+        NarrationPlayer englishVoice;
         SettingsData preferences;
         SequenceDefinition arrivalTrack;
         IDisposable scienceInput, scienceCamera;
@@ -61,6 +62,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             view.Initialize(outputCamera); view.ActionRequested += PrimaryAction; view.PauseRequested += PauseGame; view.RestartRequested += RestartFromEnd;
             subtitles = GetComponent<SubtitlePresenter>(); subtitles.Initialize(localization, sequence, view.SubtitleHost);
             music = GetComponent<AudioDirector>(); music.Initialize(audio, clock, settings.Current); music.Unlock();
+            englishVoice = GetComponent<NarrationPlayer>();
+            if (englishVoice != null) { englishVoice.Initialize(clock, music, owner); englishVoice.Bind(subtitles); }
             pause.Initialize(owner, input, settings); GetComponent<FocusPause>().Initialize(pause.Controller, owner, music);
             var nativeCorner = pause.GetComponent<UnityEngine.UIElements.UIDocument>().rootVisualElement.Q("pause-corner"); if (nativeCorner != null) nativeCorner.style.display = UnityEngine.UIElements.DisplayStyle.None;
             owner.StepEntered += Enter; owner.ChapterUnloading += Unload; owner.PausedChanged += Paused; sequence.Finished += Finished;
@@ -137,6 +140,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         }
         void ShowScience(string key)
         { if (scienceCue != null) subtitles.HideCue(scienceCue); scienceCue = new SubtitleCue(key, key, 0, 12); scienceCueEnd = clock.ActiveSeconds + 10f; subtitles.ShowCue(scienceCue); }
+        bool ReadingSpeech(string key) => englishVoice != null && englishVoice.IsBusy && englishVoice.CurrentKey == key;
         void Update() { if (initialized) Tick(clock.ActiveDeltaSeconds); }
         public void Tick(float activeDeltaSeconds)
         {
@@ -201,13 +205,13 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 if (sciencePhase == 2 && contactBegan && held && scoop.InGroundContact)
                 {
                     pressSeconds += dt;
-                    if (pressSeconds >= SurveyorDocumentaryTiming.Pressure)
+                    if (pressSeconds >= SurveyorDocumentaryTiming.Pressure && !ReadingSpeech("sur.doc.science.press"))
                     { sciencePhase = 3; ClearContact(); ScienceConfirmation(); scoop.Retract(); pendingPhoto = true; ShowScience("sur.doc.science.edge"); Debug.Log("SURVEYOR_DOC_SCIENCE 3"); RefreshText(); }
                 }
                 view.Cursor(workPatch.TransformPoint(sciencePhase == 2 && scoop.InGroundContact ? scoop.ContactPointLocal : scoop.AimLocal), true, scoop.Load);
                 view.SetActionEnabled(sciencePhase != 1 || CanFinishCut);
                 if (sciencePhase == 1 && CanFinishCut && !cutReady) { cutReady = true; ScienceConfirmation(); RefreshText(); Debug.Log("SURVEYOR_DOC_CUT_READY"); }
-                if (sciencePhase == 1 && CanFinishCut && !input.PrimaryHeld)
+                if (sciencePhase == 1 && CanFinishCut && !input.PrimaryHeld && !ReadingSpeech("sur.doc.science.question"))
                 { sciencePhase = 2; ClearContact(); primaryArmed = true; ShowScience("sur.doc.science.press"); Debug.Log("SURVEYOR_DOC_PRESS_READY"); RefreshText(); }
             }
             else if (sciencePhase >= 3)
@@ -216,7 +220,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 if (sciencePhase == 4)
                 {
                     photoRead += dt;
-                    if (photoRead >= SurveyorDocumentaryTiming.ResultRead && scoop.IsRetracted) owner.CompleteStep("Science");
+                    if (photoRead >= SurveyorDocumentaryTiming.ResultRead && scoop.IsRetracted && !ReadingSpeech("sur.doc.science.result")) owner.CompleteStep("Science");
                 }
             }
             string feedback = sciencePhase == 0 ? "lowering" : sciencePhase == 1 ? CanFinishCut ? "cut.ready" : scoop.InGroundContact ? "cutting" : contactBegan ? "lowering" : "lifted"
@@ -238,7 +242,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             float elapsed = clock.ActiveSeconds - stepStart;
             float fade = step == "End" ? 0f : step == "Legacy" ? Mathf.Clamp01((SurveyorDocumentaryTiming.Legacy - elapsed) / 2f) : step == "Activation" ? Mathf.Clamp01(Mathf.Abs(elapsed - SurveyorDocumentaryTiming.InstrumentEntry) / .35f) : 1f;
             view.Render(clock.ActiveSeconds, fade);
-            if (!pendingPhoto || owner.IsPaused || !scoop.IsRetracted) return;
+            if (!pendingPhoto || owner.IsPaused || !scoop.IsRetracted || ReadingSpeech("sur.doc.science.edge")) return;
             pendingPhoto = false; playerPhoto = view.Capture();
             var sprite = Sprite.Create(playerPhoto, new Rect(0, 0, playerPhoto.width, playerPhoto.height), new Vector2(.5f, .5f));
             owner.Evidence.Add(new EvidenceRecord("sur.doc.player.trench", EvidenceKind.Photo, "sur.doc.science.result", "S3-03", EvidenceAuthorship.PlayerCapture, sprite));

@@ -422,6 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 89717225}
   - component: {fileID: 89717226}
+  - component: {fileID: 89717227}
   m_Layer: 0
   m_Name: PioneerChapterController
   m_TagString: Untagged
@@ -482,6 +483,20 @@ MonoBehaviour:
   outbound: {fileID: 657414340}
   listening: {fileID: 1508174344}
   farewell: {fileID: 478802681}
+--- !u!114 &89717227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89717224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42091aaf2f053d54a92644dccb621f6a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.NarrationPlayer
+  catalog: {fileID: 11400000, guid: 51a277aea0db9424885a14ba39743bd6, type: 2}
+  volume: 1
 --- !u!1 &142227803
 GameObject:
   m_ObjectHideFlags: 0

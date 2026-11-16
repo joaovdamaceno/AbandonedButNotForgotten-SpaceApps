@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 01:33:49Z" end-time="2026-11-16 01:34:15Z" duration="25,8536575">
+  <test-suite type="TestSuite" id="1018" name="Abandoned, But Not Forgotten" fullname="Abandoned, But Not Forgotten" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 01:33:49Z" end-time="2026-11-16 01:34:15Z" duration="25.853658" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1011" name="Abandoned.SpaceApps.Integration.Tests.dll" fullname="C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Library/ScriptAssemblies/Abandoned.SpaceApps.Integration.Tests.dll" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 01:33:49Z" end-time="2026-11-16 01:34:15Z" duration="25.822801" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="16032" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1012" name="Abandoned" fullname="Abandoned" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 01:33:49Z" end-time="2026-11-16 01:34:15Z" duration="25.820856" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1013" name="SpaceApps" fullname="Abandoned.SpaceApps" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 01:33:49Z" end-time="2026-11-16 01:34:15Z" duration="25.818952" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1014" name="Tests" fullname="Abandoned.SpaceApps.Tests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 01:33:49Z" end-time="2026-11-16 01:34:15Z" duration="25.816565" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1009" name="SupplementalNarrationTests" fullname="Abandoned.SpaceApps.Tests.SupplementalNarrationTests" classname="Abandoned.SpaceApps.Tests.SupplementalNarrationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-16 01:33:49Z" end-time="2026-11-16 01:34:15Z" duration="25.812809" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1010" name="FourRecordedSupplementsStartAndFinishAtNaturalSpeed" fullname="Abandoned.SpaceApps.Tests.SupplementalNarrationTests.FourRecordedSupplementsStartAndFinishAtNaturalSpeed" methodname="FourRecordedSupplementsStartAndFinishAtNaturalSpeed" classname="Abandoned.SpaceApps.Tests.SupplementalNarrationTests" runstate="Runnable" seed="278679452" result="Passed" start-time="2026-11-16 01:33:49Z" end-time="2026-11-16 01:34:15Z" duration="25.786674" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[NAR_AUDIO_PLAYING PIO.05.01b seconds=4.58
+NAR_AUDIO_PLAYING PIO.05.01c seconds=3.97
+NAR_AUDIO_PLAYING v13.years.work seconds=6.38
+NAR_AUDIO_PLAYING v15.storm.dark seconds=9.35
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Damaceno/AppData/LocalLow/Abandoned But Not Forgotten/Abandoned, But Not Forgotten\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

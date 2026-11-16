@@ -1,0 +1,8 @@
+CORE-006 release preflight: blocked before compilation. Inherited settings retained.
+
+InvalidOperationException: Projeto: Dependência direta não aprovada no manifesto: com.unity.cloud.gltfast 6.20.0.
+Projeto: Dependência direta não aprovada no manifesto: com.unity.timeline 6.6.0.
+Projeto: Dependência direta não aprovada no manifesto: com.unity.ugui 2.6.0.
+Projeto: Dependência direta não aprovada no manifesto: com.unity.modules.director 1.0.0.
+Projeto: O asset URP deve ter exatamente um renderer: SpaceApps_URP_Renderer.
+O WebGL usa Assets/_Game/Settings/URP/SpaceApps_URP.asset, mas o perfil Web da QA-001 é Assets/_Game/Settings/Web/WebLight.asset. Ajuste o nível de qualidade padrão do WebGL.
