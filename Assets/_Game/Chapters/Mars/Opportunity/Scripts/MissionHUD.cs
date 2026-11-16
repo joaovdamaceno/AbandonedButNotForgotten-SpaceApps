@@ -21,6 +21,20 @@ namespace Abandoned.SpaceApps.Opportunity
         bool journalOpen;
         VisualElement field,fieldFill,fieldReticle,fieldPictures,fieldCenter,framingFill;Label fieldTitle,fieldBody,fieldStatus,comparisonA,comparisonB;Image fieldA,fieldB,archiveImage;Label archiveCredit;
         readonly System.Collections.Generic.Dictionary<FieldStudy,Image> studyAlbum=new System.Collections.Generic.Dictionary<FieldStudy,Image>();
+        // Painel de comandos no topo, ao lado da ajuda do H: uma linha por comando, teclas desenhadas como botões.
+        VisualElement guideStack,commandPanel;Label primaryCommand;string[] commandRows;string commandLanguage;float commandIntroSeconds;
+        // O painel fica na tela nos primeiros segundos de controle do capítulo e volta só quando a pessoa fica parada (a mesma hora da ajuda do H).
+        const float CommandIntroSeconds=7f;
+        static readonly string[] DriveRows={"W A S D / ↑ ← ↓ →|cmd.move","Shift|cmd.fast","Mouse|cmd.look","hold E|cmd.interact","H|cmd.help","P|cmd.pause"};
+        static readonly string[] SampleRows={"hold E|cmd.sample|primary","W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","H|cmd.help","P|cmd.pause"};
+        static readonly string[] PhotoRows={"hold E|cmd.photo|primary","W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","H|cmd.help","P|cmd.pause"};
+        static readonly string[] ApproachRows={"W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","hold E|cmd.observe.close","H|cmd.help","P|cmd.pause"};
+        static readonly string[] ObserveNearRows={"hold E|cmd.observe|primary","W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","H|cmd.help","P|cmd.pause"};
+        static readonly string[] StudyRows={"hold E|cmd.observe|primary","H|cmd.help.short","P|cmd.pause"};
+        static readonly string[] StudyCaptureRows={"hold E|v11.capture|primary","P|cmd.pause"};
+        static readonly string[] StudyResultRows={"hold E|cmd.continue|primary","P|cmd.pause"};
+        static readonly string[] RatRows={"hold E|cmd.grind|primary big","H|cmd.help.short","P|cmd.pause"};
+        static readonly string[] CameraRows={"hold E|cmd.photograph|primary","Esc|cmd.back","P|cmd.pause"};
         public VisualElement Root=>root;
         void OnEnable()
         {
@@ -43,8 +57,8 @@ namespace Abandoned.SpaceApps.Opportunity
             flight=Box(root,"flight");flight.pickingMode=PickingMode.Ignore;
             var id=Box(flight,"identity");Text(id,"MER-B   /   OPPORTUNITY","eyebrow");location=Text(id,"","small muted");
             var goal=Box(flight,"goal");objective=Text(goal,"","objective");distance=Text(goal,"","small muted");
-            help=Text(flight,"","controls");energyBox=Box(flight,"solar");energy=Text(energyBox,"","eyebrow");energyFill=Box(Box(energyBox,"energy-track"),"energy-fill");
-            marker=Box(flight,"marker");Box(marker,"marker-halo");Box(marker,"marker-diamond");Box(marker,"marker-bar");Box(marker,"marker-dot");Text(marker,"‹","marker-glyph");marker.pickingMode=PickingMode.Ignore;foreach(var part in marker.Children())part.pickingMode=PickingMode.Ignore;rockHint=Box(flight,"interaction-hint");rockHint.name="rock-interaction";Text(rockHint,"E","interaction-key");Text(rockHint,"","interaction-name").name="rock-interaction-label";Text(rockHint,"","interaction-sub").name="rock-interaction-sub";
+            help=Text(flight,"","controls");help.style.display=DisplayStyle.None;energyBox=Box(flight,"solar");energy=Text(energyBox,"","eyebrow");energyFill=Box(Box(energyBox,"energy-track"),"energy-fill");
+            marker=Box(flight,"marker");Box(marker,"marker-halo");Box(marker,"marker-diamond");Box(marker,"marker-bar");Box(marker,"marker-dot");Text(marker,"‹","marker-glyph");marker.pickingMode=PickingMode.Ignore;foreach(var part in marker.Children())part.pickingMode=PickingMode.Ignore;rockHint=Box(flight,"interaction-hint");rockHint.name="rock-interaction";Text(rockHint,"E","interaction-key");Text(rockHint,"","interaction-name").name="rock-interaction-label";
             cinema=Box(root,"cinema");cinema.pickingMode=PickingMode.Ignore;
             filmVeil=Box(cinema,"film-veil");filmVeil.pickingMode=PickingMode.Ignore;
             letterTop=Box(cinema,"letterbox top");letterBottom=Box(cinema,"letterbox bottom");var words=Box(cinema,"cinematic-words");
@@ -59,12 +73,12 @@ namespace Abandoned.SpaceApps.Opportunity
             var instruction=Box(science,"science-instruction");scienceTitle=Text(instruction,"","objective");scienceBody=Text(instruction,"","science-body");scienceGoal=Text(instruction,"","goal-line");
             var tool=Box(science,"tool-readout");pressureFill=Box(Box(tool,"pressure-track"),"pressure-fill");safeBand=Box(pressureFill.parent,"safe-band");thermal=Box(tool,"thermal-cue");Text(thermal,"","small").name="thermal-label";thermalFill=Box(Box(thermal,"progress-track"),"thermal-fill");
             scienceReadout=Text(tool,"","small");scienceFindings=Text(tool,"","small");scienceFindings.style.whiteSpace=WhiteSpace.Normal;scienceFindings.style.marginTop=8;grindFill=Box(Box(tool,"progress-track"),"progress-fill");
-            photo=Box(root,"photo-view");photo.pickingMode=PickingMode.Ignore;Box(photo,"viewfinder");Text(photo,"PANORAMIC CAMERA   /   MER-B","photo-id eyebrow");Text(photo,"","photo-help").name="photo-help";photoCount=Text(photo,"","photo-count small");
-            field=Box(root,"field-study");field.pickingMode=PickingMode.Ignore;fieldTitle=Text(field,"","field-title");fieldBody=Text(field,"","field-body");fieldGoal=Text(field,"","field-goal");fieldReticle=Box(field,"field-reticle");fieldCenter=Box(field,"field-center");framingFill=Box(Box(field,"framing-track"),"framing-fill");fieldStatus=Text(field,"","field-status");fieldFill=Box(Box(field,"field-track"),"field-progress");fieldPictures=Box(field,"field-comparison");fieldA=new Image{scaleMode=ScaleMode.ScaleToFit};fieldB=new Image{scaleMode=ScaleMode.ScaleToFit};fieldPictures.Add(fieldA);fieldPictures.Add(fieldB);comparisonA=Text(fieldA,"","comparison-label");comparisonB=Text(fieldB,"","comparison-label");
+            photo=Box(root,"photo-view");photo.pickingMode=PickingMode.Ignore;Box(photo,"viewfinder");Text(photo,"PANORAMIC CAMERA   /   MER-B","photo-id eyebrow");Text(photo,"","photo-help").name="photo-help";photo.Q<Label>("photo-help").style.display=DisplayStyle.None;photoCount=Text(photo,"","photo-count small");
+            field=Box(root,"field-study");field.pickingMode=PickingMode.Ignore;fieldTitle=Text(field,"","field-title");fieldBody=Text(field,"","field-body");fieldGoal=Text(field,"","field-goal");fieldReticle=Box(field,"field-reticle");fieldCenter=Box(field,"field-center");framingFill=Box(Box(field,"framing-track"),"framing-fill");fieldStatus=Text(field,"","field-status");fieldStatus.style.display=DisplayStyle.None;fieldFill=Box(Box(field,"field-track"),"field-progress");fieldPictures=Box(field,"field-comparison");fieldA=new Image{scaleMode=ScaleMode.ScaleToFit};fieldB=new Image{scaleMode=ScaleMode.ScaleToFit};fieldPictures.Add(fieldA);fieldPictures.Add(fieldB);comparisonA=Text(fieldA,"","comparison-label");comparisonB=Text(fieldB,"","comparison-label");
             archiveImage=new Image{scaleMode=ScaleMode.ScaleToFit};archiveImage.AddToClassList("field-archive");field.Add(archiveImage);archiveCredit=Text(field,"","field-credit");
             tutorialPanel=Box(flight,"tutorial-card");tutorialPanel.name="tutorial-card";
             tutorialTitle=Text(tutorialPanel,"","tutorial-title");tutorialBody=Text(tutorialPanel,"","tutorial-body");
-            assistance=Box(root,"assistance-card");assistance.name="assistance-card";assistance.pickingMode=PickingMode.Ignore;assistanceText=Text(assistance,"","assistance-text");
+            guideStack=Box(root,"guide-stack");guideStack.pickingMode=PickingMode.Ignore;assistance=Box(guideStack,"assistance-card");assistance.name="assistance-card";assistance.pickingMode=PickingMode.Ignore;assistanceText=Text(assistance,"","assistance-text");commandPanel=Box(guideStack,"command-panel");commandPanel.name="command-panel";commandPanel.pickingMode=PickingMode.Ignore;
             var pauseButton=Button(flight,"v13.pause.short",()=>chapter.Pause(true),"flight-pause");pauseButton.pickingMode=PickingMode.Position;
             pause=Box(root,"modal-backdrop");pause.name="pause-modal";var pc=Box(pause,"modal-card");Text(pc,"OPPORTUNITY","eyebrow");Text(pc,"","display modal-title").name="pause-title";Button(pc,"pause.resume",()=>chapter.Pause(false),"primary");Button(pc,"menu.settings",()=>Open(settings));Button(pc,"v14.controls.button",()=>Open(controls));Button(pc,"pause.restart",chapter.RestartChapter);Button(pc,"v13.tutorial.repeat",()=>{chapter.RestartChapter();chapter.tutorial.RestartTutorial();});Button(pc,"pause.menu",chapter.Leave);
             settings=Box(root,"modal-backdrop");var sc=Box(settings,"settings-card");Text(sc,"","display modal-title").name="settings-title";
@@ -72,7 +86,7 @@ namespace Abandoned.SpaceApps.Opportunity
             language.RegisterValueChangedCallback(e=>{GameSettings.English=e.newValue=="English";RefreshText();});scroll.Add(language);
             QualitySelector.AddQualitySelector(scroll);
             Slider(scroll,"settings.master",GameSettings.Master,0,1,v=>GameSettings.Master=v);Slider(scroll,"settings.music",GameSettings.Music,0,1,v=>GameSettings.Music=v);Slider(scroll,"settings.effects",GameSettings.Effects,0,1,v=>GameSettings.Effects=v);Slider(scroll,"settings.ui",GameSettings.Interface,0,1,v=>GameSettings.Interface=v);Slider(scroll,"settings.sensitivity",GameSettings.Sensitivity,.25f,2.5f,v=>GameSettings.Sensitivity=v);
-            Toggle(scroll,"settings.invert",GameSettings.Invert,v=>GameSettings.Invert=v);Toggle(scroll,"settings.easy",GameSettings.Easy,v=>GameSettings.Easy=v);Toggle(scroll,"settings.motion",GameSettings.ReducedMotion,v=>GameSettings.ReducedMotion=v);Toggle(scroll,"settings.subtitles",GameSettings.Subtitles,v=>GameSettings.Subtitles=v);Toggle(scroll,"v14.settings.voice",GameSettings.Voice,v=>GameSettings.Voice=v);Toggle(scroll,"settings.large",GameSettings.LargeText,v=>{GameSettings.LargeText=v;RefreshText();});
+            Toggle(scroll,"settings.invert",GameSettings.Invert,v=>GameSettings.Invert=v);Toggle(scroll,"settings.easy",GameSettings.Easy,v=>GameSettings.Easy=v);Toggle(scroll,"settings.motion",GameSettings.ReducedMotion,v=>GameSettings.ReducedMotion=v);Toggle(scroll,"settings.subtitles",GameSettings.Subtitles,v=>GameSettings.Subtitles=v);Toggle(scroll,"settings.large",GameSettings.LargeText,v=>{GameSettings.LargeText=v;RefreshText();});
             Button(sc,"back",()=>{PlayerPrefs.Save();Show(settings,false);});
             controls=Box(root,"modal-backdrop");var kc=Box(controls,"controls-card");Text(kc,"","display modal-title").name="controls-title";var ks=new ScrollView();kc.Add(ks);
             foreach(var cid in new[]{"drive","fast","mouse","e","f","space","h","tab","p","rat"}){var crow=Box(ks,"controls-row");var ckey=Text(crow,"","controls-key");ckey.userData="v14.controls."+cid;var cdesc=Text(crow,"","controls-desc");cdesc.userData="v14.controls."+cid+".d";}
@@ -123,6 +137,7 @@ namespace Abandoned.SpaceApps.Opportunity
             if(explore)exploreHint.text=Localization.Get("v17.hint.explore");Show(exploreHint,explore);
             if(drive)UpdateFlight();if(s==ChapterStage.RockAnalysis)UpdateScience();if(chapter.Cinematic)UpdateCinema();
             var tutor=chapter.tutorial;bool offer=tutor&&tutor.HelpOffered&&!chapter.Paused&&!chapter.Cinematic&&s!=ChapterStage.ChapterEnd;
+            UpdateCommands(drive&&!fieldStudy.Active&&!p.Active,s==ChapterStage.RockAnalysis);
             Show(assistance,offer);assistance.EnableInClassList("strong",tutor&&tutor.StrongHelp);if(offer)assistanceText.text=Localization.Get(tutor.HelpBodyKey);
             photoCount.text=j.FinalAct?Localization.Get(j.PanoramaCount>0?"v13.photo.recorded":"v13.photo.required"):$"{p.Frames.Count}   ·   PANORAMIC CAMERA";
             toastTime=Mathf.Max(0,toastTime-Time.unscaledDeltaTime);notification.text=Localization.Get(toastKey);notification.style.opacity=p.Active||chapter.investigation.Active||chapter.Cinematic?0:Mathf.Clamp01(toastTime);
@@ -178,7 +193,7 @@ namespace Abandoned.SpaceApps.Opportunity
             else if(j.FinalAct&&j.NearbyStation>=0)key="controls.photo";
             if(chapter.investigation.OverridesTarget)key=chapter.investigation.Near?"v10.controls.observe":"v10.controls.approach";
             help.text=Localization.Get(key);Show(energyBox,storm);
-            energy.text=Localization.Get("telemetry.solar");energyFill.style.width=Length.Percent(chapter.Energy*100);energyFill.style.backgroundColor=new Color(.94f,.64f,.37f);
+            energy.text=Localization.Get("telemetry.solar");energy.style.opacity=GameSettings.ReducedMotion?1:.62f+.38f*Mathf.Abs(Mathf.Sin(Time.unscaledTime*2.4f));energyFill.style.width=Length.Percent(chapter.Energy*100);energyFill.style.backgroundColor=new Color(1f,.45f,.27f);
             var action=chapter.interactions?chapter.interactions.Current:default;
             bool valid=action.Valid&&!chapter.Paused;
             bool available=valid&&action.Available;
@@ -187,10 +202,8 @@ namespace Abandoned.SpaceApps.Opportunity
             Show(rockHint,available);
             float hintX=viewport.z>0?viewport.x:(viewport.x>.5f?.92f:.08f);
             float hintY=viewport.z>0?1-viewport.y:.5f;
-            rockHint.style.left=Length.Percent(Mathf.Clamp(hintX*100,12,82));rockHint.style.top=Length.Percent(Mathf.Clamp(hintY*100,24,72));
+            rockHint.style.left=Length.Percent(Mathf.Clamp(hintX*100,12,82));rockHint.style.top=Length.Percent(Mathf.Clamp(hintY*100,hintX>.64f?40:24,72));
             rockHint.Q<Label>("rock-interaction-label").text=valid?Localization.Get(action.LabelKey):"";
-            bool holdAction=valid&&(action.Id=="berries"||action.Id=="shield"||action.Id=="meteorite"||action.Id=="sun-clear"||action.Id=="sun-dust");
-            rockHint.Q<Label>("rock-interaction-sub").text=valid?Localization.Get(holdAction?"v15.hint.hold":"v15.hint.press"):"";
             rockHint.userData=valid?action.Id:null;
             bool markerVisible=!available&&!chapter.Paused;
             Show(marker,markerVisible);
@@ -203,6 +216,60 @@ namespace Abandoned.SpaceApps.Opportunity
             if(tutorial&&tutorial.Visible){tutorialTitle.text=Localization.Get(tutorial.TitleKey);tutorialBody.text=Localization.Get(tutorial.BodyKey);}
             objective.parent.EnableInClassList("tutorial-focus",tutorial&&tutorial.Visible&&tutorial.Step==2);
 
+        }
+        /// <summary>Escolhe os comandos do momento e atualiza o painel (só reconstrói quando o conjunto ou o idioma muda).</summary>
+        void UpdateCommands(bool drive,bool rat)
+        {
+            var j=chapter.journey;var study=chapter.investigation;var m=chapter.science;
+            string[] rows=null;string primary=null;bool dim=false;
+            if(chapter.Paused||chapter.Cinematic||chapter.Stage==ChapterStage.ChapterEnd)rows=null;
+            else if(rat)
+            {
+                rows=RatRows;
+                if(m.Phase==AbrasionPhase.Analyze){primary=Localization.Get(!m.ToolStowed?"v11.rat.retract":m.AnalysisScanning?"v11.rat.scanning":"cmd.examine");dim=!m.ToolStowed;}
+                else if(m.Phase==AbrasionPhase.Complete){primary=Localization.Get("rat.find.done");dim=true;}
+                else{primary=string.Format(Localization.Get(m.Working?"cmd.grinding":"cmd.grind"),Mathf.CeilToInt(m.RemainingSeconds));dim=m.Phase!=AbrasionPhase.Abrade;}
+            }
+            else if(study.Active)rows=study.Capturing?StudyCaptureRows:study.Result?StudyResultRows:StudyRows;
+            else if(j.photography.Active)rows=CameraRows;
+            else if(drive)
+            {
+                rows=DriveRows;
+                if(study.OverridesTarget)rows=study.Near?ObserveNearRows:ApproachRows;
+                else if(chapter.Stage==ChapterStage.Exploration&&j.ReadyForScience&&chapter.TargetDistance<3.4f)rows=SampleRows;
+                else if(j.FinalAct&&j.NearbyStation>=0)rows=PhotoRows;
+            }
+            if(chapter.Stage==ChapterStage.Landing)commandIntroSeconds=0;
+            bool intro=commandIntroSeconds<CommandIntroSeconds;
+            if(rows!=null&&intro)commandIntroSeconds+=Time.deltaTime;
+            bool idle=chapter.tutorial&&chapter.tutorial.HelpOffered;
+            if(!intro&&!idle)rows=null;
+            Show(commandPanel,rows!=null);
+            if(rows==null)return;
+            if(rows!=commandRows||commandLanguage!=activeLanguage)BuildCommands(rows);
+            if(primaryCommand!=null){if(primary!=null)primaryCommand.text=primary;primaryCommand.parent.EnableInClassList("cmd-waiting",dim);}
+        }
+        void BuildCommands(string[] rows)
+        {
+            commandRows=rows;commandLanguage=activeLanguage;commandPanel.Clear();primaryCommand=null;
+            foreach(var spec in rows)
+            {
+                var parts=spec.Split('|');string flags=parts.Length>2?parts[2]:"";
+                var row=Box(commandPanel,"cmd-row");row.EnableInClassList("cmd-primary",flags.Contains("primary"));row.EnableInClassList("cmd-big",flags.Contains("big"));
+                if(parts[0].Length>0)
+                {
+                    var keys=Box(row,"cmd-keys");
+                    foreach(var token in parts[0].Split(' '))
+                    {
+                        if(token=="hold")Text(keys,Localization.Get("cmd.hold"),"cmd-hold");
+                        else if(token=="/")Text(keys,"/","cmd-sep");
+                        else Text(keys,token,token.Length>1?"key-cap key-wide":"key-cap");
+                    }
+                }
+                var desc=Text(row,Localization.Get(parts[1]),"cmd-desc");
+                if(flags.Contains("primary"))primaryCommand=desc;
+            }
+            foreach(var e in commandPanel.Query<VisualElement>().ToList())e.pickingMode=PickingMode.Ignore;
         }
         void Project(VisualElement e,Vector3 point)
         {var v=chapter.cameras.view.WorldToViewportPoint(point);e.style.left=Length.Percent(v.x*100);e.style.top=Length.Percent((1-v.y)*100);}
@@ -234,7 +301,7 @@ namespace Abandoned.SpaceApps.Opportunity
             Show(thermal,false);thermalFill.style.width=Length.Percent(m.Temperature*100);
             thermal.Q<Label>("thermal-label").text=Localization.Get("rat.temperature");
             string pressureKey=m.Cooling?"rat.cooldown":m.Pressure<m.PressureLow?"rat.low":m.Pressure>m.PressureHigh?"rat.high":"rat.pressure";
-            scienceReadout.text=analyze?Localization.Get(!m.ToolStowed?"v11.rat.retract":m.AnalysisScanning?"v11.rat.scanning":"v11.rat.request"):string.Format(Localization.Get(m.Working?"rat.hold.active":"rat.hold"),Mathf.CeilToInt(m.RemainingSeconds));
+            scienceReadout.text=analyze?Localization.Get(!m.ToolStowed?"v11.rat.retract":m.AnalysisScanning?"v11.rat.scanning":"v11.rat.request"):string.Format(Localization.Get(m.Working?"cmd.grinding":"cmd.seconds.left"),Mathf.CeilToInt(m.RemainingSeconds));
             // Leituras da cavidade, reveladas conforme cada instrumento termina (MI: textura; APXS: elementos; Mössbauer: minerais de ferro).
             bool done=m.Phase==AbrasionPhase.Complete;int read=done?2:m.Phase==AbrasionPhase.Analyze?m.Observations:-1;
             var findings=new System.Text.StringBuilder();
