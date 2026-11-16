@@ -111,7 +111,8 @@ namespace Abandoned.SpaceApps.Tests
 
             Assert.That(director.ReturnToDossier(), Is.True);
             Assert.That(director.State, Is.EqualTo(AppState.Dossier));
-            Assert.That(link.Flow.TrySetLanguage("en"), Is.True, "de volta ao arquivo o idioma muda");
+            Assert.That(link.Flow.TrySetLanguage("en"), Is.False, "o jogo só tem inglês: de volta ao arquivo nada muda");
+            Assert.That(link.Flow.LanguageCode, Is.EqualTo("en"));
         }
 
         [Test]

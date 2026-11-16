@@ -216,7 +216,7 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(narration.CurrentText, Is.Empty, "sem legenda a caixa some");
             Assert.That(narration.CurrentCue, Is.Null);
             Run(2f); // 9,5 s
-            Assert.That(narration.CurrentText, Is.EqualTo(data.GetText("PIO.01.02", "pt")));
+            Assert.That(narration.CurrentText, Is.EqualTo(data.GetText("PIO.01.02", "en")));
             Assert.That(texts.Where(t => t.Length > 0).Distinct().Count(), Is.EqualTo(2));
 
             Run(40f);
@@ -256,7 +256,7 @@ namespace Abandoned.SpaceApps.Tests
             Run(3f);
             Assert.That(narration.CurrentCue.CueId, Is.EqualTo("PIO.05.02"), "fica durante o tempo mínimo de leitura (4 s)");
             Run(1.5f);
-            Assert.That(narration.CurrentText, Is.Not.EqualTo(data.GetText("PIO.05.02", "pt")), "depois do tempo mínimo a legenda sai");
+            Assert.That(narration.CurrentText, Is.Not.EqualTo(data.GetText("PIO.05.02", "en")), "depois do tempo mínimo a legenda sai");
         }
 
         // ---------- Música e efeitos ----------
