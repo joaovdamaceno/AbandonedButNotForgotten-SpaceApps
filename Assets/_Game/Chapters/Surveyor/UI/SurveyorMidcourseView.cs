@@ -15,7 +15,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         FlightMap map;
         Button confirm,start,pause,language,resume,restart,back,restartPaused,backPaused,assist;
         readonly Dictionary<string,Label> labels=new Dictionary<string,Label>();
-        string locale="pt";
+        string locale="en";
         HoldMode mode;
         public Func<string,string> TextResolver { get; set; }
         public bool DrawLocalSubtitles { get; set; }=true;
@@ -29,7 +29,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             labels.Clear();root.Query<Label>().ForEach(label=>{if(!string.IsNullOrEmpty(label.name))labels[label.name]=label;});
             entry=root.Q("entry");flight=root.Q("flight");overlay=root.Q("pause-overlay");plate=root.Q("subtitle-plate");
             mapHost=root.Q("flight-map");preparation=root.Q("preparation");radio=root.Q("radio");
-            confirm=root.Q<Button>("confirm");start=root.Q<Button>("start");pause=root.Q<Button>("pause");language=root.Q<Button>("language");
+            confirm=root.Q<Button>("confirm");start=root.Q<Button>("start");pause=root.Q<Button>("pause");language=root.Q<Button>("language");if(language!=null)language.style.display=DisplayStyle.None;
             resume=root.Q<Button>("resume");restart=root.Q<Button>("restart");back=root.Q<Button>("return");assist=root.Q<Button>("assist");
             restartPaused=root.Q<Button>("restart-paused");backPaused=root.Q<Button>("return-paused");
             start.clicked+=Start;pause.clicked+=Pause;language.clicked+=Language;resume.clicked+=Resume;

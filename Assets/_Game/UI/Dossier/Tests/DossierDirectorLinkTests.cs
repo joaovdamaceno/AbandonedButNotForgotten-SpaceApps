@@ -104,7 +104,7 @@ namespace Abandoned.SpaceApps.Tests
         {
             link.Start("mars");
             Assert.That(link.Flow.TrySetLanguage("en"), Is.False);
-            Assert.That(link.Flow.LanguageCode, Is.EqualTo("pt"));
+            Assert.That(link.Flow.LanguageCode, Is.EqualTo("en"), "o jogo só tem inglês");
 
             loader.CompleteLoad();
             Assert.That(loader.LoadCalls, Is.EqualTo(1));

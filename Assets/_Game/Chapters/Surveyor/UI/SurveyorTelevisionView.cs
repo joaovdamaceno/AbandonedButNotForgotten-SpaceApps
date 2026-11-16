@@ -10,7 +10,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         VisualElement root,entry,flight,overlay,plate,progress,slot,screen;Image image;
         Button start,pause,language,confirm,resume,restart,back,restartPaused,backPaused;
         readonly Dictionary<string,Label> labels=new Dictionary<string,Label>();
-        SurveyorTelevision flow;SurveyorCommandDelay queue;SurveyorCommandInteraction action;SurveyorLaunchTexts texts;string locale="pt";HoldMode mode;
+        SurveyorTelevision flow;SurveyorCommandDelay queue;SurveyorCommandInteraction action;SurveyorLaunchTexts texts;string locale="en";HoldMode mode;
         public Func<string,string> TextResolver{get;set;}
         public bool DrawLocalSubtitles{get;set;}=true;
         public VisualElement Root=>root;
@@ -21,7 +21,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             labels.Clear();root.Query<Label>().ForEach(l=>{if(!string.IsNullOrEmpty(l.name))labels[l.name]=l;});
             entry=root.Q("entry");flight=root.Q("flight");overlay=root.Q("pause-overlay");plate=root.Q("subtitle-plate");progress=root.Q("progress");
             slot=root.Q("screen-slot");screen=root.Q("screen");image=root.Q<Image>("image");image.scaleMode=ScaleMode.StretchToFill;
-            start=root.Q<Button>("start");pause=root.Q<Button>("pause");language=root.Q<Button>("language");confirm=root.Q<Button>("confirm");resume=root.Q<Button>("resume");
+            start=root.Q<Button>("start");pause=root.Q<Button>("pause");language=root.Q<Button>("language");if(language!=null)language.style.display=DisplayStyle.None;confirm=root.Q<Button>("confirm");resume=root.Q<Button>("resume");
             restart=root.Q<Button>("restart");back=root.Q<Button>("return");restartPaused=root.Q<Button>("restart-paused");backPaused=root.Q<Button>("return-paused");
             start.clicked+=RequestStart;pause.clicked+=Pause;language.clicked+=Language;resume.clicked+=Resume;restart.clicked+=Restart;restartPaused.clicked+=Restart;back.clicked+=Return;backPaused.clicked+=Return;
             confirm.RegisterCallback<PointerDownEvent>(OnDown);confirm.RegisterCallback<PointerUpEvent>(OnUp);confirm.RegisterCallback<PointerCaptureOutEvent>(OnCaptureOut);

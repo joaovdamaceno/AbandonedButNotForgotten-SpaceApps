@@ -59,7 +59,7 @@ namespace Abandoned.SpaceApps.UI
         Label corridorOffer;
         IVisualElementScheduledItem lingerItem;
 
-        string language = SettingsData.Portuguese;
+        string language = SettingsData.English;
         HoldMode holdMode = HoldMode.Hold;
         bool reducedMotion;
         bool extraAssistance;

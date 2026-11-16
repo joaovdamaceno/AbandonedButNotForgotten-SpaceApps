@@ -219,11 +219,10 @@ namespace Abandoned.SpaceApps.Tests
             var hostElement = new VisualElement();
             using (var panel = new UI.SettingsPanel(hostElement, store, texts))
             {
-                Assert.That(panel.Focusables.Count, Is.EqualTo(10), "4 volumes, idioma, sensibilidade, movimento, qualidade, tela cheia, restaurar");
+                Assert.That(panel.Focusables.Count, Is.EqualTo(9), "4 volumes, sensibilidade, movimento, qualidade, tela cheia, restaurar (o jogo só tem inglês: sem linha de idioma)");
                 Assert.That(panel.TryAdjust(panel.Focusables[1], 1), Is.True); // música
-                Assert.That(panel.TryAdjust(panel.Focusables[4], 1), Is.True); // idioma
-                Assert.That(panel.TryAdjust(panel.Focusables[5], 1), Is.True); // sensibilidade
-                Assert.That(panel.TryActivate(panel.Focusables[6]), Is.True);  // movimento reduzido
+                Assert.That(panel.TryAdjust(panel.Focusables[4], 1), Is.True); // sensibilidade
+                Assert.That(panel.TryActivate(panel.Focusables[5]), Is.True);  // movimento reduzido
                 Assert.That(panel.TryActivate(panel.Focusables[0]), Is.False, "volume não tem ação de Enter");
             }
 
@@ -243,7 +242,7 @@ namespace Abandoned.SpaceApps.Tests
             store.Load();
             store.Apply(s => { s.musicVolume = 0.1f; s.languageCode = "en"; s.reducedMotion = true; });
             using (var panel = new UI.SettingsPanel(new VisualElement(), store, LoadTexts()))
-                Assert.That(panel.TryActivate(panel.Focusables[9]), Is.True);
+                Assert.That(panel.TryActivate(panel.Focusables[8]), Is.True);
 
             var data = store.Current;
             Assert.That(data.musicVolume, Is.EqualTo(0.8f).Within(0.0001f));

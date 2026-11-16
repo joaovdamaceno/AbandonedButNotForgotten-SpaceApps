@@ -211,7 +211,7 @@ namespace Abandoned.SpaceApps.Tests
             director.Play(SequenceFor("PIO.Launch"));
 
             Run(3f);
-            Assert.That(narration.CurrentText, Is.EqualTo(data.GetText("PIO.01.01", "pt")));
+            Assert.That(narration.CurrentText, Is.EqualTo(data.GetText("PIO.01.01", "en")));
             Run(4.5f); // 7,5 s: intervalo entre PIO.01.01 (0–7) e PIO.01.02 (8–16)
             Assert.That(narration.CurrentText, Is.Empty, "sem legenda a caixa some");
             Assert.That(narration.CurrentCue, Is.Null);
@@ -252,7 +252,7 @@ namespace Abandoned.SpaceApps.Tests
             Run(1f);
 
             Assert.That(narration.RaiseTrigger("PIO.Plaque.Hydrogen"), Is.EqualTo(1));
-            Assert.That(narration.CurrentText, Is.EqualTo(data.GetText("PIO.05.02", "pt")));
+            Assert.That(narration.CurrentText, Is.EqualTo(data.GetText("PIO.05.02", "en")));
             Run(3f);
             Assert.That(narration.CurrentCue.CueId, Is.EqualTo("PIO.05.02"), "fica durante o tempo mínimo de leitura (4 s)");
             Run(1.5f);
@@ -355,7 +355,7 @@ namespace Abandoned.SpaceApps.Tests
             director.Play(SequenceFor("PIO.Belt"));
             Run(3f);
 
-            Assert.That(narration.CurrentText, Is.EqualTo(data.GetText("PIO.02.01", "pt")), "legendas funcionam sem som");
+            Assert.That(narration.CurrentText, Is.EqualTo(data.GetText("PIO.02.01", "en")), "legendas funcionam sem som");
             Assert.That(audio.Log, Is.Empty, "nada é pedido a um áudio bloqueado");
 
             audio.Available = true;

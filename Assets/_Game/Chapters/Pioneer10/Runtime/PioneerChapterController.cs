@@ -119,7 +119,7 @@ namespace Abandoned.SpaceApps
         public float CurrentStateSeconds => stateSeconds;
 
         public void Initialize(IChapterDirector chapterDirector, IActiveTimeSource activeTime, InputRouter inputRouter,
-            IInteractionService interactionService, IPioneerAudioPort audio = null, string language = PioneerData.Portuguese,
+            IInteractionService interactionService, IPioneerAudioPort audio = null, string language = PioneerData.English,
             Func<bool> returnToArchiveAction = null)
         {
             var errors = ValidateSetup();

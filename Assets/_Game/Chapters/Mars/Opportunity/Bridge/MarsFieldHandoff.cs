@@ -114,7 +114,7 @@ namespace Abandoned.SpaceApps.Opportunity
             // INT-001: Marte segue o idioma escolhido no dossiê, como os outros capítulos (inglês na primeira abertura).
             var shellSettings = new Abandoned.SpaceApps.SettingsStore();
             shellSettings.Load();
-            GameSettings.English = shellSettings.Current.languageCode != Abandoned.SpaceApps.SettingsData.Portuguese;
+            GameSettings.English = true; // o jogo só tem inglês
 
             // Anota o que é da abertura antes de a cena seguinte criar a interface dela.
             var openingLayers = new List<VisualElement>();

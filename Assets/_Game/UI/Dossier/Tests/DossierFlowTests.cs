@@ -143,22 +143,22 @@ namespace Abandoned.SpaceApps.Tests
         [Test]
         public void LanguageCannotChangeWhilePendingOrLoadingAndStaysUnchanged()
         {
-            Assert.That(flow.LanguageCode, Is.EqualTo("pt"));
+            Assert.That(flow.LanguageCode, Is.EqualTo("en"), "o jogo só tem inglês");
             flow.TryStart(Mars);
             Assert.That(flow.TrySetLanguage("en"), Is.False, "início pendente");
             flow.OnAppState(UI.DossierAppState.Loading);
             Assert.That(flow.TrySetLanguage("en"), Is.False, "carregando");
             flow.OnAppState(UI.DossierAppState.Unloading);
             Assert.That(flow.TrySetLanguage("en"), Is.False, "descarregando");
-            Assert.That(flow.LanguageCode, Is.EqualTo("pt"));
+            Assert.That(flow.LanguageCode, Is.EqualTo("en"));
         }
 
         [Test]
         public void LanguageChangesInTheArchiveAndRejectsInvalidOrRepeatedCodes()
         {
-            Assert.That(flow.TrySetLanguage("en"), Is.True);
-            Assert.That(flow.LanguageCode, Is.EqualTo("en"));
+            // O jogo só tem inglês: nenhum código troca o idioma.
             Assert.That(flow.TrySetLanguage("en"), Is.False, "repetido");
+            Assert.That(flow.TrySetLanguage("pt"), Is.False, "português saiu do jogo");
             Assert.That(flow.TrySetLanguage("fr"), Is.False, "não suportado");
             Assert.That(flow.TrySetLanguage(null), Is.False);
             Assert.That(flow.LanguageCode, Is.EqualTo("en"));
@@ -179,7 +179,7 @@ namespace Abandoned.SpaceApps.Tests
         {
             Assert.That(NewFlow(true, true, true, "de").LanguageCode, Is.EqualTo("en"));
             Assert.That(NewFlow(true, true, true, null).LanguageCode, Is.EqualTo("en"));
-            Assert.That(NewFlow(true, true, true, "pt").LanguageCode, Is.EqualTo("pt"));
+            Assert.That(NewFlow(true, true, true, "pt").LanguageCode, Is.EqualTo("en"), "português saiu do jogo");
         }
 
         // ---------- Falhas ----------

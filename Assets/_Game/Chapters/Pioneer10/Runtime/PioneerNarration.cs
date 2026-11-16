@@ -25,7 +25,7 @@ namespace Abandoned.SpaceApps
 
         SequenceDirector director;
         IPioneerAudioPort audio;
-        string languageCode = PioneerData.Portuguese;
+        string languageCode = PioneerData.English;
         string stateId;
         string requestedMusic;
         float requestedMusicLevel = 1f;
@@ -60,7 +60,7 @@ namespace Abandoned.SpaceApps
             Unbind();
             director = sequenceDirector;
             audio = audioPort;
-            languageCode = string.IsNullOrEmpty(PioneerData.Normalize(language)) ? PioneerData.Portuguese : PioneerData.Normalize(language);
+            languageCode = PioneerData.English; // o jogo só tem inglês
             if (director != null)
             {
                 director.CueEntered += OnCueEntered;
