@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2263378c56daf1409ff47c522b39904, type: 3}
+  m_Name: SurveyorSoilResults
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.Chapters.Surveyor.SurveyorSoilResults
+  historicalPhoto: {fileID: 2800000, guid: ef1cec411dc53814caee36fd476e0f09, type: 3}
+  montage: {fileID: 11400000, guid: 787f0ae8fc3a7174d915186d44ccabc9, type: 2}

@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: sur.doc.Arrival
+  shots:
+  - shotId: sur.doc.descent.scale
+    durationSeconds: 9
+    rigId: sur.craft
+    lookAtTargetId: sur.touchdown
+    easing: 1
+    minGroundClearanceMeters: 0.18
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 9, y: 4, z: -12}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 42
+    - timeSeconds: 9
+      positionMeters: {x: 7, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 42
+    events: []
+  - shotId: sur.doc.descent.separation
+    durationSeconds: 8
+    rigId: sur.craft
+    lookAtTargetId: sur.touchdown
+    easing: 1
+    minGroundClearanceMeters: 0.18
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 4, y: 0, z: -6}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 44
+    - timeSeconds: 8
+      positionMeters: {x: 4.2, y: 0.1, z: -6}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 44
+    events: []
+  - shotId: sur.doc.descent.contacts
+    durationSeconds: 12.5
+    rigId: world
+    lookAtTargetId: sur.landing
+    easing: 1
+    minGroundClearanceMeters: 0.18
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 13, y: 5.875108, z: -16}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 48
+    - timeSeconds: 12.5
+      positionMeters: {x: 13.3, y: 5.950175, z: -16.3}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 48
+    events: []
+  - shotId: sur.doc.descent.settled
+    durationSeconds: 4.5
+    rigId: world
+    lookAtTargetId: sur.touchdown
+    easing: 1
+    minGroundClearanceMeters: 0.18
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 4, y: 1.7118261, z: -5}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 44
+    - timeSeconds: 4.5
+      positionMeters: {x: 4.3, y: 1.8163588, z: -5.3}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 44
+    events: []
+  cues:
+  - cueId: sur.doc.arrival.1
+    textKey: sur.doc.arrival.1
+    startSeconds: 0
+    endSeconds: 7
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: sur.doc.arrival.2
+    textKey: sur.doc.arrival.2
+    startSeconds: 9
+    endSeconds: 16
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: sur.doc.arrival.3
+    textKey: sur.doc.arrival.3
+    startSeconds: 18
+    endSeconds: 26
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: sur.doc.arrival.4
+    textKey: sur.doc.arrival.4
+    startSeconds: 27
+    endSeconds: 34
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []

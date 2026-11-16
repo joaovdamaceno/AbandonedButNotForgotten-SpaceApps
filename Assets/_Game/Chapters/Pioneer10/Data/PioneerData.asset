@@ -1,0 +1,1722 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf705f7fb4c26c4cbd00a55985db5c6, type: 3}
+  m_Name: PioneerData
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.PioneerData
+  states:
+  - id: PIO.Launch
+    order: 1
+    nominalSeconds: 40
+  - id: PIO.Belt
+    order: 2
+    nominalSeconds: 50
+  - id: PIO.JupiterApproach
+    order: 3
+    nominalSeconds: 30
+  - id: PIO.Imaging
+    order: 4
+    nominalSeconds: 64
+  - id: PIO.Closest
+    order: 5
+    nominalSeconds: 65
+  - id: PIO.Plaque
+    order: 6
+    nominalSeconds: 43
+  - id: PIO.Outbound
+    order: 7
+    nominalSeconds: 55
+  - id: PIO.Listening
+    order: 8
+    nominalSeconds: 40
+  - id: PIO.Farewell
+    order: 9
+    nominalSeconds: 40
+  cues:
+  - id: PIO.01.01
+    state: PIO.Launch
+    textKey: PIO.01.01
+    timing: 0
+    startSeconds: 0
+    endSeconds: 7
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.01.02
+    state: PIO.Launch
+    textKey: PIO.01.02
+    timing: 0
+    startSeconds: 8
+    endSeconds: 16
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.01.03
+    state: PIO.Launch
+    textKey: PIO.01.03
+    timing: 0
+    startSeconds: 18
+    endSeconds: 22
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.01.04
+    state: PIO.Launch
+    textKey: PIO.01.04
+    timing: 0
+    startSeconds: 26.3
+    endSeconds: 32.8
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.01.05
+    state: PIO.Launch
+    textKey: PIO.01.05
+    timing: 0
+    startSeconds: 33
+    endSeconds: 40
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.01.06
+    state: PIO.Launch
+    textKey: PIO.01.06
+    timing: 0
+    startSeconds: 22.3
+    endSeconds: 26
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.02.01
+    state: PIO.Belt
+    textKey: PIO.02.01
+    timing: 0
+    startSeconds: 0
+    endSeconds: 6
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.02.02
+    state: PIO.Belt
+    textKey: PIO.02.02
+    timing: 0
+    startSeconds: 6.5
+    endSeconds: 12.6
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.02.03
+    state: PIO.Belt
+    textKey: PIO.02.03
+    timing: 0
+    startSeconds: 13
+    endSeconds: 19
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.02.04
+    state: PIO.Belt
+    textKey: PIO.02.04
+    timing: 0
+    startSeconds: 30.5
+    endSeconds: 39.4
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.02.05
+    state: PIO.Belt
+    textKey: PIO.02.05
+    timing: 0
+    startSeconds: 39.6
+    endSeconds: 42.3
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.02.06
+    state: PIO.Belt
+    textKey: PIO.02.06
+    timing: 0
+    startSeconds: 42.5
+    endSeconds: 49.5
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.02.07
+    state: PIO.Belt
+    textKey: PIO.02.07
+    timing: 0
+    startSeconds: 20.5
+    endSeconds: 29.5
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.03.01
+    state: PIO.JupiterApproach
+    textKey: PIO.03.01
+    timing: 0
+    startSeconds: 0
+    endSeconds: 6.45
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.03.02
+    state: PIO.JupiterApproach
+    textKey: PIO.03.02
+    timing: 0
+    startSeconds: 9
+    endSeconds: 15
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.03.03
+    state: PIO.JupiterApproach
+    textKey: PIO.03.03
+    timing: 0
+    startSeconds: 17
+    endSeconds: 23
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.03.04
+    state: PIO.JupiterApproach
+    textKey: PIO.03.04
+    timing: 0
+    startSeconds: 24
+    endSeconds: 29
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.04.01
+    state: PIO.Imaging
+    textKey: PIO.04.01
+    timing: 0
+    startSeconds: 0
+    endSeconds: 3.7
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.04.02
+    state: PIO.Imaging
+    textKey: PIO.04.02
+    timing: 0
+    startSeconds: 3.8
+    endSeconds: 9.8
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.04.03
+    state: PIO.Imaging
+    textKey: PIO.04.03
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Imaging.Gate4
+    minimumReadSeconds: 6
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.04.04
+    state: PIO.Imaging
+    textKey: PIO.04.04
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Imaging.Gate6
+    minimumReadSeconds: 4.5
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.04.05
+    state: PIO.Imaging
+    textKey: PIO.04.05
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Imaging.GateRecovery
+    minimumReadSeconds: 5.5
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.04.06
+    state: PIO.Imaging
+    textKey: PIO.04.06
+    timing: 0
+    startSeconds: 38
+    endSeconds: 45
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: PIO.Imaging.Gate8
+    readingStretchMaxSeconds: 0
+  - id: PIO.04.07
+    state: PIO.Imaging
+    textKey: PIO.04.07
+    timing: 0
+    startSeconds: 45
+    endSeconds: 53
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.04.08
+    state: PIO.Imaging
+    textKey: PIO.04.08
+    timing: 0
+    startSeconds: 53
+    endSeconds: 59
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.04.09
+    state: PIO.Imaging
+    textKey: PIO.04.09
+    timing: 0
+    startSeconds: 59
+    endSeconds: 64
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.01
+    state: PIO.Closest
+    textKey: PIO.09.01
+    timing: 0
+    startSeconds: 1
+    endSeconds: 9.6
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.02
+    state: PIO.Closest
+    textKey: PIO.09.02
+    timing: 0
+    startSeconds: 14.4
+    endSeconds: 20
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.03
+    state: PIO.Closest
+    textKey: PIO.09.03
+    timing: 0
+    startSeconds: 20.1
+    endSeconds: 26.6
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.04
+    state: PIO.Closest
+    textKey: PIO.09.04
+    timing: 0
+    startSeconds: 31
+    endSeconds: 36.2
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.05
+    state: PIO.Closest
+    textKey: PIO.09.05
+    timing: 0
+    startSeconds: 36.5
+    endSeconds: 42.5
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.06
+    state: PIO.Closest
+    textKey: PIO.09.06
+    timing: 0
+    startSeconds: 43
+    endSeconds: 50
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.07
+    state: PIO.Closest
+    textKey: PIO.09.07
+    timing: 0
+    startSeconds: 57.7
+    endSeconds: 64.95
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.08
+    state: PIO.Closest
+    textKey: PIO.09.08
+    timing: 0
+    startSeconds: 9.7
+    endSeconds: 14.3
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.09
+    state: PIO.Closest
+    textKey: PIO.09.09
+    timing: 0
+    startSeconds: 50.1
+    endSeconds: 57.6
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.09.10
+    state: PIO.Closest
+    textKey: PIO.09.10
+    timing: 0
+    startSeconds: 26.8
+    endSeconds: 30.8
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.01
+    state: PIO.Plaque
+    textKey: PIO.05.01
+    timing: 0
+    startSeconds: 0
+    endSeconds: 5.9
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.01b
+    state: PIO.Plaque
+    textKey: PIO.05.01b
+    timing: 0
+    startSeconds: 6
+    endSeconds: 11.7
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.01c
+    state: PIO.Plaque
+    textKey: PIO.05.01c
+    timing: 0
+    startSeconds: 11.8
+    endSeconds: 17.2
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.02
+    state: PIO.Plaque
+    textKey: PIO.05.02
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Plaque.Hydrogen
+    minimumReadSeconds: 4
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.03
+    state: PIO.Plaque
+    textKey: PIO.05.03
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Plaque.Pulsars
+    minimumReadSeconds: 4.6
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.04
+    state: PIO.Plaque
+    textKey: PIO.05.04
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Plaque.SolarSystem
+    minimumReadSeconds: 4.5
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.05
+    state: PIO.Plaque
+    textKey: PIO.05.05
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Plaque.PioneerScale
+    minimumReadSeconds: 4.6
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.06
+    state: PIO.Plaque
+    textKey: PIO.05.06
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Plaque.People
+    minimumReadSeconds: 3.6
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.05.07
+    state: PIO.Plaque
+    textKey: PIO.05.07
+    timing: 0
+    startSeconds: 37.7
+    endSeconds: 43
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: PIO.Plaque.Gate
+    readingStretchMaxSeconds: 0
+  - id: PIO.06.01
+    state: PIO.Outbound
+    textKey: PIO.06.01
+    timing: 0
+    startSeconds: 1
+    endSeconds: 9.5
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.06.02
+    state: PIO.Outbound
+    textKey: PIO.06.02
+    timing: 0
+    startSeconds: 16
+    endSeconds: 24
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.06.03
+    state: PIO.Outbound
+    textKey: PIO.06.03
+    timing: 0
+    startSeconds: 25
+    endSeconds: 33
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.06.04
+    state: PIO.Outbound
+    textKey: PIO.06.04
+    timing: 0
+    startSeconds: 41.5
+    endSeconds: 49
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.06.05
+    state: PIO.Outbound
+    textKey: PIO.06.05
+    timing: 0
+    startSeconds: 49.5
+    endSeconds: 55
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.06.06
+    state: PIO.Outbound
+    textKey: PIO.06.06
+    timing: 0
+    startSeconds: 33.4
+    endSeconds: 40.9
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.07.01
+    state: PIO.Listening
+    textKey: PIO.07.01
+    timing: 0
+    startSeconds: 0
+    endSeconds: 5.8
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.07.02
+    state: PIO.Listening
+    textKey: PIO.07.02
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Listening.Contact1
+    minimumReadSeconds: 4.8
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.07.03
+    state: PIO.Listening
+    textKey: PIO.07.03
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Listening.Contact2
+    minimumReadSeconds: 4.5
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.07.04
+    state: PIO.Listening
+    textKey: PIO.07.04
+    timing: 1
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Listening.Contact3
+    minimumReadSeconds: 6.8
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.07.05
+    state: PIO.Listening
+    textKey: PIO.07.05
+    timing: 0
+    startSeconds: 24.5
+    endSeconds: 29.5
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.07.06
+    state: PIO.Listening
+    textKey: PIO.07.06
+    timing: 0
+    startSeconds: 32
+    endSeconds: 36
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 7
+  - id: PIO.08.01
+    state: PIO.Farewell
+    textKey: PIO.08.01
+    timing: 0
+    startSeconds: 0
+    endSeconds: 8
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.08.02
+    state: PIO.Farewell
+    textKey: PIO.08.02
+    timing: 0
+    startSeconds: 9
+    endSeconds: 17
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.08.03
+    state: PIO.Farewell
+    textKey: PIO.08.03
+    timing: 0
+    startSeconds: 18
+    endSeconds: 26
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  - id: PIO.08.04
+    state: PIO.Farewell
+    textKey: PIO.08.04
+    timing: 0
+    startSeconds: 27
+    endSeconds: 35
+    triggerId: 
+    minimumReadSeconds: 0
+    gateId: 
+    readingStretchMaxSeconds: 0
+  texts:
+  - key: PIO.01.01
+    group: narrative
+    ptText: "Pioneer quer dizer pioneira: quem vai primeiro. E o nome n\xE3o \xE9 por acaso."
+    enText: 'Pioneer: a word for those who go first. And the name was no accident.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.01.02
+    group: narrative
+    ptText: "Mar\xE7o de 1972. Uma pequena sonda, do tamanho de um carro, partiu rumo aos planetas exteriores."
+    enText: March 1972. No spacecraft had ever traveled beyond Mars. This probe, about the size of a car, was about to try.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.01.03
+    group: narrative
+    ptText: "Onze horas depois de deixar o ch\xE3o, passou pela Lua."
+    enText: Eleven hours after liftoff, it passed the Moon.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.01.04
+    group: narrative
+    ptText: "Ela gira devagar, como um pi\xE3o. Esse giro ajuda a manter a sonda est\xE1vel na longa viagem."
+    enText: It spins slowly. The spin keeps it steady and its antenna pointed at Earth.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.01.05
+    group: narrative
+    ptText: "Longe do Sol, a luz \xE9 fraca demais, ent\xE3o a Pioneer fazia a pr\xF3pria energia com geradores RTG."
+    enText: Far from the Sun, sunlight is too weak. So Pioneer made its own power with RTG generators.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.01.06
+    group: narrative
+    ptText: "Nada feito por m\xE3os humanas tinha viajado t\xE3o depressa."
+    enText: No human-made object had ever moved this fast.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.02.01
+    group: narrative
+    ptText: "Depois de Marte, havia um lugar onde ningu\xE9m tinha passado: o cintur\xE3o de asteroides."
+    enText: 'Mars was behind it. Ahead: the asteroid belt, a place no spacecraft had ever crossed.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.02.02
+    group: narrative
+    ptText: "Ningu\xE9m sabia quantas pedras havia. Ningu\xE9m sabia se dava para atravessar."
+    enText: Nobody knew how many rocks were out there. Nobody knew if a spacecraft could get through.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.02.03
+    group: narrative
+    ptText: "Alguns cientistas temiam que uma \xFAnica colis\xE3o encerrasse a miss\xE3o."
+    enText: Some scientists feared that one collision could end the mission.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.02.04
+    group: narrative
+    ptText: "Na vida real, as pedras ficam muito longe umas das outras. A rota passava a milh\xF5es de km da mais pr\xF3xima."
+    enText: "Then, a surprise: the rocks were far apart. Pioneer\u2019s route passed millions of kilometers from the nearest known asteroid."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.02.05
+    group: narrative
+    ptText: "S\xF3 poeira fina ro\xE7ou a sonda."
+    enText: Only fine dust brushed the probe.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.02.06
+    group: narrative
+    ptText: "Sete meses depois, a Pioneer saiu do outro lado, inteira. D\xE1 para atravessar o cintur\xE3o!"
+    enText: Seven months later, Pioneer came out the other side, unharmed. The belt could be crossed.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.02.07
+    group: narrative
+    ptText: "Ent\xE3o os dias foram contados: uma semana, um m\xEAs, e depois meses passando cada vez mais depressa."
+    enText: 'So the days were counted: a week, a month, then months flying by faster and faster.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.03.01
+    group: narrative
+    ptText: "Novembro de 1973. J\xFApiter, o maior dos planetas, j\xE1 estava \xE0 vista."
+    enText: 'Next came the biggest prize: Jupiter, the largest planet. By November 1973, it was in sight.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.03.02
+    group: narrative
+    ptText: "Um mundo t\xE3o grande que onze Terras caberiam lado a lado em seu di\xE2metro."
+    enText: Jupiter is so big that eleven Earths could fit side by side across it.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.03.03
+    group: narrative
+    ptText: "A Pioneer come\xE7ou a fotografar de longe, a 25 milh\xF5es de quil\xF4metros."
+    enText: Pioneer started taking pictures from 25 million kilometers away.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.03.04
+    group: narrative
+    ptText: "Mas um comando e sua resposta podiam levar at\xE9 uma hora e meia."
+    enText: But a command and its reply could take up to an hour and a half.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.04.01
+    group: narrative
+    ptText: "Mas a Pioneer n\xE3o tinha uma c\xE2mera como a do seu celular."
+    enText: "Pioneer didn\u2019t have a camera like the one in your phone."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.04.02
+    group: narrative
+    ptText: "A cada volta, via s\xF3 uma linha fina de J\xFApiter, em duas cores: vermelho e azul."
+    enText: 'Each time it spun, it saw one thin strip of Jupiter, in just two colors: red and blue.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.04.03
+    group: narrative
+    ptText: "Vermelho e azul eram medidos juntos, mas uma foto sozinha vinha cheia de ru\xEDdo."
+    enText: It measured red and blue together, but a single picture was full of noise.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.04.04
+    group: narrative
+    ptText: "Somando v\xE1rias fotos, o ru\xEDdo some e a imagem aparece."
+    enText: Add many pictures together, and the noise fades and Jupiter appears.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.04.05
+    group: narrative
+    ptText: Vermelho e azul vieram do instrumento. A terceira cor teria de ser calculada na Terra.
+    enText: Pioneer measured red and blue. Earth had to work out the third color.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.04.06
+    group: narrative
+    ptText: "A Pioneer nunca viu o verde. Os computadores na Terra o estimaram, e J\xFApiter apareceu em cores."
+    enText: Pioneer never saw green. Computers on Earth estimated it, and Jupiter appeared in color.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.04.07
+    group: narrative
+    ptText: "Fotografia real, 1973: J\xFApiter como a Pioneer 10 o registrou."
+    enText: 'A real photo from 1973: Jupiter, as Pioneer 10 saw it.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.04.08
+    group: narrative
+    ptText: "Foi a primeira nave a fazer fotos de perto de J\xFApiter."
+    enText: It was the first spacecraft to take close-up pictures of Jupiter.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.04.09
+    group: narrative
+    ptText: "Eram imagens melhores que qualquer telesc\xF3pio da Terra podia oferecer."
+    enText: They were sharper than anything telescopes on Earth could show.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.01
+    group: narrative
+    ptText: Cada vez mais perto, passou pelas grandes luas e fez as primeiras fotos de perto de Ganimedes, a maior lua do Sistema Solar.
+    enText: "Closer in, it passed Jupiter\u2019s big moons and took the first close-ups of Ganymede, the largest moon in the Solar System."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.02
+    group: narrative
+    ptText: "J\xFApiter \xE9 cercado por radia\xE7\xE3o milhares de vezes mais forte que a da Terra."
+    enText: "Jupiter is surrounded by radiation thousands of times stronger than Earth\u2019s."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.03
+    group: narrative
+    ptText: Absorveu mais de mil vezes a dose fatal a uma pessoa. Surgiram comandos indevidos; havia reservas.
+    enText: Pioneer took in over a thousand times the radiation dose that would kill a person.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.04
+    group: narrative
+    ptText: "4 de dezembro de 1973: a Pioneer 10 foi a primeira a sobrevoar J\xFApiter."
+    enText: 'Closest approach: Pioneer 10 became the first spacecraft to fly past Jupiter.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.05
+    group: narrative
+    ptText: "A cerca de 130.000 km das nuvens: tr\xEAs vezes mais perto que a Lua da Terra."
+    enText: It passed 130,000 kilometers above the clouds, three times closer than the Moon is to Earth.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.06
+    group: narrative
+    ptText: "A gravidade de J\xFApiter curvou seu caminho e deu o impulso para seguir al\xE9m dos planetas."
+    enText: "Jupiter\u2019s gravity bent its path and gave it the speed to travel beyond the planets."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.07
+    group: narrative
+    ptText: "Viu que a radia\xE7\xE3o de J\xFApiter era mais forte que o esperado, e isso mudou a Voyager."
+    enText: "Jupiter\u2019s radiation turned out stronger than expected, and that changed Voyager\u2019s design."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.08
+    group: narrative
+    ptText: "Fotografou tamb\xE9m Calisto e Europa, mas s\xF3 em baixa resolu\xE7\xE3o."
+    enText: It also photographed Callisto and Europa, but only at low resolution.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.09
+    group: narrative
+    ptText: "J\xFApiter corre ao redor do Sol e a Pioneer pegou carona nessa velocidade."
+    enText: Jupiter is also moving around the Sun, and Pioneer borrowed a bit of that speed, like hitching a ride.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.09.10
+    group: narrative
+    ptText: "Uma imagem de Io foi feita, mas a radia\xE7\xE3o a destruiu."
+    enText: It also took a picture of Io, but the radiation destroyed it.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.01
+    group: narrative
+    ptText: "J\xFApiter ficou para tr\xE1s. N\xE3o haveria volta: a Pioneer seguia para as estrelas."
+    enText: 'Jupiter fell behind. There was no way back: Pioneer was headed for the stars.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.01b
+    group: narrative
+    ptText: 'E levava uma mensagem para quem a encontrasse: uma placa dourada, escrita sem palavras.'
+    enText: 'It carried a message for anyone who might find it: a golden plaque with no words.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.01c
+    group: narrative
+    ptText: "S\xF3 imagens e s\xEDmbolos, para dizer quem somos e de onde viemos."
+    enText: Just pictures and symbols, showing who we are and where we came from.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.02
+    group: narrative
+    ptText: "Hidrog\xEAnio, o \xE1tomo mais comum do Universo: a nossa r\xE9gua."
+    enText: "Hydrogen, the Universe\u2019s most common atom, is our yardstick."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.03
+    group: narrative
+    ptText: 'Pulsares: estrelas que piscam e mostram onde fica o Sol.'
+    enText: Next, a map of pulsars, stars that blink, showing where the Sun is.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.04
+    group: narrative
+    ptText: 'O Sistema Solar: a sonda saindo do terceiro planeta, a Terra.'
+    enText: Then our Solar System, showing Pioneer leaving the third planet, Earth.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.05
+    group: narrative
+    ptText: "Ao lado, o contorno da pr\xF3pria Pioneer, para dar escala."
+    enText: Beside it, an outline of Pioneer itself, for scale.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.06
+    group: narrative
+    ptText: "E duas figuras. Uma delas acena: ol\xE1!"
+    enText: And two figures. One of them is waving hello.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.05.07
+    group: narrative
+    ptText: "Uma placa de alum\xEDnio dourado: uma carta para um encontro que talvez nunca aconte\xE7a."
+    enText: 'A gold-colored aluminum plaque: a letter for a meeting that may never happen.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.06.01
+    group: narrative
+    ptText: A Pioneer foi feita para durar vinte e um meses. Simplesmente continuou.
+    enText: Pioneer was built to last 21 months. It just kept going.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.06.02
+    group: narrative
+    ptText: "13 de junho de 1983: cruzou a dist\xE2ncia da \xF3rbita de Netuno, com os instrumentos ainda funcionando normalmente."
+    enText: "June 13, 1983: Pioneer passed Neptune\u2019s orbit, with all its instruments still working normally."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.06.03
+    group: narrative
+    ptText: "1989: a energia diminu\xEDa. Os instrumentos passaram a se revezar, e o computador de comandos foi desligado."
+    enText: By 1989, its power was fading. The instruments took turns, and the command computer was shut off.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.06.04
+    group: narrative
+    ptText: "Em 1998, a Voyager 1 a ultrapassou e se tornou a m\xE1quina humana mais distante, em outra dire\xE7\xE3o."
+    enText: In 1998, Voyager 1 passed Pioneer to become the most distant human-made object.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.06.05
+    group: narrative
+    ptText: A Pioneer havia mostrado o caminho. Agora, a Terra escutava cada vez mais longe.
+    enText: Pioneer had shown the way. Now Earth had to listen from farther and farther away.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.06.06
+    group: narrative
+    ptText: "Para poupar energia, a c\xE2mera que fotografou J\xFApiter foi desligada, e depois o detector de radia\xE7\xE3o."
+    enText: To save power, the camera that photographed Jupiter was turned off, then the radiation detector.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.07.01
+    group: narrative
+    ptText: O sinal estava mais fraco que um sussurro. As antenas da Terra ainda conseguiriam ouvi-lo?
+    enText: Its signal was now weaker than a whisper. Could Earth still hear it?
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.07.02
+    group: narrative
+    ptText: Conseguiu. Trinta anos depois, a Pioneer ainda respondia.
+    enText: Yes. Thirty years later, Pioneer was still answering.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.07.03
+    group: narrative
+    ptText: "27 de abril de 2002: chegaram os \xFAltimos dados."
+    enText: 'April 27, 2002: the last data arrived.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.07.04
+    group: narrative
+    ptText: "Janeiro de 2003. Um \xFAltimo sinal fraco, de 12 bilh\xF5es de quil\xF4metros, levou mais de 11 horas para chegar."
+    enText: 'January 23, 2003: one last signal, from 12 billion kilometers away, took over eleven hours to reach us.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.07.05
+    group: narrative
+    ptText: Fevereiro de 2003. A Terra escutou outra vez e nenhum sinal foi detectado.
+    enText: 'February 7, 2003: Earth listened again and heard nothing.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.07.06
+    group: narrative
+    ptText: "Sem energia suficiente para nos alcan\xE7ar, a Pioneer 10 ficou em sil\xEAncio. Mas n\xE3o parou."
+    enText: "Its power had finally run out, and Pioneer 10 went silent. But it didn\u2019t stop."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.08.01
+    group: narrative
+    ptText: "Ela segue em dire\xE7\xE3o \xE0 estrela vermelha Aldebaran: uma viagem de milh\xF5es de anos."
+    enText: "It\u2019s still traveling, toward the red star Aldebaran, a trip of about two million years."
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.08.02
+    group: narrative
+    ptText: Feita para durar 21 meses, funcionou por mais de 30 anos.
+    enText: Built to last 21 months, it worked for more than 30 years.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.08.03
+    group: narrative
+    ptText: "E o nome n\xE3o foi por acaso. Veja o que ela fez primeiro."
+    enText: The name was no accident. Look at what it did first.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.08.04
+    group: narrative
+    ptText: "Pioneer quer dizer pioneira. Toda grande viagem come\xE7a com quem vai primeiro, e a Pioneer 10 foi primeiro, por todos n\xF3s."
+    enText: Pioneer means going first. Every great journey starts with someone willing to go first. Pioneer 10 went first, for all of us.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.start
+    group: hud
+    ptText: "Pioneer 10 \xB7 Abrir caminho"
+    enText: "Pioneer 10 \xB7 Going first"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.dossier
+    group: hud
+    ptText: "A primeira visita a J\xFApiter. Transforme sinais em imagens e escute uma viagem de trinta anos."
+    enText: The first visit to Jupiter. Turn signals into images and listen to a thirty-year journey.
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.rtg
+    group: hud
+    ptText: "Segure E \xB7 acompanhar a energia"
+    enText: "Hold E \xB7 follow the power"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.imagination
+    group: hud
+    ptText: "IMAGINA\xC7\xC3O"
+    enText: IMAGINATION
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.move
+    group: hud
+    ptText: "Setas ou WASD \xB7 mover"
+    enText: "Arrow keys or WASD \xB7 move"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.dust
+    group: hud
+    ptText: "Segure E \xB7 registrar poeira {count}/5"
+    enText: "Hold E \xB7 record dust {count}/5"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.scan
+    group: hud
+    ptText: "Segure E \xB7 registrar a passagem {count}/8"
+    enText: "Hold E \xB7 record this pass {count}/8"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.step
+    group: hud
+    ptText: Passo {count}/3
+    enText: Step {count}/3
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.belt_day
+    group: hud
+    ptText: Dia {count} / 215
+    enText: Day {count} / 215
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.belt_months
+    group: hud
+    ptText: JAN FEV MAR ABR MAI JUN JUL AGO SET OUT NOV DEZ
+    enText: JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.belt_nearest
+    group: hud
+    ptText: "307 Nike \xB7 o asteroide conhecido mais pr\xF3ximo"
+    enText: "307 Nike \xB7 the nearest known asteroid"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.rad_title
+    group: hud
+    ptText: "Radia\xE7\xE3o"
+    enText: Radiation
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.speed_label
+    group: hud
+    ptText: Mais de 120.000 km/h
+    enText: Over 120,000 km/h
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.dist_moon
+    group: hud
+    ptText: "Terra\u2013Lua \xB7 384.400 km"
+    enText: "Earth\u2013Moon \xB7 384,400 km"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.dist_clouds
+    group: hud
+    ptText: "Sonda\u2013nuvens \xB7 130.000 km"
+    enText: "Probe to the clouds \xB7 130,000 km"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.past_uranus
+    group: hud
+    ptText: "Dist\xE2ncia orbital de Urano \xB7 a sonda n\xE3o visita o planeta"
+    enText: "Uranus's orbital distance \xB7 the probe does not visit the planet"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.end_tracking
+    group: hud
+    ptText: "31 MAR 1997 \xB7 fim do acompanhamento de rotina"
+    enText: "31 MAR 1997 \xB7 routine tracking ends"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.years_energy
+    group: hud
+    ptText: "Energia dos RTG \xB7 curva estilizada"
+    enText: "RTG power \xB7 stylised curve"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.years_launch
+    group: hud
+    ptText: "155 W \xB7 lan\xE7amento"
+    enText: "155 W \xB7 launch"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.years_jupiter
+    group: hud
+    ptText: "~140 W \xB7 J\xFApiter"
+    enText: "~140 W \xB7 Jupiter"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.inst_camera
+    group: hud
+    ptText: "C\xE2mera"
+    enText: Camera
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.inst_radiation
+    group: hud
+    ptText: "Radia\xE7\xE3o"
+    enText: Radiation
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.inst_plasma
+    group: hud
+    ptText: Plasma
+    enText: Plasma
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.inst_meteoroid
+    group: hud
+    ptText: Meteoroides
+    enText: Meteoroids
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.inst_magnetometer
+    group: hud
+    ptText: "Campo magn\xE9tico"
+    enText: Magnetic field
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_1
+    group: hud
+    ptText: "Primeira miss\xE3o aos planetas exteriores"
+    enText: First mission to the outer planets
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_2
+    group: hud
+    ptText: "Primeira projetada para ir al\xE9m de Marte"
+    enText: First designed to travel beyond Mars
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_3
+    group: hud
+    ptText: "Primeira a cruzar o cintur\xE3o de asteroides"
+    enText: First to cross the asteroid belt
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_4
+    group: hud
+    ptText: "Primeira a sobrevoar J\xFApiter"
+    enText: First to fly past Jupiter
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_5
+    group: hud
+    ptText: Primeira em rota para sair do Sistema Solar
+    enText: First on a path out of the Solar System
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.first_6
+    group: hud
+    ptText: "Primeira al\xE9m das \xF3rbitas dos planetas \xB7 1983"
+    enText: "First beyond the planets' orbits \xB7 1983"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.belt_far
+    group: hud
+    ptText: "O asteroide conhecido mais pr\xF3ximo ficou a milh\xF5es de quil\xF4metros da sonda."
+    enText: The nearest known asteroid was millions of kilometres from the probe.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.earth_label
+    group: hud
+    ptText: Terra
+    enText: Earth
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.shoot
+    group: hud
+    ptText: "Toque E \xB7 barra na zona dourada"
+    enText: "Tap E \xB7 bar in the gold zone"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.shot_count
+    group: hud
+    ptText: Foto {count}/5
+    enText: Photo {count}/5
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.frames
+    group: hud
+    ptText: Quadros
+    enText: Frames
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.sum
+    group: hud
+    ptText: '{count} fotos somadas'
+    enText: '{count} photos added'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.noise
+    group: hud
+    ptText: "Ru\xEDdo"
+    enText: Noise
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.tune_auto
+    group: hud
+    ptText: "\u2190 \u2192 \xB7 sintonize a antena"
+    enText: "\u2190 \u2192 \xB7 tune the antenna"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.receiving
+    group: hud
+    ptText: "Escutando\u2026"
+    enText: "Listening\u2026"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.spin
+    group: hud
+    ptText: "Segure E \xB7 girar"
+    enText: "Hold E \xB7 spin"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.switch_blue
+    group: hud
+    ptText: "E \xB7 trocar para azul"
+    enText: "E \xB7 switch to blue"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.combine
+    group: hud
+    ptText: "E \xB7 juntar as duas imagens"
+    enText: "E \xB7 combine the two pictures"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.red
+    group: instrument
+    ptText: Canal vermelho
+    enText: Red channel
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.blue
+    group: instrument
+    ptText: Canal azul
+    enText: Blue channel
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.recover
+    group: hud
+    ptText: "E \xB7 enviar sequ\xEAncia de recupera\xE7\xE3o"
+    enText: "E \xB7 send recovery sequence"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.real
+    group: hud
+    ptText: "Imagem real \xB7 Pioneer 10 \xB7 1973 \xB7 NASA"
+    enText: "Actual image \xB7 Pioneer 10 \xB7 1973 \xB7 NASA"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.radiation
+    group: instrument
+    ptText: "Radia\xE7\xE3o \xB7 comando indevido no instrumento"
+    enText: "Radiation \xB7 unwanted command in the instrument"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.sent
+    group: hud
+    ptText: "Pacote enviado \xB7 a resposta leva dezenas de minutos"
+    enText: "Packet sent \xB7 the reply takes tens of minutes"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.jupiter
+    group: hud
+    ptText: "J\xFApiter \xB7 dezembro de 1973 \xB7 montagem de quadros da aproxima\xE7\xE3o"
+    enText: "Jupiter \xB7 December 1973 \xB7 montage of approach frames"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.ganymede
+    group: hud
+    ptText: "Ganimedes \xB7 3 de dezembro de 1973 \xB7 resolu\xE7\xE3o original"
+    enText: "Ganymede \xB7 December 3, 1973 \xB7 original resolution"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.io_lost
+    group: hud
+    ptText: "Io \xB7 imagem perdida"
+    enText: "Io \xB7 image lost"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.past_saturn
+    group: hud
+    ptText: "Dist\xE2ncia orbital de Saturno \xB7 a sonda n\xE3o visita o planeta"
+    enText: "Saturn's orbital distance \xB7 the probe does not visit the planet"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.past_neptune
+    group: hud
+    ptText: "Dist\xE2ncia orbital de Netuno \xB7 al\xE9m das \xF3rbitas dos planetas"
+    enText: "Neptune's orbital distance \xB7 beyond the planets' orbits"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.not_edge
+    group: hud
+    ptText: "Passar as \xF3rbitas dos planetas n\xE3o \xE9 o mesmo que sair do Sistema Solar"
+    enText: Passing the planets' orbits is not the same as leaving the Solar System
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.sun
+    group: instrument
+    ptText: Sol
+    enText: Sun
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.orbit_jupiter
+    group: instrument
+    ptText: "J\xFApiter"
+    enText: Jupiter
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.orbit_saturn
+    group: instrument
+    ptText: Saturno
+    enText: Saturn
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.orbit_uranus
+    group: instrument
+    ptText: Urano
+    enText: Uranus
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.orbit_neptune
+    group: instrument
+    ptText: Netuno
+    enText: Neptune
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_title_belt
+    group: hud
+    ptText: "O cintur\xE3o de asteroides"
+    enText: The asteroid belt
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_title_out
+    group: hud
+    ptText: "A sonda cruzando as \xF3rbitas"
+    enText: The probe crossing the orbits
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_earth
+    group: hud
+    ptText: Terra
+    enText: Earth
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_mars
+    group: hud
+    ptText: Marte
+    enText: Mars
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_belt
+    group: hud
+    ptText: "Cintur\xE3o"
+    enText: Belt
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_probe
+    group: hud
+    ptText: Pioneer 10
+    enText: Pioneer 10
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_note
+    group: hud
+    ptText: "Esquema sem escala: s\xF3 as \xF3rbitas, vistas de cima."
+    enText: 'Schematic, not to scale: orbits only, seen from above.'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_mercury
+    group: hud
+    ptText: "Merc\xFArio"
+    enText: Mercury
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.map_venus
+    group: hud
+    ptText: "V\xEAnus"
+    enText: Venus
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.dsn_credit
+    group: hud
+    ptText: "Antena de 70 m da Deep Space Network \xB7 modelo 3D oficial da NASA (cr\xE9dito: NASA/Brian E. Kumanchik, Christian A. Lopez)"
+    enText: "Deep Space Network 70 m antenna \xB7 official NASA 3D model (credit: NASA/Brian E. Kumanchik, Christian A. Lopez)"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.scheme
+    group: instrument
+    ptText: "Esquema \xB7 sem escala"
+    enText: "Schematic \xB7 not to scale"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.radio
+    group: instrument
+    ptText: "R\xE1dio"
+    enText: Radio
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.instruments
+    group: instrument
+    ptText: "Instrumentos cient\xEDficos"
+    enText: Science instruments
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.power_title
+    group: hud
+    ptText: "Energia dos geradores \xB7 barras relativas, sem valores"
+    enText: "Generator power \xB7 relative bars, no values"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.power_ok
+    group: hud
+    ptText: "Comunica\xE7\xE3o priorizada \xB7 s\xEDntese dos comandos da equipe ao longo dos anos"
+    enText: "Communication prioritized \xB7 a summary of the team's commands over the years"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.dist_sun
+    group: instrument
+    ptText: "Dist\xE2ncia ao Sol"
+    enText: Distance from the Sun
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.time
+    group: instrument
+    ptText: Tempo
+    enText: Time
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.pioneer10
+    group: instrument
+    ptText: Pioneer 10
+    enText: Pioneer 10
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.voyager1
+    group: instrument
+    ptText: Voyager 1
+    enText: Voyager 1
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.comm_time
+    group: instrument
+    ptText: "Tempo de comunica\xE7\xE3o \xB7 cresce com a dist\xE2ncia"
+    enText: "Communication time \xB7 grows with distance"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.cross1998
+    group: hud
+    ptText: "Voyager 1 passa a dist\xE2ncia ao Sol da Pioneer 10 \xB7 sem encontro"
+    enText: "Voyager 1 passes Pioneer 10's distance from the Sun \xB7 no encounter"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.kind_data
+    group: instrument
+    ptText: "Telemetria \xB7 \xFAltimos dados"
+    enText: "Telemetry \xB7 last data"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.kind_carrier
+    group: instrument
+    ptText: "Portadora fraca \xB7 sem dados novos"
+    enText: "Weak carrier \xB7 no new data"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.listen
+    group: instrument
+    ptText: "Segure E \xB7 escutar"
+    enText: "Hold E \xB7 listen"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.plaque
+    group: hud
+    ptText: "Escolha uma pe\xE7a e seu contorno \xB7 {count}/5"
+    enText: "Choose a piece and its outline \xB7 {count}/5"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.snap
+    group: hud
+    ptText: "E \xB7 encaixar / Segure E \xB7 ajuda"
+    enText: "E \xB7 place / Hold E \xB7 help"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.hydrogen
+    group: hud
+    ptText: "Hidrog\xEAnio"
+    enText: Hydrogen
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.pulsars
+    group: hud
+    ptText: Mapa de pulsares
+    enText: Pulsar map
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.solar
+    group: hud
+    ptText: Sistema Solar
+    enText: Solar System
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.scale
+    group: hud
+    ptText: Escala da Pioneer
+    enText: Pioneer scale
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.people
+    group: hud
+    ptText: Pessoas
+    enText: People
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.plaque_retry
+    group: hud
+    ptText: "Esse contorno \xE9 de outra pe\xE7a. A pe\xE7a voltou; escolha outro."
+    enText: That outline belongs to another piece. The piece went back; choose another.
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.power
+    group: hud
+    ptText: "Segure E \xB7 priorizar a comunica\xE7\xE3o"
+    enText: "Hold E \xB7 prioritize communication"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.tune
+    group: hud
+    ptText: "\u2190 \u2192 \xB7 sintonizar / Segure E \xB7 escutar"
+    enText: "\u2190 \u2192 \xB7 tune / Hold E \xB7 listen"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.nearer
+    group: instrument
+    ptText: 'Intensidade do sinal: aumentando'
+    enText: 'Signal strength: rising'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.farther
+    group: instrument
+    ptText: 'Intensidade do sinal: diminuindo'
+    enText: 'Signal strength: falling'
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.UI.received
+    group: instrument
+    ptText: Sinal recebido
+    enText: Signal received
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.no_signal
+    group: instrument
+    ptText: Nenhum sinal detectado
+    enText: No signal detected
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.no_fault
+    group: hud
+    ptText: "Sua escuta funcionou. Desta vez, n\xE3o houve resposta."
+    enText: You listened correctly. This time, there was no response.
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.help
+    group: hud
+    ptText: Ajuda de alinhamento
+    enText: Alignment help
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.ending
+    group: hud
+    ptText: "PIONEER 10 \xB7 1972\u20132003 / Em viagem"
+    enText: "PIONEER 10 \xB7 1972\u20132003 / Still traveling"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.return
+    group: hud
+    ptText: Menu principal
+    enText: Main menu
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.replay
+    group: hud
+    ptText: "Reiniciar cap\xEDtulo"
+    enText: Restart chapter
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.credits
+    group: hud
+    ptText: "Fontes e cr\xE9ditos"
+    enText: "Sources and credits"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.credits.title
+    group: hud
+    ptText: "Fontes da miss\xE3o e cr\xE9ditos"
+    enText: "Mission sources and credits"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.credits.close
+    group: hud
+    ptText: "Fechar"
+    enText: "Close"
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.credits.body
+    group: hud
+    ptText: "Sonda Pioneer 10: modelo 3D da NASA (NASA/JPL, Eyes on the Solar System), fornecido pela equipe e adaptado para este projeto.\nAntena de 70 m da Deep Space Network: modelo 3D oficial da NASA (NASA/Brian E. Kumanchik, Christian A. Lopez).\nFotografias de J\xFApiter e Ganimedes, 1973 (AC73-9341 e AC73-9279): NASA.\nPlaca da Pioneer: adapta\xE7\xE3o educativa, n\xE3o a reprodu\xE7\xE3o fiel da gravura original (NASA).\nM\xFAsica (Scott Buckley, CC BY 4.0, www.scottbuckley.com.au): \u201CA Kind Of Hope\u201D; \u201CDescent\u201D; \u201CThe Distant Sun\u201D; \u201CThe Things That Keep Us Here\u201D; \u201CExtrapolation\u201D; \u201CSignal to Noise\u201D; \u201CFilaments\u201D. Trechos recortados e normalizados.\nTextura de J\xFApiter: Solar System Scope (www.solarsystemscope.com/textures), CC BY 4.0.\nTipografia: Outfit (Copyright 2021 The Outfit Project Authors) e IBM Plex Mono (Copyright 2017 IBM Corp.), ambas sob a SIL Open Font License 1.1.\n\nAs cenas s\xE3o reconstru\xE7\xF5es art\xEDsticas, n\xE3o filmagens. Os textos hist\xF3ricos seguem fontes oficiais; a lista completa de fontes e de recursos est\xE1 em SCIENCE_SOURCES.md e ASSET_CREDITS.md, no reposit\xF3rio do projeto.\n\nAbandoned, But Not Forgotten \xE9 uma produ\xE7\xE3o educativa independente, criada para o NASA Space Apps. Sem afilia\xE7\xE3o ou endosso da NASA."
+    enText: "Pioneer 10 probe: NASA 3D model (NASA/JPL, Eyes on the Solar System), supplied by the team and adapted for this project.\nDeep Space Network 70 m antenna: official NASA 3D model (NASA/Brian E. Kumanchik, Christian A. Lopez).\nJupiter and Ganymede photographs, 1973 (AC73-9341 and AC73-9279): NASA.\nPioneer plaque: educational adaptation, not a faithful reproduction of the original engraving (NASA).\nMusic (Scott Buckley, CC BY 4.0, www.scottbuckley.com.au): \u201CA Kind Of Hope\u201D; \u201CDescent\u201D; \u201CThe Distant Sun\u201D; \u201CThe Things That Keep Us Here\u201D; \u201CExtrapolation\u201D; \u201CSignal to Noise\u201D; \u201CFilaments\u201D. Excerpts trimmed and loudness-normalised.\nJupiter texture: Solar System Scope (www.solarsystemscope.com/textures), CC BY 4.0.\nTypography: Outfit (Copyright 2021 The Outfit Project Authors) and IBM Plex Mono (Copyright 2017 IBM Corp.), both under the SIL Open Font License 1.1.\n\nThe scenes are artistic reconstructions, not footage. Historical texts follow official sources; the full list of sources and assets is in SCIENCE_SOURCES.md and ASSET_CREDITS.md in the project repository.\n\nAbandoned, But Not Forgotten is an independent educational production made for NASA Space Apps. It is not affiliated with or endorsed by NASA."
+    ptStatus: approved
+    enStatus: approved
+  - key: PIO.UI.aldebaran
+    group: hud
+    ptText: "Dire\xE7\xE3o de Aldebaran"
+    enText: Direction of Aldebaran
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.Card.launch
+    group: card
+    ptText: "2 MAR 1972 \xB7 FL\xD3RIDA / 3 MAR \xB7 UTC"
+    enText: "2 MAR 1972 \xB7 FLORIDA / 3 MAR \xB7 UTC"
+    ptStatus: approved
+    enStatus: derived
+  - key: PIO.Card.jupiter
+    group: card
+    ptText: "NOV\u2013DEZ 1973"
+    enText: "NOV\u2013DEC 1973"
+    ptStatus: approved
+    enStatus: derived
+  - key: PIO.Card.y1976
+    group: card
+    ptText: 1976
+    enText: 1976
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.Card.y1983
+    group: card
+    ptText: 13 JUN 1983
+    enText: 13 JUN 1983
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.Card.y1998
+    group: card
+    ptText: 1998
+    enText: 1998
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.Card.contact1
+    group: card
+    ptText: "3 MAR 2002 \xB7 sinal recebido, anivers\xE1rio de 30 anos"
+    enText: "3 MAR 2002 \xB7 signal received, 30th anniversary"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.Card.contact2
+    group: card
+    ptText: "27 ABR 2002 \xB7 \xFAltimos dados de telemetria"
+    enText: "27 APR 2002 \xB7 last telemetry data"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.Card.contact3
+    group: card
+    ptText: "23 JAN 2003 \xB7 sinal de r\xE1dio muito fraco"
+    enText: "23 JAN 2003 \xB7 very weak radio signal"
+    ptStatus: derived
+    enStatus: derived
+  - key: PIO.Card.attempt4
+    group: card
+    ptText: "7 FEV 2003 \xB7 nenhum sinal detectado"
+    enText: "7 FEB 2003 \xB7 no signal detected"
+    ptStatus: derived
+    enStatus: derived

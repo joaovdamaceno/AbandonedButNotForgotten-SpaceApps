@@ -1,0 +1,14 @@
+MAR-011 · reimportação do MER_Rover.fbx no Blender 5.3.0 (importador FBX padrão) · 2026-11-14T17:11Z
+MER_Rover        par=None           world=(0.0, 0.0, 0.0) rot=(-0.0, 0.0, 0.0) sc=(1.0, 1.0, 1.0)
+Body             par=MER_Rover      world=(-0.0, -0.06, 0.44) rot=(0.0, -0.0, 0.0) sc=(1.0, 1.0, 1.0)
+Rocker_L         par=Body           world=(0.42, -0.09, 0.46) rot=(0.0, -0.0, 0.0) sc=(1.0, 1.0, 1.0)
+Steer_FL         par=Rocker_L       world=(0.62, -0.67, 0.315) rot=(0.0, -0.0, 0.0) sc=(1.0, 1.0, 1.0)
+Wheel_FL         par=Steer_FL       world=(0.62, -0.67, 0.13) rot=(0.0, -0.0, 0.0) sc=(1.0, 1.0, 1.0)
+Wheel_FL_LOD0    par=Wheel_FL       world=(0.62, -0.67, 0.13) rot=(0.0, -0.0, 0.0) sc=(1.0, 1.0, 1.0)
+PMA_Head         par=PMA_Mast       world=(-0.03, -0.55, 1.4) rot=(0.0, -0.0, 0.0) sc=(1.0, 1.0, 1.0)
+Anchor_Pancam    par=PMA_Head       world=(-0.03, -0.655, 1.468) rot=(0.0, -0.0, 0.0) sc=(1.0, 1.0, 1.0)
+Anchor_Track_L   par=MER_Rover      world=(0.62, 0.61, -0.0) rot=(0.0, -0.0, 0.0) sc=(1.0, 1.0, 1.0)
+TOTAL objects 92 meshes 54 empties 38
+NONIDENTITY_ROT []
+NONUNIT_SCALE []
+MATERIALS ['M_MER_Atlas', 'M_MER_Solar']

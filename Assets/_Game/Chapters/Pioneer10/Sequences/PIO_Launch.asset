@@ -1,0 +1,364 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: PIO_Launch
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: PIO_Launch
+  shots:
+  - shotId: PIO01.A
+    durationSeconds: 7
+    rigId: PIO.Launch.Reveal
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: -1.6}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 32
+    - timeSeconds: 7
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 32
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Launch.Title
+  - shotId: PIO01.B
+    durationSeconds: 10
+    rigId: PIO.Launch.Pad
+    lookAtTargetId: PIO.AtlasLook
+    easing: 0
+    minGroundClearanceMeters: 1
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 50
+    - timeSeconds: 10
+      positionMeters: {x: 0, y: 0.4, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 46
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Launch.DateCard
+    - timeSeconds: 2
+      eventId: PIO.Launch.Ignition
+    - timeSeconds: 4.5
+      eventId: PIO.Launch.Liftoff
+  - shotId: PIO01.C
+    durationSeconds: 9
+    rigId: PIO.Launch.Ellipse
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 42
+    - timeSeconds: 9
+      positionMeters: {x: 0, y: 0, z: 3}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 42
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Launch.Ellipse
+  - shotId: PIO01.D
+    durationSeconds: 14
+    rigId: PIO.Launch
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: -0.8, y: 0.3, z: -1}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 34
+    - timeSeconds: 14
+      positionMeters: {x: 0.6, y: -0.2, z: 1.2}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 34
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Launch.Callouts
+    - timeSeconds: 6.5
+      eventId: PIO.Launch.RtgHold
+  cues:
+  - cueId: PIO.01.01
+    textKey: PIO.01.01
+    startSeconds: 0
+    endSeconds: 7
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.01.02
+    textKey: PIO.01.02
+    startSeconds: 8
+    endSeconds: 16
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.01.03
+    textKey: PIO.01.03
+    startSeconds: 18
+    endSeconds: 22
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.01.04
+    textKey: PIO.01.04
+    startSeconds: 26.3
+    endSeconds: 32.8
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.01.05
+    textKey: PIO.01.05
+    startSeconds: 33
+    endSeconds: 40
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.01.06
+    textKey: PIO.01.06
+    startSeconds: 22.3
+    endSeconds: 26
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks:
+  - actorId: PIO.Atlas
+    timeSeconds: 0
+    positionMeters: {x: 0, y: 0, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Atlas
+    timeSeconds: 11.5
+    positionMeters: {x: 0, y: 0, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Atlas
+    timeSeconds: 13
+    positionMeters: {x: 0, y: 2.5, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Atlas
+    timeSeconds: 15
+    positionMeters: {x: 0, y: 14, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Atlas
+    timeSeconds: 17
+    positionMeters: {x: 0, y: 42, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 17.5
+    positionMeters: {x: -23.214882, y: -7.95016, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 17.666666
+    positionMeters: {x: -19.865316, y: -9.945015, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 17.833334
+    positionMeters: {x: -17.022112, y: -11.285742, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 18
+    positionMeters: {x: -14.276549, y: -12.294294, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 18.166666
+    positionMeters: {x: -11.5708, y: -13.0297985, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 18.333334
+    positionMeters: {x: -8.886305, y: -13.519068, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 18.5
+    positionMeters: {x: -6.2178535, y: -13.777443, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 18.666666
+    positionMeters: {x: -3.5662918, y: -13.814988, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 18.833334
+    positionMeters: {x: -0.93564224, y: -13.639032, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 19
+    positionMeters: {x: 1.6682243, y: -13.255397, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 19.166666
+    positionMeters: {x: 4.238306, y: -12.669074, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 19.333334
+    positionMeters: {x: 6.766884, y: -11.884623, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 19.5
+    positionMeters: {x: 9.245773, y: -10.906431, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 19.666666
+    positionMeters: {x: 11.666538, y: -9.738873, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 19.833334
+    positionMeters: {x: 14.0205345, y: -8.386422, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 20
+    positionMeters: {x: 16.299099, y: -6.8537273, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 20.166666
+    positionMeters: {x: 18.49353, y: -5.145681, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 20.333334
+    positionMeters: {x: 20.595207, y: -3.2674387, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 20.5
+    positionMeters: {x: 22.5956, y: -1.2244568, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 20.666666
+    positionMeters: {x: 24.48634, y: 0.97749615, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 20.833334
+    positionMeters: {x: 26.25922, y: 3.3323116, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 21
+    positionMeters: {x: 27.906261, y: 5.8335686, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 21.166666
+    positionMeters: {x: 29.4197, y: 8.474491, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 21.333334
+    positionMeters: {x: 30.792057, y: 11.247978, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 21.5
+    positionMeters: {x: 32.01615, y: 14.14661, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 21.666666
+    positionMeters: {x: 33.085083, y: 17.16262, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 21.833334
+    positionMeters: {x: 34.47317, y: 21.59313, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 22
+    positionMeters: {x: 36.01136, y: 26.503687, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 22.166666
+    positionMeters: {x: 37.549545, y: 31.41423, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 22.333334
+    positionMeters: {x: 39.087738, y: 36.3248, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 22.5
+    positionMeters: {x: 40.625927, y: 41.23536, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 22.666666
+    positionMeters: {x: 42.164116, y: 46.145912, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 22.833334
+    positionMeters: {x: 43.702305, y: 51.056473, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 23
+    positionMeters: {x: 45.240494, y: 55.967026, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 23.166666
+    positionMeters: {x: 46.778683, y: 60.877586, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 23.333334
+    positionMeters: {x: 48.316875, y: 65.788155, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 23.5
+    positionMeters: {x: 49.855057, y: 70.69869, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 23.666666
+    positionMeters: {x: 51.39325, y: 75.60925, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 23.833334
+    positionMeters: {x: 52.931442, y: 80.51982, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 24
+    positionMeters: {x: 54.469627, y: 85.430374, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 24.166666
+    positionMeters: {x: 56.007812, y: 90.34093, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 24.333334
+    positionMeters: {x: 57.54601, y: 95.251495, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 24.5
+    positionMeters: {x: 59.084198, y: 100.16205, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 24.666666
+    positionMeters: {x: 60.622383, y: 105.07259, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 24.833334
+    positionMeters: {x: 62.160576, y: 109.98316, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 25
+    positionMeters: {x: 63.698765, y: 114.89372, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 25.166666
+    positionMeters: {x: 65.23695, y: 119.80428, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 25.333334
+    positionMeters: {x: 66.77515, y: 124.714836, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: PIO.Launch.TraceHead
+    timeSeconds: 25.5
+    positionMeters: {x: 68.31333, y: 129.6254, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}

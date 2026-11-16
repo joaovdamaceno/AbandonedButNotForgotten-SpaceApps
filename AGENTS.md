@@ -24,9 +24,11 @@ Leia `Docs/01_MASTER_CONTEXT.md`, o roteiro do capítulo e a tarefa inteira ante
 ## Fluxo Git e IA
 
 1. Escolha item **Pronta**, confira os bloqueadores nativos e links; atribua-se e mova para Em andamento. Uma tarefa ativa por pessoa.
-2. Branch `codex/ID-assunto` ou `feature/ID-assunto` a partir de develop atualizado. Commit pequeno que mencione o ID.
+2. Branch pelo ID da tarefa, como `SUR-001`, a partir de `develop` atualizada. Se ela já existir, preserve seu trabalho e integre a base sem force-push. Registre no PR o commit de base e a última CORE integrada; não parta de uma CORE antiga ignorando outras entregas já presentes em develop. Commit pequeno que mencione o ID.
 3. Cole contexto mestre + prompt da tarefa na IA. Informe arquivos com dono e restrições; peça montagem real quando aplicável.
 4. PR para develop com `Closes #numero`, comportamento, arquivos, teste e limitações. Revisor de função diferente. Não fechar tarefa sem evidência.
 5. R1 integra, smoke Web verifica, depois o PR é aprovado. A liberação de dependentes acontece após merge e fechamento, não apenas ao mover um cartão.
+
+Autorização do proprietário em 14/11/2026 para as tarefas executadas pelo assistente: após revisão técnica, validação pertinente e evidências no PR, pode integrar em `develop` e concluir a issue sem aguardar outra pessoa ou deixar o cartão em Revisão. Não simular aprovação humana, ignorar falhas ou liberar dependências antes do merge confirmado. Continuar respeitando ownership, bloqueadores e uma tarefa ativa por pessoa.
 
 As fontes anteriores podem orientar a solução. Registre origem, licença e o que foi reescrito/adaptado em `Docs/Production/REUSE.md`; não altere datas nem invente autoria ou execução de testes.

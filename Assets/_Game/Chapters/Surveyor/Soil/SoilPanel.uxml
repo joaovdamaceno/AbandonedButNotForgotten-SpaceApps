@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+ <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss"/><Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss"/><Style src="/Assets/_Game/Shared/Localization/SubtitleLayer.uss"/><Style src="SoilPanel.uss"/>
+ <ui:VisualElement class="sa-root soil-root">
+  <ui:Label name="objective" class="soil-objective"/>
+  <ui:VisualElement name="slot" class="soil-slot"><ui:VisualElement name="frame" class="soil-frame">
+   <ui:Image name="live" class="soil-image"/><ui:Image name="archive" class="soil-image"/>
+   <ui:VisualElement name="comparison" class="soil-comparison"><ui:VisualElement class="soil-half"><ui:Image name="before"/><ui:Label name="before-label"/></ui:VisualElement><ui:VisualElement class="soil-half"><ui:Image name="after"/><ui:Label name="after-label"/></ui:VisualElement></ui:VisualElement>
+   <ui:Label name="caption" class="soil-caption"/>
+  </ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement class="soil-instrument"><ui:VisualElement name="curve" class="soil-curve"/><ui:ProgressBar name="progress" low-value="0" high-value="100"/><ui:Label name="prompt"/></ui:VisualElement>
+  <ui:VisualElement name="subtitles" class="soil-subtitles"/><ui:Button name="restart" class="soil-restart"/>
+  <ui:VisualElement name="cover" class="soil-cover"><ui:Button name="begin"/></ui:VisualElement>
+ </ui:VisualElement>
+</ui:UXML>

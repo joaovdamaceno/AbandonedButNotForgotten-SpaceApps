@@ -1,0 +1,415 @@
+using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
+namespace Abandoned.SpaceApps.Opportunity
+{
+    [RequireComponent(typeof(UIDocument))]
+    public sealed class MissionHUD : MonoBehaviour
+    {
+        public ChapterDirector chapter;
+        VisualElement tutorialPanel, assistance;
+        Label tutorialTitle,tutorialBody,assistanceText;
+        public Texture2D ratPhoto, routeMap, panorama;
+        VisualElement root,flight,cinema,science,pause,settings,controls,credits,journal,end,fade,marker,photo,photoFlash;
+        VisualElement endActions,thermal,thermalFill,safeBand,rockHint;
+        VisualElement pressureFill,grindFill,energyFill,cursor,featureA,featureB,energyBox;
+        Label scienceFindings,objective,distance,location,help,energy,caption,heading,story,scienceTitle,scienceBody,scienceReadout,notification,skip,photoCount;
+        VisualElement splitView,splitDivider,splitTopLabel,splitBottomLabel,letterTop,letterBottom;Label splitTopName,splitTopPlace,splitBottomName,splitBottomPlace,splitNote,fieldGoal,scienceGoal;
+        float toastTime,objectiveAge;
+        string toastKey,objectiveKey,activeLanguage,lastFilmTitle;
+        Font filmSans;VisualElement filmVeil;Image orbitEvidence;Label orbitCredit;
+        bool journalOpen;
+        VisualElement field,fieldFill,fieldReticle,fieldPictures,fieldCenter,framingFill;Label fieldTitle,fieldBody,fieldStatus,comparisonA,comparisonB;Image fieldA,fieldB,archiveImage;Label archiveCredit;
+        readonly System.Collections.Generic.Dictionary<FieldStudy,Image> studyAlbum=new System.Collections.Generic.Dictionary<FieldStudy,Image>();
+        // Painel de comandos no topo, ao lado da ajuda do H: uma linha por comando, teclas desenhadas como botões.
+        VisualElement pauseCorner,guideStack,commandPanel;Label primaryCommand;string[] commandRows;string commandLanguage;float commandIntroSeconds;
+        // O painel fica na tela nos primeiros segundos de controle do capítulo e volta só quando a pessoa fica parada (a mesma hora da ajuda do H).
+        const float CommandIntroSeconds=7f;
+        // Prompt único de "segurar E" e o que o HUD já viu de cada ação (para confirmar a conclusão quando o contador muda).
+        HoldPrompt holdPrompt;bool holdSeen;AbrasionPhase lastRatPhase;int lastRatReadings,lastObservations,lastPhotos;
+        static readonly System.Collections.Generic.Dictionary<string[],string[]> rowsWithoutHold=new System.Collections.Generic.Dictionary<string[],string[]>();
+        /// <summary>O que o prompt de segurar E mostra neste quadro: a ação ativa, o rótulo e o progresso REAL dela.</summary>
+        struct HoldContext{public bool Active,Hint,Waiting;public string Label;public float Progress;}
+        static readonly string[] DriveRows={"W A S D / ↑ ← ↓ →|cmd.move","Shift|cmd.fast","Mouse|cmd.look","hold E|cmd.interact","H|cmd.help","P|cmd.pause"};
+        static readonly string[] SampleRows={"hold E|cmd.sample|primary","W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","H|cmd.help","P|cmd.pause"};
+        static readonly string[] PhotoRows={"hold E|cmd.photo|primary","W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","H|cmd.help","P|cmd.pause"};
+        static readonly string[] ApproachRows={"W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","hold E|cmd.observe.close","H|cmd.help","P|cmd.pause"};
+        static readonly string[] ObserveNearRows={"hold E|cmd.observe|primary","W A S D / ↑ ← ↓ →|cmd.move","Mouse|cmd.look","H|cmd.help","P|cmd.pause"};
+        static readonly string[] StudyRows={"hold E|cmd.observe|primary","H|cmd.help.short","P|cmd.pause"};
+        static readonly string[] StudyCaptureRows={"hold E|v11.capture|primary","P|cmd.pause"};
+        static readonly string[] StudyResultRows={"hold E|cmd.continue|primary","P|cmd.pause"};
+        static readonly string[] RatRows={"hold E|cmd.grind|primary big","H|cmd.help.short","P|cmd.pause"};
+        static readonly string[] CameraRows={"hold E|cmd.photograph|primary","Esc|cmd.back","P|cmd.pause"};
+        public VisualElement Root=>root;
+        void OnEnable()
+        {
+            root=GetComponent<UIDocument>().rootVisualElement;root.Clear();studyAlbum.Clear();root.StretchToParentSize();root.styleSheets.Add(Resources.Load<StyleSheet>("MissionUI"));root.AddToClassList("root");
+            var font=Resources.Load<Font>("Fonts/OutfitMedium");if(font!=null)root.style.unityFontDefinition=FontDefinition.FromFont(font);
+            filmSans=Resources.Load<Font>("Fonts/OutfitMedium");Build();
+        }
+        VisualElement Box(VisualElement parent,string classes)
+        {var e=new VisualElement();foreach(var c in classes.Split(' '))if(c.Length>0)e.AddToClassList(c);parent.Add(e);return e;}
+        Label Text(VisualElement parent,string value,string classes="")
+        {
+            var e=new Label(value);foreach(var c in classes.Split(' '))if(c.Length>0)e.AddToClassList(c);parent.Add(e);
+            if(classes.Contains("display")){var f=Resources.Load<Font>("Fonts/CormorantGaramond");if(f!=null)e.style.unityFontDefinition=FontDefinition.FromFont(f);}return e;
+        }
+        Button Button(VisualElement parent,string key,System.Action action,string classes="")
+        {var b=new Button(()=>{chapter.sound.Confirm();action();}){text=Localization.Get(key),userData=key};b.AddToClassList("button");foreach(var c in classes.Split(' '))if(c.Length>0)b.AddToClassList(c);parent.Add(b);return b;}
+        void Build()
+        {
+            Box(root,"edge-shade").pickingMode=PickingMode.Ignore;
+            flight=Box(root,"flight");flight.pickingMode=PickingMode.Ignore;
+            var id=Box(flight,"identity");Text(id,"MER-B   /   OPPORTUNITY","eyebrow");location=Text(id,"","small muted");
+            var goal=Box(flight,"goal");objective=Text(goal,"","objective");distance=Text(goal,"","small muted");
+            help=Text(flight,"","controls");help.style.display=DisplayStyle.None;energyBox=Box(flight,"solar");energy=Text(energyBox,"","eyebrow");energyFill=Box(Box(energyBox,"energy-track"),"energy-fill");
+            marker=Box(flight,"marker");Box(marker,"marker-halo");Box(marker,"marker-diamond");Box(marker,"marker-bar");Box(marker,"marker-dot");Text(marker,"‹","marker-glyph");marker.pickingMode=PickingMode.Ignore;foreach(var part in marker.Children())part.pickingMode=PickingMode.Ignore;rockHint=Box(flight,"interaction-hint");rockHint.name="rock-interaction";Text(rockHint,"E","interaction-key");Text(rockHint,"","interaction-name").name="rock-interaction-label";
+            cinema=Box(root,"cinema");cinema.pickingMode=PickingMode.Ignore;
+            filmVeil=Box(cinema,"film-veil");filmVeil.pickingMode=PickingMode.Ignore;
+            letterTop=Box(cinema,"letterbox top");letterBottom=Box(cinema,"letterbox bottom");var words=Box(cinema,"cinematic-words");
+            heading=Text(words,"","display cinematic-heading");story=Text(words,"","cinematic-story");caption=Text(cinema,"","caption");skip=Text(cinema,"","skip");
+            orbitEvidence=new Image{scaleMode=ScaleMode.ScaleToFit};orbitEvidence.AddToClassList("orbital-evidence");cinema.Add(orbitEvidence);orbitCredit=Text(cinema,"","orbital-credit");
+            splitView=Box(root,"split-view");splitView.pickingMode=PickingMode.Ignore;splitDivider=Box(splitView,"split-divider");
+            splitTopLabel=Box(splitView,"split-label");splitTopName=Text(splitTopLabel,"","split-name");splitTopPlace=Text(splitTopLabel,"","split-place");
+            splitBottomLabel=Box(splitView,"split-label");splitBottomName=Text(splitBottomLabel,"","split-name");splitBottomPlace=Text(splitBottomLabel,"","split-place");
+            splitNote=Text(splitView,"","split-note");foreach(var part in splitView.Children())part.pickingMode=PickingMode.Ignore;
+            science=Box(root,"science");science.pickingMode=PickingMode.Ignore;Text(science,"RAT   /   MCKITTRICK","science-id eyebrow");
+            cursor=Box(science,"tool-cursor");featureA=Box(science,"feature");Text(featureA,"01","feature-number");featureB=Box(science,"feature");Text(featureB,"02","feature-number");
+            var instruction=Box(science,"science-instruction rat-analysis");scienceTitle=Text(instruction,"","objective");scienceBody=Text(instruction,"","science-body");scienceGoal=Text(instruction,"","goal-line");
+            var tool=Box(science,"tool-readout");pressureFill=Box(Box(tool,"pressure-track"),"pressure-fill");safeBand=Box(pressureFill.parent,"safe-band");thermal=Box(tool,"thermal-cue");Text(thermal,"","small").name="thermal-label";thermalFill=Box(Box(thermal,"progress-track"),"thermal-fill");
+            scienceReadout=Text(tool,"","small");scienceFindings=Text(tool,"","small");scienceFindings.style.whiteSpace=WhiteSpace.Normal;scienceFindings.style.marginTop=8;grindFill=Box(Box(tool,"progress-track"),"progress-fill");
+            photo=Box(root,"photo-view");photo.pickingMode=PickingMode.Ignore;Box(photo,"viewfinder");Text(photo,"PANORAMIC CAMERA   /   MER-B","photo-id eyebrow");Text(photo,"","photo-help").name="photo-help";photo.Q<Label>("photo-help").style.display=DisplayStyle.None;photoCount=Text(photo,"","photo-count small");
+            field=Box(root,"field-study");field.pickingMode=PickingMode.Ignore;fieldTitle=Text(field,"","field-title");fieldBody=Text(field,"","field-body");fieldGoal=Text(field,"","field-goal");fieldReticle=Box(field,"field-reticle");fieldCenter=Box(field,"field-center");framingFill=Box(Box(field,"framing-track"),"framing-fill");fieldStatus=Text(field,"","field-status");fieldStatus.style.display=DisplayStyle.None;fieldFill=Box(Box(field,"field-track"),"field-progress");fieldPictures=Box(field,"field-comparison");fieldA=new Image{scaleMode=ScaleMode.ScaleToFit};fieldB=new Image{scaleMode=ScaleMode.ScaleToFit};fieldPictures.Add(fieldA);fieldPictures.Add(fieldB);comparisonA=Text(fieldA,"","comparison-label");comparisonB=Text(fieldB,"","comparison-label");
+            archiveImage=new Image{scaleMode=ScaleMode.ScaleToFit};archiveImage.AddToClassList("field-archive");field.Add(archiveImage);archiveCredit=Text(field,"","field-credit");
+            tutorialPanel=Box(flight,"tutorial-card");tutorialPanel.name="tutorial-card";
+            tutorialTitle=Text(tutorialPanel,"","tutorial-title");tutorialBody=Text(tutorialPanel,"","tutorial-body");
+            guideStack=Box(root,"guide-stack");guideStack.pickingMode=PickingMode.Ignore;assistance=Box(guideStack,"assistance-card");assistance.name="assistance-card";assistance.pickingMode=PickingMode.Ignore;assistanceText=Text(assistance,"","assistance-text");commandPanel=Box(guideStack,"command-panel");commandPanel.name="command-panel";commandPanel.pickingMode=PickingMode.Ignore;
+            holdPrompt=new HoldPrompt();holdPrompt.Place(HoldPrompt.Placement.Corner,guideStack);holdSeen=false;
+            var pauseButton=Button(flight,"v13.pause.short",()=>{if(!chapter.Paused)chapter.RequestPauseMenu();},"flight-pause");pauseCorner=pauseButton;pauseButton.pickingMode=PickingMode.Position;
+            pause=Box(root,"modal-backdrop");pause.name="pause-modal";var pc=Box(pause,"modal-card");Text(pc,"OPPORTUNITY","eyebrow");Text(pc,"","display modal-title").name="pause-title";Button(pc,"pause.resume",()=>chapter.Pause(false),"primary");Button(pc,"menu.settings",()=>Open(settings));Button(pc,"v14.controls.button",()=>Open(controls));Button(pc,"pause.restart",chapter.RestartChapter);Button(pc,"v13.tutorial.repeat",()=>{chapter.RestartChapter();chapter.tutorial.RestartTutorial();});Button(pc,"pause.menu",chapter.Leave);
+            settings=Box(root,"modal-backdrop");var sc=Box(settings,"settings-card");Text(sc,"","display modal-title").name="settings-title";
+            var scroll=new ScrollView();sc.Add(scroll);var language=new DropdownField("Idioma / Language",new System.Collections.Generic.List<string>{"Português (Brasil)","English"},GameSettings.English?1:0);
+            language.RegisterValueChangedCallback(e=>{GameSettings.English=e.newValue=="English";RefreshText();});scroll.Add(language);
+            QualitySelector.AddQualitySelector(scroll);
+            Slider(scroll,"settings.master",GameSettings.Master,0,1,v=>GameSettings.Master=v);Slider(scroll,"settings.music",GameSettings.Music,0,1,v=>GameSettings.Music=v);Slider(scroll,"settings.effects",GameSettings.Effects,0,1,v=>GameSettings.Effects=v);Slider(scroll,"settings.ui",GameSettings.Interface,0,1,v=>GameSettings.Interface=v);Slider(scroll,"settings.sensitivity",GameSettings.Sensitivity,.25f,2.5f,v=>GameSettings.Sensitivity=v);
+            Toggle(scroll,"settings.invert",GameSettings.Invert,v=>GameSettings.Invert=v);Toggle(scroll,"settings.easy",GameSettings.Easy,v=>GameSettings.Easy=v);Toggle(scroll,"settings.motion",GameSettings.ReducedMotion,v=>GameSettings.ReducedMotion=v);Toggle(scroll,"settings.subtitles",GameSettings.Subtitles,v=>GameSettings.Subtitles=v);Toggle(scroll,"settings.large",GameSettings.LargeText,v=>{GameSettings.LargeText=v;RefreshText();});
+            Button(sc,"back",()=>{PlayerPrefs.Save();Show(settings,false);});
+            controls=Box(root,"modal-backdrop");var kc=Box(controls,"controls-card");Text(kc,"","display modal-title").name="controls-title";var ks=new ScrollView();kc.Add(ks);
+            foreach(var cid in new[]{"drive","fast","mouse","e","f","space","h","tab","p","rat"}){var crow=Box(ks,"controls-row");var ckey=Text(crow,"","controls-key");ckey.userData="v14.controls."+cid;var cdesc=Text(crow,"","controls-desc");cdesc.userData="v14.controls."+cid+".d";}
+            Button(kc,"back",()=>Show(controls,false));
+            credits=Box(root,"modal-backdrop");var cc=Box(credits,"credits-card");Text(cc,"","display modal-title").name="credits-title";var cs=new ScrollView();cc.Add(cs);Text(cs,"","credits-body").name="credits-body";Button(cc,"back",()=>Show(credits,false));
+            journal=Box(root,"modal-backdrop");var jc=Box(journal,"journal-card");Text(jc,"","display modal-title").name="journal-title";var js=new ScrollView();jc.Add(js);Text(js,"","journal-body").name="journal-body";
+            AddPhoto(js,ratPhoto,"McKittrick · NASA/JPL");AddPhoto(js,routeMap,"45,16 km · NASA/JPL-Caltech/MSSS");AddPhoto(js,panorama,"Perseverance Valley · NASA/JPL-Caltech/Cornell/ASU");AddPhoto(js,chapter.investigation.berryArchive,"Berry Bowl · NASA/JPL-Caltech/Cornell");AddPhoto(js,chapter.investigation.shieldArchive,"Escudo térmico / Heat shield · NASA/JPL/Cornell");AddPhoto(js,chapter.investigation.solarArchive,"Panoramic camera · NASA/JPL-Caltech/Cornell/ASU");foreach(FieldStudy kind in new[]{FieldStudy.Berries,FieldStudy.Shield,FieldStudy.Meteorite,FieldStudy.SunClear,FieldStudy.SunDust}){var card=Box(js,"study-album-card");var image=new Image{scaleMode=ScaleMode.ScaleToFit};image.AddToClassList("journal-image");card.Add(image);Text(card,Localization.Get("v10.study."+kind.ToString().ToLowerInvariant()),"small");studyAlbum.Add(kind,image);}
+            Button(jc,"back",ToggleJournal);
+            end=Box(root,"end-screen");var endWords=Box(end,"cinematic-words memorial-title");var endKicker=Text(endWords,"","end-kicker");endKicker.name="end-label";var endTitle=Text(endWords,"","cinematic-heading end-name");endTitle.name="end-title";endTitle.style.fontSize=56;endTitle.style.letterSpacing=6;Text(endWords,"","cinematic-story end-subtitle").name="end-subtitle";endActions=Box(end,"end-actions");Button(endActions,"end.menu",chapter.Leave,"primary end-button");Button(endActions,"end.restart",chapter.RestartChapter,"end-button");Button(endActions,"end.credits",()=>Open(credits),"end-link");
+            notification=Text(root,"","toast");notification.pickingMode=PickingMode.Ignore;photoFlash=Box(root,"photo-flash");photoFlash.pickingMode=PickingMode.Ignore;fade=Box(root,"fade");fade.pickingMode=PickingMode.Ignore;
+            foreach(var e in new[]{pause,settings,controls,credits,journal,end,tutorialPanel,assistance,rockHint,splitView})Show(e,false);RefreshText();
+        }
+        void Slider(VisualElement p,string key,float value,float min,float max,System.Action<float> setter)
+        {var s=new Slider(Localization.Get(key),min,max){value=value,userData=key};s.RegisterValueChangedCallback(e=>setter(e.newValue));p.Add(s);}
+        void Toggle(VisualElement p,string key,bool value,System.Action<bool> setter)
+        {var t=new Toggle(Localization.Get(key)){value=value,userData=key};t.RegisterValueChangedCallback(e=>setter(e.newValue));p.Add(t);}
+        void AddPhoto(VisualElement p,Texture2D texture,string credit)
+        {var i=new Image{image=texture,scaleMode=ScaleMode.ScaleToFit};i.AddToClassList("journal-image");p.Add(i);Text(p,credit,"small muted");}
+        static void Show(VisualElement e,bool b){if(e!=null)e.style.display=b?DisplayStyle.Flex:DisplayStyle.None;}
+        void Open(VisualElement e){QualitySelector.RefreshQualitySelectors(e);Show(e,true);e.BringToFront();}
+        void Set(string name,string key){var l=root.Q<Label>(name);if(l!=null)l.text=Localization.Get(key);}
+        public void RefreshText()
+        {
+            if(root==null)return;activeLanguage=GameSettings.English.ToString();root.EnableInClassList("large-text",GameSettings.LargeText);
+            QualitySelector.RefreshQualitySelectors(root);
+            root.Query<Button>().ForEach(b=>{if(b.userData is string k)b.text=Localization.Get(k);});root.Query<Label>(className:"controls-key").ForEach(b=>{if(b.userData is string k)b.text=Localization.Get(k);});root.Query<Label>(className:"controls-desc").ForEach(b=>{if(b.userData is string k)b.text=Localization.Get(k);});root.Query<Slider>().ForEach(b=>{if(b.userData is string k)b.label=Localization.Get(k);});root.Query<Toggle>().ForEach(b=>{if(b.userData is string k)b.label=Localization.Get(k);});
+            foreach(var pair in new[]{new[]{"pause-title","pause.title"},new[]{"end-title","v3.opportunity"},new[]{"settings-title","menu.settings"},new[]{"controls-title","v14.controls.title"},new[]{"credits-title","menu.credits"},new[]{"credits-body","credits.body"},new[]{"journal-title","journal.title"},new[]{"journal-body","journal.body"},new[]{"end-label","end.label"},new[]{"end-subtitle","mars.still.waiting"},new[]{"photo-help","photo.controls"}})Set(pair[0],pair[1]);
+        }
+        public void ShowPause(bool visible)
+        {Show(pause,visible);if(!visible){journalOpen=false;foreach(var e in new[]{journal,settings,controls,credits})Show(e,false);}}
+        public void ToggleJournal(){bool value=!journalOpen;chapter.Pause(value);journalOpen=value;foreach(var entry in studyAlbum){entry.Value.image=chapter.investigation.FrameFor(entry.Key);entry.Value.parent.Q<Label>().text=Localization.Get("v10.study."+entry.Key.ToString().ToLowerInvariant());Show(entry.Value.parent,entry.Value.image);}
+            Show(journal,value);if(value)Show(pause,false);}
+        public void HideForCapture(bool hidden)=>root.style.visibility=hidden?Visibility.Hidden:Visibility.Visible;
+        public void ObjectiveChanged(){objectiveAge=0;}
+        public void Toast(string key,float seconds=4.5f){toastKey=key;toastTime=seconds;}
+        void Update()
+        {
+            if(chapter==null||root==null||chapter.journey==null)return;
+            if(activeLanguage!=GameSettings.English.ToString())RefreshText();
+            if(GameInput.Press(Key.P)&&chapter.Stage!=ChapterStage.ChapterEnd)chapter.RequestPauseMenu();
+            var s=chapter.Stage;var j=chapter.journey;var p=j.photography;var fieldStudy=chapter.investigation;bool drive=s==ChapterStage.Exploration||s==ChapterStage.HeatShieldExploration||j.FinalAct;
+            endActions.style.opacity=Mathf.Clamp01((chapter.Elapsed-2)/1.5f);endActions.pickingMode=s==ChapterStage.ChapterEnd&&chapter.Elapsed>2?PickingMode.Position:PickingMode.Ignore;foreach(var button in endActions.Children())button.SetEnabled(chapter.Elapsed>2);
+            Show(end,s==ChapterStage.ChapterEnd);Show(flight,drive&&!fieldStudy.Active&&!p.Active);Show(field,fieldStudy.Active);if(fieldStudy.Active)UpdateField();Show(science,s==ChapterStage.RockAnalysis);Show(cinema,chapter.Cinematic);Show(photo,p.Active);
+            UpdateSplit();ApplyPlateScale();
+            if(drive)UpdateFlight();if(s==ChapterStage.RockAnalysis)UpdateScience();if(chapter.Cinematic)UpdateCinema();
+            // Dentro do jogo o "P · Pause" é o do menu do jogo (mesmo lugar e desenho); o da cena some.
+            pauseCorner.style.display=chapter.PauseMenuHandler!=null?DisplayStyle.None:DisplayStyle.Flex;
+            var tutor=chapter.tutorial;bool offer=tutor&&tutor.HelpOffered&&!chapter.Paused&&!chapter.Cinematic&&s!=ChapterStage.ChapterEnd;
+            var hold=HoldFor();UpdateCommands(drive&&!fieldStudy.Active&&!p.Active,s==ChapterStage.RockAnalysis,hold);UpdateHoldPrompt(hold);
+            // Onde o prompt toma o lugar das dicas de orientação (alto à direita), o cartão de ajuda também sai.
+            offer&=!(hold.Active&&hold.Hint);
+            Show(assistance,offer);assistance.EnableInClassList("strong",tutor&&tutor.StrongHelp);if(offer)assistanceText.text=Localization.Get(tutor.HelpBodyKey);
+            photoCount.text=j.FinalAct?Localization.Get(j.PanoramaCount>0?"v13.photo.recorded":"v13.photo.required"):$"{p.Frames.Count}   ·   PANORAMIC CAMERA";
+            toastTime=Mathf.Max(0,toastTime-Time.unscaledDeltaTime);notification.text=Localization.Get(toastKey);notification.style.opacity=p.Active||chapter.investigation.Active||chapter.Cinematic?0:Mathf.Clamp01(toastTime);
+            photoFlash.style.opacity=drive&&!GameSettings.ReducedMotion?p.Flash*.18f:0;
+            float t=chapter.Elapsed,alpha=0;
+            if(s==ChapterStage.Intro)alpha=Mathf.Clamp01(1-t/1.2f)+Mathf.InverseLerp(chapter.film.SequenceDuration-.8f,chapter.film.SequenceDuration,t);
+            if(s==ChapterStage.FinalExploration)alpha=Mathf.Clamp01(1-t/.7f);
+            if(s==ChapterStage.Transition)alpha=t<6.8f?Mathf.InverseLerp(6.15f,6.8f,t):1-Mathf.InverseLerp(6.8f,7.5f,t);
+            fade.style.opacity=Mathf.Clamp01(alpha);
+        }
+        void UpdateSplit()
+        {
+            var split=chapter.split;bool visible=split&&split.LabelsVisible&&s_IsLanding();
+            Show(splitView,visible);Show(letterTop,!(split&&split.Active&&split.Expand<1));Show(letterBottom,!(split&&split.Active&&split.Expand<1));
+            if(!visible)return;
+            // Lado a lado: Spirit à esquerda, Opportunity à direita, linha vertical entre as duas.
+            float w=split.OpportunityWidth,left=(1-w)*100,fade=Mathf.Clamp01(chapter.Elapsed/.9f)*(1-Mathf.InverseLerp(.15f,.55f,split.Expand));
+            splitView.style.opacity=fade;
+            var d=splitDivider.style;d.left=Length.Percent(left);d.right=StyleKeyword.Auto;d.top=0;d.bottom=0;d.width=4;d.height=StyleKeyword.Auto;d.marginTop=0;d.marginLeft=-2;
+            splitTopLabel.style.left=Length.Percent(2.5f);splitTopLabel.style.top=Length.Percent(5f);
+            splitBottomLabel.style.left=Length.Percent(left+2.5f);splitBottomLabel.style.top=Length.Percent(5f);
+            var n=splitNote.style;n.left=Length.Percent(2.5f);n.right=StyleKeyword.Auto;n.top=Length.Percent(15f);n.bottom=StyleKeyword.Auto;n.maxWidth=Length.Percent(Mathf.Max(10f,left-5f));n.unityTextAlign=TextAnchor.UpperLeft;
+            splitTopName.text=Localization.Get("v15.split.spirit");splitTopPlace.text=Localization.Get("v15.split.spirit.place");
+            splitBottomName.text=Localization.Get("v15.split.opportunity");splitBottomPlace.text=Localization.Get("v15.split.opportunity.place");
+            splitNote.text="";Show(splitNote,false);
+        }
+        // A cena usa outra escala de interface (1920×1080, meio a meio entre largura e altura); as placas de legenda são medidas na escala
+        // da abertura (1280×720 pela altura) para ficarem do mesmo tamanho em qualquer resolução.
+        void ApplyPlateScale()
+        {
+            float w=Mathf.Max(1,Screen.width),h=Mathf.Max(1,Screen.height);
+            float hud=Mathf.Pow(2,Mathf.Lerp(Mathf.Log(w/1920f,2),Mathf.Log(h/1080f,2),.5f)),plate=h/720f,k=plate/Mathf.Max(.01f,hud);
+            foreach(var e in new VisualElement[]{caption,notification})
+            {
+                var st=e.style;st.fontSize=24*k;st.paddingLeft=st.paddingRight=16*k;st.paddingTop=st.paddingBottom=8*k;
+                st.borderTopLeftRadius=st.borderTopRightRadius=st.borderBottomLeftRadius=st.borderBottomRightRadius=0;
+            }
+            // Legenda no formato do Surveyor 3: faixa a 13% das laterais e 6,5% da base, na largura toda.
+            var c=caption.style;c.left=Length.Percent(13);c.right=Length.Percent(13);c.bottom=Length.Percent(6.5f);c.translate=new Translate(0,0);c.maxWidth=StyleKeyword.None;c.width=StyleKeyword.Auto;
+        }
+        bool s_IsLanding()=>chapter.Stage==ChapterStage.Landing;
+        string GoalFor(FieldStudy study)=>study==FieldStudy.Berries||study==FieldStudy.Meteorite?"v15.goal.1":study==FieldStudy.None?null:null;
+        void UpdateFlight()
+        {
+            var j=chapter.journey;bool storm=chapter.Stage==ChapterStage.DustStorm;
+            if(objectiveKey!=j.ObjectiveKey){objectiveKey=j.ObjectiveKey;ObjectiveChanged();}
+            objectiveAge+=Time.deltaTime;objective.text=Localization.Get(objectiveKey);
+            location.text=chapter.Stage==ChapterStage.HeatShieldExploration?"MERIDIANI PLANUM   ·   JAN 2005":chapter.Stage==ChapterStage.Exploration?"EAGLE CRATER   ·   2004":"PERSEVERANCE VALLEY   ·   JUN 2018";
+            distance.text=$"{chapter.TargetDistance:0} m";
+            objective.parent.style.opacity=objectiveAge>7?.72f:1;
+            string key=j.FinalAct&&j.PanoramaCount>0?"controls.final":"controls.drive";
+            if(chapter.Stage==ChapterStage.Exploration&&j.ReadyForScience&&chapter.TargetDistance<3.4f)key="controls.sample";
+            else if(j.FinalAct&&j.NearbyStation>=0)key="controls.photo";
+            if(chapter.investigation.OverridesTarget)key=chapter.investigation.Near?"v10.controls.observe":"v10.controls.approach";
+            help.text=Localization.Get(key);Show(energyBox,storm);
+            energy.text=Localization.Get("telemetry.solar");energy.style.opacity=GameSettings.ReducedMotion?1:.62f+.38f*Mathf.Abs(Mathf.Sin(Time.unscaledTime*2.4f));energyFill.style.width=Length.Percent(chapter.Energy*100);energyFill.style.backgroundColor=new Color(1f,.45f,.27f);
+            var action=chapter.interactions?chapter.interactions.Current:default;
+            bool valid=action.Valid&&!chapter.Paused;
+            bool available=valid&&action.Available;
+            Vector3 point=valid?action.Anchor.position+Vector3.up*.85f:chapter.ActiveTarget.position+Vector3.up*1.1f;
+            var viewport=chapter.cameras.view.WorldToViewportPoint(point);
+            Show(rockHint,available);
+            float hintX=viewport.z>0?viewport.x:(viewport.x>.5f?.92f:.08f);
+            float hintY=viewport.z>0?1-viewport.y:.5f;
+            rockHint.style.left=Length.Percent(Mathf.Clamp(hintX*100,12,82));rockHint.style.top=Length.Percent(Mathf.Clamp(hintY*100,hintX>.64f?40:24,72));
+            rockHint.Q<Label>("rock-interaction-label").text=valid?Localization.Get(action.LabelKey):"";
+            rockHint.userData=valid?action.Id:null;
+            bool markerVisible=!available&&!chapter.Paused;
+            Show(marker,markerVisible);
+            // On screen the marker shows a drawn "!"; at the screen edge it shows an arrow toward the destination.
+            marker.EnableInClassList("marker-edge",viewport.z<0||viewport.x<.08f||viewport.x>.92f);
+            marker.Q<Label>().text=viewport.z<0||viewport.x<.08f?"‹":"›";
+            marker.style.left=Length.Percent(Mathf.Clamp(hintX*100,8,92));marker.style.top=Length.Percent(Mathf.Clamp(hintY*100,20,77));marker.style.opacity=.95f;
+            var tutorial=chapter.tutorial;
+            Show(tutorialPanel,tutorial&&tutorial.Visible);
+            if(tutorial&&tutorial.Visible){tutorialTitle.text=Localization.Get(tutorial.TitleKey);tutorialBody.text=Localization.Get(tutorial.BodyKey);}
+            objective.parent.EnableInClassList("tutorial-focus",tutorial&&tutorial.Visible&&tutorial.Step==2);
+
+        }
+        /// <summary>Escolhe os comandos do momento e atualiza o painel (só reconstrói quando o conjunto ou o idioma muda).</summary>
+        void UpdateCommands(bool drive,bool rat,HoldContext hold)
+        {
+            var j=chapter.journey;var study=chapter.investigation;var m=chapter.science;
+            string[] rows=null;string primary=null;bool dim=false;
+            if(chapter.Paused||chapter.Cinematic||chapter.Stage==ChapterStage.ChapterEnd)rows=null;
+            else if(rat)
+            {
+                rows=RatRows;
+                if(m.Phase==AbrasionPhase.Analyze){primary=Localization.Get(!m.ToolStowed?"v11.rat.retract":m.AnalysisScanning?"v11.rat.scanning":"cmd.examine");dim=!m.ToolStowed;}
+                else if(m.Phase==AbrasionPhase.Complete){primary=Localization.Get("rat.find.done");dim=true;}
+                else{primary=string.Format(Localization.Get(m.Working?"cmd.grinding":"cmd.grind"),Mathf.CeilToInt(m.RemainingSeconds));dim=m.Phase!=AbrasionPhase.Abrade;}
+            }
+            else if(study.Active)rows=study.Capturing?StudyCaptureRows:study.Result?StudyResultRows:StudyRows;
+            else if(j.photography.Active)rows=CameraRows;
+            else if(drive)
+            {
+                rows=DriveRows;
+                if(study.OverridesTarget)rows=study.Near?ObserveNearRows:ApproachRows;
+                else if(chapter.Stage==ChapterStage.Exploration&&j.ReadyForScience&&chapter.TargetDistance<3.4f)rows=SampleRows;
+                else if(j.FinalAct&&j.NearbyStation>=0)rows=PhotoRows;
+            }
+            // O prompt de segurar E já mostra o comando principal: o painel não repete a linha do E (e some onde o prompt toma o lugar das dicas).
+            if(rows!=null&&hold.Active)rows=hold.Hint?null:WithoutHold(rows);
+            if(chapter.Stage==ChapterStage.Landing)commandIntroSeconds=0;
+            bool intro=commandIntroSeconds<CommandIntroSeconds;
+            if(rows!=null&&intro)commandIntroSeconds+=Time.deltaTime;
+            bool idle=chapter.tutorial&&chapter.tutorial.HelpOffered;
+            if(!intro&&!idle)rows=null;
+            Show(commandPanel,rows!=null);
+            if(rows==null)return;
+            if(rows!=commandRows||commandLanguage!=activeLanguage)BuildCommands(rows);
+            if(primaryCommand!=null){if(primary!=null)primaryCommand.text=primary;primaryCommand.parent.EnableInClassList("cmd-waiting",dim);}
+        }
+        /// <summary>A ação de segurar E em andamento, com o progresso que a própria ação mede (a barra nunca anda por conta própria).</summary>
+        HoldContext HoldFor()
+        {
+            var c=default(HoldContext);
+            if(chapter.Paused||chapter.Cinematic||chapter.Stage==ChapterStage.ChapterEnd)return c;
+            var study=chapter.investigation;var m=chapter.science;var camera=chapter.journey.photography;
+            if(chapter.Stage==ChapterStage.RockAnalysis)
+            {
+                // Desgaste (7 s segurando E) e depois as leituras MI, APXS e Mössbauer: cada fase informa o próprio progresso.
+                c.Active=true;
+                if(m.Phase==AbrasionPhase.Complete)c.Active=false;
+                else if(m.Phase==AbrasionPhase.Analyze)
+                {
+                    c.Label=Localization.Get(!m.ToolStowed?"v11.rat.retract":m.AnalysisScanning?"v11.rat.scanning":"cmd.examine");
+                    c.Waiting=!m.ToolStowed;c.Progress=m.AnalysisProgress;
+                }
+                else
+                {
+                    c.Label=string.Format(Localization.Get(m.Working?"cmd.grinding":"cmd.grind"),Mathf.CeilToInt(m.RemainingSeconds));
+                    c.Waiting=!m.Active||m.Phase!=AbrasionPhase.Abrade;c.Progress=m.Progress;
+                }
+            }
+            else if(study.Active)
+            {
+                // Esferas de hematita no alto à direita (no lugar das dicas); escudo, meteorito e Sol no canto inferior esquerdo.
+                c.Active=true;c.Hint=study.Study==FieldStudy.Berries;
+                if(study.Capturing){c.Label=Localization.Get("v11.capture");c.Progress=1;}
+                else if(study.Result){c.Label=Localization.Get("cmd.continue");c.Progress=study.ResultProgress;c.Waiting=!study.ResultArmed;}
+                else{c.Label=Localization.Get("cmd.observe");c.Progress=study.Dwell;}
+            }
+            else if(camera.Active){c.Active=true;c.Label=Localization.Get("cmd.photograph");c.Progress=camera.HoldProgress;}
+            return c;
+        }
+        void UpdateHoldPrompt(HoldContext hold)
+        {
+            if(holdPrompt==null)return;
+            DetectCompletions();
+            if(chapter.Paused||chapter.Cinematic||chapter.Stage==ChapterStage.ChapterEnd){holdPrompt.Cancel();return;}
+            // Sem ação ativa o prompt só termina a confirmação de conclusão: fica onde estava.
+            if(hold.Active)holdPrompt.Place(hold.Hint?HoldPrompt.Placement.Hint:HoldPrompt.Placement.Corner,guideStack);
+            bool holding=hold.Active&&!hold.Waiting&&hold.Progress>.001f&&GameInput.ActionHeld;
+            holdPrompt.Apply(hold.Active,hold.Label,hold.Progress,holding,hold.Waiting,Time.unscaledDeltaTime);
+        }
+        /// <summary>Compara os contadores das ações com o quadro anterior: quando um avança, a ação terminou e o prompt confirma.</summary>
+        void DetectCompletions()
+        {
+            var study=chapter.investigation;var m=chapter.science;var camera=chapter.journey.photography;
+            int readings=m.Active?m.Observations:0;
+            if(!holdSeen){holdSeen=true;lastObservations=study.Completions;lastPhotos=camera.Captured;lastRatPhase=m.Phase;lastRatReadings=readings;return;}
+            if(study.Completions!=lastObservations){lastObservations=study.Completions;holdPrompt.Complete(Localization.Get("v18.done.observation"));}
+            if(camera.Captured!=lastPhotos){lastPhotos=camera.Captured;holdPrompt.Complete(Localization.Get("v18.done.photo"));}
+            if(m.Active&&lastRatPhase==AbrasionPhase.Abrade&&m.Phase==AbrasionPhase.Analyze)holdPrompt.Complete(Localization.Get("v18.done.grind"));
+            else if(readings>lastRatReadings)holdPrompt.Complete(Localization.Get("v18.done.reading"));
+            lastRatPhase=m.Phase;lastRatReadings=readings;
+        }
+        static string[] WithoutHold(string[] rows)
+        {
+            if(!rowsWithoutHold.TryGetValue(rows,out var kept))
+            {
+                var list=new System.Collections.Generic.List<string>();
+                foreach(var row in rows)if(!row.StartsWith("hold E"))list.Add(row);
+                kept=list.Count>0?list.ToArray():null;rowsWithoutHold[rows]=kept;
+            }
+            return kept;
+        }
+        void BuildCommands(string[] rows)
+        {
+            commandRows=rows;commandLanguage=activeLanguage;commandPanel.Clear();primaryCommand=null;
+            foreach(var spec in rows)
+            {
+                var parts=spec.Split('|');string flags=parts.Length>2?parts[2]:"";
+                var row=Box(commandPanel,"cmd-row");row.EnableInClassList("cmd-primary",flags.Contains("primary"));row.EnableInClassList("cmd-big",flags.Contains("big"));
+                if(parts[0].Length>0)
+                {
+                    var keys=Box(row,"cmd-keys");
+                    foreach(var token in parts[0].Split(' '))
+                    {
+                        if(token=="hold")Text(keys,Localization.Get("cmd.hold"),"cmd-hold");
+                        else if(token=="/")Text(keys,"/","cmd-sep");
+                        else Text(keys,token,token.Length>1?"key-cap key-wide":"key-cap");
+                    }
+                }
+                var desc=Text(row,Localization.Get(parts[1]),"cmd-desc");
+                if(flags.Contains("primary"))primaryCommand=desc;
+            }
+            foreach(var e in commandPanel.Query<VisualElement>().ToList())e.pickingMode=PickingMode.Ignore;
+        }
+        void Project(VisualElement e,Vector3 point)
+        {var v=chapter.cameras.view.WorldToViewportPoint(point);e.style.left=Length.Percent(v.x*100);e.style.top=Length.Percent((1-v.y)*100);}
+        void UpdateField()
+        {
+            var s=chapter.investigation;fieldTitle.text=Localization.Get(s.TitleKey);fieldBody.text=Localization.Get(s.BodyKey);
+            // Hold-only observation: no reticle or framing meter, just the progress of the hold.
+            Show(fieldReticle,false);Show(fieldCenter,false);Show(framingFill.parent,false);
+            // A barra de progresso agora é a do prompt de segurar E (HoldPrompt); a trilha fina antiga fica escondida para não duplicar.
+            Show(fieldFill.parent,false);fieldFill.style.width=Length.Percent(s.Dwell*100);
+            string goalKey=GoalFor(s.Study);fieldGoal.text=goalKey!=null?Localization.Get(goalKey):"";Show(fieldGoal,goalKey!=null&&!s.Capturing);
+            // Na rocha das esferas o prompt ocupa o alto à direita; o texto do resultado deixa essa faixa livre.
+            fieldBody.style.width=Length.Percent(s.Result?(s.Study==FieldStudy.Berries?60:88):48);
+            fieldStatus.text=Localization.Get(s.Capturing?"v11.capture":s.Result?"v10.controls.return":"v11.guide.hold");
+            bool compare=s.Result&&s.Study==FieldStudy.SunDust&&s.ClearSunFrame&&s.DustSunFrame;
+            fieldA.image=compare?s.ClearSunFrame:s.ResultImage;fieldB.image=compare?s.DustSunFrame:s.Solar?null:s.Archive;
+            Show(fieldPictures,s.Result&&s.ResultImage);Show(fieldB,fieldB.image);fieldA.style.width=Length.Percent(fieldB.image?50:100);
+            comparisonA.text=Localization.Get(compare?"v10.sun.reference":s.Solar?"v11.sun.saved":"v11.image.game");comparisonB.text=Localization.Get(compare?"v10.sun.dust":"v11.image.archive");
+            Show(archiveImage,false);Show(archiveCredit,s.Result&&!s.Solar&&s.Archive);archiveCredit.text=Localization.Get(s.Study==FieldStudy.Shield?"v10.archive.shield":"v10.archive.credit");
+        }
+        void UpdateScience()
+        {
+            var m=chapter.science;Show(scienceReadout.parent,m.Active&&(m.Phase==AbrasionPhase.Abrade||m.Phase==AbrasionPhase.Analyze||m.Phase==AbrasionPhase.Complete));string phase=m.Active&&!(m.Phase==AbrasionPhase.Identify&&!m.ToolDeployed)?m.Phase.ToString().ToLowerInvariant():"deploy";
+            scienceTitle.text=Localization.Get(m.Phase==AbrasionPhase.Analyze?(m.Observations==0?"v11.rat.micro.title":"v11.rat.composition.title"):"rat."+phase+".title");scienceBody.text=Localization.Get(m.Phase==AbrasionPhase.Analyze?(m.Observations==0?"v11.rat.micro.body":"v11.rat.composition.body"):"rat."+phase+".body");
+            scienceGoal.text=Localization.Get("v15.goal.1");
+            Show(cursor,false);
+            bool analyze=m.Phase==AbrasionPhase.Analyze;Show(featureA,false);Show(featureB,false);
+            if(analyze){Project(featureA,m.surface.WorldPoint(m.surface.Features[0]));Project(featureB,m.surface.WorldPoint(m.surface.Features[1]));featureA.style.opacity=m.Observed[0]?.25f:1;featureB.style.opacity=m.Observed[1]?.25f:1;}
+            Show(pressureFill.parent,false);pressureFill.style.width=Length.Percent(m.Pressure*100);pressureFill.style.backgroundColor=m.Pressure>=m.PressureLow&&m.Pressure<=m.PressureHigh?new Color(.55f,.82f,.72f):new Color(.97f,.59f,.3f);
+            grindFill.style.width=Length.Percent((analyze?m.AnalysisProgress:m.Progress)*100);Show(grindFill.parent,false);
+            safeBand.style.left=Length.Percent(m.PressureLow*100);safeBand.style.width=Length.Percent((m.PressureHigh-m.PressureLow)*100);
+            Show(thermal,false);thermalFill.style.width=Length.Percent(m.Temperature*100);
+            thermal.Q<Label>("thermal-label").text=Localization.Get("rat.temperature");
+            string pressureKey=m.Cooling?"rat.cooldown":m.Pressure<m.PressureLow?"rat.low":m.Pressure>m.PressureHigh?"rat.high":"rat.pressure";
+            scienceReadout.text=analyze?Localization.Get(!m.ToolStowed?"v11.rat.retract":m.AnalysisScanning?"v11.rat.scanning":"v11.rat.request"):string.Format(Localization.Get(m.Working?"cmd.grinding":"cmd.seconds.left"),Mathf.CeilToInt(m.RemainingSeconds));
+            // Leituras da cavidade, reveladas conforme cada instrumento termina (MI: textura; APXS: elementos; Mössbauer: minerais de ferro).
+            bool done=m.Phase==AbrasionPhase.Complete;int read=done?2:m.Phase==AbrasionPhase.Analyze?m.Observations:-1;
+            var findings=new System.Text.StringBuilder();
+            if(read>=0)findings.Append(Localization.Get("rat.find.title"));
+            if(read>=1)findings.Append('\n').Append(Localization.Get("rat.find.mi"));
+            if(read>=2||read==1&&m.ScanProgress>=.45f)findings.Append('\n').Append(Localization.Get("rat.find.apxs"));
+            if(read>=2||read==1&&m.ScanProgress>=.9f)findings.Append('\n').Append(Localization.Get("rat.find.mossbauer"));
+            if(read>=2)findings.Append('\n').Append(Localization.Get("rat.find.spheres"));
+            scienceFindings.text=findings.ToString();Show(scienceFindings,read>=0);
+            if(done){scienceReadout.text=Localization.Get("rat.find.done");grindFill.style.width=Length.Percent(100);}
+            // Barra da abrasão no canto inferior direito, longe da rocha.
+            var readout=scienceReadout.parent;readout.style.position=Position.Absolute;readout.style.right=32;readout.style.bottom=96;readout.style.left=StyleKeyword.Auto;readout.style.top=StyleKeyword.Auto;readout.style.width=300;
+        }
+        void UpdateCinema()
+        {
+            var film=chapter.film;float local=film.BeatTime;float orbitStart=0,orbitEnd=0;bool orbital=chapter.Stage==ChapterStage.Intro&&film.CaptionWindow(out orbitStart,out orbitEnd,"v14.intro.hematite1","v14.intro.hematite2")&&chapter.Elapsed>=orbitStart&&chapter.Elapsed<orbitEnd;Show(orbitEvidence,orbital);Show(orbitCredit,orbital);orbitEvidence.image=chapter.investigation.orbitalMap;orbitEvidence.style.opacity=Mathf.Clamp01((chapter.Elapsed-orbitStart)/1.4f)*Mathf.Clamp01((orbitEnd-chapter.Elapsed)/1.4f)*.85f;orbitCredit.text="MERIDIANI PLANUM  ·  NASA/JPL-Caltech/ASU";
+            heading.text=Localization.Get(film.TitleKey);story.text="";caption.text=GameSettings.Subtitles?Localization.Get(film.BodyKey):"";Show(caption,!string.IsNullOrWhiteSpace(caption.text));
+            if(lastFilmTitle!=film.TitleKey){lastFilmTitle=film.TitleKey;var titleFont=filmSans;if(titleFont)heading.style.unityFontDefinition=FontDefinition.FromFont(titleFont);}
+            bool memorialTitle=chapter.Stage==ChapterStage.Farewell&&film.TitleKey=="v3.opportunity";
+            heading.style.fontSize=memorialTitle?64:film.TitleKey!=null&&film.TitleKey.StartsWith("v3.year")?56:30;
+            heading.style.letterSpacing=memorialTitle?9:2;
+            heading.parent.EnableInClassList("memorial-title",memorialTitle);
+            // Fim do módulo: "Still waiting on Mars" menor, abaixo de "Spirit and Opportunity" (como "Em viagem" na tela final da Pioneer).
+            story.text=memorialTitle?Localization.Get("mars.still.waiting"):"";
+            filmVeil.style.opacity=film.PictureBlack;
+            skip.text=chapter.CanSkip&&!memorialTitle?Localization.Get("controls.skip"):"";
+            Show(heading.parent,!string.IsNullOrEmpty(film.TitleKey));
+            heading.parent.style.opacity=Mathf.Clamp01(local/.65f)*(memorialTitle?1:Mathf.Clamp01((film.BeatLength-local)/.5f));
+            caption.style.opacity=film.CaptionOpacity;caption.BringToFront();skip.BringToFront();
+        }
+        static void Quit(){PlayerPrefs.Save();Application.Quit();}
+    }
+}
+
+

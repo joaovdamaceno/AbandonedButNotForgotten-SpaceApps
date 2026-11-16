@@ -1,0 +1,388 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: SurveyorDescent
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: surveyor.seq.Descent
+  shots:
+  - shotId: surveyor.descent.approach
+    durationSeconds: 12
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 12
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events:
+    - timeSeconds: 11
+      eventId: surveyor.descent.anomaly
+  - shotId: surveyor.descent.command
+    durationSeconds: 15
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 15
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events:
+    - timeSeconds: 0
+      eventId: surveyor.descent.offer
+    - timeSeconds: 6
+      eventId: surveyor.descent.contact1
+    - timeSeconds: 14
+      eventId: surveyor.descent.contact2
+    - timeSeconds: 15
+      eventId: surveyor.descent.deadline
+  - shotId: surveyor.descent.finalContact
+    durationSeconds: 5
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 5
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events:
+    - timeSeconds: 3
+      eventId: surveyor.descent.graceEnd
+    - timeSeconds: 4
+      eventId: surveyor.descent.cutoffEligible
+  - shotId: surveyor.descent.settlement
+    durationSeconds: 8
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 8
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events:
+    - timeSeconds: 0
+      eventId: surveyor.descent.contact3
+    - timeSeconds: 0
+      eventId: surveyor.descent.settled
+    - timeSeconds: 1.5
+      eventId: surveyor.descent.quiet
+    - timeSeconds: 3
+      eventId: surveyor.descent.ready
+  cues:
+  - cueId: SUR-S07
+    textKey: SUR-S07
+    startSeconds: 11
+    endSeconds: 17
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 2
+  - cueId: SUR-S08
+    textKey: SUR-S08
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.descent.team
+    minimumReadSeconds: 6
+    position: 0
+    priority: 1
+  - cueId: SUR-S08-PLAYER
+    textKey: descent.player.receipt
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.descent.player
+    minimumReadSeconds: 4
+    position: 0
+    priority: 1
+  - cueId: SUR-S09
+    textKey: SUR-S09
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: surveyor.descent.image
+    minimumReadSeconds: 5
+    position: 0
+    priority: 3
+  actorMarks:
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 0
+    positionMeters: {x: 0, y: 180, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 7
+    positionMeters: {x: 0, y: 45, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 11
+    positionMeters: {x: 0, y: 4.3, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 12
+    positionMeters: {x: 0, y: 3.8, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 18
+    positionMeters: {x: 0, y: 0, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 18.25
+    positionMeters: {x: 0, y: 1.2109375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 18.5
+    positionMeters: {x: 0, y: 2.34375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 18.75
+    positionMeters: {x: 0, y: 3.3984375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 19
+    positionMeters: {x: 0, y: 4.375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 19.25
+    positionMeters: {x: 0, y: 5.2734375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 19.5
+    positionMeters: {x: 0, y: 6.09375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 19.75
+    positionMeters: {x: 0, y: 6.8359375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 20
+    positionMeters: {x: 0, y: 7.5, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 20.25
+    positionMeters: {x: 0, y: 8.0859375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 20.5
+    positionMeters: {x: 0, y: 8.59375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 20.75
+    positionMeters: {x: 0, y: 9.0234375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 21
+    positionMeters: {x: 0, y: 9.375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 21.25
+    positionMeters: {x: 0, y: 9.6484375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 21.5
+    positionMeters: {x: 0, y: 9.84375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 21.75
+    positionMeters: {x: 0, y: 9.9609375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 22
+    positionMeters: {x: 0, y: 10, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 22.25
+    positionMeters: {x: 0, y: 9.9609375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 22.5
+    positionMeters: {x: 0, y: 9.84375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 22.75
+    positionMeters: {x: 0, y: 9.6484375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 23
+    positionMeters: {x: 0, y: 9.375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 23.25
+    positionMeters: {x: 0, y: 9.0234375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 23.5
+    positionMeters: {x: 0, y: 8.59375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 23.75
+    positionMeters: {x: 0, y: 8.0859375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 24
+    positionMeters: {x: 0, y: 7.5, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 24.25
+    positionMeters: {x: 0, y: 6.8359375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 24.5
+    positionMeters: {x: 0, y: 6.09375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 24.75
+    positionMeters: {x: 0, y: 5.2734375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 25
+    positionMeters: {x: 0, y: 4.375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 25.25
+    positionMeters: {x: 0, y: 3.3984375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 25.5
+    positionMeters: {x: 0, y: 2.34375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 25.75
+    positionMeters: {x: 0, y: 1.2109375, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 26
+    positionMeters: {x: 0, y: 0, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 26.25
+    positionMeters: {x: 0, y: 0.4791667, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 26.5
+    positionMeters: {x: 0, y: 0.9166667, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 26.75
+    positionMeters: {x: 0, y: 1.3125, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 27
+    positionMeters: {x: 0, y: 1.6666667, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 27.25
+    positionMeters: {x: 0, y: 1.9791666, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 27.5
+    positionMeters: {x: 0, y: 2.25, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 27.75
+    positionMeters: {x: 0, y: 2.4791665, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 28
+    positionMeters: {x: 0, y: 2.6666667, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 28.25
+    positionMeters: {x: 0, y: 2.8125, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 28.5
+    positionMeters: {x: 0, y: 2.9166667, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 28.75
+    positionMeters: {x: 0, y: 2.9791667, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 29
+    positionMeters: {x: 0, y: 3, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 29.25
+    positionMeters: {x: 0, y: 2.9791667, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 29.5
+    positionMeters: {x: 0, y: 2.9166667, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 29.75
+    positionMeters: {x: 0, y: 2.8125, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 30
+    positionMeters: {x: 0, y: 2.6666665, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 30.25
+    positionMeters: {x: 0, y: 2.4791667, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 30.5
+    positionMeters: {x: 0, y: 2.25, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 30.75
+    positionMeters: {x: 0, y: 1.9791665, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 31
+    positionMeters: {x: 0, y: 1.6666669, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 31.25
+    positionMeters: {x: 0, y: 1.3125, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 31.5
+    positionMeters: {x: 0, y: 0.91666645, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 31.75
+    positionMeters: {x: 0, y: 0.4791669, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 32
+    positionMeters: {x: 0, y: 0, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+  - actorId: Surveyor.DescentIndicator
+    timeSeconds: 40
+    positionMeters: {x: 0, y: 0, z: 0}
+    eulerAnglesDegrees: {x: 0, y: 0, z: 0}

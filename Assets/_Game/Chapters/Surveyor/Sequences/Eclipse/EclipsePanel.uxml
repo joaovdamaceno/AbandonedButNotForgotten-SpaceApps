@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+ <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss"/><Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss"/>
+ <Style src="/Assets/_Game/Shared/Localization/SubtitleLayer.uss"/><Style src="EclipsePanel.uss"/>
+ <ui:VisualElement class="sa-root sa-chapter--surveyor eclipse-root">
+  <ui:VisualElement name="eclipse-hud" class="eclipse-header"><ui:Label name="eclipse-title" class="sa-stamp"/><ui:VisualElement class="eclipse-tools"><ui:Button name="eclipse-language"/><ui:Button name="eclipse-pause-button"/></ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement name="eclipse-slot" class="eclipse-slot"><ui:VisualElement name="eclipse-frame" class="eclipse-frame"><ui:Image name="eclipse-picture" class="eclipse-picture"/><ui:Label name="eclipse-date" class="sa-stamp eclipse-date"/></ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement class="eclipse-bottom"><ui:Label name="eclipse-objective"/><ui:Label name="eclipse-status" class="eclipse-status sa-stamp"/><ui:VisualElement class="eclipse-action"><ui:Label name="eclipse-prompt"/><ui:Button name="eclipse-send"/></ui:VisualElement><ui:VisualElement name="eclipse-subtitles"/></ui:VisualElement>
+  <ui:VisualElement name="eclipse-start" class="eclipse-overlay"><ui:VisualElement class="eclipse-card"><ui:Label name="eclipse-start-title" class="eclipse-card-title"/><ui:Label name="eclipse-start-body"/><ui:Button name="eclipse-begin"/></ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement name="eclipse-pause" class="eclipse-overlay"><ui:VisualElement class="eclipse-card"><ui:Label name="eclipse-pause-title" class="eclipse-card-title"/><ui:Button name="eclipse-resume"/><ui:Button name="eclipse-restart"/><ui:Button name="eclipse-return"/></ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement name="eclipse-end" class="eclipse-overlay"><ui:VisualElement class="eclipse-card"><ui:Label name="eclipse-end-title" class="eclipse-card-title"/><ui:Label name="eclipse-end-body"/><ui:Button name="eclipse-end-restart"/></ui:VisualElement></ui:VisualElement>
+ </ui:VisualElement>
+</ui:UXML>

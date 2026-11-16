@@ -1,0 +1,61 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="SpinShotPanel.uss" />
+    <!-- Roteiro v2, cena 4 · jogo da foto em ponto de vista. Sem frases literais: os rótulos recebem chaves PIO.UI.* resolvidas pelo capítulo.
+         O fundo é o palco 3D (a câmera dentro da sonda, girando); este painel só põe a mira, a barra da volta, os quadros e a junção. -->
+    <ui:VisualElement name="spin-root" picking-mode="Ignore" class="sa-root pio-spin">
+        <ui:VisualElement name="reticle" picking-mode="Ignore" class="pio-spin__reticle" />
+        <ui:VisualElement name="flash" picking-mode="Ignore" class="pio-spin__flash" />
+
+        <!-- Quadros: cada foto tem um quadro vermelho (quadrado) e um azul (círculo), tirados juntos; aparecem em sequência, entrelaçados. -->
+        <ui:VisualElement name="film" picking-mode="Ignore" class="sa-plate pio-spin__film">
+            <ui:Label name="film-title" picking-mode="Ignore" class="pio-spin__film-title" />
+            <ui:VisualElement name="row-0" picking-mode="Ignore" class="pio-spin__row">
+                <ui:VisualElement name="frame-red-0" picking-mode="Ignore" class="pio-spin__thumb pio-spin__thumb--red"><ui:VisualElement picking-mode="Ignore" class="pio-spin__glyph pio-spin__glyph--red" /></ui:VisualElement>
+                <ui:VisualElement name="frame-blue-0" picking-mode="Ignore" class="pio-spin__thumb pio-spin__thumb--blue"><ui:VisualElement picking-mode="Ignore" class="pio-spin__glyph pio-spin__glyph--blue" /></ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="row-1" picking-mode="Ignore" class="pio-spin__row">
+                <ui:VisualElement name="frame-red-1" picking-mode="Ignore" class="pio-spin__thumb pio-spin__thumb--red"><ui:VisualElement picking-mode="Ignore" class="pio-spin__glyph pio-spin__glyph--red" /></ui:VisualElement>
+                <ui:VisualElement name="frame-blue-1" picking-mode="Ignore" class="pio-spin__thumb pio-spin__thumb--blue"><ui:VisualElement picking-mode="Ignore" class="pio-spin__glyph pio-spin__glyph--blue" /></ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="row-2" picking-mode="Ignore" class="pio-spin__row">
+                <ui:VisualElement name="frame-red-2" picking-mode="Ignore" class="pio-spin__thumb pio-spin__thumb--red"><ui:VisualElement picking-mode="Ignore" class="pio-spin__glyph pio-spin__glyph--red" /></ui:VisualElement>
+                <ui:VisualElement name="frame-blue-2" picking-mode="Ignore" class="pio-spin__thumb pio-spin__thumb--blue"><ui:VisualElement picking-mode="Ignore" class="pio-spin__glyph pio-spin__glyph--blue" /></ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="row-3" picking-mode="Ignore" class="pio-spin__row">
+                <ui:VisualElement name="frame-red-3" picking-mode="Ignore" class="pio-spin__thumb pio-spin__thumb--red"><ui:VisualElement picking-mode="Ignore" class="pio-spin__glyph pio-spin__glyph--red" /></ui:VisualElement>
+                <ui:VisualElement name="frame-blue-3" picking-mode="Ignore" class="pio-spin__thumb pio-spin__thumb--blue"><ui:VisualElement picking-mode="Ignore" class="pio-spin__glyph pio-spin__glyph--blue" /></ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="row-4" picking-mode="Ignore" class="pio-spin__row">
+                <ui:VisualElement name="frame-red-4" picking-mode="Ignore" class="pio-spin__thumb pio-spin__thumb--red"><ui:VisualElement picking-mode="Ignore" class="pio-spin__glyph pio-spin__glyph--red" /></ui:VisualElement>
+                <ui:VisualElement name="frame-blue-4" picking-mode="Ignore" class="pio-spin__thumb pio-spin__thumb--blue"><ui:VisualElement picking-mode="Ignore" class="pio-spin__glyph pio-spin__glyph--blue" /></ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Barra da volta: a zona é o intervalo em que Júpiter preenche a mira; o cursor é a posição da câmera. -->
+        <ui:VisualElement name="aim" picking-mode="Ignore" class="pio-spin__aim">
+            <ui:Label name="shot-label" picking-mode="Ignore" class="pio-spin__shot" />
+            <ui:VisualElement name="track" picking-mode="Ignore" class="pio-spin__track">
+                <ui:VisualElement name="zone" picking-mode="Ignore" class="pio-spin__zone" />
+                <ui:VisualElement name="cursor" picking-mode="Ignore" class="pio-spin__cursor" />
+            </ui:VisualElement>
+            <ui:VisualElement name="prompt" picking-mode="Ignore" class="sa-plate sa-hold pio-spin__prompt">
+                <ui:VisualElement class="sa-keycap" picking-mode="Ignore"><ui:Label text="E" class="sa-keycap__glyph" /></ui:VisualElement>
+                <ui:VisualElement class="sa-hold__body" picking-mode="Ignore">
+                    <ui:Label name="prompt-label" class="sa-hold__label" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Junção automática: as fotos se somam, o ruído cai e as duas cores viram uma imagem. -->
+        <ui:VisualElement name="combine" picking-mode="Ignore" class="sa-plate pio-spin__combine">
+            <ui:VisualElement name="composite" picking-mode="Ignore" class="pio-spin__composite" />
+            <ui:Label name="sum-label" picking-mode="Ignore" class="pio-spin__sum" />
+            <ui:VisualElement picking-mode="Ignore" class="pio-spin__noise">
+                <ui:Label name="noise-label" picking-mode="Ignore" class="pio-spin__noise-label" />
+                <ui:VisualElement picking-mode="Ignore" class="pio-spin__noise-track"><ui:VisualElement name="noise-fill" picking-mode="Ignore" class="pio-spin__noise-fill" /></ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

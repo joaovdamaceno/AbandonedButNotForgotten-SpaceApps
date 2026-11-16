@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a8aab91a73c3459b91b7c078d15cde, type: 3}
+  m_Name: MarsDualLanding
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.MarsDualLandingData
+  splitSequenceId: mars.seq.M04
+  eagleSequenceId: mars.seq.M05
+  verificationSequenceId: mars.seq.M06
+  splitSeconds: 18
+  eagleSeconds: 4
+  verificationSeconds: 9.5
+  spiritLandingUtc: {x: 2004, y: 1, z: 4}
+  opportunityLandingUtc: {x: 2004, y: 1, z: 25}
+  egressUtc: {x: 2004, y: 1, z: 31}
+  labels:
+  - textKey: MAR.L01
+    startSeconds: 0.4
+    endSeconds: 18
+    anchor: 4
+  - textKey: MAR.L02
+    startSeconds: 0.4
+    endSeconds: 20
+    anchor: 5
+  - textKey: MAR.T02
+    startSeconds: 1
+    endSeconds: 17.5
+    anchor: 2
+  - textKey: MAR.L03
+    startSeconds: 22.2
+    endSeconds: 27
+    anchor: 3
+  gameplayFollowDistanceMeters: 8
+  gameplayPivotHeightMeters: 1.1
+  gameplayPitchDegrees: 18
+  gameplayFieldOfViewDegrees: 60

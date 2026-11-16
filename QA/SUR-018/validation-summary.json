@@ -1,0 +1,63 @@
+{
+  "unity": "6000.6.7f1",
+  "urp": "17.6.0",
+  "editorTests": {
+    "passed": 8,
+    "failed": 0
+  },
+  "buildBytes": 20201961,
+  "zipBytes": 20001745,
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "159.0.8154.6",
+      "reportedRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 6GB Laptop GPU (0x000025EC) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "activeSeconds": 316.24,
+      "coldReadyMs": 17645.5,
+      "network": "10Mbps 20ms cold",
+      "sampleFpsMin": 59.03768572202717,
+      "sampleFpsMax": 60.01588655831183,
+      "peakObservedUsedWASMMiB": 163.66143798828125,
+      "earlyRestarts": 2,
+      "usedWASMBytesAfterEachRestart": [
+        170299064,
+        170299064
+      ],
+      "canvasAt4K": {
+        "width": 1280,
+        "height": 720
+      },
+      "runtimeErrors": 0
+    },
+    {
+      "browser": "firefox",
+      "version": "159.0",
+      "reportedRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 980 Direct3D11 vs_5_0 ps_5_0), or similar",
+      "activeSeconds": 314.41,
+      "coldReadyMs": 3052,
+      "network": "localhost cold",
+      "sampleFpsMin": 60.43437204910293,
+      "sampleFpsMax": 101.2688080750908,
+      "peakObservedUsedWASMMiB": 163.41085815429688,
+      "earlyRestarts": 2,
+      "usedWASMBytesAfterEachRestart": [
+        170298440,
+        170298440
+      ],
+      "canvasAt4K": {
+        "width": 1280,
+        "height": 720
+      },
+      "runtimeErrors": 0
+    }
+  ],
+  "limits": [
+    "Not a novice study or artistic/audio approval.",
+    "Not tested on integrated GPU or hosted itch.io.",
+    "WASM heap excludes GPU and much of the browser.",
+    "FPS values are samples, not a sustained benchmark.",
+    "The headless tab switch did not report a hidden page; focus handling is covered by native tests, not proven by this switch.",
+    "Firefox masks the GPU name; its GTX 980 string is not hardware identification.",
+    "Nonfatal Unity warnings include compressed-audio metadata/pitch and unavailable FSR postprocessing; the custom documentary treatment remains active."
+  ]
+}

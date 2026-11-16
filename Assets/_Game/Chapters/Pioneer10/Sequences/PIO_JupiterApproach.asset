@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: PIO_JupiterApproach
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: PIO_JupiterApproach
+  shots:
+  - shotId: PIO03.Grow
+    durationSeconds: 9
+    rigId: PIO.JupiterApproach
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 70
+    - timeSeconds: 9
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 36
+    events: []
+  - shotId: PIO03.Open
+    durationSeconds: 13
+    rigId: PIO.JupiterApproach
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 1
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 36
+    - timeSeconds: 13
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 36
+    events: []
+  - shotId: PIO03.Instrument
+    durationSeconds: 8
+    rigId: PIO.JupiterApproach.Instrument
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    - timeSeconds: 8
+      positionMeters: {x: 0, y: 0, z: 0.05}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 38
+    events: []
+  cues:
+  - cueId: PIO.03.01
+    textKey: PIO.03.01
+    startSeconds: 0
+    endSeconds: 6.45
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.03.02
+    textKey: PIO.03.02
+    startSeconds: 9
+    endSeconds: 15
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.03.03
+    textKey: PIO.03.03
+    startSeconds: 17
+    endSeconds: 23
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.03.04
+    textKey: PIO.03.04
+    startSeconds: 24
+    endSeconds: 29
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []

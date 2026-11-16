@@ -1,0 +1,15 @@
+# SUR-018 — fontes e créditos
+
+| Recurso | Origem e autoria | Uso, adaptação e destino |
+|---|---|---|
+| Apollo Lunar Module.glb | NASA / Michael D. Carbajal; https://science.nasa.gov/3d-resources/apollo-lunar-module/ ; https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Apollo%20Lunar%20Module | Uso educativo/informativo conforme https://www.nasa.gov/nasa-brand-center/images-and-media/ . Sem endosso. Original nesta pasta; conversão Blender FBX e materiais URP em Documentary/Art. Adaptação visual, não levantamento exato do Intrepid. |
+| Mapa LROC / CGI Moon Kit | NASA Scientific Visualization Studio / Ernie Wright, LRO/LROC; https://svs.gsfc.nasa.gov/4720/ | Crédito solicitado: NASA's Scientific Visualization Studio. JPEG 2048×1024 em Documentary/Art/Moon_LROC_2k.jpg; https://svs.gsfc.nasa.gov/vis/a000000/a004700/a004720/lroc_color_2k.jpg . Mapa visual para renderização, não medição científica. |
+| Surveyor e retroestágio | Modelo fornecido pela equipe; procedência/hashes em SourceAssets/Surveyor3/README.md | Não é modelo NASA. Separação da câmera preservando UV/atlas da conversão existente (SUR-021: a primeira separação deixou metade da carcaça na sonda; `fix_recoverable_camera.py` move a câmera inteira, peça por peça, para CameraHousing — placa de montagem, parafusos, tripé e cabo permanecem na sonda); retro extraído do segundo GLB. SurveyorRecoverable.fbx, SurveyorRetro.fbx e manifests em Documentary/Art. |
+| Traje A7L | Reconstrução original do projeto; build_models.py | Malha, esqueleto e clipes produzidos para o jogo com referências fotográficas Apollo. Não é scan Smithsonian nem modelo oficial NASA. Sem rosto. ApolloA7L.fbx e manifest em Documentary/Art. |
+| AS12-48-7134 | NASA / Apollo 12; https://science.nasa.gov/resource/apollo-12-and-surveyor-3/ | Reutiliza arquivo e crédito SUR-013, em Sequences/Visit/Archive. Imagem histórica identificada separadamente da reconstrução. |
+| Outfit e IBM Plex Mono | Fontes existentes, licenças OFL em Shared/Fonts | Reuso sem download novo. |
+| Música e mecanismos | Composições temporárias/sons próprios SUR-009…015, SourceAssets/Surveyor3/Score | Cues e resposta a carga/contato reorganizados; sem gravação comercial. Som mecânico externo é recurso cinematográfico. |
+
+Sem compra, modelo Smithsonian redistribuído, música comercial ou dependência externa durante a partida. Código e reconstruções novos pertencem à produção do jogo, sem implicar revisão da NASA. Reproduzir modelos com Blender 5.2: build_models.py e prepare_hardware.py. Preservar originais fora de Assets e manter este crédito junto das conversões.
+
+SUR-019 reutiliza essas malhas e a pose neutra. A marcha e os gestos publicados passam a ser avaliados por SurveyorApolloCast: orientação obtida dos ossos do pé, apoios em espaço do mundo e IK. Os antigos clipes Walk/Inspect continuam no fonte, mas não conduzem a nova marcha. Sem download de animação ou atribuição a captura de movimento. TV, contato e contraste da terra escavada são tratamentos artísticos do jogo.

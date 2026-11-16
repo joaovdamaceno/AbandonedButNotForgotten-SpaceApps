@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ca97ea9b79aa345aed9c2d7140dcef, type: 3}
+  m_Name: AudioCatalog
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.AudioCatalog
+  cues:
+  - id: SFX_SCAN
+    bus: 2
+    clips: []
+    loop: 1
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 40
+  - id: SFX_PIO_RADIATION_NOISE
+    bus: 2
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_CMD_SENT
+    bus: 3
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_PIO_DETECTOR_TICK
+    bus: 3
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0.05
+    maxSeconds: 0
+  - id: SFX_RADIO_RECEIVED
+    bus: 2
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_RADIO_NOISE
+    bus: 2
+    clips: []
+    loop: 1
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 12
+  - id: SFX_HOLD_START
+    bus: 3
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_HOLD_LOOP
+    bus: 2
+    clips: []
+    loop: 1
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 30
+  - id: SFX_HOLD_DONE
+    bus: 3
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_HOLD_RELEASE
+    bus: 3
+    clips: []
+    loop: 0
+    volume: 1
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_LANCAMENTO
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 4b970eab895557e4694f7e07d570f1e0, type: 3}
+    loop: 1
+    volume: 0.9
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_CINTURAO
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 4efb4f771f5798e419eaa5870698e67e, type: 3}
+    loop: 1
+    volume: 0.85
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_MARAVILHA
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 776d8961a3eb21543b17204922c2a866, type: 3}
+    loop: 1
+    volume: 0.9
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_JUPITER
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: efb28ecf690208047baa72aeeac8038d, type: 3}
+    loop: 1
+    volume: 0.95
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_ANOS
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: cdbc2cf926b5dac4982caff5422de8af, type: 3}
+    loop: 1
+    volume: 0.85
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_RADIO
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 7df4d1380d4e8f74e8a1ac3a845640ff, type: 3}
+    loop: 1
+    volume: 0.85
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: MUS_PIO_FINAL
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 4b5b9e2005fbaa84f891d7177039a15a, type: 3}
+    loop: 1
+    volume: 0.95
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_PIO_LAUNCH
+    bus: 2
+    clips:
+    - {fileID: 8300000, guid: 73eeeaa78a579eb4e81c91d4cecd418c, type: 3}
+    loop: 0
+    volume: 0.9
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: SFX_PIO_POWERDOWN
+    bus: 2
+    clips:
+    - {fileID: 8300000, guid: 50b9da7caca96db408363447ebaf9d60, type: 3}
+    loop: 0
+    volume: 0.8
+    pitchVariation: 0
+    maxSeconds: 0

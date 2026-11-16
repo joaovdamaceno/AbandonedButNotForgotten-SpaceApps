@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ca97ea9b79aa345aed9c2d7140dcef, type: 3}
+  m_Name: DocumentaryAudio
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.AudioCatalog
+  cues:
+  - id: sur.doc.departure
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 0f78db83bbaffc4478818333ab9f2e3f, type: 3}
+    loop: 1
+    volume: 0.29
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: sur.doc.science
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: df76750a8ac7fa8459701bc609482eb0, type: 3}
+    loop: 1
+    volume: 0.18
+    pitchVariation: 0
+    maxSeconds: 0
+  - id: sur.doc.return
+    bus: 1
+    clips:
+    - {fileID: 8300000, guid: 80e49f26ad232804e90a40f36e5f97b5, type: 3}
+    loop: 1
+    volume: 0.34
+    pitchVariation: 0
+    maxSeconds: 0

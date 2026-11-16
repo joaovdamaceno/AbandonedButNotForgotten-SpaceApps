@@ -26,3 +26,13 @@ __pycache__/
 *.p12
 Thumbs.db
 .DS_Store
+# Unity (CORE-001)
+/MemoryCaptures/
+/Recordings/
+/[Aa]ssets/AssetStoreTools*
+*.unitypackage
+*.apk
+*.aab
+crashlytics-build.properties
+# Artefato do Burst no build WebGL (CORE-006), gravado relativo à raiz do projeto
+/Data/Plugins/

@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: PIO_Listening
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: PIO_Listening
+  shots:
+  - shotId: PIO07.Teach
+    durationSeconds: 6
+    rigId: PIO.Listening
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 0, z: 0}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 55
+    - timeSeconds: 6
+      positionMeters: {x: 0, y: 0.2, z: 0.8}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 54
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Listening.Teach
+  - shotId: PIO07.Contact1
+    durationSeconds: 5.5
+    rigId: PIO.Listening
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 2, y: 0.4, z: 0.8}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 52
+    - timeSeconds: 5.5
+      positionMeters: {x: 2.4, y: 0.6, z: 1.4}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 51
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Listening.Open1
+  - shotId: PIO07.Contact2
+    durationSeconds: 5
+    rigId: PIO.Listening
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: -2, y: 0.2, z: 1}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 56
+    - timeSeconds: 5
+      positionMeters: {x: -2.6, y: 0.3, z: 1.6}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 57
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Listening.Open2
+  - shotId: PIO07.Contact3
+    durationSeconds: 7.5
+    rigId: PIO.Listening
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: -0.4, z: 2.2}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 50
+    - timeSeconds: 7.5
+      positionMeters: {x: 0.4, y: -0.6, z: 3}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 49
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Listening.Open3
+  - shotId: PIO07.Attempt4
+    durationSeconds: 7
+    rigId: PIO.Listening
+    lookAtTargetId: 
+    easing: 0
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 1.2, y: 0.8, z: 3.6}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 58
+    - timeSeconds: 7
+      positionMeters: {x: 1.2, y: 1, z: 4.2}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 59
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Listening.Open4
+  - shotId: PIO07.Breathe
+    durationSeconds: 9
+    rigId: PIO.Listening
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 1.4, z: 5}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 60
+    - timeSeconds: 9
+      positionMeters: {x: 0, y: 1.8, z: 6}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 62
+    events:
+    - timeSeconds: 0
+      eventId: PIO.Listening.Breathe
+  cues:
+  - cueId: PIO.07.01
+    textKey: PIO.07.01
+    startSeconds: 0
+    endSeconds: 5.8
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.07.02
+    textKey: PIO.07.02
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Listening.Contact1
+    minimumReadSeconds: 4.8
+    position: 0
+    priority: 0
+  - cueId: PIO.07.03
+    textKey: PIO.07.03
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Listening.Contact2
+    minimumReadSeconds: 4.5
+    position: 0
+    priority: 0
+  - cueId: PIO.07.04
+    textKey: PIO.07.04
+    startSeconds: 0
+    endSeconds: 0
+    triggerId: PIO.Listening.Contact3
+    minimumReadSeconds: 6.8
+    position: 0
+    priority: 0
+  - cueId: PIO.07.05
+    textKey: PIO.07.05
+    startSeconds: 24.5
+    endSeconds: 29.5
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: PIO.07.06
+    textKey: PIO.07.06
+    startSeconds: 32
+    endSeconds: 36
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []

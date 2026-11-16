@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20cee6d73bfbb44a2dfe795779c513, type: 3}
+  m_Name: SurveyorCruise
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.SequenceDefinition
+  sequenceId: surveyor.seq.Cruise
+  shots:
+  - shotId: surveyor.cruise.travel
+    durationSeconds: 10
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 10
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events: []
+  - shotId: surveyor.cruise.guidance
+    durationSeconds: 14
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 14
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events: []
+  - shotId: surveyor.cruise.burn
+    durationSeconds: 8
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 8
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events: []
+  - shotId: surveyor.cruise.descent
+    durationSeconds: 5
+    rigId: world
+    lookAtTargetId: 
+    easing: 1
+    minGroundClearanceMeters: 0.3
+    continueFromPreviousShot: 0
+    keyframes:
+    - timeSeconds: 0
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    - timeSeconds: 5
+      positionMeters: {x: 0, y: 3, z: -10}
+      eulerAnglesDegrees: {x: 0, y: 0, z: 0}
+      fieldOfViewDegrees: 45
+    events:
+    - timeSeconds: 0
+      eventId: surveyor.cruise.handoff
+  cues:
+  - cueId: SUR-S04
+    textKey: SUR-S04
+    startSeconds: 0
+    endSeconds: 6
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: SUR-S05
+    textKey: SUR-S05
+    startSeconds: 10
+    endSeconds: 16
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  - cueId: SUR-S06
+    textKey: SUR-S06
+    startSeconds: 33
+    endSeconds: 37
+    triggerId: 
+    minimumReadSeconds: 0
+    position: 0
+    priority: 0
+  actorMarks: []

@@ -1,0 +1,81 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="PlaquePanel.uss" />
+    <!-- PIO-009. Sem frases literais: nomes e instruções recebem chaves PIO.UI.* resolvidas pelo capítulo. Arte: cinco PNGs de
+         Art/Plaque/Textures, gerados junto do SVG mestre Art/PlaqueEducational.svg (adaptação educativa, não a gravura fiel). -->
+    <ui:VisualElement name="plaque-root" picking-mode="Ignore" class="sa-root pio-plaque">
+        <ui:VisualElement name="stage" picking-mode="Ignore" class="pio-plaque__stage">
+
+            <!-- Quadro da placa (proporção 2:3): cinco contornos nomeados, com o símbolo esmaecido como dica. -->
+            <ui:VisualElement name="board" picking-mode="Ignore" class="pio-plaque__board">
+                <ui:VisualElement name="slot-0" class="pio-plaque__slot pio-plaque__slot--0">
+                    <ui:VisualElement name="slot-icon-0" picking-mode="Ignore" class="pio-plaque__icon pio-plaque__icon--0 pio-plaque__slot-icon" />
+                    <ui:Label name="slot-name-0" picking-mode="Ignore" class="pio-plaque__slot-name" />
+                    <ui:Label text="✓" picking-mode="Ignore" class="pio-plaque__check" />
+                </ui:VisualElement>
+                <ui:VisualElement name="slot-1" class="pio-plaque__slot pio-plaque__slot--1">
+                    <ui:VisualElement name="slot-icon-1" picking-mode="Ignore" class="pio-plaque__icon pio-plaque__icon--1 pio-plaque__slot-icon" />
+                    <ui:Label name="slot-name-1" picking-mode="Ignore" class="pio-plaque__slot-name" />
+                    <ui:Label text="✓" picking-mode="Ignore" class="pio-plaque__check" />
+                </ui:VisualElement>
+                <ui:VisualElement name="slot-2" class="pio-plaque__slot pio-plaque__slot--2">
+                    <ui:VisualElement name="slot-icon-2" picking-mode="Ignore" class="pio-plaque__icon pio-plaque__icon--2 pio-plaque__slot-icon" />
+                    <ui:Label name="slot-name-2" picking-mode="Ignore" class="pio-plaque__slot-name" />
+                    <ui:Label text="✓" picking-mode="Ignore" class="pio-plaque__check" />
+                </ui:VisualElement>
+                <ui:VisualElement name="slot-3" class="pio-plaque__slot pio-plaque__slot--3">
+                    <ui:VisualElement name="slot-icon-3" picking-mode="Ignore" class="pio-plaque__icon pio-plaque__icon--3 pio-plaque__slot-icon" />
+                    <ui:Label name="slot-name-3" picking-mode="Ignore" class="pio-plaque__slot-name" />
+                    <ui:Label text="✓" picking-mode="Ignore" class="pio-plaque__check" />
+                </ui:VisualElement>
+                <ui:VisualElement name="slot-4" class="pio-plaque__slot pio-plaque__slot--4">
+                    <ui:VisualElement name="slot-icon-4" picking-mode="Ignore" class="pio-plaque__icon pio-plaque__icon--4 pio-plaque__slot-icon" />
+                    <ui:Label name="slot-name-4" picking-mode="Ignore" class="pio-plaque__slot-name" />
+                    <ui:Label text="✓" picking-mode="Ignore" class="pio-plaque__check" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="side" picking-mode="Ignore" class="pio-plaque__side">
+                <!-- Bandeja: as peças restantes, símbolo + nome. Peça encaixada some (o lugar não se mexe). -->
+                <ui:VisualElement name="tray" picking-mode="Ignore" class="pio-plaque__tray">
+                    <ui:VisualElement name="card-0" class="pio-plaque__card">
+                        <ui:VisualElement name="card-icon-0" picking-mode="Ignore" class="pio-plaque__icon pio-plaque__icon--0 pio-plaque__card-icon" />
+                        <ui:Label name="card-name-0" picking-mode="Ignore" class="pio-plaque__card-name" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="card-1" class="pio-plaque__card">
+                        <ui:VisualElement name="card-icon-1" picking-mode="Ignore" class="pio-plaque__icon pio-plaque__icon--1 pio-plaque__card-icon" />
+                        <ui:Label name="card-name-1" picking-mode="Ignore" class="pio-plaque__card-name" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="card-2" class="pio-plaque__card">
+                        <ui:VisualElement name="card-icon-2" picking-mode="Ignore" class="pio-plaque__icon pio-plaque__icon--2 pio-plaque__card-icon" />
+                        <ui:Label name="card-name-2" picking-mode="Ignore" class="pio-plaque__card-name" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="card-3" class="pio-plaque__card">
+                        <ui:VisualElement name="card-icon-3" picking-mode="Ignore" class="pio-plaque__icon pio-plaque__icon--3 pio-plaque__card-icon" />
+                        <ui:Label name="card-name-3" picking-mode="Ignore" class="pio-plaque__card-name" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="card-4" class="pio-plaque__card">
+                        <ui:VisualElement name="card-icon-4" picking-mode="Ignore" class="pio-plaque__icon pio-plaque__icon--4 pio-plaque__card-icon" />
+                        <ui:Label name="card-name-4" picking-mode="Ignore" class="pio-plaque__card-name" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- Contorno errado: mensagem neutra, a peça voltou, nada foi perdido. -->
+                <ui:VisualElement name="retry" picking-mode="Ignore" class="sa-plate pio-plaque__retry">
+                    <ui:Label name="retry-label" class="sa-hold__label" />
+                </ui:VisualElement>
+
+                <ui:VisualElement name="hold" class="sa-plate sa-hold pio-plaque__hold" picking-mode="Ignore">
+                    <ui:VisualElement class="sa-keycap" picking-mode="Ignore"><ui:Label text="E" class="sa-keycap__glyph" /></ui:VisualElement>
+                    <ui:VisualElement class="sa-hold__body" picking-mode="Ignore">
+                        <ui:Label name="plaque-label" class="sa-hold__label" />
+                        <ui:Label name="snap-label" class="sa-hold__status" />
+                        <ui:VisualElement class="sa-progress" picking-mode="Ignore"><ui:VisualElement name="progress-fill" class="sa-progress__fill" /></ui:VisualElement>
+                        <ui:VisualElement name="assist" class="sa-progress pio-plaque__assist" picking-mode="Ignore"><ui:VisualElement name="assist-fill" class="sa-progress__fill pio-plaque__assist-fill" /></ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

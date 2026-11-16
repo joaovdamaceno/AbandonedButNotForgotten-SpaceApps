@@ -1,0 +1,27 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+ <Style src="../../../../UI/Design/SpaceAppsTokens.uss"/><Style src="../../../../UI/Design/SpaceAppsComponents.uss"/><Style src="../../UI/DescentTelemetry.uss"/><Style src="ObservationPanel.uss"/>
+ <ui:VisualElement class="sa-root sa-chapter--surveyor descent-root obs-root">
+  <ui:VisualElement class="obs-header"><ui:Label name="obs-title" class="sa-stamp descent-accent"/><ui:VisualElement class="descent-toolbar"><ui:Button name="obs-language" class="descent-tool"/><ui:Button name="obs-pause-button" class="descent-tool"/></ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement class="obs-body">
+   <ui:VisualElement name="obs-slot" class="obs-slot"><ui:VisualElement name="obs-screen" class="obs-screen">
+    <ui:Image name="obs-live" class="obs-live" picking-mode="Ignore"/>
+    <ui:Label name="obs-aim" text="+" class="obs-aim" picking-mode="Ignore"/><ui:VisualElement name="obs-frame" class="obs-frame" picking-mode="Ignore"/>
+    <ui:VisualElement name="obs-marker" class="obs-marker" picking-mode="Ignore"><ui:Label name="obs-direction" class="obs-direction"/></ui:VisualElement>
+   </ui:VisualElement></ui:VisualElement>
+   <ui:VisualElement class="obs-instrument">
+    <ui:Label name="obs-count" class="sa-stamp descent-accent"/><ui:Label name="obs-objective" class="obs-objective"/>
+    <ui:Label name="obs-status" class="obs-status"/><ui:Label name="obs-progress" class="obs-progress"/>
+    <ui:Button name="obs-primary" class="descent-primary"/><ui:Button name="obs-assist" class="descent-secondary"/><ui:Button name="obs-lens" class="descent-secondary"/>
+    <ui:Label name="obs-controls" class="obs-controls"/>
+    <ui:VisualElement class="obs-gallery"><ui:Button name="obs-gallery-0"/><ui:Button name="obs-gallery-1"/><ui:Button name="obs-gallery-2"/></ui:VisualElement>
+    <ui:Button name="obs-end-return" class="descent-secondary"/><ui:Label name="obs-provenance" class="obs-provenance"/>
+   </ui:VisualElement>
+  </ui:VisualElement>
+  <ui:VisualElement class="obs-caption-slot"><ui:VisualElement name="obs-subtitle-plate" class="descent-subtitle-plate"><ui:Label name="obs-subtitle" class="descent-subtitle"/></ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement name="obs-result" class="obs-overlay"><ui:VisualElement name="obs-result-card" class="obs-result-card">
+   <ui:Image name="obs-photo" class="obs-photo" picking-mode="Ignore"/>
+   <ui:VisualElement class="obs-result-copy"><ui:Label name="obs-result-name" class="obs-objective"/><ui:Label name="obs-result-text" class="obs-result-text"/><ui:Label name="obs-history" class="obs-provenance"/><ui:Button name="obs-continue" class="descent-primary"/></ui:VisualElement>
+  </ui:VisualElement></ui:VisualElement>
+  <ui:VisualElement name="obs-pause" class="descent-overlay"><ui:VisualElement name="obs-pause-card" class="descent-pause-card"><ui:Label name="obs-pause-title" class="descent-pause-title"/><ui:Button name="obs-resume" class="descent-primary"/><ui:Button name="obs-restart" class="descent-secondary"/><ui:Button name="obs-return" class="descent-secondary"/></ui:VisualElement></ui:VisualElement>
+ </ui:VisualElement>
+</ui:UXML>

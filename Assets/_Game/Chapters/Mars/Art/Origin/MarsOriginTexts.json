@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "mars",
+  "source": "Docs/Chapters/01_MARS_SOURCES.md (MS01–MS05). Texto de jogo só aqui: nenhuma frase em C#.",
+  "notes": [
+    "MAR-013 (revisada). Mesmo formato de 'texts' em MarsSubtitles.json. 'GUSEV CRATER' e 'MERIDIANI PLANUM' nomeiam os dois locais no globo; 'THIS ROVER IS OPPORTUNITY' abre a parte da hematita. O título '2003' é MAR.T01 em MarsSubtitles.json.",
+    "O jogo começa em inglês; o português aparece quando a pessoa escolhe esse idioma no menu."
+  ],
+  "texts": [
+    { "key": "MAR.ORI.01", "pt": "TERRA · PREPARAÇÃO DA MISSÃO", "en": "EARTH · MISSION PREPARATION" },
+    { "key": "MAR.ORI.02", "pt": "POR QUE MERIDIANI PLANUM?", "en": "WHY MERIDIANI PLANUM?" },
+    { "key": "MAR.ORI.04", "pt": "MERIDIANI PLANUM", "en": "MERIDIANI PLANUM" },
+    { "key": "MAR.ORI.05", "pt": "ESTE ROVER É A OPPORTUNITY", "en": "THIS ROVER IS OPPORTUNITY" },
+    { "key": "MAR.ORI.03", "pt": "CRATERA GUSEV", "en": "GUSEV CRATER" }
+  ]
+}

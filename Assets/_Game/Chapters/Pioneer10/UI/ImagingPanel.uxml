@@ -1,0 +1,64 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsTokens.uss" />
+    <Style src="/Assets/_Game/UI/Design/SpaceAppsComponents.uss" />
+    <Style src="ImagingPanel.uss" />
+    <!-- PIO-006. Sem frases literais: os rótulos recebem chaves PIO.UI.* resolvidas pelo capítulo.
+         Quadro no UiFrame do anchor PIO.Imaging (direita); a sonda 3D fica à esquerda. -->
+    <ui:VisualElement name="imaging-root" picking-mode="Ignore" class="sa-root pio-img">
+        <ui:VisualElement name="frame" picking-mode="Ignore" class="sa-instrument pio-img__frame">
+
+            <!-- Roteiro v2: "Passo n/3" (só na versão de três passos). -->
+            <ui:Label name="step-label" picking-mode="Ignore" class="pio-img__step" />
+
+            <!-- Canais: quadrado = vermelho, círculo = azul (não depende só de cor). -->
+            <ui:VisualElement picking-mode="Ignore" class="pio-img__channels">
+                <ui:VisualElement picking-mode="Ignore" class="pio-img__channel pio-img__channel--red">
+                    <ui:VisualElement picking-mode="Ignore" class="pio-img__glyph pio-img__glyph--red" />
+                    <ui:Label name="channel-red" class="pio-img__channel-label" />
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="pio-img__channel pio-img__channel--blue">
+                    <ui:VisualElement picking-mode="Ignore" class="pio-img__glyph pio-img__glyph--blue" />
+                    <ui:Label name="channel-blue" class="pio-img__channel-label" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Imagem: oito faixas verticais sob um véu; cada passagem revela uma (1–4 vermelhas, 5–8 azuis). -->
+            <ui:VisualElement name="image" picking-mode="Ignore" class="pio-img__image">
+                <ui:VisualElement name="strip-0" picking-mode="Ignore" class="pio-img__strip pio-img__strip--red"><ui:Label text="1" class="pio-img__strip-number" /></ui:VisualElement>
+                <ui:VisualElement name="strip-1" picking-mode="Ignore" class="pio-img__strip pio-img__strip--red"><ui:Label text="2" class="pio-img__strip-number" /></ui:VisualElement>
+                <ui:VisualElement name="strip-2" picking-mode="Ignore" class="pio-img__strip pio-img__strip--red"><ui:Label text="3" class="pio-img__strip-number" /></ui:VisualElement>
+                <ui:VisualElement name="strip-3" picking-mode="Ignore" class="pio-img__strip pio-img__strip--red"><ui:Label text="4" class="pio-img__strip-number" /></ui:VisualElement>
+                <ui:VisualElement name="strip-4" picking-mode="Ignore" class="pio-img__strip pio-img__strip--blue"><ui:Label text="5" class="pio-img__strip-number" /></ui:VisualElement>
+                <ui:VisualElement name="strip-5" picking-mode="Ignore" class="pio-img__strip pio-img__strip--blue"><ui:Label text="6" class="pio-img__strip-number" /></ui:VisualElement>
+                <ui:VisualElement name="strip-6" picking-mode="Ignore" class="pio-img__strip pio-img__strip--blue"><ui:Label text="7" class="pio-img__strip-number" /></ui:VisualElement>
+                <ui:VisualElement name="strip-7" picking-mode="Ignore" class="pio-img__strip pio-img__strip--blue"><ui:Label text="8" class="pio-img__strip-number" /></ui:VisualElement>
+                <ui:VisualElement name="disc" picking-mode="Ignore" class="pio-img__disc" />
+                <!-- Interrupção (PIO-008 estiliza e preenche): só escurece a imagem, sem pisca. -->
+                <ui:VisualElement name="interrupt-dim" picking-mode="Ignore" class="pio-img__dim" />
+            </ui:VisualElement>
+
+            <!-- Cursor de fase: a zona larga é a passagem pelo planeta; contorno grosso, não só cor. -->
+            <ui:VisualElement name="track" picking-mode="Ignore" class="pio-img__track">
+                <ui:VisualElement name="zone" picking-mode="Ignore" class="pio-img__zone" />
+                <ui:VisualElement name="cursor" picking-mode="Ignore" class="pio-img__cursor" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="hold" class="sa-plate sa-hold pio-img__hold" picking-mode="Ignore">
+                <ui:VisualElement class="sa-keycap" picking-mode="Ignore"><ui:Label text="E" class="sa-keycap__glyph" /></ui:VisualElement>
+                <ui:VisualElement class="sa-hold__body" picking-mode="Ignore">
+                    <ui:Label name="scan-label" class="sa-hold__label" />
+                    <ui:VisualElement class="sa-progress" picking-mode="Ignore"><ui:VisualElement name="progress-fill" class="sa-progress__fill" /></ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Composição: o verde NÃO é medido; contorno sem preenchimento = estimado no processamento (cue PIO.04.06). -->
+            <ui:VisualElement name="green-chip" picking-mode="Ignore" class="pio-img__legend">
+                <ui:VisualElement picking-mode="Ignore" class="pio-img__swatch pio-img__swatch--red" />
+                <ui:VisualElement picking-mode="Ignore" class="pio-img__swatch pio-img__swatch--green" />
+                <ui:VisualElement picking-mode="Ignore" class="pio-img__swatch pio-img__swatch--blue" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="recovery-slot" picking-mode="Ignore" class="pio-img__recovery" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

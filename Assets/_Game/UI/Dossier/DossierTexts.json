@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "source": "UI-002 (R2). Textos da interface do dossiê. Chaves de capítulo (MAR.TITLE etc.) vêm da tabela de cada capítulo no ChapterCatalog.",
+  "notes": [
+    "Formato igual à seção 'texts' de MarsSubtitles.json: {key, pt, en}.",
+    "Textos propostos por R2 e ainda sem revisão editorial: ver Docs/Art/UI_SPEC.md (seção Para quem implementa).",
+    "Créditos: acrescente uma chave 'credits.line.<nome>' por recurso importado (ASSET_CREDITS.md é a fonte de procedência).",
+    "slot.<id>.* são o texto de reserva da pasta; se o ChapterDefinition tem tabela própria, ela prevalece."
+  ],
+  "texts": [
+    {
+      "key": "dossier.stamp",
+      "pt": "ARQUIVO · TRÊS MISSÕES",
+      "en": "ARCHIVE · THREE MISSIONS"
+    },
+    {
+      "key": "dossier.title",
+      "pt": "Abandoned, But Not Forgotten",
+      "en": "Abandoned, But Not Forgotten"
+    },
+    {
+      "key": "dossier.lede",
+      "pt": "Escolha uma pasta. Cada capítulo começa e termina sozinho.",
+      "en": "Choose a folder. Each chapter begins and ends on its own."
+    },
+    {
+      "key": "dossier.disclaimer",
+      "pt": "Produção educativa independente",
+      "en": "Independent educational production"
+    },
+    {
+      "key": "folder.chapter",
+      "pt": "CAPÍTULO",
+      "en": "CHAPTER"
+    },
+    {
+      "key": "folder.details",
+      "pt": "Detalhes",
+      "en": "Details"
+    },
+    {
+      "key": "folder.start",
+      "pt": "Iniciar",
+      "en": "Start"
+    },
+    {
+      "key": "folder.unavailable",
+      "pt": "EM PREPARAÇÃO · AINDA INDISPONÍVEL",
+      "en": "IN PREPARATION · NOT AVAILABLE YET"
+    },
+    {
+      "key": "photo.pending",
+      "pt": "FOTO NASA · PENDENTE",
+      "en": "NASA PHOTO · PENDING"
+    },
+    {
+      "key": "footer.language",
+      "pt": "IDIOMA",
+      "en": "LANGUAGE"
+    },
+    {
+      "key": "language.pt.name",
+      "pt": "Português",
+      "en": "Portuguese"
+    },
+    {
+      "key": "language.en.name",
+      "pt": "English",
+      "en": "English"
+    },
+    {
+      "key": "footer.settings",
+      "pt": "Configurações",
+      "en": "Settings"
+    },
+    {
+      "key": "footer.credits",
+      "pt": "Créditos e fontes",
+      "en": "Credits and sources"
+    },
+    {
+      "key": "panel.close",
+      "pt": "Voltar",
+      "en": "Back"
+    },
+    {
+      "key": "error.load",
+      "pt": "Não foi possível abrir este capítulo. Tente de novo.",
+      "en": "This chapter could not be opened. Please try again."
+    },
+    {
+      "key": "loading.stamp",
+      "pt": "CARREGANDO",
+      "en": "LOADING"
+    },
+    {
+      "key": "loading.title",
+      "pt": "Preparando a cena…",
+      "en": "Preparing the scene…"
+    },
+    {
+      "key": "loading.returning",
+      "pt": "Voltando ao arquivo…",
+      "en": "Returning to the archive…"
+    },
+    {
+      "key": "loading.note",
+      "pt": "O tempo da missão só começa quando a cena abrir.",
+      "en": "Mission time only starts once the scene opens."
+    },
+    {
+      "key": "loading.hint",
+      "pt": "Ainda carregando. Isso pode levar alguns segundos.",
+      "en": "Still loading. This may take a few seconds."
+    },
+    {
+      "key": "details.stamp",
+      "pt": "DETALHES · OPCIONAL",
+      "en": "DETAILS · OPTIONAL"
+    },
+    {
+      "key": "details.duration",
+      "pt": "DURAÇÃO",
+      "en": "DURATION"
+    },
+    {
+      "key": "details.todo",
+      "pt": "O QUE VOCÊ FARÁ",
+      "en": "WHAT YOU WILL DO"
+    },
+    {
+      "key": "details.optional",
+      "pt": "Você não precisa ler isto para jogar.",
+      "en": "You don't need to read this to play."
+    },
+    {
+      "key": "settings.title",
+      "pt": "Configurações",
+      "en": "Settings"
+    },
+    {
+      "key": "settings.master",
+      "pt": "Volume geral",
+      "en": "Master volume"
+    },
+    {
+      "key": "settings.music",
+      "pt": "Música",
+      "en": "Music"
+    },
+    {
+      "key": "settings.sfx",
+      "pt": "Efeitos",
+      "en": "Effects"
+    },
+    {
+      "key": "settings.motion",
+      "pt": "Reduzir movimento",
+      "en": "Reduce motion"
+    },
+    {
+      "key": "settings.hold",
+      "pt": "Modo de segurar",
+      "en": "Hold mode"
+    },
+    {
+      "key": "settings.assist",
+      "pt": "Assistência extra",
+      "en": "Extra assistance"
+    },
+    {
+      "key": "settings.on",
+      "pt": "Ligado",
+      "en": "On"
+    },
+    {
+      "key": "settings.off",
+      "pt": "Desligado",
+      "en": "Off"
+    },
+    {
+      "key": "settings.hold.hold",
+      "pt": "Segurar E",
+      "en": "Hold E"
+    },
+    {
+      "key": "settings.hold.toggle",
+      "pt": "Pressionar E para iniciar e parar",
+      "en": "Press E to start and stop"
+    },
+    {
+      "key": "settings.decrease",
+      "pt": "Diminuir",
+      "en": "Decrease"
+    },
+    {
+      "key": "settings.increase",
+      "pt": "Aumentar",
+      "en": "Increase"
+    },
+    {
+      "key": "credits.title",
+      "pt": "Créditos e fontes",
+      "en": "Credits and sources"
+    },
+    {
+      "key": "credits.line.production",
+      "pt": "Abandoned, But Not Forgotten é uma produção educativa independente, criada para o NASA Space Apps. Sem afiliação ou endosso da NASA.",
+      "en": "Abandoned, But Not Forgotten is an independent educational production made for NASA Space Apps. It is not affiliated with or endorsed by NASA."
+    },
+    {
+      "key": "credits.line.fonts",
+      "pt": "Tipografia: Outfit (Copyright 2021 The Outfit Project Authors) e IBM Plex Mono (Copyright 2017 IBM Corp.), ambas sob a SIL Open Font License 1.1.",
+      "en": "Typography: Outfit (Copyright 2021 The Outfit Project Authors) and IBM Plex Mono (Copyright 2017 IBM Corp.), both under the SIL Open Font License 1.1."
+    },
+    {
+      "key": "credits.line.surveyor",
+      "pt": "Modelo 3D da Surveyor 3: fornecido pela equipe (autor individual não informado) e otimizado para o navegador. Não é um modelo oficial da NASA.",
+      "en": "Surveyor 3 3D model: supplied by the team (individual author not stated) and optimized for the browser. It is not an official NASA model."
+    },
+    {
+      "key": "credits.line.sources",
+      "pt": "Os textos históricos seguem fontes oficiais e relatórios da época, separando observação, hipótese e simplificação. A lista completa de fontes e de recursos está em SCIENCE_SOURCES.md e ASSET_CREDITS.md, no repositório do projeto.",
+      "en": "Historical texts follow official sources and contemporary reports, separating observation, hypothesis and simplification. The full list of sources and assets is in SCIENCE_SOURCES.md and ASSET_CREDITS.md in the project repository."
+    },
+    {
+      "key": "credits.line.repository",
+      "pt": "github.com/joaovdamaceno/AbandonedButNotForgotten-SpaceApps",
+      "en": "github.com/joaovdamaceno/AbandonedButNotForgotten-SpaceApps"
+    },
+    {
+      "key": "slot.mars.title",
+      "pt": "Spirit & Opportunity",
+      "en": "Spirit & Opportunity"
+    },
+    {
+      "key": "slot.mars.meta",
+      "pt": "MARTE · 2004–2018",
+      "en": "MARS · 2004–2018"
+    },
+    {
+      "key": "slot.mars.question",
+      "pt": "Marte já teve água líquida?",
+      "en": "Did Mars once have liquid water?"
+    },
+    {
+      "key": "slot.mars.detail",
+      "pt": "Você conduz a Opportunity, examina rochas e reúne evidências para responder à pergunta. A Spirit aparece em planos próprios, com local e data indicados.",
+      "en": "You drive Opportunity, examine rocks and gather evidence to answer the question. Spirit appears in its own shots, with the place and date shown."
+    },
+    {
+      "key": "slot.pioneer10.title",
+      "pt": "Pioneer 10",
+      "en": "Pioneer 10"
+    },
+    {
+      "key": "slot.pioneer10.meta",
+      "pt": "JÚPITER E ALÉM · 1972–2003",
+      "en": "JUPITER AND BEYOND · 1972–2003"
+    },
+    {
+      "key": "slot.pioneer10.question",
+      "pt": "O que havia além de Marte?",
+      "en": "What lay beyond Mars?"
+    },
+    {
+      "key": "slot.pioneer10.detail",
+      "pt": "Você acompanha a viagem da Pioneer 10, opera seus instrumentos e ouve sinais cada vez mais fracos. A visão de asteroides exagerados é uma imaginação, sempre identificada como tal.",
+      "en": "You follow Pioneer 10's journey, operate its instruments and listen to ever fainter signals. The view of exaggerated asteroids is imagination, always labelled as such."
+    },
+    {
+      "key": "slot.surveyor3.title",
+      "pt": "Surveyor 3",
+      "en": "Surveyor 3"
+    },
+    {
+      "key": "slot.surveyor3.meta",
+      "pt": "LUA · 1967",
+      "en": "MOON · 1967"
+    },
+    {
+      "key": "slot.surveyor3.question",
+      "pt": "O solo lunar sustentaria uma missão com pessoas?",
+      "en": "Could the lunar surface support a crewed mission?"
+    },
+    {
+      "key": "slot.surveyor3.detail",
+      "pt": "Você vê pelo ponto de vista da sonda, envia comandos que levam 1,3 s para chegar e examina o solo com a pá. A visita de 1969 é um epílogo imaginado, identificado como tal.",
+      "en": "You see through the probe's point of view, send commands that take 1.3 s to arrive and examine the soil with the scoop. The 1969 visit is an imagined epilogue, labelled as such."
+    },
+    {
+      "key": "credits.line.pioneer_music",
+      "pt": "Música da Pioneer 10 (Scott Buckley, CC BY 4.0, www.scottbuckley.com.au): “A Kind Of Hope”; “Descent”; “The Distant Sun”; “The Things That Keep Us Here”; “Extrapolation”; “Signal to Noise”; “Filaments”. Trechos recortados e normalizados.",
+      "en": "Pioneer 10 music (Scott Buckley, CC BY 4.0, www.scottbuckley.com.au): \"A Kind Of Hope\"; \"Descent\"; \"The Distant Sun\"; \"The Things That Keep Us Here\"; \"Extrapolation\"; \"Signal to Noise\"; \"Filaments\". Excerpts trimmed and loudness-normalised."
+    },
+    {
+      "key": "credits.line.pioneer_jupiter",
+      "pt": "Textura de Júpiter da Pioneer 10: Solar System Scope (www.solarsystemscope.com/textures), CC BY 4.0.",
+      "en": "Jupiter texture in the Pioneer 10 chapter: Solar System Scope (www.solarsystemscope.com/textures), CC BY 4.0."
+    }
+  ]
+}

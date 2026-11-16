@@ -1,0 +1,46 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="../Design/SpaceAppsTokens.uss" />
+    <Style src="../Design/SpaceAppsComponents.uss" />
+    <Style src="Pause.uss" />
+    <ui:VisualElement name="pause-root" picking-mode="Ignore" class="sa-root sa-pausemenu">
+        <ui:VisualElement name="pause-corner" picking-mode="Ignore" class="sa-pausemenu__corner">
+            <ui:VisualElement name="pause-button" focusable="true" class="sa-plate sa-pause sa-pausemenu__button">
+                <ui:VisualElement picking-mode="Ignore" class="sa-icon-pause">
+                    <ui:VisualElement picking-mode="Ignore" class="sa-icon-pause__bar" />
+                    <ui:VisualElement picking-mode="Ignore" class="sa-icon-pause__bar" />
+                </ui:VisualElement>
+                <ui:Label name="pause-button-label" picking-mode="Ignore" class="sa-hold__label" />
+                <ui:Label name="pause-button-key" picking-mode="Ignore" class="sa-keyhint" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="pause-overlay" class="sa-pausemenu__overlay">
+            <ui:VisualElement name="pause-card" class="sa-plate sa-pausemenu__card">
+                <ui:Label name="pause-title" picking-mode="Ignore" class="sa-text sa-font-bold sa-pausemenu__title" />
+                <ui:Label name="pause-subtitle" picking-mode="Ignore" class="sa-text sa-pausemenu__subtitle" />
+                <ui:VisualElement name="view-main" class="sa-pausemenu__view">
+                    <ui:VisualElement name="btn-resume" focusable="true" class="sa-pausemenu__action sa-pausemenu__action--primary">
+                        <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="btn-settings" focusable="true" class="sa-pausemenu__action">
+                        <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="btn-restart" focusable="true" class="sa-pausemenu__action">
+                        <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="btn-dossier" focusable="true" class="sa-pausemenu__action">
+                        <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
+                    </ui:VisualElement>
+                    <ui:Label name="pause-hint" picking-mode="Ignore" class="sa-text sa-pausemenu__hint" />
+                </ui:VisualElement>
+                <ui:VisualElement name="view-settings" class="sa-pausemenu__view">
+                    <ui:Label name="settings-title" picking-mode="Ignore" class="sa-text sa-font-semibold sa-pausemenu__section" />
+                    <ui:ScrollView name="settings-scroll" class="sa-pausemenu__scroll" />
+                    <ui:VisualElement name="btn-back" focusable="true" class="sa-pausemenu__action">
+                        <ui:Label picking-mode="Ignore" class="sa-text sa-pausemenu__action-label" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label name="pause-navigation" picking-mode="Ignore" class="sa-stamp sa-pausemenu__navigation" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

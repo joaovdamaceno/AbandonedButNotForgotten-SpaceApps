@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001f01512cc44f33ad7d959ac2075e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.UI.ChapterCatalog
+  entries:
+  - slotId: mars
+    chapter: {fileID: 0}
+    chapterTexts: {fileID: 0}
+    accentClass: sa-chapter--mars
+    captureCursor: 0
+    coverCredit: 
+  - slotId: pioneer10
+    chapter: {fileID: 0}
+    chapterTexts: {fileID: 0}
+    accentClass: sa-chapter--pioneer
+    captureCursor: 0
+    coverCredit: 
+  - slotId: surveyor3
+    chapter: {fileID: 11400000, guid: eaf153b39473be546b75501a6da1540c, type: 2}
+    chapterTexts: {fileID: 4900000, guid: c7c6d85ccf52bf546babc99037d17500, type: 3}
+    accentClass: sa-chapter--surveyor
+    captureCursor: 0
+    coverCredit: "NASA \xB7 AS12-48-7134"

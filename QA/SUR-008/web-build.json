@@ -1,0 +1,110 @@
+{
+  "unityVersion": "6000.6.7f1",
+  "platform": "WebGL",
+  "commit": "SUR-008-base-211ab0d-working-tree",
+  "startedUtc": "2026-11-14T23:18:01.7322113Z",
+  "durationSeconds": 291.448974609375,
+  "result": "Succeeded",
+  "outputPath": "C:/Users/Damaceno/UnityProjects/AbandonedButNotForgotten/Builds/SUR008Web",
+  "scenes": [
+    "Assets/_Game/Chapters/Surveyor/Sequences/Observation/Preview/SurveyorObservationPreview.unity"
+  ],
+  "renderPipeline": "Assets/_Game/Settings/URP/SpaceApps_URP.asset",
+  "warnings": [
+    "Perfil Web (QA-001) ainda não existe; usando a base do CORE-001: Assets/_Game/Settings/URP/SpaceApps_URP.asset"
+  ],
+  "errors": [],
+  "shadersChecked": [
+    "Assets/_Game/Chapters/Surveyor/Shaders/SurveyorScan.shader",
+    "Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader"
+  ],
+  "shadersMissing": [],
+  "files": [
+    {
+      "path": "Build/SUR008Web.data.gz",
+      "bytes": 7831104,
+      "sha256": "14180c05b21c676bab1c7e55c776e024aa4e3c7573b9977dcbd0f5e3a62cdc0a"
+    },
+    {
+      "path": "Build/SUR008Web.framework.js.gz",
+      "bytes": 75327,
+      "sha256": "e5968d1ebb425a853db71d50c4075c7228f2856fd70b00a44907a670e59aa72e"
+    },
+    {
+      "path": "Build/SUR008Web.loader.js",
+      "bytes": 27914,
+      "sha256": "1bdee0f55f40c6e9eda84e952dcdca621c1cb0fac0835e6c1bbb132de3f7dc08"
+    },
+    {
+      "path": "Build/SUR008Web.wasm.gz",
+      "bytes": 9230672,
+      "sha256": "e6fbfc6f36c944936da70f77d0a6ca4e8799c849d4d8aae5016efa7c56823cdc"
+    },
+    {
+      "path": "TemplateData/MemoryProfiler.png",
+      "bytes": 665,
+      "sha256": "0ce87be20d0c24ab6cb73b57de2004da261cc2a641e69319c6ae3fe11fc85483"
+    },
+    {
+      "path": "TemplateData/favicon.ico",
+      "bytes": 2305,
+      "sha256": "9c13beb90ee8f70580d52a21d5233970d1c89e71e4a34a462c22610941c3c77f"
+    },
+    {
+      "path": "TemplateData/fullscreen-button.png",
+      "bytes": 175,
+      "sha256": "21221581673a54b8139d408d4a3f8d2b879e86827d4b6fc53b995ff7a99ee3e9"
+    },
+    {
+      "path": "TemplateData/progress-bar-empty-dark.png",
+      "bytes": 96,
+      "sha256": "bbee7131afe8a3365906240d89184dc86234c119467f390bc4bc6802328fdb4d"
+    },
+    {
+      "path": "TemplateData/progress-bar-empty-light.png",
+      "bytes": 109,
+      "sha256": "143696c060ad43d6c30f19ff5f49000927a139a2a1e4c9f45fafaa2b90d7d2be"
+    },
+    {
+      "path": "TemplateData/progress-bar-full-dark.png",
+      "bytes": 74,
+      "sha256": "3306a6244dcb3926fca38a28e3ced589df8ff1beed955eb17c0bbf01c918bc62"
+    },
+    {
+      "path": "TemplateData/progress-bar-full-light.png",
+      "bytes": 84,
+      "sha256": "12395ea785480c5cdf12fade6e6cbf49666d5bb1cef7240c113dbcba6bdc5c87"
+    },
+    {
+      "path": "TemplateData/style.css",
+      "bytes": 1666,
+      "sha256": "e63446cac89000ac9f062ab7f490c1de8c7afbbe6fc336707ca6502715e6c6f2"
+    },
+    {
+      "path": "TemplateData/unity-logo-dark.png",
+      "bytes": 3042,
+      "sha256": "c1b72d26c096487dabc948b54bc203f8dac7ed4e3f5733918798e858acb4b159"
+    },
+    {
+      "path": "TemplateData/unity-logo-light.png",
+      "bytes": 3077,
+      "sha256": "002990aea0d946833cadc1519d5b7e50a4570bd537a0517dd79a59d3eec84da7"
+    },
+    {
+      "path": "TemplateData/unity-logo-title-footer.png",
+      "bytes": 1151,
+      "sha256": "9e8b3bdb67c2446d16362fe59449d892100931dbbadfe6a9d923a4142b57a79f"
+    },
+    {
+      "path": "TemplateData/webmemd-icon.png",
+      "bytes": 1670,
+      "sha256": "c56f5494640cedda273aad38d58e6ab9da625d5b3f4d875c0ff92c6192a569c2"
+    },
+    {
+      "path": "index.html",
+      "bytes": 6462,
+      "sha256": "0a80c13f7e3042c0dd872dda36f9e40700149f3c8b96e400334b7f1111d00993"
+    }
+  ],
+  "totalBytes": 17185593
+}

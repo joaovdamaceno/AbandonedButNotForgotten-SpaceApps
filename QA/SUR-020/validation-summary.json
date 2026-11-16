@@ -1,0 +1,66 @@
+{
+  "unity": "6000.6.7f1",
+  "urp": "17.6.0",
+  "editorTests": {
+    "passed": 13,
+    "failed": 0
+  },
+  "buildBytes": 27315758,
+  "zipBytes": 27105784,
+  "initialTargetBytes": 25000000,
+  "withinInitialTarget": false,
+  "browsers": [
+    {
+      "browser": "chromium",
+      "version": "159.0.8154.6",
+      "reportedRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 6GB Laptop GPU (0x000025EC) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "activeSeconds": 210.91,
+      "coldReadyMs": 23704.20000001788,
+      "network": "10Mbps 20ms cold",
+      "sampleFpsMin": 59.75375719655382,
+      "sampleFpsMax": 60.01722467444228,
+      "peakObservedUsedWASMMiB": 163.9478759765625,
+      "earlyRestarts": 2,
+      "usedWASMBytesAfterEachRestart": [
+        170599200,
+        170599200
+      ],
+      "canvasAt4K": {
+        "width": 1280,
+        "height": 720
+      },
+      "runtimeErrors": 0
+    },
+    {
+      "browser": "firefox",
+      "version": "159.0",
+      "reportedRenderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 980 Direct3D11 vs_5_0 ps_5_0), or similar",
+      "activeSeconds": 209.95,
+      "coldReadyMs": 3136,
+      "network": "localhost cold",
+      "sampleFpsMin": 50.78701426463355,
+      "sampleFpsMax": 101.76470588235294,
+      "peakObservedUsedWASMMiB": 163.94733428955078,
+      "earlyRestarts": 2,
+      "usedWASMBytesAfterEachRestart": [
+        170598624,
+        170598624
+      ],
+      "canvasAt4K": {
+        "width": 1280,
+        "height": 720
+      },
+      "runtimeErrors": 0
+    }
+  ],
+  "limits": [
+    "Initial 25 MB target exceeded after upstream integration; global Resources packaging remains pending.",
+    "Not a novice study or artistic/audio approval.",
+    "Not tested on integrated GPU or hosted itch.io.",
+    "WASM heap excludes GPU and much of the browser.",
+    "FPS values are samples, not a sustained benchmark.",
+    "The headless tab switch did not report a hidden page; focus handling is covered by native tests, not proven by this switch.",
+    "Firefox masks the GPU name; its GTX 980 string is not hardware identification.",
+    "Nonfatal Unity warnings include compressed-audio metadata/pitch and unavailable FSR postprocessing; the custom documentary treatment remains active."
+  ]
+}

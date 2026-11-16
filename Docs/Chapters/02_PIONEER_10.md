@@ -1,5 +1,7 @@
 # Capítulo II — Pioneer 10: quem vai primeiro
 
+> **Roteiro v2 (15/11/2026), em fases.** Um roteiro novo de 9 cenas e só 2 interações foi recebido; as legendas PT-BR e EN-UK e o estado `PIO.Closest` (cena 5) já o seguem. Este documento continua sendo o registro de estados, interações e contratos; a tabela abaixo ainda descreve **oito** estados com 375 s, e o capítulo agora tem **nove**, com 415 s. O mapeamento, as trocas de frase e as fases estão em [`PioneerV2/FASES.md`](PioneerV2/FASES.md).
+
 **Documento de implementação, não funcionalidade pronta.** Planejado em 14/11/2026. Proprietário de código/cena: R5. Revisão científica, áudio e QA: R7. Integração dos módulos comuns: R1. Leia o contexto mestre do repositório antes de executar uma tarefa. Fontes e decisões científicas: [02_PIONEER_SOURCES.md](02_PIONEER_SOURCES.md).
 
 ## Intenção, duração e percurso exato

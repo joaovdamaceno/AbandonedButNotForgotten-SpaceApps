@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "source": "UI-006 (R2). Textos da pausa e do painel de preferências. Formato igual ao HudTexts.json: {key, pt, en}.",
+  "notes": [
+    "Textos propostos por R2 e ainda sem revisão editorial.",
+    "Nomes de idioma ficam na própria língua nas duas colunas, para que a pessoa os reconheça mesmo no idioma errado."
+  ],
+  "texts": [
+    { "key": "pause.button", "pt": "P  ·  Pausar", "en": "P  ·  Pause" },
+    { "key": "pause.keyhint", "pt": "P / Esc", "en": "P / Esc" },
+    { "key": "pause.title", "pt": "Jogo pausado", "en": "Game paused" },
+    { "key": "pause.subtitle.menu", "pt": "O tempo e a missão estão parados.", "en": "Time and the mission are stopped." },
+    { "key": "pause.subtitle.focus", "pt": "A janela perdeu o foco. Nada se moveu e nenhuma tecla ficou ligada.", "en": "The window lost focus. Nothing moved and no key stayed on." },
+    { "key": "pause.resume", "pt": "Continuar", "en": "Continue" },
+    { "key": "pause.resume.hint", "pt": "Clique em Continuar para retomar. Teclas mantidas não são reaplicadas.", "en": "Click Continue to resume. Held keys are not reapplied." },
+    { "key": "pause.settings", "pt": "Preferências", "en": "Preferences" },
+    { "key": "pause.back", "pt": "Voltar", "en": "Back" },
+    { "key": "pause.restart", "pt": "Reiniciar capítulo", "en": "Restart chapter" },
+    { "key": "pause.restart.confirm", "pt": "Clique de novo para reiniciar", "en": "Click again to restart" },
+    { "key": "pause.dossier", "pt": "Voltar ao arquivo", "en": "Back to the archive" },
+    { "key": "pause.dossier.confirm", "pt": "Clique de novo para sair do capítulo", "en": "Click again to leave the chapter" },
+    { "key": "pause.navigation", "pt": "↑ ↓ escolhem · Enter confirma · P ou Esc voltam", "en": "↑ ↓ choose · Enter confirms · P or Esc go back" },
+    { "key": "prefs.title", "pt": "Preferências", "en": "Preferences" },
+    { "key": "prefs.volume.master", "pt": "Volume geral", "en": "Master volume" },
+    { "key": "prefs.volume.music", "pt": "Música", "en": "Music" },
+    { "key": "prefs.volume.sfx", "pt": "Efeitos", "en": "Effects" },
+    { "key": "prefs.volume.ui", "pt": "Interface", "en": "Interface sounds" },
+    { "key": "prefs.language", "pt": "Idioma", "en": "Language" },
+    { "key": "prefs.language.pt", "pt": "Português", "en": "Português" },
+    { "key": "prefs.language.en", "pt": "English", "en": "English" },
+    { "key": "prefs.sensitivity", "pt": "Sensibilidade do mouse", "en": "Mouse sensitivity" },
+    { "key": "prefs.reducedMotion", "pt": "Movimento reduzido", "en": "Reduced motion" },
+    { "key": "prefs.fullscreen", "pt": "Tela cheia (opcional)", "en": "Fullscreen (optional)" },
+    { "key": "prefs.quality", "pt": "Qualidade gráfica", "en": "Graphics quality" },
+    { "key": "prefs.quality.value", "pt": "{name} ({index}/{count})", "en": "{name} ({index}/{count})" },
+    { "key": "prefs.on", "pt": "Ligado", "en": "On" },
+    { "key": "prefs.off", "pt": "Desligado", "en": "Off" },
+    { "key": "prefs.previous", "pt": "Anterior", "en": "Previous" },
+    { "key": "prefs.next", "pt": "Próxima", "en": "Next" },
+    { "key": "prefs.reset", "pt": "Restaurar padrões", "en": "Restore defaults" },
+    { "key": "prefs.saved", "pt": "Salvo neste navegador.", "en": "Saved in this browser." }
+  ]
+}

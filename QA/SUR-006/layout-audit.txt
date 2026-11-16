@@ -1,0 +1,56 @@
+approach-pt-1280x720 instrument (x:916.00, y:294.00, width:320.00, height:217.00) inside=True
+approach-pt-1280x720 diagram (x:44.00, y:193.00, width:834.00, height:360.00) inside=True
+approach-pt-1280x720 contacts (x:46.00, y:583.00, width:828.00, height:27.00) inside=True
+approach-pt-1280x720 subtitle-plate hidden
+approach-pt-1280x720 contacts=0 settled=False engineOff=False camera=False offset=(0.00, 0.00)
+anomaly-pt-1280x720 instrument (x:916.00, y:189.00, width:320.00, height:348.00) inside=True
+anomaly-pt-1280x720 diagram (x:44.00, y:154.00, width:834.00, height:360.00) inside=True
+anomaly-pt-1280x720 contacts (x:46.00, y:544.00, width:828.00, height:27.00) inside=True
+anomaly-pt-1280x720 subtitle-plate (x:255.00, y:630.00, width:770.00, height:62.00) inside=True
+anomaly-pt-1280x720 contacts=0 settled=False engineOff=False camera=False offset=(0.00, 0.00)
+armed-pt-1280x720 instrument (x:916.00, y:255.00, width:320.00, height:217.00) inside=True
+armed-pt-1280x720 diagram (x:44.00, y:154.00, width:834.00, height:360.00) inside=True
+armed-pt-1280x720 contacts (x:46.00, y:544.00, width:828.00, height:27.00) inside=True
+armed-pt-1280x720 subtitle-plate (x:255.00, y:630.00, width:770.00, height:62.00) inside=True
+armed-pt-1280x720 contacts=0 settled=False engineOff=False camera=False offset=(0.00, 0.00)
+first-rebound-pt-1280x720 instrument (x:916.00, y:228.00, width:320.00, height:348.00) inside=True
+first-rebound-pt-1280x720 diagram (x:44.00, y:193.00, width:834.00, height:360.00) inside=True
+first-rebound-pt-1280x720 contacts (x:46.00, y:583.00, width:828.00, height:27.00) inside=True
+first-rebound-pt-1280x720 subtitle-plate hidden
+first-rebound-pt-1280x720 contacts=1 settled=False engineOff=False camera=False offset=(0.00, 0.00)
+second-rebound-pt-1280x720 instrument (x:916.00, y:255.00, width:320.00, height:217.00) inside=True
+second-rebound-pt-1280x720 diagram (x:44.00, y:154.00, width:834.00, height:360.00) inside=True
+second-rebound-pt-1280x720 contacts (x:46.00, y:544.00, width:828.00, height:27.00) inside=True
+second-rebound-pt-1280x720 subtitle-plate (x:237.00, y:630.00, width:807.00, height:62.00) inside=True
+second-rebound-pt-1280x720 contacts=2 settled=False engineOff=False camera=False offset=(0.00, 0.00)
+team-receipt-pt-1280x720 instrument (x:916.00, y:255.00, width:320.00, height:217.00) inside=True
+team-receipt-pt-1280x720 diagram (x:44.00, y:154.00, width:834.00, height:360.00) inside=True
+team-receipt-pt-1280x720 contacts (x:46.00, y:544.00, width:828.00, height:27.00) inside=True
+team-receipt-pt-1280x720 subtitle-plate (x:237.00, y:630.00, width:807.00, height:62.00) inside=True
+team-receipt-pt-1280x720 contacts=2 settled=False engineOff=False camera=False offset=(0.00, 0.00)
+settled-pt-1280x720 instrument (x:916.00, y:223.00, width:320.00, height:280.00) inside=True
+settled-pt-1280x720 diagram (x:43.74, y:155.77, width:834.00, height:360.00) inside=True
+settled-pt-1280x720 contacts (x:46.00, y:544.00, width:828.00, height:27.00) inside=True
+settled-pt-1280x720 subtitle-plate (x:237.00, y:630.00, width:807.00, height:62.00) inside=True
+settled-pt-1280x720 contacts=3 settled=True engineOff=True camera=False offset=(-0.26, 1.77)
+complete-pt-1280x720 instrument (x:916.00, y:210.00, width:320.00, height:384.00) inside=True
+complete-pt-1280x720 diagram (x:44.00, y:193.00, width:834.00, height:360.00) inside=True
+complete-pt-1280x720 contacts (x:46.00, y:583.00, width:828.00, height:27.00) inside=True
+complete-pt-1280x720 subtitle-plate hidden
+complete-pt-1280x720 contacts=3 settled=True engineOff=True camera=False offset=(0.00, 0.00)
+reduced-motion-pt-960x600 instrument (x:787.20, y:229.20, width:320.40, height:346.80) inside=True
+reduced-motion-pt-960x600 diagram (x:44.40, y:193.20, width:704.40, height:360.00) inside=True
+reduced-motion-pt-960x600 contacts (x:46.80, y:583.20, width:698.40, height:27.60) inside=True
+reduced-motion-pt-960x600 subtitle-plate hidden
+reduced-motion-pt-960x600 contacts=1 settled=False engineOff=False camera=False offset=(0.00, 0.00)
+pause-pt-960x600 instrument (x:787.20, y:246.00, width:320.40, height:313.20) inside=True
+pause-pt-960x600 diagram (x:45.75, y:193.98, width:704.40, height:360.00) inside=True
+pause-pt-960x600 contacts (x:46.80, y:583.20, width:698.40, height:27.60) inside=True
+pause-pt-960x600 subtitle-plate hidden
+pause-pt-960x600 pause-center-error=0,600
+pause-pt-960x600 contacts=1 settled=False engineOff=False camera=False offset=(1.35, 0.78)
+anomaly-en-1024x768 instrument (x:655.31, y:194.06, width:278.44, height:338.44) inside=True
+anomaly-en-1024x768 diagram (x:26.25, y:168.75, width:604.69, height:330.00) inside=True
+anomaly-en-1024x768 contacts (x:28.13, y:528.75, width:599.06, height:27.19) inside=True
+anomaly-en-1024x768 subtitle-plate (x:123.75, y:630.00, width:713.44, height:61.88) inside=True
+anomaly-en-1024x768 contacts=0 settled=False engineOff=False camera=False offset=(0.00, 0.00)

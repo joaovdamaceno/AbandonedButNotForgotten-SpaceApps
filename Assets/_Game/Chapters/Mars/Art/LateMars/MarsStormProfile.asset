@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51bddb7741cf43e4be167a786f99dc30, type: 3}
+  m_Name: MarsStormProfile
+  m_EditorClassIdentifier: Abandoned.SpaceApps::Abandoned.SpaceApps.MarsStormProfileData
+  victoria:
+    id: victoria2007
+    drivenByStorm: 1
+    clear:
+      fogColor: {r: 0.66, g: 0.5, b: 0.4, a: 1}
+      fogStartMeters: 140
+      fogEndMeters: 2400
+      sunIntensity: 1.5
+      sunColor: {r: 1, g: 0.9, b: 0.78, a: 1}
+      ambient: {r: 0.34, g: 0.27, b: 0.23, a: 1}
+      sky: {r: 0.66, g: 0.5, b: 0.4, a: 1}
+      particlesPerSecond: 0
+      sunDiscAlpha: 1
+      shakeMeters: 0
+    dense:
+      fogColor: {r: 0.36, g: 0.25, b: 0.18, a: 1}
+      fogStartMeters: 4
+      fogEndMeters: 95
+      sunIntensity: 0.5
+      sunColor: {r: 0.9, g: 0.68, b: 0.48, a: 1}
+      ambient: {r: 0.22, g: 0.16, b: 0.12, a: 1}
+      sky: {r: 0.32, g: 0.22, b: 0.16, a: 1}
+      particlesPerSecond: 120
+      sunDiscAlpha: 0.3
+      shakeMeters: 0
+    keys: []
+    endsAtDust: 0.1
+  valley:
+    id: valley2018
+    drivenByStorm: 0
+    clear:
+      fogColor: {r: 0.6, g: 0.5, b: 0.42, a: 1}
+      fogStartMeters: 150
+      fogEndMeters: 2600
+      sunIntensity: 1.4
+      sunColor: {r: 1, g: 0.92, b: 0.82, a: 1}
+      ambient: {r: 0.34, g: 0.28, b: 0.24, a: 1}
+      sky: {r: 0.6, g: 0.5, b: 0.42, a: 1}
+      particlesPerSecond: 0
+      sunDiscAlpha: 1
+      shakeMeters: 0
+    dense:
+      fogColor: {r: 0.3, g: 0.22, b: 0.17, a: 1}
+      fogStartMeters: 3
+      fogEndMeters: 62
+      sunIntensity: 0.32
+      sunColor: {r: 0.85, g: 0.62, b: 0.42, a: 1}
+      ambient: {r: 0.2, g: 0.15, b: 0.12, a: 1}
+      sky: {r: 0.27, g: 0.19, b: 0.14, a: 1}
+      particlesPerSecond: 150
+      sunDiscAlpha: 0.22
+      shakeMeters: 0.012
+    keys:
+    - stepId: M23
+      dust: 0.12
+      seconds: 0
+    - stepId: M27
+      dust: 0.7
+      seconds: 6
+    - stepId: M29
+      dust: 0.8
+      seconds: 6
+    - stepId: M31
+      dust: 1
+      seconds: 24
+    endsAtDust: 1
+  roverDistanceMeters: 6
+  sunDiscDistanceMeters: 40
+  maxFogFactorAtRover: 0.5
+  maxFogFactorAtSun: 0.7
+  minLightFraction: 0.2
+  minSunDiscAlpha: 0.2
+  maxDustLuminance: 0.75
+  maxParticlesNormal: 300
+  maxParticlesLow: 120
+  lowRateFactor: 0.4
+  particleAlphaCap: 0.3
+  maxShakeMeters: 0.02
+  maxDustPerSecond: 0.35

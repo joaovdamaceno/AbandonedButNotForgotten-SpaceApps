@@ -1,0 +1,96 @@
+{
+  "browser": "chromium",
+  "version": "159.0.8154.6",
+  "viewport": "960x600",
+  "network": "10 Mbps,20 ms, empty browser context",
+  "readyMs": 13550.5,
+  "sample": {
+    "device": "Chrome 159.0.8154.6",
+    "graphics": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 6GB Laptop GPU (0x000025EC) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "unity": "6000.6.7f1",
+    "width": 960,
+    "height": 600,
+    "frames": 256,
+    "meanFps": 60.0093994140625,
+    "p95FrameMs": 18,
+    "allocatedBytes": 78091886,
+    "reservedBytes": 108920832
+  },
+  "canvasAt4K": {
+    "width": 1280,
+    "height": 720
+  },
+  "audioBeforeClick": [
+    "running"
+  ],
+  "audioAfterClick": [
+    "running"
+  ],
+  "sourcesBeforeClick": [],
+  "sourcesAfterClick": [
+    {
+      "time": 24112.59999999404,
+      "duration": 1.0216458333333334
+    },
+    {
+      "time": 24114.20000001788,
+      "duration": 1.0216458333333334
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior.",
+    "Shader 'Hidden/Universal Render Pipeline/Edge Adaptive Spatial Upsampling' is not supported or has been stripped from the build (in 'Blit FSR Upscaling'). PostProcessing render passes will not execute.\n"
+  ],
+  "headers": {
+    "WebBaseline.data.br": {
+      "cache-control": "no-store",
+      "content-length": "7733369",
+      "content-encoding": "br",
+      "date": "Sun, 15 Nov 2026 06:18:39 GMT",
+      "content-type": "application/octet-stream",
+      "last-modified": "Sun, 15 Nov 2026 06:09:56 GMT",
+      "server": "SimpleHTTP/0.6 Python/3.12.14"
+    },
+    "WebBaseline.framework.js.br": {
+      "cache-control": "no-store",
+      "content-length": "67570",
+      "content-encoding": "br",
+      "date": "Sun, 15 Nov 2026 06:18:39 GMT",
+      "content-type": "application/javascript",
+      "last-modified": "Sun, 15 Nov 2026 05:54:07 GMT",
+      "server": "SimpleHTTP/0.6 Python/3.12.14"
+    },
+    "WebBaseline.wasm.br": {
+      "cache-control": "no-store",
+      "content-length": "6879556",
+      "content-encoding": "br",
+      "date": "Sun, 15 Nov 2026 06:18:39 GMT",
+      "content-type": "application/wasm",
+      "last-modified": "Sun, 15 Nov 2026 05:56:43 GMT",
+      "server": "SimpleHTTP/0.6 Python/3.12.14"
+    }
+  },
+  "downloadResources": [
+    {
+      "name": "WebBaseline.loader.js",
+      "encoded": 27914,
+      "transferred": 28214
+    },
+    {
+      "name": "WebBaseline.framework.js.br",
+      "encoded": 67570,
+      "transferred": 67870
+    },
+    {
+      "name": "WebBaseline.data.br",
+      "encoded": 7733369,
+      "transferred": 7733669
+    },
+    {
+      "name": "WebBaseline.wasm.br",
+      "encoded": 6879556,
+      "transferred": 6879856
+    }
+  ]
+}
