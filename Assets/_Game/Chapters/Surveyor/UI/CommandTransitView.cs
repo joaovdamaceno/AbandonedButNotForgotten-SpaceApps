@@ -15,7 +15,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         SurveyorCommandDelay queue;
         SurveyorCommandInteraction interaction;
         SurveyorLaunchTexts texts;
-        string language = SettingsData.Portuguese;
+        string language = SettingsData.English;
         HoldMode mode;
         public Func<string,string> TextResolver { get; set; }
         public int LastFeedbackFrames { get; private set; } = -1;
@@ -47,7 +47,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             root.Q<Label>("desired-label").text = Text("cmd.desired");
             root.Q<Label>("actual-label").text = Text("cmd.actual");
             root.Q<Label>("transit-description").text = Text("cmd.note").Replace("{seconds}",
-                SurveyorCommandDelay.OneWayDelaySeconds.ToString("0.0", language == "en" ? CultureInfo.InvariantCulture : CultureInfo.GetCultureInfo("pt-BR")));
+                SurveyorCommandDelay.OneWayDelaySeconds.ToString("0.0", CultureInfo.InvariantCulture));
             root.Q<Label>("hold-help").text = Text(mode == HoldMode.Toggle ? "cmd.help.toggle" : "cmd.help");
             confirm.text = Text(mode == HoldMode.Toggle ? "cmd.toggle" : "cmd.hold");
             root.tooltip = Text("cmd.explanation"); Refresh();

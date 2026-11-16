@@ -104,14 +104,15 @@ namespace Abandoned.SpaceApps.Tests
         {
             link.Start("mars");
             Assert.That(link.Flow.TrySetLanguage("en"), Is.False);
-            Assert.That(link.Flow.LanguageCode, Is.EqualTo("pt"));
+            Assert.That(link.Flow.LanguageCode, Is.EqualTo("en"), "o jogo só tem inglês");
 
             loader.CompleteLoad();
             Assert.That(loader.LoadCalls, Is.EqualTo(1));
 
             Assert.That(director.ReturnToDossier(), Is.True);
             Assert.That(director.State, Is.EqualTo(AppState.Dossier));
-            Assert.That(link.Flow.TrySetLanguage("en"), Is.True, "de volta ao arquivo o idioma muda");
+            Assert.That(link.Flow.TrySetLanguage("en"), Is.False, "o jogo só tem inglês: de volta ao arquivo nada muda");
+            Assert.That(link.Flow.LanguageCode, Is.EqualTo("en"));
         }
 
         [Test]

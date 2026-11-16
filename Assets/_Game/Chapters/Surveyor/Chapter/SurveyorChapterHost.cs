@@ -96,7 +96,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             var send=story.rootVisualElement.Q<Button>("story-send");send.RegisterCallback<PointerDownEvent>(e=>{if(e.button!=0)return;if(Eclipse.BeginConfirmation())send.CapturePointer(e.pointerId);e.StopPropagation();});send.RegisterCallback<PointerUpEvent>(e=>{Eclipse.ReleaseConfirmation();if(send.HasPointerCapture(e.pointerId))send.ReleasePointer(e.pointerId);e.StopPropagation();});send.RegisterCallback<PointerCaptureOutEvent>(e=>Eclipse.ReleaseConfirmation());story.rootVisualElement.Q<Button>("story-return").clicked+=FinalReturn;
         }
         public void Begin(){music.Unlock();owner.Begin(chapter);}public void Restart()=>owner.RestartChapter();public void Return()=>owner.ReturnToDossier();
-        public void PauseGame()=>pause.Controller?.RequestPause();public void Resume()=>pause.Controller?.Continue();void Language()=>settings.Apply(v=>v.languageCode=v.languageCode=="pt"?"en":"pt");
+        public void PauseGame()=>pause.Controller?.RequestPause();public void Resume()=>pause.Controller?.Continue();void Language(){} // o jogo só tem inglês
         void FinalReturn()=>Visit.ReturnFromButton();
         void LaunchAudio(string id){if(id=="surveyor.launch.bed"&&!launchSound.isPlaying)launchSound.Play();}void PhotoSound(){confirmation.Play();}
         void Paused(bool value){music.SetPaused(value);if(value){launchSound.Pause();confirmation.Pause();}else{launchSound.UnPause();confirmation.UnPause();}Refresh();}

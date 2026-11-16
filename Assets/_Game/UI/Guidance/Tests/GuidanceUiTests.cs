@@ -97,9 +97,9 @@ namespace Abandoned.SpaceApps.Tests
         public void ChangingLanguageRedrawsTheSameInstructionsInEnglish()
         {
             guidance.BeginTutorial(TutorialId);
-            var portuguese = presenter.LineText(0);
-            settings.Apply(s => s.languageCode = SettingsData.English);
-            Assert.That(presenter.LineText(0), Is.Not.EqualTo(portuguese));
+            var before = presenter.LineText(0);
+            settings.Apply(s => s.languageCode = "pt"); // o jogo só tem inglês: "pt" volta para inglês e o texto não muda
+            Assert.That(presenter.LineText(0), Is.EqualTo(before));
             StringAssert.StartsWith("Move with", presenter.LineText(0));
         }
 

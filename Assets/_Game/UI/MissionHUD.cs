@@ -41,7 +41,7 @@ namespace Abandoned.SpaceApps.UI
         InteractionPrompt prompt;
         ObjectiveIndicator indicator;
         HudLayers layers = HudLayers.None;
-        string language = SettingsData.Portuguese;
+        string language = SettingsData.English;
         HoldMode holdMode = HoldMode.Hold;
         bool bound;
         float? energy;

@@ -323,7 +323,7 @@ namespace Abandoned.SpaceApps.Tests
 
             var reloaded = new SettingsStore(storage);
             Assert.That(reloaded.Load(), Is.True);
-            Assert.That(reloaded.Current.languageCode, Is.EqualTo("pt"), "a escolha em português persiste");
+            Assert.That(reloaded.Current.languageCode, Is.EqualTo("en"), "o jogo só tem inglês: um \"pt\" salvo volta para inglês");
             Assert.That(reloaded.Current.musicVolume, Is.EqualTo(0.25f));
             Assert.That(reloaded.Current.holdMode, Is.EqualTo(HoldMode.Toggle));
 

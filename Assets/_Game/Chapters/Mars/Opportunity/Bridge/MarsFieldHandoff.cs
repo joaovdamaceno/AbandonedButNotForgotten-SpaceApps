@@ -228,7 +228,7 @@ namespace Abandoned.SpaceApps.Opportunity
             var store = new Abandoned.SpaceApps.SettingsStore();
             store.Load();
             var data = store.Current;
-            GameSettings.English = data.languageCode != Abandoned.SpaceApps.SettingsData.Portuguese;
+            GameSettings.English = true; // o jogo só tem inglês
             // Geral e música seguem direto os do aplicativo (1 e 0,8): os ganhos dos cues de música da cena foram calibrados para esse
             // padrão, de modo que Marte fique no mesmo nível da Pioneer e do Surveyor. Efeitos e interface mantêm o nível que Marte já tinha
             // com o geral de 0,8 da cena (0,8 x 0,65 e 0,8 x 0,6 nos padrões), agora com o geral em 1.

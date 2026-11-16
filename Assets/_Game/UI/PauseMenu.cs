@@ -59,7 +59,7 @@ namespace Abandoned.SpaceApps.UI
         PauseController controller;
         SettingsPanel panel;
         DossierTextCatalog texts;
-        string language = SettingsData.Portuguese;
+        string language = SettingsData.English;
 
         bool bound;
         bool open;

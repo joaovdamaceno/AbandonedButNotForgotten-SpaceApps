@@ -216,6 +216,10 @@ namespace Abandoned.SpaceApps.UI
             languageLabel = Require<Label>("language-label");
             languagePt = Require<Button>("language-pt");
             languageEn = Require<Button>("language-en");
+            // O jogo só tem inglês: o seletor de idioma sai do dossiê.
+            languageLabel.style.display = DisplayStyle.None;
+            languagePt.style.display = DisplayStyle.None;
+            languageEn.style.display = DisplayStyle.None;
             settingsButton = Require<Button>("settings-button");
             creditsButton = Require<Button>("credits-button");
             disclaimer = Require<Label>("disclaimer");
@@ -513,10 +517,6 @@ namespace Abandoned.SpaceApps.UI
                             focusTargets.Add(new FocusTarget(view.Details, () => OnOpenPanelClicked(DossierPanel.Details, slotId)));
                     }
 
-                    if (languagePt.enabledSelf)
-                        focusTargets.Add(new FocusTarget(languagePt, () => OnLanguageClicked(DossierFlow.Portuguese)));
-                    if (languageEn.enabledSelf)
-                        focusTargets.Add(new FocusTarget(languageEn, () => OnLanguageClicked(DossierFlow.English)));
                     if (settingsButton.enabledSelf)
                         focusTargets.Add(new FocusTarget(settingsButton, () => OnOpenPanelClicked(DossierPanel.Settings, null)));
                     if (creditsButton.enabledSelf)

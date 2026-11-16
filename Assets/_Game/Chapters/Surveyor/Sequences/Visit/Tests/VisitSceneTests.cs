@@ -38,8 +38,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor.VisitTests
             Assert.That(host.Flow.Ending.HistoricalPhoto.width,Is.LessThanOrEqualTo(1024));
             yield return Capture(host,"historical-photo-en");
             host.Pause.Controller.RequestPause();float time=host.Flow.TimeSeconds;Advance(host,4);Assert.That(host.Flow.TimeSeconds,Is.EqualTo(time));host.Pause.Controller.Continue();
-            host.Localization.SetLanguage("pt");host.Refresh();Advance(host,11);yield return Capture(host,"memorial-pt");
-            Assert.That(host.Flow.ShowMemorial,Is.True);Assert.That(host.Subtitles.CurrentText,Is.EqualTo("Ela ficou. O que aprendemos com ela veio conosco."));
+            host.Refresh();Advance(host,11);yield return Capture(host,"memorial-en");
+            Assert.That(host.Flow.ShowMemorial,Is.True);Assert.That(host.Subtitles.CurrentText,Is.EqualTo("It stayed. What we learned from it came home with us."));
             Advance(host,5.2f);Assert.That(host.Owner.IsFinished,Is.True);Assert.That(host.Flow.AwaitingReturn,Is.True);
             Assert.That(camera.transform.position,Is.EqualTo(position));
             host.Restart();Advance(host,50.2f);Assert.That(host.Owner.IsFinished,Is.True);Assert.That(host.Flow.ReturnFromButton(),Is.True);
