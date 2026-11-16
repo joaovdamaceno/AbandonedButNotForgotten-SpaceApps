@@ -94,6 +94,29 @@ namespace Abandoned.SpaceApps.Tests
             Assert.That(DossierAssetsBuilder.Validate(), Is.Empty);
         }
 
+        sealed class StillClock : IActiveTimeSource
+        {
+            public float ActiveDeltaSeconds => 0f;
+        }
+
+        [Test]
+        public void EnteringAnyChapterUnlocksTheWebAudioAndOnlyThen()
+        {
+            // No Web (startUnlocked: false) o áudio só responde depois do Unlock; a Pioneer ficava muda no itch.io porque só o Surveyor chamava.
+            var go = new GameObject("audio");
+            hosts.Add(go);
+            var director = go.AddComponent<AudioDirector>();
+            director.Initialize(ScriptableObject.CreateInstance<AudioCatalog>(), new StillClock(), new SettingsData(), null, startUnlocked: false);
+            Assert.That(director.Available, Is.False, "antes do clique o Web não toca");
+            GameHost.UnlockAudioFor(AppState.Dossier, director);
+            Assert.That(director.Available, Is.False, "o dossiê sozinho não libera");
+            GameHost.UnlockAudioFor(AppState.Loading, director);
+            Assert.That(director.Available, Is.False, "carregando também não");
+            GameHost.UnlockAudioFor(AppState.Playing, director);
+            Assert.That(director.Available, Is.True, "o capítulo em andamento libera o áudio");
+            Assert.DoesNotThrow(() => GameHost.UnlockAudioFor(AppState.Playing, null));
+        }
+
         [Test]
         public void BootSceneHasOneHostOneCameraAndOneListener()
         {
