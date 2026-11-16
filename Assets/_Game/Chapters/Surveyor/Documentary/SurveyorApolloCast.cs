@@ -9,6 +9,16 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         /// <summary>The camera first rises clear of its mount, then swings to the carry pose while the lift fades out.</summary>
         public const float CameraLiftSeconds = 1.1f, CameraCarrySeconds = 2.2f, CameraCarryStartFraction = .6f;
         [SerializeField, Tooltip("How far the camera is lifted off its mount before it swings toward the carry pose.")] float cameraLiftMeters = .30f;
+        /// <summary>Walking arms swing against the legs; the reach for the scoop is solved against the real scoop, not a fixed pose.</summary>
+        public const float ArmSwingMeters = .17f, ArmLiftMeters = .04f, TorsoTwistDegrees = 3.5f;
+        public const int ScoopActor = 1;
+        const float ScoopReachSeconds = 30f, ScoopReachDuration = 3f, ComfortableReach = .85f, MinStandOffMeters = .30f, MaxStanceShiftMeters = .75f;
+        /// <summary>The scoop hangs low and the suit's arm is short: he steps in and squats with the back straight, never bends over.</summary>
+        const float ScoopCrouchMeters = .38f;
+        /// <summary>The A7L glove as authored: palm half-thickness, and where the palm centre sits relative to the wrist bone along the fingers, toward the thumb and toward the palm face.</summary>
+        const float PalmHalfThicknessMeters = .041f, PalmAlongMeters = .072f, PalmThumbSideMeters = .033f, PalmFaceMeters = .013f;
+        /// <summary>Where around the camera housing the palm lies (degrees from the side facing the astronaut) and how far the fingers curl in toward the axis.</summary>
+        const float CameraGraspDegrees = 60f, CameraWrapDegrees = 35f, ScoopWrapDegrees = 20f;
         [SerializeField] GameObject[] astronauts;
         [SerializeField] AnimationClip walk, inspect, stand;
         [SerializeField] Transform[] start, stop;
@@ -18,14 +28,23 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         [SerializeField] Vector3 cameraGripLocal;
         Transform[][] bones;
         Quaternion[][] footBind;
+        Quaternion[][] handBindInverse;
+        // Camera housing and scoop bucket as seen from their own frames, and the grips found for them.
+        Vector3 cameraAxisCenterLocal, cameraAxisLocal, cameraWristLocal, scoopWristLocal;
+        float cameraRadius;
+        Bounds bucketBounds;
+        Quaternion cameraHandLocal, scoopHandLocal;
         Quaternion[] alignment;
         Vector3[] modelForward;
         float[][] lateral;
         float[][] armSide;
         Vector3 scoopScale;
+        Vector3[] stopPoint;
+        float scoopArmLength;
         bool initialized;
-        // Hand target and carry blend of the camera, produced by the arm pass and read by the camera pass of the same Evaluate.
-        Vector3 cameraGripWorld;
+        // Wrist target, rotation and carry blend of the carried props, produced by the arm pass and read by the prop pass of the same Evaluate.
+        Vector3 cameraWristWorld, scoopWristWorld;
+        Quaternion cameraRotationWorld, scoopRotationWorld;
         float cameraCarryBlend;
         static readonly string[] Names = { "Thigh_L", "Shin_L", "Foot_L", "Thigh_R", "Shin_R", "Foot_R", "UpperArm_R", "ForeArm_R", "Hand_R", "UpperArm_L", "ForeArm_L", "Hand_L", "Pelvis", "Spine", "Head" };
         public GameObject[] Astronauts => astronauts;
@@ -42,7 +61,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             if (initialized) return;
             initialized = true; scoopScale = recoveredScoop.localScale;
             int count = astronauts.Length;
-            bones = new Transform[count][]; footBind = new Quaternion[count][]; alignment = new Quaternion[count]; modelForward = new Vector3[count]; lateral = new float[count][]; armSide = new float[count][];
+            bones = new Transform[count][]; footBind = new Quaternion[count][]; alignment = new Quaternion[count]; modelForward = new Vector3[count]; lateral = new float[count][]; armSide = new float[count][]; handBindInverse = new Quaternion[count][];
             for (int i = 0; i < count; i++)
             {
                 var actor = astronauts[i]; stand.SampleAnimation(actor, 0f);
@@ -58,6 +77,14 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                     var shoulder = bones[i][arm == 0 ? 6 : 9];
                     armSide[i][arm] = Mathf.Sign((alignment[i] * actor.transform.InverseTransformPoint(shoulder.position)).x);
                 }
+                // The glove is authored with fingers down and the thumb toward the body; remember that in the hand bone's own axes.
+                handBindInverse[i] = new Quaternion[2];
+                var modelRight = Vector3.Cross(Vector3.up, actor.transform.TransformDirection(modelForward[i]));
+                for (int arm = 0; arm < 2; arm++)
+                {
+                    var hand = bones[i][arm == 0 ? 8 : 11];
+                    handBindInverse[i][arm] = Quaternion.Inverse(Quaternion.LookRotation(hand.InverseTransformDirection(Vector3.down), hand.InverseTransformDirection(-armSide[i][arm] * modelRight)));
+                }
                 footBind[i] = new Quaternion[2]; lateral[i] = new float[2];
                 for (int leg = 0; leg < 2; leg++)
                 {
@@ -66,6 +93,31 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                     lateral[i][leg] = (alignment[i] * actor.transform.InverseTransformPoint(foot.position)).x;
                 }
             }
+            Renderer housing = null;
+            foreach (var part in cameraParts) if (part.name.Contains("CameraHousing")) housing = part;
+            var housingBounds = housing.bounds;
+            cameraAxisCenterLocal = cameraHome.InverseTransformPoint(housingBounds.center); cameraAxisLocal = cameraHome.InverseTransformDirection(housing.transform.up).normalized;
+            cameraRadius = Mathf.Clamp(.5f * Mathf.Min(housingBounds.size.x, housingBounds.size.z), .08f, .14f);
+            bucketBounds = nativeArm.GetChild(0).GetComponent<MeshFilter>().sharedMesh.bounds;
+            stopPoint = new Vector3[count];
+            for (int i = 0; i < count; i++) stopPoint[i] = stop[i].position;
+            scoopArmLength = Vector3.Distance(bones[ScoopActor][9].position, bones[ScoopActor][10].position) + Vector3.Distance(bones[ScoopActor][10].position, bones[ScoopActor][11].position);
+            stopPoint[ScoopActor] = StanceNearScoop(ScoopActor);
+        }
+        /// <summary>Where the walk ends so the hand can really close on the scoop: the planned stance, moved toward the scoop only as far as its reach needs.</summary>
+        Vector3 StanceNearScoop(int i)
+        {
+            var actor = astronauts[i]; Vector3 planned = stop[i].position; Vector3 homePosition = actor.transform.position; Quaternion homeRotation = actor.transform.rotation;
+            Vector3 facing = Vector3.ProjectOnPlane(planned - start[i].position, Vector3.up).normalized;
+            stand.SampleAnimation(actor, 0f);
+            actor.transform.SetPositionAndRotation(new Vector3(planned.x, SurveyorLunarSurface.Height(planned.x, planned.z) + .012f, planned.z), Quaternion.LookRotation(facing) * alignment[i]);
+            // The stance lowers the pelvis a little, so measure from the shoulder as it will be, not as it stands.
+            Vector3 toScoop = nativeArm.GetChild(0).position - (bones[i][9].position + Vector3.down * (.085f + ScoopCrouchMeters));
+            Vector3 flat = Vector3.ProjectOnPlane(toScoop, Vector3.up);
+            float comfortable = ComfortableReach * scoopArmLength, within = Mathf.Sqrt(Mathf.Max(0f, comfortable * comfortable - toScoop.y * toScoop.y));
+            float shift = Mathf.Clamp(flat.magnitude - Mathf.Max(within, MinStandOffMeters), 0f, MaxStanceShiftMeters);
+            actor.transform.SetPositionAndRotation(homePosition, homeRotation);
+            return planned + flat.normalized * shift;
         }
         public void Evaluate(float seconds, bool visible)
         {
@@ -74,7 +126,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             {
                 var actor = astronauts[i]; actor.SetActive(visible); if (!visible) continue;
                 float t = Mathf.Max(0f, seconds - i * 1.3f), duration = i == 0 ? 10f : 12f;
-                Vector3 route = Vector3.ProjectOnPlane(stop[i].position - start[i].position, Vector3.up), facing = route.normalized;
+                Vector3 route = Vector3.ProjectOnPlane(stopPoint[i] - start[i].position, Vector3.up), facing = route.normalized;
                 Vector3 right = Vector3.Cross(Vector3.up, facing);
                 float u = Mathf.Clamp01(t / duration), distance = route.magnitude * Mathf.SmoothStep(0f, 1f, u);
                 bool walking = t > 0f && t < duration;
@@ -84,10 +136,14 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 position.y = SurveyorLunarSurface.Height(position.x, position.z) + .012f;
                 actor.transform.SetPositionAndRotation(position, Quaternion.LookRotation(facing) * alignment[i]);
                 float phase = distance / .42f, settle = Mathf.SmoothStep(0f, 1f, (t - duration) / 2f);
+                // Arms ease in as the stride starts and out as it ends; they never snap between rest and swing.
+                float stride = walking ? Mathf.Min(Smoother(t / .8f), Smoother((duration - t) / .8f)) : 0f;
                 float work = i == 0 ? settle * (1f - Mathf.SmoothStep(0f, 1f, (seconds - 31f) / 3f))
                     : Mathf.SmoothStep(0f, 1f, (seconds - 30f) / 3f) * (1f - Mathf.SmoothStep(0f, 1f, (seconds - 38f) / 3f));
-                bones[i][12].position += Vector3.up * (-.05f + (walking ? .014f * Mathf.Pow(Mathf.Sin(phase * Mathf.PI * 2f), 2f) : -.035f * work));
-                bones[i][13].rotation = Quaternion.AngleAxis(walking ? 3f : 8f * work, right) * bones[i][13].rotation;
+                float crouch = i == ScoopActor ? ScoopCrouchMeters * Smoother((seconds - ScoopReachSeconds) / ScoopReachDuration) * (1f - Smoother((seconds - ScoopPickupSeconds) / 3f)) : 0f;
+                bones[i][12].position += Vector3.up * (-.05f - crouch + (walking ? .014f * Mathf.Pow(Mathf.Sin(phase * Mathf.PI * 2f), 2f) : -.035f * work));
+                // The shoulders turn a little against the hips, the right one coming forward with the left leg.
+                bones[i][13].rotation = Quaternion.AngleAxis(-armSide[i][0] * TorsoTwistDegrees * stride * Mathf.Cos(phase * Mathf.PI * 2f), Vector3.up) * bones[i][13].rotation;
                 for (int leg = 0; leg < 2; leg++)
                 {
                     float offset = leg * .5f, cycle = Mathf.Floor(phase + offset), p = phase + offset - cycle;
@@ -108,22 +164,36 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
                 for (int arm = 0; arm < 2; arm++)
                 {
                     int b = arm == 0 ? 6 : 9; float side = armSide[i][arm];
+                    Quaternion grasp = Quaternion.identity; float graspBlend = 0f;
                     Vector3 rest = bones[i][b].position + Vector3.down * .35f + right * side * .14f + facing * .10f;
-                    Vector3 target = rest + facing * (walking ? Mathf.Sin((phase + arm * .5f) * Mathf.PI * 2f) * .075f : 0f);
+                    // Each arm swings with the opposite leg: forward and a little up as the hand comes through, back and lower behind.
+                    float forward = Mathf.Cos((phase + arm * .5f) * Mathf.PI * 2f);
+                    Vector3 target = rest + (facing * (forward * ArmSwingMeters) + Vector3.up * (ArmLiftMeters * (forward * .5f + .5f)) - right * side * (.025f * forward)) * stride;
                     if (i == 0 && arm == 0 && !walking)
                     {
-                        var grip = cameraHome.TransformPoint(cameraGripLocal);
-                        var carry = position + Vector3.up * 1.07f + facing * .40f + right * side * .30f;
-                        cameraGripWorld = CameraGripPath(seconds, grip, carry, out cameraCarryBlend);
-                        target = Vector3.Lerp(rest, cameraGripWorld, settle);
+                        GraspCamera(position, facing);
+                        var carry = position + Vector3.up * 1.05f + facing * .38f + right * side * .30f;
+                        cameraWristWorld = CameraWristPath(seconds, cameraHome.TransformPoint(cameraWristLocal), carry, out cameraCarryBlend);
+                        // A small tug while it comes free of the mount, gone before the swing finishes.
+                        float tug = 2.2f * Mathf.Sin(Mathf.Clamp01((seconds - CameraPickupSeconds) / CameraLiftSeconds) * Mathf.PI) * (1f - cameraCarryBlend);
+                        var carryRotation = Quaternion.AngleAxis(8f * side, facing) * cameraHome.rotation;
+                        cameraRotationWorld = Quaternion.AngleAxis(tug, right) * Quaternion.Slerp(cameraHome.rotation, carryRotation, cameraCarryBlend);
+                        target = Vector3.Lerp(rest, cameraWristWorld, settle); grasp = cameraRotationWorld * cameraHandLocal; graspBlend = settle;
                     }
-                    if (i == 1 && arm == 1 && seconds > 30f)
+                    if (i == ScoopActor && arm == 1 && seconds > ScoopReachSeconds)
                     {
-                        var source = nativeArm.GetChild(0);
-                        var carry = position + Vector3.up * 1.02f + facing * .36f + right * side * .30f;
-                        target = Vector3.Lerp(rest, Vector3.Lerp(source.position, carry, Mathf.SmoothStep(0f, 1f, (seconds - ScoopPickupSeconds) / 3f)), Mathf.Clamp01((seconds - 30f) / 3f));
+                        // The hand goes to the bucket where it hangs, closes on it, and the bucket then moves with the hand: it is never pulled across the gap.
+                        var bucket = nativeArm.GetChild(0);
+                        GraspScoop(right * side);
+                        var carry = position + Vector3.up * 1.0f + facing * .36f + right * side * .30f;
+                        float reach = Smoother((seconds - ScoopReachSeconds) / ScoopReachDuration);
+                        scoopWristWorld = Vector3.Lerp(bucket.TransformPoint(scoopWristLocal), carry, Smoother((seconds - ScoopPickupSeconds) / 3f));
+                        scoopRotationWorld = bucket.rotation;
+                        target = Vector3.Lerp(rest, scoopWristWorld, reach); grasp = scoopRotationWorld * scoopHandLocal; graspBlend = reach;
                     }
-                    IK(bones[i][b], bones[i][b + 1], bones[i][b + 2], target, position + right * side * .85f + Vector3.up * 1.3f + facing * .15f);
+                    // The elbow points back, down and a little out, like a relaxed arm; a pole above the shoulder would fling it out like hands on hips.
+                    IK(bones[i][b], bones[i][b + 1], bones[i][b + 2], target, bones[i][b].position + (right * side * .7f - facing * .35f + Vector3.down * .5f), false);
+                    if (graspBlend > 0f) bones[i][b + 2].rotation = Quaternion.Slerp(bones[i][b + 2].rotation, grasp, graspBlend);
                 }
                 float turn = Mathf.Clamp(Vector3.SignedAngle(facing, Vector3.ProjectOnPlane(cameraHome.position - bones[i][14].position, Vector3.up), Vector3.up), -28f, 28f);
                 bones[i][14].rotation = Quaternion.AngleAxis(turn * settle, Vector3.up) * bones[i][14].rotation;
@@ -131,27 +201,50 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             bool cameraCarried = visible && seconds >= CameraPickupSeconds, scoopCarried = visible && seconds >= ScoopPickupSeconds;
             foreach (var part in cameraParts) part.enabled = !cameraCarried;
             recoveredCamera.gameObject.SetActive(cameraCarried); nativeArm.gameObject.SetActive(!scoopCarried); recoveredScoop.gameObject.SetActive(scoopCarried);
-            if (cameraCarried)
-            {
-                float since = seconds - CameraPickupSeconds, carry = cameraCarryBlend;
-                Vector3 facing = FacingDirection(0).normalized, right = Vector3.Cross(Vector3.up, facing);
-                var carryRotation = Quaternion.AngleAxis(8f * armSide[0][0], facing) * cameraHome.rotation;
-                // A small tug while it comes free of the mount, gone before the swing finishes.
-                float tug = 2.2f * Mathf.Sin(Mathf.Clamp01(since / CameraLiftSeconds) * Mathf.PI) * (1f - carry);
-                var rotation = Quaternion.AngleAxis(tug, right) * Quaternion.Slerp(cameraHome.rotation, carryRotation, carry);
-                // The grip follows the same path as the hand target; once the swing ends the hand attachment holds it exactly.
-                var analytic = cameraGripWorld - rotation * cameraGripLocal;
-                var attached = cameraHand.position - rotation * cameraGripLocal;
-                recoveredCamera.SetPositionAndRotation(Vector3.Lerp(analytic, attached, carry), rotation);
-            }
-            if (scoopCarried)
-            {
-                var source = nativeArm.GetChild(0); float transfer = Mathf.SmoothStep(0f, 1f, (seconds - ScoopPickupSeconds) / .8f);
-                recoveredScoop.SetPositionAndRotation(Vector3.Lerp(source.position, scoopHand.position, transfer), Quaternion.Slerp(source.rotation, scoopHand.rotation, transfer)); recoveredScoop.localScale = scoopScale;
-            }
+            // Both props ride on the hand's grip: the same rigid offset from the wrist at every frame, so the hand never lets go and never passes through them.
+            if (cameraCarried) recoveredCamera.SetPositionAndRotation(cameraWristWorld - cameraRotationWorld * cameraWristLocal, cameraRotationWorld);
+            if (scoopCarried) { recoveredScoop.SetPositionAndRotation(scoopWristWorld - scoopRotationWorld * scoopWristLocal, scoopRotationWorld); recoveredScoop.localScale = scoopScale; }
         }
-        /// <summary>Grip point of the camera: still at the mount, lifted clear of it, then eased toward the carry pose.</summary>
-        Vector3 CameraGripPath(float seconds, Vector3 grip, Vector3 carry, out float carryBlend)
+        /// <summary>Palm lying on the camera housing like a hand around a glass: thumb up, fingers curling in around it, wrist outside the surface.</summary>
+        void GraspCamera(Vector3 astronaut, Vector3 facing)
+        {
+            var center = cameraHome.TransformPoint(cameraAxisCenterLocal); var axis = cameraHome.TransformDirection(cameraAxisLocal).normalized;
+            Vector3 toAstronaut = Vector3.ProjectOnPlane(astronaut - center, axis).normalized, sideward = Vector3.Cross(Vector3.up, facing) * armSide[0][0];
+            float angle = CameraGraspDegrees * Mathf.Deg2Rad;
+            Vector3 outward = Vector3.ProjectOnPlane(toAstronaut * Mathf.Cos(angle) + sideward * Mathf.Sin(angle), axis).normalized;
+            Vector3 around = Vector3.Cross(axis, outward);
+            if (Vector3.Dot(around, -toAstronaut * Mathf.Sin(angle) + sideward * Mathf.Cos(angle)) < 0f) around = -around;
+            Grasp(0, 0, center + outward * cameraRadius, -outward, around, CameraWrapDegrees, out var wrist, out var rotation);
+            cameraWristLocal = cameraHome.InverseTransformPoint(wrist); cameraHandLocal = Quaternion.Inverse(cameraHome.rotation) * rotation;
+        }
+        /// <summary>Palm lying flat against the side of the bucket nearest the astronaut's hand, fingers along it and thumb up.</summary>
+        void GraspScoop(Vector3 handSide)
+        {
+            var bucket = nativeArm.GetChild(0); Vector3 best = bucket.right; float bestDot = -2f, half = bucketBounds.extents.x;
+            for (int face = 0; face < 4; face++)
+            {
+                Vector3 normal = face == 0 ? bucket.right : face == 1 ? -bucket.right : face == 2 ? bucket.forward : -bucket.forward;
+                float dot = Vector3.Dot(normal, handSide);
+                if (dot > bestDot) { bestDot = dot; best = normal; half = face < 2 ? bucketBounds.extents.x : bucketBounds.extents.z; }
+            }
+            Vector3 inward = -best, along = Vector3.Cross(inward, Vector3.up);
+            if (Vector3.Dot(Vector3.Cross(along, inward), Vector3.up) < 0f) along = -along;
+            Grasp(ScoopActor, 1, bucket.TransformPoint(bucketBounds.center) + best * half, inward, along, ScoopWrapDegrees, out var wrist, out var rotation);
+            scoopWristLocal = bucket.InverseTransformPoint(wrist); scoopHandLocal = Quaternion.Inverse(bucket.rotation) * rotation;
+        }
+        /// <summary>Wrist position and hand rotation for a palm resting on a surface point: fingers run along the surface and curl toward the object by the wrap angle, the thumb on the thumb side of a real right or left hand.</summary>
+        void Grasp(int actor, int arm, Vector3 contact, Vector3 inward, Vector3 along, float wrapDegrees, out Vector3 wrist, out Quaternion rotation)
+        {
+            float wrap = wrapDegrees * Mathf.Deg2Rad;
+            Vector3 fingers = (along * Mathf.Cos(wrap) + inward * Mathf.Sin(wrap)).normalized, palm = (inward * Mathf.Cos(wrap) - along * Mathf.Sin(wrap)).normalized;
+            Vector3 thumb = arm == 0 ? Vector3.Cross(palm, fingers) : Vector3.Cross(fingers, palm);
+            // The palm face meets the surface; the wrist bone sits behind and beside the palm centre.
+            Vector3 centre = contact - palm * PalmHalfThicknessMeters;
+            wrist = centre - fingers * PalmAlongMeters + thumb * PalmThumbSideMeters + palm * PalmFaceMeters;
+            rotation = Quaternion.LookRotation(fingers, thumb) * handBindInverse[actor][arm];
+        }
+        /// <summary>Wrist of the camera hand: still at the mount, lifted clear of it, then eased toward the carry pose.</summary>
+        Vector3 CameraWristPath(float seconds, Vector3 grip, Vector3 carry, out float carryBlend)
         {
             float since = Mathf.Max(0f, seconds - CameraPickupSeconds);
             carryBlend = Smoother((since - CameraLiftSeconds * CameraCarryStartFraction) / CameraCarrySeconds);
@@ -164,7 +257,8 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             x = Mathf.Clamp01(x);
             return x * x * x * (x * (x * 6f - 15f) + 10f);
         }
-        static void IK(Transform upper, Transform lower, Transform end, Vector3 target, Vector3 pole)
+        /// <param name="keepEnd">Feet stay flat on the ground; a hand instead keeps its angle to the forearm and follows it.</param>
+        static void IK(Transform upper, Transform lower, Transform end, Vector3 target, Vector3 pole, bool keepEnd = true)
         {
             float a = Vector3.Distance(upper.position, lower.position), b = Vector3.Distance(lower.position, end.position);
             target = upper.position + Vector3.ClampMagnitude(target - upper.position, Mathf.Max(.01f, a + b - .006f));
@@ -172,7 +266,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             var rotation = end.rotation;
             upper.rotation = Quaternion.FromToRotation(lower.position - upper.position, joint - upper.position) * upper.rotation;
             lower.rotation = Quaternion.FromToRotation(end.position - lower.position, target - lower.position) * lower.rotation;
-            end.rotation = rotation;
+            if (keepEnd) end.rotation = rotation;
         }
     }
 }

@@ -14,7 +14,10 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         [SerializeField] GameObject surfaceWorld, surfacePatch;
         [SerializeField] Renderer[] flightArm;
         [SerializeField] SurveyorLandingEffects landingEffects;
+        /// <summary>At full dusk the flat ambient fill and the reflections fall to these fractions of daytime, so the probe sinks into the dark instead of glowing on fill light alone.</summary>
+        public const float DuskAmbientScale = .42f, DuskReflectionScale = .22f;
         Vector3 settledPosition, retroBindPosition; Quaternion settledRotation;
+        Color ambientDay; float reflectionDay;
         float sunIntensity; bool ready;
         Transform chaseRig, chaseTarget;
         /// <summary>Camera rig that rides on the ground under a lagging average of the craft; shots offset from it, never rotate with the craft.</summary>
@@ -26,7 +29,14 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
         public void Configure(Transform craft, Transform retro, Transform target, GameObject exhaust, GameObject moon, GameObject lm, SurveyorApolloCast visitors, Light sun, SurveyorEclipseImage earth)
         { spacecraft = craft; retroMotor = retro; touchdownTarget = target; plume = exhaust; moonBackdrop = moon; lander = lm; cast = visitors; sunlight = sun; eclipse = earth; }
         public void Initialize()
-        { if (ready) return; ready = true; settledPosition = spacecraft.position; settledRotation = spacecraft.rotation; retroBindPosition = retroMotor.localPosition; sunIntensity = sunlight.intensity; }
+        { if (ready) return; ready = true; settledPosition = spacecraft.position; settledRotation = spacecraft.rotation; retroBindPosition = retroMotor.localPosition; sunIntensity = sunlight.intensity; ambientDay = RenderSettings.ambientLight; reflectionDay = RenderSettings.reflectionIntensity; }
+        void OnDestroy() { if (ready) ApplyFill(0f); }
+        /// <summary>Ambient fill and reflections follow the same dusk as the sun; zero restores the daytime values saved at start.</summary>
+        void ApplyFill(float dusk)
+        {
+            RenderSettings.ambientLight = ambientDay * Mathf.Lerp(1f, DuskAmbientScale, dusk);
+            RenderSettings.reflectionIntensity = reflectionDay * Mathf.Lerp(1f, DuskReflectionScale, dusk);
+        }
         void EnsureChase()
         {
             if (chaseRig != null) return;
@@ -78,6 +88,7 @@ namespace Abandoned.SpaceApps.Chapters.Surveyor
             eclipse.Evaluate(seconds);
             float dusk = stage == "Night" ? Mathf.SmoothStep(0f, 1f, (seconds - 19f) / 13f) : 0f;
             float occultation = stage == "Night" && seconds < 17f ? eclipse.Occultation : 0f;
+            ApplyFill(dusk);
             sunlight.intensity = Mathf.Lerp(sunIntensity, .025f, dusk);
             sunlight.intensity *= 1f - .93f * occultation;
             sunlight.color = Color.Lerp(Color.Lerp(new Color(1f, .94f, .83f),new Color(.74f,.24f,.09f),occultation*.75f), new Color(.54f, .61f, .80f), dusk);
