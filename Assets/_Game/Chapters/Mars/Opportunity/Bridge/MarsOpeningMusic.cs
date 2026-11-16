@@ -12,8 +12,9 @@ namespace Abandoned.SpaceApps.Opportunity
     {
         public const string ClipResource = "Audio/a-kind-of-hope";
         public const float FadeInSeconds = 4f;
-        // Mesmo nível da abertura no campo: música do aplicativo x 0,25 (equivale a 0,5 x ganho 0,5 do MissionAudio).
-        public const float BaseGain = 0.25f;
+        // Mesmo nível da música do pouso no campo (MissionAudio, cue "orbit", ganho 0,64) e dos outros capítulos: cerca de -27 LUFS com os
+        // volumes padrão (música 0,8). A faixa a-kind-of-hope mede -21,2 LUFS.
+        public const float BaseGain = 0.64f;
 
         AudioSource source;
         Func<bool> isPaused;

@@ -188,3 +188,12 @@
     border-width: 3px;
     background-color: var(--sa-color-plate);
 }
+
+/* Botão de pausa no formato do "P · Pause" da Opportunity: placa pequena no canto superior direito, em todos os capítulos. */
+.sa-pausemenu__corner { top: 4%; right: 4%; }
+.sa-pausemenu__corner .sa-pausemenu__button { flex-direction: row; align-items: center; min-height: 24px; min-width: 0; padding: 4px 8px; margin: 0; border-width: 0; border-radius: 0; background-color: rgba(10, 22, 26, 0.5); }
+.sa-pausemenu__corner .sa-pausemenu__button:hover,
+.sa-pausemenu__corner .sa-pausemenu__button:focus { border-width: 1px; border-color: var(--sa-color-focus); }
+.sa-pausemenu__corner .sa-icon-pause,
+.sa-pausemenu__corner .sa-keyhint { display: none; }
+.sa-pausemenu__corner .sa-hold__label { font-size: 10px; margin: 0; padding: 0; color: rgb(202, 217, 201); -unity-font-definition: url("/Assets/_Game/Shared/Fonts/Outfit/Outfit-Medium.ttf"); }

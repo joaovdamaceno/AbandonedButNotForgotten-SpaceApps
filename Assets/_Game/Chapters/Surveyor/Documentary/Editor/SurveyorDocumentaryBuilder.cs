@@ -62,7 +62,7 @@ namespace Abandoned.SpaceApps.EditorTools
             var cutGround = c.Material(Folder + "/Art/ExcavatedRegolith.mat", "Abandoned/Surveyor Regolith");
             cutGround.CopyPropertiesFromMaterial(ground); cutGround.SetFloat("_UseCutColor", 1f); EditorUtility.SetDirty(cutGround);
             var audio = c.Asset(Folder + "/DocumentaryAudio.asset", () => ScriptableObject.CreateInstance<AudioCatalog>());
-            audio.Set(new[] { Music("sur.doc.departure", "Departure", .29f), Music("sur.doc.science", "Science", .18f), Music("sur.doc.return", "Return", .34f) }); EditorUtility.SetDirty(audio);
+            audio.Set(new[] { Music("sur.doc.departure", "Departure", .68f), Music("sur.doc.science", "Science", .42f), Music("sur.doc.return", "Return", .80f) }); EditorUtility.SetDirty(audio);
             var tracks = Tracks(c);
             var prefab = c.Prefab(PrefabPath, root =>
             {

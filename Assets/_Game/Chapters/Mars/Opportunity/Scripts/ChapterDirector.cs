@@ -66,7 +66,6 @@ namespace Abandoned.SpaceApps.Opportunity
         public Transform ActiveTarget => journey.CurrentTarget;
         public float TargetDistance => Vector3.Distance(rover.transform.position, ActiveTarget.position);
         public bool Cinematic => Stage != ChapterStage.HeatShieldExploration && Stage != ChapterStage.ChapterEnd && Stage != ChapterStage.Exploration && Stage != ChapterStage.FinalExploration && Stage != ChapterStage.DustStorm && Stage != ChapterStage.RockAnalysis;
-        public bool CanSkip => Cinematic && Elapsed > 1;
         Coroutine parking;
         void Start()
         {
@@ -145,11 +144,12 @@ namespace Abandoned.SpaceApps.Opportunity
         }
         void Update()
         {
-            if(GameInput.Press(Key.Escape))
+            // Com o menu do jogo aberto, Esc é dele (volta ou retoma); a cena não reage.
+            if(GameInput.Press(Key.Escape)&&!(Paused&&PauseMenuHandler!=null))
             {
                 if(investigation.Active){investigation.Close();}
                 else if(journey.photography.Active){journey.photography.Close();rover.Controllable=true;}
-                else if(Stage!=ChapterStage.ChapterEnd)Pause(!Paused);
+                else if(Stage!=ChapterStage.ChapterEnd)RequestPauseMenu();
             }
             if(Paused)return;
             Elapsed+=Time.deltaTime;
@@ -158,7 +158,6 @@ namespace Abandoned.SpaceApps.Opportunity
             // Interações começam segurando E (sem clique ou mira).
             interactHold=GameInput.ActionHeld?interactHold+Time.deltaTime:0;
             if(interactions&&interactHold>=InteractHoldSeconds){interactHold=float.NegativeInfinity;interactions.TryExecute();}
-            if(CanSkip&&GameInput.Press(Key.Space)){CompleteCinematic();return;}
             if((Stage==ChapterStage.Exploration||journey.FinalAct)&&!investigation.Active&&!investigation.NeedSun&&GameInput.Press(Key.F))journey.photography.Toggle();
             switch(Stage)
             {
@@ -194,7 +193,11 @@ namespace Abandoned.SpaceApps.Opportunity
         }
         public void CompleteCinematic(){if(film.HasSequence)film.Evaluate(film.SequenceDuration);PlayerPrefs.SetInt("ll.seen."+Stage,1);cameras.Shake=0;Progress.Advance();}
         public void SeekFilm(float time){Elapsed=time;film.Evaluate(FilmTime);}
-        public void Pause(bool pause){Paused=pause;Time.timeScale=pause?0:1;cameras.Paused=pause;sound.Pause(pause);hud.ShowPause(pause);SetCursor();}
+        /// <summary>Quando a cena roda dentro do jogo, P, Esc e o botão de pausa abrem o menu de pausa do jogo (o mesmo da abertura) em vez do menu desta cena.</summary>
+        public System.Action PauseMenuHandler;
+        /// <summary>P, Esc ou o botão de pausa.</summary>
+        public void RequestPauseMenu(){if(PauseMenuHandler!=null)PauseMenuHandler();else Pause(!Paused);}
+        public void Pause(bool pause){Paused=pause;Time.timeScale=pause?0:1;cameras.Paused=pause;sound.Pause(pause);hud.ShowPause(pause&&PauseMenuHandler==null);SetCursor();}
         public void SetCursor()
         {
             bool control=!Paused&&(rover.Controllable||investigation.Active||journey.photography.Active||Stage==ChapterStage.RockAnalysis);
